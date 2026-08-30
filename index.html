@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תהילים ומשניות | קריאה ולימוד יומי</title>
+<meta name="description" content="אתר אחד לקריאת תהילים ולימוד משניות — תהילים לפי ימי השבוע, התאריך העברי, פרק רנדומלי או בחירה; משניות יומיות, רנדומליות או לפי סדר, מסכת, פרק ומשנה, כולל פירוש ברטנורא.">
+<meta name="keywords" content="תהילים, משניות, קריאת תהילים, לימוד משניות, משנה יומית, ברטנורא, סדר משנה">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://example.com/tehillim-mishnayot">
+<meta property="og:type" content="website">
+<meta property="og:title" content="תהילים ומשניות | קריאה ולימוד יומי">
+<meta property="og:description" content="תהילים ומשניות באתר אחד — קריאה ולימוד יומי, רנדומלי או לפי בחירה.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "תהילים ומשניות",
+  "inLanguage": "he",
+  "description": "אתר לקריאת תהילים ולימוד משניות — תהילים לפי ימי השבוע, התאריך העברי, פרק רנדומלי או בחירה; משניות יומיות, רנדומליות או לפי סדר, מסכת, פרק ומשנה, כולל פירוש ברטנורא."
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --stone:#EDE6D6;
+    --stone-dark:#DED2B8;
+    --ink:#1B2A4A;
+    --ink-light:#2E4266;
+    --gold:#AD8A4E;
+    --gold-text:#7C5D2A;
+    --gold-light:#D9BF89;
+    --wine:#7A2E2E;
+    --charcoal:#2B241C;
+    --paper:#F7F3E9;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  :focus-visible{
+    outline:3px solid var(--gold-text);
+    outline-offset:2px;
+    border-radius:4px;
+  }
+  .skip-link{
+    position:absolute;
+    right:1rem; top:-3rem;
+    background:var(--ink);
+    color:var(--paper);
+    padding:.7rem 1.2rem;
+    border-radius:8px;
+    z-index:100;
+    text-decoration:none;
+    transition:top .15s;
+  }
+  .skip-link:focus{top:1rem;}
+  .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+  body{
+    background:var(--stone);
+    color:var(--charcoal);
+    font-family:'Assistant', sans-serif;
+    min-height:100vh;
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(173,138,78,0.10), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(27,42,74,0.08), transparent 45%);
+  }
+  a{color:inherit;}
+
+  /* ===== Header ===== */
+  header.site{
+    position:relative;
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-light) 100%);
+    color:var(--paper);
+    padding:3.5rem 1.5rem 5rem;
+    text-align:center;
+    overflow:hidden;
+  }
+  header.site::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(90deg, rgba(217,191,137,0.06) 0 1px, transparent 1px 48px);
+    pointer-events:none;
+  }
+  header.site::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:36px;
+    background:var(--stone);
+    clip-path: polygon(0 100%,100% 100%,100% 0,97% 40%,94% 8%,91% 42%,88% 6%,85% 40%,82% 10%,79% 38%,76% 8%,73% 40%,70% 6%,67% 42%,64% 8%,61% 40%,58% 6%,55% 38%,52% 8%,49% 42%,46% 6%,43% 40%,40% 8%,37% 38%,34% 6%,31% 42%,28% 8%,25% 40%,22% 6%,19% 38%,16% 8%,13% 42%,10% 6%,7% 40%,4% 8%,0 40%);
+  }
+  .site-eyebrow{
+    font-family:'Assistant', sans-serif;
+    letter-spacing:.35em;
+    font-size:.72rem;
+    color:var(--gold-light);
+    text-transform:uppercase;
+  }
+  h1.site-title{
+    font-family:'Frank Ruhl Libre', serif;
+    font-weight:900;
+    font-size:clamp(2.6rem, 7vw, 4.6rem);
+    margin:.6rem 0 .3rem;
+    letter-spacing:.02em;
+  }
+  .site-sub{
+    font-family:'Noto Serif Hebrew', serif;
+    font-size:1.05rem;
+    color:#D9CFB8;
+    max-width:36em;
+    margin:0 auto;
+    line-height:1.9;
+  }
+  .today-strip{
+    margin-top:1.8rem;
+    display:inline-flex;
+    gap:1.2rem;
+    flex-wrap:wrap;
+    justify-content:center;
+    font-family:'Assistant', sans-serif;
+    font-size:.92rem;
+    color:var(--gold-light);
+    border-top:1px solid rgba(217,191,137,.3);
+    border-bottom:1px solid rgba(217,191,137,.3);
+    padding:.6rem 1.2rem;
+  }
+  .today-strip b{color:var(--paper); font-weight:600;}
+  .date-note{
+    margin-top:.55rem;
+    font-family:'Assistant', sans-serif;
+    font-size:.72rem;
+    color:#B9AE93;
+    max-width:30em;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.6;
+  }
+
+  .header-share{
+    margin-top:1.5rem;
+    display:flex;
+    justify-content:center;
+    gap:.55rem;
+  }
+  .header-share .share-btn{
+    width:36px; height:36px;
+    background:rgba(247,243,233,.06);
+    border-color:rgba(217,191,137,.4);
+    color:var(--gold-light);
+  }
+  .header-share .share-btn:hover{background:rgba(217,191,137,.2);}
+  .header-share .share-btn.whatsapp:hover{background:#25D366; border-color:#25D366; color:#fff;}
+  .header-share .share-btn.facebook:hover{background:#1877F2; border-color:#1877F2; color:#fff;}
+  .header-share .share-btn.x:hover{background:#000; border-color:#000; color:#fff;}
+  .header-share .share-btn.copy.copied{background:var(--gold); border-color:var(--gold); color:var(--ink);}
+
+  /* ===== Main / nav ===== */
+  main{max-width:880px; margin:-2.4rem auto 0; padding:0 1.2rem 4rem; position:relative; z-index:2;}
+
+  nav.top-modes{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:.7rem;
+    background:var(--ink);
+    border-radius:16px;
+    padding:.5rem;
+    box-shadow:0 20px 45px -18px rgba(27,42,74,.5);
+  }
+  nav.top-modes button{
+    font-family:'Frank Ruhl Libre', serif;
+    font-weight:700;
+    font-size:1.15rem;
+    background:transparent;
+    border:none;
+    border-radius:12px;
+    padding:1rem .6rem;
+    color:var(--gold-light);
+    cursor:pointer;
+    transition:background .18s, color .18s;
+  }
+  nav.top-modes button:hover{background:rgba(217,191,137,.12);}
+  nav.top-modes button.active{background:var(--paper); color:var(--ink);}
+
+  nav.modes{
+    display:grid;
+    gap:.6rem;
+    background:var(--paper);
+    border:1px solid var(--stone-dark);
+    border-radius:14px;
+    padding:.6rem;
+    margin-top:1rem;
+    box-shadow:0 18px 40px -20px rgba(27,42,74,.35);
+  }
+  #tehillim-section nav.modes{grid-template-columns:repeat(4,1fr);}
+  #mishnayot-section nav.modes{grid-template-columns:repeat(3,1fr);}
+  nav.modes button{
+    font-family:'Assistant', sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    background:transparent;
+    border:none;
+    border-radius:9px;
+    padding:.85rem .4rem;
+    color:var(--ink-light);
+    cursor:pointer;
+    transition:background .18s, color .18s;
+    line-height:1.35;
+  }
+  nav.modes button .num{
+    display:block;
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:1.05rem;
+    color:var(--gold-text);
+    margin-bottom:.15rem;
+  }
+  nav.modes button:hover{background:var(--stone);}
+  nav.modes button.active{background:var(--ink); color:var(--paper);}
+  nav.modes button.active .num{color:var(--gold-light);}
+
+  @media (max-width:640px){
+    #tehillim-section nav.modes{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:520px){
+    #mishnayot-section nav.modes{grid-template-columns:1fr;}
+  }
+
+  section.panel{
+    background:var(--paper);
+    border:1px solid var(--stone-dark);
+    border-radius:14px;
+    margin-top:1.2rem;
+    padding:1.6rem 1.4rem;
+    box-shadow:0 18px 40px -24px rgba(27,42,74,.3);
+  }
+  .panel h2.panel-title{
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:1.5rem;
+    color:var(--ink);
+    margin-bottom:.3rem;
+  }
+  .panel p.panel-desc{
+    color:#5A5142;
+    font-size:.92rem;
+    margin-bottom:1.1rem;
+  }
+  .controls-row{display:flex; gap:.7rem; flex-wrap:wrap; align-items:center;}
+  select, .btn{
+    font-family:'Assistant', sans-serif;
+    font-size:.95rem;
+    padding:.65rem 1rem;
+    border-radius:9px;
+    border:1px solid #8A7757;
+    background:#fff;
+    color:var(--charcoal);
+  }
+  select:disabled{opacity:.5;}
+  .btn{
+    background:var(--ink);
+    color:var(--paper);
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+    transition:background .18s, transform .1s;
+  }
+  .btn:hover{background:var(--ink-light);}
+  .btn:active{transform:scale(.98);}
+  .btn:disabled{opacity:.5; cursor:default;}
+  .btn.secondary{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--ink);
+  }
+  .btn.secondary:hover{background:var(--ink); color:var(--paper);}
+
+  .chip-list{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem;}
+  .chip{
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:.95rem;
+    background:#fff;
+    border:1px solid var(--stone-dark);
+    border-radius:999px;
+    padding:.4rem .95rem;
+    cursor:pointer;
+    color:var(--ink);
+    transition:background .15s, color .15s;
+  }
+  .chip:hover{background:var(--stone);}
+
+  #reader, #msh-reader{margin-top:1.4rem;}
+  .chapter-card{
+    background:#fff;
+    border:1px solid var(--stone-dark);
+    border-radius:14px;
+    padding:1.6rem 1.5rem 1.8rem;
+    margin-bottom:1.2rem;
+    position:relative;
+  }
+  .chapter-head{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:.8rem;
+    border-bottom:2px solid var(--gold-light);
+    padding-bottom:.6rem;
+    margin-bottom:1rem;
+  }
+  .chapter-head h2{
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:1.4rem;
+    color:var(--ink);
+  }
+  .chapter-head .gem{
+    font-family:'Frank Ruhl Libre', serif;
+    color:var(--gold-text);
+    font-size:1rem;
+    margin-inline-start:auto;
+  }
+  .verses{
+    font-family:'Noto Serif Hebrew', serif;
+    font-size:1.28rem;
+    line-height:2.5;
+    color:var(--charcoal);
+    margin-bottom:.4rem;
+  }
+  .verses .v{margin-left:.4em;}
+  .verses .v-num{
+    color:var(--gold-text);
+    font-size:.7em;
+    vertical-align:super;
+    margin-left:.15em;
+    font-family:'Assistant', sans-serif;
+  }
+  .commentary{
+    margin-top:.9rem;
+    padding-top:.9rem;
+    border-top:1px dashed var(--stone-dark);
+  }
+  .commentary .c-label{
+    font-family:'Assistant', sans-serif;
+    font-size:.72rem;
+    letter-spacing:.06em;
+    color:var(--gold-text);
+    font-weight:700;
+    text-transform:uppercase;
+    margin-bottom:.4rem;
+  }
+  .commentary .c-text{
+    font-family:'Noto Serif Hebrew', serif;
+    font-size:1.02rem;
+    line-height:1.95;
+    color:#4A4536;
+    background:var(--paper);
+    border-radius:10px;
+    padding:.8rem 1rem;
+  }
+  .commentary .c-unavailable{
+    font-family:'Assistant', sans-serif;
+    font-size:.85rem;
+    color:#a89f8c;
+  }
+  .chapter-loading, .chapter-error{
+    font-family:'Assistant', sans-serif;
+    color:#8a7f6a;
+    font-size:.95rem;
+    padding:1.5rem 0;
+    text-align:center;
+  }
+  .chapter-error a{color:var(--wine); text-decoration:underline;}
+
+  .share-row{display:flex; align-items:center; gap:.45rem; flex-shrink:0;}
+  .share-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:32px; height:32px; border-radius:50%;
+    border:1px solid var(--stone-dark); background:#fff; cursor:pointer;
+    color:var(--ink); transition:background .15s, transform .1s, border-color .15s, color .15s;
+    text-decoration:none;
+  }
+  .share-btn:hover{background:var(--stone); border-color:var(--gold);}
+  .share-btn:active{transform:scale(.94);}
+  .share-btn svg{width:15px; height:15px; fill:currentColor;}
+  .share-btn.whatsapp:hover{background:#25D366; border-color:#25D366; color:#fff;}
+  .share-btn.facebook:hover{background:#1877F2; border-color:#1877F2; color:#fff;}
+  .share-btn.x:hover{background:var(--charcoal); border-color:var(--charcoal); color:#fff;}
+  .share-btn.copy.copied{background:var(--gold); border-color:var(--gold); color:#fff;}
+
+  .progress-key{
+    margin-top:1.6rem;
+    background:var(--paper);
+    border:1px solid var(--stone-dark);
+    border-radius:14px;
+    padding:1.2rem 1.4rem;
+  }
+  .progress-key h3{
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:1.05rem;
+    color:var(--ink);
+    margin-bottom:.7rem;
+  }
+  .dots{display:grid; grid-template-columns:repeat(25,1fr); gap:4px;}
+  .dots span{aspect-ratio:1; border-radius:2px; background:var(--stone-dark);}
+  .dots span.read{background:var(--gold);}
+  @media (max-width:640px){ .dots{grid-template-columns:repeat(15,1fr);} }
+
+  footer.site{
+    text-align:center; padding:2.5rem 1rem 3rem; color:#8a7f6a;
+    font-size:.85rem; font-family:'Assistant', sans-serif;
+  }
+  footer.site a{text-decoration:underline;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+<header class="site">
+  <div class="site-eyebrow">ספר תהילים · ששה סדרי משנה</div>
+  <h1 class="site-title">תהילים ומשניות</h1>
+  <p class="site-sub">קריאת תהילים ולימוד משניות באתר אחד — יומי, רנדומלי, או לפי בחירה אישית.</p>
+  <div class="today-strip">
+    <span>יום: <b id="today-weekday">—</b></span>
+    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
+  </div>
+  <p class="date-note" id="hebrew-date-note"></p>
+  <div class="header-share" id="header-share" aria-label="שיתוף האתר"></div>
+</header>
+
+<main id="main">
+  <nav class="top-modes" aria-label="בחירת תוכן">
+    <button data-section="tehillim" class="active">תהילים</button>
+    <button data-section="mishnayot">משניות</button>
+  </nav>
+
+  <section id="tehillim-section">
+    <nav class="modes" aria-label="אפשרויות חלוקת קריאה">
+      <button data-mode="weekday" class="active"><span class="num">א׳</span>לפי יום בשבוע</button>
+      <button data-mode="hebdate"><span class="num">ב׳</span>לפי תאריך עברי</button>
+      <button data-mode="random"><span class="num">ג׳</span>פרק רנדומלי</button>
+      <button data-mode="manual"><span class="num">ד׳</span>בחירה ידנית</button>
+    </nav>
+
+    <section class="panel" id="panel-weekday">
+      <h2 class="panel-title">חלוקה לפי ימי השבוע</h2>
+      <p class="panel-desc">ספר תהילים מחולק לשבעה חלקים, כך שבכל שבוע מסיימים את הספר כולו. בחר/י יום, או השאר/י על היום הנוכחי.</p>
+      <div class="controls-row">
+        <select id="weekday-select" aria-label="בחר/י יום בשבוע"></select>
+        <button class="btn" id="weekday-load">הצג פרקים</button>
+      </div>
+      <div class="chip-list" id="weekday-chips" role="group" aria-label="קפיצה ישירה לפרק"></div>
+    </section>
+
+    <section class="panel" id="panel-hebdate" style="display:none;">
+      <h2 class="panel-title">חלוקה לפי ימי החודש העברי</h2>
+      <p class="panel-desc">ספר תהילים מחולק לשלושים חלקים כמניין ימי החודש העברי, כך שבכל חודש מסיימים את הספר כולו. החלוקה מתעדכנת אוטומטית לפי התאריך העברי של היום.</p>
+      <div class="controls-row">
+        <select id="hebdate-select" aria-label="בחר/י יום בחודש העברי"></select>
+        <button class="btn" id="hebdate-load">הצג פרקים</button>
+      </div>
+      <div class="chip-list" id="hebdate-chips" role="group" aria-label="קפיצה ישירה לפרק"></div>
+    </section>
+
+    <section class="panel" id="panel-random" style="display:none;">
+      <h2 class="panel-title">פרק רנדומלי</h2>
+      <p class="panel-desc">פרק אחד, נבחר באקראי מתוך 150 מזמורי הספר — לרגעים שבהם רוצים לפתוח את הלב בלי לבחור.</p>
+      <div class="controls-row">
+        <button class="btn" id="random-load">הגרל/י פרק</button>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-manual" style="display:none;">
+      <h2 class="panel-title">בחירה ידנית</h2>
+      <p class="panel-desc">בחר/י כל פרק מתוך ספר תהילים, לפי מספרו.</p>
+      <div class="controls-row">
+        <select id="manual-select" aria-label="בחר פרק"></select>
+        <button class="btn" id="manual-load">הצג פרק</button>
+      </div>
+    </section>
+
+    <div id="reader" aria-live="polite"></div>
+
+    <div class="progress-key">
+      <h3>מפתח קריאה — 150 מזמורים</h3>
+      <div class="dots" id="progress-dots" aria-hidden="true"></div>
+      <p class="visually-hidden" id="progress-summary" role="status">טרם נקרא אף פרק בסבב הנוכחי.</p>
+    </div>
+  </section>
+
+  <section id="mishnayot-section" style="display:none;">
+    <nav class="modes" aria-label="אפשרויות לימוד משנה">
+      <button data-mode="daily" class="active"><span class="num">א׳</span>משנה יומית</button>
+      <button data-mode="random"><span class="num">ב׳</span>משנה רנדומלית</button>
+      <button data-mode="manual"><span class="num">ג׳</span>משנה לבחירה</button>
+    </nav>
+
+    <section class="panel" id="msh-panel-daily">
+      <h2 class="panel-title">משנה יומית</h2>
+      <p class="panel-desc">המשניות הנלמדות היום לפי לוח הלימוד העולמי היומי (מחזור "משנה יומית" של ספריא), כולל פירוש ברטנורא.</p>
+      <div class="controls-row">
+        <button class="btn" id="msh-daily-load">רענן משנה יומית</button>
+      </div>
+    </section>
+
+    <section class="panel" id="msh-panel-random" style="display:none;">
+      <h2 class="panel-title">משנה רנדומלית</h2>
+      <p class="panel-desc">משנה אחת, נבחרת באקראי מתוך ששת סדרי המשנה, כולל פירוש ברטנורא.</p>
+      <div class="controls-row">
+        <button class="btn" id="msh-random-load">הגרל/י משנה</button>
+      </div>
+    </section>
+
+    <section class="panel" id="msh-panel-manual" style="display:none;">
+      <h2 class="panel-title">משנה לבחירה</h2>
+      <p class="panel-desc">בחר/י סדר, מסכת, פרק ומשנה — כולל פירוש ברטנורא.</p>
+      <div class="controls-row">
+        <select id="msh-seder-select" aria-label="בחר/י סדר"></select>
+        <select id="msh-masechet-select" aria-label="בחר/י מסכת"></select>
+        <select id="msh-perek-select" aria-label="בחר/י פרק" disabled></select>
+        <select id="msh-mishnah-select" aria-label="בחר/י משנה" disabled></select>
+        <button class="btn" id="msh-manual-load" disabled>הצג משנה</button>
+      </div>
+    </section>
+
+    <div id="msh-reader" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer class="site">
+  <p>הטקסט (והפירוש) נטענים באמצעות <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>, מאגר טקסטים יהודיים בקוד פתוח.</p>
+  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script>
+function hebNum(n){
+  if(n<=0) return String(n);
+  let rem = n % 100;
+  let hundredsValue = Math.floor(n/100)*100;
+  let out = "";
+  while(hundredsValue >= 400){ out += "ת"; hundredsValue -= 400; }
+  if(hundredsValue === 300) out += "ש";
+  else if(hundredsValue === 200) out += "ר";
+  else if(hundredsValue === 100) out += "ק";
+  if(rem===15) out += "טו";
+  else if(rem===16) out += "טז";
+  else {
+    const tens = ["","י","כ","ל","מ","נ","ס","ע","פ","צ"];
+    const ones = ["","א","ב","ג","ד","ה","ו","ז","ח","ט"];
+    let t = Math.floor(rem/10), o = rem%10;
+    out += tens[t] + ones[o];
+  }
+  if(out.length>1){
+    out = out.slice(0,-1) + "״" + out.slice(-1);
+  } else if(out.length===1){
+    out = out + "׳";
+  }
+  return out;
+}
+
+const WEEKDAY_NAMES = ["ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"];
+
+function getHebrewParts(date){
+  const fmt = new Intl.DateTimeFormat('en-u-ca-hebrew', {day:'numeric', month:'long', year:'numeric'});
+  const parts = fmt.formatToParts(date);
+  const map = {};
+  parts.forEach(p=> map[p.type]=p.value);
+  return map;
+}
+function getHebrewDisplay(date){
+  const fmt = new Intl.DateTimeFormat('he-u-ca-hebrew', {day:'numeric', month:'long', year:'numeric'});
+  const parts = fmt.formatToParts(date);
+  let day, month, year;
+  parts.forEach(p=>{
+    if(p.type === 'day') day = parseInt(p.value, 10);
+    if(p.type === 'month') month = p.value;
+    if(p.type === 'year') year = parseInt(p.value, 10);
+  });
+  if(!day || !month || !year) return fmt.format(date);
+  const dayLetters = hebNum(day);
+  const yearLetters = hebNum(year % 1000);
+  return `${dayLetters} ב${month} ${yearLetters}`;
+}
+/* ---------- Hebrew date: sunset-aware, with midnight fallback ---------- */
+function calcSunsetUTC(date, lat, lng){
+  const rad = Math.PI/180;
+  const start = Date.UTC(date.getUTCFullYear(),0,1);
+  const dayOfYear = Math.floor((Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate()) - start)/86400000) + 1;
+  const zenith = 90.833;
+  const lngHour = lng/15;
+  const t = dayOfYear + ((18 - lngHour)/24);
+  const M = (0.9856*t) - 3.289;
+  let L = M + (1.916*Math.sin(rad*M)) + (0.020*Math.sin(2*rad*M)) + 282.634;
+  L = (L+360)%360;
+  let RA = (1/rad) * Math.atan(0.91764 * Math.tan(rad*L));
+  RA = (RA+360)%360;
+  const Lq = Math.floor(L/90)*90;
+  const RAq = Math.floor(RA/90)*90;
+  RA = (RA + (Lq-RAq))/15;
+  const sinDec = 0.39782*Math.sin(rad*L);
+  const cosDec = Math.cos(Math.asin(sinDec));
+  const cosH = (Math.cos(rad*zenith) - (sinDec*Math.sin(rad*lat))) / (cosDec*Math.cos(rad*lat));
+  if(cosH > 1 || cosH < -1) return null;
+  let H = (1/rad) * Math.acos(cosH);
+  H = H/15;
+  const T = H + RA - (0.06571*t) - 6.622;
+  const UT = (T - lngHour + 24) % 24;
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) + UT*3600000);
+}
+function getPositionOnce(timeoutMs){
+  return new Promise((resolve, reject)=>{
+    if(!('geolocation' in navigator)){ reject(new Error('no geolocation')); return; }
+    const timer = setTimeout(()=> reject(new Error('timeout')), timeoutMs);
+    navigator.geolocation.getCurrentPosition(
+      pos => { clearTimeout(timer); resolve(pos); },
+      err => { clearTimeout(timer); reject(err); },
+      { enableHighAccuracy:false, timeout: timeoutMs, maximumAge: 21600000 }
+    );
+  });
+}
+async function updateHebrewDateDisplay(){
+  const now = new Date();
+  let effectiveDate = now;
+  let mode = 'midnight';
+  try{
+    const pos = await getPositionOnce(4000);
+    const sunset = calcSunsetUTC(now, pos.coords.latitude, pos.coords.longitude);
+    if(sunset){
+      mode = 'sunset';
+      effectiveDate = (now.getTime() >= sunset.getTime()) ? new Date(now.getTime() + 86400000) : now;
+    }
+  }catch(e){
+    // no permission / unsupported / timeout — fall back to midnight-based date
+  }
+  document.getElementById('today-weekday').textContent = "יום " + WEEKDAY_NAMES[effectiveDate.getDay()];
+  try{
+    document.getElementById('today-hebrew').textContent = getHebrewDisplay(effectiveDate);
+  }catch(e){
+    document.getElementById('today-hebrew').textContent = "לא זמין בדפדפן זה";
+  }
+  const note = document.getElementById('hebrew-date-note');
+  if(note){
+    note.textContent = mode === 'sunset'
+      ? 'התאריך מתעדכן לפי זמן שקיעה משוער לפי מיקומך (זמן משוער בלבד, לא מדויק לדקה).'
+      : 'לא זוהה מיקום — התאריך מתעדכן בחצות הלילה (00:00) לפי שעון המכשיר, ולא לפי השקיעה.';
+  }
+}
+(function initHeader(){
+  const now = new Date();
+  document.getElementById('today-weekday').textContent = "יום " + WEEKDAY_NAMES[now.getDay()];
+  try{
+    document.getElementById('today-hebrew').textContent = getHebrewDisplay(now);
+  }catch(e){
+    document.getElementById('today-hebrew').textContent = "לא זמין בדפדפן זה";
+  }
+  updateHebrewDateDisplay();
+})();
+
+function stripTags(s){
+  return String(s).replace(/<[^>]+>/g,'');
+}
+
+const SHARE_ICONS = {
+  whatsapp: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.3-8.4 8.3z"/></svg>',
+  facebook: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>',
+  x: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.9 2H22l-7.2 8.2L23 22h-6.6l-5.2-6.8L5 22H2l7.7-8.8L1.5 2h6.8l4.7 6.2L18.9 2zm-1.2 18h1.8L7.4 4H5.5l12.2 16z"/></svg>',
+  copy: '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg>'
+};
+function buildShareBar(url, text){
+  const wrap = document.createElement('div');
+  wrap.className = 'share-row';
+
+  const wa = document.createElement('a');
+  wa.className = 'share-btn whatsapp';
+  wa.href = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+  wa.target = '_blank'; wa.rel = 'noopener';
+  wa.setAttribute('aria-label', 'שיתוף בוואטסאפ');
+  wa.innerHTML = SHARE_ICONS.whatsapp;
+  wrap.appendChild(wa);
+
+  const fb = document.createElement('a');
+  fb.className = 'share-btn facebook';
+  fb.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+  fb.target = '_blank'; fb.rel = 'noopener';
+  fb.setAttribute('aria-label', 'שיתוף בפייסבוק');
+  fb.innerHTML = SHARE_ICONS.facebook;
+  wrap.appendChild(fb);
+
+  const x = document.createElement('a');
+  x.className = 'share-btn x';
+  x.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+  x.target = '_blank'; x.rel = 'noopener';
+  x.setAttribute('aria-label', 'שיתוף ב-X');
+  x.innerHTML = SHARE_ICONS.x;
+  wrap.appendChild(x);
+
+  const copy = document.createElement('button');
+  copy.className = 'share-btn copy';
+  copy.type = 'button';
+  copy.setAttribute('aria-label', 'העתקת קישור');
+  copy.innerHTML = SHARE_ICONS.copy;
+  copy.addEventListener('click', async ()=>{
+    try{
+      await navigator.clipboard.writeText(url);
+      copy.classList.add('copied');
+      copy.setAttribute('aria-label', 'הקישור הועתק');
+      setTimeout(()=>{ copy.classList.remove('copied'); copy.setAttribute('aria-label','העתקת קישור'); }, 1800);
+    }catch(e){
+      prompt('העתק/י את הקישור:', url);
+    }
+  });
+  wrap.appendChild(copy);
+
+  return wrap;
+}
+document.getElementById('header-share').appendChild(
+  buildShareBar(location.href.split('#')[0], 'תהילים ומשניות — קריאה ולימוד יומי, רנדומלי או לפי בחירה:')
+);
+
+let currentSection = "tehillim";
+document.querySelectorAll('nav.top-modes button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('nav.top-modes button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSection = btn.dataset.section;
+    document.getElementById('tehillim-section').style.display = (currentSection==='tehillim'? '' : 'none');
+    document.getElementById('mishnayot-section').style.display = (currentSection==='mishnayot'? '' : 'none');
+    if(currentSection === 'tehillim'){
+      autoLoadForMode(currentTehillimMode);
+    } else {
+      autoLoadForModeMsh(currentMshMode);
+    }
+  });
+});
+
+const WEEKDAY_RANGES = [
+  [1,29],[30,50],[51,72],[73,89],[90,106],[107,119],[120,150]
+];
+const HEBDATE_RANGES = [
+  [1,9],[10,17],[18,22],[23,28],[29,34],[35,38],[39,43],[44,48],[49,54],[55,59],
+  [60,65],[66,68],[69,71],[72,76],[77,78],[79,82],[83,87],[88,89],[90,96],[97,103],
+  [104,105],[106,107],[108,112],[113,118],[119.1,119.1],[119.2,119.2],[120,134],[135,139],[140,144],[145,150]
+];
+function rangeToChapters(range){
+  const chapters = [];
+  for(let c=Math.floor(range[0]); c<=Math.floor(range[1]); c++){
+    if(!chapters.includes(c)) chapters.push(c);
+  }
+  return chapters;
+}
+
+const readChapters = new Set();
+let currentTehillimMode = "weekday";
+
+(function buildWeekdaySelect(){
+  const sel = document.getElementById('weekday-select');
+  const todayIdx = new Date().getDay();
+  WEEKDAY_NAMES.forEach((name, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    const r = WEEKDAY_RANGES[i];
+    opt.textContent = `יום ${name} (פרקים ${hebNum(r[0])}–${hebNum(r[1])})` + (i===todayIdx? " — היום":"");
+    if(i===todayIdx) opt.selected = true;
+    sel.appendChild(opt);
+  });
+})();
+
+(function buildHebdateSelect(){
+  const sel = document.getElementById('hebdate-select');
+  let todayDay = 1;
+  try{
+    todayDay = parseInt(getHebrewParts(new Date()).day, 10);
+  }catch(e){}
+  for(let d=1; d<=30; d++){
+    const opt = document.createElement('option');
+    opt.value = d;
+    let label;
+    if(d===25) label = `יום כ״ה — פרק קיט (חלק א׳)`;
+    else if(d===26) label = `יום כ״ו — פרק קיט (חלק ב׳)`;
+    else {
+      const r = HEBDATE_RANGES[d-1];
+      label = `יום ${hebNum(d)} לחודש (פרקים ${hebNum(r[0])}–${hebNum(r[1])})`;
+    }
+    opt.textContent = label + (d===todayDay? " — היום":"");
+    if(d===todayDay) opt.selected = true;
+    sel.appendChild(opt);
+  }
+})();
+
+(function buildManualSelect(){
+  const sel = document.getElementById('manual-select');
+  for(let c=1;c<=150;c++){
+    const opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = `פרק ${hebNum(c)} (${c})`;
+    sel.appendChild(opt);
+  }
+})();
+
+(function buildDots(){
+  const wrap = document.getElementById('progress-dots');
+  for(let c=1;c<=150;c++){
+    const d = document.createElement('span');
+    d.dataset.ch = c;
+    d.title = "פרק " + hebNum(c);
+    wrap.appendChild(d);
+  }
+})();
+function markRead(chapters){
+  chapters.forEach(c=>{
+    readChapters.add(c);
+    const dot = document.querySelector(`#progress-dots span[data-ch="${c}"]`);
+    if(dot) dot.classList.add('read');
+  });
+  const summary = document.getElementById('progress-summary');
+  if(summary) summary.textContent = `${readChapters.size} מתוך 150 פרקים נקראו בסבב הנוכחי.`;
+}
+
+document.querySelectorAll('#tehillim-section nav.modes button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#tehillim-section nav.modes button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTehillimMode = btn.dataset.mode;
+    ['weekday','hebdate','random','manual'].forEach(m=>{
+      document.getElementById('panel-'+m).style.display = (m===currentTehillimMode? '' : 'none');
+    });
+    autoLoadForMode(currentTehillimMode);
+  });
+});
+
+async function fetchChapter(chapterNum){
+  const url = `https://www.sefaria.org/api/v3/texts/Psalms.${chapterNum}?version=hebrew&return_format=text_only`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error('fetch failed');
+  const data = await res.json();
+  let verses = [];
+  if(data && data.versions && data.versions.length){
+    verses = data.versions[0].text;
+  }
+  return verses;
+}
+
+function renderChapterCard(chapterNum){
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  card.id = 'chapter-' + chapterNum;
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>פרק ${hebNum(chapterNum)}</h2>
+      <div class="share-row"></div>
+      <span class="gem">תהלים ${chapterNum}</span>
+    </div>
+    <div class="chapter-loading">טוען פרק…</div>
+  `;
+  const shareSlot = card.querySelector('.chapter-head .share-row');
+  const chapterUrl = location.href.split('#')[0] + '#chapter-' + chapterNum;
+  shareSlot.replaceWith(buildShareBar(chapterUrl, `פרק ${hebNum(chapterNum)} בתהילים:`));
+  return card;
+}
+
+async function loadAndRenderChapter(card, chapterNum){
+  const body = card.querySelector('.chapter-loading');
+  try{
+    const verses = await fetchChapter(chapterNum);
+    if(!verses || !verses.length) throw new Error('empty');
+    const versesDiv = document.createElement('div');
+    versesDiv.className = 'verses';
+    verses.forEach((v, i)=>{
+      const clean = stripTags(Array.isArray(v)? v.join(' ') : v);
+      const span = document.createElement('span');
+      span.className = 'v';
+      span.innerHTML = `<span class="v-num">${i+1}</span>${clean}`;
+      versesDiv.appendChild(span);
+      versesDiv.appendChild(document.createTextNode(' '));
+    });
+    body.replaceWith(versesDiv);
+    markRead([chapterNum]);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את הפרק כרגע. אפשר לקרוא אותו ישירות ב<a href="https://www.sefaria.org/Psalms.${chapterNum}?lang=he" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+}
+
+function renderChapters(chapters, opts){
+  const skipScroll = opts && opts.skipScroll;
+  const reader = document.getElementById('reader');
+  reader.innerHTML = '';
+  chapters.forEach(chapterNum=>{
+    const card = renderChapterCard(chapterNum);
+    reader.appendChild(card);
+    loadAndRenderChapter(card, chapterNum);
+  });
+  if(!skipScroll) reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function autoLoadForMode(mode, opts){
+  const skipScroll = opts && opts.skipScroll;
+  if(mode === 'weekday'){
+    const idx = parseInt(document.getElementById('weekday-select').value, 10);
+    renderChapters(rangeToChapters(WEEKDAY_RANGES[idx]), {skipScroll});
+  } else if(mode === 'hebdate'){
+    const d = parseInt(document.getElementById('hebdate-select').value, 10);
+    let chapters;
+    if(d===25 || d===26){ chapters = [119]; }
+    else { chapters = rangeToChapters(HEBDATE_RANGES[d-1]); }
+    renderChapters(chapters, {skipScroll});
+  } else if(mode === 'random'){
+    const c = 1 + Math.floor(Math.random()*150);
+    renderChapters([c], {skipScroll});
+  } else if(mode === 'manual'){
+    const c = parseInt(document.getElementById('manual-select').value, 10);
+    renderChapters([c], {skipScroll});
+  }
+}
+
+function weekdayChips(){
+  const wrap = document.getElementById('weekday-chips');
+  wrap.innerHTML = '';
+  const idx = parseInt(document.getElementById('weekday-select').value, 10);
+  const chapters = rangeToChapters(WEEKDAY_RANGES[idx]);
+  chapters.forEach(c=>{
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'chip';
+    chip.textContent = hebNum(c);
+    chip.setAttribute('aria-label', 'עבור לפרק ' + hebNum(c));
+    chip.addEventListener('click', ()=> renderChapters([c]));
+    wrap.appendChild(chip);
+  });
+}
+document.getElementById('weekday-select').addEventListener('change', weekdayChips);
+document.getElementById('weekday-load').addEventListener('click', ()=>{
+  const idx = parseInt(document.getElementById('weekday-select').value, 10);
+  renderChapters(rangeToChapters(WEEKDAY_RANGES[idx]));
+});
+weekdayChips();
+autoLoadForMode('weekday', {skipScroll:true});
+
+function hebdateChips(){
+  const wrap = document.getElementById('hebdate-chips');
+  wrap.innerHTML = '';
+  const d = parseInt(document.getElementById('hebdate-select').value, 10);
+  let chapters;
+  if(d===25 || d===26){ chapters = [119]; }
+  else { chapters = rangeToChapters(HEBDATE_RANGES[d-1]); }
+  chapters.forEach(c=>{
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'chip';
+    chip.textContent = hebNum(c);
+    chip.setAttribute('aria-label', 'עבור לפרק ' + hebNum(c));
+    chip.addEventListener('click', ()=> renderChapters([c]));
+    wrap.appendChild(chip);
+  });
+}
+document.getElementById('hebdate-select').addEventListener('change', hebdateChips);
+document.getElementById('hebdate-load').addEventListener('click', ()=>{
+  const d = parseInt(document.getElementById('hebdate-select').value, 10);
+  let chapters;
+  if(d===25 || d===26){ chapters = [119]; }
+  else { chapters = rangeToChapters(HEBDATE_RANGES[d-1]); }
+  renderChapters(chapters);
+});
+hebdateChips();
+
+document.getElementById('random-load').addEventListener('click', ()=> autoLoadForMode('random'));
+document.getElementById('manual-load').addEventListener('click', ()=> autoLoadForMode('manual'));
+
+const SEDARIM = [
+  { he:"זרעים", tractates:[
+    {en:"Berakhot", he:"ברכות"},{en:"Peah", he:"פאה"},{en:"Demai", he:"דמאי"},
+    {en:"Kilayim", he:"כלאים"},{en:"Sheviit", he:"שביעית"},{en:"Terumot", he:"תרומות"},
+    {en:"Maasrot", he:"מעשרות"},{en:"Maaser Sheni", he:"מעשר שני"},{en:"Challah", he:"חלה"},
+    {en:"Orlah", he:"ערלה"},{en:"Bikkurim", he:"ביכורים"}
+  ]},
+  { he:"מועד", tractates:[
+    {en:"Shabbat", he:"שבת"},{en:"Eruvin", he:"עירובין"},{en:"Pesachim", he:"פסחים"},
+    {en:"Shekalim", he:"שקלים"},{en:"Yoma", he:"יומא"},{en:"Sukkah", he:"סוכה"},
+    {en:"Beitzah", he:"ביצה"},{en:"Rosh Hashanah", he:"ראש השנה"},{en:"Taanit", he:"תענית"},
+    {en:"Megillah", he:"מגילה"},{en:"Moed Katan", he:"מועד קטן"},{en:"Chagigah", he:"חגיגה"}
+  ]},
+  { he:"נשים", tractates:[
+    {en:"Yevamot", he:"יבמות"},{en:"Ketubot", he:"כתובות"},{en:"Nedarim", he:"נדרים"},
+    {en:"Nazir", he:"נזיר"},{en:"Sotah", he:"סוטה"},{en:"Gittin", he:"גיטין"},{en:"Kiddushin", he:"קידושין"}
+  ]},
+  { he:"נזיקין", tractates:[
+    {en:"Bava Kamma", he:"בבא קמא"},{en:"Bava Metzia", he:"בבא מציעא"},{en:"Bava Batra", he:"בבא בתרא"},
+    {en:"Sanhedrin", he:"סנהדרין"},{en:"Makkot", he:"מכות"},{en:"Shevuot", he:"שבועות"},
+    {en:"Eduyot", he:"עדויות"},{en:"Avodah Zarah", he:"עבודה זרה"},{en:"Avot", he:"אבות"},{en:"Horayot", he:"הוריות"}
+  ]},
+  { he:"קדשים", tractates:[
+    {en:"Zevachim", he:"זבחים"},{en:"Menachot", he:"מנחות"},{en:"Chullin", he:"חולין"},
+    {en:"Bekhorot", he:"בכורות"},{en:"Arakhin", he:"ערכין"},{en:"Temurah", he:"תמורה"},
+    {en:"Keritot", he:"כריתות"},{en:"Meilah", he:"מעילה"},{en:"Tamid", he:"תמיד"},
+    {en:"Middot", he:"מידות"},{en:"Kinnim", he:"קינים"}
+  ]},
+  { he:"טהרות", tractates:[
+    {en:"Kelim", he:"כלים"},{en:"Oholot", he:"אהלות"},{en:"Negaim", he:"נגעים"},
+    {en:"Parah", he:"פרה"},{en:"Tahorot", he:"טהרות"},{en:"Mikvaot", he:"מקוואות"},
+    {en:"Niddah", he:"נדה"},{en:"Makhshirin", he:"מכשירין"},{en:"Zavim", he:"זבים"},
+    {en:"Tevul Yom", he:"טבול יום"},{en:"Yadayim", he:"ידיים"},{en:"Uktzin", he:"עוקצין"}
+  ]}
+];
+const FLAT_TRACTATES = SEDARIM.flatMap(s => s.tractates);
+function findTractateHe(en){
+  const t = FLAT_TRACTATES.find(t => t.en === en);
+  return t ? t.he : en;
+}
+
+let currentMshMode = "daily";
+const masechetCache = {};
+
+document.querySelectorAll('#mishnayot-section nav.modes button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#mishnayot-section nav.modes button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMshMode = btn.dataset.mode;
+    ['daily','random','manual'].forEach(m=>{
+      document.getElementById('msh-panel-'+m).style.display = (m===currentMshMode? '' : 'none');
+    });
+    autoLoadForModeMsh(currentMshMode);
+  });
+});
+
+async function fetchRefText(ref){
+  const url = `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(ref)}?version=hebrew&return_format=text_only`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error('fetch failed: ' + ref);
+  const data = await res.json();
+  let text = null, resolvedRef = ref;
+  if(data && data.versions && data.versions.length){
+    text = data.versions[0].text;
+  }
+  if(data && data.ref) resolvedRef = data.ref;
+  return { text, ref: resolvedRef };
+}
+
+async function fetchCommentary(baseRef){
+  try{
+    const { text } = await fetchRefText('Bartenura on Mishnah ' + baseRef);
+    if(!text) return null;
+    const flat = Array.isArray(text) ? text.flat(Infinity) : [text];
+    const clean = flat.map(stripTags).filter(Boolean).join(' ');
+    return clean || null;
+  }catch(e){
+    return null;
+  }
+}
+
+function parseTrailingLocation(ref){
+  const m = ref.match(/(\d+):(\d+)(?:-(\d+))?\s*$/);
+  if(!m) return null;
+  return { perek: parseInt(m[1],10), fromMishnah: parseInt(m[2],10), toMishnah: m[3] ? parseInt(m[3],10) : parseInt(m[2],10) };
+}
+
+async function fetchWholeTractate(enTitle){
+  if(masechetCache[enTitle]) return masechetCache[enTitle];
+  const { text } = await fetchRefText('Mishnah ' + enTitle);
+  if(!text || !Array.isArray(text)) throw new Error('no data for ' + enTitle);
+  const cleaned = text.map(perek => Array.isArray(perek) ? perek.map(stripTags) : [stripTags(perek)]);
+  masechetCache[enTitle] = cleaned;
+  return cleaned;
+}
+
+function mishnahCardSkeleton(headingHe, headingSub){
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>${headingHe}</h2>
+      <div class="share-row"></div>
+      <span class="gem">${headingSub}</span>
+    </div>
+    <div class="chapter-loading">טוען משנה…</div>
+  `;
+  const shareSlot = card.querySelector('.chapter-head .share-row');
+  const url = location.href.split('#')[0];
+  shareSlot.replaceWith(buildShareBar(url, `${headingHe} — לימוד משניות:`));
+  return card;
+}
+
+function renderMishnahBlocks(card, tractateEnHe, perek, entries){
+  const body = card.querySelector('.chapter-loading');
+  const wrap = document.createElement('div');
+  entries.forEach((entry)=>{
+    const versesDiv = document.createElement('div');
+    versesDiv.className = 'verses';
+    versesDiv.innerHTML = `<strong>${tractateEnHe} ${hebNum(perek)}:${hebNum(entry.mishnahNum)}</strong><br>${entry.text}`;
+    wrap.appendChild(versesDiv);
+
+    const commentaryDiv = document.createElement('div');
+    commentaryDiv.className = 'commentary';
+    commentaryDiv.innerHTML = `<div class="c-label">פירוש (ברטנורא)</div><div class="c-text">טוען פירוש…</div>`;
+    wrap.appendChild(commentaryDiv);
+
+    fetchCommentary(`${entry.tractateEn} ${perek}:${entry.mishnahNum}`).then(txt=>{
+      const cText = commentaryDiv.querySelector('.c-text');
+      if(txt){
+        cText.textContent = txt;
+      } else {
+        cText.outerHTML = `<div class="c-unavailable">פירוש ברטנורא לא נמצא עבור משנה זו.</div>`;
+      }
+    });
+  });
+  body.replaceWith(wrap);
+}
+
+async function renderSingleMishnahByRef(tractateEn, tractateHe, perek, mishnahNum){
+  const reader = document.getElementById('msh-reader');
+  reader.innerHTML = '';
+  const card = mishnahCardSkeleton(`משנה ${tractateHe} ${hebNum(perek)}:${hebNum(mishnahNum)}`, `${tractateEn} ${perek}:${mishnahNum}`);
+  reader.appendChild(card);
+  try{
+    const chapters = await fetchWholeTractate(tractateEn);
+    const perekArr = chapters[perek-1];
+    if(!perekArr || !perekArr[mishnahNum-1]) throw new Error('not found');
+    renderMishnahBlocks(card, tractateHe, perek, [{ mishnahNum, text: perekArr[mishnahNum-1], tractateEn }]);
+  }catch(e){
+    const body = card.querySelector('.chapter-loading');
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את המשנה כרגע. אפשר לקרוא אותה ישירות ב<a href="https://www.sefaria.org/Mishnah_${encodeURIComponent(tractateEn.replace(/ /g,'_'))}.${perek}.${mishnahNum}?lang=he" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+  reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function renderDailyMishnah(opts){
+  const skipScroll = opts && opts.skipScroll;
+  const reader = document.getElementById('msh-reader');
+  reader.innerHTML = '';
+  const card = mishnahCardSkeleton('משנה יומית', 'Daily Mishnah');
+  reader.appendChild(card);
+  const body = card.querySelector('.chapter-loading');
+  try{
+    const res = await fetch('https://www.sefaria.org/api/calendars?diaspora=0');
+    if(!res.ok) throw new Error('calendar fetch failed');
+    const data = await res.json();
+    const items = (data && data.calendar_items) || [];
+    const item = items.find(i => i.title && i.title.en === 'Daily Mishnah');
+    if(!item || !item.ref) throw new Error('no daily mishnah item');
+    const ref = item.ref;
+    const loc = parseTrailingLocation(ref);
+    if(!loc) throw new Error('could not parse ref: ' + ref);
+    const tractateMatch = ref.match(/^Mishnah (.+?) \d+:\d+/);
+    const tractateEn = tractateMatch ? tractateMatch[1] : null;
+    if(!tractateEn) throw new Error('could not parse tractate from ref: ' + ref);
+    const tractateHe = findTractateHe(tractateEn);
+
+    const chapters = await fetchWholeTractate(tractateEn);
+    const perekArr = chapters[loc.perek-1];
+    if(!perekArr) throw new Error('perek not found');
+    const entries = [];
+    for(let m=loc.fromMishnah; m<=loc.toMishnah; m++){
+      if(perekArr[m-1]) entries.push({ mishnahNum:m, text:perekArr[m-1], tractateEn });
+    }
+    if(!entries.length) throw new Error('no entries found');
+
+    const headingSub = loc.fromMishnah===loc.toMishnah
+      ? `${tractateEn} ${loc.perek}:${loc.fromMishnah}`
+      : `${tractateEn} ${loc.perek}:${loc.fromMishnah}-${loc.toMishnah}`;
+    card.querySelector('.chapter-head h2').textContent = `משנה יומית — ${tractateHe} ${hebNum(loc.perek)}`;
+    card.querySelector('.chapter-head .gem').textContent = headingSub;
+
+    renderMishnahBlocks(card, tractateHe, loc.perek, entries);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את המשנה היומית כרגע. אפשר לראות אותה ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+  if(!skipScroll) reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function renderRandomMishnah(opts){
+  const skipScroll = opts && opts.skipScroll;
+  const tractate = FLAT_TRACTATES[Math.floor(Math.random()*FLAT_TRACTATES.length)];
+  const reader = document.getElementById('msh-reader');
+  reader.innerHTML = '';
+  const card = mishnahCardSkeleton('משנה רנדומלית', 'Random Mishnah');
+  reader.appendChild(card);
+  const body = card.querySelector('.chapter-loading');
+  try{
+    const chapters = await fetchWholeTractate(tractate.en);
+    const perekIdx = Math.floor(Math.random()*chapters.length);
+    const perekArr = chapters[perekIdx];
+    const mishnahIdx = Math.floor(Math.random()*perekArr.length);
+    const perek = perekIdx+1, mishnahNum = mishnahIdx+1;
+    card.querySelector('.chapter-head h2').textContent = `משנה ${tractate.he} ${hebNum(perek)}:${hebNum(mishnahNum)}`;
+    card.querySelector('.chapter-head .gem').textContent = `${tractate.en} ${perek}:${mishnahNum}`;
+    renderMishnahBlocks(card, tractate.he, perek, [{ mishnahNum, text: perekArr[mishnahIdx], tractateEn: tractate.en }]);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון משנה כרגע. אפשר לנסות שוב, או לעיין ב<a href="https://www.sefaria.org/texts/Mishnah" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+  if(!skipScroll) reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+const mshSederSelect = document.getElementById('msh-seder-select');
+const mshMasechetSelect = document.getElementById('msh-masechet-select');
+const mshPerekSelect = document.getElementById('msh-perek-select');
+const mshMishnahSelect = document.getElementById('msh-mishnah-select');
+const mshManualLoadBtn = document.getElementById('msh-manual-load');
+
+(function buildSederSelect(){
+  SEDARIM.forEach((s, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = 'סדר ' + s.he;
+    mshSederSelect.appendChild(opt);
+  });
+})();
+
+function buildMasechetSelect(){
+  mshMasechetSelect.innerHTML = '';
+  const sederIdx = parseInt(mshSederSelect.value, 10);
+  SEDARIM[sederIdx].tractates.forEach((t, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = t.he;
+    mshMasechetSelect.appendChild(opt);
+  });
+}
+buildMasechetSelect();
+
+async function buildPerekSelect(){
+  mshPerekSelect.innerHTML = '';
+  mshPerekSelect.disabled = true;
+  mshMishnahSelect.innerHTML = '';
+  mshMishnahSelect.disabled = true;
+  mshManualLoadBtn.disabled = true;
+
+  const sederIdx = parseInt(mshSederSelect.value, 10);
+  const tractateIdx = parseInt(mshMasechetSelect.value, 10);
+  const tractate = SEDARIM[sederIdx].tractates[tractateIdx];
+  const loadingOpt = document.createElement('option');
+  loadingOpt.textContent = 'טוען פרקים…';
+  mshPerekSelect.appendChild(loadingOpt);
+
+  try{
+    const chapters = await fetchWholeTractate(tractate.en);
+    mshPerekSelect.innerHTML = '';
+    chapters.forEach((perekArr, i)=>{
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `פרק ${hebNum(i+1)}`;
+      mshPerekSelect.appendChild(opt);
+    });
+    mshPerekSelect.disabled = false;
+    buildMishnahSelect();
+  }catch(e){
+    mshPerekSelect.innerHTML = '';
+    const errOpt = document.createElement('option');
+    errOpt.textContent = 'שגיאה בטעינה';
+    mshPerekSelect.appendChild(errOpt);
+  }
+}
+
+function buildMishnahSelect(){
+  mshMishnahSelect.innerHTML = '';
+  const sederIdx = parseInt(mshSederSelect.value, 10);
+  const tractateIdx = parseInt(mshMasechetSelect.value, 10);
+  const tractate = SEDARIM[sederIdx].tractates[tractateIdx];
+  const chapters = masechetCache[tractate.en];
+  const perekIdx = parseInt(mshPerekSelect.value, 10);
+  if(!chapters || isNaN(perekIdx) || !chapters[perekIdx]){
+    mshMishnahSelect.disabled = true;
+    mshManualLoadBtn.disabled = true;
+    return;
+  }
+  chapters[perekIdx].forEach((m, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `משנה ${hebNum(i+1)}`;
+    mshMishnahSelect.appendChild(opt);
+  });
+  mshMishnahSelect.disabled = false;
+  mshManualLoadBtn.disabled = false;
+}
+
+mshSederSelect.addEventListener('change', ()=>{
+  buildMasechetSelect();
+  buildPerekSelect();
+});
+mshMasechetSelect.addEventListener('change', buildPerekSelect);
+mshPerekSelect.addEventListener('change', buildMishnahSelect);
+
+function loadManualMshSelection(){
+  const sederIdx = parseInt(mshSederSelect.value, 10);
+  const tractateIdx = parseInt(mshMasechetSelect.value, 10);
+  const tractate = SEDARIM[sederIdx].tractates[tractateIdx];
+  const perek = parseInt(mshPerekSelect.value, 10) + 1;
+  const mishnahNum = parseInt(mshMishnahSelect.value, 10) + 1;
+  if(isNaN(perek) || isNaN(mishnahNum)) return;
+  renderSingleMishnahByRef(tractate.en, tractate.he, perek, mishnahNum);
+}
+mshManualLoadBtn.addEventListener('click', ()=> loadManualMshSelection());
+
+function autoLoadForModeMsh(mode, opts){
+  if(mode === 'daily'){
+    renderDailyMishnah(opts);
+  } else if(mode === 'random'){
+    renderRandomMishnah(opts);
+  } else if(mode === 'manual'){
+    if(!mshMishnahSelect.disabled && mshMishnahSelect.value !== ''){
+      loadManualMshSelection();
+    }
+  }
+}
+document.getElementById('msh-daily-load').addEventListener('click', ()=> renderDailyMishnah());
+document.getElementById('msh-random-load').addEventListener('click', ()=> renderRandomMishnah());
+
+buildPerekSelect();
+</script>
+</body>
+</html>
