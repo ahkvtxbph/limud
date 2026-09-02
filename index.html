@@ -278,7 +278,7 @@
     margin-bottom:1.1rem;
   }
   .controls-row{display:flex; gap:.7rem; flex-wrap:wrap; align-items:center;}
-  select, .btn, input[type="text"]{
+  select, .btn, input[type="text"], input[type="date"]{
     font-family:'Assistant', sans-serif;
     font-size:.95rem;
     padding:.65rem 1rem;
@@ -596,6 +596,10 @@
         <button class="btn" id="zmanim-search-btn">חפש</button>
       </div>
       <div class="chip-list" id="zmanim-search-results" role="listbox" aria-label="תוצאות חיפוש מיקום"></div>
+      <div class="controls-row" style="margin-top:1rem;">
+        <input type="date" id="zmanim-date-input" aria-label="בחר/י תאריך לזמני היום">
+        <button class="btn secondary" id="zmanim-today-btn">היום</button>
+      </div>
     </section>
 
     <div class="chapter-card">
@@ -1432,6 +1436,24 @@ function fmtZmanTime(date){
   return date.toLocaleTimeString('he-IL', {hour:'2-digit', minute:'2-digit'});
 }
 
+function parseZmanimDateInput(value){
+  // value format: "YYYY-MM-DD" from <input type="date">.
+  // Anchor at noon UTC so it reads as the same calendar day both for the
+  // UTC-based sun-position math and for local-timezone display formatting.
+  const [y, m, d] = value.split('-').map(Number);
+  return new Date(Date.UTC(y, m-1, d, 12));
+}
+
+function todayDateInputValue(){
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+
+let zmanimSelectedDate = null; // null = today (live)
+
 function computeZmanim(date, lat, lon){
   const sunrise = calcSunEventUTC(date, lat, lon, 90.833, true);
   const sunset  = calcSunEventUTC(date, lat, lon, 90.833, false);
@@ -1456,7 +1478,8 @@ function computeZmanim(date, lat, lon){
 
 function renderZmanim(){
   const loc = zmanimLocation || ZMANIM_DEFAULT;
-  const list = computeZmanim(new Date(), loc.lat, loc.lon);
+  const targetDate = zmanimSelectedDate || new Date();
+  const list = computeZmanim(targetDate, loc.lat, loc.lon);
   const container = document.getElementById('zmanim-list');
   container.innerHTML = '';
   if(!list){
@@ -1469,14 +1492,13 @@ function renderZmanim(){
     row.innerHTML = `<span>${z.label}</span><span class="zman-time">${fmtZmanTime(z.time)}</span>`;
     container.appendChild(row);
   });
-  const now = new Date();
   let hebLabel;
   try{
-    hebLabel = getHebrewDisplay(now);
+    hebLabel = getHebrewDisplay(targetDate);
   }catch(e){
     hebLabel = null;
   }
-  const gregLabel = now.toLocaleDateString('he-IL');
+  const gregLabel = targetDate.toLocaleDateString('he-IL');
   document.getElementById('zmanim-date-label').textContent = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
   document.getElementById('zmanim-disclaimer').textContent =
     'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך. אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך (למשל גולש/ת מישראל שמחפש/ת עיר בארה"ב), השעון המוצג לא ישקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
@@ -1560,6 +1582,21 @@ document.getElementById('zmanim-use-my-location').addEventListener('click', tryA
 document.getElementById('zmanim-search-btn').addEventListener('click', searchZmanimLocation);
 document.getElementById('zmanim-search-input').addEventListener('keydown', (e)=>{
   if(e.key === 'Enter'){ e.preventDefault(); searchZmanimLocation(); }
+});
+
+const zmanimDateInput = document.getElementById('zmanim-date-input');
+const zmanimTodayBtn = document.getElementById('zmanim-today-btn');
+zmanimDateInput.value = todayDateInputValue();
+zmanimDateInput.addEventListener('change', ()=>{
+  if(zmanimDateInput.value){
+    zmanimSelectedDate = parseZmanimDateInput(zmanimDateInput.value);
+    renderZmanim();
+  }
+});
+zmanimTodayBtn.addEventListener('click', ()=>{
+  zmanimSelectedDate = null;
+  zmanimDateInput.value = todayDateInputValue();
+  renderZmanim();
 });
 
 /* Pre-load zmanim location in the background so it's ready when the user switches tabs */
