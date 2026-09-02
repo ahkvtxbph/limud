@@ -156,12 +156,41 @@
   .header-share .share-btn.x:hover{background:#000; border-color:#000; color:#fff;}
   .header-share .share-btn.copy.copied{background:var(--gold); border-color:var(--gold); color:var(--ink);}
 
+  .shabbat-banner{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:var(--ink);
+    color:var(--paper);
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem 1.6rem;
+    overflow-y:auto;
+  }
+  .shabbat-banner.visible{ display:flex; }
+  .shabbat-banner .shabbat-inner{ max-width:32em; }
+  .shabbat-banner h2{
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:1.7rem;
+    margin:0 0 .8rem;
+    color:var(--paper);
+  }
+  .shabbat-banner p{
+    font-family:'Noto Serif Hebrew', serif;
+    font-size:1.02rem;
+    color:var(--gold-light);
+    margin:0;
+    line-height:1.9;
+  }
+
   /* ===== Main / nav ===== */
   main{max-width:880px; margin:-2.4rem auto 0; padding:0 1.2rem 4rem; position:relative; z-index:2;}
 
   nav.top-modes{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:.7rem;
     background:var(--ink);
     border-radius:16px;
@@ -182,6 +211,9 @@
   }
   nav.top-modes button:hover{background:rgba(217,191,137,.12);}
   nav.top-modes button.active{background:var(--paper); color:var(--ink);}
+  @media (max-width:560px){
+    nav.top-modes{grid-template-columns:1fr; }
+  }
 
   nav.modes{
     display:grid;
@@ -246,7 +278,7 @@
     margin-bottom:1.1rem;
   }
   .controls-row{display:flex; gap:.7rem; flex-wrap:wrap; align-items:center;}
-  select, .btn{
+  select, .btn, input[type="text"]{
     font-family:'Assistant', sans-serif;
     font-size:.95rem;
     padding:.65rem 1rem;
@@ -255,6 +287,7 @@
     background:#fff;
     color:var(--charcoal);
   }
+  input[type="text"]{ flex:1; min-width:180px; }
   select:disabled{opacity:.5;}
   .btn{
     background:var(--ink);
@@ -287,6 +320,23 @@
     transition:background .15s, color .15s;
   }
   .chip:hover{background:var(--stone);}
+
+  .zman-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    border-bottom:1px dashed var(--stone-dark);
+    padding:.6rem 0;
+    font-family:'Noto Serif Hebrew', serif;
+    font-size:1.1rem;
+  }
+  .zman-row:last-child{border-bottom:none;}
+  .zman-row .zman-time{
+    font-family:'Assistant', sans-serif;
+    font-weight:700;
+    color:var(--ink);
+    font-size:1.1rem;
+  }
 
   #reader, #msh-reader{margin-top:1.4rem;}
   .chapter-card{
@@ -430,10 +480,18 @@
   <div class="header-share" id="header-share" aria-label="שיתוף האתר"></div>
 </header>
 
+<div class="shabbat-banner" id="shabbat-banner" role="status">
+  <div class="shabbat-inner">
+    <h2 id="shabbat-banner-title">שבת שלום!</h2>
+    <p id="shabbat-banner-text"></p>
+  </div>
+</div>
+
 <main id="main">
   <nav class="top-modes" aria-label="בחירת תוכן">
     <button data-section="tehillim" class="active">תהילים</button>
     <button data-section="mishnayot">משניות</button>
+    <button data-section="zmanim">זמני היום</button>
   </nav>
 
   <section id="tehillim-section">
@@ -526,6 +584,28 @@
     </section>
 
     <div id="msh-reader" aria-live="polite"></div>
+  </section>
+
+  <section id="zmanim-section" style="display:none;">
+    <section class="panel">
+      <h2 class="panel-title">זמני היום</h2>
+      <p class="panel-desc" id="zmanim-location-desc">מזהה מיקום…</p>
+      <div class="controls-row">
+        <button class="btn secondary" id="zmanim-use-my-location">השתמש/י במיקום שלי</button>
+        <input type="text" id="zmanim-search-input" placeholder="חיפוש עיר…" aria-label="חיפוש עיר לזמני היום">
+        <button class="btn" id="zmanim-search-btn">חפש</button>
+      </div>
+      <div class="chip-list" id="zmanim-search-results" role="listbox" aria-label="תוצאות חיפוש מיקום"></div>
+    </section>
+
+    <div class="chapter-card">
+      <div class="chapter-head">
+        <h2>זמני היום</h2>
+        <span class="gem" id="zmanim-date-label"></span>
+      </div>
+      <div id="zmanim-list"></div>
+      <p class="date-note" id="zmanim-disclaimer" style="margin-top:1rem; max-width:none;"></p>
+    </div>
   </section>
 </main>
 
@@ -636,10 +716,11 @@ async function updateHebrewDateDisplay(){
     // no permission / unsupported / timeout — fall back to midnight-based date
   }
   document.getElementById('today-weekday').textContent = "יום " + WEEKDAY_NAMES[effectiveDate.getDay()];
+  const gregLabel = now.toLocaleDateString('he-IL');
   try{
-    document.getElementById('today-hebrew').textContent = getHebrewDisplay(effectiveDate);
+    document.getElementById('today-hebrew').textContent = `${getHebrewDisplay(effectiveDate)} (${gregLabel})`;
   }catch(e){
-    document.getElementById('today-hebrew').textContent = "לא זמין בדפדפן זה";
+    document.getElementById('today-hebrew').textContent = `לא זמין בדפדפן זה (${gregLabel})`;
   }
   const note = document.getElementById('hebrew-date-note');
   if(note){
@@ -651,10 +732,11 @@ async function updateHebrewDateDisplay(){
 (function initHeader(){
   const now = new Date();
   document.getElementById('today-weekday').textContent = "יום " + WEEKDAY_NAMES[now.getDay()];
+  const gregLabel = now.toLocaleDateString('he-IL');
   try{
-    document.getElementById('today-hebrew').textContent = getHebrewDisplay(now);
+    document.getElementById('today-hebrew').textContent = `${getHebrewDisplay(now)} (${gregLabel})`;
   }catch(e){
-    document.getElementById('today-hebrew').textContent = "לא זמין בדפדפן זה";
+    document.getElementById('today-hebrew').textContent = `לא זמין בדפדפן זה (${gregLabel})`;
   }
   updateHebrewDateDisplay();
 })();
@@ -728,10 +810,13 @@ document.querySelectorAll('nav.top-modes button').forEach(btn=>{
     currentSection = btn.dataset.section;
     document.getElementById('tehillim-section').style.display = (currentSection==='tehillim'? '' : 'none');
     document.getElementById('mishnayot-section').style.display = (currentSection==='mishnayot'? '' : 'none');
+    document.getElementById('zmanim-section').style.display = (currentSection==='zmanim'? '' : 'none');
     if(currentSection === 'tehillim'){
       autoLoadForMode(currentTehillimMode);
-    } else {
+    } else if(currentSection === 'mishnayot'){
       autoLoadForModeMsh(currentMshMode);
+    } else if(currentSection === 'zmanim'){
+      if(zmanimLocation){ renderZmanim(); } else { tryAutoLocateZmanim(); }
     }
   });
 });
@@ -1310,6 +1395,259 @@ document.getElementById('msh-daily-load').addEventListener('click', ()=> renderD
 document.getElementById('msh-random-load').addEventListener('click', ()=> renderRandomMishnah());
 
 buildPerekSelect();
+
+/* =====================================================================
+   ZMANIM (times of day)
+   ===================================================================== */
+const ZMANIM_DEFAULT = { lat: 32.0853, lon: 34.7818, name: 'תל אביב' };
+let zmanimLocation = null;
+
+function calcSunEventUTC(date, lat, lng, zenith, isSunrise){
+  const rad = Math.PI/180;
+  const start = Date.UTC(date.getUTCFullYear(),0,1);
+  const dayOfYear = Math.floor((Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate()) - start)/86400000) + 1;
+  const lngHour = lng/15;
+  const t = isSunrise ? dayOfYear + ((6 - lngHour)/24) : dayOfYear + ((18 - lngHour)/24);
+  const M = (0.9856*t) - 3.289;
+  let L = M + (1.916*Math.sin(rad*M)) + (0.020*Math.sin(2*rad*M)) + 282.634;
+  L = (L+360)%360;
+  let RA = (1/rad) * Math.atan(0.91764 * Math.tan(rad*L));
+  RA = (RA+360)%360;
+  const Lq = Math.floor(L/90)*90;
+  const RAq = Math.floor(RA/90)*90;
+  RA = (RA + (Lq-RAq))/15;
+  const sinDec = 0.39782*Math.sin(rad*L);
+  const cosDec = Math.cos(Math.asin(sinDec));
+  const cosH = (Math.cos(rad*zenith) - (sinDec*Math.sin(rad*lat))) / (cosDec*Math.cos(rad*lat));
+  if(cosH > 1 || cosH < -1) return null; // sun doesn't reach this position today at this location
+  let H = isSunrise ? 360 - (1/rad)*Math.acos(cosH) : (1/rad)*Math.acos(cosH);
+  H = H/15;
+  const T = H + RA - (0.06571*t) - 6.622;
+  const UT = (T - lngHour + 24) % 24;
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) + UT*3600000);
+}
+
+function fmtZmanTime(date){
+  if(!date) return '—';
+  return date.toLocaleTimeString('he-IL', {hour:'2-digit', minute:'2-digit'});
+}
+
+function computeZmanim(date, lat, lon){
+  const sunrise = calcSunEventUTC(date, lat, lon, 90.833, true);
+  const sunset  = calcSunEventUTC(date, lat, lon, 90.833, false);
+  const alot    = calcSunEventUTC(date, lat, lon, 106.1, true);
+  const tzeit   = calcSunEventUTC(date, lat, lon, 98.5, false);
+  if(!sunrise || !sunset) return null;
+  const shaZmanit = (sunset.getTime() - sunrise.getTime()) / 12;
+  const at = (hours)=> new Date(sunrise.getTime() + hours*shaZmanit);
+  return [
+    { label: 'עלות השחר', time: alot },
+    { label: 'הנץ החמה', time: sunrise },
+    { label: 'סוף זמן קריאת שמע (גר״א)', time: at(3) },
+    { label: 'סוף זמן תפילה (גר״א)', time: at(4) },
+    { label: 'חצות היום', time: at(6) },
+    { label: 'מנחה גדולה', time: at(6.5) },
+    { label: 'מנחה קטנה', time: at(9.5) },
+    { label: 'פלג המנחה', time: at(10.75) },
+    { label: 'שקיעת החמה', time: sunset },
+    { label: 'צאת הכוכבים', time: tzeit }
+  ];
+}
+
+function renderZmanim(){
+  const loc = zmanimLocation || ZMANIM_DEFAULT;
+  const list = computeZmanim(new Date(), loc.lat, loc.lon);
+  const container = document.getElementById('zmanim-list');
+  container.innerHTML = '';
+  if(!list){
+    container.innerHTML = '<p class="chapter-error">לא ניתן לחשב זמני היום עבור מיקום זה.</p>';
+    return;
+  }
+  list.forEach(z=>{
+    const row = document.createElement('div');
+    row.className = 'zman-row';
+    row.innerHTML = `<span>${z.label}</span><span class="zman-time">${fmtZmanTime(z.time)}</span>`;
+    container.appendChild(row);
+  });
+  const now = new Date();
+  let hebLabel;
+  try{
+    hebLabel = getHebrewDisplay(now);
+  }catch(e){
+    hebLabel = null;
+  }
+  const gregLabel = now.toLocaleDateString('he-IL');
+  document.getElementById('zmanim-date-label').textContent = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
+  document.getElementById('zmanim-disclaimer').textContent =
+    'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך. אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך (למשל גולש/ת מישראל שמחפש/ת עיר בארה"ב), השעון המוצג לא ישקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
+}
+
+function setZmanimLocation(loc, sourceNote){
+  zmanimLocation = loc;
+  document.getElementById('zmanim-location-desc').textContent = `זמני היום עבור: ${loc.name}` + (sourceNote ? ' — ' + sourceNote : '');
+  renderZmanim();
+}
+
+async function reverseGeocodeZmanim(lat, lon){
+  try{
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=he&zoom=10`);
+    if(!res.ok) throw new Error('reverse geocode failed');
+    const data = await res.json();
+    const addr = data.address || {};
+    return addr.city || addr.town || addr.village || addr.county || data.display_name || `${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+  }catch(e){
+    return `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
+  }
+}
+
+async function tryAutoLocateZmanim(){
+  document.getElementById('zmanim-location-desc').textContent = 'מזהה מיקום…';
+  try{
+    const pos = await getPositionOnce(5000);
+    const lat = pos.coords.latitude, lon = pos.coords.longitude;
+    const name = await reverseGeocodeZmanim(lat, lon);
+    setZmanimLocation({lat, lon, name}, 'זוהה אוטומטית');
+  }catch(e){
+    setZmanimLocation(ZMANIM_DEFAULT, 'ברירת מחדל — לא זוהה מיקום, ניתן לחפש מיקום אחר');
+  }
+}
+
+async function searchZmanimLocation(){
+  const q = document.getElementById('zmanim-search-input').value.trim();
+  const results = document.getElementById('zmanim-search-results');
+  results.innerHTML = '';
+  if(!q) return;
+  const loadingChip = document.createElement('span');
+  loadingChip.className = 'chip';
+  loadingChip.style.cursor = 'default';
+  loadingChip.textContent = 'מחפש…';
+  results.appendChild(loadingChip);
+  try{
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=5&accept-language=he`);
+    if(!res.ok) throw new Error('search failed');
+    const data = await res.json();
+    results.innerHTML = '';
+    if(!data.length){
+      const noneChip = document.createElement('span');
+      noneChip.className = 'chip';
+      noneChip.style.cursor = 'default';
+      noneChip.textContent = 'לא נמצאו תוצאות';
+      results.appendChild(noneChip);
+      return;
+    }
+    data.forEach(place=>{
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'chip';
+      chip.textContent = place.display_name;
+      chip.addEventListener('click', ()=>{
+        setZmanimLocation({lat: parseFloat(place.lat), lon: parseFloat(place.lon), name: place.display_name}, 'נבחר בחיפוש');
+        results.innerHTML = '';
+        document.getElementById('zmanim-search-input').value = '';
+      });
+      results.appendChild(chip);
+    });
+  }catch(e){
+    results.innerHTML = '';
+    const errChip = document.createElement('span');
+    errChip.className = 'chip';
+    errChip.style.cursor = 'default';
+    errChip.textContent = 'שגיאה בחיפוש';
+    results.appendChild(errChip);
+  }
+}
+document.getElementById('zmanim-use-my-location').addEventListener('click', tryAutoLocateZmanim);
+document.getElementById('zmanim-search-btn').addEventListener('click', searchZmanimLocation);
+document.getElementById('zmanim-search-input').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){ e.preventDefault(); searchZmanimLocation(); }
+});
+
+/* Pre-load zmanim location in the background so it's ready when the user switches tabs */
+tryAutoLocateZmanim();
+
+/* =====================================================================
+   SHABBAT / YOM TOV AUTO-GATING
+   Client-side only — never touches robots/meta/server response, so it
+   does not affect search-engine indexing (crawlers get the full page).
+   Location cascade: precise GPS -> silent IP lookup -> Israel default.
+   ===================================================================== */
+async function detectGatingLocation(){
+  try{
+    const pos = await getPositionOnce(4000);
+    return { lat: pos.coords.latitude, lon: pos.coords.longitude, source: 'gps' };
+  }catch(e){}
+  try{
+    const res = await fetch('https://ipwho.is/');
+    if(res.ok){
+      const data = await res.json();
+      if(data && data.success !== false && data.latitude && data.longitude){
+        return { lat: data.latitude, lon: data.longitude, source: 'ip' };
+      }
+    }
+  }catch(e){}
+  return { lat: 31.7683, lon: 35.2137, source: 'default-israel' }; // Jerusalem
+}
+
+let gatingIntervals = [];
+
+async function fetchGatingSchedule(loc){
+  const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
+  const now = new Date();
+  const start = now.toISOString().slice(0,10);
+  const end = new Date(now.getTime() + 10*86400000).toISOString().slice(0,10);
+  const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${start}&end=${end}&latitude=${loc.lat}&longitude=${loc.lon}&tzid=${encodeURIComponent(tzid)}`;
+  try{
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('hebcal fetch failed');
+    const data = await res.json();
+    const items = data.items || [];
+    const events = items
+      .filter(i => i.category === 'candles' || i.category === 'havdalah')
+      .map(i => ({ type: i.category, date: new Date(i.date), title: i.title }));
+    events.sort((a,b)=> a.date - b.date);
+    const intervals = [];
+    for(let i=0; i<events.length; i++){
+      if(events[i].type === 'candles'){
+        const next = events.slice(i+1).find(e => e.type === 'havdalah');
+        if(next){
+          let label = 'שבת';
+          const nearbyHoliday = items.find(h => h.category === 'holiday' && Math.abs(new Date(h.date) - events[i].date) < 3*86400000);
+          if(nearbyHoliday) label = nearbyHoliday.title;
+          intervals.push({ start: events[i].date, end: next.date, label });
+        }
+      }
+    }
+    return intervals;
+  }catch(e){
+    return [];
+  }
+}
+
+function checkGating(){
+  const now = new Date();
+  const active = gatingIntervals.find(iv => now >= iv.start && now < iv.end);
+  const banner = document.getElementById('shabbat-banner');
+  if(!banner) return;
+  if(active){
+    banner.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('shabbat-banner-title').textContent = `${active.label} שלום!`;
+    document.getElementById('shabbat-banner-text').textContent =
+      `האתר מושבת לכבוד ${active.label}. יחזור לפעילות בצאת ${active.label === 'שבת' ? 'השבת' : active.label} בשעה ${active.end.toLocaleTimeString('he-IL',{hour:'2-digit', minute:'2-digit'})}.`;
+  } else {
+    banner.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+}
+
+async function initGating(){
+  const loc = await detectGatingLocation();
+  gatingIntervals = await fetchGatingSchedule(loc);
+  checkGating();
+}
+initGating();
+setInterval(checkGating, 30000);        // re-check against cached schedule every 30s for near-immediate disconnect
+setInterval(initGating, 6*60*60*1000);  // refresh the schedule itself every 6 hours
 </script>
 </body>
 </html>
