@@ -497,8 +497,8 @@
 
 <main id="main">
   <nav class="top-modes" aria-label="בחירת תוכן">
-    <button data-section="tehillim" class="active">תהילים</button>
-    <button data-section="halacha">הלכה יומית</button>
+    <button data-section="halacha" class="active">הלכה יומית</button>
+    <button data-section="tehillim">תהילים</button>
     <button data-section="mishnayot">משנה יומית</button>
     <button data-section="tanya">תניא יומי</button>
     <button data-section="tanakh">תנ"ך יומי</button>
@@ -506,7 +506,7 @@
     <button data-section="zmanim">זמני היום</button>
   </nav>
 
-  <section id="tehillim-section">
+  <section id="tehillim-section" style="display:none;">
     <nav class="modes" aria-label="אפשרויות חלוקת קריאה">
       <button data-mode="weekday" class="active"><span class="num">א׳</span>לפי יום בשבוע</button>
       <button data-mode="hebdate"><span class="num">ב׳</span>לפי תאריך עברי</button>
@@ -560,7 +560,7 @@
     </div>
   </section>
 
-  <section id="halacha-section" style="display:none;">
+  <section id="halacha-section">
     <section class="panel">
       <h2 class="panel-title">הלכה יומית</h2>
       <p class="panel-desc">ההלכה הנלמדת היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "הלכה יומית" — שולחן ערוך אורח חיים / קיצור שולחן ערוך).</p>
@@ -866,7 +866,7 @@ document.getElementById('header-share').appendChild(
   buildShareBar(location.href.split('#')[0], 'תהילים ומשניות — קריאה ולימוד יומי, רנדומלי או לפי בחירה:')
 );
 
-let currentSection = "tehillim";
+let currentSection = "halacha";
 const ALL_SECTIONS = ['tehillim','halacha','mishnayot','tanya','tanakh','rambam','zmanim'];
 document.querySelectorAll('nav.top-modes button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -1096,6 +1096,7 @@ document.getElementById('weekday-load').addEventListener('click', ()=>{
 });
 weekdayChips();
 autoLoadForMode('weekday', {skipScroll:true});
+renderDailyHalacha();
 
 function hebdateChips(){
   const wrap = document.getElementById('hebdate-chips');
