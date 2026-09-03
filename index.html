@@ -190,8 +190,8 @@
 
   nav.top-modes{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:.7rem;
+    grid-template-columns:repeat(7,1fr);
+    gap:.5rem;
     background:var(--ink);
     border-radius:16px;
     padding:.5rem;
@@ -200,19 +200,22 @@
   nav.top-modes button{
     font-family:'Frank Ruhl Libre', serif;
     font-weight:700;
-    font-size:1.15rem;
+    font-size:.85rem;
     background:transparent;
     border:none;
-    border-radius:12px;
-    padding:1rem .6rem;
+    border-radius:10px;
+    padding:.75rem .3rem;
     color:var(--gold-light);
     cursor:pointer;
     transition:background .18s, color .18s;
   }
   nav.top-modes button:hover{background:rgba(217,191,137,.12);}
   nav.top-modes button.active{background:var(--paper); color:var(--ink);}
+  @media (max-width:900px){
+    nav.top-modes{grid-template-columns:repeat(4,1fr);}
+  }
   @media (max-width:560px){
-    nav.top-modes{grid-template-columns:1fr; }
+    nav.top-modes{grid-template-columns:repeat(2,1fr);}
   }
 
   nav.modes{
@@ -305,6 +308,10 @@
     color:var(--ink);
     border:1px solid var(--ink);
   }
+  .btn.secondary.active{
+    background:var(--ink);
+    color:var(--paper);
+  }
   .btn.secondary:hover{background:var(--ink); color:var(--paper);}
 
   .chip-list{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem;}
@@ -374,6 +381,7 @@
     color:var(--charcoal);
     margin-bottom:.4rem;
   }
+  .verses p{ margin-bottom:1rem; }
   .verses .v{margin-left:.4em;}
   .verses .v-num{
     color:var(--gold-text);
@@ -490,7 +498,11 @@
 <main id="main">
   <nav class="top-modes" aria-label="בחירת תוכן">
     <button data-section="tehillim" class="active">תהילים</button>
-    <button data-section="mishnayot">משניות</button>
+    <button data-section="halacha">הלכה יומית</button>
+    <button data-section="mishnayot">משנה יומית</button>
+    <button data-section="tanya">תניא יומי</button>
+    <button data-section="tanakh">תנ"ך יומי</button>
+    <button data-section="rambam">רמב"ם יומי</button>
     <button data-section="zmanim">זמני היום</button>
   </nav>
 
@@ -548,6 +560,17 @@
     </div>
   </section>
 
+  <section id="halacha-section" style="display:none;">
+    <section class="panel">
+      <h2 class="panel-title">הלכה יומית</h2>
+      <p class="panel-desc">ההלכה הנלמדת היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "הלכה יומית" — שולחן ערוך אורח חיים / קיצור שולחן ערוך).</p>
+      <div class="controls-row">
+        <button class="btn" id="halacha-load">רענן הלכה יומית</button>
+      </div>
+    </section>
+    <div id="halacha-reader" aria-live="polite"></div>
+  </section>
+
   <section id="mishnayot-section" style="display:none;">
     <nav class="modes" aria-label="אפשרויות לימוד משנה">
       <button data-mode="daily" class="active"><span class="num">א׳</span>משנה יומית</button>
@@ -584,6 +607,43 @@
     </section>
 
     <div id="msh-reader" aria-live="polite"></div>
+  </section>
+
+  <section id="tanya-section" style="display:none;">
+    <section class="panel">
+      <h2 class="panel-title">תניא יומי</h2>
+      <p class="panel-desc">קטע התניא הנלמד היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "תניא יומי").</p>
+      <div class="controls-row">
+        <button class="btn" id="tanya-load">רענן תניא יומי</button>
+      </div>
+    </section>
+    <div id="tanya-reader" aria-live="polite"></div>
+  </section>
+
+  <section id="tanakh-section" style="display:none;">
+    <section class="panel">
+      <h2 class="panel-title">תנ"ך יומי</h2>
+      <p class="panel-desc">פרקי התנ"ך הנלמדים היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "תנ"ך יומי").</p>
+      <div class="controls-row">
+        <button class="btn" id="tanakh-load">רענן תנ"ך יומי</button>
+      </div>
+    </section>
+    <div id="tanakh-reader" aria-live="polite"></div>
+  </section>
+
+  <section id="rambam-section" style="display:none;">
+    <section class="panel">
+      <h2 class="panel-title">רמב"ם יומי</h2>
+      <p class="panel-desc">פרקי הרמב"ם (משנה תורה) הנלמדים היום לפי לוח הלימוד העולמי היומי של ספריא. ניתן לבחור בין מחזור של שלושה פרקים ליום (ברירת המחדל) לבין מחזור של פרק אחד ליום.</p>
+      <div class="controls-row">
+        <button class="btn secondary rambam-cycle-btn active" data-cycle="3">3 פרקים ליום (ברירת מחדל)</button>
+        <button class="btn secondary rambam-cycle-btn" data-cycle="1">פרק אחד ליום</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn" id="rambam-load">רענן רמב"ם יומי</button>
+      </div>
+    </section>
+    <div id="rambam-reader" aria-live="polite"></div>
   </section>
 
   <section id="zmanim-section" style="display:none;">
@@ -807,18 +867,27 @@ document.getElementById('header-share').appendChild(
 );
 
 let currentSection = "tehillim";
+const ALL_SECTIONS = ['tehillim','halacha','mishnayot','tanya','tanakh','rambam','zmanim'];
 document.querySelectorAll('nav.top-modes button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('nav.top-modes button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     currentSection = btn.dataset.section;
-    document.getElementById('tehillim-section').style.display = (currentSection==='tehillim'? '' : 'none');
-    document.getElementById('mishnayot-section').style.display = (currentSection==='mishnayot'? '' : 'none');
-    document.getElementById('zmanim-section').style.display = (currentSection==='zmanim'? '' : 'none');
+    ALL_SECTIONS.forEach(s=>{
+      document.getElementById(s+'-section').style.display = (currentSection===s? '' : 'none');
+    });
     if(currentSection === 'tehillim'){
       autoLoadForMode(currentTehillimMode);
+    } else if(currentSection === 'halacha'){
+      renderDailyHalacha();
     } else if(currentSection === 'mishnayot'){
       autoLoadForModeMsh(currentMshMode);
+    } else if(currentSection === 'tanya'){
+      renderTanyaYomi();
+    } else if(currentSection === 'tanakh'){
+      renderTanakhYomi();
+    } else if(currentSection === 'rambam'){
+      renderRambamYomi();
     } else if(currentSection === 'zmanim'){
       if(zmanimLocation){ renderZmanim(); } else { tryAutoLocateZmanim(); }
     }
@@ -1214,6 +1283,70 @@ async function renderSingleMishnahByRef(tractateEn, tractateHe, perek, mishnahNu
   }
   reader.scrollIntoView({behavior:'smooth', block:'start'});
 }
+
+async function renderDailyCalendarSection(titleEn, readerId, headingHe){
+  const reader = document.getElementById(readerId);
+  reader.innerHTML = '';
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>${headingHe}</h2>
+      <div class="share-row"></div>
+      <span class="gem" id="${readerId}-ref-label">${titleEn}</span>
+    </div>
+    <div class="chapter-loading">טוען…</div>
+  `;
+  const shareSlot = card.querySelector('.chapter-head .share-row');
+  shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], `${headingHe} — לימוד יומי:`));
+  reader.appendChild(card);
+  const body = card.querySelector('.chapter-loading');
+  try{
+    const res = await fetch('https://www.sefaria.org/api/calendars?diaspora=0');
+    if(!res.ok) throw new Error('calendar fetch failed');
+    const data = await res.json();
+    const items = (data && data.calendar_items) || [];
+    const item = items.find(i => i.title && i.title.en === titleEn);
+    if(!item || !item.ref) throw new Error('no item: ' + titleEn);
+    const { text, ref: resolvedRef } = await fetchRefText(item.ref);
+    if(!text) throw new Error('empty text');
+    const flat = Array.isArray(text) ? text.flat(Infinity) : [text];
+    const paragraphs = flat.map(stripTags).filter(Boolean);
+    if(!paragraphs.length) throw new Error('no paragraphs');
+    card.querySelector('.chapter-head h2').textContent = (item.displayValue && (item.displayValue.he || (item.title && item.title.he))) || headingHe;
+    const refLabel = document.getElementById(readerId+'-ref-label');
+    if(refLabel) refLabel.textContent = resolvedRef || item.ref;
+    const versesDiv = document.createElement('div');
+    versesDiv.className = 'verses';
+    versesDiv.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+    body.replaceWith(versesDiv);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את התוכן כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+}
+function renderDailyHalacha(){ return renderDailyCalendarSection('Halakhah Yomit', 'halacha-reader', 'הלכה יומית'); }
+function renderTanyaYomi(){ return renderDailyCalendarSection('Tanya Yomi', 'tanya-reader', 'תניא יומי'); }
+function renderTanakhYomi(){ return renderDailyCalendarSection('Tanakh Yomi', 'tanakh-reader', 'תנ"ך יומי'); }
+
+let rambamCycle = '3'; // '3' = three chapters/day (default), '1' = one chapter/day
+function renderRambamYomi(){
+  const titleEn = rambamCycle === '1' ? 'Daily Rambam' : 'Daily Rambam (3 Chapters)';
+  return renderDailyCalendarSection(titleEn, 'rambam-reader', 'רמב"ם יומי');
+}
+document.querySelectorAll('.rambam-cycle-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.rambam-cycle-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    rambamCycle = btn.dataset.cycle;
+    renderRambamYomi();
+  });
+});
+
+document.getElementById('halacha-load').addEventListener('click', renderDailyHalacha);
+document.getElementById('tanya-load').addEventListener('click', renderTanyaYomi);
+document.getElementById('tanakh-load').addEventListener('click', renderTanakhYomi);
+document.getElementById('rambam-load').addEventListener('click', renderRambamYomi);
 
 async function renderDailyMishnah(opts){
   const skipScroll = opts && opts.skipScroll;
