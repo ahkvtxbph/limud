@@ -1593,18 +1593,22 @@ function computeZmanim(date, lat, lon){
   const sunset  = calcSunEventUTC(date, lat, lon, 90.833, false);
   const alot    = calcSunEventUTC(date, lat, lon, 106.1, true);
   const tzeit   = calcSunEventUTC(date, lat, lon, 98.5, false);
-  if(!sunrise || !sunset) return null;
-  const shaZmanit = (sunset.getTime() - sunrise.getTime()) / 12;
-  const at = (hours)=> new Date(sunrise.getTime() + hours*shaZmanit);
+  if(!sunrise || !sunset || !alot || !tzeit) return null;
+  const shaZmanitGra = (sunset.getTime() - sunrise.getTime()) / 12;
+  const atGra = (hours)=> new Date(sunrise.getTime() + hours*shaZmanitGra);
+  const shaZmanitMga = (tzeit.getTime() - alot.getTime()) / 12;
+  const atMga = (hours)=> new Date(alot.getTime() + hours*shaZmanitMga);
   return [
     { label: 'עלות השחר', time: alot },
     { label: 'הנץ החמה', time: sunrise },
-    { label: 'סוף זמן קריאת שמע (גר״א)', time: at(3) },
-    { label: 'סוף זמן תפילה (גר״א)', time: at(4) },
-    { label: 'חצות היום', time: at(6) },
-    { label: 'מנחה גדולה', time: at(6.5) },
-    { label: 'מנחה קטנה', time: at(9.5) },
-    { label: 'פלג המנחה', time: at(10.75) },
+    { label: 'סוף זמן קריאת שמע (מג״א)', time: atMga(3) },
+    { label: 'סוף זמן קריאת שמע (גר״א)', time: atGra(3) },
+    { label: 'סוף זמן תפילה (מג״א)', time: atMga(4) },
+    { label: 'סוף זמן תפילה (גר״א)', time: atGra(4) },
+    { label: 'חצות היום', time: atGra(6) },
+    { label: 'מנחה גדולה', time: atGra(6.5) },
+    { label: 'מנחה קטנה', time: atGra(9.5) },
+    { label: 'פלג המנחה', time: atGra(10.75) },
     { label: 'שקיעת החמה', time: sunset },
     { label: 'צאת הכוכבים', time: tzeit }
   ];
