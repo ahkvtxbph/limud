@@ -430,6 +430,16 @@
     text-align:center;
   }
   .chapter-error a{color:var(--wine); text-decoration:underline;}
+  .zmanim-short-note{
+    font-family:'Assistant', sans-serif;
+    font-size:.82rem;
+    color:var(--gold-text);
+    background:var(--paper);
+    border-radius:8px;
+    padding:.5rem .8rem;
+    margin-bottom:.9rem;
+  }
+  .zmanim-short-note a{color:var(--gold-text); text-decoration:underline; font-weight:600;}
 
   .share-row{display:flex; align-items:center; gap:.45rem; flex-shrink:0;}
   .share-btn{
@@ -672,6 +682,7 @@
         <h2>זמני היום</h2>
         <span class="gem" id="zmanim-date-label"></span>
       </div>
+      <p class="zmanim-short-note">⚠ זמנים משוערים (חישוב אוטומטי) — <a href="#zmanim-disclaimer">פרטים למטה</a></p>
       <div id="zmanim-list"></div>
       <p class="date-note" id="zmanim-disclaimer" style="margin-top:1rem; max-width:none;"></p>
     </div>
@@ -1579,25 +1590,49 @@ function todayDateInputValue(){
 
 let zmanimSelectedDate = null; // null = today (live)
 
+function roundToMinute(date, direction){
+  const minuteMs = 60000;
+  const ms = date.getTime();
+  if(direction === 'up') return new Date(Math.ceil(ms / minuteMs) * minuteMs);
+  if(direction === 'down') return new Date(Math.floor(ms / minuteMs) * minuteMs);
+  return new Date(Math.round(ms / minuteMs) * minuteMs);
+}
+
 function computeZmanim(date, lat, lon){
   const sunrise = calcSunEventUTC(date, lat, lon, 90.833, true);
   const sunset  = calcSunEventUTC(date, lat, lon, 90.833, false);
-  const alot    = calcSunEventUTC(date, lat, lon, 106.1, true);
-  const tzeit   = calcSunEventUTC(date, lat, lon, 98.5, false);
-  if(!sunrise || !sunset || !alot || !tzeit) return null;
-  const shaZmanitGra = (sunset.getTime() - sunrise.getTime()) / 12;
+  if(!sunrise || !sunset) return null;
+
+  const dayLengthMs = sunset.getTime() - sunrise.getTime();
+  const dayLengthMinutes = dayLengthMs / 60000;
+  const isSummer = dayLengthMinutes > 720; // day longer than 12h
+
+  // Alot hashachar: fixed 72 minutes before sunrise (per Yeshiva.org.il), rounded later (stringent).
+  const alot = roundToMinute(new Date(sunrise.getTime() - 72*60000), 'up');
+
+  // Tzeit hakochavim: 18 "zmaniyot" minutes after sunset in summer, 18 plain minutes in winter.
+  const tzeitOffsetMinutes = isSummer ? 18 * (dayLengthMinutes / 720) : 18;
+  const tzeit = new Date(sunset.getTime() + tzeitOffsetMinutes * 60000);
+
+  const shaZmanitGra = dayLengthMs / 12;
   const atGra = (hours)=> new Date(sunrise.getTime() + hours*shaZmanitGra);
   const shaZmanitMga = (tzeit.getTime() - alot.getTime()) / 12;
   const atMga = (hours)=> new Date(alot.getTime() + hours*shaZmanitMga);
+
+  const chatzot = atGra(6);
+  // Mincha gedola: 30 "zmaniyot" minutes after chatzot in summer, 30 plain minutes in winter.
+  const minchaGedolaOffsetMinutes = isSummer ? 30 * (dayLengthMinutes / 720) : 30;
+  const minchaGedola = new Date(chatzot.getTime() + minchaGedolaOffsetMinutes*60000);
+
   return [
     { label: 'עלות השחר', time: alot },
     { label: 'הנץ החמה', time: sunrise },
-    { label: 'סוף זמן קריאת שמע (מג״א)', time: atMga(3) },
-    { label: 'סוף זמן קריאת שמע (גר״א)', time: atGra(3) },
-    { label: 'סוף זמן תפילה (מג״א)', time: atMga(4) },
-    { label: 'סוף זמן תפילה (גר״א)', time: atGra(4) },
-    { label: 'חצות היום', time: atGra(6) },
-    { label: 'מנחה גדולה', time: atGra(6.5) },
+    { label: 'סוף זמן קריאת שמע (מג״א)', time: roundToMinute(atMga(3), 'down') },
+    { label: 'סוף זמן קריאת שמע (גר״א)', time: roundToMinute(atGra(3), 'down') },
+    { label: 'סוף זמן תפילה (מג״א)', time: roundToMinute(atMga(4), 'down') },
+    { label: 'סוף זמן תפילה (גר״א)', time: roundToMinute(atGra(4), 'down') },
+    { label: 'חצות היום', time: chatzot },
+    { label: 'מנחה גדולה', time: minchaGedola },
     { label: 'מנחה קטנה', time: atGra(9.5) },
     { label: 'פלג המנחה', time: atGra(10.75) },
     { label: 'שקיעת החמה', time: sunset },
