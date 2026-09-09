@@ -137,6 +137,17 @@
     margin-right:auto;
     line-height:1.6;
   }
+  .upcoming-shabbat-note{
+    margin-top:.7rem;
+    font-family:'Assistant', sans-serif;
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--gold-light);
+    max-width:30em;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.6;
+  }
 
   .whatsapp-float{
     position:fixed;
@@ -497,6 +508,8 @@
     <span>תאריך עברי: <b id="today-hebrew">—</b></span>
   </div>
   <p class="date-note" id="hebrew-date-note"></p>
+  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
+  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
 </header>
 
 <a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
@@ -1914,10 +1927,121 @@ function checkGating(){
   }
 }
 
+async function fetchRegularHolidayLabel(){
+  try{
+    const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
+    const now = new Date();
+    const startStr = now.toISOString().slice(0,10);
+    const end = new Date(now.getTime() + 86400000);
+    const endStr = end.toISOString().slice(0,10);
+    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&maj=on&min=on&mod=on&nx=on&mf=on&start=${startStr}&end=${endStr}&tzid=${encodeURIComponent(tzid)}`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    const items = data.items || [];
+    // "Regular" holidays: has a holiday/roshchodesh category but is NOT a full Yom Tov
+    // (those are already covered by the Shabbat/Yom-Tov gating & the line above).
+    const regularItems = items.filter(i => (i.category === 'holiday' || i.category === 'roshchodesh') && !i.yomtov);
+    const todayItem = regularItems.find(i => i.date && i.date.slice(0,10) === startStr);
+    const tomorrowItem = regularItems.find(i => i.date && i.date.slice(0,10) === endStr);
+
+    // --- Purim: distinguish Purim d'Prazim (14 Adar) from Shushan Purim / d'Mukafin (15 Adar) ---
+    function purimLabel(item, isErev){
+      if(!item || !item.title) return null;
+      let label = null;
+      if(item.title === 'Purim') label = 'פורים (פורים דפרזים)';
+      else if(item.title === 'Shushan Purim') label = 'שושן פורים (פורים דמוקפין — ירושלים)';
+      if(label) return isErev ? 'ערב ' + label : label;
+      return null;
+    }
+    const purimToday = purimLabel(todayItem, false);
+    if(purimToday) return purimToday;
+    const purimTomorrow = purimLabel(tomorrowItem, true);
+    if(purimTomorrow) return purimTomorrow;
+
+    // --- Chanukah: show which candle is already lit (from last night) and which is lit tonight.
+    // Verified against Hebcal's own calendar: the "N Candles" label attached to a Gregorian date
+    // is the candle lit THAT evening (i.e. "tonight"); the candle already burning since last night is N-1.
+    function parseChanukah(item){
+      if(!item || !item.title) return null;
+      const mCandles = item.title.match(/Chanukah:\s*(\d+)\s*Candles?/i);
+      if(mCandles) return { tonight: parseInt(mCandles[1], 10) };
+      const mLastDay = item.title.match(/Chanukah:\s*8th Day/i);
+      if(mLastDay) return { lastDay: true };
+      return null;
+    }
+    const chanToday = parseChanukah(todayItem);
+    if(chanToday){
+      if(chanToday.lastDay){
+        return `חנוכה — היום נר ${hebNum(8)} (היום האחרון, אין הדלקה הערב)`;
+      }
+      const tonight = chanToday.tonight;
+      if(tonight === 1){
+        return `חנוכה — הערב מדליקים נר ${hebNum(1)} (הנר הראשון)`;
+      }
+      return `חנוכה — היום דולק נר ${hebNum(tonight-1)}, הערב מדליקים נר ${hebNum(tonight)}`;
+    }
+    const chanTomorrow = parseChanukah(tomorrowItem);
+    if(chanTomorrow && !chanTomorrow.lastDay && chanTomorrow.tonight === 1){
+      return 'ערב חנוכה';
+    }
+
+    if(todayItem) return todayItem.hebrew || todayItem.title;
+    if(tomorrowItem) return 'ערב ' + (tomorrowItem.hebrew || tomorrowItem.title);
+    return null;
+  }catch(e){
+    return null;
+  }
+}
+
+async function updateRegularHolidayNote(){
+  const el = document.getElementById('regular-holiday-note');
+  if(!el) return;
+  const label = await fetchRegularHolidayLabel();
+  if(label){
+    el.textContent = label;
+    el.style.display = '';
+  } else {
+    el.textContent = '';
+    el.style.display = 'none';
+  }
+}
+
+async function updateUpcomingShabbatNote(){
+  const noteEl = document.getElementById('upcoming-shabbat-note');
+  if(!noteEl) return;
+  let parashaText = '';
+  try{
+    const res = await fetch('https://www.sefaria.org/api/calendars?diaspora=0');
+    if(res.ok){
+      const data = await res.json();
+      const items = (data && data.calendar_items) || [];
+      const parasha = items.find(i => i.title && i.title.en === 'Parashat Hashavua');
+      if(parasha && parasha.displayValue && parasha.displayValue.he){
+        parashaText = `פרשת השבוע: ${parasha.displayValue.he}`;
+      }
+    }
+  }catch(e){ /* best-effort, ignore */ }
+
+  let nextEntranceText = '';
+  const now = new Date();
+  const upcoming = gatingIntervals
+    .filter(iv => iv.end > now)
+    .sort((a,b)=> a.start - b.start)[0];
+  if(upcoming && upcoming.label !== 'שבת'){
+    nextEntranceText = `החג הקרוב: ${upcoming.label}`;
+  }
+
+  const parts = [parashaText, nextEntranceText].filter(Boolean);
+  noteEl.textContent = parts.join(' · ');
+}
+
 async function initGating(){
   const loc = await detectGatingLocation();
   gatingIntervals = await fetchGatingSchedule(loc);
   checkGating();
+  updateUpcomingShabbatNote();
+  updateRegularHolidayNote();
 }
 initGating();
 setInterval(checkGating, 30000);        // re-check against cached schedule every 30s for near-immediate disconnect
