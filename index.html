@@ -754,6 +754,13 @@ function hebNum(n){
   return out;
 }
 
+// Replaces any raw 4-digit Hebrew-year number (e.g. "5787", from Hebcal/Sefaria labels)
+// with its Hebrew-letter form (e.g. "תשפ״ז"), dropping the thousands digit per convention.
+function hebraizeYearInText(text){
+  if(!text) return text;
+  return text.replace(/\b(5[7-9]\d{2})\b/g, (match)=> hebNum(parseInt(match, 10) % 1000));
+}
+
 const WEEKDAY_NAMES = ["ראשון","שני","שלישי","רביעי","חמישי","שישי","שבת"];
 
 function getHebrewParts(date){
@@ -1898,8 +1905,12 @@ async function fetchGatingSchedule(loc){
         const next = events.slice(i+1).find(e => e.type === 'havdalah');
         if(next){
           let label = 'שבת';
-          const nearbyHoliday = items.find(h => h.category === 'holiday' && Math.abs(new Date(h.date) - events[i].date) < 3*86400000);
-          if(nearbyHoliday) label = nearbyHoliday.title;
+          const nearbyHoliday = items.find(h =>
+            h.category === 'holiday' &&
+            !/^Erev\s+/i.test(h.title || '') &&
+            Math.abs(new Date(h.date) - events[i].date) < 3*86400000
+          );
+          if(nearbyHoliday) label = hebraizeYearInText(nearbyHoliday.hebrew || nearbyHoliday.title || label);
           intervals.push({ start: events[i].date, end: next.date, label });
         }
       }
@@ -1941,7 +1952,19 @@ async function fetchRegularHolidayLabel(){
     const items = data.items || [];
     // "Regular" holidays: has a holiday/roshchodesh category but is NOT a full Yom Tov
     // (those are already covered by the Shabbat/Yom-Tov gating & the line above).
-    const regularItems = items.filter(i => (i.category === 'holiday' || i.category === 'roshchodesh') && !i.yomtov);
+    // Major Yom Tov names (and their "Erev"/multi-day variants) are entirely handled by the
+    // Shabbat/Yom-Tov gating system elsewhere — never show them (or their Erev) on this line.
+    const MAJOR_YOMTOV_KEYWORDS = [
+      'Rosh Hashana', 'Yom Kippur', 'Sukkot', 'Shmini Atzeret', 'Simchat Torah', 'Pesach', 'Shavuot'
+    ];
+    function isMajorYomTovRelated(item){
+      if(!item || !item.title) return false;
+      const bare = item.title.replace(/^Erev\s+/i, '');
+      return MAJOR_YOMTOV_KEYWORDS.some(kw => bare.indexOf(kw) === 0 || bare === kw);
+    }
+    const regularItems = items.filter(i =>
+      (i.category === 'holiday' || i.category === 'roshchodesh') && !i.yomtov && !isMajorYomTovRelated(i)
+    );
     const todayItem = regularItems.find(i => i.date && i.date.slice(0,10) === startStr);
     const tomorrowItem = regularItems.find(i => i.date && i.date.slice(0,10) === endStr);
 
@@ -1986,8 +2009,8 @@ async function fetchRegularHolidayLabel(){
       return 'ערב חנוכה';
     }
 
-    if(todayItem) return todayItem.hebrew || todayItem.title;
-    if(tomorrowItem) return 'ערב ' + (tomorrowItem.hebrew || tomorrowItem.title);
+    if(todayItem && todayItem.hebrew) return hebraizeYearInText(todayItem.hebrew);
+    if(tomorrowItem && tomorrowItem.hebrew) return hebraizeYearInText('ערב ' + tomorrowItem.hebrew);
     return null;
   }catch(e){
     return null;
@@ -2029,7 +2052,17 @@ async function updateUpcomingShabbatNote(){
     .filter(iv => iv.end > now)
     .sort((a,b)=> a.start - b.start)[0];
   if(upcoming && upcoming.label !== 'שבת'){
-    nextEntranceText = `החג הקרוב: ${upcoming.label}`;
+    // Show the upcoming Yom Tov starting from the Sunday of the week it falls in.
+    // Special case: if the chag itself falls on a Sunday, show it from the Sunday before
+    // (a full week of advance notice), rather than the same day.
+    function startOfLocalDay(d){ const r = new Date(d); r.setHours(0,0,0,0); return r; }
+    const chagDay = startOfLocalDay(upcoming.start);
+    const dow = chagDay.getDay(); // 0 = Sunday
+    const daysBack = (dow === 0) ? 7 : dow;
+    const displayFrom = new Date(chagDay.getTime() - daysBack*86400000);
+    if(startOfLocalDay(now) >= displayFrom){
+      nextEntranceText = `החג הקרוב: ${upcoming.label}`;
+    }
   }
 
   const parts = [parashaText, nextEntranceText].filter(Boolean);
