@@ -148,6 +148,26 @@
     margin-right:auto;
     line-height:1.6;
   }
+  .learning-date-label{
+    font-family:'Assistant', sans-serif;
+    font-size:1rem;
+    font-weight:700;
+    color:var(--ink);
+    background:var(--stone);
+    border-inline-start:4px solid var(--gold);
+    border-radius:7px;
+    padding:.6rem .9rem;
+    margin-bottom:1rem;
+    line-height:1.5;
+  }
+  .learning-date-label .sub{
+    display:block;
+    font-family:'Assistant', sans-serif;
+    font-weight:400;
+    font-size:.75rem;
+    color:#5A5142;
+    margin-top:.25rem;
+  }
 
   .whatsapp-float{
     position:fixed;
@@ -1348,7 +1368,7 @@ async function renderDailyCalendarSection(titleEn, readerId, headingHe, selected
       <div class="share-row"></div>
       <span class="gem" id="${readerId}-ref-label">${titleEn}</span>
     </div>
-    <p class="date-note" id="${readerId}-date-label" style="margin-bottom:.8rem;">${dateLabel}</p>
+    <p class="learning-date-label" id="${readerId}-date-label">${dateLabel}<span class="sub">הלימוד המוצג הוא לתאריך זה — לא בהכרח לתאריך של היום</span></p>
     <div class="chapter-loading">טוען…</div>
   `;
   const shareSlot = card.querySelector('.chapter-head .share-row');
@@ -1441,9 +1461,9 @@ async function renderDailyMishnah(opts){
   try{ hebLabel = getHebrewDisplay(targetDate); }catch(e){ hebLabel = null; }
   const gregLabel = targetDate.toLocaleDateString('he-IL');
   const dateLabelEl = document.createElement('p');
-  dateLabelEl.className = 'date-note';
-  dateLabelEl.style.marginBottom = '.8rem';
-  dateLabelEl.textContent = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
+  dateLabelEl.className = 'learning-date-label';
+  const dateMain = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
+  dateLabelEl.innerHTML = `${dateMain}<span class="sub">הלימוד המוצג הוא לתאריך זה — לא בהכרח לתאריך של היום</span>`;
   card.querySelector('.chapter-head').insertAdjacentElement('afterend', dateLabelEl);
   reader.appendChild(card);
   const body = card.querySelector('.chapter-loading');
