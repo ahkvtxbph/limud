@@ -1702,6 +1702,7 @@ function todayDateInputValue(){
 }
 
 let zmanimSelectedDate = null; // null = today (live)
+let renderZmanimRequestId = 0; // guards against stale async entry/exit fetches overwriting a newer render
 
 function roundToMinute(date, direction){
   const minuteMs = 60000;
@@ -1753,6 +1754,37 @@ function computeZmanim(date, lat, lon){
   ];
 }
 
+async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate){
+  try{
+    const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
+    const startStr = displayDate.toISOString().slice(0,10);
+    const endStr = new Date(displayDate.getTime() + 6*86400000).toISOString().slice(0,10);
+    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    const items = data.items || [];
+    const events = items
+      .filter(i => i.category === 'candles' || i.category === 'havdalah')
+      .map(i => ({ type: i.category, date: new Date(i.date) }));
+    events.sort((a,b)=> a.date - b.date);
+    const displayDayStr = startStr;
+    const candleEvent = events.find(e => e.type === 'candles' && e.date.toISOString().slice(0,10) === displayDayStr);
+    if(!candleEvent) return null;
+    const havdalahEvent = events.find(e => e.type === 'havdalah' && e.date > candleEvent.date);
+    let label = 'שבת';
+    const nearbyHoliday = items.find(h =>
+      h.category === 'holiday' &&
+      !/^Erev\s+/i.test(h.title || '') &&
+      Math.abs(new Date(h.date) - candleEvent.date) < 3*86400000
+    );
+    if(nearbyHoliday) label = hebraizeYearInText(nearbyHoliday.hebrew || nearbyHoliday.title || label);
+    return { candleTime: candleEvent.date, havdalahTime: havdalahEvent ? havdalahEvent.date : null, label };
+  }catch(e){
+    return null;
+  }
+}
+
 function renderZmanim(){
   const loc = zmanimLocation || ZMANIM_DEFAULT;
   const targetDate = zmanimSelectedDate || new Date();
@@ -1779,6 +1811,25 @@ function renderZmanim(){
   document.getElementById('zmanim-date-label').textContent = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
   document.getElementById('zmanim-disclaimer').textContent =
     'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך. אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך (למשל גולש/ת מישראל שמחפש/ת עיר בארה"ב), השעון המוצג לא ישקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
+
+  // If the displayed date is an entry day (Erev Shabbat or Erev Yom Tov), also show
+  // that entry/exit for the currently selected zmanim location.
+  const requestId = ++renderZmanimRequestId;
+  fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate).then(entry=>{
+    if(requestId !== renderZmanimRequestId) return; // a newer render started meanwhile
+    if(!entry) return;
+    const container = document.getElementById('zmanim-list');
+    const candleRow = document.createElement('div');
+    candleRow.className = 'zman-row';
+    candleRow.innerHTML = `<span>כניסת ${entry.label} (${loc.name})</span><span class="zman-time">${fmtZmanTime(entry.candleTime)}</span>`;
+    container.appendChild(candleRow);
+    if(entry.havdalahTime){
+      const havdalahRow = document.createElement('div');
+      havdalahRow.className = 'zman-row';
+      havdalahRow.innerHTML = `<span>יציאת ${entry.label} (${loc.name})</span><span class="zman-time">${fmtZmanTime(entry.havdalahTime)}</span>`;
+      container.appendChild(havdalahRow);
+    }
+  });
 }
 
 function setZmanimLocation(loc, sourceNote){
