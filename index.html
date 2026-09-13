@@ -1754,6 +1754,60 @@ function computeZmanim(date, lat, lon){
   ];
 }
 
+async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset, ownTzeit){
+  try{
+    const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
+    const startStr = displayDate.toISOString().slice(0,10);
+    const endStr = new Date(displayDate.getTime() + 86400000).toISOString().slice(0,10);
+    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&mf=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    const items = data.items || [];
+    const fastEvents = items.filter(i => i.title === 'Fast begins' || i.title === 'Fast ends');
+    const todayEvents = fastEvents.filter(i => i.date && i.date.slice(0,10) === startStr);
+    if(!todayEvents.length) return null;
+
+    function resolveFastName(evt){
+      const near = items.find(h =>
+        h.category === 'holiday' &&
+        !/^Erev\s+/i.test(h.title || '') &&
+        Math.abs(new Date(h.date) - new Date(evt.date)) < 2*86400000
+      );
+      if(near && near.hebrew) return hebraizeYearInText(near.hebrew);
+      return 'צום';
+    }
+
+    // Hebcal's own fast begin/end times use different degree-based definitions (16.1°/7.083°)
+    // than Yeshiva.org.il's (72 fixed minutes before sunrise / same 18-minute tzeit rule as the
+    // rest of this page). We use Hebcal only to detect *that* today is a fast day and *which*
+    // fast it is, then substitute our own already-computed alot/sunset/tzeit for the actual time,
+    // to stay consistent with the rest of the Zmanim list — except Tisha B'Av's end time, which
+    // Yeshiva.org.il computes differently (not the 18-minute rule), so we keep Hebcal's value there.
+    const result = [];
+    const beginsToday = todayEvents.find(i => i.title === 'Fast begins');
+    if(beginsToday){
+      const d = new Date(beginsToday.date);
+      const isMorning = d.getHours() < 12;
+      result.push({
+        type: isMorning ? 'begins-morning' : 'begins-evening',
+        name: resolveFastName(beginsToday),
+        time: isMorning ? (ownAlot || d) : (ownSunset || d)
+      });
+    }
+    const endsToday = todayEvents.find(i => i.title === 'Fast ends');
+    if(endsToday){
+      const name = resolveFastName(endsToday);
+      const isTishaBav = name.indexOf('תשעה באב') !== -1;
+      result.push({ type: 'ends', name, time: (!isTishaBav && ownTzeit) ? ownTzeit : new Date(endsToday.date) });
+    }
+    result.sort((a,b)=> a.time - b.time); // guarantee "begins" always renders before "ends"
+    return result.length ? result : null;
+  }catch(e){
+    return null;
+  }
+}
+
 async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate){
   try{
     const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
@@ -1801,6 +1855,9 @@ function renderZmanim(){
     row.innerHTML = `<span>${z.label}</span><span class="zman-time">${fmtZmanTime(z.time)}</span>`;
     container.appendChild(row);
   });
+  const ownAlot = (list.find(z => z.label === 'עלות השחר') || {}).time;
+  const ownSunset = (list.find(z => z.label === 'שקיעת החמה') || {}).time;
+  const ownTzeit = (list.find(z => z.label === 'צאת הכוכבים') || {}).time;
   let hebLabel;
   try{
     hebLabel = getHebrewDisplay(targetDate);
@@ -1812,24 +1869,46 @@ function renderZmanim(){
   document.getElementById('zmanim-disclaimer').textContent =
     'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך. אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך (למשל גולש/ת מישראל שמחפש/ת עיר בארה"ב), השעון המוצג לא ישקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
 
-  // If the displayed date is an entry day (Erev Shabbat or Erev Yom Tov), also show
-  // that entry/exit for the currently selected zmanim location.
+  // If the displayed date is an entry day (Erev Shabbat / Erev Yom Tov / a fast day), also
+  // show entry/exit info for the currently selected zmanim location. Ordering is fully
+  // deterministic: "fast begins" is always the very first row (before Alot Hashachar),
+  // and "fast ends" is always the very last row (after everything else, incl. Shabbat rows).
   const requestId = ++renderZmanimRequestId;
-  fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate).then(entry=>{
-    if(requestId !== renderZmanimRequestId) return; // a newer render started meanwhile
-    if(!entry) return;
-    const container = document.getElementById('zmanim-list');
-    const candleRow = document.createElement('div');
-    candleRow.className = 'zman-row';
-    candleRow.innerHTML = `<span>כניסת ${entry.label} (${loc.name})</span><span class="zman-time">${fmtZmanTime(entry.candleTime)}</span>`;
-    container.appendChild(candleRow);
-    if(entry.havdalahTime){
-      const havdalahRow = document.createElement('div');
-      havdalahRow.className = 'zman-row';
-      havdalahRow.innerHTML = `<span>יציאת ${entry.label} (${loc.name})</span><span class="zman-time">${fmtZmanTime(entry.havdalahTime)}</span>`;
-      container.appendChild(havdalahRow);
+
+  function buildRow(label, time){
+    const row = document.createElement('div');
+    row.className = 'zman-row';
+    row.innerHTML = `<span>${label}</span><span class="zman-time">${fmtZmanTime(time)}</span>`;
+    return row;
+  }
+
+  (async ()=>{
+    const fastInfo = await fetchFastInfoForZmanim(loc.lat, loc.lon, targetDate, ownAlot, ownSunset, ownTzeit);
+    if(requestId !== renderZmanimRequestId) return;
+    const listEl = document.getElementById('zmanim-list');
+
+    const beginsEntry = fastInfo && fastInfo.find(f => f.type === 'begins-morning' || f.type === 'begins-evening');
+    if(beginsEntry){
+      const label = beginsEntry.type === 'begins-evening'
+        ? `${beginsEntry.name} — כניסת הצום (${loc.name})`
+        : `${beginsEntry.name} — הצום מתחיל בבוקר (${loc.name})`;
+      listEl.insertBefore(buildRow(label, beginsEntry.time), listEl.firstChild);
     }
-  });
+
+    const entry = await fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate);
+    if(requestId !== renderZmanimRequestId) return;
+    if(entry){
+      listEl.appendChild(buildRow(`כניסת ${entry.label} (${loc.name})`, entry.candleTime));
+      if(entry.havdalahTime){
+        listEl.appendChild(buildRow(`יציאת ${entry.label} (${loc.name})`, entry.havdalahTime));
+      }
+    }
+
+    const endsEntry = fastInfo && fastInfo.find(f => f.type === 'ends');
+    if(endsEntry){
+      listEl.appendChild(buildRow(`${endsEntry.name} — יציאת הצום (${loc.name})`, endsEntry.time));
+    }
+  })();
 }
 
 function setZmanimLocation(loc, sourceNote){
