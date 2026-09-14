@@ -790,8 +790,10 @@ function getHebrewParts(date){
   parts.forEach(p=> map[p.type]=p.value);
   return map;
 }
-function getHebrewDisplay(date){
-  const fmt = new Intl.DateTimeFormat('he-u-ca-hebrew', {day:'numeric', month:'long', year:'numeric'});
+function getHebrewDisplay(date, tzid){
+  const opts = {day:'numeric', month:'long', year:'numeric'};
+  if(tzid) opts.timeZone = tzid;
+  const fmt = new Intl.DateTimeFormat('he-u-ca-hebrew', opts);
   const parts = fmt.formatToParts(date);
   let day, month, year;
   parts.forEach(p=>{
@@ -1680,9 +1682,26 @@ function calcSunEventUTC(date, lat, lng, zenith, isSunrise){
   return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) + UT*3600000);
 }
 
-function fmtZmanTime(date){
+function fmtZmanTime(date, tzid){
   if(!date) return '—';
-  return date.toLocaleTimeString('he-IL', {hour:'2-digit', minute:'2-digit'});
+  const opts = {hour:'2-digit', minute:'2-digit'};
+  if(tzid) opts.timeZone = tzid;
+  return date.toLocaleTimeString('he-IL', opts);
+}
+
+// Resolves the IANA timezone name for arbitrary coordinates, so times for a
+// location abroad are shown in THAT location's local clock time, not the
+// device's own timezone. Uses a free, keyless lookup service; if it fails for
+// any reason, callers fall back to the device's timezone (existing behavior).
+async function fetchTimezoneForCoords(lat, lon){
+  try{
+    const res = await fetch(`https://timeapi.io/api/TimeZone/coordinate?latitude=${lat}&longitude=${lon}`);
+    if(!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    return (data && data.timeZone) || null;
+  }catch(e){
+    return null;
+  }
 }
 
 function parseZmanimDateInput(value){
@@ -1754,9 +1773,9 @@ function computeZmanim(date, lat, lon){
   ];
 }
 
-async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset, ownTzeit){
+async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset, ownTzeit, resolvedTzid){
   try{
-    const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
+    const tzid = resolvedTzid || (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
     const startStr = displayDate.toISOString().slice(0,10);
     const endStr = new Date(displayDate.getTime() + 86400000).toISOString().slice(0,10);
     const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&mf=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}`;
@@ -1784,11 +1803,18 @@ async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset,
     // fast it is, then substitute our own already-computed alot/sunset/tzeit for the actual time,
     // to stay consistent with the rest of the Zmanim list — except Tisha B'Av's end time, which
     // Yeshiva.org.il computes differently (not the 18-minute rule), so we keep Hebcal's value there.
+    function hourInTZ(date){
+      // Hour-of-day AT THE FAST'S LOCATION (tzid), not the device's own timezone —
+      // otherwise a fast beginning at 5:30 AM in New York (12:30 PM in Israel) gets
+      // misclassified as an "evening" fast just because it crosses noon on the device's clock.
+      const hourStr = new Intl.DateTimeFormat('en-US', {hour:'numeric', hour12:false, timeZone: tzid}).format(date);
+      return parseInt(hourStr, 10) % 24;
+    }
     const result = [];
     const beginsToday = todayEvents.find(i => i.title === 'Fast begins');
     if(beginsToday){
       const d = new Date(beginsToday.date);
-      const isMorning = d.getHours() < 12;
+      const isMorning = hourInTZ(d) < 12;
       result.push({
         type: isMorning ? 'begins-morning' : 'begins-evening',
         name: resolveFastName(beginsToday),
@@ -1808,9 +1834,9 @@ async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset,
   }
 }
 
-async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate){
+async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzid){
   try{
-    const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
+    const tzid = resolvedTzid || (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
     const startStr = displayDate.toISOString().slice(0,10);
     const endStr = new Date(displayDate.getTime() + 6*86400000).toISOString().slice(0,10);
     const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}`;
@@ -1852,7 +1878,7 @@ function renderZmanim(){
   list.forEach(z=>{
     const row = document.createElement('div');
     row.className = 'zman-row';
-    row.innerHTML = `<span>${z.label}</span><span class="zman-time">${fmtZmanTime(z.time)}</span>`;
+    row.innerHTML = `<span>${z.label}</span><span class="zman-time">${fmtZmanTime(z.time, loc.tzid)}</span>`;
     container.appendChild(row);
   });
   const ownAlot = (list.find(z => z.label === 'עלות השחר') || {}).time;
@@ -1860,14 +1886,17 @@ function renderZmanim(){
   const ownTzeit = (list.find(z => z.label === 'צאת הכוכבים') || {}).time;
   let hebLabel;
   try{
-    hebLabel = getHebrewDisplay(targetDate);
+    hebLabel = getHebrewDisplay(targetDate, loc.tzid);
   }catch(e){
     hebLabel = null;
   }
-  const gregLabel = targetDate.toLocaleDateString('he-IL');
+  const gregLabel = loc.tzid
+    ? targetDate.toLocaleDateString('he-IL', {timeZone: loc.tzid})
+    : targetDate.toLocaleDateString('he-IL');
   document.getElementById('zmanim-date-label').textContent = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
-  document.getElementById('zmanim-disclaimer').textContent =
-    'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך. אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך (למשל גולש/ת מישראל שמחפש/ת עיר בארה"ב), השעון המוצג לא ישקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
+  document.getElementById('zmanim-disclaimer').textContent = loc.tzid
+    ? 'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המיקום שנבחר. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.'
+    : 'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך (לא הצלחנו לזהות את אזור הזמן של המיקום שנבחר). אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך, השעון המוצג עלול לא לשקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
 
   // If the displayed date is an entry day (Erev Shabbat / Erev Yom Tov / a fast day), also
   // show entry/exit info for the currently selected zmanim location. Ordering is fully
@@ -1878,12 +1907,12 @@ function renderZmanim(){
   function buildRow(label, time){
     const row = document.createElement('div');
     row.className = 'zman-row';
-    row.innerHTML = `<span>${label}</span><span class="zman-time">${fmtZmanTime(time)}</span>`;
+    row.innerHTML = `<span>${label}</span><span class="zman-time">${fmtZmanTime(time, loc.tzid)}</span>`;
     return row;
   }
 
   (async ()=>{
-    const fastInfo = await fetchFastInfoForZmanim(loc.lat, loc.lon, targetDate, ownAlot, ownSunset, ownTzeit);
+    const fastInfo = await fetchFastInfoForZmanim(loc.lat, loc.lon, targetDate, ownAlot, ownSunset, ownTzeit, loc.tzid);
     if(requestId !== renderZmanimRequestId) return;
     const listEl = document.getElementById('zmanim-list');
 
@@ -1895,7 +1924,7 @@ function renderZmanim(){
       listEl.insertBefore(buildRow(label, beginsEntry.time), listEl.firstChild);
     }
 
-    const entry = await fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate);
+    const entry = await fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate, loc.tzid);
     if(requestId !== renderZmanimRequestId) return;
     if(entry){
       listEl.appendChild(buildRow(`כניסת ${entry.label} (${loc.name})`, entry.candleTime));
@@ -1915,6 +1944,13 @@ function setZmanimLocation(loc, sourceNote){
   zmanimLocation = loc;
   document.getElementById('zmanim-location-desc').textContent = `זמני היום עבור: ${loc.name}` + (sourceNote ? ' — ' + sourceNote : '');
   renderZmanim();
+  // Resolve the location's own timezone (so times display correctly for locations
+  // abroad, not just in the device's timezone), then re-render once known.
+  fetchTimezoneForCoords(loc.lat, loc.lon).then(tzid=>{
+    if(!tzid || zmanimLocation !== loc) return; // location changed again meanwhile
+    loc.tzid = tzid;
+    renderZmanim();
+  });
 }
 
 async function reverseGeocodeZmanim(lat, lon){
