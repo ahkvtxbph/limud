@@ -1839,7 +1839,8 @@ async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzi
     const tzid = resolvedTzid || (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
     const startStr = displayDate.toISOString().slice(0,10);
     const endStr = new Date(displayDate.getTime() + 6*86400000).toISOString().slice(0,10);
-    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}`;
+    const israelFlag = isLikelyIsrael(lat, lon) ? '&i=on' : '';
+    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}${israelFlag}`;
     const res = await fetch(url);
     if(!res.ok) throw new Error('fetch failed');
     const data = await res.json();
@@ -2051,21 +2052,29 @@ tryAutoLocateZmanim();
    does not affect search-engine indexing (crawlers get the full page).
    Location cascade: precise GPS -> silent IP lookup -> Israel default.
    ===================================================================== */
+// Rough bounding-box check for "is this location in Israel" — used to decide whether
+// Hebcal should use the 1-day (Israel) or 2-day (Diaspora) Yom Tov schedule.
+function isLikelyIsrael(lat, lon){
+  return lat >= 29.4 && lat <= 33.4 && lon >= 34.2 && lon <= 35.9;
+}
+
 async function detectGatingLocation(){
   try{
     const pos = await getPositionOnce(4000);
-    return { lat: pos.coords.latitude, lon: pos.coords.longitude, source: 'gps' };
+    const lat = pos.coords.latitude, lon = pos.coords.longitude;
+    return { lat, lon, source: 'gps', isIsrael: isLikelyIsrael(lat, lon) };
   }catch(e){}
   try{
     const res = await fetch('https://ipwho.is/');
     if(res.ok){
       const data = await res.json();
       if(data && data.success !== false && data.latitude && data.longitude){
-        return { lat: data.latitude, lon: data.longitude, source: 'ip' };
+        const isIsrael = data.country_code ? (data.country_code === 'IL') : isLikelyIsrael(data.latitude, data.longitude);
+        return { lat: data.latitude, lon: data.longitude, source: 'ip', isIsrael };
       }
     }
   }catch(e){}
-  return { lat: 31.7683, lon: 35.2137, source: 'default-israel' }; // Jerusalem
+  return { lat: 31.7683, lon: 35.2137, source: 'default-israel', isIsrael: true }; // Jerusalem
 }
 
 let gatingIntervals = [];
@@ -2075,7 +2084,7 @@ async function fetchGatingSchedule(loc){
   const now = new Date();
   const start = now.toISOString().slice(0,10);
   const end = new Date(now.getTime() + 10*86400000).toISOString().slice(0,10);
-  const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${start}&end=${end}&latitude=${loc.lat}&longitude=${loc.lon}&tzid=${encodeURIComponent(tzid)}`;
+  const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${start}&end=${end}&latitude=${loc.lat}&longitude=${loc.lon}&tzid=${encodeURIComponent(tzid)}${loc.isIsrael ? '&i=on' : ''}`;
   try{
     const res = await fetch(url);
     if(!res.ok) throw new Error('hebcal fetch failed');
