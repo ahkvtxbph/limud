@@ -2245,14 +2245,32 @@ async function updateUpcomingShabbatNote(){
   if(!noteEl) return;
   let parashaText = '';
   try{
-    const res = await fetch('https://www.sefaria.org/api/calendars?diaspora=0');
-    if(res.ok){
-      const data = await res.json();
+    const [resIL, resDiaspora] = await Promise.all([
+      fetch('https://www.sefaria.org/api/calendars?diaspora=0'),
+      fetch('https://www.sefaria.org/api/calendars?diaspora=1')
+    ]);
+    function extractParasha(res, data){
+      if(!res.ok || !data) return null;
       const items = (data && data.calendar_items) || [];
       const parasha = items.find(i => i.title && i.title.en === 'Parashat Hashavua');
-      if(parasha && parasha.displayValue && parasha.displayValue.he){
-        parashaText = `פרשת השבוע: ${parasha.displayValue.he}`;
+      return (parasha && parasha.displayValue && parasha.displayValue.he) || null;
+    }
+    const dataIL = resIL.ok ? await resIL.json() : null;
+    const dataDiaspora = resDiaspora.ok ? await resDiaspora.json() : null;
+    const parashaIL = extractParasha(resIL, dataIL);
+    const parashaDiaspora = extractParasha(resDiaspora, dataDiaspora);
+
+    if(parashaIL && parashaDiaspora){
+      if(parashaIL === parashaDiaspora){
+        parashaText = `פרשת השבוע: ${parashaIL}`;
+      } else {
+        // Reading differs between Israel and the Diaspora this Shabbat (can happen for a
+        // few weeks after Pesach/Sukkot, since Israel keeps one day of Yom Tov and the
+        // Diaspora keeps two) — show both explicitly rather than picking just one.
+        parashaText = `פרשת השבוע — יש הבדל: בארץ ישראל: ${parashaIL} · בחו"ל: ${parashaDiaspora}`;
       }
+    } else if(parashaIL || parashaDiaspora){
+      parashaText = `פרשת השבוע: ${parashaIL || parashaDiaspora}`;
     }
   }catch(e){ /* best-effort, ignore */ }
 
