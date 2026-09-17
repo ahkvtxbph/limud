@@ -1972,10 +1972,25 @@ async function tryAutoLocateZmanim(){
     const pos = await getPositionOnce(5000);
     const lat = pos.coords.latitude, lon = pos.coords.longitude;
     const name = await reverseGeocodeZmanim(lat, lon);
-    setZmanimLocation({lat, lon, name}, 'זוהה אוטומטית');
-  }catch(e){
-    setZmanimLocation(ZMANIM_DEFAULT, 'ברירת מחדל — לא זוהה מיקום, ניתן לחפש מיקום אחר');
-  }
+    setZmanimLocation({lat, lon, name}, 'זוהה אוטומטית (GPS)');
+    return;
+  }catch(e){}
+  // GPS failed/denied — fall back silently to IP-based location before giving up
+  // entirely, so someone abroad without location permission still gets a real
+  // location instead of jumping straight to the Tel Aviv default.
+  try{
+    const res = await fetch('https://ipwho.is/');
+    if(res.ok){
+      const data = await res.json();
+      if(data && data.success !== false && data.latitude && data.longitude){
+        const name = [data.city, data.country].filter(Boolean).join(', ')
+          || await reverseGeocodeZmanim(data.latitude, data.longitude);
+        setZmanimLocation({lat: data.latitude, lon: data.longitude, name}, 'זוהה לפי כתובת ה-IP');
+        return;
+      }
+    }
+  }catch(e){}
+  setZmanimLocation(ZMANIM_DEFAULT, 'ברירת מחדל — לא זוהה מיקום, ניתן לחפש מיקום אחר');
 }
 
 async function searchZmanimLocation(){
