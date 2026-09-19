@@ -1791,7 +1791,7 @@ async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset,
       const near = items.find(h =>
         h.category === 'holiday' &&
         !/^Erev\s+/i.test(h.title || '') &&
-        Math.abs(new Date(h.date) - new Date(evt.date)) < 2*86400000
+        Math.abs(new Date(h.date) - new Date(evt.date)) < 1.5*86400000
       );
       if(near && near.hebrew) return hebraizeYearInText(near.hebrew);
       return 'צום';
@@ -1857,7 +1857,7 @@ async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzi
     const nearbyHoliday = items.find(h =>
       h.category === 'holiday' &&
       !/^Erev\s+/i.test(h.title || '') &&
-      Math.abs(new Date(h.date) - candleEvent.date) < 3*86400000
+      Math.abs(new Date(h.date) - candleEvent.date) < 1.5*86400000
     );
     if(nearbyHoliday) label = hebraizeYearInText(nearbyHoliday.hebrew || nearbyHoliday.title || label);
     return { candleTime: candleEvent.date, havdalahTime: havdalahEvent ? havdalahEvent.date : null, label };
@@ -2118,7 +2118,7 @@ async function fetchGatingSchedule(loc){
           const nearbyHoliday = items.find(h =>
             h.category === 'holiday' &&
             !/^Erev\s+/i.test(h.title || '') &&
-            Math.abs(new Date(h.date) - events[i].date) < 3*86400000
+            Math.abs(new Date(h.date) - events[i].date) < 1.5*86400000
           );
           if(nearbyHoliday) label = hebraizeYearInText(nearbyHoliday.hebrew || nearbyHoliday.title || label);
           intervals.push({ start: events[i].date, end: next.date, label });
