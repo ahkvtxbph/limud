@@ -809,8 +809,11 @@ function getHebrewDisplay(date, tzid){
 /* ---------- Hebrew date: sunset-aware, with midnight fallback ---------- */
 function calcSunsetUTC(date, lat, lng){
   const rad = Math.PI/180;
-  const start = Date.UTC(date.getUTCFullYear(),0,1);
-  const dayOfYear = Math.floor((Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate()) - start)/86400000) + 1;
+  // Use the observer's LOCAL calendar date (not UTC) to pick which day's sunset to compute —
+  // using UTC here would, for positive UTC offsets like Israel's, treat the first few hours
+  // after local midnight as still "yesterday" and wrongly compute an already-past sunset.
+  const start = Date.UTC(date.getFullYear(),0,1);
+  const dayOfYear = Math.floor((Date.UTC(date.getFullYear(),date.getMonth(),date.getDate()) - start)/86400000) + 1;
   const zenith = 90.833;
   const lngHour = lng/15;
   const t = dayOfYear + ((18 - lngHour)/24);
@@ -1389,10 +1392,13 @@ async function renderDailyCalendarSection(titleEn, readerId, headingHe, selected
   reader.appendChild(card);
   const body = card.querySelector('.chapter-loading');
   try{
-    let calendarUrl = 'https://www.sefaria.org/api/calendars?diaspora=0';
-    if(selectedDate){
-      calendarUrl += `&year=${selectedDate.getUTCFullYear()}&month=${selectedDate.getUTCMonth()+1}&day=${selectedDate.getUTCDate()}`;
-    }
+    // Always pass an explicit date to Sefaria (the selected date, or today's LOCAL date) —
+    // relying on Sefaria's own default "today" can lag behind the user's local calendar date
+    // by several hours right after local midnight, showing yesterday's daily-learning portion.
+    const dfc1 = selectedDate || new Date();
+    const calendarUrl = selectedDate
+      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc1.getUTCFullYear()}&month=${dfc1.getUTCMonth()+1}&day=${dfc1.getUTCDate()}`
+      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc1.getFullYear()}&month=${dfc1.getMonth()+1}&day=${dfc1.getDate()}`;
     const res = await fetch(calendarUrl);
     if(!res.ok) throw new Error('calendar fetch failed');
     const data = await res.json();
@@ -1481,10 +1487,13 @@ async function renderDailyMishnah(opts){
   reader.appendChild(card);
   const body = card.querySelector('.chapter-loading');
   try{
-    let calendarUrl = 'https://www.sefaria.org/api/calendars?diaspora=0';
-    if(selectedDate){
-      calendarUrl += `&year=${selectedDate.getUTCFullYear()}&month=${selectedDate.getUTCMonth()+1}&day=${selectedDate.getUTCDate()}`;
-    }
+    // Always pass an explicit date to Sefaria (the selected date, or today's LOCAL date) —
+    // relying on Sefaria's own default "today" can lag behind the user's local calendar date
+    // by several hours right after local midnight, showing yesterday's daily-learning portion.
+    const dfc2 = selectedDate || new Date();
+    const calendarUrl = selectedDate
+      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc2.getUTCFullYear()}&month=${dfc2.getUTCMonth()+1}&day=${dfc2.getUTCDate()}`
+      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc2.getFullYear()}&month=${dfc2.getMonth()+1}&day=${dfc2.getDate()}`;
     const res = await fetch(calendarUrl);
     if(!res.ok) throw new Error('calendar fetch failed');
     const data = await res.json();
@@ -1670,8 +1679,9 @@ let zmanimLocation = null;
 
 function calcSunEventUTC(date, lat, lng, zenith, isSunrise){
   const rad = Math.PI/180;
-  const start = Date.UTC(date.getUTCFullYear(),0,1);
-  const dayOfYear = Math.floor((Date.UTC(date.getUTCFullYear(),date.getUTCMonth(),date.getUTCDate()) - start)/86400000) + 1;
+  // Use the observer's LOCAL calendar date (not UTC) — see calcSunsetUTC for why.
+  const start = Date.UTC(date.getFullYear(),0,1);
+  const dayOfYear = Math.floor((Date.UTC(date.getFullYear(),date.getMonth(),date.getDate()) - start)/86400000) + 1;
   const lngHour = lng/15;
   const t = isSunrise ? dayOfYear + ((6 - lngHour)/24) : dayOfYear + ((18 - lngHour)/24);
   const M = (0.9856*t) - 3.289;
@@ -2256,9 +2266,15 @@ async function updateUpcomingShabbatNote(){
   if(!noteEl) return;
   let parashaText = '';
   try{
+    // Explicitly tell Sefaria the user's own LOCAL calendar date, instead of relying on
+    // its default server-side "today" resolution — otherwise, in the early-morning hours
+    // (local midnight to a few hours after, depending on timezone offset), Sefaria may
+    // still think it's "yesterday" and return the Shabbat that just ended, not the next one.
+    const now = new Date();
+    const dateParams = `&year=${now.getFullYear()}&month=${now.getMonth()+1}&day=${now.getDate()}`;
     const [resIL, resDiaspora] = await Promise.all([
-      fetch('https://www.sefaria.org/api/calendars?diaspora=0'),
-      fetch('https://www.sefaria.org/api/calendars?diaspora=1')
+      fetch(`https://www.sefaria.org/api/calendars?diaspora=0${dateParams}`),
+      fetch(`https://www.sefaria.org/api/calendars?diaspora=1${dateParams}`)
     ]);
     function extractParasha(res, data){
       if(!res.ok || !data) return null;
