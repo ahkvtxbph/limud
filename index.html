@@ -833,7 +833,9 @@ function calcSunsetUTC(date, lat, lng){
   H = H/15;
   const T = H + RA - (0.06571*t) - 6.622;
   const UT = (T - lngHour + 24) % 24;
-  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) + UT*3600000);
+  // Anchor to the SAME local calendar date used above for dayOfYear — mixing local (for
+  // dayOfYear) with UTC (here) would silently shift the result by up to the UTC offset.
+  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) + UT*3600000);
 }
 function getPositionOnce(timeoutMs){
   return new Promise((resolve, reject)=>{
@@ -1700,7 +1702,9 @@ function calcSunEventUTC(date, lat, lng, zenith, isSunrise){
   H = H/15;
   const T = H + RA - (0.06571*t) - 6.622;
   const UT = (T - lngHour + 24) % 24;
-  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) + UT*3600000);
+  // Anchor to the SAME local calendar date used above for dayOfYear — mixing local (for
+  // dayOfYear) with UTC (here) would silently shift the result by up to the UTC offset.
+  return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) + UT*3600000);
 }
 
 function fmtZmanTime(date, tzid){
