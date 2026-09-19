@@ -847,20 +847,31 @@ async function updateHebrewDateDisplay(){
   const now = new Date();
   let effectiveDate = now;
   let mode = 'midnight';
+  let isPastSunset = false;
   try{
     const pos = await getPositionOnce(4000);
     const sunset = calcSunsetUTC(now, pos.coords.latitude, pos.coords.longitude);
     if(sunset){
       mode = 'sunset';
-      effectiveDate = (now.getTime() >= sunset.getTime()) ? new Date(now.getTime() + 86400000) : now;
+      isPastSunset = now.getTime() >= sunset.getTime();
+      effectiveDate = isPastSunset ? new Date(now.getTime() + 86400000) : now;
     }
   }catch(e){
     // no permission / unsupported / timeout — fall back to midnight-based date
   }
-  document.getElementById('today-weekday').textContent = "יום " + WEEKDAY_NAMES[effectiveDate.getDay()];
+  // Once we're past sunset but before midnight, the Hebrew day has already turned over
+  // even though it's not yet the next Gregorian day — traditionally phrased as "אור ל..."
+  // (the night leading into that day), rather than stating the day outright.
+  const weekdayName = WEEKDAY_NAMES[effectiveDate.getDay()];
+  document.getElementById('today-weekday').textContent = isPastSunset
+    ? `אור ליום ${weekdayName}`
+    : `יום ${weekdayName}`;
   const gregLabel = now.toLocaleDateString('he-IL');
   try{
-    document.getElementById('today-hebrew').textContent = `${getHebrewDisplay(effectiveDate)} (${gregLabel})`;
+    const hebLabel = getHebrewDisplay(effectiveDate);
+    document.getElementById('today-hebrew').textContent = isPastSunset
+      ? `אור ל-${hebLabel} (${gregLabel})`
+      : `${hebLabel} (${gregLabel})`;
   }catch(e){
     document.getElementById('today-hebrew').textContent = `לא זמין בדפדפן זה (${gregLabel})`;
   }
