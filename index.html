@@ -616,8 +616,10 @@
         <button class="btn" id="halacha-load">רענן הלכה יומית</button>
       </div>
       <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="halacha-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
         <input type="date" id="halacha-date-input" aria-label="בחר/י תאריך להלכה יומית">
         <button class="btn secondary" id="halacha-today-btn">היום</button>
+        <button class="btn secondary" id="halacha-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
     <div id="halacha-reader" aria-live="polite"></div>
@@ -637,8 +639,10 @@
         <button class="btn" id="msh-daily-load">רענן משנה יומית</button>
       </div>
       <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="msh-daily-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
         <input type="date" id="msh-daily-date-input" aria-label="בחר/י תאריך למשנה יומית">
         <button class="btn secondary" id="msh-daily-today-btn">היום</button>
+        <button class="btn secondary" id="msh-daily-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
 
@@ -673,8 +677,10 @@
         <button class="btn" id="tanya-load">רענן תניא יומי</button>
       </div>
       <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="tanya-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
         <input type="date" id="tanya-date-input" aria-label="בחר/י תאריך לתניא יומי">
         <button class="btn secondary" id="tanya-today-btn">היום</button>
+        <button class="btn secondary" id="tanya-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
     <div id="tanya-reader" aria-live="polite"></div>
@@ -688,8 +694,10 @@
         <button class="btn" id="tanakh-load">רענן תנ"ך יומי</button>
       </div>
       <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="tanakh-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
         <input type="date" id="tanakh-date-input" aria-label="בחר/י תאריך לתנ״ך יומי">
         <button class="btn secondary" id="tanakh-today-btn">היום</button>
+        <button class="btn secondary" id="tanakh-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
     <div id="tanakh-reader" aria-live="polite"></div>
@@ -707,8 +715,10 @@
         <button class="btn" id="rambam-load">רענן רמב"ם יומי</button>
       </div>
       <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="rambam-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
         <input type="date" id="rambam-date-input" aria-label="בחר/י תאריך לרמב״ם יומי">
         <button class="btn secondary" id="rambam-today-btn">היום</button>
+        <button class="btn secondary" id="rambam-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
     <div id="rambam-reader" aria-live="polite"></div>
@@ -725,8 +735,10 @@
       </div>
       <div class="chip-list" id="zmanim-search-results" role="listbox" aria-label="תוצאות חיפוש מיקום"></div>
       <div class="controls-row" style="margin-top:1rem;">
+        <button class="btn secondary" id="zmanim-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
         <input type="date" id="zmanim-date-input" aria-label="בחר/י תאריך לזמני היום">
         <button class="btn secondary" id="zmanim-today-btn">היום</button>
+        <button class="btn secondary" id="zmanim-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
 
@@ -1448,7 +1460,14 @@ document.getElementById('tanya-load').addEventListener('click', renderTanyaYomi)
 document.getElementById('tanakh-load').addEventListener('click', renderTanakhYomi);
 document.getElementById('rambam-load').addEventListener('click', renderRambamYomi);
 
-function wireDatePicker(inputId, todayBtnId, setDate, rerender){
+function dateInputValueFromDate(date){
+  const y = date.getFullYear();
+  const m = String(date.getMonth()+1).padStart(2,'0');
+  const d = String(date.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
+}
+
+function wireDatePicker(inputId, todayBtnId, prevBtnId, nextBtnId, getDate, setDate, rerender){
   const input = document.getElementById(inputId);
   const todayBtn = document.getElementById(todayBtnId);
   if(!input || !todayBtn) return;
@@ -1464,12 +1483,26 @@ function wireDatePicker(inputId, todayBtnId, setDate, rerender){
     input.value = todayDateInputValue();
     rerender();
   });
+  function shiftDay(delta){
+    const base = getDate() || new Date();
+    const y = base.getFullYear(), m = base.getMonth(), d = base.getDate();
+    // Anchor at noon UTC (matches parseZmanimDateInput's convention) so plain
+    // integer day arithmetic can't be thrown off by DST transitions.
+    const shifted = new Date(Date.UTC(y, m, d + delta, 12));
+    setDate(shifted);
+    input.value = dateInputValueFromDate(shifted);
+    rerender();
+  }
+  const prevBtn = document.getElementById(prevBtnId);
+  const nextBtn = document.getElementById(nextBtnId);
+  if(prevBtn) prevBtn.addEventListener('click', ()=> shiftDay(-1));
+  if(nextBtn) nextBtn.addEventListener('click', ()=> shiftDay(1));
 }
-wireDatePicker('halacha-date-input', 'halacha-today-btn', d=>{ halachaSelectedDate = d; }, renderDailyHalacha);
-wireDatePicker('tanya-date-input', 'tanya-today-btn', d=>{ tanyaSelectedDate = d; }, renderTanyaYomi);
-wireDatePicker('tanakh-date-input', 'tanakh-today-btn', d=>{ tanakhSelectedDate = d; }, renderTanakhYomi);
-wireDatePicker('rambam-date-input', 'rambam-today-btn', d=>{ rambamSelectedDate = d; }, renderRambamYomi);
-wireDatePicker('msh-daily-date-input', 'msh-daily-today-btn', d=>{ mshDailySelectedDate = d; }, renderDailyMishnah);
+wireDatePicker('halacha-date-input', 'halacha-today-btn', 'halacha-prev-btn', 'halacha-next-btn', ()=>halachaSelectedDate, d=>{ halachaSelectedDate = d; }, renderDailyHalacha);
+wireDatePicker('tanya-date-input', 'tanya-today-btn', 'tanya-prev-btn', 'tanya-next-btn', ()=>tanyaSelectedDate, d=>{ tanyaSelectedDate = d; }, renderTanyaYomi);
+wireDatePicker('tanakh-date-input', 'tanakh-today-btn', 'tanakh-prev-btn', 'tanakh-next-btn', ()=>tanakhSelectedDate, d=>{ tanakhSelectedDate = d; }, renderTanakhYomi);
+wireDatePicker('rambam-date-input', 'rambam-today-btn', 'rambam-prev-btn', 'rambam-next-btn', ()=>rambamSelectedDate, d=>{ rambamSelectedDate = d; }, renderRambamYomi);
+wireDatePicker('msh-daily-date-input', 'msh-daily-today-btn', 'msh-daily-prev-btn', 'msh-daily-next-btn', ()=>mshDailySelectedDate, d=>{ mshDailySelectedDate = d; }, renderDailyMishnah);
 
 async function renderDailyMishnah(opts){
   const skipScroll = opts && opts.skipScroll;
@@ -2068,20 +2101,7 @@ document.getElementById('zmanim-search-input').addEventListener('keydown', (e)=>
   if(e.key === 'Enter'){ e.preventDefault(); searchZmanimLocation(); }
 });
 
-const zmanimDateInput = document.getElementById('zmanim-date-input');
-const zmanimTodayBtn = document.getElementById('zmanim-today-btn');
-zmanimDateInput.value = todayDateInputValue();
-zmanimDateInput.addEventListener('change', ()=>{
-  if(zmanimDateInput.value){
-    zmanimSelectedDate = parseZmanimDateInput(zmanimDateInput.value);
-    renderZmanim();
-  }
-});
-zmanimTodayBtn.addEventListener('click', ()=>{
-  zmanimSelectedDate = null;
-  zmanimDateInput.value = todayDateInputValue();
-  renderZmanim();
-});
+wireDatePicker('zmanim-date-input', 'zmanim-today-btn', 'zmanim-prev-btn', 'zmanim-next-btn', ()=>zmanimSelectedDate, d=>{ zmanimSelectedDate = d; }, renderZmanim);
 
 /* Pre-load zmanim location in the background so it's ready when the user switches tabs */
 tryAutoLocateZmanim();
