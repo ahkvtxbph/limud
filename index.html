@@ -2142,7 +2142,13 @@ let gatingIntervals = [];
 async function fetchGatingSchedule(loc){
   const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
   const now = new Date();
-  const start = now.toISOString().slice(0,10);
+  // Start the fetch window well BEFORE today, not from today itself — otherwise, if the
+  // site is opened while already mid-Shabbat/Yom-Tov (e.g. on Saturday, or on day 2 of a
+  // multi-day Yom-Tov+Shabbat combination), the candle-lighting event that began it falls
+  // outside the fetched range, so no interval gets built for the currently-active period
+  // and the block never triggers. 4 days covers even the longest realistic combinations
+  // (e.g. two-day Rosh Hashana running straight into Shabbat).
+  const start = new Date(now.getTime() - 4*86400000).toISOString().slice(0,10);
   const end = new Date(now.getTime() + 10*86400000).toISOString().slice(0,10);
   const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${start}&end=${end}&latitude=${loc.lat}&longitude=${loc.lon}&tzid=${encodeURIComponent(tzid)}${loc.isIsrael ? '&i=on' : ''}`;
   try{
