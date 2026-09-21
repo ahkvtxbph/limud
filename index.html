@@ -1918,7 +1918,18 @@ async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzi
       Math.abs(new Date(h.date) - candleEvent.date) < 1.5*86400000
     );
     if(nearbyHoliday) label = hebraizeYearInText(nearbyHoliday.hebrew || nearbyHoliday.title || label);
-    return { candleTime: candleEvent.date, havdalahTime: havdalahEvent ? havdalahEvent.date : null, label };
+
+    // Rabbeinu Tam's (stricter, later) opinion on when Shabbat/Yom Tov ends: 72 minutes
+    // after sunset on the day it ends — computed independently via our own sunset formula
+    // for that day, since Hebcal's own "havdalah" event reflects the more common "3 medium
+    // stars" opinion instead.
+    let rabbeinuTamTime = null;
+    if(havdalahEvent){
+      const sunsetOnEndDay = calcSunEventUTC(havdalahEvent.date, lat, lon, 90.833, false);
+      if(sunsetOnEndDay) rabbeinuTamTime = new Date(sunsetOnEndDay.getTime() + 72*60000);
+    }
+
+    return { candleTime: candleEvent.date, havdalahTime: havdalahEvent ? havdalahEvent.date : null, rabbeinuTamTime, label };
   }catch(e){
     return null;
   }
@@ -1989,6 +2000,9 @@ function renderZmanim(){
       listEl.appendChild(buildRow(`כניסת ${entry.label} (${loc.name})`, entry.candleTime));
       if(entry.havdalahTime){
         listEl.appendChild(buildRow(`יציאת ${entry.label} (${loc.name})`, entry.havdalahTime));
+      }
+      if(entry.rabbeinuTamTime){
+        listEl.appendChild(buildRow(`יציאת ${entry.label} לר"ת (${loc.name})`, entry.rabbeinuTamTime));
       }
     }
 
