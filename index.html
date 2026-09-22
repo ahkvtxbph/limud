@@ -715,6 +715,10 @@
         <select id="tanakh-chapter-select" aria-label="בחר/י פרק" disabled></select>
         <button class="btn" id="tanakh-manual-load" disabled>הצג פרק</button>
       </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="tanakh-chapter-prev-btn" aria-label="פרק קודם" disabled>‹ פרק קודם</button>
+        <button class="btn secondary" id="tanakh-chapter-next-btn" aria-label="פרק הבא" disabled>פרק הבא ›</button>
+      </div>
     </section>
 
     <div id="tanakh-reader" aria-live="polite"></div>
@@ -1338,6 +1342,20 @@ function autoLoadForModeTanakh(mode){
 const tanakhBookSelect = document.getElementById('tanakh-book-select');
 const tanakhChapterSelect = document.getElementById('tanakh-chapter-select');
 const tanakhManualLoadBtn = document.getElementById('tanakh-manual-load');
+const tanakhChapterPrevBtn = document.getElementById('tanakh-chapter-prev-btn');
+const tanakhChapterNextBtn = document.getElementById('tanakh-chapter-next-btn');
+
+function updateTanakhChapterNavButtons(){
+  if(tanakhChapterSelect.disabled){
+    tanakhChapterPrevBtn.disabled = true;
+    tanakhChapterNextBtn.disabled = true;
+    return;
+  }
+  const idx = parseInt(tanakhChapterSelect.value, 10);
+  const lastIdx = tanakhChapterSelect.options.length - 1;
+  tanakhChapterPrevBtn.disabled = isNaN(idx) || idx <= 0;
+  tanakhChapterNextBtn.disabled = isNaN(idx) || idx >= lastIdx;
+}
 
 (function buildTanakhBookSelect(){
   TANAKH_BOOKS.forEach((b, i)=>{
@@ -1352,6 +1370,7 @@ async function buildTanakhChapterSelect(){
   tanakhChapterSelect.innerHTML = '';
   tanakhChapterSelect.disabled = true;
   tanakhManualLoadBtn.disabled = true;
+  updateTanakhChapterNavButtons();
   const book = TANAKH_BOOKS[parseInt(tanakhBookSelect.value, 10)];
   const loadingOpt = document.createElement('option');
   loadingOpt.textContent = 'טוען פרקים…';
@@ -1367,14 +1386,17 @@ async function buildTanakhChapterSelect(){
     });
     tanakhChapterSelect.disabled = false;
     tanakhManualLoadBtn.disabled = false;
+    updateTanakhChapterNavButtons();
   }catch(e){
     tanakhChapterSelect.innerHTML = '';
     const errOpt = document.createElement('option');
     errOpt.textContent = 'שגיאה בטעינה';
     tanakhChapterSelect.appendChild(errOpt);
+    updateTanakhChapterNavButtons();
   }
 }
 tanakhBookSelect.addEventListener('change', buildTanakhChapterSelect);
+tanakhChapterSelect.addEventListener('change', updateTanakhChapterNavButtons);
 
 async function loadTanakhManualSelection(){
   const book = TANAKH_BOOKS[parseInt(tanakhBookSelect.value, 10)];
@@ -1390,11 +1412,29 @@ async function loadTanakhManualSelection(){
     const card = buildTanakhChapterCard(book.he, book.en, chapter, verses, 1);
     reader.appendChild(card);
     reader.scrollIntoView({behavior:'smooth', block:'start'});
+    updateTanakhChapterNavButtons();
   }catch(e){
     reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את הפרק כרגע. אפשר לקרוא אותו ישירות ב<a href="https://www.sefaria.org/${encodeURIComponent(book.en.replace(/ /g,'_'))}.${chapter}?lang=he" target="_blank" rel="noopener">ספריא</a>.</p>`;
   }
 }
 tanakhManualLoadBtn.addEventListener('click', loadTanakhManualSelection);
+
+tanakhChapterPrevBtn.addEventListener('click', ()=>{
+  const idx = parseInt(tanakhChapterSelect.value, 10);
+  if(isNaN(idx) || idx <= 0) return;
+  tanakhChapterSelect.value = idx - 1;
+  updateTanakhChapterNavButtons();
+  loadTanakhManualSelection();
+});
+tanakhChapterNextBtn.addEventListener('click', ()=>{
+  const idx = parseInt(tanakhChapterSelect.value, 10);
+  const lastIdx = tanakhChapterSelect.options.length - 1;
+  if(isNaN(idx) || idx >= lastIdx) return;
+  tanakhChapterSelect.value = idx + 1;
+  updateTanakhChapterNavButtons();
+  loadTanakhManualSelection();
+});
+
 buildTanakhChapterSelect();
 
 async function renderDailyMishnah(opts){
