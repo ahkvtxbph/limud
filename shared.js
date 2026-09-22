@@ -569,3 +569,156 @@ async function initGating(){
   updateUpcomingShabbatNote();
   updateRegularHolidayNote();
 }
+
+/* =====================================================================
+   TANAKH (Hebrew Bible) — generic book list, text/commentary fetching, and
+   chapter-card rendering, reusable by any page that wants a Tanakh reader
+   (daily-cycle mode, manual book+chapter selection, or anything else).
+   ===================================================================== */
+const TANAKH_BOOKS = [
+  { he:'בראשית', en:'Genesis', cat:'תורה' },
+  { he:'שמות', en:'Exodus', cat:'תורה' },
+  { he:'ויקרא', en:'Leviticus', cat:'תורה' },
+  { he:'במדבר', en:'Numbers', cat:'תורה' },
+  { he:'דברים', en:'Deuteronomy', cat:'תורה' },
+  { he:'יהושע', en:'Joshua', cat:'נביאים' },
+  { he:'שופטים', en:'Judges', cat:'נביאים' },
+  { he:'שמואל א', en:'I Samuel', cat:'נביאים' },
+  { he:'שמואל ב', en:'II Samuel', cat:'נביאים' },
+  { he:'מלכים א', en:'I Kings', cat:'נביאים' },
+  { he:'מלכים ב', en:'II Kings', cat:'נביאים' },
+  { he:'ישעיהו', en:'Isaiah', cat:'נביאים' },
+  { he:'ירמיהו', en:'Jeremiah', cat:'נביאים' },
+  { he:'יחזקאל', en:'Ezekiel', cat:'נביאים' },
+  { he:'הושע', en:'Hosea', cat:'נביאים' },
+  { he:'יואל', en:'Joel', cat:'נביאים' },
+  { he:'עמוס', en:'Amos', cat:'נביאים' },
+  { he:'עובדיה', en:'Obadiah', cat:'נביאים' },
+  { he:'יונה', en:'Jonah', cat:'נביאים' },
+  { he:'מיכה', en:'Micah', cat:'נביאים' },
+  { he:'נחום', en:'Nahum', cat:'נביאים' },
+  { he:'חבקוק', en:'Habakkuk', cat:'נביאים' },
+  { he:'צפניה', en:'Zephaniah', cat:'נביאים' },
+  { he:'חגי', en:'Haggai', cat:'נביאים' },
+  { he:'זכריה', en:'Zechariah', cat:'נביאים' },
+  { he:'מלאכי', en:'Malachi', cat:'נביאים' },
+  { he:'תהלים', en:'Psalms', cat:'כתובים' },
+  { he:'משלי', en:'Proverbs', cat:'כתובים' },
+  { he:'איוב', en:'Job', cat:'כתובים' },
+  { he:'שיר השירים', en:'Song of Songs', cat:'כתובים' },
+  { he:'רות', en:'Ruth', cat:'כתובים' },
+  { he:'איכה', en:'Lamentations', cat:'כתובים' },
+  { he:'קהלת', en:'Ecclesiastes', cat:'כתובים' },
+  { he:'אסתר', en:'Esther', cat:'כתובים' },
+  { he:'דניאל', en:'Daniel', cat:'כתובים' },
+  { he:'עזרא', en:'Ezra', cat:'כתובים' },
+  { he:'נחמיה', en:'Nehemiah', cat:'כתובים' },
+  { he:'דברי הימים א', en:'I Chronicles', cat:'כתובים' },
+  { he:'דברי הימים ב', en:'II Chronicles', cat:'כתובים' }
+];
+function findTanakhBookHe(en){
+  const b = TANAKH_BOOKS.find(b => b.en === en);
+  return b ? b.he : en;
+}
+
+const tanakhBookCache = {};
+async function fetchWholeTanakhBook(bookEn){
+  if(tanakhBookCache[bookEn]) return tanakhBookCache[bookEn];
+  const { text } = await fetchRefText(bookEn);
+  if(!text || !Array.isArray(text)) throw new Error('no data for ' + bookEn);
+  const cleaned = text.map(ch => Array.isArray(ch) ? ch.map(stripTags) : [stripTags(ch)]);
+  tanakhBookCache[bookEn] = cleaned;
+  return cleaned;
+}
+
+// Fetches Rashi for a whole chapter in one request; returns an array (one entry
+// per verse) of commentary strings, or null per-verse when unavailable.
+async function fetchTanakhChapterCommentary(bookEn, chapter, verseCount){
+  const fallback = new Array(verseCount).fill(null);
+  try{
+    const { text } = await fetchRefText(`Rashi on ${bookEn} ${chapter}`);
+    if(!text) return fallback;
+    const perVerse = Array.isArray(text) ? text : [text];
+    return perVerse.map(v=>{
+      const flat = Array.isArray(v) ? v.flat(Infinity) : [v];
+      const clean = flat.map(stripTags).filter(Boolean).join(' ');
+      return clean || null;
+    });
+  }catch(e){
+    return fallback;
+  }
+}
+
+// Parses a Sefaria-style ref like "Genesis 1:1-31" or "I Samuel 3" into its
+// book/chapter/verse-range parts, matching against the known TANAKH_BOOKS list
+// (checked longest-name-first so e.g. "I Samuel" isn't mistaken for "Samuel").
+function parseTanakhRef(ref){
+  const sorted = [...TANAKH_BOOKS].sort((a,b)=> b.en.length - a.en.length);
+  for(const book of sorted){
+    if(ref.indexOf(book.en + ' ') === 0){
+      const rest = ref.slice(book.en.length + 1);
+      let m = rest.match(/^(\d+):(\d+)(?:-(\d+))?/);
+      if(m) return { book, chapter: parseInt(m[1],10), fromVerse: parseInt(m[2],10), toVerse: m[3] ? parseInt(m[3],10) : parseInt(m[2],10) };
+      m = rest.match(/^(\d+)/);
+      if(m) return { book, chapter: parseInt(m[1],10), fromVerse: 1, toVerse: null };
+    }
+  }
+  return null;
+}
+
+// Builds (but does not insert) a chapter-card element with numbered verses and,
+// once fetched, Rashi commentary under each verse — mirroring the Mishnayot
+// per-item verse+commentary layout. Caller appends/inserts it wherever needed.
+function buildTanakhChapterCard(bookHe, bookEn, chapter, verses, fromVerse){
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>${bookHe} פרק ${hebNum(chapter)}</h2>
+      <div class="share-row"></div>
+      <span class="gem">${bookEn} ${chapter}</span>
+    </div>
+    <div class="chapter-loading">טוען פרק…</div>
+  `;
+  const shareSlot = card.querySelector('.chapter-head .share-row');
+  const url = location.href.split('#')[0];
+  shareSlot.replaceWith(buildShareBar(url, `${bookHe} פרק ${hebNum(chapter)} — לימוד תנ"ך:`));
+
+  const body = card.querySelector('.chapter-loading');
+  const wrap = document.createElement('div');
+  const startVerse = fromVerse || 1;
+  verses.forEach((text, i)=>{
+    const verseNum = startVerse + i;
+    const versesDiv = document.createElement('div');
+    versesDiv.className = 'verses';
+    versesDiv.innerHTML = `<span class="v-num">${hebNum(verseNum)}</span> ${text}`;
+    wrap.appendChild(versesDiv);
+
+    const commentaryDiv = document.createElement('div');
+    commentaryDiv.className = 'commentary';
+    commentaryDiv.innerHTML = `<div class="c-label">פירוש (רש״י)</div><div class="c-text">טוען פירוש…</div>`;
+    wrap.appendChild(commentaryDiv);
+    commentaryDiv.dataset.verseIndex = i;
+  });
+  body.replaceWith(wrap);
+
+  // Fetch commentary for the whole chapter in one request, then fill in each
+  // verse's block (skipping ahead to the right slice if only a partial range
+  // of the chapter is being shown).
+  fetchTanakhChapterCommentary(bookEn, chapter, startVerse - 1 + verses.length).then(commentaryList=>{
+    const commentaryDivs = wrap.querySelectorAll('.commentary');
+    commentaryDivs.forEach(div=>{
+      const i = parseInt(div.dataset.verseIndex, 10);
+      const absoluteIdx = startVerse - 1 + i;
+      const txt = commentaryList[absoluteIdx];
+      const cText = div.querySelector('.c-text');
+      if(txt){
+        cText.textContent = txt;
+      } else if(cText){
+        cText.outerHTML = `<div class="c-unavailable">פירוש רש״י לא נמצא עבור פסוק זה.</div>`;
+      }
+    });
+  });
+
+  return card;
+}

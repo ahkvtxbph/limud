@@ -265,6 +265,7 @@
   }
   #tehillim-section nav.modes{grid-template-columns:repeat(4,1fr);}
   #mishnayot-section nav.modes{grid-template-columns:repeat(3,1fr);}
+  #tanakh-section nav.modes{grid-template-columns:repeat(2,1fr);}
   nav.modes button{
     font-family:'Assistant', sans-serif;
     font-weight:600;
@@ -687,9 +688,14 @@
   </section>
 
   <section id="tanakh-section" style="display:none;">
-    <section class="panel">
+    <nav class="modes" aria-label="אפשרויות תנ״ך">
+      <button data-tanakh-mode="daily" class="active"><span class="num">א׳</span>תנ"ך יומי</button>
+      <button data-tanakh-mode="manual"><span class="num">ב׳</span>בחירה ידנית</button>
+    </nav>
+
+    <section class="panel" id="tanakh-panel-daily">
       <h2 class="panel-title">תנ"ך יומי</h2>
-      <p class="panel-desc">פרקי התנ"ך הנלמדים היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "תנ"ך יומי").</p>
+      <p class="panel-desc">פרקי התנ"ך הנלמדים היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "תנ"ך יומי"), כולל פירוש רש"י.</p>
       <div class="controls-row">
         <button class="btn" id="tanakh-load">רענן תנ"ך יומי</button>
       </div>
@@ -700,6 +706,17 @@
         <button class="btn secondary" id="tanakh-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
+
+    <section class="panel" id="tanakh-panel-manual" style="display:none;">
+      <h2 class="panel-title">תנ"ך לבחירה</h2>
+      <p class="panel-desc">בחר/י ספר ופרק — כולל פירוש רש"י.</p>
+      <div class="controls-row">
+        <select id="tanakh-book-select" aria-label="בחר/י ספר"></select>
+        <select id="tanakh-chapter-select" aria-label="בחר/י פרק" disabled></select>
+        <button class="btn" id="tanakh-manual-load" disabled>הצג פרק</button>
+      </div>
+    </section>
+
     <div id="tanakh-reader" aria-live="polite"></div>
   </section>
 
@@ -790,6 +807,7 @@
 let halachaSelectedDate = null;
 let tanyaSelectedDate = null;
 let tanakhSelectedDate = null;
+let currentTanakhMode = 'daily';
 let rambamSelectedDate = null;
 let mshDailySelectedDate = null;
 let currentSection = "halacha";
@@ -811,7 +829,7 @@ document.querySelectorAll('nav.top-modes button').forEach(btn=>{
     } else if(currentSection === 'tanya'){
       renderTanyaYomi();
     } else if(currentSection === 'tanakh'){
-      renderTanakhYomi();
+      autoLoadForModeTanakh(currentTanakhMode);
     } else if(currentSection === 'rambam'){
       renderRambamYomi();
     } else if(currentSection === 'zmanim'){
@@ -1237,7 +1255,41 @@ async function renderDailyCalendarSection(titleEn, readerId, headingHe, selected
 
 function renderDailyHalacha(){ return renderDailyCalendarSection('Halakhah Yomit', 'halacha-reader', 'הלכה יומית', halachaSelectedDate); }
 function renderTanyaYomi(){ return renderDailyCalendarSection('Tanya Yomi', 'tanya-reader', 'תניא יומי', tanyaSelectedDate); }
-function renderTanakhYomi(){ return renderDailyCalendarSection('Tanakh Yomi', 'tanakh-reader', 'תנ"ך יומי', tanakhSelectedDate); }
+
+async function renderTanakhDaily(){
+  const reader = document.getElementById('tanakh-reader');
+  reader.innerHTML = '';
+  const loadingCard = document.createElement('p');
+  loadingCard.className = 'chapter-loading';
+  loadingCard.textContent = 'טוען תנ"ך יומי…';
+  reader.appendChild(loadingCard);
+  try{
+    const targetDate = tanakhSelectedDate || new Date();
+    let calendarUrl = tanakhSelectedDate
+      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getUTCFullYear()}&month=${targetDate.getUTCMonth()+1}&day=${targetDate.getUTCDate()}`
+      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getFullYear()}&month=${targetDate.getMonth()+1}&day=${targetDate.getDate()}`;
+    const res = await fetch(calendarUrl);
+    if(!res.ok) throw new Error('calendar fetch failed');
+    const data = await res.json();
+    const items = (data && data.calendar_items) || [];
+    const item = items.find(i => i.title && i.title.en === 'Tanakh Yomi');
+    if(!item || !item.ref) throw new Error('no tanakh yomi item');
+    const loc = parseTanakhRef(item.ref);
+    if(!loc) throw new Error('could not parse ref: ' + item.ref);
+    const chapters = await fetchWholeTanakhBook(loc.book.en);
+    const chapterArr = chapters[loc.chapter - 1];
+    if(!chapterArr) throw new Error('chapter not found');
+    const toVerse = loc.toVerse || chapterArr.length;
+    const verses = chapterArr.slice(loc.fromVerse - 1, toVerse);
+    if(!verses.length) throw new Error('no verses found');
+    reader.innerHTML = '';
+    const card = buildTanakhChapterCard(loc.book.he, loc.book.en, loc.chapter, verses, loc.fromVerse);
+    card.querySelector('.chapter-head h2').textContent = `תנ"ך יומי — ${loc.book.he} פרק ${hebNum(loc.chapter)}`;
+    reader.appendChild(card);
+  }catch(e){
+    reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את התנ"ך היומי כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.</p>`;
+  }
+}
 
 let rambamCycle = '3'; // '3' = three chapters/day (default), '1' = one chapter/day
 function renderRambamYomi(){
@@ -1255,14 +1307,95 @@ document.querySelectorAll('.rambam-cycle-btn').forEach(btn=>{
 
 document.getElementById('halacha-load').addEventListener('click', renderDailyHalacha);
 document.getElementById('tanya-load').addEventListener('click', renderTanyaYomi);
-document.getElementById('tanakh-load').addEventListener('click', renderTanakhYomi);
+document.getElementById('tanakh-load').addEventListener('click', renderTanakhDaily);
 document.getElementById('rambam-load').addEventListener('click', renderRambamYomi);
 
 wireDatePicker('halacha-date-input', 'halacha-today-btn', 'halacha-prev-btn', 'halacha-next-btn', ()=>halachaSelectedDate, d=>{ halachaSelectedDate = d; }, renderDailyHalacha);
 wireDatePicker('tanya-date-input', 'tanya-today-btn', 'tanya-prev-btn', 'tanya-next-btn', ()=>tanyaSelectedDate, d=>{ tanyaSelectedDate = d; }, renderTanyaYomi);
-wireDatePicker('tanakh-date-input', 'tanakh-today-btn', 'tanakh-prev-btn', 'tanakh-next-btn', ()=>tanakhSelectedDate, d=>{ tanakhSelectedDate = d; }, renderTanakhYomi);
+wireDatePicker('tanakh-date-input', 'tanakh-today-btn', 'tanakh-prev-btn', 'tanakh-next-btn', ()=>tanakhSelectedDate, d=>{ tanakhSelectedDate = d; }, renderTanakhDaily);
 wireDatePicker('rambam-date-input', 'rambam-today-btn', 'rambam-prev-btn', 'rambam-next-btn', ()=>rambamSelectedDate, d=>{ rambamSelectedDate = d; }, renderRambamYomi);
 wireDatePicker('msh-daily-date-input', 'msh-daily-today-btn', 'msh-daily-prev-btn', 'msh-daily-next-btn', ()=>mshDailySelectedDate, d=>{ mshDailySelectedDate = d; }, renderDailyMishnah);
+
+/* ---------- Tanakh sub-navigation (daily / manual) ---------- */
+document.querySelectorAll('#tanakh-section nav.modes button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#tanakh-section nav.modes button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTanakhMode = btn.dataset.tanakhMode;
+    ['daily','manual'].forEach(m=>{
+      document.getElementById('tanakh-panel-'+m).style.display = (m===currentTanakhMode? '' : 'none');
+    });
+    autoLoadForModeTanakh(currentTanakhMode);
+  });
+});
+function autoLoadForModeTanakh(mode){
+  if(mode === 'daily') renderTanakhDaily();
+  else if(mode === 'manual'){
+    if(!tanakhChapterSelect.disabled && tanakhChapterSelect.value !== '') loadTanakhManualSelection();
+  }
+}
+
+const tanakhBookSelect = document.getElementById('tanakh-book-select');
+const tanakhChapterSelect = document.getElementById('tanakh-chapter-select');
+const tanakhManualLoadBtn = document.getElementById('tanakh-manual-load');
+
+(function buildTanakhBookSelect(){
+  TANAKH_BOOKS.forEach((b, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${b.he} (${b.cat})`;
+    tanakhBookSelect.appendChild(opt);
+  });
+})();
+
+async function buildTanakhChapterSelect(){
+  tanakhChapterSelect.innerHTML = '';
+  tanakhChapterSelect.disabled = true;
+  tanakhManualLoadBtn.disabled = true;
+  const book = TANAKH_BOOKS[parseInt(tanakhBookSelect.value, 10)];
+  const loadingOpt = document.createElement('option');
+  loadingOpt.textContent = 'טוען פרקים…';
+  tanakhChapterSelect.appendChild(loadingOpt);
+  try{
+    const chapters = await fetchWholeTanakhBook(book.en);
+    tanakhChapterSelect.innerHTML = '';
+    chapters.forEach((ch, i)=>{
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `פרק ${hebNum(i+1)}`;
+      tanakhChapterSelect.appendChild(opt);
+    });
+    tanakhChapterSelect.disabled = false;
+    tanakhManualLoadBtn.disabled = false;
+  }catch(e){
+    tanakhChapterSelect.innerHTML = '';
+    const errOpt = document.createElement('option');
+    errOpt.textContent = 'שגיאה בטעינה';
+    tanakhChapterSelect.appendChild(errOpt);
+  }
+}
+tanakhBookSelect.addEventListener('change', buildTanakhChapterSelect);
+
+async function loadTanakhManualSelection(){
+  const book = TANAKH_BOOKS[parseInt(tanakhBookSelect.value, 10)];
+  const chapter = parseInt(tanakhChapterSelect.value, 10) + 1;
+  if(isNaN(chapter)) return;
+  const reader = document.getElementById('tanakh-reader');
+  reader.innerHTML = '<p class="chapter-loading">טוען פרק…</p>';
+  try{
+    const chapters = await fetchWholeTanakhBook(book.en);
+    const verses = chapters[chapter-1];
+    if(!verses) throw new Error('chapter not found');
+    reader.innerHTML = '';
+    const card = buildTanakhChapterCard(book.he, book.en, chapter, verses, 1);
+    reader.appendChild(card);
+    reader.scrollIntoView({behavior:'smooth', block:'start'});
+  }catch(e){
+    reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את הפרק כרגע. אפשר לקרוא אותו ישירות ב<a href="https://www.sefaria.org/${encodeURIComponent(book.en.replace(/ /g,'_'))}.${chapter}?lang=he" target="_blank" rel="noopener">ספריא</a>.</p>`;
+  }
+}
+tanakhManualLoadBtn.addEventListener('click', loadTanakhManualSelection);
+buildTanakhChapterSelect();
 
 async function renderDailyMishnah(opts){
   const skipScroll = opts && opts.skipScroll;
