@@ -722,3 +722,48 @@ function buildTanakhChapterCard(bookHe, bookEn, chapter, verses, fromVerse){
 
   return card;
 }
+
+// Wires "previous"/"next" buttons that step a <select> through its options by one,
+// automatically disabling at the first/last option (and while the select itself is
+// disabled, e.g. still loading). Calls onStep() after each successful step, and
+// returns an "update" function the caller can re-invoke whenever the select's own
+// options change (repopulated, enabled/disabled) so button state stays in sync.
+// Reusable for any select-driven prev/next navigation (chapter pickers, etc.).
+function wireSelectNav(selectId, prevBtnId, nextBtnId, onStep){
+  const select = document.getElementById(selectId);
+  const prevBtn = document.getElementById(prevBtnId);
+  const nextBtn = document.getElementById(nextBtnId);
+  if(!select || !prevBtn || !nextBtn) return function(){};
+
+  function update(){
+    if(select.disabled){
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      return;
+    }
+    const idx = parseInt(select.value, 10);
+    const lastIdx = select.options.length - 1;
+    prevBtn.disabled = isNaN(idx) || idx <= 0;
+    nextBtn.disabled = isNaN(idx) || idx >= lastIdx;
+  }
+
+  select.addEventListener('change', update);
+
+  prevBtn.addEventListener('click', ()=>{
+    const idx = parseInt(select.value, 10);
+    if(isNaN(idx) || idx <= 0) return;
+    select.value = idx - 1;
+    update();
+    if(onStep) onStep();
+  });
+  nextBtn.addEventListener('click', ()=>{
+    const idx = parseInt(select.value, 10);
+    const lastIdx = select.options.length - 1;
+    if(isNaN(idx) || idx >= lastIdx) return;
+    select.value = idx + 1;
+    update();
+    if(onStep) onStep();
+  });
+
+  return update;
+}
