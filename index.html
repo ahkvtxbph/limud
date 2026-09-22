@@ -1815,8 +1815,20 @@ function computeZmanim(date, lat, lon){
   const minchaGedolaOffsetMinutes = isSummer ? 30 * (dayLengthMinutes / 720) : 30;
   const minchaGedola = new Date(chatzot.getTime() + minchaGedolaOffsetMinutes*60000);
 
-  return [
+  // Zman Tallit/Tefillin (Misheyakir): fixed 50 minutes before sunrise (per Yeshiva.org.il /
+  // Wikishiva — the one zman with no explicit Talmudic measure of its own, estimated by the
+  // commentators at ~50 minutes).
+  const misheyakir = new Date(sunrise.getTime() - 50*60000);
+
+  // Chatzot halayla (halachic midnight): the midpoint between TODAY's sunset and TOMORROW's
+  // sunrise — i.e. the middle of the coming night, not tied to civil 00:00.
+  const tomorrow = new Date(date.getTime() + 86400000);
+  const nextSunrise = calcSunEventUTC(tomorrow, lat, lon, 90.833, true);
+  const chatzotLayla = nextSunrise ? new Date(sunset.getTime() + (nextSunrise.getTime() - sunset.getTime())/2) : null;
+
+  const result = [
     { label: 'עלות השחר', time: alot },
+    { label: 'זמן טלית ותפילין (משיכיר)', time: misheyakir },
     { label: 'הנץ החמה', time: sunrise },
     { label: 'סוף זמן קריאת שמע (מג״א)', time: roundToMinute(atMga(3), 'down') },
     { label: 'סוף זמן קריאת שמע (גר״א)', time: roundToMinute(atGra(3), 'down') },
@@ -1829,6 +1841,8 @@ function computeZmanim(date, lat, lon){
     { label: 'שקיעת החמה', time: sunset },
     { label: 'צאת הכוכבים', time: tzeit }
   ];
+  if(chatzotLayla) result.push({ label: 'חצות הלילה', time: chatzotLayla });
+  return result;
 }
 
 async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset, ownTzeit, resolvedTzid){
