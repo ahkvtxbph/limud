@@ -1,0 +1,83 @@
+name: Update sitemap.xml
+
+# Runs automatically whenever an .html file changes on the main branch (adding,
+# removing, or editing a page) — regenerates sitemap.xml to match, and commits
+# it back to the repo if anything changed. No manual editing of sitemap.xml needed.
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**.html'
+  workflow_dispatch: {}   # also allows running it manually from the Actions tab
+
+permissions:
+  contents: write   # needed so the workflow can commit the updated sitemap.xml back
+
+jobs:
+  update-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate sitemap.xml from all HTML pages in the repo root
+        run: |
+          python3 - <<'PYEOF'
+          import glob
+          import os
+          from datetime import date
+
+          DOMAIN = "https://limood.org.il"
+          today = date.today().isoformat()
+
+          # Every .html file directly in the repo root becomes one <url> entry.
+          # index.html is special-cased to the bare domain ("/"), daily changefreq,
+          # top priority; every other page gets a lower priority / monthly changefreq,
+          # since only the daily-learning content on the homepage changes every day.
+          html_files = sorted(f for f in glob.glob("*.html"))
+
+          entries = []
+          for fname in html_files:
+              if fname == "index.html":
+                  loc = f"{DOMAIN}/"
+                  changefreq = "daily"
+                  priority = "1.0"
+              else:
+                  loc = f"{DOMAIN}/{fname}"
+                  changefreq = "monthly"
+                  priority = "0.3"
+              entries.append(
+                  "  <url>\n"
+                  f"    <loc>{loc}</loc>\n"
+                  f"    <lastmod>{today}</lastmod>\n"
+                  f"    <changefreq>{changefreq}</changefreq>\n"
+                  f"    <priority>{priority}</priority>\n"
+                  "  </url>"
+              )
+
+          xml = (
+              '<?xml version="1.0" encoding="UTF-8"?>\n'
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n'
+              + "\n\n".join(entries)
+              + "\n\n</urlset>\n"
+          )
+
+          with open("sitemap.xml", "w", encoding="utf-8") as f:
+              f.write(xml)
+
+          print(f"Wrote sitemap.xml with {len(html_files)} page(s):")
+          for f in html_files:
+              print(" -", f)
+          PYEOF
+
+      - name: Commit sitemap.xml if it changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- sitemap.xml; then
+            echo "sitemap.xml is already up to date — nothing to commit."
+          else
+            git add sitemap.xml
+            git commit -m "Auto-update sitemap.xml [skip ci]"
+            git push
+          fi
