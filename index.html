@@ -1607,7 +1607,6 @@ function loadManualMshSelection(){
 }
 mshManualLoadBtn.addEventListener('click', ()=> loadManualMshSelection());
 const updateMshMishnahNav = wireSelectNav('msh-mishnah-select', 'msh-mishnah-prev-btn', 'msh-mishnah-next-btn', ()=> loadManualMshSelection());
-wireSelectNav('msh-mishnah-select', 'msh-mishnah-prev-btn', 'msh-mishnah-next-btn', ()=> loadManualMshSelection());
 
 function autoLoadForModeMsh(mode, opts){
   if(mode === 'daily'){
