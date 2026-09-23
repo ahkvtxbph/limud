@@ -153,41 +153,6 @@
     margin-right:auto;
     line-height:1.6;
   }
-  .reminder-control{
-    margin-top:.9rem;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:.4rem;
-  }
-  .reminder-label{
-    font-family:'Assistant', sans-serif;
-    font-size:.85rem;
-    color:var(--paper);
-    display:inline-flex;
-    align-items:center;
-    gap:.4rem;
-    cursor:pointer;
-  }
-  .reminder-label input[type="checkbox"]{
-    width:1.1rem;
-    height:1.1rem;
-    accent-color:var(--gold);
-    cursor:pointer;
-  }
-  .reminder-control select{
-    font-size:.8rem;
-    padding:.35rem .6rem;
-  }
-  .reminder-note{
-    font-family:'Assistant', sans-serif;
-    font-size:.68rem;
-    color:#B9AE93;
-    max-width:26em;
-    margin:.2rem auto 0;
-    line-height:1.5;
-    text-align:center;
-  }
   .learning-date-label{
     font-family:'Assistant', sans-serif;
     font-size:1rem;
@@ -571,19 +536,6 @@
   <p class="date-note" id="hebrew-date-note"></p>
   <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
   <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
-  <div class="reminder-control" id="reminder-control">
-    <label class="reminder-label" for="reminder-toggle">
-      <input type="checkbox" id="reminder-toggle">
-      🔔 תזכורת לפני כניסת שבת/חג
-    </label>
-    <select id="reminder-minutes" aria-label="כמה דקות לפני כניסת שבת/חג להתריע">
-      <option value="15">15 דקות לפני</option>
-      <option value="30" selected>30 דקות לפני</option>
-      <option value="60">שעה לפני</option>
-      <option value="90">שעה וחצי לפני</option>
-    </select>
-    <p class="reminder-note">התזכורת פועלת רק כשהאתר פתוח בדפדפן (ברקע או בחזית) — היא לא תפעל אם הדפדפן סגור לגמרי.</p>
-  </div>
 </header>
 
 <a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">

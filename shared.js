@@ -568,7 +568,6 @@ async function initGating(){
   checkGating();
   updateUpcomingShabbatNote();
   updateRegularHolidayNote();
-  scheduleNextReminder();
 }
 
 /* =====================================================================
@@ -886,94 +885,3 @@ function registerServiceWorker(){
   });
 }
 registerServiceWorker();
-
-/* =====================================================================
-   REMINDERS — optional browser notification N minutes before the next
-   Shabbat/Yom-Tov entrance, reusing the same gatingIntervals already
-   computed for the site-wide block banner.
-   IMPORTANT LIMITATION: this only fires while the site is open in a
-   browser tab (foreground or background). It is NOT a true push
-   notification and will NOT fire if the browser/tab is fully closed —
-   that would require a server-side push service this site doesn't have.
-   ===================================================================== */
-let reminderTimeoutId = null;
-
-function getReminderPrefs(){
-  try{
-    const raw = localStorage.getItem('limood-reminder-prefs');
-    if(!raw) return { enabled:false, minutes:30 };
-    const parsed = JSON.parse(raw);
-    return { enabled: !!parsed.enabled, minutes: parsed.minutes || 30 };
-  }catch(e){
-    return { enabled:false, minutes:30 };
-  }
-}
-function setReminderPrefs(prefs){
-  try{ localStorage.setItem('limood-reminder-prefs', JSON.stringify(prefs)); }catch(e){}
-}
-
-function scheduleNextReminder(){
-  if(reminderTimeoutId){ clearTimeout(reminderTimeoutId); reminderTimeoutId = null; }
-  const prefs = getReminderPrefs();
-  if(!prefs.enabled) return;
-  if(typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
-  if(!gatingIntervals || !gatingIntervals.length) return;
-
-  const now = new Date();
-  const upcoming = gatingIntervals
-    .filter(iv => iv.start > now)
-    .sort((a,b)=> a.start - b.start)[0];
-  if(!upcoming) return;
-
-  const fireAt = new Date(upcoming.start.getTime() - prefs.minutes*60000);
-  const delay = fireAt.getTime() - now.getTime();
-  if(delay <= 0) return; // reminder moment already passed for this interval — the
-                          // next scheduled gating refresh (every 6h) will pick up
-                          // the following one automatically.
-
-  // setTimeout's practical max delay (~24.8 days) safely covers this, since the
-  // gating fetch window itself only ever looks 10 days ahead.
-  reminderTimeoutId = setTimeout(()=>{
-    try{
-      new Notification(`${upcoming.label} נכנס/ת בעוד ${prefs.minutes} דקות`, {
-        body: 'לימוד יומי — מזמור לתודה',
-        icon: 'icon-192.png'
-      });
-    }catch(e){}
-  }, delay);
-}
-
-function initReminderUI(){
-  const toggle = document.getElementById('reminder-toggle');
-  const minutesSelect = document.getElementById('reminder-minutes');
-  if(!toggle || !minutesSelect) return;
-
-  const prefs = getReminderPrefs();
-  toggle.checked = prefs.enabled;
-  minutesSelect.value = String(prefs.minutes);
-
-  toggle.addEventListener('change', async ()=>{
-    if(toggle.checked){
-      if(typeof Notification === 'undefined'){
-        alert('הדפדפן הזה לא תומך בהתראות.');
-        toggle.checked = false;
-        return;
-      }
-      let permission = Notification.permission;
-      if(permission === 'default'){
-        permission = await Notification.requestPermission();
-      }
-      if(permission !== 'granted'){
-        toggle.checked = false;
-        return;
-      }
-    }
-    setReminderPrefs({ enabled: toggle.checked, minutes: parseInt(minutesSelect.value, 10) });
-    scheduleNextReminder();
-  });
-  minutesSelect.addEventListener('change', ()=>{
-    setReminderPrefs({ enabled: toggle.checked, minutes: parseInt(minutesSelect.value, 10) });
-    scheduleNextReminder();
-  });
-}
-initReminderUI();
