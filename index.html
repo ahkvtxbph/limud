@@ -598,6 +598,10 @@
         <select id="manual-select" aria-label="בחר פרק"></select>
         <button class="btn" id="manual-load">הצג פרק</button>
       </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="manual-prev-btn" aria-label="פרק קודם">‹ פרק קודם</button>
+        <button class="btn secondary" id="manual-next-btn" aria-label="פרק הבא">פרק הבא ›</button>
+      </div>
     </section>
 
     <div id="reader" aria-live="polite"></div>
@@ -664,6 +668,10 @@
         <select id="msh-perek-select" aria-label="בחר/י פרק" disabled></select>
         <select id="msh-mishnah-select" aria-label="בחר/י משנה" disabled></select>
         <button class="btn" id="msh-manual-load" disabled>הצג משנה</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="msh-mishnah-prev-btn" aria-label="משנה קודמת">‹ משנה קודמת</button>
+        <button class="btn secondary" id="msh-mishnah-next-btn" aria-label="משנה הבאה">משנה הבאה ›</button>
       </div>
     </section>
 
@@ -1075,6 +1083,8 @@ hebdateChips();
 
 document.getElementById('random-load').addEventListener('click', ()=> autoLoadForMode('random'));
 document.getElementById('manual-load').addEventListener('click', ()=> autoLoadForMode('manual'));
+const updateManualNav = wireSelectNav('manual-select', 'manual-prev-btn', 'manual-next-btn', ()=> autoLoadForMode('manual'));
+updateManualNav();
 
 const SEDARIM = [
   { he:"זרעים", tractates:[
@@ -1565,6 +1575,7 @@ function buildMishnahSelect(){
   if(!chapters || isNaN(perekIdx) || !chapters[perekIdx]){
     mshMishnahSelect.disabled = true;
     mshManualLoadBtn.disabled = true;
+    updateMshMishnahNav();
     return;
   }
   chapters[perekIdx].forEach((m, i)=>{
@@ -1575,6 +1586,7 @@ function buildMishnahSelect(){
   });
   mshMishnahSelect.disabled = false;
   mshManualLoadBtn.disabled = false;
+  updateMshMishnahNav();
 }
 
 mshSederSelect.addEventListener('change', ()=>{
@@ -1594,6 +1606,8 @@ function loadManualMshSelection(){
   renderSingleMishnahByRef(tractate.en, tractate.he, perek, mishnahNum);
 }
 mshManualLoadBtn.addEventListener('click', ()=> loadManualMshSelection());
+const updateMshMishnahNav = wireSelectNav('msh-mishnah-select', 'msh-mishnah-prev-btn', 'msh-mishnah-next-btn', ()=> loadManualMshSelection());
+wireSelectNav('msh-mishnah-select', 'msh-mishnah-prev-btn', 'msh-mishnah-next-btn', ()=> loadManualMshSelection());
 
 function autoLoadForModeMsh(mode, opts){
   if(mode === 'daily'){

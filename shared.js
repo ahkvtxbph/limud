@@ -735,32 +735,33 @@ function wireSelectNav(selectId, prevBtnId, nextBtnId, onStep){
   const nextBtn = document.getElementById(nextBtnId);
   if(!select || !prevBtn || !nextBtn) return function(){};
 
+  // Uses selectedIndex (always a true 0-based option POSITION on a real <select>)
+  // rather than parsing .value — works correctly regardless of what the option
+  // values themselves are (0-indexed, 1-indexed, or any other numbering scheme).
   function update(){
-    if(select.disabled){
+    if(select.disabled || select.options.length === 0){
       prevBtn.disabled = true;
       nextBtn.disabled = true;
       return;
     }
-    const idx = parseInt(select.value, 10);
+    const idx = select.selectedIndex;
     const lastIdx = select.options.length - 1;
-    prevBtn.disabled = isNaN(idx) || idx <= 0;
-    nextBtn.disabled = isNaN(idx) || idx >= lastIdx;
+    prevBtn.disabled = idx <= 0;
+    nextBtn.disabled = idx >= lastIdx;
   }
 
   select.addEventListener('change', update);
 
   prevBtn.addEventListener('click', ()=>{
-    const idx = parseInt(select.value, 10);
-    if(isNaN(idx) || idx <= 0) return;
-    select.value = idx - 1;
+    if(select.selectedIndex <= 0) return;
+    select.selectedIndex -= 1;
     update();
     if(onStep) onStep();
   });
   nextBtn.addEventListener('click', ()=>{
-    const idx = parseInt(select.value, 10);
     const lastIdx = select.options.length - 1;
-    if(isNaN(idx) || idx >= lastIdx) return;
-    select.value = idx + 1;
+    if(select.selectedIndex >= lastIdx) return;
+    select.selectedIndex += 1;
     update();
     if(onStep) onStep();
   });
