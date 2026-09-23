@@ -568,6 +568,7 @@ async function initGating(){
   checkGating();
   updateUpcomingShabbatNote();
   updateRegularHolidayNote();
+  scheduleNextReminder();
 }
 
 /* =====================================================================
@@ -768,3 +769,211 @@ function wireSelectNav(selectId, prevBtnId, nextBtnId, onStep){
 
   return update;
 }
+
+/* =====================================================================
+   Generic Sefaria "daily calendar item" renderers — reusable for any
+   date-driven daily-learning cycle (Halacha Yomit, Tanya Yomi, Daf Yomi,
+   Yerushalmi Yomi, Tanakh Yomi, 929, Daily Rambam, etc).
+   ===================================================================== */
+
+// Plain-paragraph style (no verse numbers, no commentary) — for texts that
+// aren't naturally verse-structured (halacha, tanya, gemara pages, etc).
+async function renderDailyCalendarSection(titleEn, readerId, headingHe, selectedDate){
+  const reader = document.getElementById(readerId);
+  reader.innerHTML = '';
+  const targetDate = selectedDate || new Date();
+  let hebLabel;
+  try{ hebLabel = getHebrewDisplay(targetDate); }catch(e){ hebLabel = null; }
+  const gregLabel = targetDate.toLocaleDateString('he-IL');
+  const dateLabel = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>${headingHe}</h2>
+      <div class="share-row"></div>
+      <span class="gem" id="${readerId}-ref-label">${titleEn}</span>
+    </div>
+    <p class="learning-date-label" id="${readerId}-date-label">${dateLabel}<span class="sub">הלימוד המוצג הוא לתאריך זה — לא בהכרח לתאריך של היום</span></p>
+    <div class="chapter-loading">טוען…</div>
+  `;
+  const shareSlot = card.querySelector('.chapter-head .share-row');
+  shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], `${headingHe} — לימוד יומי:`));
+  reader.appendChild(card);
+  const body = card.querySelector('.chapter-loading');
+  try{
+    // Always pass an explicit date to Sefaria (the selected date, or today's LOCAL date) —
+    // relying on Sefaria's own default "today" can lag behind the user's local calendar date
+    // by several hours right after local midnight, showing yesterday's daily-learning portion.
+    const dfc1 = selectedDate || new Date();
+    const calendarUrl = selectedDate
+      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc1.getUTCFullYear()}&month=${dfc1.getUTCMonth()+1}&day=${dfc1.getUTCDate()}`
+      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc1.getFullYear()}&month=${dfc1.getMonth()+1}&day=${dfc1.getDate()}`;
+    const res = await fetch(calendarUrl);
+    if(!res.ok) throw new Error('calendar fetch failed');
+    const data = await res.json();
+    const items = (data && data.calendar_items) || [];
+    const item = items.find(i => i.title && i.title.en === titleEn);
+    if(!item || !item.ref) throw new Error('no item: ' + titleEn);
+    const { text, ref: resolvedRef } = await fetchRefText(item.ref);
+    if(!text) throw new Error('empty text');
+    const flat = Array.isArray(text) ? text.flat(Infinity) : [text];
+    const paragraphs = flat.map(stripTags).filter(Boolean);
+    if(!paragraphs.length) throw new Error('no paragraphs');
+    card.querySelector('.chapter-head h2').textContent = (item.displayValue && (item.displayValue.he || (item.title && item.title.he))) || headingHe;
+    const refLabel = document.getElementById(readerId+'-ref-label');
+    if(refLabel) refLabel.textContent = resolvedRef || item.ref;
+    const versesDiv = document.createElement('div');
+    versesDiv.className = 'verses';
+    versesDiv.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+    body.replaceWith(versesDiv);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את התוכן כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+}
+
+// Verse-numbered style with Rashi commentary, for daily cycles whose ref points
+// into the Tanakh (book + chapter) — e.g. "Tanakh Yomi" or "929".
+async function renderTanakhStyleDailyCalendar(titleEn, readerId, headingHe, selectedDate){
+  const reader = document.getElementById(readerId);
+  reader.innerHTML = '';
+  const loadingEl = document.createElement('p');
+  loadingEl.className = 'chapter-loading';
+  loadingEl.textContent = `טוען ${headingHe}…`;
+  reader.appendChild(loadingEl);
+  try{
+    const targetDate = selectedDate || new Date();
+    const calendarUrl = selectedDate
+      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getUTCFullYear()}&month=${targetDate.getUTCMonth()+1}&day=${targetDate.getUTCDate()}`
+      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getFullYear()}&month=${targetDate.getMonth()+1}&day=${targetDate.getDate()}`;
+    const res = await fetch(calendarUrl);
+    if(!res.ok) throw new Error('calendar fetch failed');
+    const data = await res.json();
+    const items = (data && data.calendar_items) || [];
+    const item = items.find(i => i.title && i.title.en === titleEn);
+    if(!item || !item.ref) throw new Error('no item: ' + titleEn);
+    const loc = parseTanakhRef(item.ref);
+    if(!loc) throw new Error('could not parse ref: ' + item.ref);
+    const chapters = await fetchWholeTanakhBook(loc.book.en);
+    const chapterArr = chapters[loc.chapter - 1];
+    if(!chapterArr) throw new Error('chapter not found');
+    const toVerse = loc.toVerse || chapterArr.length;
+    const verses = chapterArr.slice(loc.fromVerse - 1, toVerse);
+    if(!verses.length) throw new Error('no verses found');
+    reader.innerHTML = '';
+    const card = buildTanakhChapterCard(loc.book.he, loc.book.en, loc.chapter, verses, loc.fromVerse);
+    card.querySelector('.chapter-head h2').textContent = `${headingHe} — ${loc.book.he} פרק ${hebNum(loc.chapter)}`;
+    reader.appendChild(card);
+  }catch(e){
+    reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את התוכן כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.</p>`;
+  }
+}
+
+/* =====================================================================
+   PWA — registers the service worker (sw.js) so the site can be
+   "installed" (Add to Home Screen) and keeps working, in a limited way,
+   when the device is briefly offline. No-ops silently in browsers/contexts
+   that don't support service workers.
+   ===================================================================== */
+function registerServiceWorker(){
+  if(!('serviceWorker' in navigator)) return;
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{
+      // Fails silently (e.g. running from file://, or the browser blocked it) —
+      // the site still works normally online, it just won't be installable/offline.
+    });
+  });
+}
+registerServiceWorker();
+
+/* =====================================================================
+   REMINDERS — optional browser notification N minutes before the next
+   Shabbat/Yom-Tov entrance, reusing the same gatingIntervals already
+   computed for the site-wide block banner.
+   IMPORTANT LIMITATION: this only fires while the site is open in a
+   browser tab (foreground or background). It is NOT a true push
+   notification and will NOT fire if the browser/tab is fully closed —
+   that would require a server-side push service this site doesn't have.
+   ===================================================================== */
+let reminderTimeoutId = null;
+
+function getReminderPrefs(){
+  try{
+    const raw = localStorage.getItem('limood-reminder-prefs');
+    if(!raw) return { enabled:false, minutes:30 };
+    const parsed = JSON.parse(raw);
+    return { enabled: !!parsed.enabled, minutes: parsed.minutes || 30 };
+  }catch(e){
+    return { enabled:false, minutes:30 };
+  }
+}
+function setReminderPrefs(prefs){
+  try{ localStorage.setItem('limood-reminder-prefs', JSON.stringify(prefs)); }catch(e){}
+}
+
+function scheduleNextReminder(){
+  if(reminderTimeoutId){ clearTimeout(reminderTimeoutId); reminderTimeoutId = null; }
+  const prefs = getReminderPrefs();
+  if(!prefs.enabled) return;
+  if(typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+  if(!gatingIntervals || !gatingIntervals.length) return;
+
+  const now = new Date();
+  const upcoming = gatingIntervals
+    .filter(iv => iv.start > now)
+    .sort((a,b)=> a.start - b.start)[0];
+  if(!upcoming) return;
+
+  const fireAt = new Date(upcoming.start.getTime() - prefs.minutes*60000);
+  const delay = fireAt.getTime() - now.getTime();
+  if(delay <= 0) return; // reminder moment already passed for this interval — the
+                          // next scheduled gating refresh (every 6h) will pick up
+                          // the following one automatically.
+
+  // setTimeout's practical max delay (~24.8 days) safely covers this, since the
+  // gating fetch window itself only ever looks 10 days ahead.
+  reminderTimeoutId = setTimeout(()=>{
+    try{
+      new Notification(`${upcoming.label} נכנס/ת בעוד ${prefs.minutes} דקות`, {
+        body: 'לימוד יומי — מזמור לתודה',
+        icon: 'icon-192.png'
+      });
+    }catch(e){}
+  }, delay);
+}
+
+function initReminderUI(){
+  const toggle = document.getElementById('reminder-toggle');
+  const minutesSelect = document.getElementById('reminder-minutes');
+  if(!toggle || !minutesSelect) return;
+
+  const prefs = getReminderPrefs();
+  toggle.checked = prefs.enabled;
+  minutesSelect.value = String(prefs.minutes);
+
+  toggle.addEventListener('change', async ()=>{
+    if(toggle.checked){
+      if(typeof Notification === 'undefined'){
+        alert('הדפדפן הזה לא תומך בהתראות.');
+        toggle.checked = false;
+        return;
+      }
+      let permission = Notification.permission;
+      if(permission === 'default'){
+        permission = await Notification.requestPermission();
+      }
+      if(permission !== 'granted'){
+        toggle.checked = false;
+        return;
+      }
+    }
+    setReminderPrefs({ enabled: toggle.checked, minutes: parseInt(minutesSelect.value, 10) });
+    scheduleNextReminder();
+  });
+  minutesSelect.addEventListener('change', ()=>{
+    setReminderPrefs({ enabled: toggle.checked, minutes: parseInt(minutesSelect.value, 10) });
+    scheduleNextReminder();
+  });
+}
+initReminderUI();

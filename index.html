@@ -14,6 +14,11 @@
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary">
 
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -148,6 +153,41 @@
     margin-right:auto;
     line-height:1.6;
   }
+  .reminder-control{
+    margin-top:.9rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.4rem;
+  }
+  .reminder-label{
+    font-family:'Assistant', sans-serif;
+    font-size:.85rem;
+    color:var(--paper);
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    cursor:pointer;
+  }
+  .reminder-label input[type="checkbox"]{
+    width:1.1rem;
+    height:1.1rem;
+    accent-color:var(--gold);
+    cursor:pointer;
+  }
+  .reminder-control select{
+    font-size:.8rem;
+    padding:.35rem .6rem;
+  }
+  .reminder-note{
+    font-family:'Assistant', sans-serif;
+    font-size:.68rem;
+    color:#B9AE93;
+    max-width:26em;
+    margin:.2rem auto 0;
+    line-height:1.5;
+    text-align:center;
+  }
   .learning-date-label{
     font-family:'Assistant', sans-serif;
     font-size:1rem;
@@ -225,7 +265,7 @@
 
   nav.top-modes{
     display:grid;
-    grid-template-columns:repeat(7,1fr);
+    grid-template-columns:repeat(5,1fr);
     gap:.5rem;
     background:var(--ink);
     border-radius:16px;
@@ -531,6 +571,19 @@
   <p class="date-note" id="hebrew-date-note"></p>
   <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
   <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
+  <div class="reminder-control" id="reminder-control">
+    <label class="reminder-label" for="reminder-toggle">
+      <input type="checkbox" id="reminder-toggle">
+      🔔 תזכורת לפני כניסת שבת/חג
+    </label>
+    <select id="reminder-minutes" aria-label="כמה דקות לפני כניסת שבת/חג להתריע">
+      <option value="15">15 דקות לפני</option>
+      <option value="30" selected>30 דקות לפני</option>
+      <option value="60">שעה לפני</option>
+      <option value="90">שעה וחצי לפני</option>
+    </select>
+    <p class="reminder-note">התזכורת פועלת רק כשהאתר פתוח בדפדפן (ברקע או בחזית) — היא לא תפעל אם הדפדפן סגור לגמרי.</p>
+  </div>
 </header>
 
 <a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
@@ -549,8 +602,11 @@
     <button data-section="halacha" class="active">הלכה יומית</button>
     <button data-section="tehillim">תהילים</button>
     <button data-section="mishnayot">משנה יומית</button>
+    <button data-section="dafyomi">דף יומי</button>
+    <button data-section="yerushalmi">ירושלמי יומי</button>
     <button data-section="tanya">תניא יומי</button>
     <button data-section="tanakh">תנ"ך יומי</button>
+    <button data-section="proj929">929</button>
     <button data-section="rambam">רמב"ם יומי</button>
     <button data-section="zmanim">זמני היום</button>
   </nav>
@@ -678,6 +734,40 @@
     <div id="msh-reader" aria-live="polite"></div>
   </section>
 
+  <section id="dafyomi-section" style="display:none;">
+    <section class="panel">
+      <h2 class="panel-title">דף יומי</h2>
+      <p class="panel-desc">הדף הנלמד היום לפי לוח הדף היומי (מחזור הש"ס הבבלי) של ספריא.</p>
+      <div class="controls-row">
+        <button class="btn" id="dafyomi-load">רענן דף יומי</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="dafyomi-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="dafyomi-date-input" aria-label="בחר/י תאריך לדף יומי">
+        <button class="btn secondary" id="dafyomi-today-btn">היום</button>
+        <button class="btn secondary" id="dafyomi-next-btn" aria-label="יום הבא">יום הבא ›</button>
+      </div>
+    </section>
+    <div id="dafyomi-reader" aria-live="polite"></div>
+  </section>
+
+  <section id="yerushalmi-section" style="display:none;">
+    <section class="panel">
+      <h2 class="panel-title">ירושלמי יומי</h2>
+      <p class="panel-desc">קטע הנלמד היום לפי לוח לימוד התלמוד הירושלמי היומי של ספריא.</p>
+      <div class="controls-row">
+        <button class="btn" id="yerushalmi-load">רענן ירושלמי יומי</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="yerushalmi-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="yerushalmi-date-input" aria-label="בחר/י תאריך לירושלמי יומי">
+        <button class="btn secondary" id="yerushalmi-today-btn">היום</button>
+        <button class="btn secondary" id="yerushalmi-next-btn" aria-label="יום הבא">יום הבא ›</button>
+      </div>
+    </section>
+    <div id="yerushalmi-reader" aria-live="polite"></div>
+  </section>
+
   <section id="tanya-section" style="display:none;">
     <section class="panel">
       <h2 class="panel-title">תניא יומי</h2>
@@ -730,6 +820,23 @@
     </section>
 
     <div id="tanakh-reader" aria-live="polite"></div>
+  </section>
+
+  <section id="proj929-section" style="display:none;">
+    <section class="panel">
+      <h2 class="panel-title">929</h2>
+      <p class="panel-desc">פרק התנ"ך היומי לפי תוכנית "929" (כל התנ"ך, פרק ביום, 929 ימים), כולל פירוש רש"י.</p>
+      <div class="controls-row">
+        <button class="btn" id="proj929-load">רענן 929</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="proj929-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="proj929-date-input" aria-label="בחר/י תאריך ל-929">
+        <button class="btn secondary" id="proj929-today-btn">היום</button>
+        <button class="btn secondary" id="proj929-next-btn" aria-label="יום הבא">יום הבא ›</button>
+      </div>
+    </section>
+    <div id="proj929-reader" aria-live="polite"></div>
   </section>
 
   <section id="rambam-section" style="display:none;">
@@ -818,12 +925,15 @@
 
 let halachaSelectedDate = null;
 let tanyaSelectedDate = null;
+let dafyomiSelectedDate = null;
+let yerushalmiSelectedDate = null;
+let proj929SelectedDate = null;
 let tanakhSelectedDate = null;
 let currentTanakhMode = 'daily';
 let rambamSelectedDate = null;
 let mshDailySelectedDate = null;
 let currentSection = "halacha";
-const ALL_SECTIONS = ['tehillim','halacha','mishnayot','tanya','tanakh','rambam','zmanim'];
+const ALL_SECTIONS = ['tehillim','halacha','mishnayot','dafyomi','yerushalmi','tanya','tanakh','proj929','rambam','zmanim'];
 document.querySelectorAll('nav.top-modes button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('nav.top-modes button').forEach(b=>b.classList.remove('active'));
@@ -838,10 +948,16 @@ document.querySelectorAll('nav.top-modes button').forEach(btn=>{
       renderDailyHalacha();
     } else if(currentSection === 'mishnayot'){
       autoLoadForModeMsh(currentMshMode);
+    } else if(currentSection === 'dafyomi'){
+      renderDafYomi();
+    } else if(currentSection === 'yerushalmi'){
+      renderYerushalmiYomi();
     } else if(currentSection === 'tanya'){
       renderTanyaYomi();
     } else if(currentSection === 'tanakh'){
       autoLoadForModeTanakh(currentTanakhMode);
+    } else if(currentSection === 'proj929'){
+      render929();
     } else if(currentSection === 'rambam'){
       renderRambamYomi();
     } else if(currentSection === 'zmanim'){
@@ -1212,98 +1328,13 @@ async function renderSingleMishnahByRef(tractateEn, tractateHe, perek, mishnahNu
   reader.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-async function renderDailyCalendarSection(titleEn, readerId, headingHe, selectedDate){
-  const reader = document.getElementById(readerId);
-  reader.innerHTML = '';
-  const targetDate = selectedDate || new Date();
-  let hebLabel;
-  try{ hebLabel = getHebrewDisplay(targetDate); }catch(e){ hebLabel = null; }
-  const gregLabel = targetDate.toLocaleDateString('he-IL');
-  const dateLabel = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
-  const card = document.createElement('article');
-  card.className = 'chapter-card';
-  card.innerHTML = `
-    <div class="chapter-head">
-      <h2>${headingHe}</h2>
-      <div class="share-row"></div>
-      <span class="gem" id="${readerId}-ref-label">${titleEn}</span>
-    </div>
-    <p class="learning-date-label" id="${readerId}-date-label">${dateLabel}<span class="sub">הלימוד המוצג הוא לתאריך זה — לא בהכרח לתאריך של היום</span></p>
-    <div class="chapter-loading">טוען…</div>
-  `;
-  const shareSlot = card.querySelector('.chapter-head .share-row');
-  shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], `${headingHe} — לימוד יומי:`));
-  reader.appendChild(card);
-  const body = card.querySelector('.chapter-loading');
-  try{
-    // Always pass an explicit date to Sefaria (the selected date, or today's LOCAL date) —
-    // relying on Sefaria's own default "today" can lag behind the user's local calendar date
-    // by several hours right after local midnight, showing yesterday's daily-learning portion.
-    const dfc1 = selectedDate || new Date();
-    const calendarUrl = selectedDate
-      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc1.getUTCFullYear()}&month=${dfc1.getUTCMonth()+1}&day=${dfc1.getUTCDate()}`
-      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc1.getFullYear()}&month=${dfc1.getMonth()+1}&day=${dfc1.getDate()}`;
-    const res = await fetch(calendarUrl);
-    if(!res.ok) throw new Error('calendar fetch failed');
-    const data = await res.json();
-    const items = (data && data.calendar_items) || [];
-    const item = items.find(i => i.title && i.title.en === titleEn);
-    if(!item || !item.ref) throw new Error('no item: ' + titleEn);
-    const { text, ref: resolvedRef } = await fetchRefText(item.ref);
-    if(!text) throw new Error('empty text');
-    const flat = Array.isArray(text) ? text.flat(Infinity) : [text];
-    const paragraphs = flat.map(stripTags).filter(Boolean);
-    if(!paragraphs.length) throw new Error('no paragraphs');
-    card.querySelector('.chapter-head h2').textContent = (item.displayValue && (item.displayValue.he || (item.title && item.title.he))) || headingHe;
-    const refLabel = document.getElementById(readerId+'-ref-label');
-    if(refLabel) refLabel.textContent = resolvedRef || item.ref;
-    const versesDiv = document.createElement('div');
-    versesDiv.className = 'verses';
-    versesDiv.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
-    body.replaceWith(versesDiv);
-  }catch(e){
-    body.className = 'chapter-error';
-    body.innerHTML = `לא ניתן היה לטעון את התוכן כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.`;
-  }
-}
-
 function renderDailyHalacha(){ return renderDailyCalendarSection('Halakhah Yomit', 'halacha-reader', 'הלכה יומית', halachaSelectedDate); }
 function renderTanyaYomi(){ return renderDailyCalendarSection('Tanya Yomi', 'tanya-reader', 'תניא יומי', tanyaSelectedDate); }
 
-async function renderTanakhDaily(){
-  const reader = document.getElementById('tanakh-reader');
-  reader.innerHTML = '';
-  const loadingCard = document.createElement('p');
-  loadingCard.className = 'chapter-loading';
-  loadingCard.textContent = 'טוען תנ"ך יומי…';
-  reader.appendChild(loadingCard);
-  try{
-    const targetDate = tanakhSelectedDate || new Date();
-    let calendarUrl = tanakhSelectedDate
-      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getUTCFullYear()}&month=${targetDate.getUTCMonth()+1}&day=${targetDate.getUTCDate()}`
-      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getFullYear()}&month=${targetDate.getMonth()+1}&day=${targetDate.getDate()}`;
-    const res = await fetch(calendarUrl);
-    if(!res.ok) throw new Error('calendar fetch failed');
-    const data = await res.json();
-    const items = (data && data.calendar_items) || [];
-    const item = items.find(i => i.title && i.title.en === 'Tanakh Yomi');
-    if(!item || !item.ref) throw new Error('no tanakh yomi item');
-    const loc = parseTanakhRef(item.ref);
-    if(!loc) throw new Error('could not parse ref: ' + item.ref);
-    const chapters = await fetchWholeTanakhBook(loc.book.en);
-    const chapterArr = chapters[loc.chapter - 1];
-    if(!chapterArr) throw new Error('chapter not found');
-    const toVerse = loc.toVerse || chapterArr.length;
-    const verses = chapterArr.slice(loc.fromVerse - 1, toVerse);
-    if(!verses.length) throw new Error('no verses found');
-    reader.innerHTML = '';
-    const card = buildTanakhChapterCard(loc.book.he, loc.book.en, loc.chapter, verses, loc.fromVerse);
-    card.querySelector('.chapter-head h2').textContent = `תנ"ך יומי — ${loc.book.he} פרק ${hebNum(loc.chapter)}`;
-    reader.appendChild(card);
-  }catch(e){
-    reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את התנ"ך היומי כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.</p>`;
-  }
-}
+async function renderTanakhDaily(){ return renderTanakhStyleDailyCalendar('Tanakh Yomi', 'tanakh-reader', 'תנ"ך יומי', tanakhSelectedDate); }
+function render929(){ return renderTanakhStyleDailyCalendar('929', 'proj929-reader', '929', proj929SelectedDate); }
+function renderDafYomi(){ return renderDailyCalendarSection('Daf Yomi', 'dafyomi-reader', 'דף יומי', dafyomiSelectedDate); }
+function renderYerushalmiYomi(){ return renderDailyCalendarSection('Yerushalmi Yomi', 'yerushalmi-reader', 'ירושלמי יומי', yerushalmiSelectedDate); }
 
 let rambamCycle = '3'; // '3' = three chapters/day (default), '1' = one chapter/day
 function renderRambamYomi(){
@@ -1323,11 +1354,17 @@ document.getElementById('halacha-load').addEventListener('click', renderDailyHal
 document.getElementById('tanya-load').addEventListener('click', renderTanyaYomi);
 document.getElementById('tanakh-load').addEventListener('click', renderTanakhDaily);
 document.getElementById('rambam-load').addEventListener('click', renderRambamYomi);
+document.getElementById('dafyomi-load').addEventListener('click', renderDafYomi);
+document.getElementById('yerushalmi-load').addEventListener('click', renderYerushalmiYomi);
+document.getElementById('proj929-load').addEventListener('click', render929);
 
 wireDatePicker('halacha-date-input', 'halacha-today-btn', 'halacha-prev-btn', 'halacha-next-btn', ()=>halachaSelectedDate, d=>{ halachaSelectedDate = d; }, renderDailyHalacha);
 wireDatePicker('tanya-date-input', 'tanya-today-btn', 'tanya-prev-btn', 'tanya-next-btn', ()=>tanyaSelectedDate, d=>{ tanyaSelectedDate = d; }, renderTanyaYomi);
 wireDatePicker('tanakh-date-input', 'tanakh-today-btn', 'tanakh-prev-btn', 'tanakh-next-btn', ()=>tanakhSelectedDate, d=>{ tanakhSelectedDate = d; }, renderTanakhDaily);
 wireDatePicker('rambam-date-input', 'rambam-today-btn', 'rambam-prev-btn', 'rambam-next-btn', ()=>rambamSelectedDate, d=>{ rambamSelectedDate = d; }, renderRambamYomi);
+wireDatePicker('dafyomi-date-input', 'dafyomi-today-btn', 'dafyomi-prev-btn', 'dafyomi-next-btn', ()=>dafyomiSelectedDate, d=>{ dafyomiSelectedDate = d; }, renderDafYomi);
+wireDatePicker('yerushalmi-date-input', 'yerushalmi-today-btn', 'yerushalmi-prev-btn', 'yerushalmi-next-btn', ()=>yerushalmiSelectedDate, d=>{ yerushalmiSelectedDate = d; }, renderYerushalmiYomi);
+wireDatePicker('proj929-date-input', 'proj929-today-btn', 'proj929-prev-btn', 'proj929-next-btn', ()=>proj929SelectedDate, d=>{ proj929SelectedDate = d; }, render929);
 wireDatePicker('msh-daily-date-input', 'msh-daily-today-btn', 'msh-daily-prev-btn', 'msh-daily-next-btn', ()=>mshDailySelectedDate, d=>{ mshDailySelectedDate = d; }, renderDailyMishnah);
 
 /* ---------- Tanakh sub-navigation (daily / manual) ---------- */
