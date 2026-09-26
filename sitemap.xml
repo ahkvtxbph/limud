@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://limood.org.il/accessibility.html</loc>
-    <lastmod>2026-09-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <url>
     <loc>https://limood.org.il/</loc>
     <lastmod>2026-09-26</lastmod>
     <changefreq>daily</changefreq>
