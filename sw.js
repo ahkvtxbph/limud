@@ -3,9 +3,9 @@
 // updates the cache — the cache is used only as a fallback when truly offline. This
 // avoids the service worker itself becoming a source of "stale file" bugs.
 //
-// IMPORTANT: bump CACHE_NAME (e.g. 'limood-v2') on any deployment where you want to
+// IMPORTANT: bump CACHE_NAME (e.g. 'limood-v3') on any deployment where you want to
 // force-invalidate old cached entries for returning offline users.
-const CACHE_NAME = 'limood-v1';
+const CACHE_NAME = 'limood-v2';
 
 // Sefaria/Hebcal API calls and anything cross-origin are NEVER touched by this worker
 // (always go straight to the network) — that content changes daily and must stay fresh.
@@ -32,7 +32,10 @@ self.addEventListener('fetch', (event) => {
   if(req.method !== 'GET' || url.origin !== self.location.origin) return;
 
   event.respondWith(
-    fetch(req)
+    // cache: 'no-store' forces this to bypass the browser's own HTTP cache too —
+    // otherwise "network-first" could still silently resolve from a stale HTTP-cached
+    // response instead of truly hitting the live server.
+    fetch(req, { cache: 'no-store' })
       .then((response) => {
         if(response && response.status === 200){
           const copy = response.clone();
