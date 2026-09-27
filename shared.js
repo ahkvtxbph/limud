@@ -949,6 +949,7 @@ async function renderDafStyleDailyCalendar(titleEn, readerId, headingHe, selecte
         <div class="share-row"></div>
         <span class="gem">${resolvedRef || item.ref}</span>
       </div>
+      <p class="learning-date-label">${(commentators||[]).map(c=>c.labelHe.replace(/^פירוש \((.+)\)$/,'$1')).join(' ו')}<span class="sub">הפירוש מופיע בהמשך העמוד, אחרי כל קטע טקסט</span></p>
     `;
     const shareSlot = card.querySelector('.chapter-head .share-row');
     shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], `${headingHe} — לימוד יומי:`));
