@@ -689,7 +689,7 @@
   <section id="dafyomi-section" style="display:none;">
     <section class="panel">
       <h2 class="panel-title">דף יומי</h2>
-      <p class="panel-desc">הדף הנלמד היום לפי לוח הדף היומי (מחזור הש"ס הבבלי) של ספריא.</p>
+      <p class="panel-desc">הדף הנלמד היום לפי לוח הדף היומי (מחזור הש"ס הבבלי) של ספריא, כולל פירוש רש"י ותוספות.</p>
       <div class="controls-row">
         <button class="btn" id="dafyomi-load">רענן דף יומי</button>
       </div>
@@ -706,7 +706,7 @@
   <section id="yerushalmi-section" style="display:none;">
     <section class="panel">
       <h2 class="panel-title">ירושלמי יומי</h2>
-      <p class="panel-desc">קטע הנלמד היום לפי לוח לימוד התלמוד הירושלמי היומי של ספריא.</p>
+      <p class="panel-desc">קטע הנלמד היום לפי לוח לימוד התלמוד הירושלמי היומי של ספריא, כולל פירוש פני משה וקרבן העדה (קרבן העדה לא מכסה את הירושלמי במלואו — ייתכן שיחסר בקטעים מסוימים).</p>
       <div class="controls-row">
         <button class="btn" id="yerushalmi-load">רענן ירושלמי יומי</button>
       </div>
@@ -1284,8 +1284,18 @@ function renderTanyaYomi(){ return renderDailyCalendarSection('Tanya Yomi', 'tan
 
 async function renderTanakhDaily(){ return renderTanakhStyleDailyCalendar('Tanakh Yomi', 'tanakh-reader', 'תנ"ך יומי', tanakhSelectedDate); }
 function render929(){ return renderTanakhStyleDailyCalendar('929', 'proj929-reader', '929', proj929SelectedDate); }
-function renderDafYomi(){ return renderDailyCalendarSection('Daf Yomi', 'dafyomi-reader', 'דף יומי', dafyomiSelectedDate); }
-function renderYerushalmiYomi(){ return renderDailyCalendarSection('Yerushalmi Yomi', 'yerushalmi-reader', 'ירושלמי יומי', yerushalmiSelectedDate); }
+function renderDafYomi(){
+  return renderDafStyleDailyCalendar('Daf Yomi', 'dafyomi-reader', 'דף יומי', dafyomiSelectedDate, [
+    { name: 'Rashi', labelHe: 'פירוש (רש״י)' },
+    { name: 'Tosafot', labelHe: 'תוספות' }
+  ]);
+}
+function renderYerushalmiYomi(){
+  return renderDafStyleDailyCalendar('Yerushalmi Yomi', 'yerushalmi-reader', 'ירושלמי יומי', yerushalmiSelectedDate, [
+    { name: 'Penei Moshe', labelHe: 'פירוש (פני משה)' },
+    { name: 'Korban HaEdah', labelHe: 'קרבן העדה' }
+  ]);
+}
 
 let rambamCycle = '3'; // '3' = three chapters/day (default), '1' = one chapter/day
 function renderRambamYomi(){

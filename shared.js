@@ -885,3 +885,110 @@ function registerServiceWorker(){
   });
 }
 registerServiceWorker();
+
+/* =====================================================================
+   "Daf" style daily calendar renderer — sequential text segments (not
+   verse-numbered) each followed by up to several named commentaries
+   (e.g. Rashi + Tosafot for Daf Yomi). Reusable for any daily cycle whose
+   base text is Talmud-style continuous prose rather than verses.
+   ===================================================================== */
+
+// Fetches one commentator's text for a base ref, in one request; returns an
+// array (one entry per base-text segment) of commentary strings, or null
+// per-segment when unavailable.
+async function fetchDafCommentary(commentatorName, baseRef){
+  try{
+    const { text } = await fetchRefText(`${commentatorName} on ${baseRef}`);
+    if(!text) return null;
+    const perSegment = Array.isArray(text) ? text : [text];
+    return perSegment.map(seg=>{
+      const flat = Array.isArray(seg) ? seg.flat(Infinity) : [seg];
+      const clean = flat.map(stripTags).filter(Boolean).join(' ');
+      return clean || null;
+    });
+  }catch(e){
+    return null;
+  }
+}
+
+// commentators: array of { name: 'Rashi', labelHe: 'רש״י' } — one block per
+// text segment, per commentator, fetched in parallel and filled in once ready.
+async function renderDafStyleDailyCalendar(titleEn, readerId, headingHe, selectedDate, commentators){
+  const reader = document.getElementById(readerId);
+  reader.innerHTML = '';
+  const loadingEl = document.createElement('p');
+  loadingEl.className = 'chapter-loading';
+  loadingEl.textContent = `טוען ${headingHe}…`;
+  reader.appendChild(loadingEl);
+  try{
+    const targetDate = selectedDate || new Date();
+    const calendarUrl = selectedDate
+      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getUTCFullYear()}&month=${targetDate.getUTCMonth()+1}&day=${targetDate.getUTCDate()}`
+      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getFullYear()}&month=${targetDate.getMonth()+1}&day=${targetDate.getDate()}`;
+    const res = await fetch(calendarUrl);
+    if(!res.ok) throw new Error('calendar fetch failed');
+    const data = await res.json();
+    const items = (data && data.calendar_items) || [];
+    const item = items.find(i => i.title && i.title.en === titleEn);
+    if(!item || !item.ref) throw new Error('no item: ' + titleEn);
+    const { text, ref: resolvedRef } = await fetchRefText(item.ref);
+    if(!text) throw new Error('empty text');
+    const flat = Array.isArray(text) ? text : [text];
+    const paragraphs = flat.map(p => {
+      const inner = Array.isArray(p) ? p.flat(Infinity) : [p];
+      return inner.map(stripTags).filter(Boolean).join(' ');
+    }).filter(Boolean);
+    if(!paragraphs.length) throw new Error('no paragraphs');
+
+    reader.innerHTML = '';
+    const card = document.createElement('article');
+    card.className = 'chapter-card';
+    card.innerHTML = `
+      <div class="chapter-head">
+        <h2>${(item.displayValue && (item.displayValue.he || (item.title && item.title.he))) || headingHe}</h2>
+        <div class="share-row"></div>
+        <span class="gem">${resolvedRef || item.ref}</span>
+      </div>
+    `;
+    const shareSlot = card.querySelector('.chapter-head .share-row');
+    shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], `${headingHe} — לימוד יומי:`));
+
+    const wrap = document.createElement('div');
+    paragraphs.forEach((p, i)=>{
+      const pDiv = document.createElement('div');
+      pDiv.className = 'verses';
+      pDiv.textContent = p;
+      wrap.appendChild(pDiv);
+
+      commentators.forEach(c=>{
+        const cDiv = document.createElement('div');
+        cDiv.className = 'commentary';
+        cDiv.innerHTML = `<div class="c-label">${c.labelHe}</div><div class="c-text">טוען פירוש…</div>`;
+        cDiv.dataset.segIndex = i;
+        cDiv.dataset.commentator = c.name;
+        wrap.appendChild(cDiv);
+      });
+    });
+    card.appendChild(wrap);
+    reader.appendChild(card);
+
+    const baseRef = resolvedRef || item.ref;
+    const results = await Promise.all(commentators.map(c => fetchDafCommentary(c.name, baseRef)));
+    const commentaryDivs = wrap.querySelectorAll('.commentary');
+    commentaryDivs.forEach(div=>{
+      const i = parseInt(div.dataset.segIndex, 10);
+      const cIdx = commentators.findIndex(c => c.name === div.dataset.commentator);
+      const list = results[cIdx];
+      const txt = list ? list[i] : null;
+      const cText = div.querySelector('.c-text');
+      if(txt){
+        cText.textContent = txt;
+      } else if(cText){
+        const label = (commentators[cIdx] && commentators[cIdx].labelHe) || 'הפירוש';
+        cText.outerHTML = `<div class="c-unavailable">${label} לא נמצא עבור קטע זה.</div>`;
+      }
+    });
+  }catch(e){
+    reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את התוכן כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.</p>`;
+  }
+}
