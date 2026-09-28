@@ -1180,3 +1180,153 @@ function startSiteGating(){
   setInterval(checkGating, 30000);
   setInterval(initGating, 6*60*60*1000);
 }
+
+/* =====================================================================
+   HEBREW-DATE PICKERS — month and day lists that follow the chosen year
+   ===================================================================== */
+// Fills a <select> with the months of Hebrew year `year` (leap years included) and selects
+// `preferred` (or the current choice). Adar of a regular year corresponds to Adar II of a leap
+// year, and back. Returns the year info, or null when the year can't be computed.
+function populateHebrewMonthSelect(sel, year, preferred){
+  const previous = preferred || sel.value;
+  const info = getHebrewYearInfo(year);
+  sel.innerHTML = '';
+  if(!info){ sel.disabled = true; return null; }
+  sel.disabled = false;
+  info.months.forEach(m => {
+    const o = document.createElement('option');
+    o.value = m.name;
+    o.textContent = m.name;
+    sel.appendChild(o);
+  });
+  let target = previous;
+  if(!info.months.some(m => m.name === target)){
+    if(target === 'אדר' && info.leap) target = 'אדר ב׳';
+    else if((target === 'אדר ב׳' || target === 'אדר א׳') && !info.leap) target = 'אדר';
+    else target = info.months[0].name;
+  }
+  sel.value = target;
+  return info;
+}
+// Fills a <select> with the days 1..N of a Hebrew month (N = that month's real length in that year).
+function populateHebrewDaySelect(sel, year, monthName, preferredDay){
+  const previous = preferredDay || parseInt(sel.value, 10) || 1;
+  const info = getHebrewYearInfo(year);
+  const m = info && info.months.find(x => x.name === monthName);
+  sel.innerHTML = '';
+  if(!m){ sel.disabled = true; return; }
+  sel.disabled = false;
+  for(let d = 1; d <= m.days; d++){
+    const o = document.createElement('option');
+    o.value = String(d);
+    o.textContent = hebNum(d) + ' (' + d + ')';
+    sel.appendChild(o);
+  }
+  sel.value = String(Math.min(previous, m.days));
+}
+
+/* =====================================================================
+   BAR MITZVAH — the Hebrew birthday of the 13th year, and the Shabbat on or after it
+   ===================================================================== */
+const BAR_MITZVAH_AGE = 13;
+
+// "YYYY-MM-DD" of a moment (UTC), and back to noon UTC. Only meant for years 1000–9999.
+function isoDateOfMs(ms){ return new Date(ms).toISOString().slice(0, 10); }
+function msFromIsoDate(iso){
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ''));
+  if(!m) return null;
+  const y = parseInt(m[1], 10), mo = parseInt(m[2], 10) - 1, d = parseInt(m[3], 10);
+  const dt = makeUTCNoon(y, mo, d);
+  if(!dt || dt.getUTCMonth() !== mo || dt.getUTCDate() !== d) return null;
+  return dt.getTime();
+}
+
+// The day of Hebrew year `targetYear` on which a birthday / anniversary of `birth` {year, month, day}
+// is marked, by the Ashkenazi rules of the Rema as set out in Calendrical Calculations (Reingold &
+// Dershowitz) and used by Hebcal — Sephardi custom may differ for Adar:
+//  - born in Adar of a regular year -> Adar II in a leap year; born in Adar II -> Adar in a regular year;
+//  - born in Adar I -> Adar in a regular year (30 Adar I -> 1 Nisan);
+//  - 30 Cheshvan when Cheshvan has only 29 days -> 1 Kislev; 30 Kislev when Kislev has 29 -> 1 Tevet.
+// Works on month POSITIONS, so it doesn't depend on how the browser spells the month names.
+// Returns { month, day, note } (note is '' when nothing had to be adjusted), or null.
+function hebrewAnniversary(birth, targetYear){
+  const bInfo = getHebrewYearInfo(birth.year), tInfo = getHebrewYearInfo(targetYear);
+  if(!bInfo || !tInfo) return null;
+  const bIdx = bInfo.months.findIndex(m => m.name === birth.month);
+  if(bIdx < 0) return null;
+  let month = birth.month, day = birth.day, note = '';
+  const bAdarRegular = !bInfo.leap && bIdx === 5;
+  const bAdar1 = bInfo.leap && bIdx === 5;
+  const bAdar2 = bInfo.leap && bIdx === 6;
+  if(bAdarRegular || bAdar2){
+    month = tInfo.months[tInfo.leap ? 6 : 5].name;          // the last Adar of the target year
+    if(bAdarRegular && tInfo.leap) note = 'נולד באדר בשנה פשוטה, ושנת הבר מצווה מעוברת — לפי הרמ״א (מנהג אשכנז) מציינים באדר ב׳. לפי מנהג הספרדים ייתכן שמציינים באדר א׳ — כדאי לשאול רב.';
+    else if(bAdar2 && !tInfo.leap) note = 'נולד באדר ב׳ — בשנה פשוטה מציינים את היום באדר.';
+  } else if(bAdar1){
+    if(!tInfo.leap){
+      month = tInfo.months[5].name;                          // Adar
+      note = 'נולד באדר א׳ — בשנה פשוטה מציינים את היום באדר.';
+      if(day === 30){
+        month = tInfo.months[6].name;                        // Nisan
+        day = 1;
+        note = 'נולד ב־ל׳ באדר א׳ — בשנה פשוטה מציינים את היום ב־א׳ בניסן.';
+      }
+    }
+  } else if(bIdx === 1 && day === 30 && tInfo.months[1].days < 30){
+    month = tInfo.months[2].name;
+    day = 1;
+    note = 'נולד ב־ל׳ ב' + birth.month + ', ובשנה הזאת ל' + birth.month + ' יש רק 29 ימים — מציינים ב־א׳ ב' + month + '.';
+  } else if(bIdx === 2 && day === 30 && tInfo.months[2].days < 30){
+    month = tInfo.months[3].name;
+    day = 1;
+    note = 'נולד ב־ל׳ ב' + birth.month + ', ובשנה הזאת ל' + birth.month + ' יש רק 29 ימים — מציינים ב־א׳ ב' + month + '.';
+  }
+  return { month, day, note };
+}
+
+// Bar mitzvah for a boy whose Hebrew birth date is `birth` {year, month, day}: the Hebrew date of the
+// 13th birthday, its civil date, and the Shabbat on or after it (the Shabbat he reads the Torah).
+// The Hebrew day begins at sunset the evening before; a date that falls on Shabbat itself counts as that Shabbat.
+function calcBarMitzvah(birth, age){
+  const years = age || BAR_MITZVAH_AGE;
+  const year = birth.year + years;
+  const ann = hebrewAnniversary(birth, year);
+  if(!ann) return null;
+  const r = hebrewToGregorianMs(year, ann.month, ann.day);
+  if(r.error) return null;
+  const weekday = new Date(r.ms).getUTCDay();               // 0 = Sunday ... 6 = Shabbat
+  return {
+    hebrew: { year, month: ann.month, day: ann.day },
+    note: ann.note,
+    ms: r.ms,
+    weekday,
+    shabbatMs: r.ms + ((6 - weekday + 7) % 7) * DAY_MS,
+    onShabbat: weekday === 6
+  };
+}
+
+// Hebcal request for the weekly portions and major holidays around one Shabbat (±3 weeks).
+function hebcalShabbatUrl(shabbatMs, israel){
+  return 'https://www.hebcal.com/hebcal?v=1&cfg=json&s=on&maj=on&leyning=off'
+    + '&start=' + isoDateOfMs(shabbatMs - 21 * DAY_MS)
+    + '&end=' + isoDateOfMs(shabbatMs + 21 * DAY_MS)
+    + (israel ? '&i=on' : '');
+}
+// What is read on a given Shabbat: { parasha, holidays, prev, next } — each parasha is Hebcal's item
+// ({ title, hebrew, date }). parasha is null when the Shabbat has no regular portion (Yom Tov,
+// Chol HaMoed); holidays then lists what falls on that day, and prev/next are the neighbouring portions.
+// israel = true uses the Israeli reading schedule, false the Diaspora one. Data: Hebcal.com (CC BY 4.0).
+async function fetchShabbatReading(shabbatMs, israel){
+  const res = await fetch(hebcalShabbatUrl(shabbatMs, israel));
+  if(!res.ok) throw new Error('hebcal request failed: ' + res.status);
+  const data = await res.json();
+  const items = (data && data.items) || [];
+  const day = isoDateOfMs(shabbatMs);
+  const portions = items.filter(i => i.category === 'parashat' && i.date);
+  return {
+    parasha: portions.find(i => i.date === day) || null,
+    holidays: items.filter(i => i.category === 'holiday' && i.date === day && !/^Erev\b/i.test(i.title || '')),
+    prev: portions.filter(i => i.date < day).pop() || null,
+    next: portions.find(i => i.date > day) || null
+  };
+}

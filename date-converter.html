@@ -32,71 +32,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=20260928">
+<link rel="stylesheet" href="shared.css?v=2026092802">
 <style>
   /* rules used only by the date-converter page (everything shared lives in shared.css) */
   #converter-section nav.modes{grid-template-columns:repeat(2,1fr);}
-  .conv-fields{display:flex; flex-wrap:wrap; gap:.8rem; margin-bottom:.9rem;}
-
-  .limit-note{
-    font-family:'Assistant', sans-serif;
-    font-size:.86rem;
-    line-height:1.6;
-    color:#4a4030;
-    background:var(--stone);
-    border-radius:8px;
-    padding:.6rem .85rem;
-    margin:-.3rem 0 1rem;
-  }
   #conv-result{margin-top:1.2rem;}
-  .conv-pair{display:grid; grid-template-columns:1fr 1fr; gap:.9rem;}
-  .conv-box{
-    background:var(--stone);
-    border-inline-start:4px solid var(--gold);
-    border-radius:10px;
-    padding:.9rem 1rem 1rem;
-  }
-  .conv-box-label{
-    font-family:'Assistant', sans-serif;
-    font-size:.75rem;
-    font-weight:700;
-    letter-spacing:.06em;
-    color:var(--gold-text);
-    margin-bottom:.3rem;
-  }
-  .conv-box-main{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:700;
-    font-size:1.55rem;
-    line-height:1.35;
-    color:var(--ink);
-  }
-  .conv-box-sub{
-    font-family:'Assistant', sans-serif;
-    font-size:.95rem;
-    color:#5A5142;
-    margin-top:.15rem;
-  }
-  .conv-box-day{
-    font-family:'Assistant', sans-serif;
-    font-size:.88rem;
-    font-weight:700;
-    color:var(--ink);
-    margin-top:.45rem;
-  }
-  .conv-facts{
-    list-style:none;
-    padding:0;
-    margin:1rem 0 0;
-    font-family:'Assistant', sans-serif;
-    font-size:.9rem;
-    color:#4a4030;
-    line-height:1.7;
-  }
-  .conv-facts li{padding:.45rem 0; border-top:1px dashed var(--stone-dark);}
-  @media (max-width:560px){
-    .conv-pair{grid-template-columns:1fr;}
-  }
 </style>
 </head>
 <body>
@@ -138,6 +78,8 @@
     <a href="index.html#proj929">929</a>
     <a href="index.html#rambam">רמב"ם יומי</a>
     <a href="index.html#zmanim">זמני היום</a>
+    <a href="date-converter.html" aria-current="page">המרת תאריכים</a>
+    <a href="bar-mitzvah.html">פרשת בר מצווה</a>
   </nav>
 
   <section id="converter-section">
@@ -150,7 +92,7 @@
       <h2 class="panel-title">מתאריך לועזי לתאריך עברי</h2>
       <p class="panel-desc">הזן/י תאריך לועזי (גרגוריאני, לספירה) וקבל/י את התאריך העברי המתאים. אפשר לבחור גם שנים רחוקות קדימה.</p>
       <p class="limit-note" id="g-limit-note"></p>
-      <div class="conv-fields">
+      <div class="form-fields">
         <label class="field"><span>יום</span><input type="number" id="g-day" min="1" max="31" inputmode="numeric" autocomplete="off"></label>
         <label class="field"><span>חודש</span><select id="g-month"></select></label>
         <label class="field"><span>שנה</span><input type="number" id="g-year" min="1582" inputmode="numeric" autocomplete="off"></label>
@@ -165,7 +107,7 @@
       <h2 class="panel-title">מתאריך עברי לתאריך לועזי</h2>
       <p class="panel-desc">בחר/י יום וחודש עבריים, והקלד/י את השנה — כמספר (למשל 5786) או באותיות (למשל תשפ״ו). רשימת החודשים מתאימה את עצמה לשנה, כולל שנים מעוברות.</p>
       <p class="limit-note" id="h-limit-note"></p>
-      <div class="conv-fields">
+      <div class="form-fields">
         <label class="field"><span>יום</span><select id="h-day"></select></label>
         <label class="field"><span>חודש</span><select id="h-month"></select></label>
         <label class="field"><span>שנה (מספר או אותיות)</span><input type="text" id="h-year" dir="rtl" autocomplete="off" placeholder="5786 או תשפ״ו"></label>
@@ -190,10 +132,11 @@
 
 <footer class="site">
   <p>החישוב מבוסס על הלוח העברי המובנה בדפדפן, ולכן תואם לכל שאר התאריכים העבריים באתר. ההמרה זמינה משנת 1582 ואילך; הלוח הגרגוריאני הונהג ב־15 באוקטובר 1582, ותאריכים של 1582 שקדמו לו מחושבים לפי הלוח הגרגוריאני הרטרואקטיבי.</p>
+  <p style="margin-top:.4rem;">זמני שבת וחגים באתר: <a href="https://www.hebcal.com" target="_blank" rel="noopener">Hebcal.com</a> (רישיון CC BY 4.0).</p>
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=20260928"></script>
+<script src="shared.js?v=2026092802"></script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);
@@ -246,45 +189,8 @@
   }
 
   /* ---------- Hebrew inputs (month/day lists follow the chosen year) ---------- */
-  function buildHebrewMonths(year, preferred){
-    const sel = $('h-month');
-    const previous = preferred || sel.value;
-    const info = getHebrewYearInfo(year);
-    sel.innerHTML = '';
-    if(!info){ sel.disabled = true; return null; }
-    sel.disabled = false;
-    info.months.forEach(m => {
-      const o = document.createElement('option');
-      o.value = m.name;
-      o.textContent = m.name;
-      sel.appendChild(o);
-    });
-    let target = previous;
-    if(!info.months.some(m => m.name === target)){
-      // Adar of a regular year corresponds to Adar II of a leap year, and vice versa
-      if(target === 'אדר' && info.leap) target = 'אדר ב׳';
-      else if((target === 'אדר ב׳' || target === 'אדר א׳') && !info.leap) target = 'אדר';
-      else target = info.months[0].name;
-    }
-    sel.value = target;
-    return info;
-  }
-  function buildHebrewDays(year, monthName, preferredDay){
-    const sel = $('h-day');
-    const previous = preferredDay || parseInt(sel.value, 10) || 1;
-    const info = getHebrewYearInfo(year);
-    const m = info && info.months.find(x => x.name === monthName);
-    sel.innerHTML = '';
-    if(!m){ sel.disabled = true; return; }
-    sel.disabled = false;
-    for(let d = 1; d <= m.days; d++){
-      const o = document.createElement('option');
-      o.value = String(d);
-      o.textContent = hebNum(d) + ' (' + d + ')';
-      sel.appendChild(o);
-    }
-    sel.value = String(Math.min(previous, m.days));
-  }
+  function buildHebrewMonths(year, preferred){ return populateHebrewMonthSelect($('h-month'), year, preferred); }
+  function buildHebrewDays(year, monthName, preferredDay){ populateHebrewDaySelect($('h-day'), year, monthName, preferredDay); }
   // Live hint under the year field. Returns the info of the year the conversion will really use
   // (an earlier year is replaced by the first supported one), or null when there is nothing to use yet.
   function updateYearHint(){
@@ -348,21 +254,22 @@
       '<article class="chapter-card">' +
         '<div class="chapter-head"><h2>תוצאת ההמרה</h2><div class="share-row"></div></div>' +
         noticeHtml +
-        '<div class="conv-pair">' +
-          '<div class="conv-box">' +
-            '<div class="conv-box-label">תאריך עברי</div>' +
-            '<div class="conv-box-main">' + hebLetters + '</div>' +
-            '<div class="conv-box-sub">' + hebDigits + '</div>' +
-            '<div class="conv-box-day">יום ' + weekdayNameAt(hebMs) + '</div>' +
+        '<div class="res-pair">' +
+          '<div class="res-box">' +
+            '<div class="res-box-label">תאריך עברי</div>' +
+            '<div class="res-box-main">' + hebLetters + '</div>' +
+            '<div class="res-box-sub">' + hebDigits + '</div>' +
+            '<div class="res-box-day">יום ' + weekdayNameAt(hebMs) + '</div>' +
           '</div>' +
-          '<div class="conv-box">' +
-            '<div class="conv-box-label">תאריך לועזי</div>' +
-            '<div class="conv-box-main">' + gLong + '</div>' +
-            '<div class="conv-box-sub">' + gNum + '</div>' +
-            '<div class="conv-box-day">יום ' + weekdayNameAt(ms) + '</div>' +
+          '<div class="res-box">' +
+            '<div class="res-box-label">תאריך לועזי</div>' +
+            '<div class="res-box-main">' + gLong + '</div>' +
+            '<div class="res-box-sub">' + gNum + '</div>' +
+            '<div class="res-box-day">יום ' + weekdayNameAt(ms) + '</div>' +
           '</div>' +
         '</div>' +
-        '<ul class="conv-facts">' + facts.map(f => '<li>' + f + '</li>').join('') + '</ul>' +
+        '<ul class="res-facts">' + facts.map(f => '<li>' + f + '</li>').join('') + '</ul>' +
+        '<p class="res-links"><a class="btn secondary" href="bar-mitzvah.html?g=' + isoDateOfMs(ms) + (afterSunset ? '&s=1' : '') + '">חישוב פרשת בר מצווה למי שנולד בתאריך הזה ←</a></p>' +
       '</article>';
     const shareSlot = resultEl.querySelector('.chapter-head .share-row');
     if(shareSlot){
@@ -481,7 +388,13 @@
   $('conv-next').addEventListener('click', () => goTo(currentMs + DAY_MS));
   $('conv-today').addEventListener('click', () => goTo(todayNoonMs()));
 
-  /* ---------- start: today's date, converted ---------- */
+  /* ---------- start: the date from the link (?g=YYYY-MM-DD&s=1), else today's date ---------- */
+  const params = new URLSearchParams(location.search);
+  const fromLink = msFromIsoDate(params.get('g'));
+  if(fromLink !== null && fromLink >= MIN_MS && fromLink < HEB_MAX_MS - 2 * DAY_MS){
+    currentMs = fromLink;
+    $('g-aftersunset').checked = params.get('s') === '1';
+  }
   fillGregorianInputs(currentMs);
   fillHebrewInputs(currentMs);
   render();

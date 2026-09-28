@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרשת בר מצווה — חישוב לפי תאריך הלידה | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="חישוב פרשת בר המצווה לפי תאריך הלידה (לועזי או עברי) — כולל לידה אחרי השקיעה, ואפשרות לארץ ישראל או לחו״ל.">
+<meta name="keywords" content="פרשת בר מצווה, חישוב בר מצווה, מתי בר מצווה, פרשת השבוע של בר מצווה, תאריך בר מצווה, לידה אחרי שקיעה, בר מצווה בחו״ל">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://limood.org.il/bar-mitzvah.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="פרשת בר מצווה — חישוב לפי תאריך הלידה | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="חישוב פרשת בר המצווה לפי תאריך הלידה — כולל לידה אחרי השקיעה, וארץ ישראל או חו״ל.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "חישוב פרשת בר מצווה",
+  "inLanguage": "he",
+  "description": "חישוב פרשת בר המצווה לפי תאריך הלידה, כולל לידה אחרי השקיעה, וארץ ישראל או חו״ל.",
+  "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2026092802">
+<style>
+  /* rules used only by the bar-mitzvah page (everything shared lives in shared.css) */
+  #bm-section nav.modes{grid-template-columns:repeat(2,1fr);}
+  #bm-result{margin-top:1.2rem;}
+  .bm-intro{margin:0;}
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+<header class="site">
+  <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
+  <h1 class="site-title">פרשת בר מצווה</h1>
+  <p class="site-sub">חישוב פרשת השבוע של הבר מצווה לפי תאריך הלידה — כולל לידה אחרי השקיעה, וארץ ישראל או חו״ל.</p>
+  <div class="today-strip">
+    <span>יום: <b id="today-weekday">—</b></span>
+    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
+  </div>
+  <p class="date-note" id="hebrew-date-note"></p>
+  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
+  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
+</header>
+
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.3-8.4 8.3z"/></svg>
+</a>
+
+<div class="shabbat-banner" id="shabbat-banner" role="status">
+  <div class="shabbat-inner">
+    <h2 id="shabbat-banner-title">שבת שלום!</h2>
+    <p id="shabbat-banner-text"></p>
+  </div>
+</div>
+
+<main id="main">
+  <nav class="top-modes" aria-label="בחירת תוכן">
+    <a href="index.html#halacha">הלכה יומית</a>
+    <a href="index.html#tehillim">תהילים</a>
+    <a href="index.html#mishnayot">משנה יומית</a>
+    <a href="index.html#dafyomi">דף יומי</a>
+    <a href="index.html#yerushalmi">ירושלמי יומי</a>
+    <a href="index.html#tanya">תניא יומי</a>
+    <a href="index.html#tanakh">תנ"ך יומי</a>
+    <a href="index.html#proj929">929</a>
+    <a href="index.html#rambam">רמב"ם יומי</a>
+    <a href="index.html#zmanim">זמני היום</a>
+    <a href="date-converter.html">המרת תאריכים</a>
+    <a href="bar-mitzvah.html" aria-current="page">פרשת בר מצווה</a>
+  </nav>
+
+  <section id="bm-section">
+    <nav class="modes" aria-label="סוג תאריך הלידה">
+      <button type="button" id="bm-mode-g" class="active" aria-pressed="true"><span class="num">א׳</span>לפי תאריך לידה לועזי</button>
+      <button type="button" id="bm-mode-h" aria-pressed="false"><span class="num">ב׳</span>לפי תאריך לידה עברי</button>
+    </nav>
+
+    <section class="panel" id="bm-panel-g">
+      <h2 class="panel-title">תאריך הלידה (לועזי)</h2>
+      <p class="panel-desc">הזן/י את תאריך הלידה הלועזי של הבר מצווה.</p>
+      <div class="form-fields">
+        <label class="field"><span>יום</span><input type="number" id="bg-day" min="1" max="31" inputmode="numeric" autocomplete="off"></label>
+        <label class="field"><span>חודש</span><select id="bg-month"></select></label>
+        <label class="field"><span>שנה</span><input type="number" id="bg-year" min="1582" max="9900" inputmode="numeric" autocomplete="off"></label>
+      </div>
+      <label class="check"><input type="checkbox" id="bg-aftersunset"> נולד אחרי שקיעת החמה</label>
+      <p class="field-help">היום העברי מתחיל בשקיעה, ולכן ילד שנולד אחרי השקיעה נחשב כנולד ביום העברי הבא. אם לא בטוחים בשעת הלידה ביחס לשקיעה, כדאי להתייעץ עם רב.</p>
+    </section>
+
+    <section class="panel" id="bm-panel-h" style="display:none;">
+      <h2 class="panel-title">תאריך הלידה (עברי)</h2>
+      <p class="panel-desc">בחר/י יום וחודש עבריים, והקלד/י את השנה — כמספר (למשל 5773) או באותיות (למשל תשע״ג). כשהתאריך העברי ידוע, אין צורך לציין שקיעה.</p>
+      <div class="form-fields">
+        <label class="field"><span>יום</span><select id="bh-day"></select></label>
+        <label class="field"><span>חודש</span><select id="bh-month"></select></label>
+        <label class="field"><span>שנה (מספר או אותיות)</span><input type="text" id="bh-year" dir="rtl" autocomplete="off" placeholder="5773 או תשע״ג"></label>
+      </div>
+      <p class="field-hint" id="bh-year-hint" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <fieldset class="choice-group">
+        <legend>היכן תתקיים הקריאה בתורה? (לוח הפרשות)</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="bm-place" id="bm-place-il" value="il" checked> בארץ ישראל</label>
+          <label class="choice"><input type="radio" name="bm-place" id="bm-place-gl" value="gl"> בחו״ל</label>
+        </div>
+      </fieldset>
+      <p class="field-help">בחלק מהשנים הפרשה של אותה שבת בארץ ישראל שונה מזו שבחו״ל (בגלל יום טוב שני של גלויות). <span id="bm-place-note"></span></p>
+      <div class="controls-row">
+        <button type="button" class="btn" id="bm-calc">חשב פרשה</button>
+      </div>
+    </section>
+
+    <div id="bm-result" aria-live="polite"></div>
+
+    <section class="panel">
+      <h2 class="panel-title">איך מחשבים את פרשת הבר מצווה?</h2>
+      <ul class="res-facts bm-intro">
+        <li>הנער מגיע לגיל מצוות ביום ההולדת העברי ה־13 שלו — אותו יום וחודש עבריים, בשנה העברית ה־13 אחרי שנולד.</li>
+        <li>פרשת הבר מצווה היא פרשת השבת שחלה ביום ההולדת העברי, או השבת הראשונה שאחריו.</li>
+        <li>נולד באדר בשנה פשוטה, ושנת הבר מצווה מעוברת: לפי הרמ״א (מנהג אשכנז) מציינים באדר ב׳; לפי מנהג הספרדים ייתכן שמציינים באדר א׳. נולד באדר א׳ או ב׳ ושנת הבר מצווה פשוטה — מציינים באדר (ול׳ באדר א׳ — ב־א׳ בניסן). נולד ב־ל׳ בחשוון או ב־ל׳ בכסלו, ובשנת הבר מצווה החודש חסר — מציינים ב־א׳ בחודש שאחריו. החישוב כאן הוא לפי מנהג אשכנז.</li>
+        <li>אם השבת היא חג או שבת חול המועד, אין בה פרשה רגילה; יוצגו הפרשות של השבתות הסמוכות, והמנהג משתנה.</li>
+        <li>החישוב הוא כלי עזר בלבד. לשאלות הלכה למעשה, ובמיוחד בלידה סמוכה לשקיעה — מומלץ להתייעץ עם רב.</li>
+      </ul>
+    </section>
+  </section>
+</main>
+
+<footer class="site">
+  <p>פרשות השבוע והחגים: <a href="https://www.hebcal.com" target="_blank" rel="noopener">Hebcal.com</a> (רישיון CC BY 4.0). ההמרה בין התאריכים מבוססת על הלוח העברי המובנה בדפדפן, ולכן תואמת לשאר האתר.</p>
+  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script src="shared.js?v=2026092802"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const resultEl = $('bm-result');
+  function showError(msg){
+    resultEl.innerHTML = '<p class="chapter-error" role="alert">' + msg + '</p>';
+  }
+
+  if(!hebrewCalendarSupported()){
+    showError('הדפדפן הזה אינו תומך בלוח העברי, ולכן אי אפשר לבצע את החישוב. אפשר לנסות דפדפן עדכני (כרום, פיירפוקס, ספארי או אדג׳).');
+    return;
+  }
+
+  /* ---------- range: births from 1582 (same limit as the date converter) ---------- */
+  const MIN_GREG_YEAR = 1582, MAX_GREG_YEAR = 9900;
+  const MIN_MS = makeUTCNoon(MIN_GREG_YEAR, 0, 1).getTime();
+  const MIN_HEB_YEAR = gregorianToHebrew(MIN_MS).year;
+  const MAX_HEB_YEAR = MAX_GREG_YEAR + 3760;
+
+  let mode = 'g';
+  let placeTouched = false;
+  let runId = 0;          // guards against a slow answer overwriting a newer calculation
+  let last = null;        // the last calculation, so switching Israel / abroad needs no new request
+
+  const place = () => $('bm-place-gl').checked ? 'gl' : 'il';
+
+  /* ---------- Gregorian inputs ---------- */
+  GREG_MONTH_NAMES_HE.forEach((name, i) => {
+    const o = document.createElement('option');
+    o.value = String(i);
+    o.textContent = name;
+    $('bg-month').appendChild(o);
+  });
+  function fillGregorianInputs(ms){
+    const d = new Date(ms);
+    $('bg-day').value = String(d.getUTCDate());
+    $('bg-month').value = String(d.getUTCMonth());
+    $('bg-year').value = String(d.getUTCFullYear());
+  }
+
+  /* ---------- Hebrew inputs (month/day lists follow the typed year) ---------- */
+  function resetHebrewPickers(){
+    ['bh-month', 'bh-day'].forEach(id => {
+      const sel = $(id);
+      sel.innerHTML = '';
+      const o = document.createElement('option');
+      o.value = '';
+      o.textContent = '—';
+      sel.appendChild(o);
+      sel.disabled = true;
+    });
+  }
+  resetHebrewPickers();
+  function updateYearHint(){
+    const hint = $('bh-year-hint');
+    const raw = $('bh-year').value;
+    if(!raw.trim()){ hint.textContent = ''; return null; }
+    if(/^\d{1,3}$/.test(raw.replace(/[,\s]/g, ''))){ hint.textContent = ''; return null; }   // still typing a number
+    const y = parseHebrewYearInput(raw);
+    if(!Number.isInteger(y)){ hint.textContent = 'לא זוהתה שנה — יש להקליד מספר (למשל 5773) או אותיות (למשל תשע״ג).'; return null; }
+    if(y < MIN_HEB_YEAR){ hint.textContent = 'שנה מוקדמת מ־' + MIN_HEB_YEAR + ' — מגבלת החישוב באתר (מ־1582 ואילך).'; return null; }
+    if(y > MAX_HEB_YEAR){ hint.textContent = 'שנה גבוהה מדי (עד ' + MAX_HEB_YEAR + ').'; return null; }
+    const info = getHebrewYearInfo(y);
+    if(!info){ hint.textContent = 'השנה הזו מחוץ לטווח שהדפדפן מסוגל לחשב.'; return null; }
+    hint.textContent = hebrewYearLetters(y) + ' · ' + y + ' — שנה ' + (info.leap ? 'מעוברת' : 'פשוטה') + ' (' + hebrewYearKindHe(info.days) + '), ' + info.days + ' ימים';
+    return info;
+  }
+  function fillHebrewInputs(p){
+    $('bh-year').value = String(p.year);
+    populateHebrewMonthSelect($('bh-month'), p.year, p.month);
+    populateHebrewDaySelect($('bh-day'), p.year, $('bh-month').value, p.day);
+    updateYearHint();
+  }
+
+  /* ---------- reading the birth date from whichever panel is open ---------- */
+  function readBirth(){
+    if(mode === 'g'){
+      const day = parseInt($('bg-day').value, 10);
+      const month = parseInt($('bg-month').value, 10);
+      const year = parseInt($('bg-year').value, 10);
+      if(!Number.isInteger(day) || day < 1 || day > 31) return { error: 'יש להזין יום בחודש (1–31).' };
+      if(!Number.isInteger(year)) return { error: 'יש להזין שנת לידה (מספר).' };
+      if(year < MIN_GREG_YEAR) return { error: 'שנת הלידה חייבת להיות ' + MIN_GREG_YEAR + ' ומעלה (מגבלת ההמרה באתר).' };
+      if(year > MAX_GREG_YEAR) return { error: 'שנת הלידה גבוהה מדי (עד ' + MAX_GREG_YEAR + ').' };
+      const d = makeUTCNoon(year, month, day);
+      if(!d || d.getUTCMonth() !== month || d.getUTCDate() !== day){
+        const lastDay = makeUTCNoon(year, month + 1, 0);
+        return { error: 'אין תאריך כזה בלוח הלועזי — ל' + GREG_MONTH_NAMES_HE[month] + ' ' + year + ' יש ' + (lastDay ? lastDay.getUTCDate() : 30) + ' ימים.' };
+      }
+      const after = $('bg-aftersunset').checked;
+      const hebMs = d.getTime() + (after ? DAY_MS : 0);       // born after sunset = the next Hebrew day
+      const hebrew = gregorianToHebrew(hebMs);
+      if(!hebrew) return { error: 'לא ניתן לחשב תאריך עברי לתאריך הזה.' };
+      return { civilMs: d.getTime(), hebMs, hebrew, afterSunset: after };
+    }
+    const y = parseHebrewYearInput($('bh-year').value);
+    if(!Number.isInteger(y)) return { error: 'יש להזין שנה עברית תקינה — מספר (למשל 5773) או אותיות (למשל תשע״ג).' };
+    if(y < MIN_HEB_YEAR) return { error: 'השנה העברית חייבת להיות ' + MIN_HEB_YEAR + ' ומעלה (המקבילה ל־1582 — מגבלת ההמרה באתר).' };
+    if(y > MAX_HEB_YEAR) return { error: 'שנת הלידה גבוהה מדי (עד ' + MAX_HEB_YEAR + ').' };
+    if(!getHebrewYearInfo(y)) return { error: 'השנה העברית מחוץ לטווח שהדפדפן מסוגל לחשב.' };
+    const monthName = $('bh-month').value;
+    if(!monthName) return { error: 'יש לבחור חודש עברי.' };
+    const day = parseInt($('bh-day').value, 10);
+    const r = hebrewToGregorianMs(y, monthName, day);
+    if(r.error === 'month') return { error: 'החודש שנבחר לא קיים בשנה זו.' };
+    if(r.error === 'day') return { error: 'לחודש ' + monthName + ' יש ' + r.maxDay + ' ימים בשנה זו.' };
+    if(r.error) return { error: 'לא ניתן לחשב את התאריך.' };
+    if(r.ms < MIN_MS) return { error: 'תאריך הלידה חייב להיות מ־1 בינואר 1582 ואילך (מגבלת ההמרה באתר).' };
+    return { civilMs: r.ms, hebMs: r.ms, hebrew: { year: y, month: monthName, day }, afterSunset: false };
+  }
+
+  /* ---------- the answer ---------- */
+  const placeName = p => p === 'il' ? 'בארץ ישראל' : 'בחו״ל';
+  // text that comes from Hebcal is shown as text, never as markup
+  const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  function labelOfMs(ms){
+    const p = gregorianToHebrew(ms);
+    return (p ? formatHebrewDateLetters(p) + ' · ' : '') + formatGregorianLong(ms);
+  }
+  function labelOfItem(item){
+    const ms = msFromIsoDate(item.date);
+    return esc(ms === null ? item.date : labelOfMs(ms));
+  }
+  // Hebcal writes Chol HaMoed as "סוכות ג׳ (חוה״מ)" — on a Shabbat that is "שבת חול המועד סוכות"
+  function holidayName(h){
+    const name = String(h.hebrew || h.title || '');
+    return /\(חוה[״"]מ\)/.test(name) ? 'שבת חול המועד ' + name.replace(/\s*[א-ת]׳?\s*\(חוה[״"]מ\)/, '').trim() : name;
+  }
+  function holidayNames(reading){
+    return esc(reading.holidays.map(holidayName).join(' · '));
+  }
+  function readingHtml(state, bm, sel){
+    if(state === 'loading') return '<div class="res-box-sub">טוען את פרשת השבוע…</div>';
+    if(state === 'error'){
+      return '<div class="res-box-sub">לא ניתן היה לטעון את פרשת השבוע כרגע — נדרש חיבור לאינטרנט. תאריך הבר מצווה והשבת שחושבו כאן תקינים; אפשר לבדוק את הפרשה גם ב־<a href="https://www.hebcal.com/sedrot/" target="_blank" rel="noopener">Hebcal.com</a>.</div>';
+    }
+    const otherSel = sel === 'il' ? 'gl' : 'il';
+    const mine = state[sel], other = state[otherSel];
+    let html = '';
+    if(mine.parasha){
+      html += '<div class="res-box-main">' + esc(mine.parasha.hebrew) + '</div>';
+      html += '<div class="res-box-sub">נקראת בשבת ' + labelOfMs(bm.shabbatMs) + '</div>';
+      if(bm.onShabbat) html += '<div class="res-box-day">התאריך העברי של הבר מצווה חל בשבת עצמה.</div>';
+    } else {
+      html += '<div class="res-box-main">' + (holidayNames(mine) || 'שבת חג') + '</div>';
+      html += '<div class="res-box-sub">בשבת ' + labelOfMs(bm.shabbatMs) + ' אין פרשת שבוע רגילה (' + placeName(sel) + ').</div>';
+      if(mine.next) html += '<div class="res-box-sub">הפרשה הקרובה: <b>' + esc(mine.next.hebrew) + '</b> — ' + labelOfItem(mine.next) + '</div>';
+      if(mine.prev) html += '<div class="res-box-sub">הפרשה של השבת הקודמת: <b>' + esc(mine.prev.hebrew) + '</b> — ' + labelOfItem(mine.prev) + '</div>';
+      html += '<div class="res-box-day">המנהג במקרה כזה משתנה — מומלץ להתייעץ עם רב לגבי הפרשה של הבר מצווה.</div>';
+    }
+    const mineName = mine.parasha ? mine.parasha.hebrew : '';
+    const otherName = other.parasha ? other.parasha.hebrew : '';
+    if(mineName !== otherName){
+      html += '<div class="res-box-day">שים/י לב: ' + placeName(otherSel) + ' בשבת הזאת ' +
+        (other.parasha ? 'קוראים ' + esc(other.parasha.hebrew) + '.' : 'אין פרשה רגילה' + (holidayNames(other) ? ' (' + holidayNames(other) + ')' : '') + '.') + '</div>';
+    }
+    return html;
+  }
+  function crossLinks(birth, bm){
+    return '<p class="res-links">' +
+      '<a class="btn secondary" href="date-converter.html?g=' + isoDateOfMs(birth.civilMs) + (birth.afterSunset ? '&s=1' : '') + '">תאריך הלידה בממיר התאריכים ←</a>' +
+      '<a class="btn secondary" href="date-converter.html?g=' + isoDateOfMs(bm.ms) + '">תאריך הבר מצווה בממיר התאריכים ←</a>' +
+      '</p>';
+  }
+  function render(birth, bm, sel, state){
+    const notices = [];
+    if(birth.afterSunset) notices.push('סימנת שהלידה הייתה אחרי השקיעה — לכן תאריך הלידה העברי הוא של היום הלועזי הבא.');
+    if(bm.note) notices.push(bm.note);
+    const noticeHtml = notices.map(n => '<p class="learning-date-label">' + n + '</p>').join('');
+    const eveMs = bm.ms - DAY_MS;
+    const facts = [];
+    facts.push('הבר מצווה מגיע לגיל מצוות ביום ' + weekdayNameAt(bm.ms) + ', ' + formatHebrewDateLetters(bm.hebrew) +
+      ' — היום העברי מתחיל בשקיעה, בערב יום ' + weekdayNameAt(eveMs) + ', ' + formatGregorianLong(eveMs) + '.');
+    facts.push(bm.onShabbat
+      ? 'התאריך חל בשבת — הקריאה בתורה באותה שבת.'
+      : 'הקריאה בתורה תהיה בשבת הראשונה שאחרי התאריך: ' + labelOfMs(bm.shabbatMs) + '.');
+    const shareUrl = location.href.split('#')[0].split('?')[0] + '?g=' + isoDateOfMs(birth.civilMs) + (birth.afterSunset ? '&s=1' : '') + '&il=' + (sel === 'il' ? 1 : 0);
+
+    resultEl.innerHTML =
+      '<article class="chapter-card">' +
+        '<div class="chapter-head"><h2>פרשת הבר מצווה</h2><div class="share-row"></div></div>' +
+        noticeHtml +
+        '<div class="res-pair">' +
+          '<div class="res-box res-box-wide">' +
+            '<div class="res-box-label">פרשת השבוע של הבר מצווה (' + placeName(sel) + ')</div>' +
+            readingHtml(state, bm, sel) +
+          '</div>' +
+          '<div class="res-box">' +
+            '<div class="res-box-label">תאריך הלידה</div>' +
+            '<div class="res-box-main">' + formatHebrewDateLetters(birth.hebrew) + '</div>' +
+            '<div class="res-box-sub">' + formatGregorianLong(birth.civilMs) + (birth.afterSunset ? ' (אחרי השקיעה)' : '') + '</div>' +
+            '<div class="res-box-day">יום ' + weekdayNameAt(birth.hebMs) + '</div>' +
+          '</div>' +
+          '<div class="res-box">' +
+            '<div class="res-box-label">תאריך הבר מצווה (יום ההולדת ה־13)</div>' +
+            '<div class="res-box-main">' + formatHebrewDateLetters(bm.hebrew) + '</div>' +
+            '<div class="res-box-sub">' + formatGregorianLong(bm.ms) + '</div>' +
+            '<div class="res-box-day">יום ' + weekdayNameAt(bm.ms) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<ul class="res-facts">' + facts.map(f => '<li>' + f + '</li>').join('') + '</ul>' +
+        crossLinks(birth, bm) +
+      '</article>';
+    const shareSlot = resultEl.querySelector('.chapter-head .share-row');
+    if(shareSlot) shareSlot.replaceWith(buildShareBar(shareUrl, 'חישוב פרשת בר מצווה לפי תאריך הלידה:'));
+  }
+
+  async function calculate(){
+    const birth = readBirth();
+    if(birth.error){ last = null; showError(birth.error); return; }
+    const bm = calcBarMitzvah(birth.hebrew);
+    if(!bm){ last = null; showError('לא ניתן לחשב את התאריך.'); return; }
+    const myRun = ++runId;
+    last = { birth, bm, state: 'loading' };
+    render(birth, bm, place(), 'loading');
+    let state;
+    try{
+      const [il, gl] = await Promise.all([fetchShabbatReading(bm.shabbatMs, true), fetchShabbatReading(bm.shabbatMs, false)]);
+      state = { il, gl };
+    }catch(e){
+      state = 'error';
+    }
+    if(myRun !== runId) return;        // a newer calculation started meanwhile
+    last.state = state;
+    render(birth, bm, place(), state);
+  }
+
+  /* ---------- mode switch: carry the date over to the other panel ---------- */
+  function setMode(next){
+    if(next === mode) return;
+    const before = readBirth();
+    mode = next;
+    const g = mode === 'g';
+    $('bm-mode-g').classList.toggle('active', g);
+    $('bm-mode-h').classList.toggle('active', !g);
+    $('bm-mode-g').setAttribute('aria-pressed', String(g));
+    $('bm-mode-h').setAttribute('aria-pressed', String(!g));
+    $('bm-panel-g').style.display = g ? '' : 'none';
+    $('bm-panel-h').style.display = g ? 'none' : '';
+    if(!before.error){
+      if(g) fillGregorianInputs(before.civilMs); else fillHebrewInputs(before.hebrew);
+      if(g) $('bg-aftersunset').checked = false;   // the Hebrew date already settled the day
+    }
+  }
+
+  /* ---------- wiring ---------- */
+  $('bm-mode-g').addEventListener('click', () => setMode('g'));
+  $('bm-mode-h').addEventListener('click', () => setMode('h'));
+  $('bm-calc').addEventListener('click', calculate);
+  ['bg-day', 'bg-year', 'bh-year'].forEach(id => $(id).addEventListener('keydown', e => {
+    if(e.key === 'Enter'){ e.preventDefault(); calculate(); }
+  }));
+  $('bg-aftersunset').addEventListener('change', () => { if(last) calculate(); });
+  $('bh-year').addEventListener('input', () => {
+    const info = updateYearHint();
+    if(info){
+      populateHebrewMonthSelect($('bh-month'), info.year);
+      populateHebrewDaySelect($('bh-day'), info.year, $('bh-month').value);
+    }
+  });
+  $('bh-month').addEventListener('change', () => {
+    const y = parseHebrewYearInput($('bh-year').value);
+    if(Number.isInteger(y) && getHebrewYearInfo(y)) populateHebrewDaySelect($('bh-day'), y, $('bh-month').value);
+  });
+  ['bm-place-il', 'bm-place-gl'].forEach(id => $(id).addEventListener('change', () => {
+    placeTouched = true;
+    if(last && last.state !== 'loading') render(last.birth, last.bm, place(), last.state);   // no new request needed
+  }));
+
+  /* ---------- start: from a link (?g=YYYY-MM-DD&s=1&il=0), else wait for the user ---------- */
+  resultEl.innerHTML = '<p class="limit-note">הזן/י תאריך לידה, בחר/י היכן תתקיים הקריאה בתורה, ולחץ/י על "חשב פרשה".</p>';
+  const params = new URLSearchParams(location.search);
+  const ilParam = params.get('il');
+  if(ilParam === '0') $('bm-place-gl').checked = true;
+  else if(ilParam === '1') $('bm-place-il').checked = true;
+  const birthMs = msFromIsoDate(params.get('g'));
+  const linked = birthMs !== null && birthMs >= MIN_MS && new Date(birthMs).getUTCFullYear() <= MAX_GREG_YEAR;
+  if(linked){
+    fillGregorianInputs(birthMs);
+    $('bg-aftersunset').checked = params.get('s') === '1';
+  }
+  if(ilParam === null){
+    // no place in the link: start from where the visitor probably is (GPS / IP), unless they choose first
+    detectGatingLocation().then(loc => {
+      if(placeTouched || runId > 0 || !loc || (loc.source !== 'gps' && loc.source !== 'ip')) return;
+      $(loc.isIsrael ? 'bm-place-il' : 'bm-place-gl').checked = true;
+      $('bm-place-note').textContent = 'הבחירה הראשונית זוהתה לפי המיקום שלך — אפשר לשנות.';
+    }).catch(() => {});
+  }
+  if(linked) calculate();
+})();
+
+/* shared page furniture: header date, WhatsApp button, Shabbat / Yom Tov block */
+initHeaderDate();
+initWhatsappFloat('חישוב פרשת בר מצווה לפי תאריך הלידה — כולל לידה אחרי השקיעה, וארץ ישראל או חו״ל:');
+startSiteGating();
+</script>
+<script src="https://cdn.enable.co.il/licenses/enable-L56232r6ys9tumma-0826-83667/init.js"></script>
+</body>
+</html>
