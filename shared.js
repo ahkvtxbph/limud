@@ -1365,3 +1365,26 @@ function populateGregorianDaySelect(sel, year, monthIndex, preferredDay, placeho
   }
   sel.value = previous >= 1 ? String(Math.min(previous, n)) : (placeholder ? '' : '1');
 }
+
+/* =====================================================================
+   VEZOT HABERAKHAH — the one portion that is read on a festival, not on a Shabbat
+   ===================================================================== */
+// Simchat Torah, when Vezot HaBerakhah is read: 22 Tishrei in Israel (together with Shmini Atzeret),
+// 23 Tishrei abroad. Returns noon UTC of that day, or null.
+function simchatTorahMs(hebrewYear, israel){
+  const info = getHebrewYearInfo(hebrewYear);
+  if(!info) return null;
+  const r = hebrewToGregorianMs(hebrewYear, info.months[0].name, israel ? 22 : 23);
+  return r.error ? null : r.ms;
+}
+// True when Simchat Torah (the reading of Vezot HaBerakhah) is the first reading of the annual cycle
+// after a bar-mitzvah date: the date falls in Tishrei, on or before Simchat Torah, and no regular weekly
+// portion is read before it. `firstPortionMs` = date of the first regular weekly portion on or after the
+// bar-mitzvah date (null / undefined = none nearby, so Simchat Torah comes first).
+function vezotHaberakhahFirst(bm, israel, firstPortionMs){
+  const info = getHebrewYearInfo(bm.hebrew.year);
+  if(!info || bm.hebrew.month !== info.months[0].name) return false;
+  const st = simchatTorahMs(bm.hebrew.year, israel);
+  if(st === null || bm.ms > st) return false;
+  return firstPortionMs === null || firstPortionMs === undefined || st <= firstPortionMs;
+}
