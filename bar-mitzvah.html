@@ -46,7 +46,7 @@
 <header class="site">
   <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
   <h1 class="site-title">פרשת בר מצווה</h1>
-  <p class="site-sub">חישוב פרשת השבוע של הבר מצווה לפי תאריך הלידה — כולל לידה אחרי השקיעה, וארץ ישראל או חו״ל.</p>
+  <p class="site-sub">חישוב פרשת השבוע של בר המצווה לפי תאריך הלידה — כולל לידה אחרי השקיעה, וארץ ישראל או חו״ל.</p>
   <div class="today-strip">
     <span>יום: <b id="today-weekday">—</b></span>
     <span>תאריך עברי: <b id="today-hebrew">—</b></span>
@@ -91,7 +91,7 @@
 
     <section class="panel" id="bm-panel-g">
       <h2 class="panel-title">תאריך הלידה (לועזי)</h2>
-      <p class="panel-desc">הזן/י את תאריך הלידה הלועזי של הבר מצווה.</p>
+      <p class="panel-desc">הזן/י את תאריך הלידה הלועזי של בר המצווה.</p>
       <div class="form-fields">
         <label class="field"><span>יום</span><select id="bg-day"></select></label>
         <label class="field"><span>חודש</span><select id="bg-month"></select></label>
@@ -129,13 +129,13 @@
     <div id="bm-result" aria-live="polite"></div>
 
     <section class="panel">
-      <h2 class="panel-title">איך מחשבים את פרשת הבר מצווה?</h2>
+      <h2 class="panel-title">איך מחשבים את פרשת בר המצווה?</h2>
       <ul class="res-facts bm-intro">
         <li>הנער מגיע לגיל מצוות ביום ההולדת העברי ה־13 שלו — אותו יום וחודש עבריים, בשנה העברית ה־13 אחרי שנולד.</li>
-        <li>פרשת הבר מצווה היא פרשת השבת שחלה ביום ההולדת העברי, או השבת הראשונה שאחריו.</li>
-        <li>נולד באדר בשנה פשוטה, ושנת הבר מצווה מעוברת: לפי הרמ״א (מנהג אשכנז) מציינים באדר ב׳; לפי מנהג הספרדים ייתכן שמציינים באדר א׳. נולד באדר א׳ או ב׳ ושנת הבר מצווה פשוטה — מציינים באדר (ול׳ באדר א׳ — ב־א׳ בניסן). נולד ב־ל׳ בחשוון או ב־ל׳ בכסלו, ובשנת הבר מצווה החודש חסר — מציינים ב־א׳ בחודש שאחריו. החישוב כאן הוא לפי מנהג אשכנז.</li>
+        <li>פרשת בר המצווה היא פרשת השבת שחלה ביום ההולדת העברי, או השבת הראשונה שאחריו.</li>
+        <li>נולד באדר בשנה פשוטה, ושנת בר המצווה מעוברת: לפי הרמ״א (מנהג אשכנז) מציינים באדר ב׳; לפי מנהג הספרדים ייתכן שמציינים באדר א׳. נולד באדר א׳ או ב׳ ושנת בר המצווה פשוטה — מציינים באדר (ול׳ באדר א׳ — ב־א׳ בניסן). נולד ב־ל׳ בחשוון או ב־ל׳ בכסלו, ובשנת בר המצווה החודש חסר — מציינים ב־א׳ בחודש שאחריו. החישוב כאן הוא לפי מנהג אשכנז.</li>
         <li>אם השבת היא חג או שבת חול המועד, אין בה פרשה רגילה; יוצגו הפרשות של השבתות הסמוכות, והמנהג משתנה.</li>
-        <li>אם תאריך הבר מצווה חל בתשרי, עד שמחת תורה (כ״ב בתשרי בארץ ישראל, כ״ג בתשרי בחו״ל), ולפני שנקראת פרשה רגילה — הקריאה הראשונה אחריו היא <b>וזאת הברכה</b>, הנקראת בשמחת תורה ולא בשבת. הפרשה של השבת הראשונה שאחרי התאריך מוצגת לצידה.</li>
+        <li>אם תאריך בר המצווה חל בתשרי, עד שמחת תורה (כ״ב בתשרי בארץ ישראל, כ״ג בתשרי בחו״ל), ולפני שנקראת פרשה רגילה — הקריאה הראשונה אחריו היא <b>וזאת הברכה</b>, הנקראת בשמחת תורה ולא בשבת. הפרשה של השבת הראשונה שאחרי התאריך מוצגת לצידה.</li>
         <li>החישוב הוא כלי עזר בלבד. לשאלות הלכה למעשה, ובמיוחד בלידה סמוכה לשקיעה — מומלץ להתייעץ עם רב.</li>
       </ul>
     </section>
@@ -147,7 +147,7 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092804"></script>
+<script src="shared.js?v=2026092805"></script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);
@@ -297,7 +297,7 @@
   function readingHtml(state, bm, sel){
     if(state === 'loading') return '<div class="res-box-sub">טוען את פרשת השבוע…</div>';
     if(state === 'error'){
-      return '<div class="res-box-sub">לא ניתן היה לטעון את פרשת השבוע כרגע — נדרש חיבור לאינטרנט. תאריך הבר מצווה והשבת שחושבו כאן תקינים; אפשר לבדוק את הפרשה גם ב־<a href="https://www.hebcal.com/sedrot/" target="_blank" rel="noopener">Hebcal.com</a>.</div>';
+      return '<div class="res-box-sub">לא ניתן היה לטעון את פרשת השבוע כרגע — נדרש חיבור לאינטרנט. תאריך בר המצווה והשבת שחושבו כאן תקינים; אפשר לבדוק את הפרשה גם ב־<a href="https://www.hebcal.com/sedrot/" target="_blank" rel="noopener">Hebcal.com</a>.</div>';
     }
     const otherSel = sel === 'il' ? 'gl' : 'il';
     const mine = state[sel], other = state[otherSel];
@@ -307,22 +307,22 @@
       // the date falls before Simchat Torah, which comes before the next regular weekly portion
       html += '<div class="res-box-main">וזאת הברכה</div>';
       html += '<div class="res-box-sub">נקראת בשמחת תורה — ' + labelOfMs(stMs) + ' (' + placeName(sel) + ')</div>';
-      html += '<div class="res-box-sub">תאריך הבר מצווה חל לפני שמחת תורה, ולכן זו הקריאה הראשונה בסדר הפרשות אחרי התאריך. ' +
+      html += '<div class="res-box-sub">תאריך בר המצווה חל לפני שמחת תורה, ולכן זו הקריאה הראשונה בסדר הפרשות אחרי התאריך. ' +
         (mine.parasha
           ? 'אם קוראים בשבת הראשונה שאחרי התאריך (' + labelOfMs(bm.shabbatMs) + ') — זו <b>' + esc(mine.parasha.hebrew) + '</b>.'
           : 'בשבת ' + labelOfMs(bm.shabbatMs) + ' אין פרשה רגילה (' + (holidayNames(mine) || 'שבת חג') + ')' +
             (mine.next ? '; הפרשה הרגילה הקרובה: <b>' + esc(mine.next.hebrew) + '</b> — ' + labelOfItem(mine.next) : '') + '.') + '</div>';
-      html += '<div class="res-box-day">המנהג משתנה — מומלץ להתייעץ עם רב לגבי הפרשה של הבר מצווה.</div>';
+      html += '<div class="res-box-day">המנהג משתנה — מומלץ להתייעץ עם רב לגבי הפרשה של בר המצווה.</div>';
     } else if(mine.parasha){
       html += '<div class="res-box-main">' + esc(mine.parasha.hebrew) + '</div>';
       html += '<div class="res-box-sub">נקראת בשבת ' + labelOfMs(bm.shabbatMs) + '</div>';
-      if(bm.onShabbat) html += '<div class="res-box-day">התאריך העברי של הבר מצווה חל בשבת עצמה.</div>';
+      if(bm.onShabbat) html += '<div class="res-box-day">התאריך העברי של בר המצווה חל בשבת עצמה.</div>';
     } else {
       html += '<div class="res-box-main">' + (holidayNames(mine) || 'שבת חג') + '</div>';
       html += '<div class="res-box-sub">בשבת ' + labelOfMs(bm.shabbatMs) + ' אין פרשת שבוע רגילה (' + placeName(sel) + ').</div>';
       if(mine.next) html += '<div class="res-box-sub">הפרשה הקרובה: <b>' + esc(mine.next.hebrew) + '</b> — ' + labelOfItem(mine.next) + '</div>';
       if(mine.prev) html += '<div class="res-box-sub">הפרשה של השבת הקודמת: <b>' + esc(mine.prev.hebrew) + '</b> — ' + labelOfItem(mine.prev) + '</div>';
-      html += '<div class="res-box-day">המנהג במקרה כזה משתנה — מומלץ להתייעץ עם רב לגבי הפרשה של הבר מצווה.</div>';
+      html += '<div class="res-box-day">המנהג במקרה כזה משתנה — מומלץ להתייעץ עם רב לגבי הפרשה של בר המצווה.</div>';
     }
     const mineName = readingName(sel, mine, bm);
     const otherName = readingName(otherSel, other, bm);
@@ -338,7 +338,7 @@
   function crossLinks(birth, bm){
     return '<p class="res-links">' +
       '<a class="btn secondary" href="date-converter.html?g=' + isoDateOfMs(birth.civilMs) + (birth.afterSunset ? '&s=1' : '') + '">תאריך הלידה בממיר התאריכים ←</a>' +
-      '<a class="btn secondary" href="date-converter.html?g=' + isoDateOfMs(bm.ms) + '">תאריך הבר מצווה בממיר התאריכים ←</a>' +
+      '<a class="btn secondary" href="date-converter.html?g=' + isoDateOfMs(bm.ms) + '">תאריך בר המצווה בממיר התאריכים ←</a>' +
       '</p>';
   }
   function render(birth, bm, sel, state){
@@ -348,7 +348,7 @@
     const noticeHtml = notices.map(n => '<p class="learning-date-label">' + n + '</p>').join('');
     const eveMs = bm.ms - DAY_MS;
     const facts = [];
-    facts.push('הבר מצווה מגיע לגיל מצוות ביום ' + weekdayNameAt(bm.ms) + ', ' + formatHebrewDateLetters(bm.hebrew) +
+    facts.push('בר המצווה מגיע לגיל מצוות ביום ' + weekdayNameAt(bm.ms) + ', ' + formatHebrewDateLetters(bm.hebrew) +
       ' — היום העברי מתחיל בשקיעה, בערב יום ' + weekdayNameAt(eveMs) + ', ' + formatGregorianLong(eveMs) + '.');
     facts.push(bm.onShabbat
       ? 'התאריך חל בשבת — הקריאה בתורה באותה שבת.'
@@ -357,11 +357,11 @@
 
     resultEl.innerHTML =
       '<article class="chapter-card">' +
-        '<div class="chapter-head"><h2>פרשת הבר מצווה</h2><div class="share-row"></div></div>' +
+        '<div class="chapter-head"><h2>פרשת בר המצווה</h2><div class="share-row"></div></div>' +
         noticeHtml +
         '<div class="res-pair">' +
           '<div class="res-box res-box-wide">' +
-            '<div class="res-box-label">פרשת השבוע של הבר מצווה (' + placeName(sel) + ')</div>' +
+            '<div class="res-box-label">פרשת השבוע של בר המצווה (' + placeName(sel) + ')</div>' +
             readingHtml(state, bm, sel) +
           '</div>' +
           '<div class="res-box">' +
@@ -371,7 +371,7 @@
             '<div class="res-box-day">יום ' + weekdayNameAt(birth.hebMs) + '</div>' +
           '</div>' +
           '<div class="res-box">' +
-            '<div class="res-box-label">תאריך הבר מצווה (יום ההולדת ה־13)</div>' +
+            '<div class="res-box-label">תאריך בר המצווה (יום ההולדת ה־13)</div>' +
             '<div class="res-box-main">' + formatHebrewDateLetters(bm.hebrew) + '</div>' +
             '<div class="res-box-sub">' + formatGregorianLong(bm.ms) + '</div>' +
             '<div class="res-box-day">יום ' + weekdayNameAt(bm.ms) + '</div>' +

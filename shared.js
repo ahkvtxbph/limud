@@ -1260,7 +1260,7 @@ function hebrewAnniversary(birth, targetYear){
   const bAdar2 = bInfo.leap && bIdx === 6;
   if(bAdarRegular || bAdar2){
     month = tInfo.months[tInfo.leap ? 6 : 5].name;          // the last Adar of the target year
-    if(bAdarRegular && tInfo.leap) note = 'נולד באדר בשנה פשוטה, ושנת הבר מצווה מעוברת — לפי הרמ״א (מנהג אשכנז) מציינים באדר ב׳. לפי מנהג הספרדים ייתכן שמציינים באדר א׳ — כדאי לשאול רב.';
+    if(bAdarRegular && tInfo.leap) note = 'נולד באדר בשנה פשוטה, ושנת בר המצווה מעוברת — לפי הרמ״א (מנהג אשכנז) מציינים באדר ב׳. לפי מנהג הספרדים ייתכן שמציינים באדר א׳ — כדאי לשאול רב.';
     else if(bAdar2 && !tInfo.leap) note = 'נולד באדר ב׳ — בשנה פשוטה מציינים את היום באדר.';
   } else if(bAdar1){
     if(!tInfo.leap){
