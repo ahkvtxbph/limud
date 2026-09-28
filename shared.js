@@ -1330,3 +1330,38 @@ async function fetchShabbatReading(shabbatMs, israel){
     next: portions.find(i => i.date > day) || null
   };
 }
+
+/* =====================================================================
+   GREGORIAN DAY PICKER — a list of days that follows the chosen month and year
+   ===================================================================== */
+// Number of days in a Gregorian month. Without a usable year, February is given 29 days
+// so that no valid date is ever hidden while the year is still being typed.
+function gregorianDaysInMonth(year, monthIndex){
+  if(Number.isInteger(year)){
+    const last = makeUTCNoon(year, monthIndex + 1, 0);     // day 0 of the next month = last day of this one
+    if(last) return last.getUTCDate();
+  }
+  return [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][monthIndex] || 31;
+}
+// Fills a <select> with 1..N for that month/year and keeps the current (or `preferredDay`) choice,
+// pulled down to the month's last day when it no longer exists (31 -> 30, 29 Feb -> 28 Feb).
+// With `placeholder` (e.g. "יום") the list starts with an empty first choice and nothing is preselected
+// until the visitor picks — used where a forgotten day must not silently become "1".
+function populateGregorianDaySelect(sel, year, monthIndex, preferredDay, placeholder){
+  const previous = (preferredDay !== undefined && preferredDay !== null) ? preferredDay : parseInt(sel.value, 10);
+  const n = gregorianDaysInMonth(year, monthIndex);
+  sel.innerHTML = '';
+  if(placeholder){
+    const o = document.createElement('option');
+    o.value = '';
+    o.textContent = placeholder;
+    sel.appendChild(o);
+  }
+  for(let d = 1; d <= n; d++){
+    const o = document.createElement('option');
+    o.value = String(d);
+    o.textContent = String(d);
+    sel.appendChild(o);
+  }
+  sel.value = previous >= 1 ? String(Math.min(previous, n)) : (placeholder ? '' : '1');
+}

@@ -93,7 +93,7 @@
       <p class="panel-desc">הזן/י תאריך לועזי (גרגוריאני, לספירה) וקבל/י את התאריך העברי המתאים. אפשר לבחור גם שנים רחוקות קדימה.</p>
       <p class="limit-note" id="g-limit-note"></p>
       <div class="form-fields">
-        <label class="field"><span>יום</span><input type="number" id="g-day" min="1" max="31" inputmode="numeric" autocomplete="off"></label>
+        <label class="field"><span>יום</span><select id="g-day"></select></label>
         <label class="field"><span>חודש</span><select id="g-month"></select></label>
         <label class="field"><span>שנה</span><input type="number" id="g-year" min="1582" inputmode="numeric" autocomplete="off"></label>
       </div>
@@ -136,7 +136,7 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092802"></script>
+<script src="shared.js?v=2026092803"></script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);
@@ -183,9 +183,13 @@
   });
   function fillGregorianInputs(ms){
     const d = new Date(ms);
-    $('g-day').value = String(d.getUTCDate());
     $('g-month').value = String(d.getUTCMonth());
     $('g-year').value = String(d.getUTCFullYear());
+    populateGregorianDaySelect($('g-day'), d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  }
+  // the day list follows the month and the typed year (30/31 days, February 28/29)
+  function refreshGregorianDays(){
+    populateGregorianDaySelect($('g-day'), parseInt($('g-year').value, 10), parseInt($('g-month').value, 10));
   }
 
   /* ---------- Hebrew inputs (month/day lists follow the chosen year) ---------- */
@@ -282,7 +286,7 @@
     const day = parseInt($('g-day').value, 10);
     const month = parseInt($('g-month').value, 10);
     let year = parseInt($('g-year').value, 10);
-    if(!Number.isInteger(day) || day < 1 || day > 31){ showError('יש להזין יום בחודש (1–31).'); return; }
+    if(!Number.isInteger(day) || day < 1 || day > 31){ showError('יש לבחור יום בחודש.'); return; }
     if(!Number.isInteger(year)){ showError('יש להזין שנה לועזית (מספר, משנת ' + MIN_GREG_YEAR + ' ואילך).'); return; }
     let clampedNote = '';
     if(year < MIN_GREG_YEAR){
@@ -367,9 +371,11 @@
   $('g-convert').addEventListener('click', convertFromGregorian);
   $('h-convert').addEventListener('click', convertFromHebrew);
   $('g-aftersunset').addEventListener('change', convertFromGregorian);
-  ['g-day', 'g-year'].forEach(id => $(id).addEventListener('keydown', e => {
+  $('g-year').addEventListener('keydown', e => {
     if(e.key === 'Enter'){ e.preventDefault(); convertFromGregorian(); }
-  }));
+  });
+  $('g-month').addEventListener('change', refreshGregorianDays);
+  $('g-year').addEventListener('input', refreshGregorianDays);
   $('h-year').addEventListener('keydown', e => {
     if(e.key === 'Enter'){ e.preventDefault(); convertFromHebrew(); }
   });

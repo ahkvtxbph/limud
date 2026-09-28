@@ -93,7 +93,7 @@
       <h2 class="panel-title">תאריך הלידה (לועזי)</h2>
       <p class="panel-desc">הזן/י את תאריך הלידה הלועזי של הבר מצווה.</p>
       <div class="form-fields">
-        <label class="field"><span>יום</span><input type="number" id="bg-day" min="1" max="31" inputmode="numeric" autocomplete="off"></label>
+        <label class="field"><span>יום</span><select id="bg-day"></select></label>
         <label class="field"><span>חודש</span><select id="bg-month"></select></label>
         <label class="field"><span>שנה</span><input type="number" id="bg-year" min="1582" max="9900" inputmode="numeric" autocomplete="off"></label>
       </div>
@@ -146,7 +146,7 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092802"></script>
+<script src="shared.js?v=2026092803"></script>
 <script>
 (function(){
   const $ = id => document.getElementById(id);
@@ -182,10 +182,15 @@
   });
   function fillGregorianInputs(ms){
     const d = new Date(ms);
-    $('bg-day').value = String(d.getUTCDate());
     $('bg-month').value = String(d.getUTCMonth());
     $('bg-year').value = String(d.getUTCFullYear());
+    populateGregorianDaySelect($('bg-day'), d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 'יום');
   }
+  // the day list follows the month and the typed year; it starts with "יום" so a forgotten day is never silently 1
+  function refreshGregorianDays(){
+    populateGregorianDaySelect($('bg-day'), parseInt($('bg-year').value, 10), parseInt($('bg-month').value, 10), undefined, 'יום');
+  }
+  refreshGregorianDays();
 
   /* ---------- Hebrew inputs (month/day lists follow the typed year) ---------- */
   function resetHebrewPickers(){
@@ -227,7 +232,7 @@
       const day = parseInt($('bg-day').value, 10);
       const month = parseInt($('bg-month').value, 10);
       const year = parseInt($('bg-year').value, 10);
-      if(!Number.isInteger(day) || day < 1 || day > 31) return { error: 'יש להזין יום בחודש (1–31).' };
+      if(!Number.isInteger(day) || day < 1 || day > 31) return { error: 'יש לבחור יום בחודש.' };
       if(!Number.isInteger(year)) return { error: 'יש להזין שנת לידה (מספר).' };
       if(year < MIN_GREG_YEAR) return { error: 'שנת הלידה חייבת להיות ' + MIN_GREG_YEAR + ' ומעלה (מגבלת ההמרה באתר).' };
       if(year > MAX_GREG_YEAR) return { error: 'שנת הלידה גבוהה מדי (עד ' + MAX_GREG_YEAR + ').' };
@@ -396,9 +401,11 @@
   $('bm-mode-g').addEventListener('click', () => setMode('g'));
   $('bm-mode-h').addEventListener('click', () => setMode('h'));
   $('bm-calc').addEventListener('click', calculate);
-  ['bg-day', 'bg-year', 'bh-year'].forEach(id => $(id).addEventListener('keydown', e => {
+  ['bg-year', 'bh-year'].forEach(id => $(id).addEventListener('keydown', e => {
     if(e.key === 'Enter'){ e.preventDefault(); calculate(); }
   }));
+  $('bg-month').addEventListener('change', refreshGregorianDays);
+  $('bg-year').addEventListener('input', refreshGregorianDays);
   $('bg-aftersunset').addEventListener('change', () => { if(last) calculate(); });
   $('bh-year').addEventListener('input', () => {
     const info = updateYearHint();
