@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>המרת תאריך עברי ולועזי | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="המרה בין תאריך עברי לתאריך לועזי וההיפך — לכל תאריך, קדימה ואחורה, עם היום בשבוע, אור ל…, וסוג השנה העברית.">
+<meta name="keywords" content="המרת תאריך, תאריך עברי, תאריך לועזי, המרה מעברי ללועזי, המרה מלועזי לעברי, לוח שנה עברי, מתי חל תאריך עברי">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://limood.org.il/date-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="המרת תאריך עברי ולועזי | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="המרה בין תאריך עברי ללועזי וההיפך — לכל תאריך, קדימה ואחורה.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "המרת תאריך עברי ולועזי",
+  "inLanguage": "he",
+  "description": "המרה בין תאריך עברי לתאריך לועזי וההיפך, לכל תאריך — קדימה ואחורה.",
+  "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=20260928">
+<style>
+  /* rules used only by the date-converter page (everything shared lives in shared.css) */
+  #converter-section nav.modes{grid-template-columns:repeat(2,1fr);}
+  .conv-fields{display:flex; flex-wrap:wrap; gap:.8rem; margin-bottom:.9rem;}
+
+  #conv-result{margin-top:1.2rem;}
+  .conv-pair{display:grid; grid-template-columns:1fr 1fr; gap:.9rem;}
+  .conv-box{
+    background:var(--stone);
+    border-inline-start:4px solid var(--gold);
+    border-radius:10px;
+    padding:.9rem 1rem 1rem;
+  }
+  .conv-box-label{
+    font-family:'Assistant', sans-serif;
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    color:var(--gold-text);
+    margin-bottom:.3rem;
+  }
+  .conv-box-main{
+    font-family:'Frank Ruhl Libre', serif;
+    font-weight:700;
+    font-size:1.55rem;
+    line-height:1.35;
+    color:var(--ink);
+  }
+  .conv-box-sub{
+    font-family:'Assistant', sans-serif;
+    font-size:.95rem;
+    color:#5A5142;
+    margin-top:.15rem;
+  }
+  .conv-box-day{
+    font-family:'Assistant', sans-serif;
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--ink);
+    margin-top:.45rem;
+  }
+  .conv-facts{
+    list-style:none;
+    padding:0;
+    margin:1rem 0 0;
+    font-family:'Assistant', sans-serif;
+    font-size:.9rem;
+    color:#4a4030;
+    line-height:1.7;
+  }
+  .conv-facts li{padding:.45rem 0; border-top:1px dashed var(--stone-dark);}
+  @media (max-width:560px){
+    .conv-pair{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+<header class="site">
+  <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
+  <h1 class="site-title">המרת תאריכים</h1>
+  <p class="site-sub">המרה בין התאריך העברי ללועזי — ולהפך. לכל תאריך, קדימה ואחורה.</p>
+  <div class="today-strip">
+    <span>יום: <b id="today-weekday">—</b></span>
+    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
+  </div>
+  <p class="date-note" id="hebrew-date-note"></p>
+  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
+  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
+</header>
+
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.3-8.4 8.3z"/></svg>
+</a>
+
+<div class="shabbat-banner" id="shabbat-banner" role="status">
+  <div class="shabbat-inner">
+    <h2 id="shabbat-banner-title">שבת שלום!</h2>
+    <p id="shabbat-banner-text"></p>
+  </div>
+</div>
+
+<main id="main">
+  <nav class="top-modes" aria-label="בחירת תוכן">
+    <a href="index.html#halacha">הלכה יומית</a>
+    <a href="index.html#tehillim">תהילים</a>
+    <a href="index.html#mishnayot">משנה יומית</a>
+    <a href="index.html#dafyomi">דף יומי</a>
+    <a href="index.html#yerushalmi">ירושלמי יומי</a>
+    <a href="index.html#tanya">תניא יומי</a>
+    <a href="index.html#tanakh">תנ"ך יומי</a>
+    <a href="index.html#proj929">929</a>
+    <a href="index.html#rambam">רמב"ם יומי</a>
+    <a href="index.html#zmanim">זמני היום</a>
+  </nav>
+
+  <section id="converter-section">
+    <nav class="modes" aria-label="כיוון ההמרה">
+      <button type="button" id="conv-mode-g2h" class="active" aria-pressed="true"><span class="num">א׳</span>מלועזי לעברי</button>
+      <button type="button" id="conv-mode-h2g" aria-pressed="false"><span class="num">ב׳</span>מעברי ללועזי</button>
+    </nav>
+
+    <section class="panel" id="conv-panel-g2h">
+      <h2 class="panel-title">מתאריך לועזי לתאריך עברי</h2>
+      <p class="panel-desc">הזן/י תאריך לועזי (גרגוריאני) וקבל/י את התאריך העברי המתאים. אפשר לבחור כל שנה — גם רחוקה מאוד, קדימה ואחורה (התאריך העברי מוגדר מהשנה העברית הראשונה, כ־3761 לפנה״ס).</p>
+      <div class="conv-fields">
+        <label class="field"><span>יום</span><input type="number" id="g-day" min="1" max="31" inputmode="numeric" autocomplete="off"></label>
+        <label class="field"><span>חודש</span><select id="g-month"></select></label>
+        <label class="field"><span>שנה</span><input type="number" id="g-year" min="1" inputmode="numeric" autocomplete="off"></label>
+        <label class="field"><span>עידן</span>
+          <select id="g-era">
+            <option value="ce">לספירה</option>
+            <option value="bce">לפנה״ס</option>
+          </select>
+        </label>
+      </div>
+      <label class="check"><input type="checkbox" id="g-aftersunset"> אחרי השקיעה (הלילה כבר שייך ליום העברי הבא)</label>
+      <div class="controls-row">
+        <button type="button" class="btn" id="g-convert">המר</button>
+      </div>
+    </section>
+
+    <section class="panel" id="conv-panel-h2g" style="display:none;">
+      <h2 class="panel-title">מתאריך עברי לתאריך לועזי</h2>
+      <p class="panel-desc">בחר/י יום וחודש עבריים, והקלד/י את השנה — כמספר (למשל 5786) או באותיות (למשל תשפ״ו). רשימת החודשים מתאימה את עצמה לשנה, כולל שנים מעוברות.</p>
+      <div class="conv-fields">
+        <label class="field"><span>יום</span><select id="h-day"></select></label>
+        <label class="field"><span>חודש</span><select id="h-month"></select></label>
+        <label class="field"><span>שנה (מספר או אותיות)</span><input type="text" id="h-year" dir="rtl" autocomplete="off" placeholder="5786 או תשפ״ו"></label>
+      </div>
+      <p class="field-hint" id="h-year-hint" aria-live="polite"></p>
+      <div class="controls-row">
+        <button type="button" class="btn" id="h-convert">המר</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="controls-row">
+        <button type="button" class="btn secondary" id="conv-prev" aria-label="יום קודם">‹ יום קודם</button>
+        <button type="button" class="btn secondary" id="conv-today">היום</button>
+        <button type="button" class="btn secondary" id="conv-next" aria-label="יום הבא">יום הבא ›</button>
+      </div>
+    </section>
+
+    <div id="conv-result" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer class="site">
+  <p>החישוב מבוסס על הלוח העברי המובנה בדפדפן, ולכן תואם לכל שאר התאריכים העבריים באתר. תאריכים לועזיים לפני שנת 1582 מחושבים לפי הלוח הגרגוריאני הרטרואקטיבי.</p>
+  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script src="shared.js?v=20260928"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const resultEl = $('conv-result');
+
+  function todayNoonMs(){
+    const n = new Date();
+    return makeUTCNoon(n.getFullYear(), n.getMonth(), n.getDate()).getTime();
+  }
+  function showError(msg){
+    resultEl.innerHTML = '<p class="chapter-error" role="alert">' + msg + '</p>';
+  }
+
+  if(!hebrewCalendarSupported()){
+    showError('הדפדפן הזה אינו תומך בלוח העברי, ולכן אי אפשר לבצע המרה. אפשר לנסות דפדפן עדכני (כרום, פיירפוקס, ספארי או אדג׳).');
+    return;
+  }
+
+  let currentMs = todayNoonMs();   // the day being shown (noon UTC of the Gregorian date)
+  let mode = 'g2h';
+
+  /* ---------- Gregorian inputs ---------- */
+  GREG_MONTH_NAMES_HE.forEach((name, i) => {
+    const o = document.createElement('option');
+    o.value = String(i);
+    o.textContent = name;
+    $('g-month').appendChild(o);
+  });
+  function fillGregorianInputs(ms){
+    const d = new Date(ms);
+    const y = d.getUTCFullYear();
+    $('g-day').value = String(d.getUTCDate());
+    $('g-month').value = String(d.getUTCMonth());
+    $('g-year').value = String(y <= 0 ? 1 - y : y);
+    $('g-era').value = y <= 0 ? 'bce' : 'ce';
+  }
+
+  /* ---------- Hebrew inputs (month/day lists follow the chosen year) ---------- */
+  function buildHebrewMonths(year, preferred){
+    const sel = $('h-month');
+    const previous = preferred || sel.value;
+    const info = getHebrewYearInfo(year);
+    sel.innerHTML = '';
+    if(!info){ sel.disabled = true; return null; }
+    sel.disabled = false;
+    info.months.forEach(m => {
+      const o = document.createElement('option');
+      o.value = m.name;
+      o.textContent = m.name;
+      sel.appendChild(o);
+    });
+    let target = previous;
+    if(!info.months.some(m => m.name === target)){
+      // Adar of a regular year corresponds to Adar II of a leap year, and vice versa
+      if(target === 'אדר' && info.leap) target = 'אדר ב׳';
+      else if((target === 'אדר ב׳' || target === 'אדר א׳') && !info.leap) target = 'אדר';
+      else target = info.months[0].name;
+    }
+    sel.value = target;
+    return info;
+  }
+  function buildHebrewDays(year, monthName, preferredDay){
+    const sel = $('h-day');
+    const previous = preferredDay || parseInt(sel.value, 10) || 1;
+    const info = getHebrewYearInfo(year);
+    const m = info && info.months.find(x => x.name === monthName);
+    sel.innerHTML = '';
+    if(!m){ sel.disabled = true; return; }
+    sel.disabled = false;
+    for(let d = 1; d <= m.days; d++){
+      const o = document.createElement('option');
+      o.value = String(d);
+      o.textContent = hebNum(d) + ' (' + d + ')';
+      sel.appendChild(o);
+    }
+    sel.value = String(Math.min(previous, m.days));
+  }
+  function updateYearHint(){
+    const hint = $('h-year-hint');
+    const raw = $('h-year').value;
+    if(!raw.trim()){ hint.textContent = ''; return null; }
+    const y = parseHebrewYearInput(raw);
+    if(!Number.isInteger(y) || y < 1){ hint.textContent = 'שנה עברית חייבת להיות מספר חיובי (1 ומעלה).'; return null; }
+    const info = getHebrewYearInfo(y);
+    if(!info){ hint.textContent = 'השנה הזו מחוץ לטווח שהדפדפן מסוגל לחשב (עד כ־279,000).'; return null; }
+    hint.textContent = hebrewYearLetters(y) + ' · ' + y + ' — שנה ' + (info.leap ? 'מעוברת' : 'פשוטה') + ' (' + hebrewYearKindHe(info.days) + '), ' + info.days + ' ימים';
+    return info;
+  }
+  function fillHebrewInputs(ms){
+    const p = gregorianToHebrew(ms);
+    if(!p) return false;
+    $('h-year').value = String(p.year);
+    buildHebrewMonths(p.year, p.month);
+    buildHebrewDays(p.year, $('h-month').value, p.day);
+    updateYearHint();
+    return true;
+  }
+
+  /* ---------- result ---------- */
+  function render(){
+    const afterSunset = mode === 'g2h' && $('g-aftersunset').checked;
+    const ms = currentMs;
+    const hebMs = afterSunset ? ms + DAY_MS : ms;
+    const hp = gregorianToHebrew(hebMs);
+    if(!hp){
+      showError('התאריך הזה קדם לשנה העברית הראשונה (בריאת העולם, כ־3761 לפנה״ס), ולכן אין לו תאריך עברי.');
+      return;
+    }
+    const info = getHebrewYearInfo(hp.year);
+    const hebLetters = formatHebrewDateLetters(hp);
+    const hebDigits = formatHebrewDateDigits(hp);
+    const gLong = formatGregorianLong(ms);
+    const gNum = formatGregorianNumeric(ms);
+    const eveMs = hebMs - DAY_MS;
+
+    const facts = [];
+    facts.push('הלילה שלפני התאריך העברי (אור ל-' + hebLetters + ') מתחיל בשקיעה, בערב יום ' + weekdayNameAt(eveMs) + ', ' + formatGregorianLong(eveMs) + '.');
+    if(info){
+      facts.push('שנה עברית ' + hebrewYearLetters(hp.year) + ' (' + hp.year + '): ' + (info.leap ? 'מעוברת' : 'פשוטה') + ' (' + hebrewYearKindHe(info.days) + '), ' + info.days + ' ימים, ' + info.months.length + ' חודשים.');
+    }
+    if(afterSunset){
+      facts.push('סימנת "אחרי השקיעה" — לכן מוצג התאריך העברי של היום הלועזי הבא (יום ' + weekdayNameAt(hebMs) + ').');
+    }
+    if(new Date(ms).getUTCFullYear() < 1583){
+      facts.push('תאריכים לפני שנת 1582 מחושבים לפי הלוח הגרגוריאני הרטרואקטיבי, ולא לפי הלוח היוליאני ששימש בפועל באותה תקופה.');
+    }
+
+    resultEl.innerHTML =
+      '<article class="chapter-card">' +
+        '<div class="chapter-head"><h2>תוצאת ההמרה</h2><div class="share-row"></div></div>' +
+        '<div class="conv-pair">' +
+          '<div class="conv-box">' +
+            '<div class="conv-box-label">תאריך עברי</div>' +
+            '<div class="conv-box-main">' + hebLetters + '</div>' +
+            '<div class="conv-box-sub">' + hebDigits + '</div>' +
+            '<div class="conv-box-day">יום ' + weekdayNameAt(hebMs) + '</div>' +
+          '</div>' +
+          '<div class="conv-box">' +
+            '<div class="conv-box-label">תאריך לועזי</div>' +
+            '<div class="conv-box-main">' + gLong + '</div>' +
+            '<div class="conv-box-sub">' + gNum + '</div>' +
+            '<div class="conv-box-day">יום ' + weekdayNameAt(ms) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<ul class="conv-facts">' + facts.map(f => '<li>' + f + '</li>').join('') + '</ul>' +
+      '</article>';
+    const shareSlot = resultEl.querySelector('.chapter-head .share-row');
+    if(shareSlot){
+      shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], hebLetters + ' = ' + gLong + ' — המרת תאריך עברי ולועזי:'));
+    }
+  }
+
+  /* ---------- conversions ---------- */
+  function convertFromGregorian(){
+    const day = parseInt($('g-day').value, 10);
+    const month = parseInt($('g-month').value, 10);
+    let year = parseInt($('g-year').value, 10);
+    if(!Number.isInteger(day) || day < 1 || day > 31){ showError('יש להזין יום בחודש (1–31).'); return; }
+    if(!Number.isInteger(year) || year < 1){ showError('יש להזין שנה לועזית (מספר חיובי; לשנים לפני הספירה יש לבחור "לפנה״ס").'); return; }
+    if($('g-era').value === 'bce') year = 1 - year;
+    const d = makeUTCNoon(year, month, day);
+    if(!d){ showError('התאריך מחוץ לטווח שהדפדפן מסוגל לחשב.'); return; }
+    if(d.getUTCMonth() !== month || d.getUTCDate() !== day){
+      const last = makeUTCNoon(year, month + 1, 0);
+      showError('אין תאריך כזה בלוח הלועזי — ל' + GREG_MONTH_NAMES_HE[month] + ' ' + gregorianYearLabel(year) + ' יש ' + (last ? last.getUTCDate() : 30) + ' ימים.');
+      return;
+    }
+    currentMs = d.getTime();
+    fillHebrewInputs(currentMs);
+    render();
+  }
+  function convertFromHebrew(){
+    const y = parseHebrewYearInput($('h-year').value);
+    if(!Number.isInteger(y) || y < 1){ showError('יש להזין שנה עברית תקינה — מספר (למשל 5786) או אותיות (למשל תשפ״ו).'); return; }
+    if(!getHebrewYearInfo(y)){ showError('השנה העברית מחוץ לטווח שהדפדפן מסוגל לחשב (עד כ־279,000).'); return; }
+    const dayPref = parseInt($('h-day').value, 10) || 1;
+    buildHebrewMonths(y);                       // make sure the month list really belongs to this year
+    const monthName = $('h-month').value;
+    buildHebrewDays(y, monthName, dayPref);
+    const r = hebrewToGregorianMs(y, monthName, parseInt($('h-day').value, 10));
+    if(r.error === 'month'){ showError('החודש שנבחר לא קיים בשנה זו.'); return; }
+    if(r.error === 'day'){ showError('לחודש ' + monthName + ' יש ' + r.maxDay + ' ימים בשנה זו.'); return; }
+    if(r.error){ showError('לא ניתן לחשב את התאריך.'); return; }
+    currentMs = r.ms;
+    fillGregorianInputs(currentMs);
+    updateYearHint();
+    render();
+  }
+
+  /* ---------- previous / next / today ---------- */
+  function goTo(ms){
+    if(!(Math.abs(ms) < HEB_MAX_MS - 2 * DAY_MS)){ showError('הגעת לקצה הטווח שהדפדפן מסוגל לחשב.'); return; }
+    currentMs = ms;
+    fillGregorianInputs(currentMs);
+    fillHebrewInputs(currentMs);
+    render();
+  }
+
+  /* ---------- mode switch ---------- */
+  function setMode(next){
+    mode = next;
+    const g = mode === 'g2h';
+    $('conv-mode-g2h').classList.toggle('active', g);
+    $('conv-mode-h2g').classList.toggle('active', !g);
+    $('conv-mode-g2h').setAttribute('aria-pressed', String(g));
+    $('conv-mode-h2g').setAttribute('aria-pressed', String(!g));
+    $('conv-panel-g2h').style.display = g ? '' : 'none';
+    $('conv-panel-h2g').style.display = g ? 'none' : '';
+    fillGregorianInputs(currentMs);
+    fillHebrewInputs(currentMs);
+    render();
+  }
+
+  /* ---------- wiring ---------- */
+  $('conv-mode-g2h').addEventListener('click', () => setMode('g2h'));
+  $('conv-mode-h2g').addEventListener('click', () => setMode('h2g'));
+  $('g-convert').addEventListener('click', convertFromGregorian);
+  $('h-convert').addEventListener('click', convertFromHebrew);
+  $('g-aftersunset').addEventListener('change', convertFromGregorian);
+  ['g-day', 'g-year'].forEach(id => $(id).addEventListener('keydown', e => {
+    if(e.key === 'Enter'){ e.preventDefault(); convertFromGregorian(); }
+  }));
+  $('h-year').addEventListener('keydown', e => {
+    if(e.key === 'Enter'){ e.preventDefault(); convertFromHebrew(); }
+  });
+  $('h-year').addEventListener('input', () => {
+    const info = updateYearHint();
+    if(info){
+      const y = parseHebrewYearInput($('h-year').value);
+      buildHebrewMonths(y);
+      buildHebrewDays(y, $('h-month').value);
+    }
+  });
+  $('h-month').addEventListener('change', () => {
+    const y = parseHebrewYearInput($('h-year').value);
+    if(Number.isInteger(y)) buildHebrewDays(y, $('h-month').value);
+  });
+  $('conv-prev').addEventListener('click', () => goTo(currentMs - DAY_MS));
+  $('conv-next').addEventListener('click', () => goTo(currentMs + DAY_MS));
+  $('conv-today').addEventListener('click', () => goTo(todayNoonMs()));
+
+  /* ---------- start: today's date, converted ---------- */
+  fillGregorianInputs(currentMs);
+  fillHebrewInputs(currentMs);
+  render();
+})();
+
+/* shared page furniture: header date, WhatsApp button, Shabbat / Yom Tov block */
+initHeaderDate();
+initWhatsappFloat('המרת תאריך עברי ↔ לועזי — לכל תאריך, קדימה ואחורה:');
+startSiteGating();
+</script>
+<script src="https://cdn.enable.co.il/licenses/enable-L56232r6ys9tumma-0826-83667/init.js"></script>
+</body>
+</html>

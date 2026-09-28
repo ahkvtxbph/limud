@@ -993,3 +993,190 @@ async function renderDafStyleDailyCalendar(titleEn, readerId, headingHe, selecte
     reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את התוכן כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.</p>`;
   }
 }
+
+/* =====================================================================
+   HEBREW ⇄ GREGORIAN DATE CONVERSION
+   Built on the browser's own Hebrew calendar (Intl / ICU), so results always
+   agree with every other Hebrew date shown on the site. Works over the whole
+   range JavaScript dates allow (roughly ±270,000 years). All arithmetic is done
+   in UTC at noon, so time zones, DST and historical local-time offsets can never
+   shift a date. Gregorian years here use astronomical numbering
+   (year 0 = 1 BCE, -1 = 2 BCE); dates before 1582 are proleptic Gregorian.
+   ===================================================================== */
+const DAY_MS = 86400000;
+const GREG_MONTH_NAMES_HE = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+const HEB_ANCHOR_MS = Date.UTC(2026, 8, 12, 12);   // 1 Tishrei 5787, noon UTC
+const HEB_ANCHOR_YEAR = 5787;
+const HEB_MEAN_YEAR_DAYS = 365.2468222;            // mean Hebrew year, used only to get near a year's start
+const HEB_MAX_MS = 8.64e15;                        // JavaScript Date limit
+
+function hebrewCalendarSupported(){
+  try{ return new Intl.DateTimeFormat('en-u-ca-hebrew').resolvedOptions().calendar === 'hebrew'; }
+  catch(e){ return false; }
+}
+
+let _hebFormatterInstance = null;
+function _hebFormatter(){
+  if(!_hebFormatterInstance){
+    _hebFormatterInstance = new Intl.DateTimeFormat('he-u-ca-hebrew', { timeZone:'UTC', year:'numeric', month:'long', day:'numeric' });
+  }
+  return _hebFormatterInstance;
+}
+
+// Date at 12:00 UTC for a (possibly ancient or far-future) Gregorian year. Uses
+// setUTCFullYear because Date.UTC maps years 0–99 onto 1900–1999. Null if out of range.
+function makeUTCNoon(year, monthIndex, day){
+  const d = new Date(0);
+  d.setUTCFullYear(year, monthIndex, day);
+  d.setUTCHours(12, 0, 0, 0);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+// Hebrew {year, month (name), day} for a moment, or year NaN/<1 when unavailable.
+function hebrewPartsAt(ms){
+  let year = NaN, month = '', day = NaN;
+  const parts = _hebFormatter().formatToParts(new Date(ms));
+  for(const p of parts){
+    if(p.type === 'year'){
+      const s = p.value.replace(/[\u200e\u200f]/g, '');   // ICU puts a direction mark before a minus sign
+      const neg = /^[-\u2212]/.test(s);
+      const digits = s.replace(/\D/g, '');
+      year = digits ? (neg ? -1 : 1) * parseInt(digits, 10) : NaN;
+    } else if(p.type === 'month'){
+      month = p.value;
+    } else if(p.type === 'day'){
+      const digits = p.value.replace(/\D/g, '');
+      day = digits ? parseInt(digits, 10) : NaN;
+    }
+  }
+  return { year, month, day };
+}
+
+// Hebrew date of a Gregorian day (ms at noon UTC); null before Hebrew year 1.
+function gregorianToHebrew(ms){
+  if(!(Math.abs(ms) <= HEB_MAX_MS)) return null;
+  const p = hebrewPartsAt(ms);
+  if(!(p.year >= 1) || !p.month || !(p.day >= 1)) return null;
+  return p;
+}
+
+const _hebYearCache = new Map();
+// Everything about one Hebrew year: first day, length, leap or not, and every month
+// (in order, with its ICU name, first day and number of days — which also covers the
+// varying Cheshvan/Kislev and the Adar I/II structure of leap years).
+function getHebrewYearInfo(H){
+  if(!Number.isInteger(H) || H < 1) return null;
+  if(_hebYearCache.has(H)) return _hebYearCache.get(H);
+  const est = HEB_ANCHOR_MS + (H - HEB_ANCHOR_YEAR) * HEB_MEAN_YEAR_DAYS * DAY_MS;
+  if(!(Math.abs(est) < HEB_MAX_MS - 500*DAY_MS)) return null;
+  let ms = Math.floor(est / DAY_MS) * DAY_MS + DAY_MS/2;
+  // The estimate lands within a few weeks of Rosh Hashana: step back to before the year, then forward to its first day.
+  let guard = 0;
+  while(hebrewPartsAt(ms).year >= H){ ms -= DAY_MS; if(++guard > 800) return null; }
+  guard = 0;
+  while(hebrewPartsAt(ms).year < H){ ms += DAY_MS; if(++guard > 800) return null; }
+  const startMs = ms;
+  const months = [];
+  let cur = null, days = 0;
+  while(days <= 400){
+    const p = hebrewPartsAt(ms);
+    if(p.year !== H) break;
+    if(!cur || cur.name !== p.month){ cur = { name: p.month, startMs: ms, days: 0 }; months.push(cur); }
+    cur.days++; days++; ms += DAY_MS;
+  }
+  if(days < 350 || days > 390) return null;
+  const info = { year: H, startMs, days, leap: months.length === 13, months };
+  _hebYearCache.set(H, info);
+  return info;
+}
+
+// Gregorian day (ms at noon UTC) for a Hebrew date. On failure returns { error, maxDay? }.
+function hebrewToGregorianMs(H, monthName, day){
+  const info = getHebrewYearInfo(H);
+  if(!info) return { error: 'year' };
+  const m = info.months.find(x => x.name === monthName);
+  if(!m) return { error: 'month' };
+  if(!Number.isInteger(day) || day < 1 || day > m.days) return { error: 'day', maxDay: m.days };
+  return { ms: m.startMs + (day - 1) * DAY_MS, info };
+}
+
+// "ה׳ תשפ״ו"-style year letters; the current millennium's thousands digit is dropped, as everywhere on this site.
+function hebrewYearLetters(y){
+  const thousands = Math.floor(y / 1000), rest = y % 1000;
+  const restLetters = rest > 0 ? hebNum(rest) : '';
+  if(thousands === 0) return restLetters + ' (' + y + ')';   // years 1–999: letters alone would look like the 5000s
+  if(thousands === 5) return restLetters || (hebNum(5) + ' אלפים');
+  return hebNum(thousands) + ' ' + (restLetters || 'אלפים');
+}
+function formatHebrewDateLetters(p){ return `${hebNum(p.day)} ב${p.month} ${hebrewYearLetters(p.year)}`; }
+function formatHebrewDateDigits(p){ return `${p.day} ב${p.month} ${p.year}`; }
+// 353/383 = deficient (חסרה), 354/384 = regular (כסדרה), 355/385 = complete (שלמה)
+function hebrewYearKindHe(days){
+  const r = days % 10;
+  return r === 3 ? 'חסרה' : (r === 4 ? 'כסדרה' : 'שלמה');
+}
+
+function gregorianYearLabel(y){ return y <= 0 ? `${1 - y} לפנה״ס` : String(y); }
+function formatGregorianLong(ms){
+  const d = new Date(ms);
+  return `${d.getUTCDate()} ב${GREG_MONTH_NAMES_HE[d.getUTCMonth()]} ${gregorianYearLabel(d.getUTCFullYear())}`;
+}
+function formatGregorianNumeric(ms){
+  const d = new Date(ms);
+  return `${d.getUTCDate()}.${d.getUTCMonth() + 1}.${gregorianYearLabel(d.getUTCFullYear())}`;
+}
+function weekdayNameAt(ms){ return WEEKDAY_NAMES[new Date(ms).getUTCDay()]; }
+
+const _HEB_LETTER_VALUES = {'א':1,'ב':2,'ג':3,'ד':4,'ה':5,'ו':6,'ז':7,'ח':8,'ט':9,'י':10,'כ':20,'ך':20,'ל':30,'מ':40,'ם':40,'נ':50,'ן':50,'ס':60,'ע':70,'פ':80,'ף':80,'צ':90,'ץ':90,'ק':100,'ר':200,'ש':300,'ת':400};
+function gematriaValue(str){
+  let sum = 0;
+  for(const ch of str) sum += _HEB_LETTER_VALUES[ch] || 0;
+  return sum;
+}
+// Accepts plain digits ("5786", "786"), or Hebrew letters ("תשפ״ו", "תשפו", "ה׳תשפ״ו").
+// Letters without an explicit thousands marker mean the current millennium (5000s).
+function parseHebrewYearInput(str){
+  const s = String(str || '').trim();
+  if(!s) return NaN;
+  const plain = s.replace(/[,\s]/g, '');
+  if(/^\d+$/.test(plain)) return parseInt(plain, 10);
+  const withMarker = s.match(/^([א-ת])\s*['׳’`]\s*([א-ת'"׳״’`\s]+)$/);
+  if(withMarker){
+    const restVal = gematriaValue(withMarker[2].replace(/[^א-ת]/g, ''));
+    return gematriaValue(withMarker[1]) * 1000 + restVal;
+  }
+  const letters = s.replace(/[^א-ת]/g, '');
+  if(!letters) return NaN;
+  const v = gematriaValue(letters);
+  return v < 1000 ? v + 5000 : v;
+}
+
+/* =====================================================================
+   Small page-level helpers shared by every page of the site
+   ===================================================================== */
+// Header "today" strip: an immediate midnight-based value, then the sunset-aware one.
+function initHeaderDate(){
+  const now = new Date();
+  const wd = document.getElementById('today-weekday');
+  const hb = document.getElementById('today-hebrew');
+  if(wd) wd.textContent = "יום " + WEEKDAY_NAMES[now.getDay()];
+  const gregLabel = now.toLocaleDateString('he-IL');
+  if(hb){
+    try{ hb.textContent = `${getHebrewDisplay(now)} (${gregLabel})`; }
+    catch(e){ hb.textContent = `לא זמין בדפדפן זה (${gregLabel})`; }
+  }
+  updateHebrewDateDisplay();
+}
+// Floating WhatsApp button: shares this page's address with the given text.
+function initWhatsappFloat(shareText){
+  const btn = document.getElementById('whatsapp-float');
+  if(!btn) return;
+  const url = location.href.split('#')[0];
+  btn.href = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+}
+// Site-wide Shabbat / Yom Tov block: load the schedule now, re-check often, refresh every 6 hours.
+function startSiteGating(){
+  initGating();
+  setInterval(checkGating, 30000);
+  setInterval(initGating, 6*60*60*1000);
+}

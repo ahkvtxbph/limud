@@ -23,504 +23,16 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "תהילים ומשניות",
+  "name": "מזמור לתודה | לימוד יומי",
+  "url": "https://limood.org.il",
   "inLanguage": "he",
-  "description": "אתר לקריאת תהילים ולימוד משניות — תהילים לפי ימי השבוע, התאריך העברי, פרק רנדומלי או בחירה; משניות יומיות, רנדומליות או לפי סדר, מסכת, פרק ומשנה, כולל פירוש ברטנורא."
+  "description": "לוח לימוד יומי אחד: תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנ\"ך יומי, 929, רמב\"ם יומי וזמני היום — הכול במקום אחד."
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --stone:#EDE6D6;
-    --stone-dark:#DED2B8;
-    --ink:#1B2A4A;
-    --ink-light:#2E4266;
-    --gold:#AD8A4E;
-    --gold-text:#7C5D2A;
-    --gold-light:#D9BF89;
-    --wine:#7A2E2E;
-    --charcoal:#2B241C;
-    --paper:#F7F3E9;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  :focus-visible{
-    outline:3px solid var(--gold-text);
-    outline-offset:2px;
-    border-radius:4px;
-  }
-  .skip-link{
-    position:absolute;
-    right:1rem; top:-3rem;
-    background:var(--ink);
-    color:var(--paper);
-    padding:.7rem 1.2rem;
-    border-radius:8px;
-    z-index:100;
-    text-decoration:none;
-    transition:top .15s;
-  }
-  .skip-link:focus{top:1rem;}
-  .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
-  body{
-    background:var(--stone);
-    color:var(--charcoal);
-    font-family:'Assistant', sans-serif;
-    min-height:100vh;
-    background-image:
-      radial-gradient(circle at 15% 10%, rgba(173,138,78,0.10), transparent 40%),
-      radial-gradient(circle at 85% 90%, rgba(27,42,74,0.08), transparent 45%);
-  }
-  a{color:inherit;}
-
-  /* ===== Header ===== */
-  header.site{
-    position:relative;
-    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-light) 100%);
-    color:var(--paper);
-    padding:3.5rem 1.5rem 5rem;
-    text-align:center;
-    overflow:hidden;
-  }
-  header.site::before{
-    content:"";
-    position:absolute; inset:0;
-    background-image: repeating-linear-gradient(90deg, rgba(217,191,137,0.06) 0 1px, transparent 1px 48px);
-    pointer-events:none;
-  }
-  header.site::after{
-    content:"";
-    position:absolute; left:0; right:0; bottom:0; height:36px;
-    background:var(--stone);
-    clip-path: polygon(0 100%,100% 100%,100% 0,97% 40%,94% 8%,91% 42%,88% 6%,85% 40%,82% 10%,79% 38%,76% 8%,73% 40%,70% 6%,67% 42%,64% 8%,61% 40%,58% 6%,55% 38%,52% 8%,49% 42%,46% 6%,43% 40%,40% 8%,37% 38%,34% 6%,31% 42%,28% 8%,25% 40%,22% 6%,19% 38%,16% 8%,13% 42%,10% 6%,7% 40%,4% 8%,0 40%);
-  }
-  .site-eyebrow{
-    font-family:'Assistant', sans-serif;
-    letter-spacing:.35em;
-    font-size:.72rem;
-    color:var(--gold-light);
-    text-transform:uppercase;
-  }
-  h1.site-title{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:900;
-    font-size:clamp(2.6rem, 7vw, 4.6rem);
-    margin:.6rem 0 .3rem;
-    letter-spacing:.02em;
-  }
-  .site-sub{
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.05rem;
-    color:#D9CFB8;
-    max-width:36em;
-    margin:0 auto;
-    line-height:1.9;
-  }
-  .today-strip{
-    margin-top:1.8rem;
-    display:inline-flex;
-    gap:1.2rem;
-    flex-wrap:wrap;
-    justify-content:center;
-    font-family:'Assistant', sans-serif;
-    font-size:.92rem;
-    color:var(--gold-light);
-    border-top:1px solid rgba(217,191,137,.3);
-    border-bottom:1px solid rgba(217,191,137,.3);
-    padding:.6rem 1.2rem;
-  }
-  .today-strip b{color:var(--paper); font-weight:600;}
-  .date-note{
-    margin-top:.55rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.72rem;
-    color:#B9AE93;
-    max-width:30em;
-    margin-left:auto;
-    margin-right:auto;
-    line-height:1.6;
-  }
-  .upcoming-shabbat-note{
-    margin-top:.7rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.85rem;
-    font-weight:600;
-    color:var(--gold-light);
-    max-width:30em;
-    margin-left:auto;
-    margin-right:auto;
-    line-height:1.6;
-  }
-  .learning-date-label{
-    font-family:'Assistant', sans-serif;
-    font-size:1rem;
-    font-weight:700;
-    color:var(--ink);
-    background:var(--stone);
-    border-inline-start:4px solid var(--gold);
-    border-radius:7px;
-    padding:.6rem .9rem;
-    margin-bottom:1rem;
-    line-height:1.5;
-  }
-  .learning-date-label .sub{
-    display:block;
-    font-family:'Assistant', sans-serif;
-    font-weight:400;
-    font-size:.75rem;
-    color:#5A5142;
-    margin-top:.25rem;
-  }
-
-  .whatsapp-float{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    z-index:500;
-    width:56px;
-    height:56px;
-    border-radius:50%;
-    background:#25D366;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 8px 20px -4px rgba(0,0,0,.4);
-    text-decoration:none;
-    transition:transform .15s, box-shadow .15s;
-  }
-  .whatsapp-float:hover{ transform:scale(1.06); box-shadow:0 10px 24px -4px rgba(0,0,0,.5); }
-  .whatsapp-float svg{ width:28px; height:28px; fill:#fff; }
-  @media (prefers-reduced-motion: reduce){
-    .whatsapp-float{ transition:none; }
-  }
-
-  .shabbat-banner{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:var(--ink);
-    color:var(--paper);
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:2rem 1.6rem;
-    overflow-y:auto;
-  }
-  .shabbat-banner.visible{ display:flex; }
-  .shabbat-banner .shabbat-inner{ max-width:32em; }
-  .shabbat-banner h2{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.7rem;
-    margin:0 0 .8rem;
-    color:var(--paper);
-  }
-  .shabbat-banner p{
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.02rem;
-    color:var(--gold-light);
-    margin:0;
-    line-height:1.9;
-  }
-
-  /* ===== Main / nav ===== */
-  main{max-width:880px; margin:-2.4rem auto 0; padding:0 1.2rem 4rem; position:relative; z-index:2;}
-
-  nav.top-modes{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:.5rem;
-    background:var(--ink);
-    border-radius:16px;
-    padding:.5rem;
-    box-shadow:0 20px 45px -18px rgba(27,42,74,.5);
-  }
-  nav.top-modes button{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:700;
-    font-size:.85rem;
-    background:transparent;
-    border:none;
-    border-radius:10px;
-    padding:.75rem .3rem;
-    color:var(--gold-light);
-    cursor:pointer;
-    transition:background .18s, color .18s;
-  }
-  nav.top-modes button:hover{background:rgba(217,191,137,.12);}
-  nav.top-modes button.active{background:var(--paper); color:var(--ink);}
-  @media (max-width:900px){
-    nav.top-modes{grid-template-columns:repeat(4,1fr);}
-  }
-  @media (max-width:560px){
-    nav.top-modes{grid-template-columns:repeat(2,1fr);}
-  }
-
-  nav.modes{
-    display:grid;
-    gap:.6rem;
-    background:var(--paper);
-    border:1px solid var(--stone-dark);
-    border-radius:14px;
-    padding:.6rem;
-    margin-top:1rem;
-    box-shadow:0 18px 40px -20px rgba(27,42,74,.35);
-  }
-  #tehillim-section nav.modes{grid-template-columns:repeat(4,1fr);}
-  #mishnayot-section nav.modes{grid-template-columns:repeat(3,1fr);}
-  #tanakh-section nav.modes{grid-template-columns:repeat(2,1fr);}
-  nav.modes button{
-    font-family:'Assistant', sans-serif;
-    font-weight:600;
-    font-size:.9rem;
-    background:transparent;
-    border:none;
-    border-radius:9px;
-    padding:.85rem .4rem;
-    color:var(--ink-light);
-    cursor:pointer;
-    transition:background .18s, color .18s;
-    line-height:1.35;
-  }
-  nav.modes button .num{
-    display:block;
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.05rem;
-    color:var(--gold-text);
-    margin-bottom:.15rem;
-  }
-  nav.modes button:hover{background:var(--stone);}
-  nav.modes button.active{background:var(--ink); color:var(--paper);}
-  nav.modes button.active .num{color:var(--gold-light);}
-
-  @media (max-width:640px){
-    #tehillim-section nav.modes{grid-template-columns:repeat(2,1fr);}
-  }
-  @media (max-width:520px){
-    #mishnayot-section nav.modes{grid-template-columns:1fr;}
-  }
-
-  section.panel{
-    background:var(--paper);
-    border:1px solid var(--stone-dark);
-    border-radius:14px;
-    margin-top:1.2rem;
-    padding:1.6rem 1.4rem;
-    box-shadow:0 18px 40px -24px rgba(27,42,74,.3);
-  }
-  .panel h2.panel-title{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.5rem;
-    color:var(--ink);
-    margin-bottom:.3rem;
-  }
-  .panel p.panel-desc{
-    color:#5A5142;
-    font-size:.92rem;
-    margin-bottom:1.1rem;
-  }
-  .controls-row{display:flex; gap:.7rem; flex-wrap:wrap; align-items:center;}
-  select, .btn, input[type="text"], input[type="date"]{
-    font-family:'Assistant', sans-serif;
-    font-size:.95rem;
-    padding:.65rem 1rem;
-    border-radius:9px;
-    border:1px solid #8A7757;
-    background:#fff;
-    color:var(--charcoal);
-  }
-  input[type="text"]{ flex:1; min-width:180px; }
-  select:disabled{opacity:.5;}
-  .btn{
-    background:var(--ink);
-    color:var(--paper);
-    border:none;
-    cursor:pointer;
-    font-weight:600;
-    transition:background .18s, transform .1s;
-  }
-  .btn:hover{background:var(--ink-light);}
-  .btn:active{transform:scale(.98);}
-  .btn:disabled{opacity:.5; cursor:default;}
-  .btn.secondary{
-    background:transparent;
-    color:var(--ink);
-    border:1px solid var(--ink);
-  }
-  .btn.secondary.active{
-    background:var(--ink);
-    color:var(--paper);
-  }
-  .btn.secondary:hover{background:var(--ink); color:var(--paper);}
-
-  .chip-list{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem;}
-  .chip{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:.95rem;
-    background:#fff;
-    border:1px solid var(--stone-dark);
-    border-radius:999px;
-    padding:.4rem .95rem;
-    cursor:pointer;
-    color:var(--ink);
-    transition:background .15s, color .15s;
-  }
-  .chip:hover{background:var(--stone);}
-
-  .zman-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    border-bottom:1px dashed var(--stone-dark);
-    padding:.6rem 0;
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.1rem;
-  }
-  .zman-row:last-child{border-bottom:none;}
-  .zman-row .zman-time{
-    font-family:'Assistant', sans-serif;
-    font-weight:700;
-    color:var(--ink);
-    font-size:1.1rem;
-  }
-
-  #reader, #msh-reader{margin-top:1.4rem;}
-  .chapter-card{
-    background:#fff;
-    border:1px solid var(--stone-dark);
-    border-radius:14px;
-    padding:1.6rem 1.5rem 1.8rem;
-    margin-bottom:1.2rem;
-    position:relative;
-  }
-  .chapter-head{
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:.8rem;
-    border-bottom:2px solid var(--gold-light);
-    padding-bottom:.6rem;
-    margin-bottom:1rem;
-  }
-  .chapter-head h2{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.4rem;
-    color:var(--ink);
-  }
-  .chapter-head .gem{
-    font-family:'Frank Ruhl Libre', serif;
-    color:var(--gold-text);
-    font-size:1rem;
-    margin-inline-start:auto;
-  }
-  .verses{
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.28rem;
-    line-height:2.5;
-    color:var(--charcoal);
-    margin-bottom:.4rem;
-  }
-  .verses p{ margin-bottom:1rem; }
-  .verses .v{margin-left:.4em;}
-  .verses .v-num{
-    color:var(--gold-text);
-    font-size:.7em;
-    vertical-align:super;
-    margin-left:.15em;
-    font-family:'Assistant', sans-serif;
-  }
-  .commentary{
-    margin-top:.9rem;
-    padding-top:.9rem;
-    border-top:1px dashed var(--stone-dark);
-  }
-  .commentary .c-label{
-    font-family:'Assistant', sans-serif;
-    font-size:.72rem;
-    letter-spacing:.06em;
-    color:var(--gold-text);
-    font-weight:700;
-    text-transform:uppercase;
-    margin-bottom:.4rem;
-  }
-  .commentary .c-text{
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.02rem;
-    line-height:1.95;
-    color:#4A4536;
-    background:var(--paper);
-    border-radius:10px;
-    padding:.8rem 1rem;
-  }
-  .commentary .c-unavailable{
-    font-family:'Assistant', sans-serif;
-    font-size:.85rem;
-    color:#a89f8c;
-  }
-  .chapter-loading, .chapter-error{
-    font-family:'Assistant', sans-serif;
-    color:#8a7f6a;
-    font-size:.95rem;
-    padding:1.5rem 0;
-    text-align:center;
-  }
-  .chapter-error a{color:var(--wine); text-decoration:underline;}
-  .zmanim-short-note{
-    font-family:'Assistant', sans-serif;
-    font-size:.82rem;
-    color:var(--gold-text);
-    background:var(--paper);
-    border-radius:8px;
-    padding:.5rem .8rem;
-    margin-bottom:.9rem;
-  }
-  .zmanim-short-note a{color:var(--gold-text); text-decoration:underline; font-weight:600;}
-
-  .share-row{display:flex; align-items:center; gap:.45rem; flex-shrink:0;}
-  .share-btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:32px; height:32px; border-radius:50%;
-    border:1px solid var(--stone-dark); background:#fff; cursor:pointer;
-    color:var(--ink); transition:background .15s, transform .1s, border-color .15s, color .15s;
-    text-decoration:none;
-  }
-  .share-btn:hover{background:var(--stone); border-color:var(--gold);}
-  .share-btn:active{transform:scale(.94);}
-  .share-btn svg{width:15px; height:15px; fill:currentColor;}
-  .share-btn.whatsapp:hover{background:#25D366; border-color:#25D366; color:#fff;}
-  .share-btn.copy.copied{background:var(--gold); border-color:var(--gold); color:#fff;}
-
-  .progress-key{
-    margin-top:1.6rem;
-    background:var(--paper);
-    border:1px solid var(--stone-dark);
-    border-radius:14px;
-    padding:1.2rem 1.4rem;
-  }
-  .progress-key h3{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.05rem;
-    color:var(--ink);
-    margin-bottom:.7rem;
-  }
-  .dots{display:grid; grid-template-columns:repeat(25,1fr); gap:4px;}
-  .dots span{aspect-ratio:1; border-radius:2px; background:var(--stone-dark);}
-  .dots span.read{background:var(--gold);}
-  @media (max-width:640px){ .dots{grid-template-columns:repeat(15,1fr);} }
-
-  footer.site{
-    text-align:center; padding:2.5rem 1rem 3rem; color:#8a7f6a;
-    font-size:.85rem; font-family:'Assistant', sans-serif;
-  }
-  footer.site a{text-decoration:underline;}
-
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important;}
-  }
-</style>
+<link rel="stylesheet" href="shared.css?v=20260928">
 </head>
 <body>
 <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
@@ -536,6 +48,7 @@
   <p class="date-note" id="hebrew-date-note"></p>
   <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
   <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
+  <p class="header-link"><a href="date-converter.html">המרת תאריכים עברי ↔ לועזי</a></p>
 </header>
 
 <a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
@@ -847,32 +360,16 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js"></script>
+<script src="shared.js?v=20260928"></script>
 <script>
 
 // Replaces any raw 4-digit Hebrew-year number (e.g. "5787", from Hebcal/Sefaria labels)
 // with its Hebrew-letter form (e.g. "תשפ״ז"), dropping the thousands digit per convention.
 
-/* ---------- Hebrew date: sunset-aware, with midnight fallback ---------- */
-(function initHeader(){
-  const now = new Date();
-  document.getElementById('today-weekday').textContent = "יום " + WEEKDAY_NAMES[now.getDay()];
-  const gregLabel = now.toLocaleDateString('he-IL');
-  try{
-    document.getElementById('today-hebrew').textContent = `${getHebrewDisplay(now)} (${gregLabel})`;
-  }catch(e){
-    document.getElementById('today-hebrew').textContent = `לא זמין בדפדפן זה (${gregLabel})`;
-  }
-  updateHebrewDateDisplay();
-})();
+/* ---------- Hebrew date: sunset-aware, with midnight fallback (shared.js) ---------- */
+initHeaderDate();
 
-(function initWhatsappFloat(){
-  const btn = document.getElementById('whatsapp-float');
-  if(!btn) return;
-  const url = location.href.split('#')[0];
-  const text = 'לימוד יומי — תהילים, הלכה, משנה, תניא, תנ"ך, רמב"ם וזמני היום, הכול במקום אחד:';
-  btn.href = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
-})();
+initWhatsappFloat('לימוד יומי — תהילים, הלכה, משנה, דף יומי, ירושלמי, תניא, תנ"ך, 929, רמב"ם וזמני היום, הכול במקום אחד:');
 
 let halachaSelectedDate = null;
 let tanyaSelectedDate = null;
@@ -1987,12 +1484,15 @@ tryAutoLocateZmanim();
    does not affect search-engine indexing (crawlers get the full page).
    Location cascade: precise GPS -> silent IP lookup -> Israel default.
    ===================================================================== */
-// Rough bounding-box check for "is this location in Israel" — used to decide whether
-// Hebcal should use the 1-day (Israel) or 2-day (Diaspora) Yom Tov schedule.
+startSiteGating();   // loads the Shabbat/Yom-Tov schedule, re-checks every 30s, refreshes every 6h (shared.js)
 
-initGating();
-setInterval(checkGating, 30000);        // re-check against cached schedule every 30s for near-immediate disconnect
-setInterval(initGating, 6*60*60*1000);  // refresh the schedule itself every 6 hours
+/* ---------- Deep links: index.html#tanakh (etc.) opens that section, e.g. from other pages of the site ---------- */
+(function openSectionFromHash(){
+  const target = (location.hash || '').replace(/^#/, '');
+  if(!target || ALL_SECTIONS.indexOf(target) === -1) return;
+  const btn = document.querySelector('nav.top-modes button[data-section="' + target + '"]');
+  if(btn) btn.click();
+})();
 </script>
 <script src="https://cdn.enable.co.il/licenses/enable-L56232r6ys9tumma-0826-83667/init.js"></script>
 </body>
