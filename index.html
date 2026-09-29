@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=2026092802">
+<link rel="stylesheet" href="shared.css?v=2026092803">
 </head>
 <body>
 <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
@@ -78,6 +78,7 @@
   </nav>
 
   <section id="tehillim-section" style="display:none;">
+    <h2 class="visually-hidden">תהילים</h2>
     <nav class="modes" aria-label="אפשרויות חלוקת קריאה">
       <button data-mode="weekday" class="active"><span class="num">א׳</span>לפי יום בשבוע</button>
       <button data-mode="hebdate"><span class="num">ב׳</span>לפי תאריך עברי</button>
@@ -136,6 +137,7 @@
   </section>
 
   <section id="halacha-section">
+    <h2 class="visually-hidden">הלכה יומית</h2>
     <section class="panel">
       <h2 class="panel-title">הלכה יומית</h2>
       <p class="panel-desc">ההלכה הנלמדת היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "הלכה יומית" — שולחן ערוך אורח חיים / קיצור שולחן ערוך).</p>
@@ -153,6 +155,7 @@
   </section>
 
   <section id="mishnayot-section" style="display:none;">
+    <h2 class="visually-hidden">משנה יומית</h2>
     <nav class="modes" aria-label="אפשרויות לימוד משנה">
       <button data-mode="daily" class="active"><span class="num">א׳</span>משנה יומית</button>
       <button data-mode="random"><span class="num">ב׳</span>משנה רנדומלית</button>
@@ -201,6 +204,7 @@
   </section>
 
   <section id="dafyomi-section" style="display:none;">
+    <h2 class="visually-hidden">דף יומי</h2>
     <section class="panel">
       <h2 class="panel-title">דף יומי</h2>
       <p class="panel-desc">הדף הנלמד היום לפי לוח הדף היומי (מחזור הש"ס הבבלי) של ספריא, כולל פירוש רש"י ותוספות.</p>
@@ -218,6 +222,7 @@
   </section>
 
   <section id="yerushalmi-section" style="display:none;">
+    <h2 class="visually-hidden">ירושלמי יומי</h2>
     <section class="panel">
       <h2 class="panel-title">ירושלמי יומי</h2>
       <p class="panel-desc">קטע הנלמד היום לפי לוח לימוד התלמוד הירושלמי היומי של ספריא, כולל פירוש פני משה וקרבן העדה (קרבן העדה לא מכסה את הירושלמי במלואו — ייתכן שיחסר בקטעים מסוימים).</p>
@@ -235,6 +240,7 @@
   </section>
 
   <section id="tanya-section" style="display:none;">
+    <h2 class="visually-hidden">תניא יומי</h2>
     <section class="panel">
       <h2 class="panel-title">תניא יומי</h2>
       <p class="panel-desc">קטע התניא הנלמד היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "תניא יומי").</p>
@@ -252,6 +258,7 @@
   </section>
 
   <section id="tanakh-section" style="display:none;">
+    <h2 class="visually-hidden">תנ"ך יומי</h2>
     <nav class="modes" aria-label="אפשרויות תנ״ך">
       <button data-tanakh-mode="daily" class="active"><span class="num">א׳</span>תנ"ך יומי</button>
       <button data-tanakh-mode="manual"><span class="num">ב׳</span>בחירה ידנית</button>
@@ -289,6 +296,7 @@
   </section>
 
   <section id="proj929-section" style="display:none;">
+    <h2 class="visually-hidden">929</h2>
     <section class="panel">
       <h2 class="panel-title">929</h2>
       <p class="panel-desc">פרק התנ"ך היומי לפי תוכנית "929" (כל התנ"ך, פרק ביום, 929 ימים), כולל פירוש רש"י.</p>
@@ -306,6 +314,7 @@
   </section>
 
   <section id="rambam-section" style="display:none;">
+    <h2 class="visually-hidden">רמב"ם יומי</h2>
     <section class="panel">
       <h2 class="panel-title">רמב"ם יומי</h2>
       <p class="panel-desc">פרקי הרמב"ם (משנה תורה) הנלמדים היום לפי לוח הלימוד העולמי היומי של ספריא. ניתן לבחור בין מחזור של שלושה פרקים ליום (ברירת המחדל) לבין מחזור של פרק אחד ליום.</p>
@@ -327,6 +336,7 @@
   </section>
 
   <section id="zmanim-section" style="display:none;">
+    <h2 class="visually-hidden">זמני היום</h2>
     <section class="panel">
       <h2 class="panel-title">זמני היום</h2>
       <p class="panel-desc" id="zmanim-location-desc">מזהה מיקום…</p>
@@ -335,7 +345,7 @@
         <input type="text" id="zmanim-search-input" placeholder="חיפוש עיר…" aria-label="חיפוש עיר לזמני היום">
         <button class="btn" id="zmanim-search-btn">חפש</button>
       </div>
-      <div class="chip-list" id="zmanim-search-results" role="listbox" aria-label="תוצאות חיפוש מיקום"></div>
+      <div class="chip-list" id="zmanim-search-results" role="group" aria-label="תוצאות חיפוש מיקום"></div>
       <div class="controls-row" style="margin-top:1rem;">
         <button class="btn secondary" id="zmanim-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
         <input type="date" id="zmanim-date-input" aria-label="בחר/י תאריך לזמני היום">
@@ -362,7 +372,7 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092805"></script>
+<script src="shared.js?v=2026092806"></script>
 <script>
 
 // Replaces any raw 4-digit Hebrew-year number (e.g. "5787", from Hebcal/Sefaria labels)
