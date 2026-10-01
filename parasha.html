@@ -75,9 +75,9 @@
     <a href="tanya.html">תניא יומי</a>
     <a href="tanakh.html">תנ"ך יומי</a>
     <a href="929.html">929</a>
+    <a href="parasha.html" aria-current="page">שמו"ת</a>
     <a href="rambam.html">רמב"ם יומי</a>
     <a href="zmanim.html">זמני היום</a>
-    <a href="parasha.html" aria-current="page">שמו"ת</a>
     <a href="date-converter.html">המרת תאריכים</a>
     <a href="bar-mitzvah.html">פרשת בר מצווה</a>
   </nav>
@@ -170,24 +170,32 @@
     const parasha = PARSHIOT[idx];
     const myRequest = ++loadRequestId;
     showLoading('טוען את פרשת ' + parasha.he + '…');
+    let hebrewChapters;
     try{
-      const [hebrewChapters, targumChapters] = await Promise.all([
-        fetchWholeTanakhBook(parasha.book),
-        fetchWholeTargumBook(parasha.book)
-      ]);
-      if(myRequest !== loadRequestId) return;   // a newer request started meanwhile — drop this one
-      reader.innerHTML = '';
-      const card = buildParashaCard(parasha, hebrewChapters, targumChapters);
-      reader.appendChild(card);
-      currentIdx = idx;
-      updateNavButtons();
-      // keep the manual pickers in sync, so switching to manual mode afterwards shows the right place
-      bookSelect.value = parasha.book;
-      populateParashaSelect(parasha.book, idx);
+      // the Hebrew text itself is required — without it there's nothing to show at all
+      hebrewChapters = await fetchWholeTanakhBook(parasha.book);
     }catch(e){
       if(myRequest !== loadRequestId) return;
-      showError('לא ניתן היה לטעון את הפרשה כרגע. אפשר לראות אותה ישירות ב<a href="https://www.sefaria.org/' + encodeURIComponent(parasha.book) + '.' + parasha.from[0] + '?lang=he" target="_blank" rel="noopener">ספריא</a>.');
+      showError('לא ניתן היה לטעון את טקסט הפרשה כרגע. אפשר לראות אותה ישירות ב<a href="https://www.sefaria.org/' + encodeURIComponent(parasha.book) + '.' + parasha.from[0] + '?lang=he" target="_blank" rel="noopener">ספריא</a>.');
+      return;
     }
+    if(myRequest !== loadRequestId) return;
+    // the Targum is fetched SEPARATELY and is allowed to fail on its own — if Onkelos isn't
+    // available for some reason, the Hebrew text still displays, with "not found" per verse,
+    // instead of one failed fetch silently taking down the whole card (as Promise.all would).
+    let targumChapters = [];
+    try{
+      targumChapters = await fetchWholeTargumBook(parasha.book);
+    }catch(e){ /* buildParashaCard already shows "לא נמצא" per verse when this is empty */ }
+    if(myRequest !== loadRequestId) return;
+    reader.innerHTML = '';
+    const card = buildParashaCard(parasha, hebrewChapters, targumChapters);
+    reader.appendChild(card);
+    currentIdx = idx;
+    updateNavButtons();
+    // keep the manual pickers in sync, so switching to manual mode afterwards shows the right place
+    bookSelect.value = parasha.book;
+    populateParashaSelect(parasha.book, idx);
   }
   function updateNavButtons(){
     $('parasha-prev-btn').disabled = currentIdx === null || currentIdx <= 0;
@@ -195,11 +203,14 @@
   }
 
   /* ---------- "current week" mode: find this week's parasha via Sefaria, with a safe fallback ---------- */
+  // Strips Hebrew vowel points / cantillation marks (U+0591–U+05C7), so matching still works
+  // whether Sefaria's calendar text comes back plain or vocalized.
+  function stripNikud(s){ return String(s || '').replace(/[\u0591-\u05C7]/g, ''); }
   function findParashaIndexByHebrewName(sefariaHe){
     if(!sefariaHe) return -1;
     // Sefaria may report a combined week ("נצבים-וילך" / "נצבים־וילך") — match against the FIRST
     // of the two names, since that's the one whose text starts the combined reading.
-    const firstName = sefariaHe.split(/[-־]/)[0].trim();
+    const firstName = stripNikud(sefariaHe).split(/[-־]/)[0].trim();
     return PARSHIOT.findIndex(p => p.he === firstName || firstName.indexOf(p.he) === 0);
   }
   async function loadCurrentParasha(){
