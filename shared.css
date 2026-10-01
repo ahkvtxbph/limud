@@ -160,9 +160,15 @@
   }
 
   .whatsapp-float{
-    position:fixed;
-    right:20px;
-    bottom:20px;
+    /* !important on positioning only: defends against third-party accessibility-toolbar
+       features (e.g. "highlight links") that apply broad styles to every <a> tag and can
+       otherwise reset position:fixed, making this jump out of its fixed spot to the top
+       of the page (reported: happens with the enable.co.il "link highlighting" option). */
+    position:fixed !important;
+    right:20px !important;
+    bottom:20px !important;
+    top:auto !important;
+    left:auto !important;
     z-index:500;
     width:56px;
     height:56px;
