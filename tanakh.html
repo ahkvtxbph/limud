@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תנ"ך יומי | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="פרק התנ״ך הנלמד היום, עם פירוש רש״י — או בחירה חופשית מכל 39 ספרי התנ״ך.">
+<meta name="keywords" content="תנך יומי, תנ"ך יומי, לימוד תנך, פרק תנך יומי, רש"י על התנך">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://limood.org.il/tanakh.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="תנ"ך יומי | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="פרק התנ״ך הנלמד היום, עם פירוש רש״י — או בחירה חופשית מכל 39 ספרי התנ״ך.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "תנ\"ך יומי | מזמור לתודה - לימוד יומי",
+  "inLanguage": "he",
+  "description": "פרק התנ״ך הנלמד היום, עם פירוש רש״י — או בחירה חופשית מכל 39 ספרי התנ״ך.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "מזמור לתודה | לימוד יומי",
+    "url": "https://limood.org.il"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2026092805">
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+<header class="site">
+  <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
+  <h1 class="site-title">תנ"ך יומי</h1>
+  <p class="site-sub">פרק התנ״ך היומי עם פירוש רש״י — או בחירה חופשית מכל התנ״ך.</p>
+  <div class="today-strip">
+    <span>יום: <b id="today-weekday">—</b></span>
+    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
+  </div>
+  <p class="date-note" id="hebrew-date-note"></p>
+  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
+  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
+</header>
+
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.3-8.4 8.3z"/></svg>
+</a>
+
+<div class="shabbat-banner" id="shabbat-banner" role="status">
+  <div class="shabbat-inner">
+    <h2 id="shabbat-banner-title">שבת שלום!</h2>
+    <p id="shabbat-banner-text"></p>
+  </div>
+</div>
+
+<main id="main">
+  <nav class="top-modes" aria-label="בחירת תוכן">
+    <a href="index.html">הלכה יומית</a>
+    <a href="tehillim.html">תהילים</a>
+    <a href="mishnayot.html">משנה יומית</a>
+    <a href="dafyomi.html">דף יומי</a>
+    <a href="yerushalmi.html">ירושלמי יומי</a>
+    <a href="tanya.html">תניא יומי</a>
+    <a href="tanakh.html" aria-current="page">תנ"ך יומי</a>
+    <a href="929.html">929</a>
+    <a href="rambam.html">רמב"ם יומי</a>
+    <a href="zmanim.html">זמני היום</a>
+    <a href="date-converter.html">המרת תאריכים</a>
+    <a href="bar-mitzvah.html">פרשת בר מצווה</a>
+  </nav>
+
+    <nav class="modes" aria-label="אפשרויות תנ״ך">
+      <button data-tanakh-mode="daily" class="active"><span class="num">א׳</span>תנ"ך יומי</button>
+      <button data-tanakh-mode="manual"><span class="num">ב׳</span>בחירה ידנית</button>
+    </nav>
+
+    <section class="panel" id="tanakh-panel-daily">
+      <h2 class="panel-title">תנ"ך יומי</h2>
+      <p class="panel-desc">פרקי התנ"ך הנלמדים היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "תנ"ך יומי"), כולל פירוש רש"י.</p>
+      <div class="controls-row">
+        <button class="btn" id="tanakh-load">רענן תנ"ך יומי</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="tanakh-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="tanakh-date-input" aria-label="בחר/י תאריך לתנ״ך יומי">
+        <button class="btn secondary" id="tanakh-today-btn">היום</button>
+        <button class="btn secondary" id="tanakh-next-btn" aria-label="יום הבא">יום הבא ›</button>
+      </div>
+    </section>
+
+    <section class="panel" id="tanakh-panel-manual" style="display:none;">
+      <h2 class="panel-title">תנ"ך לבחירה</h2>
+      <p class="panel-desc">בחר/י ספר ופרק — כולל פירוש רש"י.</p>
+      <div class="controls-row">
+        <select id="tanakh-book-select" aria-label="בחר/י ספר"></select>
+        <select id="tanakh-chapter-select" aria-label="בחר/י פרק" disabled></select>
+        <button class="btn" id="tanakh-manual-load" disabled>הצג פרק</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="tanakh-chapter-prev-btn" aria-label="פרק קודם" disabled>‹ פרק קודם</button>
+        <button class="btn secondary" id="tanakh-chapter-next-btn" aria-label="פרק הבא" disabled>פרק הבא ›</button>
+      </div>
+    </section>
+
+    <div id="tanakh-reader" aria-live="polite"></div>
+</main>
+
+<footer class="site">
+  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script src="shared.js?v=2026092808"></script>
+<script>
+initHeaderDate();
+initWhatsappFloat('תנ"ך יומי עם פירוש רש״י — או בחירה חופשית מכל התנ"ך:');
+
+let tanakhSelectedDate = null;
+
+let currentTanakhMode = 'daily';
+
+async function renderTanakhDaily(){ return renderTanakhStyleDailyCalendar('Tanakh Yomi', 'tanakh-reader', 'תנ"ך יומי', tanakhSelectedDate); }
+
+document.getElementById('tanakh-load').addEventListener('click', renderTanakhDaily);
+
+wireDatePicker('tanakh-date-input', 'tanakh-today-btn', 'tanakh-prev-btn', 'tanakh-next-btn', ()=>tanakhSelectedDate, d=>{ tanakhSelectedDate = d; }, renderTanakhDaily);
+
+/* ---------- Tanakh sub-navigation (daily / manual) ---------- */
+
+document.querySelectorAll('#tanakh-section nav.modes button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#tanakh-section nav.modes button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTanakhMode = btn.dataset.tanakhMode;
+    ['daily','manual'].forEach(m=>{
+      document.getElementById('tanakh-panel-'+m).style.display = (m===currentTanakhMode? '' : 'none');
+    });
+    autoLoadForModeTanakh(currentTanakhMode);
+  });
+});
+
+function autoLoadForModeTanakh(mode){
+  if(mode === 'daily') renderTanakhDaily();
+  else if(mode === 'manual'){
+    if(!tanakhChapterSelect.disabled && tanakhChapterSelect.value !== '') loadTanakhManualSelection();
+  }
+}
+
+const tanakhBookSelect = document.getElementById('tanakh-book-select');
+
+const tanakhChapterSelect = document.getElementById('tanakh-chapter-select');
+
+const tanakhManualLoadBtn = document.getElementById('tanakh-manual-load');
+
+(function buildTanakhBookSelect(){
+  TANAKH_BOOKS.forEach((b, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${b.he} (${b.cat})`;
+    tanakhBookSelect.appendChild(opt);
+  });
+})();
+
+async function buildTanakhChapterSelect(){
+  tanakhChapterSelect.innerHTML = '';
+  tanakhChapterSelect.disabled = true;
+  tanakhManualLoadBtn.disabled = true;
+  updateTanakhChapterNav();
+  const book = TANAKH_BOOKS[parseInt(tanakhBookSelect.value, 10)];
+  const loadingOpt = document.createElement('option');
+  loadingOpt.textContent = 'טוען פרקים…';
+  tanakhChapterSelect.appendChild(loadingOpt);
+  try{
+    const chapters = await fetchWholeTanakhBook(book.en);
+    tanakhChapterSelect.innerHTML = '';
+    chapters.forEach((ch, i)=>{
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `פרק ${hebNum(i+1)}`;
+      tanakhChapterSelect.appendChild(opt);
+    });
+    tanakhChapterSelect.disabled = false;
+    tanakhManualLoadBtn.disabled = false;
+    updateTanakhChapterNav();
+  }catch(e){
+    tanakhChapterSelect.innerHTML = '';
+    const errOpt = document.createElement('option');
+    errOpt.textContent = 'שגיאה בטעינה';
+    tanakhChapterSelect.appendChild(errOpt);
+    updateTanakhChapterNav();
+  }
+}
+
+tanakhBookSelect.addEventListener('change', buildTanakhChapterSelect);
+
+async function loadTanakhManualSelection(){
+  const book = TANAKH_BOOKS[parseInt(tanakhBookSelect.value, 10)];
+  const chapter = parseInt(tanakhChapterSelect.value, 10) + 1;
+  if(isNaN(chapter)) return;
+  const reader = document.getElementById('tanakh-reader');
+  reader.innerHTML = '<p class="chapter-loading">טוען פרק…</p>';
+  try{
+    const chapters = await fetchWholeTanakhBook(book.en);
+    const verses = chapters[chapter-1];
+    if(!verses) throw new Error('chapter not found');
+    reader.innerHTML = '';
+    const card = buildTanakhChapterCard(book.he, book.en, chapter, verses, 1);
+    reader.appendChild(card);
+    reader.scrollIntoView({behavior:'smooth', block:'start'});
+  }catch(e){
+    reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את הפרק כרגע. אפשר לקרוא אותו ישירות ב<a href="https://www.sefaria.org/${encodeURIComponent(book.en.replace(/ /g,'_'))}.${chapter}?lang=he" target="_blank" rel="noopener">ספריא</a>.</p>`;
+  }
+}
+
+tanakhManualLoadBtn.addEventListener('click', loadTanakhManualSelection);
+
+// Generic prev/next-through-a-<select> wiring, shared with any future select-driven
+// navigation — handles first/last boundary disabling on its own.
+const updateTanakhChapterNav = wireSelectNav('tanakh-chapter-select', 'tanakh-chapter-prev-btn', 'tanakh-chapter-next-btn', loadTanakhManualSelection);
+
+buildTanakhChapterSelect();
+
+autoLoadForModeTanakh(currentTanakhMode);
+
+/* =====================================================================
+   SHABBAT / YOM TOV AUTO-GATING
+   Client-side only — never touches robots/meta/server response, so it
+   does not affect search-engine indexing (crawlers get the full page).
+   Location cascade: precise GPS -> silent IP lookup -> Israel default.
+   ===================================================================== */
+
+startSiteGating();   // loads the Shabbat/Yom-Tov schedule, re-checks every 30s, refreshes every 6h (shared.js)
+</script>
+<script src="https://cdn.enable.co.il/licenses/enable-L56232r6ys9tumma-0826-83667/init.js"></script>
+</body>
+</html>

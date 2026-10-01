@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מזמור לתודה | לימוד יומי</title>
-<meta name="description" content="אתר לימוד יומי אחד: תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנ"ך יומי, 929, רמב"ם יומי וזמני היום — הכול במקום אחד.">
-<meta name="keywords" content="לימוד יומי, תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנך יומי, 929, רמבם יומי, זמני היום, ברטנורא, רשי">
+<title>929 | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="פרק התנ״ך היומי לפי תוכנית 929 (כל התנ״ך, פרק ביום), עם פירוש רש״י.">
+<meta name="keywords" content="929, תוכנית 929, פרק תנך ליום, 929 תנך">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://limood.org.il">
+<link rel="canonical" href="https://limood.org.il/929.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="מזמור לתודה | לימוד יומי">
-<meta property="og:description" content="לוח לימוד יומי אחד: תהילים, הלכה, משנה, דף יומי, ירושלמי יומי, תניא, תנ"ך, 929, רמב"ם וזמני היום.">
+<meta property="og:title" content="929 | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="פרק התנ״ך היומי לפי תוכנית 929 (כל התנ״ך, פרק ביום), עם פירוש רש״י.">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary">
 
@@ -23,14 +23,10 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "מזמור לתודה | לימוד יומי",
+  "name": "929 | מזמור לתודה - לימוד יומי",
   "inLanguage": "he",
-  "description": "לוח לימוד יומי אחד: תהילים, הלכה, משנה, דף יומי, ירושלמי יומי, תניא, תנ\"ך, 929, רמב\"ם וזמני היום.",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "מזמור לתודה | לימוד יומי",
-    "url": "https://limood.org.il"
-  }
+  "description": "פרק התנ״ך היומי לפי תוכנית 929 (כל התנ״ך, פרק ביום), עם פירוש רש״י.",
+  "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,8 +39,8 @@
 
 <header class="site">
   <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
-  <h1 class="site-title">לימוד יומי</h1>
-  <p class="site-sub">לוח לימוד יומי אחד לכל השיעורים — תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנ"ך יומי, 929, רמב"ם יומי וזמני היום.</p>
+  <h1 class="site-title">929</h1>
+  <p class="site-sub">פרק תנ״ך ליום, בתוכנית 929, עם פירוש רש״י.</p>
   <div class="today-strip">
     <span>יום: <b id="today-weekday">—</b></span>
     <span>תאריך עברי: <b id="today-hebrew">—</b></span>
@@ -67,14 +63,14 @@
 
 <main id="main">
   <nav class="top-modes" aria-label="בחירת תוכן">
-    <a href="index.html" aria-current="page">הלכה יומית</a>
+    <a href="index.html">הלכה יומית</a>
     <a href="tehillim.html">תהילים</a>
     <a href="mishnayot.html">משנה יומית</a>
     <a href="dafyomi.html">דף יומי</a>
     <a href="yerushalmi.html">ירושלמי יומי</a>
     <a href="tanya.html">תניא יומי</a>
     <a href="tanakh.html">תנ"ך יומי</a>
-    <a href="929.html">929</a>
+    <a href="929.html" aria-current="page">929</a>
     <a href="rambam.html">רמב"ם יומי</a>
     <a href="zmanim.html">זמני היום</a>
     <a href="date-converter.html">המרת תאריכים</a>
@@ -82,41 +78,39 @@
   </nav>
 
     <section class="panel">
-      <h2 class="panel-title">הלכה יומית</h2>
-      <p class="panel-desc">ההלכה הנלמדת היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "הלכה יומית" — שולחן ערוך אורח חיים / קיצור שולחן ערוך).</p>
+      <h2 class="panel-title">929</h2>
+      <p class="panel-desc">פרק התנ"ך היומי לפי תוכנית "929" (כל התנ"ך, פרק ביום, 929 ימים), כולל פירוש רש"י.</p>
       <div class="controls-row">
-        <button class="btn" id="halacha-load">רענן הלכה יומית</button>
+        <button class="btn" id="proj929-load">רענן 929</button>
       </div>
       <div class="controls-row" style="margin-top:.7rem;">
-        <button class="btn secondary" id="halacha-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
-        <input type="date" id="halacha-date-input" aria-label="בחר/י תאריך להלכה יומית">
-        <button class="btn secondary" id="halacha-today-btn">היום</button>
-        <button class="btn secondary" id="halacha-next-btn" aria-label="יום הבא">יום הבא ›</button>
+        <button class="btn secondary" id="proj929-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="proj929-date-input" aria-label="בחר/י תאריך ל-929">
+        <button class="btn secondary" id="proj929-today-btn">היום</button>
+        <button class="btn secondary" id="proj929-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
-    <div id="halacha-reader" aria-live="polite"></div>
+    <div id="proj929-reader" aria-live="polite"></div>
 </main>
 
 <footer class="site">
-  <p>הטקסט (והפירוש) נטענים באמצעות <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>, מאגר טקסטים יהודיים בקוד פתוח.</p>
-  <p style="margin-top:.4rem;">זמני שבת וחגים באתר: <a href="https://www.hebcal.com" target="_blank" rel="noopener">Hebcal.com</a> (רישיון CC BY 4.0).</p>
-  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
 <script src="shared.js?v=2026092808"></script>
 <script>
 initHeaderDate();
-initWhatsappFloat('לימוד יומי — תהילים, הלכה, משנה, דף יומי, ירושלמי, תניא, תנ"ך, 929, רמב"ם וזמני היום, הכול במקום אחד:');
+initWhatsappFloat('929 — פרק תנ"ך ליום, עם פירוש רש"י:');
 
-let halachaSelectedDate = null;
+let proj929SelectedDate = null;
 
-renderDailyHalacha();
+function render929(){ return renderTanakhStyleDailyCalendar('929', 'proj929-reader', '929', proj929SelectedDate); }
 
-function renderDailyHalacha(){ return renderDailyCalendarSection('Halakhah Yomit', 'halacha-reader', 'הלכה יומית', halachaSelectedDate); }
+document.getElementById('proj929-load').addEventListener('click', render929);
 
-document.getElementById('halacha-load').addEventListener('click', renderDailyHalacha);
+wireDatePicker('proj929-date-input', 'proj929-today-btn', 'proj929-prev-btn', 'proj929-next-btn', ()=>proj929SelectedDate, d=>{ proj929SelectedDate = d; }, render929);
 
-wireDatePicker('halacha-date-input', 'halacha-today-btn', 'halacha-prev-btn', 'halacha-next-btn', ()=>halachaSelectedDate, d=>{ halachaSelectedDate = d; }, renderDailyHalacha);
+render929();
 
 /* =====================================================================
    SHABBAT / YOM TOV AUTO-GATING

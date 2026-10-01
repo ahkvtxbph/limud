@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מזמור לתודה | לימוד יומי</title>
-<meta name="description" content="אתר לימוד יומי אחד: תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנ"ך יומי, 929, רמב"ם יומי וזמני היום — הכול במקום אחד.">
-<meta name="keywords" content="לימוד יומי, תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנך יומי, 929, רמבם יומי, זמני היום, ברטנורא, רשי">
+<title>רמב"ם יומי | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="פרקי הרמב״ם (משנה תורה) הנלמדים היום — מחזור שלושה פרקים ליום או פרק אחד ליום.">
+<meta name="keywords" content="רמבם יומי, רמב"ם יומי, משנה תורה יומי, לימוד רמבם">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://limood.org.il">
+<link rel="canonical" href="https://limood.org.il/rambam.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="מזמור לתודה | לימוד יומי">
-<meta property="og:description" content="לוח לימוד יומי אחד: תהילים, הלכה, משנה, דף יומי, ירושלמי יומי, תניא, תנ"ך, 929, רמב"ם וזמני היום.">
+<meta property="og:title" content="רמב"ם יומי | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="פרקי הרמב״ם (משנה תורה) הנלמדים היום — מחזור שלושה פרקים ליום או פרק אחד ליום.">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary">
 
@@ -23,9 +23,9 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "מזמור לתודה | לימוד יומי",
+  "name": "רמב\"ם יומי | מזמור לתודה - לימוד יומי",
   "inLanguage": "he",
-  "description": "לוח לימוד יומי אחד: תהילים, הלכה, משנה, דף יומי, ירושלמי יומי, תניא, תנ\"ך, 929, רמב\"ם וזמני היום.",
+  "description": "פרקי הרמב״ם (משנה תורה) הנלמדים היום — מחזור שלושה פרקים ליום או פרק אחד ליום.",
   "isPartOf": {
     "@type": "WebSite",
     "name": "מזמור לתודה | לימוד יומי",
@@ -43,8 +43,8 @@
 
 <header class="site">
   <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
-  <h1 class="site-title">לימוד יומי</h1>
-  <p class="site-sub">לוח לימוד יומי אחד לכל השיעורים — תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנ"ך יומי, 929, רמב"ם יומי וזמני היום.</p>
+  <h1 class="site-title">רמב"ם יומי</h1>
+  <p class="site-sub">לימוד הרמב״ם היומי — מחזור שלושה פרקים או פרק אחד ליום.</p>
   <div class="today-strip">
     <span>יום: <b id="today-weekday">—</b></span>
     <span>תאריך עברי: <b id="today-hebrew">—</b></span>
@@ -67,7 +67,7 @@
 
 <main id="main">
   <nav class="top-modes" aria-label="בחירת תוכן">
-    <a href="index.html" aria-current="page">הלכה יומית</a>
+    <a href="index.html">הלכה יומית</a>
     <a href="tehillim.html">תהילים</a>
     <a href="mishnayot.html">משנה יומית</a>
     <a href="dafyomi.html">דף יומי</a>
@@ -75,48 +75,64 @@
     <a href="tanya.html">תניא יומי</a>
     <a href="tanakh.html">תנ"ך יומי</a>
     <a href="929.html">929</a>
-    <a href="rambam.html">רמב"ם יומי</a>
+    <a href="rambam.html" aria-current="page">רמב"ם יומי</a>
     <a href="zmanim.html">זמני היום</a>
     <a href="date-converter.html">המרת תאריכים</a>
     <a href="bar-mitzvah.html">פרשת בר מצווה</a>
   </nav>
 
     <section class="panel">
-      <h2 class="panel-title">הלכה יומית</h2>
-      <p class="panel-desc">ההלכה הנלמדת היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "הלכה יומית" — שולחן ערוך אורח חיים / קיצור שולחן ערוך).</p>
+      <h2 class="panel-title">רמב"ם יומי</h2>
+      <p class="panel-desc">פרקי הרמב"ם (משנה תורה) הנלמדים היום לפי לוח הלימוד העולמי היומי של ספריא. ניתן לבחור בין מחזור של שלושה פרקים ליום (ברירת המחדל) לבין מחזור של פרק אחד ליום.</p>
       <div class="controls-row">
-        <button class="btn" id="halacha-load">רענן הלכה יומית</button>
+        <button class="btn secondary rambam-cycle-btn active" data-cycle="3">3 פרקים ליום (ברירת מחדל)</button>
+        <button class="btn secondary rambam-cycle-btn" data-cycle="1">פרק אחד ליום</button>
       </div>
       <div class="controls-row" style="margin-top:.7rem;">
-        <button class="btn secondary" id="halacha-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
-        <input type="date" id="halacha-date-input" aria-label="בחר/י תאריך להלכה יומית">
-        <button class="btn secondary" id="halacha-today-btn">היום</button>
-        <button class="btn secondary" id="halacha-next-btn" aria-label="יום הבא">יום הבא ›</button>
+        <button class="btn" id="rambam-load">רענן רמב"ם יומי</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="rambam-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="rambam-date-input" aria-label="בחר/י תאריך לרמב״ם יומי">
+        <button class="btn secondary" id="rambam-today-btn">היום</button>
+        <button class="btn secondary" id="rambam-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
-    <div id="halacha-reader" aria-live="polite"></div>
+    <div id="rambam-reader" aria-live="polite"></div>
 </main>
 
 <footer class="site">
-  <p>הטקסט (והפירוש) נטענים באמצעות <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>, מאגר טקסטים יהודיים בקוד פתוח.</p>
-  <p style="margin-top:.4rem;">זמני שבת וחגים באתר: <a href="https://www.hebcal.com" target="_blank" rel="noopener">Hebcal.com</a> (רישיון CC BY 4.0).</p>
-  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
 <script src="shared.js?v=2026092808"></script>
 <script>
 initHeaderDate();
-initWhatsappFloat('לימוד יומי — תהילים, הלכה, משנה, דף יומי, ירושלמי, תניא, תנ"ך, 929, רמב"ם וזמני היום, הכול במקום אחד:');
+initWhatsappFloat('רמב"ם יומי — מחזור שלושה פרקים או פרק אחד ליום:');
 
-let halachaSelectedDate = null;
+let rambamSelectedDate = null;
 
-renderDailyHalacha();
+let rambamCycle = '3'; // '3' = three chapters/day (default), '1' = one chapter/day
 
-function renderDailyHalacha(){ return renderDailyCalendarSection('Halakhah Yomit', 'halacha-reader', 'הלכה יומית', halachaSelectedDate); }
+function renderRambamYomi(){
+  const titleEn = rambamCycle === '1' ? 'Daily Rambam' : 'Daily Rambam (3 Chapters)';
+  return renderDailyCalendarSection(titleEn, 'rambam-reader', 'רמב"ם יומי', rambamSelectedDate);
+}
 
-document.getElementById('halacha-load').addEventListener('click', renderDailyHalacha);
+document.querySelectorAll('.rambam-cycle-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.rambam-cycle-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    rambamCycle = btn.dataset.cycle;
+    renderRambamYomi();
+  });
+});
 
-wireDatePicker('halacha-date-input', 'halacha-today-btn', 'halacha-prev-btn', 'halacha-next-btn', ()=>halachaSelectedDate, d=>{ halachaSelectedDate = d; }, renderDailyHalacha);
+document.getElementById('rambam-load').addEventListener('click', renderRambamYomi);
+
+wireDatePicker('rambam-date-input', 'rambam-today-btn', 'rambam-prev-btn', 'rambam-next-btn', ()=>rambamSelectedDate, d=>{ rambamSelectedDate = d; }, renderRambamYomi);
+
+renderRambamYomi();
 
 /* =====================================================================
    SHABBAT / YOM TOV AUTO-GATING

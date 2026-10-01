@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>משנה יומית | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="לימוד משנה יומית לפי לוח הלימוד העולמי של ספריא, עם פירוש ברטנורא — וגם משנה רנדומלית או בחירה ידנית מכל ששת סדרי המשנה.">
+<meta name="keywords" content="משנה יומית, לימוד משנה, ברטנורא, סדר משנה, משנה יומי">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://limood.org.il/mishnayot.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="משנה יומית | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="לימוד משנה יומית לפי לוח הלימוד העולמי של ספריא, עם פירוש ברטנורא — וגם משנה רנדומלית או בחירה ידנית מכל ששת סדרי המשנה.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "משנה יומית | מזמור לתודה - לימוד יומי",
+  "inLanguage": "he",
+  "description": "לימוד משנה יומית לפי לוח הלימוד העולמי של ספריא, עם פירוש ברטנורא — וגם משנה רנדומלית או בחירה ידנית מכל ששת סדרי המשנה.",
+  "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2026092805">
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+<header class="site">
+  <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
+  <h1 class="site-title">משנה יומית</h1>
+  <p class="site-sub">לימוד משנה יומית עם פירוש ברטנורא — או בחירה חופשית מכל הש״ס.</p>
+  <div class="today-strip">
+    <span>יום: <b id="today-weekday">—</b></span>
+    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
+  </div>
+  <p class="date-note" id="hebrew-date-note"></p>
+  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
+  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
+</header>
+
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.3-8.4 8.3z"/></svg>
+</a>
+
+<div class="shabbat-banner" id="shabbat-banner" role="status">
+  <div class="shabbat-inner">
+    <h2 id="shabbat-banner-title">שבת שלום!</h2>
+    <p id="shabbat-banner-text"></p>
+  </div>
+</div>
+
+<main id="main">
+  <nav class="top-modes" aria-label="בחירת תוכן">
+    <a href="index.html">הלכה יומית</a>
+    <a href="tehillim.html">תהילים</a>
+    <a href="mishnayot.html" aria-current="page">משנה יומית</a>
+    <a href="dafyomi.html">דף יומי</a>
+    <a href="yerushalmi.html">ירושלמי יומי</a>
+    <a href="tanya.html">תניא יומי</a>
+    <a href="tanakh.html">תנ"ך יומי</a>
+    <a href="929.html">929</a>
+    <a href="rambam.html">רמב"ם יומי</a>
+    <a href="zmanim.html">זמני היום</a>
+    <a href="date-converter.html">המרת תאריכים</a>
+    <a href="bar-mitzvah.html">פרשת בר מצווה</a>
+  </nav>
+
+    <nav class="modes" aria-label="אפשרויות לימוד משנה">
+      <button data-mode="daily" class="active"><span class="num">א׳</span>משנה יומית</button>
+      <button data-mode="random"><span class="num">ב׳</span>משנה רנדומלית</button>
+      <button data-mode="manual"><span class="num">ג׳</span>משנה לבחירה</button>
+    </nav>
+
+    <section class="panel" id="msh-panel-daily">
+      <h2 class="panel-title">משנה יומית</h2>
+      <p class="panel-desc">המשניות הנלמדות היום לפי לוח הלימוד העולמי היומי (מחזור "משנה יומית" של ספריא), כולל פירוש ברטנורא.</p>
+      <div class="controls-row">
+        <button class="btn" id="msh-daily-load">רענן משנה יומית</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="msh-daily-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="msh-daily-date-input" aria-label="בחר/י תאריך למשנה יומית">
+        <button class="btn secondary" id="msh-daily-today-btn">היום</button>
+        <button class="btn secondary" id="msh-daily-next-btn" aria-label="יום הבא">יום הבא ›</button>
+      </div>
+    </section>
+
+    <section class="panel" id="msh-panel-random" style="display:none;">
+      <h2 class="panel-title">משנה רנדומלית</h2>
+      <p class="panel-desc">משנה אחת, נבחרת באקראי מתוך ששת סדרי המשנה, כולל פירוש ברטנורא.</p>
+      <div class="controls-row">
+        <button class="btn" id="msh-random-load">הגרל/י משנה</button>
+      </div>
+    </section>
+
+    <section class="panel" id="msh-panel-manual" style="display:none;">
+      <h2 class="panel-title">משנה לבחירה</h2>
+      <p class="panel-desc">בחר/י סדר, מסכת, פרק ומשנה — כולל פירוש ברטנורא.</p>
+      <div class="controls-row">
+        <select id="msh-seder-select" aria-label="בחר/י סדר"></select>
+        <select id="msh-masechet-select" aria-label="בחר/י מסכת"></select>
+        <select id="msh-perek-select" aria-label="בחר/י פרק" disabled></select>
+        <select id="msh-mishnah-select" aria-label="בחר/י משנה" disabled></select>
+        <button class="btn" id="msh-manual-load" disabled>הצג משנה</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="msh-mishnah-prev-btn" aria-label="משנה קודמת">‹ משנה קודמת</button>
+        <button class="btn secondary" id="msh-mishnah-next-btn" aria-label="משנה הבאה">משנה הבאה ›</button>
+      </div>
+    </section>
+
+    <div id="msh-reader" aria-live="polite"></div>
+</main>
+
+<footer class="site">
+  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script src="shared.js?v=2026092808"></script>
+<script>
+initHeaderDate();
+initWhatsappFloat('משנה יומית עם פירוש ברטנורא — או בחירה חופשית מכל הש״ס:');
+
+let mshDailySelectedDate = null;
+
+const SEDARIM = [
+  { he:"זרעים", tractates:[
+    {en:"Berakhot", he:"ברכות"},{en:"Peah", he:"פאה"},{en:"Demai", he:"דמאי"},
+    {en:"Kilayim", he:"כלאים"},{en:"Sheviit", he:"שביעית"},{en:"Terumot", he:"תרומות"},
+    {en:"Maasrot", he:"מעשרות"},{en:"Maaser Sheni", he:"מעשר שני"},{en:"Challah", he:"חלה"},
+    {en:"Orlah", he:"ערלה"},{en:"Bikkurim", he:"ביכורים"}
+  ]},
+  { he:"מועד", tractates:[
+    {en:"Shabbat", he:"שבת"},{en:"Eruvin", he:"עירובין"},{en:"Pesachim", he:"פסחים"},
+    {en:"Shekalim", he:"שקלים"},{en:"Yoma", he:"יומא"},{en:"Sukkah", he:"סוכה"},
+    {en:"Beitzah", he:"ביצה"},{en:"Rosh Hashanah", he:"ראש השנה"},{en:"Taanit", he:"תענית"},
+    {en:"Megillah", he:"מגילה"},{en:"Moed Katan", he:"מועד קטן"},{en:"Chagigah", he:"חגיגה"}
+  ]},
+  { he:"נשים", tractates:[
+    {en:"Yevamot", he:"יבמות"},{en:"Ketubot", he:"כתובות"},{en:"Nedarim", he:"נדרים"},
+    {en:"Nazir", he:"נזיר"},{en:"Sotah", he:"סוטה"},{en:"Gittin", he:"גיטין"},{en:"Kiddushin", he:"קידושין"}
+  ]},
+  { he:"נזיקין", tractates:[
+    {en:"Bava Kamma", he:"בבא קמא"},{en:"Bava Metzia", he:"בבא מציעא"},{en:"Bava Batra", he:"בבא בתרא"},
+    {en:"Sanhedrin", he:"סנהדרין"},{en:"Makkot", he:"מכות"},{en:"Shevuot", he:"שבועות"},
+    {en:"Eduyot", he:"עדויות"},{en:"Avodah Zarah", he:"עבודה זרה"},{en:"Avot", he:"אבות"},{en:"Horayot", he:"הוריות"}
+  ]},
+  { he:"קדשים", tractates:[
+    {en:"Zevachim", he:"זבחים"},{en:"Menachot", he:"מנחות"},{en:"Chullin", he:"חולין"},
+    {en:"Bekhorot", he:"בכורות"},{en:"Arakhin", he:"ערכין"},{en:"Temurah", he:"תמורה"},
+    {en:"Keritot", he:"כריתות"},{en:"Meilah", he:"מעילה"},{en:"Tamid", he:"תמיד"},
+    {en:"Middot", he:"מידות"},{en:"Kinnim", he:"קינים"}
+  ]},
+  { he:"טהרות", tractates:[
+    {en:"Kelim", he:"כלים"},{en:"Oholot", he:"אהלות"},{en:"Negaim", he:"נגעים"},
+    {en:"Parah", he:"פרה"},{en:"Tahorot", he:"טהרות"},{en:"Mikvaot", he:"מקוואות"},
+    {en:"Niddah", he:"נדה"},{en:"Makhshirin", he:"מכשירין"},{en:"Zavim", he:"זבים"},
+    {en:"Tevul Yom", he:"טבול יום"},{en:"Yadayim", he:"ידיים"},{en:"Uktzin", he:"עוקצין"}
+  ]}
+];
+
+const FLAT_TRACTATES = SEDARIM.flatMap(s => s.tractates);
+
+function findTractateHe(en){
+  const t = FLAT_TRACTATES.find(t => t.en === en);
+  return t ? t.he : en;
+}
+
+let currentMshMode = "daily";
+
+const masechetCache = {};
+
+document.querySelectorAll('#mishnayot-section nav.modes button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#mishnayot-section nav.modes button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMshMode = btn.dataset.mode;
+    ['daily','random','manual'].forEach(m=>{
+      document.getElementById('msh-panel-'+m).style.display = (m===currentMshMode? '' : 'none');
+    });
+    autoLoadForModeMsh(currentMshMode);
+  });
+});
+
+async function fetchWholeTractate(enTitle){
+  if(masechetCache[enTitle]) return masechetCache[enTitle];
+  const { text } = await fetchRefText('Mishnah ' + enTitle);
+  if(!text || !Array.isArray(text)) throw new Error('no data for ' + enTitle);
+  const cleaned = text.map(perek => Array.isArray(perek) ? perek.map(stripTags) : [stripTags(perek)]);
+  masechetCache[enTitle] = cleaned;
+  return cleaned;
+}
+
+function mishnahCardSkeleton(headingHe, headingSub){
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>${headingHe}</h2>
+      <div class="share-row"></div>
+      <span class="gem">${headingSub}</span>
+    </div>
+    <div class="chapter-loading">טוען משנה…</div>
+  `;
+  const shareSlot = card.querySelector('.chapter-head .share-row');
+  const url = location.href.split('#')[0];
+  shareSlot.replaceWith(buildShareBar(url, `${headingHe} — לימוד משניות:`));
+  return card;
+}
+
+function renderMishnahBlocks(card, tractateEnHe, perek, entries){
+  const body = card.querySelector('.chapter-loading');
+  const wrap = document.createElement('div');
+  entries.forEach((entry)=>{
+    const versesDiv = document.createElement('div');
+    versesDiv.className = 'verses';
+    versesDiv.innerHTML = `<strong>${tractateEnHe} ${hebNum(perek)}:${hebNum(entry.mishnahNum)}</strong><br>${entry.text}`;
+    wrap.appendChild(versesDiv);
+
+    const commentaryDiv = document.createElement('div');
+    commentaryDiv.className = 'commentary';
+    commentaryDiv.innerHTML = `<div class="c-label">פירוש (ברטנורא)</div><div class="c-text">טוען פירוש…</div>`;
+    wrap.appendChild(commentaryDiv);
+
+    fetchCommentary(`${entry.tractateEn} ${perek}:${entry.mishnahNum}`).then(txt=>{
+      const cText = commentaryDiv.querySelector('.c-text');
+      if(txt){
+        cText.textContent = txt;
+      } else {
+        cText.outerHTML = `<div class="c-unavailable">פירוש ברטנורא לא נמצא עבור משנה זו.</div>`;
+      }
+    });
+  });
+  body.replaceWith(wrap);
+}
+
+async function renderSingleMishnahByRef(tractateEn, tractateHe, perek, mishnahNum){
+  const reader = document.getElementById('msh-reader');
+  reader.innerHTML = '';
+  const card = mishnahCardSkeleton(`משנה ${tractateHe} ${hebNum(perek)}:${hebNum(mishnahNum)}`, `${tractateEn} ${perek}:${mishnahNum}`);
+  reader.appendChild(card);
+  try{
+    const chapters = await fetchWholeTractate(tractateEn);
+    const perekArr = chapters[perek-1];
+    if(!perekArr || !perekArr[mishnahNum-1]) throw new Error('not found');
+    renderMishnahBlocks(card, tractateHe, perek, [{ mishnahNum, text: perekArr[mishnahNum-1], tractateEn }]);
+  }catch(e){
+    const body = card.querySelector('.chapter-loading');
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את המשנה כרגע. אפשר לקרוא אותה ישירות ב<a href="https://www.sefaria.org/Mishnah_${encodeURIComponent(tractateEn.replace(/ /g,'_'))}.${perek}.${mishnahNum}?lang=he" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+  reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+wireDatePicker('msh-daily-date-input', 'msh-daily-today-btn', 'msh-daily-prev-btn', 'msh-daily-next-btn', ()=>mshDailySelectedDate, d=>{ mshDailySelectedDate = d; }, renderDailyMishnah);
+
+async function renderDailyMishnah(opts){
+  const skipScroll = opts && opts.skipScroll;
+  const selectedDate = mshDailySelectedDate;
+  const reader = document.getElementById('msh-reader');
+  reader.innerHTML = '';
+  const card = mishnahCardSkeleton('משנה יומית', 'Daily Mishnah');
+  const targetDate = selectedDate || new Date();
+  let hebLabel;
+  try{ hebLabel = getHebrewDisplay(targetDate); }catch(e){ hebLabel = null; }
+  const gregLabel = targetDate.toLocaleDateString('he-IL');
+  const dateLabelEl = document.createElement('p');
+  dateLabelEl.className = 'learning-date-label';
+  const dateMain = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
+  dateLabelEl.innerHTML = `${dateMain}<span class="sub">הלימוד המוצג הוא לתאריך זה — לא בהכרח לתאריך של היום</span>`;
+  card.querySelector('.chapter-head').insertAdjacentElement('afterend', dateLabelEl);
+  reader.appendChild(card);
+  const body = card.querySelector('.chapter-loading');
+  try{
+    // Always pass an explicit date to Sefaria (the selected date, or today's LOCAL date) —
+    // relying on Sefaria's own default "today" can lag behind the user's local calendar date
+    // by several hours right after local midnight, showing yesterday's daily-learning portion.
+    const dfc2 = selectedDate || new Date();
+    const calendarUrl = selectedDate
+      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc2.getUTCFullYear()}&month=${dfc2.getUTCMonth()+1}&day=${dfc2.getUTCDate()}`
+      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc2.getFullYear()}&month=${dfc2.getMonth()+1}&day=${dfc2.getDate()}`;
+    const res = await fetch(calendarUrl);
+    if(!res.ok) throw new Error('calendar fetch failed');
+    const data = await res.json();
+    const items = (data && data.calendar_items) || [];
+    const item = items.find(i => i.title && i.title.en === 'Daily Mishnah');
+    if(!item || !item.ref) throw new Error('no daily mishnah item');
+    const ref = item.ref;
+    const loc = parseTrailingLocation(ref);
+    if(!loc) throw new Error('could not parse ref: ' + ref);
+    const tractateMatch = ref.match(/^Mishnah (.+?) \d+:\d+/);
+    const tractateEn = tractateMatch ? tractateMatch[1] : null;
+    if(!tractateEn) throw new Error('could not parse tractate from ref: ' + ref);
+    const tractateHe = findTractateHe(tractateEn);
+
+    const chapters = await fetchWholeTractate(tractateEn);
+    const perekArr = chapters[loc.perek-1];
+    if(!perekArr) throw new Error('perek not found');
+    const entries = [];
+    for(let m=loc.fromMishnah; m<=loc.toMishnah; m++){
+      if(perekArr[m-1]) entries.push({ mishnahNum:m, text:perekArr[m-1], tractateEn });
+    }
+    if(!entries.length) throw new Error('no entries found');
+
+    const headingSub = loc.fromMishnah===loc.toMishnah
+      ? `${tractateEn} ${loc.perek}:${loc.fromMishnah}`
+      : `${tractateEn} ${loc.perek}:${loc.fromMishnah}-${loc.toMishnah}`;
+    card.querySelector('.chapter-head h2').textContent = `משנה יומית — ${tractateHe} ${hebNum(loc.perek)}`;
+    card.querySelector('.chapter-head .gem').textContent = headingSub;
+
+    renderMishnahBlocks(card, tractateHe, loc.perek, entries);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את המשנה היומית כרגע. אפשר לראות אותה ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+  if(!skipScroll) reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function renderRandomMishnah(opts){
+  const skipScroll = opts && opts.skipScroll;
+  const tractate = FLAT_TRACTATES[Math.floor(Math.random()*FLAT_TRACTATES.length)];
+  const reader = document.getElementById('msh-reader');
+  reader.innerHTML = '';
+  const card = mishnahCardSkeleton('משנה רנדומלית', 'Random Mishnah');
+  reader.appendChild(card);
+  const body = card.querySelector('.chapter-loading');
+  try{
+    const chapters = await fetchWholeTractate(tractate.en);
+    const perekIdx = Math.floor(Math.random()*chapters.length);
+    const perekArr = chapters[perekIdx];
+    const mishnahIdx = Math.floor(Math.random()*perekArr.length);
+    const perek = perekIdx+1, mishnahNum = mishnahIdx+1;
+    card.querySelector('.chapter-head h2').textContent = `משנה ${tractate.he} ${hebNum(perek)}:${hebNum(mishnahNum)}`;
+    card.querySelector('.chapter-head .gem').textContent = `${tractate.en} ${perek}:${mishnahNum}`;
+    renderMishnahBlocks(card, tractate.he, perek, [{ mishnahNum, text: perekArr[mishnahIdx], tractateEn: tractate.en }]);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון משנה כרגע. אפשר לנסות שוב, או לעיין ב<a href="https://www.sefaria.org/texts/Mishnah" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+  if(!skipScroll) reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+const mshSederSelect = document.getElementById('msh-seder-select');
+
+const mshMasechetSelect = document.getElementById('msh-masechet-select');
+
+const mshPerekSelect = document.getElementById('msh-perek-select');
+
+const mshMishnahSelect = document.getElementById('msh-mishnah-select');
+
+const mshManualLoadBtn = document.getElementById('msh-manual-load');
+
+(function buildSederSelect(){
+  SEDARIM.forEach((s, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = 'סדר ' + s.he;
+    mshSederSelect.appendChild(opt);
+  });
+})();
+
+function buildMasechetSelect(){
+  mshMasechetSelect.innerHTML = '';
+  const sederIdx = parseInt(mshSederSelect.value, 10);
+  SEDARIM[sederIdx].tractates.forEach((t, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = t.he;
+    mshMasechetSelect.appendChild(opt);
+  });
+}
+
+buildMasechetSelect();
+
+async function buildPerekSelect(){
+  mshPerekSelect.innerHTML = '';
+  mshPerekSelect.disabled = true;
+  mshMishnahSelect.innerHTML = '';
+  mshMishnahSelect.disabled = true;
+  mshManualLoadBtn.disabled = true;
+
+  const sederIdx = parseInt(mshSederSelect.value, 10);
+  const tractateIdx = parseInt(mshMasechetSelect.value, 10);
+  const tractate = SEDARIM[sederIdx].tractates[tractateIdx];
+  const loadingOpt = document.createElement('option');
+  loadingOpt.textContent = 'טוען פרקים…';
+  mshPerekSelect.appendChild(loadingOpt);
+
+  try{
+    const chapters = await fetchWholeTractate(tractate.en);
+    mshPerekSelect.innerHTML = '';
+    chapters.forEach((perekArr, i)=>{
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `פרק ${hebNum(i+1)}`;
+      mshPerekSelect.appendChild(opt);
+    });
+    mshPerekSelect.disabled = false;
+    buildMishnahSelect();
+  }catch(e){
+    mshPerekSelect.innerHTML = '';
+    const errOpt = document.createElement('option');
+    errOpt.textContent = 'שגיאה בטעינה';
+    mshPerekSelect.appendChild(errOpt);
+  }
+}
+
+function buildMishnahSelect(){
+  mshMishnahSelect.innerHTML = '';
+  const sederIdx = parseInt(mshSederSelect.value, 10);
+  const tractateIdx = parseInt(mshMasechetSelect.value, 10);
+  const tractate = SEDARIM[sederIdx].tractates[tractateIdx];
+  const chapters = masechetCache[tractate.en];
+  const perekIdx = parseInt(mshPerekSelect.value, 10);
+  if(!chapters || isNaN(perekIdx) || !chapters[perekIdx]){
+    mshMishnahSelect.disabled = true;
+    mshManualLoadBtn.disabled = true;
+    updateMshMishnahNav();
+    return;
+  }
+  chapters[perekIdx].forEach((m, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `משנה ${hebNum(i+1)}`;
+    mshMishnahSelect.appendChild(opt);
+  });
+  mshMishnahSelect.disabled = false;
+  mshManualLoadBtn.disabled = false;
+  updateMshMishnahNav();
+}
+
+mshSederSelect.addEventListener('change', ()=>{
+  buildMasechetSelect();
+  buildPerekSelect();
+});
+
+mshMasechetSelect.addEventListener('change', buildPerekSelect);
+
+mshPerekSelect.addEventListener('change', buildMishnahSelect);
+
+function loadManualMshSelection(){
+  const sederIdx = parseInt(mshSederSelect.value, 10);
+  const tractateIdx = parseInt(mshMasechetSelect.value, 10);
+  const tractate = SEDARIM[sederIdx].tractates[tractateIdx];
+  const perek = parseInt(mshPerekSelect.value, 10) + 1;
+  const mishnahNum = parseInt(mshMishnahSelect.value, 10) + 1;
+  if(isNaN(perek) || isNaN(mishnahNum)) return;
+  renderSingleMishnahByRef(tractate.en, tractate.he, perek, mishnahNum);
+}
+
+mshManualLoadBtn.addEventListener('click', ()=> loadManualMshSelection());
+
+const updateMshMishnahNav = wireSelectNav('msh-mishnah-select', 'msh-mishnah-prev-btn', 'msh-mishnah-next-btn', ()=> loadManualMshSelection());
+
+function autoLoadForModeMsh(mode, opts){
+  if(mode === 'daily'){
+    renderDailyMishnah(opts);
+  } else if(mode === 'random'){
+    renderRandomMishnah(opts);
+  } else if(mode === 'manual'){
+    if(!mshMishnahSelect.disabled && mshMishnahSelect.value !== ''){
+      loadManualMshSelection();
+    }
+  }
+}
+
+document.getElementById('msh-daily-load').addEventListener('click', ()=> renderDailyMishnah());
+
+document.getElementById('msh-random-load').addEventListener('click', ()=> renderRandomMishnah());
+
+buildPerekSelect();
+
+autoLoadForModeMsh(currentMshMode);
+
+/* =====================================================================
+   SHABBAT / YOM TOV AUTO-GATING
+   Client-side only — never touches robots/meta/server response, so it
+   does not affect search-engine indexing (crawlers get the full page).
+   Location cascade: precise GPS -> silent IP lookup -> Israel default.
+   ===================================================================== */
+
+startSiteGating();   // loads the Shabbat/Yom-Tov schedule, re-checks every 30s, refreshes every 6h (shared.js)
+</script>
+<script src="https://cdn.enable.co.il/licenses/enable-L56232r6ys9tumma-0826-83667/init.js"></script>
+</body>
+</html>

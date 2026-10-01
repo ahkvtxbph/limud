@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תהילים | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="קריאת תהילים יומית — לפי יום בשבוע, לפי התאריך העברי, פרק רנדומלי, או בחירה ידנית מכל 150 הפרקים.">
+<meta name="keywords" content="תהילים, קריאת תהילים, תהילים יומי, פרק תהילים, תהילים לפי ימים, תהילים לפי תאריך עברי">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://limood.org.il/tehillim.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="תהילים | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="קריאת תהילים יומית — לפי יום בשבוע, לפי התאריך העברי, פרק רנדומלי, או בחירה ידנית מכל 150 הפרקים.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "תהילים | מזמור לתודה - לימוד יומי",
+  "inLanguage": "he",
+  "description": "קריאת תהילים יומית — לפי יום בשבוע, לפי התאריך העברי, פרק רנדומלי, או בחירה ידנית מכל 150 הפרקים.",
+  "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2026092805">
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+<header class="site">
+  <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
+  <h1 class="site-title">תהילים</h1>
+  <p class="site-sub">קריאת תהילים — לפי יום בשבוע, תאריך עברי, באקראי, או בבחירה ידנית.</p>
+  <div class="today-strip">
+    <span>יום: <b id="today-weekday">—</b></span>
+    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
+  </div>
+  <p class="date-note" id="hebrew-date-note"></p>
+  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
+  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
+</header>
+
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.3-8.4 8.3z"/></svg>
+</a>
+
+<div class="shabbat-banner" id="shabbat-banner" role="status">
+  <div class="shabbat-inner">
+    <h2 id="shabbat-banner-title">שבת שלום!</h2>
+    <p id="shabbat-banner-text"></p>
+  </div>
+</div>
+
+<main id="main">
+  <nav class="top-modes" aria-label="בחירת תוכן">
+    <a href="index.html">הלכה יומית</a>
+    <a href="tehillim.html" aria-current="page">תהילים</a>
+    <a href="mishnayot.html">משנה יומית</a>
+    <a href="dafyomi.html">דף יומי</a>
+    <a href="yerushalmi.html">ירושלמי יומי</a>
+    <a href="tanya.html">תניא יומי</a>
+    <a href="tanakh.html">תנ"ך יומי</a>
+    <a href="929.html">929</a>
+    <a href="rambam.html">רמב"ם יומי</a>
+    <a href="zmanim.html">זמני היום</a>
+    <a href="date-converter.html">המרת תאריכים</a>
+    <a href="bar-mitzvah.html">פרשת בר מצווה</a>
+  </nav>
+
+    <nav class="modes" aria-label="אפשרויות חלוקת קריאה">
+      <button data-mode="weekday" class="active"><span class="num">א׳</span>לפי יום בשבוע</button>
+      <button data-mode="hebdate"><span class="num">ב׳</span>לפי תאריך עברי</button>
+      <button data-mode="random"><span class="num">ג׳</span>פרק רנדומלי</button>
+      <button data-mode="manual"><span class="num">ד׳</span>בחירה ידנית</button>
+    </nav>
+
+    <section class="panel" id="panel-weekday">
+      <h2 class="panel-title">חלוקה לפי ימי השבוע</h2>
+      <p class="panel-desc">ספר תהילים מחולק לשבעה חלקים, כך שבכל שבוע מסיימים את הספר כולו. בחר/י יום, או השאר/י על היום הנוכחי.</p>
+      <div class="controls-row">
+        <select id="weekday-select" aria-label="בחר/י יום בשבוע"></select>
+        <button class="btn" id="weekday-load">הצג פרקים</button>
+      </div>
+      <div class="chip-list" id="weekday-chips" role="group" aria-label="קפיצה ישירה לפרק"></div>
+    </section>
+
+    <section class="panel" id="panel-hebdate" style="display:none;">
+      <h2 class="panel-title">חלוקה לפי ימי החודש העברי</h2>
+      <p class="panel-desc">ספר תהילים מחולק לשלושים חלקים כמניין ימי החודש העברי, כך שבכל חודש מסיימים את הספר כולו. החלוקה מתעדכנת אוטומטית לפי התאריך העברי של היום.</p>
+      <div class="controls-row">
+        <select id="hebdate-select" aria-label="בחר/י יום בחודש העברי"></select>
+        <button class="btn" id="hebdate-load">הצג פרקים</button>
+      </div>
+      <div class="chip-list" id="hebdate-chips" role="group" aria-label="קפיצה ישירה לפרק"></div>
+    </section>
+
+    <section class="panel" id="panel-random" style="display:none;">
+      <h2 class="panel-title">פרק רנדומלי</h2>
+      <p class="panel-desc">פרק אחד, נבחר באקראי מתוך 150 מזמורי הספר — לרגעים שבהם רוצים לפתוח את הלב בלי לבחור.</p>
+      <div class="controls-row">
+        <button class="btn" id="random-load">הגרל/י פרק</button>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-manual" style="display:none;">
+      <h2 class="panel-title">בחירה ידנית</h2>
+      <p class="panel-desc">בחר/י כל פרק מתוך ספר תהילים, לפי מספרו.</p>
+      <div class="controls-row">
+        <select id="manual-select" aria-label="בחר פרק"></select>
+        <button class="btn" id="manual-load">הצג פרק</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="manual-prev-btn" aria-label="פרק קודם">‹ פרק קודם</button>
+        <button class="btn secondary" id="manual-next-btn" aria-label="פרק הבא">פרק הבא ›</button>
+      </div>
+    </section>
+
+    <div id="reader" aria-live="polite"></div>
+
+    <div class="progress-key">
+      <h3>מפתח קריאה — 150 מזמורים</h3>
+      <div class="dots" id="progress-dots" aria-hidden="true"></div>
+      <p class="visually-hidden" id="progress-summary" role="status">טרם נקרא אף פרק בסבב הנוכחי.</p>
+    </div>
+</main>
+
+<footer class="site">
+  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script src="shared.js?v=2026092808"></script>
+<script>
+initHeaderDate();
+initWhatsappFloat('תהילים — קריאה יומית לפי ימי השבוע, תאריך עברי, או בבחירה חופשית:');
+
+const WEEKDAY_RANGES = [
+  [1,29],[30,50],[51,72],[73,89],[90,106],[107,119],[120,150]
+];
+
+const HEBDATE_RANGES = [
+  [1,9],[10,17],[18,22],[23,28],[29,34],[35,38],[39,43],[44,48],[49,54],[55,59],
+  [60,65],[66,68],[69,71],[72,76],[77,78],[79,82],[83,87],[88,89],[90,96],[97,103],
+  [104,105],[106,107],[108,112],[113,118],[119.1,119.1],[119.2,119.2],[120,134],[135,139],[140,144],[145,150]
+];
+
+function rangeToChapters(range){
+  const chapters = [];
+  for(let c=Math.floor(range[0]); c<=Math.floor(range[1]); c++){
+    if(!chapters.includes(c)) chapters.push(c);
+  }
+  return chapters;
+}
+
+const readChapters = new Set();
+
+let currentTehillimMode = "weekday";
+
+(function buildWeekdaySelect(){
+  const sel = document.getElementById('weekday-select');
+  const todayIdx = new Date().getDay();
+  WEEKDAY_NAMES.forEach((name, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    const r = WEEKDAY_RANGES[i];
+    opt.textContent = `יום ${name} (פרקים ${hebNum(r[0])}–${hebNum(r[1])})` + (i===todayIdx? " — היום":"");
+    if(i===todayIdx) opt.selected = true;
+    sel.appendChild(opt);
+  });
+})();
+
+(function buildHebdateSelect(){
+  const sel = document.getElementById('hebdate-select');
+  let todayDay = 1;
+  try{
+    todayDay = parseInt(getHebrewParts(new Date()).day, 10);
+  }catch(e){}
+  for(let d=1; d<=30; d++){
+    const opt = document.createElement('option');
+    opt.value = d;
+    let label;
+    if(d===25) label = `יום כ״ה — פרק קיט (חלק א׳)`;
+    else if(d===26) label = `יום כ״ו — פרק קיט (חלק ב׳)`;
+    else {
+      const r = HEBDATE_RANGES[d-1];
+      label = `יום ${hebNum(d)} לחודש (פרקים ${hebNum(r[0])}–${hebNum(r[1])})`;
+    }
+    opt.textContent = label + (d===todayDay? " — היום":"");
+    if(d===todayDay) opt.selected = true;
+    sel.appendChild(opt);
+  }
+})();
+
+(function buildManualSelect(){
+  const sel = document.getElementById('manual-select');
+  for(let c=1;c<=150;c++){
+    const opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = `פרק ${hebNum(c)} (${c})`;
+    sel.appendChild(opt);
+  }
+})();
+
+(function buildDots(){
+  const wrap = document.getElementById('progress-dots');
+  for(let c=1;c<=150;c++){
+    const d = document.createElement('span');
+    d.dataset.ch = c;
+    d.title = "פרק " + hebNum(c);
+    wrap.appendChild(d);
+  }
+})();
+
+function markRead(chapters){
+  chapters.forEach(c=>{
+    readChapters.add(c);
+    const dot = document.querySelector(`#progress-dots span[data-ch="${c}"]`);
+    if(dot) dot.classList.add('read');
+  });
+  const summary = document.getElementById('progress-summary');
+  if(summary) summary.textContent = `${readChapters.size} מתוך 150 פרקים נקראו בסבב הנוכחי.`;
+}
+
+document.querySelectorAll('#tehillim-section nav.modes button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#tehillim-section nav.modes button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTehillimMode = btn.dataset.mode;
+    ['weekday','hebdate','random','manual'].forEach(m=>{
+      document.getElementById('panel-'+m).style.display = (m===currentTehillimMode? '' : 'none');
+    });
+    autoLoadForMode(currentTehillimMode);
+  });
+});
+
+async function fetchChapter(chapterNum){
+  const url = `https://www.sefaria.org/api/v3/texts/Psalms.${chapterNum}?version=hebrew&return_format=text_only`;
+  const res = await fetch(url);
+  if(!res.ok) throw new Error('fetch failed');
+  const data = await res.json();
+  let verses = [];
+  if(data && data.versions && data.versions.length){
+    verses = data.versions[0].text;
+  }
+  return verses;
+}
+
+function renderChapterCard(chapterNum){
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  card.id = 'chapter-' + chapterNum;
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>פרק ${hebNum(chapterNum)}</h2>
+      <div class="share-row"></div>
+      <span class="gem">תהלים ${chapterNum}</span>
+    </div>
+    <div class="chapter-loading">טוען פרק…</div>
+  `;
+  const shareSlot = card.querySelector('.chapter-head .share-row');
+  const chapterUrl = location.href.split('#')[0] + '#chapter-' + chapterNum;
+  shareSlot.replaceWith(buildShareBar(chapterUrl, `פרק ${hebNum(chapterNum)} בתהילים:`));
+  return card;
+}
+
+async function loadAndRenderChapter(card, chapterNum){
+  const body = card.querySelector('.chapter-loading');
+  try{
+    const verses = await fetchChapter(chapterNum);
+    if(!verses || !verses.length) throw new Error('empty');
+    const versesDiv = document.createElement('div');
+    versesDiv.className = 'verses';
+    verses.forEach((v, i)=>{
+      const clean = stripTags(Array.isArray(v)? v.join(' ') : v);
+      const span = document.createElement('span');
+      span.className = 'v';
+      span.innerHTML = `<span class="v-num">${i+1}</span>${clean}`;
+      versesDiv.appendChild(span);
+      versesDiv.appendChild(document.createTextNode(' '));
+    });
+    body.replaceWith(versesDiv);
+    markRead([chapterNum]);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את הפרק כרגע. אפשר לקרוא אותו ישירות ב<a href="https://www.sefaria.org/Psalms.${chapterNum}?lang=he" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+}
+
+function renderChapters(chapters, opts){
+  const skipScroll = opts && opts.skipScroll;
+  const reader = document.getElementById('reader');
+  reader.innerHTML = '';
+  chapters.forEach(chapterNum=>{
+    const card = renderChapterCard(chapterNum);
+    reader.appendChild(card);
+    loadAndRenderChapter(card, chapterNum);
+  });
+  if(!skipScroll) reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function autoLoadForMode(mode, opts){
+  const skipScroll = opts && opts.skipScroll;
+  if(mode === 'weekday'){
+    const idx = parseInt(document.getElementById('weekday-select').value, 10);
+    renderChapters(rangeToChapters(WEEKDAY_RANGES[idx]), {skipScroll});
+  } else if(mode === 'hebdate'){
+    const d = parseInt(document.getElementById('hebdate-select').value, 10);
+    let chapters;
+    if(d===25 || d===26){ chapters = [119]; }
+    else { chapters = rangeToChapters(HEBDATE_RANGES[d-1]); }
+    renderChapters(chapters, {skipScroll});
+  } else if(mode === 'random'){
+    const c = 1 + Math.floor(Math.random()*150);
+    renderChapters([c], {skipScroll});
+  } else if(mode === 'manual'){
+    const c = parseInt(document.getElementById('manual-select').value, 10);
+    renderChapters([c], {skipScroll});
+  }
+}
+
+function weekdayChips(){
+  const wrap = document.getElementById('weekday-chips');
+  wrap.innerHTML = '';
+  const idx = parseInt(document.getElementById('weekday-select').value, 10);
+  const chapters = rangeToChapters(WEEKDAY_RANGES[idx]);
+  chapters.forEach(c=>{
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'chip';
+    chip.textContent = hebNum(c);
+    chip.setAttribute('aria-label', 'עבור לפרק ' + hebNum(c));
+    chip.addEventListener('click', ()=> renderChapters([c]));
+    wrap.appendChild(chip);
+  });
+}
+
+document.getElementById('weekday-select').addEventListener('change', weekdayChips);
+
+document.getElementById('weekday-load').addEventListener('click', ()=>{
+  const idx = parseInt(document.getElementById('weekday-select').value, 10);
+  renderChapters(rangeToChapters(WEEKDAY_RANGES[idx]));
+});
+
+weekdayChips();
+
+autoLoadForMode('weekday', {skipScroll:true});
+
+function hebdateChips(){
+  const wrap = document.getElementById('hebdate-chips');
+  wrap.innerHTML = '';
+  const d = parseInt(document.getElementById('hebdate-select').value, 10);
+  let chapters;
+  if(d===25 || d===26){ chapters = [119]; }
+  else { chapters = rangeToChapters(HEBDATE_RANGES[d-1]); }
+  chapters.forEach(c=>{
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'chip';
+    chip.textContent = hebNum(c);
+    chip.setAttribute('aria-label', 'עבור לפרק ' + hebNum(c));
+    chip.addEventListener('click', ()=> renderChapters([c]));
+    wrap.appendChild(chip);
+  });
+}
+
+document.getElementById('hebdate-select').addEventListener('change', hebdateChips);
+
+document.getElementById('hebdate-load').addEventListener('click', ()=>{
+  const d = parseInt(document.getElementById('hebdate-select').value, 10);
+  let chapters;
+  if(d===25 || d===26){ chapters = [119]; }
+  else { chapters = rangeToChapters(HEBDATE_RANGES[d-1]); }
+  renderChapters(chapters);
+});
+
+hebdateChips();
+
+document.getElementById('random-load').addEventListener('click', ()=> autoLoadForMode('random'));
+
+document.getElementById('manual-load').addEventListener('click', ()=> autoLoadForMode('manual'));
+
+const updateManualNav = wireSelectNav('manual-select', 'manual-prev-btn', 'manual-next-btn', ()=> autoLoadForMode('manual'));
+
+updateManualNav();
+
+/* =====================================================================
+   SHABBAT / YOM TOV AUTO-GATING
+   Client-side only — never touches robots/meta/server response, so it
+   does not affect search-engine indexing (crawlers get the full page).
+   Location cascade: precise GPS -> silent IP lookup -> Israel default.
+   ===================================================================== */
+
+startSiteGating();   // loads the Shabbat/Yom-Tov schedule, re-checks every 30s, refreshes every 6h (shared.js)
+</script>
+<script src="https://cdn.enable.co.il/licenses/enable-L56232r6ys9tumma-0826-83667/init.js"></script>
+</body>
+</html>

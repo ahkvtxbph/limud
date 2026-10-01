@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>זמני היום | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="זמני היום ההלכתיים — עלות השחר, הנץ, סוף זמן קריאת שמע ותפילה, חצות, מנחה, שקיעה, צאת הכוכבים — לפי מיקומך.">
+<meta name="keywords" content="זמני היום, זמנים הלכתיים, עלות השחר, הנץ החמה, שקיעה, צאת הכוכבים, זמני תפילה">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://limood.org.il/zmanim.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="זמני היום | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="זמני היום ההלכתיים — עלות השחר, הנץ, סוף זמן קריאת שמע ותפילה, חצות, מנחה, שקיעה, צאת הכוכבים — לפי מיקומך.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "זמני היום | מזמור לתודה - לימוד יומי",
+  "inLanguage": "he",
+  "description": "זמני היום ההלכתיים — עלות השחר, הנץ, סוף זמן קריאת שמע ותפילה, חצות, מנחה, שקיעה, צאת הכוכבים — לפי מיקומך.",
+  "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=2026092805">
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+<header class="site">
+  <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
+  <h1 class="site-title">זמני היום</h1>
+  <p class="site-sub">זמני היום ההלכתיים לפי מיקומך — עלות השחר ועד צאת הכוכבים.</p>
+  <div class="today-strip">
+    <span>יום: <b id="today-weekday">—</b></span>
+    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
+  </div>
+  <p class="date-note" id="hebrew-date-note"></p>
+  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
+  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
+</header>
+
+<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.3-8.4 8.3z"/></svg>
+</a>
+
+<div class="shabbat-banner" id="shabbat-banner" role="status">
+  <div class="shabbat-inner">
+    <h2 id="shabbat-banner-title">שבת שלום!</h2>
+    <p id="shabbat-banner-text"></p>
+  </div>
+</div>
+
+<main id="main">
+  <nav class="top-modes" aria-label="בחירת תוכן">
+    <a href="index.html">הלכה יומית</a>
+    <a href="tehillim.html">תהילים</a>
+    <a href="mishnayot.html">משנה יומית</a>
+    <a href="dafyomi.html">דף יומי</a>
+    <a href="yerushalmi.html">ירושלמי יומי</a>
+    <a href="tanya.html">תניא יומי</a>
+    <a href="tanakh.html">תנ"ך יומי</a>
+    <a href="929.html">929</a>
+    <a href="rambam.html">רמב"ם יומי</a>
+    <a href="zmanim.html" aria-current="page">זמני היום</a>
+    <a href="date-converter.html">המרת תאריכים</a>
+    <a href="bar-mitzvah.html">פרשת בר מצווה</a>
+  </nav>
+
+    <section class="panel">
+      <h2 class="panel-title">זמני היום</h2>
+      <p class="panel-desc" id="zmanim-location-desc">מזהה מיקום…</p>
+      <div class="controls-row">
+        <button class="btn secondary" id="zmanim-use-my-location">השתמש/י במיקום שלי</button>
+        <input type="text" id="zmanim-search-input" placeholder="חיפוש עיר…" aria-label="חיפוש עיר לזמני היום">
+        <button class="btn" id="zmanim-search-btn">חפש</button>
+      </div>
+      <div class="chip-list" id="zmanim-search-results" role="group" aria-label="תוצאות חיפוש מיקום"></div>
+      <div class="controls-row" style="margin-top:1rem;">
+        <button class="btn secondary" id="zmanim-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="zmanim-date-input" aria-label="בחר/י תאריך לזמני היום">
+        <button class="btn secondary" id="zmanim-today-btn">היום</button>
+        <button class="btn secondary" id="zmanim-next-btn" aria-label="יום הבא">יום הבא ›</button>
+      </div>
+    </section>
+
+    <div class="chapter-card">
+      <div class="chapter-head">
+        <h2>זמני היום</h2>
+        <span class="gem" id="zmanim-date-label"></span>
+      </div>
+      <p class="zmanim-short-note">⚠ זמנים משוערים (חישוב אוטומטי) — <a href="#zmanim-disclaimer">פרטים למטה</a></p>
+      <div id="zmanim-list"></div>
+      <p class="date-note" id="zmanim-disclaimer" style="margin-top:1rem; max-width:none;"></p>
+    </div>
+</main>
+
+<footer class="site">
+  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script src="shared.js?v=2026092808"></script>
+<script>
+initHeaderDate();
+initWhatsappFloat('זמני היום — עלות השחר, הנץ, תפילה, מנחה, שקיעה וצאת הכוכבים, לפי מיקומך:');
+
+/* =====================================================================
+   ZMANIM (times of day)
+   ===================================================================== */
+
+const ZMANIM_DEFAULT = { lat: 32.0853, lon: 34.7818, name: 'תל אביב' };
+
+let zmanimLocation = null;
+
+// Resolves the IANA timezone name for arbitrary coordinates, so times for a
+// location abroad are shown in THAT location's local clock time, not the
+// device's own timezone. Uses a free, keyless lookup service; if it fails for
+// any reason, callers fall back to the device's timezone (existing behavior).
+
+let zmanimSelectedDate = null; // null = today (live)
+
+let renderZmanimRequestId = 0; // guards against stale async entry/exit fetches overwriting a newer render
+
+function computeZmanim(date, lat, lon){
+  const sunrise = calcSunEventUTC(date, lat, lon, 90.833, true);
+  const sunset  = calcSunEventUTC(date, lat, lon, 90.833, false);
+  if(!sunrise || !sunset) return null;
+
+  const dayLengthMs = sunset.getTime() - sunrise.getTime();
+  const dayLengthMinutes = dayLengthMs / 60000;
+  const isSummer = dayLengthMinutes > 720; // day longer than 12h
+
+  // Alot hashachar: fixed 72 minutes before sunrise (per Yeshiva.org.il), rounded later (stringent).
+  const alot = roundToMinute(new Date(sunrise.getTime() - 72*60000), 'up');
+
+  // Tzeit hakochavim: 18 "zmaniyot" minutes after sunset in summer, 18 plain minutes in winter.
+  const tzeitOffsetMinutes = isSummer ? 18 * (dayLengthMinutes / 720) : 18;
+  const tzeit = new Date(sunset.getTime() + tzeitOffsetMinutes * 60000);
+
+  const shaZmanitGra = dayLengthMs / 12;
+  const atGra = (hours)=> new Date(sunrise.getTime() + hours*shaZmanitGra);
+  const shaZmanitMga = (tzeit.getTime() - alot.getTime()) / 12;
+  const atMga = (hours)=> new Date(alot.getTime() + hours*shaZmanitMga);
+
+  const chatzot = atGra(6);
+  // Mincha gedola: 30 "zmaniyot" minutes after chatzot in summer, 30 plain minutes in winter.
+  const minchaGedolaOffsetMinutes = isSummer ? 30 * (dayLengthMinutes / 720) : 30;
+  const minchaGedola = new Date(chatzot.getTime() + minchaGedolaOffsetMinutes*60000);
+
+  // Zman Tallit/Tefillin (Misheyakir): fixed 50 minutes before sunrise (per Yeshiva.org.il /
+  // Wikishiva — the one zman with no explicit Talmudic measure of its own, estimated by the
+  // commentators at ~50 minutes).
+  const misheyakir = new Date(sunrise.getTime() - 50*60000);
+
+  // Chatzot halayla (halachic midnight): the midpoint between TODAY's sunset and TOMORROW's
+  // sunrise — i.e. the middle of the coming night, not tied to civil 00:00.
+  const tomorrow = new Date(date.getTime() + 86400000);
+  const nextSunrise = calcSunEventUTC(tomorrow, lat, lon, 90.833, true);
+  const chatzotLayla = nextSunrise ? new Date(sunset.getTime() + (nextSunrise.getTime() - sunset.getTime())/2) : null;
+
+  const result = [
+    { label: 'עלות השחר', time: alot },
+    { label: 'זמן טלית ותפילין (משיכיר)', time: misheyakir },
+    { label: 'הנץ החמה', time: sunrise },
+    { label: 'סוף זמן קריאת שמע (מג״א)', time: roundToMinute(atMga(3), 'down') },
+    { label: 'סוף זמן קריאת שמע (גר״א)', time: roundToMinute(atGra(3), 'down') },
+    { label: 'סוף זמן תפילה (מג״א)', time: roundToMinute(atMga(4), 'down') },
+    { label: 'סוף זמן תפילה (גר״א)', time: roundToMinute(atGra(4), 'down') },
+    { label: 'חצות היום', time: chatzot },
+    { label: 'מנחה גדולה', time: minchaGedola },
+    { label: 'מנחה קטנה', time: atGra(9.5) },
+    { label: 'פלג המנחה', time: atGra(10.75) },
+    { label: 'שקיעת החמה', time: sunset },
+    { label: 'צאת הכוכבים', time: tzeit }
+  ];
+  if(chatzotLayla) result.push({ label: 'חצות הלילה', time: chatzotLayla });
+  return result;
+}
+
+async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset, ownTzeit, resolvedTzid){
+  try{
+    const tzid = resolvedTzid || (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
+    const startStr = displayDate.toISOString().slice(0,10);
+    const endStr = new Date(displayDate.getTime() + 86400000).toISOString().slice(0,10);
+    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&mf=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    const items = data.items || [];
+    const fastEvents = items.filter(i => i.title === 'Fast begins' || i.title === 'Fast ends');
+    const todayEvents = fastEvents.filter(i => i.date && i.date.slice(0,10) === startStr);
+    if(!todayEvents.length) return null;
+
+    function resolveFastName(evt){
+      const near = items.find(h =>
+        h.category === 'holiday' &&
+        !/^Erev\s+/i.test(h.title || '') &&
+        Math.abs(new Date(h.date) - new Date(evt.date)) < 1.5*86400000
+      );
+      if(near && near.hebrew) return hebraizeYearInText(near.hebrew);
+      return 'צום';
+    }
+
+    // Hebcal's own fast begin/end times use different degree-based definitions (16.1°/7.083°)
+    // than Yeshiva.org.il's (72 fixed minutes before sunrise / same 18-minute tzeit rule as the
+    // rest of this page). We use Hebcal only to detect *that* today is a fast day and *which*
+    // fast it is, then substitute our own already-computed alot/sunset/tzeit for the actual time,
+    // to stay consistent with the rest of the Zmanim list — except Tisha B'Av's end time, which
+    // Yeshiva.org.il computes differently (not the 18-minute rule), so we keep Hebcal's value there.
+    function hourInTZ(date){
+      // Hour-of-day AT THE FAST'S LOCATION (tzid), not the device's own timezone —
+      // otherwise a fast beginning at 5:30 AM in New York (12:30 PM in Israel) gets
+      // misclassified as an "evening" fast just because it crosses noon on the device's clock.
+      const hourStr = new Intl.DateTimeFormat('en-US', {hour:'numeric', hour12:false, timeZone: tzid}).format(date);
+      return parseInt(hourStr, 10) % 24;
+    }
+    const result = [];
+    const beginsToday = todayEvents.find(i => i.title === 'Fast begins');
+    if(beginsToday){
+      const d = new Date(beginsToday.date);
+      const isMorning = hourInTZ(d) < 12;
+      result.push({
+        type: isMorning ? 'begins-morning' : 'begins-evening',
+        name: resolveFastName(beginsToday),
+        time: isMorning ? (ownAlot || d) : (ownSunset || d)
+      });
+    }
+    const endsToday = todayEvents.find(i => i.title === 'Fast ends');
+    if(endsToday){
+      const name = resolveFastName(endsToday);
+      const isTishaBav = name.indexOf('תשעה באב') !== -1;
+      result.push({ type: 'ends', name, time: (!isTishaBav && ownTzeit) ? ownTzeit : new Date(endsToday.date) });
+    }
+    result.sort((a,b)=> a.time - b.time); // guarantee "begins" always renders before "ends"
+    return result.length ? result : null;
+  }catch(e){
+    return null;
+  }
+}
+
+async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzid){
+  try{
+    const tzid = resolvedTzid || (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
+    const startStr = displayDate.toISOString().slice(0,10);
+    const endStr = new Date(displayDate.getTime() + 6*86400000).toISOString().slice(0,10);
+    const israelFlag = isLikelyIsrael(lat, lon) ? '&i=on' : '';
+    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}${israelFlag}`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('fetch failed');
+    const data = await res.json();
+    const items = data.items || [];
+    const events = items
+      .filter(i => i.category === 'candles' || i.category === 'havdalah')
+      .map(i => ({ type: i.category, date: new Date(i.date) }));
+    events.sort((a,b)=> a.date - b.date);
+    const displayDayStr = startStr;
+    const candleEvent = events.find(e => e.type === 'candles' && e.date.toISOString().slice(0,10) === displayDayStr);
+    if(!candleEvent) return null;
+    const havdalahEvent = events.find(e => e.type === 'havdalah' && e.date > candleEvent.date);
+    let label = resolveNearbyYomTovLabel(items, candleEvent.date, 'שבת', isLikelyIsrael(lat, lon));
+
+    // Rabbeinu Tam's (stricter, later) opinion on when Shabbat/Yom Tov ends: 72 minutes
+    // after sunset on the day it ends — computed independently via our own sunset formula
+    // for that day, since Hebcal's own "havdalah" event reflects the more common "3 medium
+    // stars" opinion instead.
+    let rabbeinuTamTime = null;
+    if(havdalahEvent){
+      const sunsetOnEndDay = calcSunEventUTC(havdalahEvent.date, lat, lon, 90.833, false);
+      if(sunsetOnEndDay) rabbeinuTamTime = new Date(sunsetOnEndDay.getTime() + 72*60000);
+    }
+
+    return { candleTime: candleEvent.date, havdalahTime: havdalahEvent ? havdalahEvent.date : null, rabbeinuTamTime, label };
+  }catch(e){
+    return null;
+  }
+}
+
+function renderZmanim(){
+  const loc = zmanimLocation || ZMANIM_DEFAULT;
+  const targetDate = zmanimSelectedDate || new Date();
+  const list = computeZmanim(targetDate, loc.lat, loc.lon);
+  const container = document.getElementById('zmanim-list');
+  container.innerHTML = '';
+  if(!list){
+    container.innerHTML = '<p class="chapter-error">לא ניתן לחשב זמני היום עבור מיקום זה.</p>';
+    return;
+  }
+  list.forEach(z=>{
+    const row = document.createElement('div');
+    row.className = 'zman-row';
+    row.innerHTML = `<span>${z.label}</span><span class="zman-time">${fmtZmanTime(z.time, loc.tzid)}</span>`;
+    container.appendChild(row);
+  });
+  const ownAlot = (list.find(z => z.label === 'עלות השחר') || {}).time;
+  const ownSunset = (list.find(z => z.label === 'שקיעת החמה') || {}).time;
+  const ownTzeit = (list.find(z => z.label === 'צאת הכוכבים') || {}).time;
+  let hebLabel;
+  try{
+    hebLabel = getHebrewDisplay(targetDate, loc.tzid);
+  }catch(e){
+    hebLabel = null;
+  }
+  const gregLabel = loc.tzid
+    ? targetDate.toLocaleDateString('he-IL', {timeZone: loc.tzid})
+    : targetDate.toLocaleDateString('he-IL');
+  document.getElementById('zmanim-date-label').textContent = hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel;
+  document.getElementById('zmanim-disclaimer').textContent = loc.tzid
+    ? 'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המיקום שנבחר. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.'
+    : 'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך (לא הצלחנו לזהות את אזור הזמן של המיקום שנבחר). אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך, השעון המוצג עלול לא לשקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
+
+  // If the displayed date is an entry day (Erev Shabbat / Erev Yom Tov / a fast day), also
+  // show entry/exit info for the currently selected zmanim location. Ordering is fully
+  // deterministic: "fast begins" is always the very first row (before Alot Hashachar),
+  // and "fast ends" is always the very last row (after everything else, incl. Shabbat rows).
+  const requestId = ++renderZmanimRequestId;
+
+  function buildRow(label, time){
+    const row = document.createElement('div');
+    row.className = 'zman-row';
+    row.innerHTML = `<span>${label}</span><span class="zman-time">${fmtZmanTime(time, loc.tzid)}</span>`;
+    return row;
+  }
+
+  (async ()=>{
+    const fastInfo = await fetchFastInfoForZmanim(loc.lat, loc.lon, targetDate, ownAlot, ownSunset, ownTzeit, loc.tzid);
+    if(requestId !== renderZmanimRequestId) return;
+    const listEl = document.getElementById('zmanim-list');
+
+    const beginsEntry = fastInfo && fastInfo.find(f => f.type === 'begins-morning' || f.type === 'begins-evening');
+    if(beginsEntry){
+      const label = beginsEntry.type === 'begins-evening'
+        ? `${beginsEntry.name} — כניסת הצום (${loc.name})`
+        : `${beginsEntry.name} — הצום מתחיל בבוקר (${loc.name})`;
+      listEl.insertBefore(buildRow(label, beginsEntry.time), listEl.firstChild);
+    }
+
+    const entry = await fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate, loc.tzid);
+    if(requestId !== renderZmanimRequestId) return;
+    if(entry){
+      listEl.appendChild(buildRow(`כניסת ${entry.label} (${loc.name})`, entry.candleTime));
+      if(entry.havdalahTime){
+        listEl.appendChild(buildRow(`יציאת ${entry.label} (${loc.name})`, entry.havdalahTime));
+      }
+      if(entry.rabbeinuTamTime){
+        listEl.appendChild(buildRow(`יציאת ${entry.label} לר"ת (${loc.name})`, entry.rabbeinuTamTime));
+      }
+    }
+
+    const endsEntry = fastInfo && fastInfo.find(f => f.type === 'ends');
+    if(endsEntry){
+      listEl.appendChild(buildRow(`${endsEntry.name} — יציאת הצום (${loc.name})`, endsEntry.time));
+    }
+  })();
+}
+
+function setZmanimLocation(loc, sourceNote){
+  zmanimLocation = loc;
+  document.getElementById('zmanim-location-desc').textContent = `זמני היום עבור: ${loc.name}` + (sourceNote ? ' — ' + sourceNote : '');
+  renderZmanim();
+  // Resolve the location's own timezone (so times display correctly for locations
+  // abroad, not just in the device's timezone), then re-render once known.
+  fetchTimezoneForCoords(loc.lat, loc.lon).then(tzid=>{
+    if(!tzid || zmanimLocation !== loc) return; // location changed again meanwhile
+    loc.tzid = tzid;
+    renderZmanim();
+  });
+}
+
+async function reverseGeocodeZmanim(lat, lon){
+  try{
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=he&zoom=10`);
+    if(!res.ok) throw new Error('reverse geocode failed');
+    const data = await res.json();
+    const addr = data.address || {};
+    return addr.city || addr.town || addr.village || addr.county || data.display_name || `${lat.toFixed(2)}, ${lon.toFixed(2)}`;
+  }catch(e){
+    return `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
+  }
+}
+
+async function tryAutoLocateZmanim(){
+  document.getElementById('zmanim-location-desc').textContent = 'מזהה מיקום…';
+  try{
+    const pos = await getPositionOnce(5000);
+    const lat = pos.coords.latitude, lon = pos.coords.longitude;
+    const name = await reverseGeocodeZmanim(lat, lon);
+    setZmanimLocation({lat, lon, name}, 'זוהה אוטומטית (GPS)');
+    return;
+  }catch(e){}
+  // GPS failed/denied — fall back silently to IP-based location before giving up
+  // entirely, so someone abroad without location permission still gets a real
+  // location instead of jumping straight to the Tel Aviv default.
+  try{
+    const res = await fetch('https://ipwho.is/');
+    if(res.ok){
+      const data = await res.json();
+      if(data && data.success !== false && data.latitude && data.longitude){
+        const name = [data.city, data.country].filter(Boolean).join(', ')
+          || await reverseGeocodeZmanim(data.latitude, data.longitude);
+        setZmanimLocation({lat: data.latitude, lon: data.longitude, name}, 'זוהה לפי כתובת ה-IP');
+        return;
+      }
+    }
+  }catch(e){}
+  setZmanimLocation(ZMANIM_DEFAULT, 'ברירת מחדל — לא זוהה מיקום, ניתן לחפש מיקום אחר');
+}
+
+async function searchZmanimLocation(){
+  const q = document.getElementById('zmanim-search-input').value.trim();
+  const results = document.getElementById('zmanim-search-results');
+  results.innerHTML = '';
+  if(!q) return;
+  const loadingChip = document.createElement('span');
+  loadingChip.className = 'chip';
+  loadingChip.style.cursor = 'default';
+  loadingChip.textContent = 'מחפש…';
+  results.appendChild(loadingChip);
+  try{
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=5&accept-language=he`);
+    if(!res.ok) throw new Error('search failed');
+    const data = await res.json();
+    results.innerHTML = '';
+    if(!data.length){
+      const noneChip = document.createElement('span');
+      noneChip.className = 'chip';
+      noneChip.style.cursor = 'default';
+      noneChip.textContent = 'לא נמצאו תוצאות';
+      results.appendChild(noneChip);
+      return;
+    }
+    data.forEach(place=>{
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'chip';
+      chip.textContent = place.display_name;
+      chip.addEventListener('click', ()=>{
+        setZmanimLocation({lat: parseFloat(place.lat), lon: parseFloat(place.lon), name: place.display_name}, 'נבחר בחיפוש');
+        results.innerHTML = '';
+        document.getElementById('zmanim-search-input').value = '';
+      });
+      results.appendChild(chip);
+    });
+  }catch(e){
+    results.innerHTML = '';
+    const errChip = document.createElement('span');
+    errChip.className = 'chip';
+    errChip.style.cursor = 'default';
+    errChip.textContent = 'שגיאה בחיפוש';
+    results.appendChild(errChip);
+  }
+}
+
+document.getElementById('zmanim-use-my-location').addEventListener('click', tryAutoLocateZmanim);
+
+document.getElementById('zmanim-search-btn').addEventListener('click', searchZmanimLocation);
+
+document.getElementById('zmanim-search-input').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){ e.preventDefault(); searchZmanimLocation(); }
+});
+
+wireDatePicker('zmanim-date-input', 'zmanim-today-btn', 'zmanim-prev-btn', 'zmanim-next-btn', ()=>zmanimSelectedDate, d=>{ zmanimSelectedDate = d; }, renderZmanim);
+
+/* Pre-load zmanim location in the background so it's ready when the user switches tabs */
+
+tryAutoLocateZmanim();
+
+/* =====================================================================
+   SHABBAT / YOM TOV AUTO-GATING
+   Client-side only — never touches robots/meta/server response, so it
+   does not affect search-engine indexing (crawlers get the full page).
+   Location cascade: precise GPS -> silent IP lookup -> Israel default.
+   ===================================================================== */
+
+startSiteGating();   // loads the Shabbat/Yom-Tov schedule, re-checks every 30s, refreshes every 6h (shared.js)
+</script>
+<script src="https://cdn.enable.co.il/licenses/enable-L56232r6ys9tumma-0826-83667/init.js"></script>
+</body>
+</html>
