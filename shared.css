@@ -221,7 +221,7 @@
 
   nav.top-modes{
     display:grid;
-    grid-template-columns:repeat(6,1fr);
+    grid-template-columns:repeat(7,1fr);
     gap:.5rem;
     background:var(--ink);
     border-radius:16px;
@@ -232,16 +232,17 @@
     font-family:'Frank Ruhl Libre', serif;
     font-weight:700;
     font-size:.85rem;
-    background:transparent;
     border:none;
     border-radius:10px;
     padding:.75rem .3rem;
-    color:var(--gold-light);
     cursor:pointer;
     transition:background .18s, color .18s;
+    /* locked together for the same reason as nav.top-modes a above */
+    background:transparent !important;
+    color:var(--gold-light) !important;
   }
   nav.top-modes button:hover{background:rgba(217,191,137,.12);}
-  nav.top-modes button.active{background:var(--paper); color:var(--ink);}
+  nav.top-modes button.active{background:var(--paper) !important; color:var(--ink) !important;}
   @media (max-width:900px){
     nav.top-modes{grid-template-columns:repeat(4,1fr);}
   }
@@ -523,12 +524,18 @@
     font-size:.85rem;
     border-radius:10px;
     padding:.75rem .3rem;
-    color:var(--gold-light);
     text-decoration:none;
     transition:background .18s, color .18s;
+    /* !important on background+color together: defends against third-party accessibility-
+       toolbar features (e.g. "highlight links") that apply their own background to every <a>
+       without also adjusting its text colour — reported: this made the menu links on the
+       date-converter / bar-mitzvah pages unreadable. Locking both together, not just one,
+       keeps whichever pairing we define here always readable. */
+    background:var(--ink) !important;
+    color:var(--gold-light) !important;
   }
   nav.top-modes a:hover{background:rgba(217,191,137,.12);}
-  nav.top-modes a[aria-current="page"]{background:var(--paper); color:var(--ink);}
+  nav.top-modes a[aria-current="page"]{background:var(--paper) !important; color:var(--ink) !important;}
   /* the default focus ring is too dark on the navy menu */
   nav.top-modes a:focus-visible, nav.top-modes button:focus-visible{outline-color:var(--gold-light);}
 
