@@ -123,6 +123,11 @@
 
 <script src="shared.js?v=2026092810"></script>
 <script>
+// Wrapped in try/catch so a bug in this page's own logic can never take down the shared,
+// site-wide features that come after it (WhatsApp button, Shabbat/Yom Tov banner, header date) —
+// those must keep working even if something here breaks. Without this, any uncaught error
+// below would silently stop the ENTIRE rest of the script from running at all.
+try{
 (function(){
   const $ = id => document.getElementById(id);
   const reader = $('parasha-reader');
@@ -259,6 +264,11 @@
   /* ---------- start: this week's parasha ---------- */
   loadCurrentParasha();
 })();
+}catch(e){
+  console.error('parasha.html: a bug in this page\'s own code was caught and isolated:', e);
+  const el = document.getElementById('parasha-reader');
+  if(el) el.innerHTML = '<p class="chapter-error" role="alert">אירעה שגיאה בטעינת הפרשה. אפשר לנסות לרענן את הדף, או לפנות אלינו דרך הוואטסאפ.</p>';
+}
 
 /* shared page furniture: header date, WhatsApp button, Shabbat / Yom Tov block */
 initHeaderDate();
