@@ -591,7 +591,16 @@ async function updateUpcomingShabbatNote(){
 
     if(parashaIL && parashaDiaspora){
       if(parashaIL === parashaDiaspora){
-        parashaText = `פרשת השבוע: ${parashaIL}`;
+        if(parashaIL === 'שמיני עצרת'){
+          // Known special case, independent of where the viewer is: Israel combines Shmini
+          // Atzeret with Simchat Torah into one day; the Diaspora keeps them as two separate
+          // days. Sefaria's calendar API reports the same single name for both modes here
+          // (unlike Hebcal, which this site's own gating schedule already handles correctly
+          // via resolveNearbyYomTovLabel) — so make the distinction explicit here too.
+          parashaText = `פרשת השבוע — יש הבדל: בארץ ישראל: שמיני עצרת ושמחת תורה · בחו"ל: שמיני עצרת`;
+        } else {
+          parashaText = `פרשת השבוע: ${parashaIL}`;
+        }
       } else {
         // Reading differs between Israel and the Diaspora this Shabbat (can happen for a
         // few weeks after Pesach/Sukkot, since Israel keeps one day of Yom Tov and the
