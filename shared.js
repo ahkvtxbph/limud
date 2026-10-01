@@ -347,6 +347,37 @@ async function detectGatingLocation(){
 
 let gatingIntervals = [];
 
+// Resolves the Yom Tov name(s) a candle-lighting event is actually for, restricted to real Yom
+// Tov days (yomtov:true) — this deliberately excludes same-category-but-minor "holiday" items such
+// as Hoshana Rabbah, which otherwise look like the closest match simply because they share the
+// Erev's own calendar date (the candle-lighting evening). When two Yom Tov names land on the very
+// same day — e.g. Shmini Atzeret + Simchat Torah combined into one day in Israel — both are
+// combined into one label ("שמיני עצרת ושמחת תורה") instead of arbitrarily picking just one; in the
+// Diaspora, where they fall on separate days, each evening correctly resolves to its own single name.
+function resolveNearbyYomTovLabel(items, candleDate, fallbackLabel){
+  const candidates = items.filter(h =>
+    h.category === 'holiday' &&
+    h.yomtov === true &&
+    !/^Erev\s+/i.test(h.title || '') &&
+    Math.abs(new Date(h.date) - candleDate) < 1.5*86400000
+  );
+  if(!candidates.length) return fallbackLabel;
+  // keep only the item(s) on the single closest calendar date, in case a second Yom Tov also
+  // happens to fall just inside the window (e.g. the edge of a two-day Rosh Hashana)
+  let closest = null;
+  candidates.forEach(h=>{
+    const diff = Math.abs(new Date(h.date) - candleDate);
+    const day = new Date(h.date).toISOString().slice(0,10);
+    if(!closest || diff < closest.diff) closest = { day, diff };
+  });
+  const names = [...new Set(
+    candidates
+      .filter(h => new Date(h.date).toISOString().slice(0,10) === closest.day)
+      .map(h => hebraizeYearInText(h.hebrew || h.title || fallbackLabel))
+  )];
+  return names.join(' ו');
+}
+
 async function fetchGatingSchedule(loc){
   const tzid = (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
   const now = new Date();
@@ -373,13 +404,7 @@ async function fetchGatingSchedule(loc){
       if(events[i].type === 'candles'){
         const next = events.slice(i+1).find(e => e.type === 'havdalah');
         if(next){
-          let label = 'שבת';
-          const nearbyHoliday = items.find(h =>
-            h.category === 'holiday' &&
-            !/^Erev\s+/i.test(h.title || '') &&
-            Math.abs(new Date(h.date) - events[i].date) < 1.5*86400000
-          );
-          if(nearbyHoliday) label = hebraizeYearInText(nearbyHoliday.hebrew || nearbyHoliday.title || label);
+          const label = resolveNearbyYomTovLabel(items, events[i].date, 'שבת');
           intervals.push({ start: events[i].date, end: next.date, label });
         }
       }
@@ -390,10 +415,45 @@ async function fetchGatingSchedule(loc){
   }
 }
 
+// Look of the Shabbat / Yom Tov block, for pages that don't carry the banner markup and shared.css themselves
+// (e.g. the accessibility statement): same rules as in shared.css, with fallbacks for the colours.
+const SHABBAT_BANNER_CSS =
+  '.shabbat-banner{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;background:var(--ink,#1B2A4A);color:var(--paper,#F7F3E9);align-items:center;justify-content:center;text-align:center;padding:2rem 1.6rem;overflow-y:auto;}' +
+  '.shabbat-banner.visible{display:flex;}' +
+  '.shabbat-banner .shabbat-inner{max-width:32em;}' +
+  ".shabbat-banner h2{font-family:'Frank Ruhl Libre',serif;font-size:1.7rem;margin:0 0 .8rem;color:var(--paper,#F7F3E9);}" +
+  ".shabbat-banner p{font-family:'Noto Serif Hebrew',serif;font-size:1.02rem;color:var(--gold-light,#D9BF89);margin:0;line-height:1.9;}";
+// Builds the banner (and its styles) when the page has none. Called only when a block is really due,
+// so every page that loads shared.js and runs initGating() is blocked on Shabbat — even one written later.
+function ensureShabbatBanner(){
+  if(document.getElementById('shabbat-banner')) return;
+  if(!document.getElementById('shabbat-banner-style')){
+    const st = document.createElement('style');
+    st.id = 'shabbat-banner-style';
+    st.textContent = SHABBAT_BANNER_CSS;
+    (document.head || document.documentElement).appendChild(st);
+  }
+  const banner = document.createElement('div');
+  banner.id = 'shabbat-banner';
+  banner.className = 'shabbat-banner';
+  banner.setAttribute('role', 'status');
+  const inner = document.createElement('div');
+  inner.className = 'shabbat-inner';
+  const title = document.createElement('h2');
+  title.id = 'shabbat-banner-title';
+  const text = document.createElement('p');
+  text.id = 'shabbat-banner-text';
+  inner.appendChild(title);
+  inner.appendChild(text);
+  banner.appendChild(inner);
+  document.body.appendChild(banner);
+}
+
 function checkGating(){
   const now = new Date();
   const active = gatingIntervals.find(iv => now >= iv.start && now < iv.end);
-  const banner = document.getElementById('shabbat-banner');
+  let banner = document.getElementById('shabbat-banner');
+  if(!banner && active){ ensureShabbatBanner(); banner = document.getElementById('shabbat-banner'); }
   if(!banner) return;
   if(active){
     banner.classList.add('visible');
