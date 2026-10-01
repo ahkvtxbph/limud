@@ -354,7 +354,7 @@ let gatingIntervals = [];
 // same day — e.g. Shmini Atzeret + Simchat Torah combined into one day in Israel — both are
 // combined into one label ("שמיני עצרת ושמחת תורה") instead of arbitrarily picking just one; in the
 // Diaspora, where they fall on separate days, each evening correctly resolves to its own single name.
-function resolveNearbyYomTovLabel(items, candleDate, fallbackLabel){
+function resolveNearbyYomTovLabel(items, candleDate, fallbackLabel, isIsrael){
   const candidates = items.filter(h =>
     h.category === 'holiday' &&
     h.yomtov === true &&
@@ -370,11 +370,15 @@ function resolveNearbyYomTovLabel(items, candleDate, fallbackLabel){
     const day = new Date(h.date).toISOString().slice(0,10);
     if(!closest || diff < closest.diff) closest = { day, diff };
   });
-  const names = [...new Set(
-    candidates
-      .filter(h => new Date(h.date).toISOString().slice(0,10) === closest.day)
-      .map(h => hebraizeYearInText(h.hebrew || h.title || fallbackLabel))
-  )];
+  const sameDay = candidates.filter(h => new Date(h.date).toISOString().slice(0,10) === closest.day);
+  // In Israel, Hebcal sends only ONE event ("Shmini Atzeret") for the combined day — there is no
+  // separate same-day "Simchat Torah" entry to pick up here, since the two are the same calendar
+  // day only in Israel (in the Diaspora they're genuinely two separate days, each its own event).
+  // So this is a named special case, not something general same-day combining can discover on its own.
+  if(isIsrael && sameDay.length === 1 && sameDay[0].title === 'Shmini Atzeret'){
+    return hebraizeYearInText(sameDay[0].hebrew || 'שמיני עצרת') + ' ושמחת תורה';
+  }
+  const names = [...new Set(sameDay.map(h => hebraizeYearInText(h.hebrew || h.title || fallbackLabel)))];
   return names.join(' ו');
 }
 
@@ -404,7 +408,7 @@ async function fetchGatingSchedule(loc){
       if(events[i].type === 'candles'){
         const next = events.slice(i+1).find(e => e.type === 'havdalah');
         if(next){
-          const label = resolveNearbyYomTovLabel(items, events[i].date, 'שבת');
+          const label = resolveNearbyYomTovLabel(items, events[i].date, 'שבת', loc.isIsrael);
           intervals.push({ start: events[i].date, end: next.date, label });
         }
       }

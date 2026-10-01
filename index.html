@@ -372,7 +372,7 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092807"></script>
+<script src="shared.js?v=2026092808"></script>
 <script>
 
 // Replaces any raw 4-digit Hebrew-year number (e.g. "5787", from Hebcal/Sefaria labels)
@@ -1281,7 +1281,7 @@ async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzi
     const candleEvent = events.find(e => e.type === 'candles' && e.date.toISOString().slice(0,10) === displayDayStr);
     if(!candleEvent) return null;
     const havdalahEvent = events.find(e => e.type === 'havdalah' && e.date > candleEvent.date);
-    let label = resolveNearbyYomTovLabel(items, candleEvent.date, 'שבת');
+    let label = resolveNearbyYomTovLabel(items, candleEvent.date, 'שבת', isLikelyIsrael(lat, lon));
 
     // Rabbeinu Tam's (stricter, later) opinion on when Shabbat/Yom Tov ends: 72 minutes
     // after sunset on the day it ends — computed independently via our own sunset formula
