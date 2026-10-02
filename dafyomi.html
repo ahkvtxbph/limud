@@ -76,7 +76,34 @@
   }
   #video-float-close:hover{background:rgba(217,191,137,.15);}
   #video-float-close:focus-visible{outline:3px solid var(--gold-light); outline-offset:1px;}
-  .video-float-frame-wrap{position:relative; width:100%; aspect-ratio:16/9; background:#000;}
+  #video-float-body{padding:0 .7rem .5rem;}
+  .video-float-status{
+    font-family:'Assistant', sans-serif;
+    font-size:.85rem;
+    color:var(--paper);
+    margin:.2rem 0 .6rem;
+    line-height:1.5;
+  }
+  .video-float-link-row{margin:0 0 .5rem;}
+  .video-float-link-row .btn{width:100%; text-align:center; box-sizing:border-box;}
+  .video-float-secondary-btn{
+    display:block;
+    width:100%;
+    background:transparent;
+    border:1px solid rgba(217,191,137,.4);
+    border-radius:8px;
+    color:var(--gold-light);
+    font-family:'Assistant', sans-serif;
+    font-size:.78rem;
+    line-height:1.5;
+    padding:.5rem .6rem;
+    cursor:pointer;
+    margin-bottom:.4rem;
+  }
+  .video-float-secondary-btn:hover{background:rgba(217,191,137,.1);}
+  .video-float-secondary-btn:focus-visible{outline:3px solid var(--gold-light); outline-offset:1px;}
+  .video-float-frame-wrap{position:relative; width:100%; aspect-ratio:16/9; background:#000; border-radius:8px; overflow:hidden; display:none;}
+  .video-float-frame-wrap.shown{display:block;}
   .video-float-frame-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
   #video-float-credit{
     padding:.4rem .6rem .6rem;
@@ -161,7 +188,14 @@
     <span>שיעור הדף היומי — הרב יוני גוטמן</span>
     <button type="button" id="video-float-close" aria-label="סגור את השיעור הצף">✕</button>
   </div>
-  <div class="video-float-frame-wrap" id="video-float-frame-wrap"></div>
+  <div id="video-float-body">
+    <p id="video-float-today" class="video-float-status">מזהה את הדף של היום…</p>
+    <p class="video-float-link-row">
+      <a id="video-float-search-link" class="btn" href="https://www.youtube.com/@Yoni_gutman/search" target="_blank" rel="noopener">חפש/י בערוץ את השיעור המדויק</a>
+    </p>
+    <button type="button" id="video-float-show-recent" class="video-float-secondary-btn">או: הצג/י כאן את השיעור האחרון שהועלה בערוץ (ייתכן שאינו מדויק ליום הנוכחי)</button>
+    <div class="video-float-frame-wrap" id="video-float-frame-wrap"></div>
+  </div>
   <p id="video-float-credit">מהערוץ של <a href="https://www.youtube.com/@Yoni_gutman" target="_blank" rel="noopener">הרב יוני גוטמן</a> · <a href="https://dafyomi20.co.il" target="_blank" rel="noopener">dafyomi20.co.il</a></p>
 </div>
 
@@ -201,25 +235,59 @@ try{
   const closeBtn = document.getElementById('video-float-close');
   const handle = document.getElementById('video-float-handle');
   const frameWrap = document.getElementById('video-float-frame-wrap');
-  // His channel uploads the daily Daf Yomi shiur daily, in step with the daf cycle itself —
-  // so simply showing the channel's most recent upload (via its uploads playlist, "UU" + the
-  // channel ID) lines up with today's daf on almost every day, with no API key or quota needed.
+  const statusEl = document.getElementById('video-float-today');
+  const searchLink = document.getElementById('video-float-search-link');
+  const recentBtn = document.getElementById('video-float-show-recent');
+  // NOTE: his channel's MOST RECENT upload is not reliably today's exact daf (he sometimes
+  // uploads a few days ahead) — so the "latest upload" is offered only as a clearly-labeled,
+  // secondary option, never embedded automatically or presented as if it were today's lesson.
   const UPLOADS_PLAYLIST = 'UU5SfuCAOtyhk9n91U8szk0g';
   let iframeLoaded = false;
+  let todayLookupStarted = false;
+
+  // Finds today's exact daf (masechet + daf) the same way the page's own Daf Yomi reader does
+  // (Sefaria's calendar), and turns it into an accurate search link within his channel — so the
+  // person always gets the RIGHT lesson, instead of a guess that might be several days off.
+  async function lookupToday(){
+    if(todayLookupStarted) return;
+    todayLookupStarted = true;
+    try{
+      const d = dafyomiSelectedDate || new Date();
+      const calendarUrl = dafyomiSelectedDate
+        ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getUTCFullYear()}&month=${d.getUTCMonth()+1}&day=${d.getUTCDate()}`
+        : `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getFullYear()}&month=${d.getMonth()+1}&day=${d.getDate()}`;
+      const res = await fetch(calendarUrl);
+      if(!res.ok) throw new Error('calendar fetch failed');
+      const data = await res.json();
+      const items = (data && data.calendar_items) || [];
+      const item = items.find(i => i.title && i.title.en === 'Daf Yomi');
+      const heName = item && item.displayValue && item.displayValue.he;
+      if(!heName) throw new Error('no daf name');
+      statusEl.textContent = 'הדף של היום: ' + heName;
+      searchLink.href = 'https://www.youtube.com/@Yoni_gutman/search?query=' + encodeURIComponent(heName);
+      searchLink.textContent = 'חפש/י ביוטיוב: ' + heName;
+    }catch(e){
+      statusEl.textContent = 'לא ניתן היה לזהות את הדף של היום כרגע — אפשר לחפש ידנית.';
+      searchLink.textContent = 'חפש/י בערוץ את השיעור המדויק';
+      searchLink.href = 'https://www.youtube.com/@Yoni_gutman/search';   // explicit fallback (not just relying on the static HTML default)
+    }
+  }
 
   function ensureIframe(){
     if(iframeLoaded) return;
     const iframe = document.createElement('iframe');
     iframe.src = 'https://www.youtube.com/embed/videoseries?list=' + UPLOADS_PLAYLIST;
-    iframe.title = 'שיעור הדף היומי — הרב יוני גוטמן';
+    iframe.title = 'השיעורים האחרונים בערוץ — הרב יוני גוטמן';
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     iframe.allowFullscreen = true;
     iframe.loading = 'lazy';
     frameWrap.appendChild(iframe);
+    frameWrap.classList.add('shown');
     iframeLoaded = true;
   }
+  recentBtn.addEventListener('click', ensureIframe);
   function show(){
-    ensureIframe();
+    lookupToday();
     box.hidden = false;
     toggle.setAttribute('aria-pressed', 'true');
   }
