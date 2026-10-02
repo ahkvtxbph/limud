@@ -260,7 +260,11 @@ try{
     const d = dafyomiSelectedDate || new Date();
     const dateStr = localDateStr(d);
     const cached = readCache();
-    if(cached && cached.date === dateStr) return cached;
+    // only reuse the cache once a video was actually FOUND — a cached "not found" (checked
+    // earlier today, before the channel had uploaded yet) must not stick for the rest of the
+    // day; every re-open should try again until it succeeds (reported bug: this is exactly
+    // what caused a video that existed by the evening to still be reported as "not found").
+    if(cached && cached.date === dateStr && cached.videoId) return cached;
 
     const calendarUrl = dafyomiSelectedDate
       ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getUTCFullYear()}&month=${d.getUTCMonth()+1}&day=${d.getUTCDate()}`
@@ -282,7 +286,10 @@ try{
 
     let videoId = null;
     try{
-      const ytUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${UPLOADS_PLAYLIST}&maxResults=10&key=${YT_API_KEY}`;
+      // 20, not 10: the channel sometimes posts more than one item a day (e.g. a separate
+      // live-stream recording alongside the edited lesson), which could otherwise push
+      // today's match out of a narrower window — still just 1 quota unit either way.
+      const ytUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${UPLOADS_PLAYLIST}&maxResults=20&key=${YT_API_KEY}`;
       const ytRes = await fetch(ytUrl);
       if(!ytRes.ok) throw new Error('youtube fetch failed: ' + ytRes.status);
       const ytData = await ytRes.json();
@@ -325,9 +332,17 @@ try{
     try{
       const result = await findTodayVideo();
       statusEl.textContent = 'הדף של היום: ' + result.heName;
-      if(result.videoId) embedVideo(result.videoId);
-      else showNotFound();
+      if(result.videoId){
+        embedVideo(result.videoId);
+      }else{
+        // no match yet (e.g. not uploaded at the time of this check) — allow a LATER
+        // re-open (same page, same day) to try again, instead of being stuck "not found"
+        // for the rest of the visit (reported bug: this is what caused it).
+        lookupStarted = false;
+        showNotFound();
+      }
     }catch(e){
+      lookupStarted = false;
       statusEl.textContent = 'לא ניתן היה לזהות את הדף של היום כרגע.';
       showNotFound();
     }
