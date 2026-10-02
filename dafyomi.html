@@ -183,8 +183,8 @@
   </div>
   <div id="video-float-body">
     <p class="video-float-today" id="video-float-today">מזהה את הדף של היום…</p>
-    <div class="video-float-frame-wrap" id="video-float-frame-wrap"></div>
-    <p class="video-float-mismatch-note">הסרטון הוא ההעלאה האחרונה של הערוץ. אם הוא לא תואם לדף הרשום למעלה, ייתכן שהשיעור של היום עוד לא הועלה — <a href="https://www.youtube.com/@MercazDafYomi" target="_blank" rel="noopener">אפשר לבדוק בערוץ</a>.</p>
+    <div class="video-float-frame-wrap" id="video-float-frame-wrap" style="display:none;"></div>
+    <p class="video-float-mismatch-note" id="video-float-note" style="display:none;">עדיין לא נמצא בערוץ שיעור עם כותרת שמתאימה לדף של היום — ייתכן שהוא עוד לא הועלה. <a href="https://www.youtube.com/@MercazDafYomi" target="_blank" rel="noopener">אפשר לבדוק ישירות בערוץ</a>.</p>
   </div>
   <p id="video-float-credit">מהערוץ של <a href="https://www.youtube.com/@MercazDafYomi" target="_blank" rel="noopener">מרכז דף יומי — הרב אלי סטפנסקי</a> · <a href="https://mdydaf.com" target="_blank" rel="noopener">mdydaf.com</a></p>
 </div>
@@ -218,12 +218,13 @@ renderDafYomi();
    Wrapped in try/catch so a bug here can never take down the shared,
    site-wide features below it (WhatsApp button, Shabbat/Yom Tov banner).
 
-   This channel (confirmed dedicated exclusively to Daf Yomi, with a
-   consistent nightly schedule for over two years — unlike the earlier
-   channels tried here) makes the channel's most recent upload a reasonable
-   match for today's daf. Even so, the exact daf expected today is shown
-   as its own label (computed the same way the page's own reader does),
-   so a mismatch is visible at a glance rather than silently wrong.
+   Finds the SPECIFIC video whose title names today's exact daf (not just
+   "the latest upload", which turned out to sometimes run a day ahead) —
+   using the YouTube Data API's playlistItems.list (1 quota unit, not the
+   100-unit search endpoint) to read the channel's recent upload TITLES,
+   then matching the one that names today's masechet + daf ourselves.
+   Cached in this browser for the rest of the day, so one visitor opening
+   the widget more than once doesn't call the API again each time.
    ===================================================================== */
 try{
 (function(){
@@ -233,51 +234,103 @@ try{
   const handle = document.getElementById('video-float-handle');
   const frameWrap = document.getElementById('video-float-frame-wrap');
   const statusEl = document.getElementById('video-float-today');
-  // @MercazDafYomi's uploads playlist ("UU" + the channel ID) — its most recent item.
+  const noteEl = document.getElementById('video-float-note');
+  // @MercazDafYomi's uploads playlist ("UU" + the channel ID).
   const UPLOADS_PLAYLIST = 'UUKwQa5DB_VR98ac_r-Wyl-g';
-  let iframeLoaded = false;
-  let todayLookupStarted = false;
+  const YT_API_KEY = 'AIzaSyClllOPwk4hii-4LVZEV7B2-ziJtsBxQ9s';
+  const CACHE_KEY = 'dafyomi-video-cache-v1';
+  let lookupStarted = false;
 
-  // Shows today's exact expected daf (masechet + daf), the same way the page's own Daf
-  // Yomi reader determines it (Sefaria's calendar) — purely informational, so a mismatch
-  // with the embedded video is visible at a glance rather than silently wrong.
-  async function lookupToday(){
-    if(todayLookupStarted) return;
-    todayLookupStarted = true;
-    try{
-      const d = dafyomiSelectedDate || new Date();
-      const calendarUrl = dafyomiSelectedDate
-        ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getUTCFullYear()}&month=${d.getUTCMonth()+1}&day=${d.getUTCDate()}`
-        : `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getFullYear()}&month=${d.getMonth()+1}&day=${d.getDate()}`;
-      const res = await fetch(calendarUrl);
-      if(!res.ok) throw new Error('calendar fetch failed');
-      const data = await res.json();
-      const items = (data && data.calendar_items) || [];
-      const item = items.find(i => i.title && i.title.en === 'Daf Yomi');
-      const heName = item && item.displayValue && item.displayValue.he;
-      if(!heName) throw new Error('no daf name');
-      statusEl.textContent = 'הדף הצפוי להיום: ' + heName;
-    }catch(e){
-      statusEl.textContent = 'לא ניתן היה לזהות את הדף הצפוי להיום כרגע.';
-    }
+  function localDateStr(d){
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function readCache(){
+    try{ const raw = localStorage.getItem(CACHE_KEY); return raw ? JSON.parse(raw) : null; }catch(e){ return null; }
+  }
+  function writeCache(obj){
+    try{ localStorage.setItem(CACHE_KEY, JSON.stringify(obj)); }catch(e){}
   }
 
-  function ensureIframe(){
-    if(iframeLoaded) return;
+  // Finds today's exact daf (Sefaria, same source the page's own reader uses), then the
+  // SPECIFIC uploaded video whose title names it — not just the channel's latest item.
+  // The two lookups are allowed to fail INDEPENDENTLY: if Sefaria succeeds but the YouTube
+  // call fails (e.g. quota), today's daf is still shown correctly, just with no video found,
+  // rather than one failure masking a result we actually do have.
+  async function findTodayVideo(){
+    const d = dafyomiSelectedDate || new Date();
+    const dateStr = localDateStr(d);
+    const cached = readCache();
+    if(cached && cached.date === dateStr) return cached;
+
+    const calendarUrl = dafyomiSelectedDate
+      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getUTCFullYear()}&month=${d.getUTCMonth()+1}&day=${d.getUTCDate()}`
+      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getFullYear()}&month=${d.getMonth()+1}&day=${d.getDate()}`;
+    const calRes = await fetch(calendarUrl);
+    if(!calRes.ok) throw new Error('calendar fetch failed');
+    const calData = await calRes.json();
+    const calItems = (calData && calData.calendar_items) || [];
+    const calItem = calItems.find(i => i.title && i.title.en === 'Daf Yomi');
+    const heName = calItem && calItem.displayValue && calItem.displayValue.he;
+    if(!heName) throw new Error('no daf name from Sefaria');
+
+    // their title convention is "...{מסכת} דף {אות}...": rebuild that from Sefaria's
+    // "{מסכת} {אות}" (e.g. "בכורות יד" -> "בכורות דף יד")
+    const parts = heName.trim().split(/\s+/);
+    const dafLetter = parts.pop();
+    const masechet = parts.join(' ');
+    const expectedSubstr = masechet + ' דף ' + dafLetter;
+
+    let videoId = null;
+    try{
+      const ytUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${UPLOADS_PLAYLIST}&maxResults=10&key=${YT_API_KEY}`;
+      const ytRes = await fetch(ytUrl);
+      if(!ytRes.ok) throw new Error('youtube fetch failed: ' + ytRes.status);
+      const ytData = await ytRes.json();
+      const ytItems = (ytData && ytData.items) || [];
+      const match = ytItems.find(v => v.snippet && v.snippet.title && v.snippet.title.indexOf(expectedSubstr) !== -1);
+      videoId = match ? match.snippet.resourceId.videoId : null;
+    }catch(e){
+      videoId = null;   // today's daf (heName) is still known and returned below; only the video lookup failed
+    }
+
+    const result = { date: dateStr, heName, videoId };
+    writeCache(result);
+    return result;
+  }
+
+  function embedVideo(videoId){
+    frameWrap.innerHTML = '';
     const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/videoseries?list=' + UPLOADS_PLAYLIST;
-    iframe.title = 'השיעור האחרון בערוץ — מרכז דף יומי';
+    iframe.src = 'https://www.youtube.com/embed/' + videoId;
+    iframe.title = 'שיעור הדף היומי של היום — מרכז דף יומי';
     iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
     iframe.allowFullscreen = true;
     iframe.loading = 'lazy';
     frameWrap.appendChild(iframe);
-    iframeLoaded = true;
+    frameWrap.style.display = '';
+    noteEl.style.display = 'none';
   }
-  function show(){
-    lookupToday();
-    ensureIframe();
+  function showNotFound(){
+    frameWrap.innerHTML = '';
+    frameWrap.style.display = 'none';
+    noteEl.style.display = '';
+  }
+
+  async function show(){
     box.hidden = false;
     toggle.setAttribute('aria-pressed', 'true');
+    if(lookupStarted) return;
+    lookupStarted = true;
+    statusEl.textContent = 'מזהה את הדף של היום…';
+    try{
+      const result = await findTodayVideo();
+      statusEl.textContent = 'הדף של היום: ' + result.heName;
+      if(result.videoId) embedVideo(result.videoId);
+      else showNotFound();
+    }catch(e){
+      statusEl.textContent = 'לא ניתן היה לזהות את הדף של היום כרגע.';
+      showNotFound();
+    }
   }
   function hide(){
     box.hidden = true;
