@@ -277,10 +277,15 @@ try{
     const heName = calItem && calItem.displayValue && calItem.displayValue.he;
     if(!heName) throw new Error('no daf name from Sefaria');
 
+    // Sefaria writes the multi-letter daf number with a gershayim mark (e.g. "י״ד"), but this
+    // channel's own titles write the plain letters with no mark at all (e.g. "יד") — strip any
+    // geresh/gershayim/quote-like character so the two conventions can still match (reported:
+    // this mismatch alone was enough to make a correctly-uploaded video go unmatched).
+    const stripMarks = s => s.replace(/[\u05F3\u05F4'"]/g, '');
     // their title convention is "...{מסכת} דף {אות}...": rebuild that from Sefaria's
-    // "{מסכת} {אות}" (e.g. "בכורות יד" -> "בכורות דף יד")
+    // "{מסכת} {אות}" (e.g. "בכורות י״ד" -> "בכורות דף יד")
     const parts = heName.trim().split(/\s+/);
-    const dafLetter = parts.pop();
+    const dafLetter = stripMarks(parts.pop());
     const masechet = parts.join(' ');
     const expectedSubstr = masechet + ' דף ' + dafLetter;
 
@@ -294,7 +299,7 @@ try{
       if(!ytRes.ok) throw new Error('youtube fetch failed: ' + ytRes.status);
       const ytData = await ytRes.json();
       const ytItems = (ytData && ytData.items) || [];
-      const match = ytItems.find(v => v.snippet && v.snippet.title && v.snippet.title.indexOf(expectedSubstr) !== -1);
+      const match = ytItems.find(v => v.snippet && v.snippet.title && stripMarks(v.snippet.title).indexOf(expectedSubstr) !== -1);
       videoId = match ? match.snippet.resourceId.videoId : null;
     }catch(e){
       videoId = null;   // today's daf (heName) is still known and returned below; only the video lookup failed
