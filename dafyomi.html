@@ -33,6 +33,84 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=2026092805">
+<style>
+  /* floating video lesson — page-specific, only used on this page */
+  .video-toggle-row{margin-top:.6rem;}
+  #video-float{
+    position:fixed;
+    bottom:90px;
+    left:14px;
+    width:300px;
+    max-width:calc(100vw - 28px);
+    background:var(--ink);
+    border-radius:12px;
+    box-shadow:0 10px 30px -6px rgba(0,0,0,.5);
+    z-index:600;
+    overflow:hidden;
+    touch-action:none;
+  }
+  #video-float[hidden]{display:none;}
+  #video-float-handle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.5rem;
+    padding:.5rem .6rem;
+    cursor:grab;
+    user-select:none;
+    font-family:'Assistant', sans-serif;
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--gold-light);
+  }
+  #video-float-handle:active{cursor:grabbing;}
+  #video-float-close{
+    background:transparent;
+    border:none;
+    color:var(--gold-light);
+    font-size:1.2rem;
+    line-height:1;
+    padding:.2rem .4rem;
+    cursor:pointer;
+    border-radius:6px;
+  }
+  #video-float-close:hover{background:rgba(217,191,137,.15);}
+  #video-float-close:focus-visible{outline:3px solid var(--gold-light); outline-offset:1px;}
+  #video-float-body{padding:0 .7rem .5rem;}
+  .video-float-today{
+    font-family:'Assistant', sans-serif;
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--paper);
+    background:rgba(217,191,137,.12);
+    border-radius:8px;
+    padding:.45rem .6rem;
+    margin:.2rem 0 .5rem;
+    line-height:1.5;
+  }
+  .video-float-mismatch-note{
+    font-family:'Assistant', sans-serif;
+    font-size:.72rem;
+    color:var(--gold-light);
+    opacity:.85;
+    line-height:1.5;
+    margin:.4rem 0 0;
+  }
+  .video-float-frame-wrap{position:relative; width:100%; aspect-ratio:16/9; background:#000; border-radius:8px; overflow:hidden;}
+  .video-float-frame-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
+  #video-float-credit{
+    padding:.4rem .6rem .6rem;
+    font-family:'Assistant', sans-serif;
+    font-size:.72rem;
+    color:var(--gold-light);
+    opacity:.85;
+    text-align:center;
+  }
+  #video-float-credit a{color:var(--gold-light);}
+  @media (max-width:480px){
+    #video-float{width:250px; bottom:84px;}
+  }
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
@@ -90,9 +168,26 @@
         <button class="btn secondary" id="dafyomi-today-btn">היום</button>
         <button class="btn secondary" id="dafyomi-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
+      <div class="controls-row video-toggle-row">
+        <button class="btn secondary" id="video-float-toggle" aria-pressed="false">🎥 שיעור וידאו צף (מרכז דף יומי — הרב אלי סטפנסקי)</button>
+      </div>
+      <p class="field-help">חלון קטן וצף שאפשר לגרור למקום נוח, כדי לצפות בשיעור תוך כדי גלילה בדף.</p>
     </section>
     <div id="dafyomi-reader" aria-live="polite"></div>
 </main>
+
+<div id="video-float" hidden role="dialog" aria-label="שיעור וידאו צף">
+  <div id="video-float-handle">
+    <span>שיעור הדף היומי — הרב אלי סטפנסקי</span>
+    <button type="button" id="video-float-close" aria-label="סגור את השיעור הצף">✕</button>
+  </div>
+  <div id="video-float-body">
+    <p class="video-float-today" id="video-float-today">מזהה את הדף של היום…</p>
+    <div class="video-float-frame-wrap" id="video-float-frame-wrap"></div>
+    <p class="video-float-mismatch-note">הסרטון הוא ההעלאה האחרונה של הערוץ. אם הוא לא תואם לדף הרשום למעלה, ייתכן שהשיעור של היום עוד לא הועלה — <a href="https://www.youtube.com/@MercazDafYomi" target="_blank" rel="noopener">אפשר לבדוק בערוץ</a>.</p>
+  </div>
+  <p id="video-float-credit">מהערוץ של <a href="https://www.youtube.com/@MercazDafYomi" target="_blank" rel="noopener">מרכז דף יומי — הרב אלי סטפנסקי</a> · <a href="https://mdydaf.com" target="_blank" rel="noopener">mdydaf.com</a></p>
+</div>
 
 <footer class="site">
   <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
@@ -117,6 +212,111 @@ document.getElementById('dafyomi-load').addEventListener('click', renderDafYomi)
 wireDatePicker('dafyomi-date-input', 'dafyomi-today-btn', 'dafyomi-prev-btn', 'dafyomi-next-btn', ()=>dafyomiSelectedDate, d=>{ dafyomiSelectedDate = d; }, renderDafYomi);
 
 renderDafYomi();
+
+/* =====================================================================
+   FLOATING VIDEO LESSON (Mercaz Daf Yomi — Rabbi Eli Stefansky)
+   Wrapped in try/catch so a bug here can never take down the shared,
+   site-wide features below it (WhatsApp button, Shabbat/Yom Tov banner).
+
+   This channel (confirmed dedicated exclusively to Daf Yomi, with a
+   consistent nightly schedule for over two years — unlike the earlier
+   channels tried here) makes the channel's most recent upload a reasonable
+   match for today's daf. Even so, the exact daf expected today is shown
+   as its own label (computed the same way the page's own reader does),
+   so a mismatch is visible at a glance rather than silently wrong.
+   ===================================================================== */
+try{
+(function(){
+  const box = document.getElementById('video-float');
+  const toggle = document.getElementById('video-float-toggle');
+  const closeBtn = document.getElementById('video-float-close');
+  const handle = document.getElementById('video-float-handle');
+  const frameWrap = document.getElementById('video-float-frame-wrap');
+  const statusEl = document.getElementById('video-float-today');
+  // @MercazDafYomi's uploads playlist ("UU" + the channel ID) — its most recent item.
+  const UPLOADS_PLAYLIST = 'UUKwQa5DB_VR98ac_r-Wyl-g';
+  let iframeLoaded = false;
+  let todayLookupStarted = false;
+
+  // Shows today's exact expected daf (masechet + daf), the same way the page's own Daf
+  // Yomi reader determines it (Sefaria's calendar) — purely informational, so a mismatch
+  // with the embedded video is visible at a glance rather than silently wrong.
+  async function lookupToday(){
+    if(todayLookupStarted) return;
+    todayLookupStarted = true;
+    try{
+      const d = dafyomiSelectedDate || new Date();
+      const calendarUrl = dafyomiSelectedDate
+        ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getUTCFullYear()}&month=${d.getUTCMonth()+1}&day=${d.getUTCDate()}`
+        : `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getFullYear()}&month=${d.getMonth()+1}&day=${d.getDate()}`;
+      const res = await fetch(calendarUrl);
+      if(!res.ok) throw new Error('calendar fetch failed');
+      const data = await res.json();
+      const items = (data && data.calendar_items) || [];
+      const item = items.find(i => i.title && i.title.en === 'Daf Yomi');
+      const heName = item && item.displayValue && item.displayValue.he;
+      if(!heName) throw new Error('no daf name');
+      statusEl.textContent = 'הדף הצפוי להיום: ' + heName;
+    }catch(e){
+      statusEl.textContent = 'לא ניתן היה לזהות את הדף הצפוי להיום כרגע.';
+    }
+  }
+
+  function ensureIframe(){
+    if(iframeLoaded) return;
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/videoseries?list=' + UPLOADS_PLAYLIST;
+    iframe.title = 'השיעור האחרון בערוץ — מרכז דף יומי';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    frameWrap.appendChild(iframe);
+    iframeLoaded = true;
+  }
+  function show(){
+    lookupToday();
+    ensureIframe();
+    box.hidden = false;
+    toggle.setAttribute('aria-pressed', 'true');
+  }
+  function hide(){
+    box.hidden = true;
+    toggle.setAttribute('aria-pressed', 'false');
+  }
+  toggle.addEventListener('click', () => { box.hidden ? show() : hide(); });
+  closeBtn.addEventListener('click', hide);
+
+  /* ---------- dragging (pointer events cover mouse + touch together) ---------- */
+  let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
+  function clamp(val, min, max){ return Math.min(Math.max(val, min), max); }
+  handle.addEventListener('pointerdown', (e) => {
+    if(e.target === closeBtn) return;
+    dragging = true;
+    try{ handle.setPointerCapture(e.pointerId); }catch(err){}
+    const rect = box.getBoundingClientRect();
+    startX = e.clientX; startY = e.clientY;
+    startLeft = rect.left; startTop = rect.top;
+    // once dragged, position by explicit left/top instead of the CSS default bottom/left
+    box.style.left = rect.left + 'px';
+    box.style.top = rect.top + 'px';
+    box.style.bottom = 'auto';
+  });
+  handle.addEventListener('pointermove', (e) => {
+    if(!dragging) return;
+    const rect = box.getBoundingClientRect();
+    const newLeft = clamp(startLeft + (e.clientX - startX), 0, window.innerWidth - rect.width);
+    const newTop = clamp(startTop + (e.clientY - startY), 0, window.innerHeight - rect.height);
+    box.style.left = newLeft + 'px';
+    box.style.top = newTop + 'px';
+  });
+  function endDrag(e){ dragging = false; try{ handle.releasePointerCapture(e.pointerId); }catch(err){} }
+  handle.addEventListener('pointerup', endDrag);
+  handle.addEventListener('pointercancel', endDrag);
+  hide();   // explicit initial state (matches the HTML's own "hidden" attribute, set via JS too so the two can never drift apart)
+})();
+}catch(e){
+  console.error('dafyomi.html: the floating video widget hit a bug and was isolated:', e);
+}
 
 /* =====================================================================
    SHABBAT / YOM TOV AUTO-GATING
