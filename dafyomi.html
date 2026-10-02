@@ -33,91 +33,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?v=2026092805">
-<style>
-  /* floating video lesson — page-specific, only used on this page */
-  .video-toggle-row{margin-top:.6rem;}
-  #video-float{
-    position:fixed;
-    bottom:90px;
-    left:14px;
-    width:280px;
-    max-width:calc(100vw - 28px);
-    background:var(--ink);
-    border-radius:12px;
-    box-shadow:0 10px 30px -6px rgba(0,0,0,.5);
-    z-index:600;
-    overflow:hidden;
-    touch-action:none;
-  }
-  #video-float[hidden]{display:none;}
-  #video-float-handle{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:.5rem;
-    padding:.5rem .6rem;
-    cursor:grab;
-    user-select:none;
-    font-family:'Assistant', sans-serif;
-    font-size:.82rem;
-    font-weight:700;
-    color:var(--gold-light);
-  }
-  #video-float-handle:active{cursor:grabbing;}
-  #video-float-close{
-    background:transparent;
-    border:none;
-    color:var(--gold-light);
-    font-size:1.2rem;
-    line-height:1;
-    padding:.2rem .4rem;
-    cursor:pointer;
-    border-radius:6px;
-  }
-  #video-float-close:hover{background:rgba(217,191,137,.15);}
-  #video-float-close:focus-visible{outline:3px solid var(--gold-light); outline-offset:1px;}
-  #video-float-body{padding:0 .7rem .5rem;}
-  .video-float-status{
-    font-family:'Assistant', sans-serif;
-    font-size:.85rem;
-    color:var(--paper);
-    margin:.2rem 0 .6rem;
-    line-height:1.5;
-  }
-  .video-float-link-row{margin:0 0 .5rem;}
-  .video-float-link-row .btn{width:100%; text-align:center; box-sizing:border-box;}
-  .video-float-secondary-btn{
-    display:block;
-    width:100%;
-    background:transparent;
-    border:1px solid rgba(217,191,137,.4);
-    border-radius:8px;
-    color:var(--gold-light);
-    font-family:'Assistant', sans-serif;
-    font-size:.78rem;
-    line-height:1.5;
-    padding:.5rem .6rem;
-    cursor:pointer;
-    margin-bottom:.4rem;
-  }
-  .video-float-secondary-btn:hover{background:rgba(217,191,137,.1);}
-  .video-float-secondary-btn:focus-visible{outline:3px solid var(--gold-light); outline-offset:1px;}
-  .video-float-frame-wrap{position:relative; width:100%; aspect-ratio:16/9; background:#000; border-radius:8px; overflow:hidden; display:none;}
-  .video-float-frame-wrap.shown{display:block;}
-  .video-float-frame-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0;}
-  #video-float-credit{
-    padding:.4rem .6rem .6rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.72rem;
-    color:var(--gold-light);
-    opacity:.85;
-    text-align:center;
-  }
-  #video-float-credit a{color:var(--gold-light);}
-  @media (max-width:480px){
-    #video-float{width:240px; bottom:84px;}
-  }
-</style>
 </head>
 <body>
 <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
@@ -175,29 +90,9 @@
         <button class="btn secondary" id="dafyomi-today-btn">היום</button>
         <button class="btn secondary" id="dafyomi-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
-      <div class="controls-row video-toggle-row">
-        <button class="btn secondary" id="video-float-toggle" aria-pressed="false">🎥 שיעור וידאו צף (הרב יוני גוטמן)</button>
-      </div>
-      <p class="field-help">חלון קטן וצף שאפשר לגרור למקום נוח, כדי לצפות בשיעור תוך כדי גלילה בדף. מציג את השיעור העדכני ביותר בערוץ.</p>
     </section>
     <div id="dafyomi-reader" aria-live="polite"></div>
 </main>
-
-<div id="video-float" hidden role="dialog" aria-label="שיעור וידאו צף">
-  <div id="video-float-handle">
-    <span>שיעור הדף היומי — הרב יוני גוטמן</span>
-    <button type="button" id="video-float-close" aria-label="סגור את השיעור הצף">✕</button>
-  </div>
-  <div id="video-float-body">
-    <p id="video-float-today" class="video-float-status">מזהה את הדף של היום…</p>
-    <p class="video-float-link-row">
-      <a id="video-float-search-link" class="btn" href="https://www.youtube.com/@Yoni_gutman/search" target="_blank" rel="noopener">חפש/י בערוץ את השיעור המדויק</a>
-    </p>
-    <button type="button" id="video-float-show-recent" class="video-float-secondary-btn">או: הצג/י כאן את השיעור האחרון שהועלה בערוץ (ייתכן שאינו מדויק ליום הנוכחי)</button>
-    <div class="video-float-frame-wrap" id="video-float-frame-wrap"></div>
-  </div>
-  <p id="video-float-credit">מהערוץ של <a href="https://www.youtube.com/@Yoni_gutman" target="_blank" rel="noopener">הרב יוני גוטמן</a> · <a href="https://dafyomi20.co.il" target="_blank" rel="noopener">dafyomi20.co.il</a></p>
-</div>
 
 <footer class="site">
   <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
@@ -222,113 +117,6 @@ document.getElementById('dafyomi-load').addEventListener('click', renderDafYomi)
 wireDatePicker('dafyomi-date-input', 'dafyomi-today-btn', 'dafyomi-prev-btn', 'dafyomi-next-btn', ()=>dafyomiSelectedDate, d=>{ dafyomiSelectedDate = d; }, renderDafYomi);
 
 renderDafYomi();
-
-/* =====================================================================
-   FLOATING VIDEO LESSON (Rabbi Yoni Gutman's Daf Yomi channel)
-   Wrapped in try/catch so a bug here can never take down the shared,
-   site-wide features below it (WhatsApp button, Shabbat/Yom Tov banner).
-   ===================================================================== */
-try{
-(function(){
-  const box = document.getElementById('video-float');
-  const toggle = document.getElementById('video-float-toggle');
-  const closeBtn = document.getElementById('video-float-close');
-  const handle = document.getElementById('video-float-handle');
-  const frameWrap = document.getElementById('video-float-frame-wrap');
-  const statusEl = document.getElementById('video-float-today');
-  const searchLink = document.getElementById('video-float-search-link');
-  const recentBtn = document.getElementById('video-float-show-recent');
-  // NOTE: his channel's MOST RECENT upload is not reliably today's exact daf (he sometimes
-  // uploads a few days ahead) — so the "latest upload" is offered only as a clearly-labeled,
-  // secondary option, never embedded automatically or presented as if it were today's lesson.
-  const UPLOADS_PLAYLIST = 'UU5SfuCAOtyhk9n91U8szk0g';
-  let iframeLoaded = false;
-  let todayLookupStarted = false;
-
-  // Finds today's exact daf (masechet + daf) the same way the page's own Daf Yomi reader does
-  // (Sefaria's calendar), and turns it into an accurate search link within his channel — so the
-  // person always gets the RIGHT lesson, instead of a guess that might be several days off.
-  async function lookupToday(){
-    if(todayLookupStarted) return;
-    todayLookupStarted = true;
-    try{
-      const d = dafyomiSelectedDate || new Date();
-      const calendarUrl = dafyomiSelectedDate
-        ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getUTCFullYear()}&month=${d.getUTCMonth()+1}&day=${d.getUTCDate()}`
-        : `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getFullYear()}&month=${d.getMonth()+1}&day=${d.getDate()}`;
-      const res = await fetch(calendarUrl);
-      if(!res.ok) throw new Error('calendar fetch failed');
-      const data = await res.json();
-      const items = (data && data.calendar_items) || [];
-      const item = items.find(i => i.title && i.title.en === 'Daf Yomi');
-      const heName = item && item.displayValue && item.displayValue.he;
-      if(!heName) throw new Error('no daf name');
-      statusEl.textContent = 'הדף של היום: ' + heName;
-      searchLink.href = 'https://www.youtube.com/@Yoni_gutman/search?query=' + encodeURIComponent(heName);
-      searchLink.textContent = 'חפש/י ביוטיוב: ' + heName;
-    }catch(e){
-      statusEl.textContent = 'לא ניתן היה לזהות את הדף של היום כרגע — אפשר לחפש ידנית.';
-      searchLink.textContent = 'חפש/י בערוץ את השיעור המדויק';
-      searchLink.href = 'https://www.youtube.com/@Yoni_gutman/search';   // explicit fallback (not just relying on the static HTML default)
-    }
-  }
-
-  function ensureIframe(){
-    if(iframeLoaded) return;
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube.com/embed/videoseries?list=' + UPLOADS_PLAYLIST;
-    iframe.title = 'השיעורים האחרונים בערוץ — הרב יוני גוטמן';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    iframe.loading = 'lazy';
-    frameWrap.appendChild(iframe);
-    frameWrap.classList.add('shown');
-    iframeLoaded = true;
-  }
-  recentBtn.addEventListener('click', ensureIframe);
-  function show(){
-    lookupToday();
-    box.hidden = false;
-    toggle.setAttribute('aria-pressed', 'true');
-  }
-  function hide(){
-    box.hidden = true;
-    toggle.setAttribute('aria-pressed', 'false');
-  }
-  toggle.addEventListener('click', () => { box.hidden ? show() : hide(); });
-  closeBtn.addEventListener('click', hide);
-
-  /* ---------- dragging (pointer events cover mouse + touch together) ---------- */
-  let dragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
-  function clamp(val, min, max){ return Math.min(Math.max(val, min), max); }
-  handle.addEventListener('pointerdown', (e) => {
-    if(e.target === closeBtn) return;
-    dragging = true;
-    try{ handle.setPointerCapture(e.pointerId); }catch(err){}
-    const rect = box.getBoundingClientRect();
-    startX = e.clientX; startY = e.clientY;
-    startLeft = rect.left; startTop = rect.top;
-    // once dragged, position by explicit left/top instead of the CSS default bottom/left
-    box.style.left = rect.left + 'px';
-    box.style.top = rect.top + 'px';
-    box.style.bottom = 'auto';
-  });
-  handle.addEventListener('pointermove', (e) => {
-    if(!dragging) return;
-    const rect = box.getBoundingClientRect();
-    const newLeft = clamp(startLeft + (e.clientX - startX), 0, window.innerWidth - rect.width);
-    const newTop = clamp(startTop + (e.clientY - startY), 0, window.innerHeight - rect.height);
-    box.style.left = newLeft + 'px';
-    box.style.top = newTop + 'px';
-  });
-  function endDrag(e){ dragging = false; try{ handle.releasePointerCapture(e.pointerId); }catch(err){} }
-  handle.addEventListener('pointerup', endDrag);
-  handle.addEventListener('pointercancel', endDrag);
-  hide();   // explicit initial state (matches the HTML's own "hidden" attribute, set via JS too so the two can never drift apart)
-})();
-}catch(e){
-  console.error('dafyomi.html: the floating video widget hit a bug and was isolated:', e);
-}
 
 /* =====================================================================
    SHABBAT / YOM TOV AUTO-GATING
