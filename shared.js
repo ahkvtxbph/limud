@@ -1461,3 +1461,127 @@ function vezotHaberakhahFirst(bm, israel, firstPortionMs){
   if(st === null || bm.ms > st) return false;
   return firstPortionMs === null || firstPortionMs === undefined || st <= firstPortionMs;
 }
+
+/* =====================================================================
+   WEEKLY TORAH PORTIONS (parshiot) — the 54 fixed portions, each with its exact
+   book + chapter:verse boundaries. Source cross-checked against mechon-mamre.org's
+   "Table of Weekly Parashiyot" (based on Rambam, Hilchot Tefillin, Mezuzah & Sefer
+   Torah 8). Combined-week pairs (e.g. Vayakhel-Pekudei) are listed as their two
+   separate historical portions, matching how a Torah scroll itself is divided.
+   ===================================================================== */
+const PARSHIOT = [
+  { he:'בראשית', en:'Genesis', book:'Genesis', from:[1,1], to:[6,8] },
+  { he:'נח', en:'Noach', book:'Genesis', from:[6,9], to:[11,32] },
+  { he:'לך לך', en:'Lech-Lecha', book:'Genesis', from:[12,1], to:[17,27] },
+  { he:'וירא', en:'Vayera', book:'Genesis', from:[18,1], to:[22,24] },
+  { he:'חיי שרה', en:'Chayei Sara', book:'Genesis', from:[23,1], to:[25,18] },
+  { he:'תולדות', en:'Toldot', book:'Genesis', from:[25,19], to:[28,9] },
+  { he:'ויצא', en:'Vayetzei', book:'Genesis', from:[28,10], to:[32,3] },
+  { he:'וישלח', en:'Vayishlach', book:'Genesis', from:[32,4], to:[36,43] },
+  { he:'וישב', en:'Vayeshev', book:'Genesis', from:[37,1], to:[40,23] },
+  { he:'מקץ', en:'Miketz', book:'Genesis', from:[41,1], to:[44,17] },
+  { he:'ויגש', en:'Vayigash', book:'Genesis', from:[44,18], to:[47,27] },
+  { he:'ויחי', en:'Vayechi', book:'Genesis', from:[47,28], to:[50,26] },
+  { he:'שמות', en:'Shemot', book:'Exodus', from:[1,1], to:[6,1] },
+  { he:'וארא', en:"Va'era", book:'Exodus', from:[6,2], to:[9,35] },
+  { he:'בא', en:'Bo', book:'Exodus', from:[10,1], to:[13,16] },
+  { he:'בשלח', en:'Beshalach', book:'Exodus', from:[13,17], to:[17,16] },
+  { he:'יתרו', en:'Yitro', book:'Exodus', from:[18,1], to:[20,23] },
+  { he:'משפטים', en:'Mishpatim', book:'Exodus', from:[21,1], to:[24,18] },
+  { he:'תרומה', en:'Terumah', book:'Exodus', from:[25,1], to:[27,19] },
+  { he:'תצוה', en:'Tetzaveh', book:'Exodus', from:[27,20], to:[30,10] },
+  { he:'כי תשא', en:'Ki Tisa', book:'Exodus', from:[30,11], to:[34,35] },
+  { he:'ויקהל', en:'Vayakhel', book:'Exodus', from:[35,1], to:[38,20] },
+  { he:'פקודי', en:'Pekudei', book:'Exodus', from:[38,21], to:[40,38] },
+  { he:'ויקרא', en:'Vayikra', book:'Leviticus', from:[1,1], to:[5,26] },
+  { he:'צו', en:'Tzav', book:'Leviticus', from:[6,1], to:[8,36] },
+  { he:'שמיני', en:'Shmini', book:'Leviticus', from:[9,1], to:[11,47] },
+  { he:'תזריע', en:'Tazria', book:'Leviticus', from:[12,1], to:[13,59] },
+  { he:'מצורע', en:'Metzora', book:'Leviticus', from:[14,1], to:[15,33] },
+  { he:'אחרי מות', en:'Achrei Mot', book:'Leviticus', from:[16,1], to:[18,30] },
+  { he:'קדושים', en:'Kedoshim', book:'Leviticus', from:[19,1], to:[20,27] },
+  { he:'אמור', en:'Emor', book:'Leviticus', from:[21,1], to:[24,23] },
+  { he:'בהר', en:'Behar', book:'Leviticus', from:[25,1], to:[26,2] },
+  { he:'בחוקותי', en:'Bechukotai', book:'Leviticus', from:[26,3], to:[27,34] },
+  { he:'במדבר', en:'Bemidbar', book:'Numbers', from:[1,1], to:[4,20] },
+  { he:'נשא', en:'Naso', book:'Numbers', from:[4,21], to:[7,89] },
+  { he:'בהעלתך', en:"Beha'alotcha", book:'Numbers', from:[8,1], to:[12,16] },
+  { he:'שלח', en:'Shlach', book:'Numbers', from:[13,1], to:[15,41] },
+  { he:'קרח', en:'Korach', book:'Numbers', from:[16,1], to:[18,32] },
+  { he:'חקת', en:'Chukat', book:'Numbers', from:[19,1], to:[22,1] },
+  { he:'בלק', en:'Balak', book:'Numbers', from:[22,2], to:[25,9] },
+  { he:'פינחס', en:'Pinchas', book:'Numbers', from:[25,10], to:[30,1] },
+  { he:'מטות', en:'Matot', book:'Numbers', from:[30,2], to:[32,42] },
+  { he:'מסעי', en:'Masei', book:'Numbers', from:[33,1], to:[36,13] },
+  { he:'דברים', en:'Devarim', book:'Deuteronomy', from:[1,1], to:[3,22] },
+  { he:'ואתחנן', en:"Va'etchanan", book:'Deuteronomy', from:[3,23], to:[7,11] },
+  { he:'עקב', en:'Eikev', book:'Deuteronomy', from:[7,12], to:[11,25] },
+  { he:'ראה', en:"Re'eh", book:'Deuteronomy', from:[11,26], to:[16,17] },
+  { he:'שופטים', en:'Shoftim', book:'Deuteronomy', from:[16,18], to:[21,9] },
+  { he:'כי תצא', en:'Ki Teitzei', book:'Deuteronomy', from:[21,10], to:[25,19] },
+  { he:'כי תבוא', en:'Ki Tavo', book:'Deuteronomy', from:[26,1], to:[29,8] },
+  { he:'נצבים', en:'Nitzavim', book:'Deuteronomy', from:[29,9], to:[30,20] },
+  { he:'וילך', en:'Vayeilech', book:'Deuteronomy', from:[31,1], to:[31,30] },
+  { he:'האזינו', en:"Ha'azinu", book:'Deuteronomy', from:[32,1], to:[32,52] },
+  { he:'וזאת הברכה', en:"V'Zot HaBerachah", book:'Deuteronomy', from:[33,1], to:[34,12] },
+];
+
+const targumBookCache = {};
+// Fetches the whole book's Targum Onkelos text (Torah only — Onkelos doesn't cover the rest of
+// Tanakh), structured the same way fetchWholeTanakhBook is: an array of chapters, each an array
+// of verse strings.
+async function fetchWholeTargumBook(bookEn){
+  if(targumBookCache[bookEn]) return targumBookCache[bookEn];
+  const { text } = await fetchRefText(`Onkelos ${bookEn}`);
+  if(!text || !Array.isArray(text)) throw new Error('no Targum data for ' + bookEn);
+  const cleaned = text.map(ch => Array.isArray(ch) ? ch.map(stripTags) : [stripTags(ch)]);
+  targumBookCache[bookEn] = cleaned;
+  return cleaned;
+}
+
+// Builds (but does not insert) a card for one parasha: each verse shown once in Hebrew (with a
+// note that the custom is to read it twice), followed by Targum Onkelos — for "שניים מקרא ואחד
+// תרגום". Caller appends/inserts it wherever needed.
+function buildParashaCard(parasha, hebrewChapters, targumChapters){
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  const rangeLabel = parasha.from[0] === parasha.to[0]
+    ? `פרק ${hebNum(parasha.from[0])}, פסוקים ${hebNum(parasha.from[1])}-${hebNum(parasha.to[1])}`
+    : `פרק ${hebNum(parasha.from[0])}:${hebNum(parasha.from[1])} — פרק ${hebNum(parasha.to[0])}:${hebNum(parasha.to[1])}`;
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>פרשת ${parasha.he}</h2>
+      <div class="share-row"></div>
+      <span class="gem">${parasha.en} — ${rangeLabel}</span>
+    </div>
+    <p class="learning-date-label">שניים מקרא ואחד תרגום<span class="sub">כל פסוק נקרא פעמיים בעברית ופעם אחת בתרגום אונקלוס</span></p>
+  `;
+  const shareSlot = card.querySelector('.chapter-head .share-row');
+  shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], `פרשת ${parasha.he} — שניים מקרא ואחד תרגום:`));
+
+  const wrap = document.createElement('div');
+  for(let c = parasha.from[0]; c <= parasha.to[0]; c++){
+    const chapterVerses = hebrewChapters[c-1] || [];
+    const targumVerses = targumChapters[c-1] || [];
+    const vStart = (c === parasha.from[0]) ? parasha.from[1] : 1;
+    const vEnd = (c === parasha.to[0]) ? parasha.to[1] : chapterVerses.length;
+    for(let v = vStart; v <= vEnd; v++){
+      const heText = chapterVerses[v-1];
+      if(!heText) continue;
+      const vDiv = document.createElement('div');
+      vDiv.className = 'verses';
+      vDiv.innerHTML = `<span class="v-num">${hebNum(c)}:${hebNum(v)}</span> ${heText}`;
+      wrap.appendChild(vDiv);
+
+      const tDiv = document.createElement('div');
+      tDiv.className = 'commentary';
+      const targumText = targumVerses[v-1];
+      tDiv.innerHTML = targumText
+        ? `<div class="c-label">תרגום אונקלוס</div><div class="c-text">${targumText}</div>`
+        : `<div class="c-unavailable">תרגום אונקלוס לא נמצא עבור פסוק זה.</div>`;
+      wrap.appendChild(tDiv);
+    }
+  }
+  card.appendChild(wrap);
+  return card;
+}
