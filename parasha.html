@@ -216,7 +216,16 @@ try{
     // Sefaria may report a combined week ("נצבים-וילך" / "נצבים־וילך") — match against the FIRST
     // of the two names, since that's the one whose text starts the combined reading.
     const firstName = stripNikud(sefariaHe).split(/[-־]/)[0].trim();
-    return PARSHIOT.findIndex(p => p.he === firstName || firstName.indexOf(p.he) === 0);
+    // On a week with no regular weekly portion, Sefaria's calendar reports the HOLIDAY's name
+    // instead (e.g. "שמיני עצרת") — an EXACT match is required below, since a loose "starts with"
+    // check would wrongly match "שמיני עצרת" against the unrelated parasha "שמיני" (Leviticus,
+    // a different time of year entirely — reported bug). Simchat Torah / Shmini Atzeret is the one
+    // specific case worth mapping by hand: it's the day Vezot HaBerakhah, the Torah's last portion,
+    // is read, so that's what makes sense to show here.
+    if(/שמיני עצרת|שמחת תורה/.test(firstName)){
+      return PARSHIOT.findIndex(p => p.he === 'וזאת הברכה');
+    }
+    return PARSHIOT.findIndex(p => p.he === firstName);
   }
   async function loadCurrentParasha(){
     showLoading('מזהה את פרשת השבוע…');
