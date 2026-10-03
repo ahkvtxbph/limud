@@ -187,8 +187,11 @@ function buildShareBar(url, text){
 // under the one ref, distinguished only by version — not by separate ref paths), this requests
 // exactly that edition instead of Sefaria's default "primary" Hebrew version.
 async function fetchRefText(ref, versionTitle){
-  const versionParam = versionTitle ? `hebrew|${versionTitle}` : 'hebrew';
-  const url = `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(ref)}?version=${encodeURIComponent(versionParam)}&return_format=text_only`;
+  // the "|" must stay LITERAL in the URL (per Sefaria's own documented examples) — only the
+  // version title itself gets percent-encoded; encoding the "|" too (e.g. to %7C) is what
+  // broke this the first time, turning a valid request into a 400 Bad Request.
+  const versionParam = versionTitle ? `hebrew|${encodeURIComponent(versionTitle)}` : 'hebrew';
+  const url = `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(ref)}?version=${versionParam}&return_format=text_only`;
   const res = await fetch(url);
   if(!res.ok) throw new Error('fetch failed: ' + ref + (versionTitle ? ' (version: ' + versionTitle + ')' : ''));
   const data = await res.json();

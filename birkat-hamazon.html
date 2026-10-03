@@ -152,7 +152,7 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092812"></script>
+<script src="shared.js?v=2026092813"></script>
 <script>
 try{
 (function(){
@@ -251,7 +251,7 @@ try{
     }catch(e){
       if(myRequest !== loadRequestId) return;
       console.error('birkat-hamazon.html: load failed for "' + NUSACH_REF[nusach] + '":', e);
-      const sefariaUrl = 'https://www.sefaria.org/' + encodeURIComponent(NUSACH_REF[nusach].replace(/ /g,'_')) + (NUSACH_VERSION[nusach] ? '?ven=&vhe=' + encodeURIComponent('hebrew|' + NUSACH_VERSION[nusach]) : '');
+      const sefariaUrl = 'https://www.sefaria.org/' + encodeURIComponent(NUSACH_REF[nusach].replace(/ /g,'_')) + (NUSACH_VERSION[nusach] ? '?vhe=hebrew|' + encodeURIComponent(NUSACH_VERSION[nusach]) : '');
       showError('לא ניתן היה לטעון את ברכת המזון כרגע (' + (e && e.message ? e.message : 'שגיאה לא ידועה') + '). אפשר לראות אותה ישירות ב<a href="' + sefariaUrl + '" target="_blank" rel="noopener">ספריא</a>.');
     }
   }
