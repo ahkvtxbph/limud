@@ -187,7 +187,8 @@ try{
       $('flag-purim').checked = !!flags.purim;
       $('birkat-flags-status').textContent = 'הסימון הראשוני נקבע אוטומטית לפי היום הנוכחי — אפשר לשנות כל תיבה.';
     }catch(e){
-      $('birkat-flags-status').textContent = 'לא ניתן היה לזהות מה חל היום — כל התיבות כבויות כברירת מחדל, יש לסמן ידנית.';
+      console.error('birkat-hamazon.html: initFlags failed:', e);
+      $('birkat-flags-status').textContent = 'לא ניתן היה לזהות מה חל היום (' + (e && e.message ? e.message : 'שגיאה לא ידועה') + ') — כל התיבות כבויות כברירת מחדל, יש לסמן ידנית.';
     }
   }
   function currentFlags(){
@@ -200,7 +201,7 @@ try{
   async function fetchNusachSegments(key){
     if(segmentCache[key]) return segmentCache[key];
     const { text } = await fetchRefText(NUSACH_REF[key]);
-    if(!text || !Array.isArray(text)) throw new Error('no Birkat HaMazon data for ' + key);
+    if(!text || !Array.isArray(text)) throw new Error('empty or missing text in Sefaria\'s response for "' + NUSACH_REF[key] + '"');
     const flat = text.map(stripTags);
     segmentCache[key] = flat;
     return flat;
@@ -232,7 +233,8 @@ try{
       render();
     }catch(e){
       if(myRequest !== loadRequestId) return;
-      showError('לא ניתן היה לטעון את ברכת המזון כרגע. אפשר לראות אותה ישירות ב<a href="https://www.sefaria.org/' + encodeURIComponent(NUSACH_REF[nusach].replace(/ /g,'_')) + '" target="_blank" rel="noopener">ספריא</a>.');
+      console.error('birkat-hamazon.html: load failed for "' + NUSACH_REF[nusach] + '":', e);
+      showError('לא ניתן היה לטעון את ברכת המזון כרגע (' + (e && e.message ? e.message : 'שגיאה לא ידועה') + '). אפשר לראות אותה ישירות ב<a href="https://www.sefaria.org/' + encodeURIComponent(NUSACH_REF[nusach].replace(/ /g,'_')) + '" target="_blank" rel="noopener">ספריא</a>.');
     }
   }
 
