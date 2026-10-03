@@ -1585,3 +1585,74 @@ function buildParashaCard(parasha, hebrewChapters, targumChapters){
   card.appendChild(wrap);
   return card;
 }
+
+/* =====================================================================
+   BIRKAT HAMAZON — classifying which segments are optional day-dependent additions
+   ===================================================================== */
+// Strips Hebrew vowel points / cantillation marks (U+0591–U+05C7), so matching a segment's
+// text against a plain-Hebrew marker phrase works whether the source text is vocalized or not.
+function stripNikud(s){ return String(s || '').replace(/[\u0591-\u05C7]/g, ''); }
+
+// Each optional Birkat HaMazon addition, identified by a short, well-known, essentially
+// invariant opening phrase (present across nuschaot) rather than by position in the text —
+// the exact segment numbering can differ between texts/sources, but these phrases don't.
+const BIRKAT_MARKERS = [
+  { type: 'retzeh', flag: 'shabbat', label: 'שבת — רצה והחליצנו', needle: 'רצה והחליצנו' },
+  { type: 'yaaleh', flag: 'yaaleh', label: 'יעלה ויבוא', needle: 'יעלה ויבא' },
+  { type: 'yaaleh', flag: 'yaaleh', label: 'יעלה ויבוא', needle: 'יעלה ויבוא' },
+  { type: 'al-hanisim-chanukah', flag: 'chanukah', label: 'חנוכה — על הנסים', needle: 'בימי מתתיהו' },
+  { type: 'al-hanisim-purim', flag: 'purim', label: 'פורים — על הנסים', needle: 'בימי מרדכי ואסתר' },
+  // "שכולו"/"שכלו" and "סוכת"/"סכת": vocalized siddur text commonly uses the DEFECTIVE (חסר)
+  // spelling — fewer vowel-letters, relying on the nikud points instead — while an unvocalized
+  // text spells the same word PLENE (מלא), with the extra letter. Both variants are listed so
+  // matching works either way.
+  { type: 'harachaman-shabbat', flag: 'shabbat', label: 'הרחמן — שבת', needle: 'יום שכולו שבת' },
+  { type: 'harachaman-shabbat', flag: 'shabbat', label: 'הרחמן — שבת', needle: 'יום שכלו שבת' },
+  { type: 'harachaman-roshchodesh', flag: 'roshchodesh', label: 'הרחמן — ראש חודש', needle: 'יחדש עלינו את החדש' },
+  { type: 'harachaman-roshchodesh', flag: 'roshchodesh', label: 'הרחמן — ראש חודש', needle: 'יחדש עלינו את החודש' },
+  { type: 'harachaman-roshhashana', flag: 'roshhashana', label: 'הרחמן — ראש השנה', needle: 'יחדש עלינו את השנה' },
+  { type: 'harachaman-sukkot', flag: 'sukkot', label: 'הרחמן — סוכות', needle: 'סוכת דוד' },
+  { type: 'harachaman-sukkot', flag: 'sukkot', label: 'הרחמן — סוכות', needle: 'סכת דוד' },
+  { type: 'harachaman-yomtov', flag: 'yaaleh', label: 'הרחמן — יום טוב', needle: 'יום שכולו טוב' },
+  { type: 'harachaman-yomtov', flag: 'yaaleh', label: 'הרחמן — יום טוב', needle: 'יום שכלו טוב' },
+];
+// Returns the matching marker descriptor for a segment of text, or null for core (always-shown) text.
+function classifyBirkatSegment(text){
+  const t = stripNikud(text);
+  for(const m of BIRKAT_MARKERS){ if(t.indexOf(m.needle) !== -1) return m; }
+  return null;
+}
+
+/* =====================================================================
+   BIRKAT HAMAZON — day-status flags (which optional paragraphs apply today)
+   ===================================================================== */
+// Looks up which Birkat Hamazon additions apply to a given date, using Hebcal (the same
+// source already used for Shabbat/Yom Tov gating elsewhere on this site). Returns an object
+// of booleans the caller can use as sensible DEFAULTS — the page itself always lets the
+// person override each one by hand, since getting this automatically right in every edge
+// case (e.g. twilight, local custom) isn't something software should be trusted blindly for.
+async function fetchBirkatHamazonDayFlags(date){
+  const d = date || new Date();
+  const flags = { shabbat: d.getDay() === 6, roshChodesh: false, yaalehVeyavo: false, roshHashana: false, chanukah: false, purim: false };
+  try{
+    const iso = d.toISOString().slice(0, 10);
+    const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&start=${iso}&end=${iso}`;
+    const res = await fetch(url);
+    if(!res.ok) return flags;
+    const data = await res.json();
+    const items = (data && data.items) || [];
+    for(const item of items){
+      const t = item.title || '';
+      if(/^Rosh Chodesh/.test(t)) flags.roshChodesh = true;
+      if(/^Rosh Hashana/.test(t)) flags.roshHashana = true;
+      if(/^(Pesach|Sukkot|Shmini Atzeret|Simchat Torah)/.test(t)) flags.yaalehVeyavo = true;
+      if(/^Chanukah/.test(t)) flags.chanukah = true;
+      if(/^(Purim|Shushan Purim)/.test(t)) flags.purim = true;
+    }
+    // Rosh Chodesh and Rosh Hashana also call for Yaaleh V'Yavo (Rosh Hashana is itself a
+    // "Yom Tov" day that uses the same line as Pesach/Sukkot; Rosh Chodesh gets its own flag
+    // too, kept separate since the page shows it as a distinct checkbox).
+    if(flags.roshHashana) flags.yaalehVeyavo = true;
+  }catch(e){ /* network issue: flags stay at their date-only defaults (just the weekday check) */ }
+  return flags;
+}
