@@ -152,20 +152,25 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092811"></script>
+<script src="shared.js?v=2026092812"></script>
 <script>
 try{
 (function(){
   const $ = id => document.getElementById(id);
   const reader = $('birkat-reader');
   let nusach = 'ashkenaz';
-  // "Siddur Sefard" is the Chassidic/Ashkenazi-derived nusach (not Mizrahi, despite the name) —
-  // "Siddur Edot HaMizrach" is the genuine, independent Mizrahi/Sephardi-rite siddur on Sefaria.
+  // "Siddur Sefard" is the Chassidic/Ashkenazi-derived nusach (not Mizrahi, despite the name).
+  // Ashkenaz and Sefard each have their OWN nested ref inside their respective Siddur. Edot
+  // HaMizrach's Birkat HaMazon, per Sefaria's own database listing, is NOT a separate nested
+  // ref at all — it's one of several VERSIONS of the single standalone "Birkat Hamazon" text
+  // (alongside Ashkenaz/Sefard/Ari editions of that same ref), so it needs a version title
+  // instead of a different ref path.
   const NUSACH_REF = {
     ashkenaz: 'Siddur Ashkenaz, Berachot, Birkat HaMazon',
     sefard: 'Siddur Sefard, Birchat HaMazon, Birchat HaMazon',
-    edot: 'Siddur Edot HaMizrach, Berachot, Birkat HaMazon'
+    edot: 'Birkat Hamazon'
   };
+  const NUSACH_VERSION = { edot: 'Edot HaMizrach' };   // only this nusach needs a specific version title
   const NUSACH_LABEL = { ashkenaz: 'נוסח אשכנז', sefard: 'נוסח ספרד', edot: 'נוסח עדות המזרח' };
   const NUSACH_KEYS = Object.keys(NUSACH_REF);
   const segmentCache = {};   // nusach -> array of raw segment strings
@@ -198,11 +203,23 @@ try{
   }
 
   /* ---------- fetching + rendering ---------- */
+  // Flattens Sefaria's response regardless of whether it's a simple array of verse strings or
+  // a nested array-of-sections (some refs, like the standalone "Birkat Hamazon" used for Edot
+  // HaMizrach, may be structured as a small table of contents rather than one flat sequence).
+  function flattenText(text){
+    const out = [];
+    (function walk(node){
+      if(Array.isArray(node)) node.forEach(walk);
+      else if(node != null) out.push(node);
+    })(text);
+    return out;
+  }
   async function fetchNusachSegments(key){
     if(segmentCache[key]) return segmentCache[key];
-    const { text } = await fetchRefText(NUSACH_REF[key]);
-    if(!text || !Array.isArray(text)) throw new Error('empty or missing text in Sefaria\'s response for "' + NUSACH_REF[key] + '"');
-    const flat = text.map(stripTags);
+    const { text } = await fetchRefText(NUSACH_REF[key], NUSACH_VERSION[key]);
+    if(!text || !Array.isArray(text)) throw new Error('empty or missing text in Sefaria\'s response for "' + NUSACH_REF[key] + '"' + (NUSACH_VERSION[key] ? ' (version: ' + NUSACH_VERSION[key] + ')' : ''));
+    const flat = flattenText(text).map(stripTags);
+    if(!flat.length) throw new Error('Sefaria returned no usable text for "' + NUSACH_REF[key] + '"' + (NUSACH_VERSION[key] ? ' (version: ' + NUSACH_VERSION[key] + ')' : ''));
     segmentCache[key] = flat;
     return flat;
   }
@@ -234,7 +251,8 @@ try{
     }catch(e){
       if(myRequest !== loadRequestId) return;
       console.error('birkat-hamazon.html: load failed for "' + NUSACH_REF[nusach] + '":', e);
-      showError('לא ניתן היה לטעון את ברכת המזון כרגע (' + (e && e.message ? e.message : 'שגיאה לא ידועה') + '). אפשר לראות אותה ישירות ב<a href="https://www.sefaria.org/' + encodeURIComponent(NUSACH_REF[nusach].replace(/ /g,'_')) + '" target="_blank" rel="noopener">ספריא</a>.');
+      const sefariaUrl = 'https://www.sefaria.org/' + encodeURIComponent(NUSACH_REF[nusach].replace(/ /g,'_')) + (NUSACH_VERSION[nusach] ? '?ven=&vhe=' + encodeURIComponent('hebrew|' + NUSACH_VERSION[nusach]) : '');
+      showError('לא ניתן היה לטעון את ברכת המזון כרגע (' + (e && e.message ? e.message : 'שגיאה לא ידועה') + '). אפשר לראות אותה ישירות ב<a href="' + sefariaUrl + '" target="_blank" rel="noopener">ספריא</a>.');
     }
   }
 

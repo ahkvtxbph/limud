@@ -182,10 +182,15 @@ function buildShareBar(url, text){
   return wrap;
 }
 
-async function fetchRefText(ref){
-  const url = `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(ref)}?version=hebrew&return_format=text_only`;
+// versionTitle (optional): when a ref has several Hebrew editions and a SPECIFIC one is needed
+// (e.g. "Birkat Hamazon" has separate Ashkenaz / Sefard / Edot HaMizrach / Ari editions, all
+// under the one ref, distinguished only by version — not by separate ref paths), this requests
+// exactly that edition instead of Sefaria's default "primary" Hebrew version.
+async function fetchRefText(ref, versionTitle){
+  const versionParam = versionTitle ? `hebrew|${versionTitle}` : 'hebrew';
+  const url = `https://www.sefaria.org/api/v3/texts/${encodeURIComponent(ref)}?version=${encodeURIComponent(versionParam)}&return_format=text_only`;
   const res = await fetch(url);
-  if(!res.ok) throw new Error('fetch failed: ' + ref);
+  if(!res.ok) throw new Error('fetch failed: ' + ref + (versionTitle ? ' (version: ' + versionTitle + ')' : ''));
   const data = await res.json();
   let text = null, resolvedRef = ref;
   if(data && data.versions && data.versions.length){
