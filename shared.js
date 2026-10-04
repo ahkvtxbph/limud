@@ -1643,8 +1643,13 @@ async function fetchBirkatHamazonDayFlags(date){
   const d = date || new Date();
   const flags = { shabbat: d.getDay() === 6, roshChodesh: false, yaalehVeyavo: false, roshHashana: false, chanukah: false, purim: false };
   try{
+    // Without "&i=on", Hebcal defaults to the DIASPORA holiday scheme — which keeps an extra
+    // Chol HaMoed / Yom Tov day that Israel does not have (e.g. an 8th day of Sukkot). Reusing
+    // the site's existing location detection (already used for the Shabbat/Yom Tov banner)
+    // so this matches correctly for a viewer in Israel, not just assume Diaspora always.
+    const loc = await detectGatingLocation();
     const iso = d.toISOString().slice(0, 10);
-    const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&start=${iso}&end=${iso}`;
+    const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&start=${iso}&end=${iso}${loc.isIsrael ? '&i=on' : ''}`;
     const res = await fetch(url);
     if(!res.ok) return flags;
     const data = await res.json();
