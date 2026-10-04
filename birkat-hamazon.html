@@ -48,6 +48,26 @@
     margin:0 0 .8rem;
     line-height:1.6;
   }
+  .birkat-hl{
+    background:#FBE08A;
+    color:var(--ink);
+    font-weight:700;
+    border-radius:4px;
+    padding:0 .2em;
+    box-shadow:0 0 0 2px rgba(124,93,42,.35);
+  }
+  .birkat-today-strip{
+    font-family:'Assistant', sans-serif;
+    font-size:.88rem;
+    color:var(--ink);
+    background:#FFF4D1;
+    border:1px solid rgba(124,93,42,.4);
+    border-radius:8px;
+    padding:.55rem .75rem;
+    margin:.2rem 0 .9rem;
+    line-height:1.6;
+  }
+  .birkat-today-strip a{color:var(--ink); font-weight:700;}
   .birkat-wiki-content{
     font-family:'Noto Serif Hebrew', serif;
     font-size:1.08rem;
@@ -157,20 +177,20 @@
         <div class="birkat-flags">
           <label class="choice"><input type="checkbox" id="flag-shabbat"> שבת — רצה והחליצנו</label>
           <label class="choice"><input type="checkbox" id="flag-roshchodesh"> ראש חודש</label>
-          <label class="choice"><input type="checkbox" id="flag-yaaleh"> פסח / סוכות / חול המועד</label>
+          <label class="choice"><input type="checkbox" id="flag-yaaleh"> מועד: פסח, שבועות, סוכות, שמיני עצרת, חול המועד</label>
           <label class="choice"><input type="checkbox" id="flag-sukkot"> סוכות (גם: סוכת דוד בהרחמן)</label>
           <label class="choice"><input type="checkbox" id="flag-roshhashana"> ראש השנה</label>
           <label class="choice"><input type="checkbox" id="flag-chanukah"> חנוכה — על הנסים</label>
           <label class="choice"><input type="checkbox" id="flag-purim"> פורים — על הנסים</label>
         </div>
       </fieldset>
-      <p class="field-help">"פסח / סוכות / חול המועד" מוסיף את "יעלה ויבוא". שבועות הוא יום טוב שאין בו יעלה ויבוא, אך יש בו את תוספת ההרחמן הרגילה של יום טוב — לכן אם היום שבועות, אפשר להשאיר את כל הסימונים כבויים.</p>
+      <p class="field-help">הסימון "מועד" מוסיף את "יעלה ויבוא" בכל יום טוב ובחול המועד, כולל שבועות. ראש השנה — סימון נפרד (גם בו אומרים יעלה ויבוא). בנוסח תימן (בלדי) הסימונים משפיעים רק על הדגשת ההנחיות בטקסט.</p>
       <div class="controls-row">
         <button type="button" class="btn" id="birkat-refresh">טען/רענן את הטקסט</button>
       </div>
     </section>
 
-    <p class="birkat-static-note" id="birkat-static-note" style="display:none;">נוסח זה (תימן — בלדי) <b>אינו דינמי</b>: הטקסט מוצג כפי שהוא, כולל ההנחיות המובנות בתוכו (למשל "בראש חודש מוסיפים כאן…") — בדיוק כמו בסידור מודפס. אין כאן סימון אוטומטי של מה חל היום; יש לעקוב אחר ההנחיות בעצמכם.</p>
+    <p class="birkat-static-note" id="birkat-static-note" style="display:none;">נוסח זה (תימן — בלדי) <b>אינו דינמי</b>: הטקסט מוצג במלואו, כפי שהוא, ולא מתווספות או מוסתרות בו תוספות. לפי התיבות שלמעלה (מסומנות אוטומטית לפי היום) מודגשות בצבע ההנחיות הרלוונטיות להיום — ויש לעקוב אחריהן בעצמכם, כמו בסידור מודפס. ההדגשה מבוססת על זיהוי הטקסט ועלולה לפספס כותרת, לכן כדאי לוודא מול ההנחיות עצמן.</p>
 
     <div id="birkat-reader" aria-live="polite"></div>
 
@@ -188,7 +208,7 @@
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092814"></script>
+<script src="shared.js?v=2026092815"></script>
 <script>
 try{
 (function(){
@@ -220,9 +240,11 @@ try{
 
   /* ---------- day-status flags (auto-detected defaults; the person can override any of them) ---------- */
   const FLAG_IDS = ['shabbat','roshchodesh','yaaleh','sukkot','roshhashana','chanukah','purim'];
+  let detectedOccasions = [];   // which festival day it is (e.g. 'pesach-chm'), as detected — used only to point at the matching line in the Baladi text
   async function initFlags(){
     try{
-      const flags = await fetchBirkatHamazonDayFlags(new Date());
+      const flags = await fetchBirkatHamazonDayFlags();
+      detectedOccasions = Array.isArray(flags.occasions) ? flags.occasions : [];
       $('flag-shabbat').checked = !!flags.shabbat;
       $('flag-roshchodesh').checked = !!flags.roshChodesh;
       $('flag-yaaleh').checked = !!flags.yaalehVeyavo;
@@ -348,9 +370,144 @@ try{
     baladiCache.html = cleaned;
     return cleaned;
   }
+  /* ---------- Baladi: point at today's instructions (display only — never hides or edits the text) ---------- */
+  // The Wikisource text lists every occasion with a short plain-Hebrew instruction before it
+  // ("בשבת אומר", "בראש חדש, יום טוב, חול המועד, מוסיף") and labels each variant inline
+  // ("בראש חדש:", "בחוהמ״ע פסח:"). Those instruction words carry no nikud, unlike the prayer
+  // itself, so they can be recognised reliably and wrapped in a highlight. Nothing is removed or
+  // rewritten: if a heading is missed, the text is still all there.
+  const QC = '[\\u05F3\\u05F4"\'\\u2019\\u201C\\u201D]';   // geresh, gershayim and quote look-alikes
+  const OCC = ['שבת(?: קודש)?', 'ראש ח(?:ו)?דש', 'ר' + QC + '?ח', 'ראש השנה', 'ר' + QC + '?ה', 'יום טוב', 'יו' + QC + '?ט',
+    'חול המועד', 'חוה' + QC + '?מ(?:' + QC + '?ע)?', 'מועדים', 'מועד', 'חנוכה', 'פורים', 'פסח', 'שבועות', 'סוכות',
+    'שמיני עצרת', 'שמע' + QC + '?צ', 'שמחת תורה', 'יוה' + QC + '?כ', 'יום הכיפורים'].join('|');
+  const FEST = '(?:\\s+(?:פסח|סוכות))?';
+  const SEP = '(?:\\s*(?:,|ו)\\s*ב?(?:' + OCC + ')' + FEST + ')*';
+  const LEAD = '(^|[^\\u05D0-\\u05EA\\u0591-\\u05C7])';
+  let MARKER_RES = null;
+  try{
+    MARKER_RES = [
+      // a heading naming the occasion(s) and telling the reader to add / say something
+      new RegExp(LEAD + '(ב(?:' + OCC + ')' + FEST + SEP + '\\s*,?\\s*(?:מוסי(?:ף|פים|פין)|אומר(?:ים)?|יאמר|יוסיף)(?:\\s+כאן)?)(?![\\u05D0-\\u05EA])', 'g'),
+      // an inline label that ends in a colon
+      new RegExp(LEAD + '(ב(?:' + OCC + ')' + FEST + SEP + '\\s*:)', 'g')
+    ];
+  }catch(e){ MARKER_RES = null; }   // a browser that rejects the pattern simply shows the text without highlights
+  const QC_RE = MARKER_RES ? new RegExp(QC, 'g') : null;
+
+  // What a highlighted phrase refers to. "cls" = general kinds (a heading that names no single
+  // festival), "occ" = specific occasions (labels such as "בחוהמ״ע פסח:").
+  function classifyMarker(raw){
+    const n = stripNikud(raw).replace(QC_RE, '');
+    const L = '(?:^|[^א-ת])';
+    const shabbat = /שבת/.test(n);
+    const rc = /ראש ח(?:ו)?דש/.test(n) || new RegExp(L + 'ב?רח(?![א-ת])').test(n);
+    const rh = /ראש השנה/.test(n) || new RegExp(L + 'ב?רה(?![א-ת])').test(n);
+    const yt = /יום טוב/.test(n) || new RegExp(L + 'ב?יוט(?![א-ת])').test(n);
+    const chm = /חול המועד/.test(n) || /חוהמ(?:ע)?(?![א-ת])/.test(n);
+    const moadim = /מועד/.test(n.replace(/חול המועד/g, ''));
+    const pesach = /פסח/.test(n), sukkot = /סוכות/.test(n), shavuot = /שבועות/.test(n);
+    const shmini = /שמיני עצרת|שמעצ|שמחת תורה/.test(n);
+    const yk = /יוהכ|יום הכיפורים/.test(n);
+    const named = pesach || sukkot || shavuot || shmini || rh || yk;
+    const cls = { shabbat, roshchodesh: rc, yaaleh: (yt || chm || moadim) && !named, chanukah: /חנוכה/.test(n), purim: /פורים/.test(n) };
+    const occ = [];
+    if(rc) occ.push('roshchodesh');
+    if(rh) occ.push('roshhashana');
+    if(shabbat) occ.push('shabbat');
+    if(cls.chanukah) occ.push('chanukah');
+    if(cls.purim) occ.push('purim');
+    [['pesach', pesach], ['sukkot', sukkot]].forEach(([k, on]) => {
+      if(!on) return;
+      if(chm) occ.push(k + '-chm'); else if(yt) occ.push(k + '-yt'); else occ.push(k + '-chm', k + '-yt');
+    });
+    if(shavuot) occ.push('shavuot');
+    if(shmini) occ.push('shmini');
+    return { cls, occ };
+  }
+  // What applies right now, from the checkboxes (which start at the auto-detected values and
+  // can be changed by hand) plus, for the festival lines, the detected festival day.
+  function activeSets(){
+    const f = currentFlags();
+    const occ = new Set();
+    if(f.roshchodesh) occ.add('roshchodesh');
+    if(f.roshhashana) occ.add('roshhashana');
+    if(f.shabbat) occ.add('shabbat');
+    if(f.chanukah) occ.add('chanukah');
+    if(f.purim) occ.add('purim');
+    if(f.yaaleh) detectedOccasions.forEach(k => { if(/^(pesach|sukkot|shavuot|shmini)/.test(k)) occ.add(k); });
+    return { f, occ, cls: { shabbat: f.shabbat, roshchodesh: f.roshchodesh, yaaleh: f.yaaleh || f.roshhashana, chanukah: f.chanukah, purim: f.purim } };
+  }
+  function isActive(mk, act){
+    return Object.keys(mk.cls).some(k => mk.cls[k] && act.cls[k]) || mk.occ.some(k => act.occ.has(k));
+  }
+  // Wraps today's instruction phrases in <mark>. Works on the text between tags only, so the
+  // markup is never touched; a phrase split by a tag is simply not recognised.
+  function highlightBaladi(html, act){
+    const out = { html, count: 0 };
+    if(!MARKER_RES) return out;
+    const parts = html.split(/(<[^>]*>)/);
+    let n = 0;
+    for(let i = 0; i < parts.length; i++){
+      const seg = parts[i];
+      if(!seg || seg.charAt(0) === '<') continue;
+      const found = [];
+      MARKER_RES.forEach(re => {
+        re.lastIndex = 0;
+        let m;
+        while((m = re.exec(seg))){
+          const start = m.index + m[1].length;
+          found.push({ start, end: start + m[2].length });
+          if(m[0].length === 0) re.lastIndex++;
+        }
+      });
+      if(!found.length) continue;
+      found.sort((a, b) => a.start - b.start || b.end - a.end);
+      let res = '', pos = 0;
+      for(const f of found){
+        if(f.start < pos) continue;   // overlaps a phrase already highlighted
+        const text = seg.slice(f.start, f.end);
+        if(!isActive(classifyMarker(text), act)) continue;
+        res += seg.slice(pos, f.start) + '<mark class="birkat-hl" id="birkat-hl-' + n + '">' + text + '</mark>';
+        pos = f.end;
+        n++;
+      }
+      parts[i] = res + seg.slice(pos);
+    }
+    out.html = parts.join('');
+    out.count = n;
+    return out;
+  }
+  const OCC_NAMES = { 'pesach-yt': 'פסח (יום טוב)', 'pesach-chm': 'חול המועד פסח', 'shavuot': 'שבועות', 'sukkot-yt': 'סוכות (יום טוב)', 'sukkot-chm': 'חול המועד סוכות', 'shmini': 'שמיני עצרת / שמחת תורה' };
+  function todayStrip(act, count){
+    const f = act.f, items = [];
+    if(f.shabbat) items.push('שבת (רצה והחליצנו)');
+    if(f.roshchodesh) items.push('ראש חודש (יעלה ויבוא)');
+    if(f.roshhashana) items.push('ראש השנה (יעלה ויבוא)');
+    let festivalUnknown = false;
+    if(f.yaaleh){
+      const names = detectedOccasions.filter(k => OCC_NAMES[k]).map(k => OCC_NAMES[k]);
+      festivalUnknown = !names.length;
+      items.push((names.length ? names.join(', ') : 'מועד') + ' (יעלה ויבוא)');
+    }
+    if(f.chanukah) items.push('חנוכה (על הנסים)');
+    if(f.purim) items.push('פורים (על הנסים)');
+    if(!items.length) return '<p class="birkat-today-strip">לפי התיבות אין היום תוספות מיוחדות — קוראים את נוסח החול.</p>';
+    let msg = 'היום חל: <b>' + items.join(' · ') + '</b>. ';
+    if(count > 0) msg += 'ההנחיות הרלוונטיות מודגשות בצבע בטקסט (' + count + '). <a href="#birkat-hl-0">קפיצה להדגשה הראשונה ›</a>';
+    else msg += 'לא זוהתה בטקסט כותרת מתאימה להדגשה — חפשו ידנית את ההנחיות (למשל "בשבת…", "בראש חדש…").';
+    if(festivalUnknown) msg += ' (סומן "מועד" ידנית — לא ידוע איזה, ולכן לא הודגשה תווית של מועד מסוים; בחרו בעצמכם את התווית המתאימה.)';
+    return '<p class="birkat-today-strip">' + msg + '</p>';
+  }
   function renderBaladi(html){
+    let body = html, strip = '';
+    try{
+      const act = activeSets();
+      const hl = highlightBaladi(html, act);
+      body = hl.html;
+      strip = todayStrip(act, hl.count);
+    }catch(e){ console.error('birkat-hamazon.html: Baladi highlighting failed (text shown without it):', e); }
     reader.innerHTML = '<article class="chapter-card"><div class="chapter-head"><h2>ברכת המזון — נוסח תימן (בלדי)</h2><div class="share-row"></div></div>' +
-      '<div class="birkat-wiki-content">' + html + '</div></article>';
+      strip + '<div class="birkat-wiki-content">' + body + '</div></article>';
     const shareSlot = reader.querySelector('.chapter-head .share-row');
     if(shareSlot) shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], 'ברכת המזון, נוסח תימן (בלדי):'));
   }
@@ -390,10 +547,10 @@ try{
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', String(active));
     });
-    // Baladi has no day-dependent flags, no auto-classification — hide that whole panel and
-    // the Sefaria credit, and show the "not dynamic" note plus the Wikisource credit instead.
+    // Baladi isn't adapted to the day (the text is shown whole), but the flags panel stays: its
+    // checkboxes decide which instructions get highlighted. The Sefaria credit gives way to the
+    // Wikisource one, and the "not dynamic" note is shown.
     const isBaladi = nusach === 'baladi';
-    $('birkat-flags-panel').style.display = isBaladi ? 'none' : '';
     $('birkat-static-note').style.display = isBaladi ? '' : 'none';
     $('birkat-sefaria-credit').style.display = isBaladi ? 'none' : '';
     $('birkat-wiki-credit').style.display = isBaladi ? '' : 'none';
@@ -401,7 +558,10 @@ try{
   }
   NUSACH_KEYS.forEach(key => $('birkat-nusach-' + key).addEventListener('click', () => setNusach(key)));
   $('birkat-refresh').addEventListener('click', load);
-  FLAG_IDS.forEach(id => $('flag-' + id).addEventListener('change', () => { if(segmentCache[nusach]) render(); }));
+  FLAG_IDS.forEach(id => $('flag-' + id).addEventListener('change', () => {
+    if(nusach === 'baladi'){ if(baladiCache.html) renderBaladi(baladiCache.html); }
+    else if(segmentCache[nusach]) render();
+  }));
 
   /* ---------- start ---------- */
   initFlags().then(() => setNusach('ashkenaz'));   // explicit initial state (matches the HTML's own default, but set via JS too so the two can never drift apart; setNusach also triggers the first load())

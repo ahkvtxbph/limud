@@ -1634,38 +1634,68 @@ function classifyBirkatSegment(text){
 /* =====================================================================
    BIRKAT HAMAZON — day-status flags (which optional paragraphs apply today)
    ===================================================================== */
+// The civil date to treat as "today's meal day". Between sunset and midnight the NEXT Hebrew
+// day has already begun (Friday evening is Shabbat, Saturday evening is not any more), so after
+// sunset the following civil date is used — the same convention the header's Hebrew date follows.
+// Returns a local-noon Date, so getDay() / local date parts are unambiguous.
+function halachicDayForNow(now, lat, lon){
+  let sunset = null;
+  try{ sunset = calcSunsetUTC(now, lat, lon); }catch(e){}
+  const shift = (sunset && now.getTime() >= sunset.getTime()) ? 1 : 0;
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate() + shift, 12);
+}
+
 // Looks up which Birkat Hamazon additions apply to a given date, using Hebcal (the same
 // source already used for Shabbat/Yom Tov gating elsewhere on this site). Returns an object
 // of booleans the caller can use as sensible DEFAULTS — the page itself always lets the
 // person override each one by hand, since getting this automatically right in every edge
 // case (e.g. twilight, local custom) isn't something software should be trusted blindly for.
+// `occasions` additionally names WHICH festival day it is (e.g. 'pesach-chm', 'shavuot'), for
+// callers that want to point at the matching line of a text that lists every occasion.
 async function fetchBirkatHamazonDayFlags(date){
-  const d = date || new Date();
-  const flags = { shabbat: d.getDay() === 6, roshChodesh: false, yaalehVeyavo: false, roshHashana: false, chanukah: false, purim: false };
+  let d = date || null;
+  const flags = { shabbat: false, roshChodesh: false, yaalehVeyavo: false, roshHashana: false, chanukah: false, purim: false, occasions: [] };
+  let loc = null;
   try{
     // Without "&i=on", Hebcal defaults to the DIASPORA holiday scheme — which keeps an extra
     // Chol HaMoed / Yom Tov day that Israel does not have (e.g. an 8th day of Sukkot). Reusing
     // the site's existing location detection (already used for the Shabbat/Yom Tov banner)
     // so this matches correctly for a viewer in Israel, not just assume Diaspora always.
-    const loc = await detectGatingLocation();
-    const iso = d.toISOString().slice(0, 10);
-    const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&start=${iso}&end=${iso}${loc.isIsrael ? '&i=on' : ''}`;
+    loc = await detectGatingLocation();
+  }catch(e){}
+  if(!d){
+    const now = new Date();
+    d = loc ? halachicDayForNow(now, loc.lat, loc.lon) : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12);
+  }
+  flags.shabbat = d.getDay() === 6;
+  try{
+    // LOCAL date parts (not toISOString, which is UTC and can name yesterday for a few hours
+    // after local midnight in Israel).
+    const iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&start=${iso}&end=${iso}${loc && loc.isIsrael ? '&i=on' : ''}`;
     const res = await fetch(url);
     if(!res.ok) return flags;
     const data = await res.json();
     const items = (data && data.items) || [];
+    const occ = [];
     for(const item of items){
-      const t = item.title || '';
-      if(/^Rosh Chodesh/.test(t)) flags.roshChodesh = true;
-      if(/^Rosh Hashana/.test(t)) flags.roshHashana = true;
-      if(/^(Pesach|Sukkot|Shmini Atzeret|Simchat Torah)/.test(t)) flags.yaalehVeyavo = true;
+      const t = String(item.title || '');
+      const chm = /CH.{1,3}M|Hoshana Raba/i.test(t);
+      if(/^Rosh Chodesh/.test(t)){ flags.roshChodesh = true; occ.push('roshchodesh'); }
+      if(/^Rosh Hashana/.test(t)){ flags.roshHashana = true; occ.push('roshhashana'); }
+      // Yaaleh V'Yavo is said on every Yom Tov and Chol HaMoed — Shavuot included. (Anchored
+      // on purpose: "Pesach Sheni" and "Purim Katan" are minor days with no such addition.)
+      if(/^Pesach(?! Sheni)\b/.test(t)){ flags.yaalehVeyavo = true; occ.push(chm ? 'pesach-chm' : 'pesach-yt'); }
+      if(/^Sukkot\b/.test(t)){ flags.yaalehVeyavo = true; occ.push(chm ? 'sukkot-chm' : 'sukkot-yt'); }
+      if(/^Shavuot\b/.test(t)){ flags.yaalehVeyavo = true; occ.push('shavuot'); }
+      if(/^(Shmini Atzeret|Simchat Torah)/.test(t)){ flags.yaalehVeyavo = true; occ.push('shmini'); }
       if(/^Chanukah/.test(t)) flags.chanukah = true;
-      if(/^(Purim|Shushan Purim)/.test(t)) flags.purim = true;
+      if(/^(Purim|Shushan Purim)$/.test(t)) flags.purim = true;
     }
-    // Rosh Chodesh and Rosh Hashana also call for Yaaleh V'Yavo (Rosh Hashana is itself a
-    // "Yom Tov" day that uses the same line as Pesach/Sukkot; Rosh Chodesh gets its own flag
-    // too, kept separate since the page shows it as a distinct checkbox).
+    // Rosh Hashana is itself a Yom Tov that calls for Yaaleh V'Yavo; Rosh Chodesh keeps its own
+    // flag (the page shows it as a distinct checkbox).
     if(flags.roshHashana) flags.yaalehVeyavo = true;
+    flags.occasions = occ.filter((k, i) => occ.indexOf(k) === i);
   }catch(e){ /* network issue: flags stay at their date-only defaults (just the weekday check) */ }
   return flags;
 }
