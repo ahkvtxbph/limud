@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ברכת המזון | מזמור לתודה - לימוד יומי</title>
-<meta name="description" content="ברכת המזון, נוסח אשכנז ונוסח ספרד — עם התאמה אוטומטית של רצה והחליצנו, יעלה ויבוא, על הנסים וההרחמן ליום הנוכחי, וכן אפשרות לסמן ידנית.">
-<meta name="keywords" content="ברכת המזון, בענטשן, נוסח אשכנז, נוסח ספרד, רצה והחליצנו, יעלה ויבוא, על הנסים, הרחמן">
+<meta name="description" content="ברכת המזון, נוסח אשכנז, ספרד, עדות המזרח ותימן (בלדי) — עם התאמה אוטומטית של רצה והחליצנו, יעלה ויבוא, על הנסים וההרחמן ליום הנוכחי, וכן אפשרות לסמן ידנית.">
+<meta name="keywords" content="ברכת המזון, בענטשן, נוסח אשכנז, נוסח ספרד, נוסח עדות המזרח, נוסח תימן בלדי, רצה והחליצנו, יעלה ויבוא, על הנסים, הרחמן">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://limood.org.il/birkat-hamazon.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ברכת המזון | מזמור לתודה - לימוד יומי">
-<meta property="og:description" content="ברכת המזון, נוסח אשכנז ונוסח ספרד — עם התאמה אוטומטית ליום הנוכחי.">
+<meta property="og:description" content="ברכת המזון, נוסח אשכנז, ספרד, עדות המזרח ותימן (בלדי) — עם התאמה אוטומטית ליום הנוכחי.">
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary">
 
@@ -25,7 +25,7 @@
   "@type": "WebPage",
   "name": "ברכת המזון | מזמור לתודה - לימוד יומי",
   "inLanguage": "he",
-  "description": "ברכת המזון, נוסח אשכנז ונוסח ספרד — עם התאמה אוטומטית ליום הנוכחי.",
+  "description": "ברכת המזון, נוסח אשכנז, ספרד, עדות המזרח ותימן (בלדי) — עם התאמה אוטומטית ליום הנוכחי.",
   "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
 }
 </script>
@@ -101,7 +101,7 @@
 <header class="site">
   <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
   <h1 class="site-title">ברכת המזון</h1>
-  <p class="site-sub">נוסח אשכנז ונוסח ספרד — עם התאמה אוטומטית ליום הנוכחי, וגם אפשרות לסמן ידנית.</p>
+  <p class="site-sub">נוסח אשכנז, ספרד, עדות המזרח ותימן (בלדי) — עם התאמה אוטומטית ליום הנוכחי, וגם אפשרות לסמן ידנית.</p>
   <div class="today-strip">
     <span>יום: <b id="today-weekday">—</b></span>
     <span>תאריך עברי: <b id="today-hebrew">—</b></span>
@@ -323,18 +323,27 @@ try{
   // there is no automatic classification here to get subtly wrong.
   async function loadBaladi(){
     if(baladiCache.html) return baladiCache.html;
-    const url = 'https://he.wikisource.org/w/api.php?action=parse&page=' + encodeURIComponent(BALADI_PAGE) + '&prop=text&format=json&origin=*';
+    // disableeditsection=1: MediaWiki's own documented flag to omit "[עריכה]" edit-section
+    // links from the output entirely — fixing this at the source, rather than trying to strip
+    // them back out of the HTML afterward (reported bug: a previous strip attempt left part of
+    // the link behind, because the bracket/link markup MediaWiki generates is itself nested).
+    const url = 'https://he.wikisource.org/w/api.php?action=parse&page=' + encodeURIComponent(BALADI_PAGE) + '&prop=text&disableeditsection=1&format=json&origin=*';
     const res = await fetch(url);
     if(!res.ok) throw new Error('fetch failed: ' + BALADI_PAGE);
     const data = await res.json();
     const raw = data && data.parse && data.parse.text && data.parse.text['*'];
     if(!raw) throw new Error('empty or missing content from Wikisource for "' + BALADI_PAGE + '"');
-    // strip wiki-chrome that doesn't belong in a reading view: edit-section links, reference
-    // footnote markers, and any embedded tables (navigation/infobox clutter, not the text itself)
-    const cleaned = raw
-      .replace(/<span class="mw-editsection">[\s\S]*?<\/span>/g, '')
-      .replace(/<sup[^>]*class="[^"]*reference[^"]*"[\s\S]*?<\/sup>/g, '')
-      .replace(/<table[\s\S]*?<\/table>/g, '');
+    // Strip wiki-chrome that doesn't belong in a reading view: edit-section links, reference
+    // footnote markers, embedded tables (navigation/infobox clutter, not the text itself).
+    // Done via real DOM parsing, not regex — MediaWiki nests the "[" / "]" brackets of an
+    // edit-section link in their OWN inner <span>, so a non-greedy regex stops at that first
+    // inner closing tag and leaves "עריכה]" behind as visible leftover text (reported bug).
+    // Removing matched elements through the DOM handles that nesting correctly regardless of
+    // its exact depth.
+    const scratch = document.createElement('div');
+    scratch.innerHTML = raw;
+    scratch.querySelectorAll('.mw-editsection, sup.reference, table').forEach(el => el.remove());
+    const cleaned = scratch.innerHTML;
     baladiCache.html = cleaned;
     return cleaned;
   }
