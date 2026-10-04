@@ -35,8 +35,28 @@
 <link rel="stylesheet" href="shared.css?v=2026092805">
 <style>
   /* rules used only by this page */
-  #birkat-section nav.modes{grid-template-columns:repeat(3,1fr);}
+  #birkat-section nav.modes{grid-template-columns:repeat(2,1fr);}
   @media (max-width:420px){ #birkat-section nav.modes{grid-template-columns:1fr;} }
+  .birkat-static-note{
+    font-family:'Assistant', sans-serif;
+    font-size:.8rem;
+    color:var(--paper);
+    background:rgba(217,191,137,.12);
+    border-radius:8px;
+    padding:.5rem .7rem;
+    margin:0 0 .8rem;
+    line-height:1.6;
+  }
+  .birkat-wiki-content{
+    font-family:'Noto Serif Hebrew', serif;
+    font-size:1.08rem;
+    line-height:2.1;
+  }
+  .birkat-wiki-content p{margin:0 0 .7rem;}
+  .birkat-wiki-content b, .birkat-wiki-content strong{color:var(--ink);}
+  .birkat-wiki-content a{color:inherit; text-decoration:underline;}
+  .birkat-wiki-content table{display:none;}      /* MediaWiki navboxes/infoboxes, not part of the text itself */
+  .birkat-wiki-content .mw-editsection, .birkat-wiki-content sup.reference{display:none;}
   .birkat-flags{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -124,9 +144,10 @@
       <button type="button" id="birkat-nusach-ashkenaz" class="active" aria-pressed="true"><span class="num">א׳</span>נוסח אשכנז</button>
       <button type="button" id="birkat-nusach-sefard" aria-pressed="false"><span class="num">ב׳</span>נוסח ספרד</button>
       <button type="button" id="birkat-nusach-edot" aria-pressed="false"><span class="num">ג׳</span>עדות המזרח</button>
+      <button type="button" id="birkat-nusach-baladi" aria-pressed="false"><span class="num">ד׳</span>תימן (בלדי)</button>
     </nav>
 
-    <section class="panel">
+    <section class="panel" id="birkat-flags-panel">
       <h2 class="panel-title">מה חל היום</h2>
       <p class="panel-desc" id="birkat-flags-status">בודק/ת מה חל היום…</p>
       <fieldset class="choice-group">
@@ -147,10 +168,15 @@
       </div>
     </section>
 
+    <p class="birkat-static-note" id="birkat-static-note" style="display:none;">נוסח זה (תימן — בלדי) <b>אינו דינמי</b>: הטקסט מוצג כפי שהוא, כולל ההנחיות המובנות בתוכו (למשל "בראש חודש מוסיפים כאן…") — בדיוק כמו בסידור מודפס. אין כאן סימון אוטומטי של מה חל היום; יש לעקוב אחר ההנחיות בעצמכם.</p>
+
     <div id="birkat-reader" aria-live="polite"></div>
 
-    <section class="panel">
+    <section class="panel" id="birkat-sefaria-credit">
       <p class="field-help">הטקסט נטען אוטומטית מספריא, ותוספות כמו רצה והחליצנו / יעלה ויבוא / על הנסים / ההרחמן מזוהות ומסומנות באופן אוטומטי — אך מדובר בהיגיון שנבנה ולא עבר אימות מול כל מקרה אפשרי. מומלץ לבדוק מול סידור מוכר, במיוחד במקרים חריגים (כמו שבת וחול המועד יחד, או ליל הסדר).</p>
+    </section>
+    <section class="panel" id="birkat-wiki-credit" style="display:none;">
+      <p class="field-help">הטקסט בנוסח תימן (בלדי) נטען מתוך <a href="https://he.wikisource.org/wiki/%D7%91%D7%A8%D7%9B%D7%AA_%D7%94%D7%9E%D7%96%D7%95%D7%9F/%D7%91%D7%9C%D7%93%D7%99_2" target="_blank" rel="noopener">ויקיטקסט העברי</a>, מאגר טקסטים חופשי. בניגוד לשלושת הנוסחים האחרים, הוא לא עבר עיבוד/סיווג אוטומטי מצידנו.</p>
     </section>
   </section>
 </main>
@@ -178,10 +204,13 @@ try{
     sefard: 'Siddur Sefard, Birchat HaMazon, Birchat HaMazon',
     edot: 'Siddur Edot HaMizrach, Post Meal Blessing'
   };
-  const NUSACH_VERSION = {};   // none of the three nuschaot need a specific version title anymore — each has its own dedicated ref
-  const NUSACH_LABEL = { ashkenaz: 'נוסח אשכנז', sefard: 'נוסח ספרד', edot: 'נוסח עדות המזרח' };
-  const NUSACH_KEYS = Object.keys(NUSACH_REF);
-  const segmentCache = {};   // nusach -> array of raw segment strings
+  const NUSACH_VERSION = {};   // none of the three Sefaria-backed nuschaot need a specific version title — each has its own dedicated ref
+  const NUSACH_LABEL = { ashkenaz: 'נוסח אשכנז', sefard: 'נוסח ספרד', edot: 'נוסח עדות המזרח', baladi: 'נוסח תימן (בלדי)' };
+  // "baladi" is handled completely separately below (Wikisource HTML, not a Sefaria ref/segment
+  // array) — it's listed here only so the generic nusach-switching UI wiring picks it up too.
+  const NUSACH_KEYS = [...Object.keys(NUSACH_REF), 'baladi'];
+  const segmentCache = {};   // nusach -> array of raw segment strings (Sefaria-backed nuschaot)
+  const baladiCache = { html: null };   // Wikisource HTML, fetched once and reused
   let loadRequestId = 0;
 
   function showError(msg){ reader.innerHTML = '<p class="chapter-error" role="alert">' + msg + '</p>'; }
@@ -284,15 +313,56 @@ try{
     const shareSlot = reader.querySelector('.chapter-head .share-row');
     if(shareSlot) shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], 'ברכת המזון:'));
   }
+  const BALADI_PAGE = 'ברכת המזון/בלדי 2';
+  const BALADI_WIKI_URL = 'https://he.wikisource.org/wiki/' + encodeURIComponent(BALADI_PAGE.replace(/ /g, '_'));
+  // Fetches the Baladi page as already-rendered HTML straight from Wikisource (not raw wikitext),
+  // via MediaWiki's standard cross-origin API pattern (origin=* — the documented way to call
+  // this API from a browser on another domain). Shown AS-IS, including its own inline notes
+  // ("בראש חודש מוסיפים כאן…") — deliberately NOT parsed into day-dependent on/off pieces, so
+  // there is no automatic classification here to get subtly wrong.
+  async function loadBaladi(){
+    if(baladiCache.html) return baladiCache.html;
+    const url = 'https://he.wikisource.org/w/api.php?action=parse&page=' + encodeURIComponent(BALADI_PAGE) + '&prop=text&format=json&origin=*';
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('fetch failed: ' + BALADI_PAGE);
+    const data = await res.json();
+    const raw = data && data.parse && data.parse.text && data.parse.text['*'];
+    if(!raw) throw new Error('empty or missing content from Wikisource for "' + BALADI_PAGE + '"');
+    // strip wiki-chrome that doesn't belong in a reading view: edit-section links, reference
+    // footnote markers, and any embedded tables (navigation/infobox clutter, not the text itself)
+    const cleaned = raw
+      .replace(/<span class="mw-editsection">[\s\S]*?<\/span>/g, '')
+      .replace(/<sup[^>]*class="[^"]*reference[^"]*"[\s\S]*?<\/sup>/g, '')
+      .replace(/<table[\s\S]*?<\/table>/g, '');
+    baladiCache.html = cleaned;
+    return cleaned;
+  }
+  function renderBaladi(html){
+    reader.innerHTML = '<article class="chapter-card"><div class="chapter-head"><h2>ברכת המזון — נוסח תימן (בלדי)</h2><div class="share-row"></div></div>' +
+      '<div class="birkat-wiki-content">' + html + '</div></article>';
+    const shareSlot = reader.querySelector('.chapter-head .share-row');
+    if(shareSlot) shareSlot.replaceWith(buildShareBar(location.href.split('#')[0], 'ברכת המזון, נוסח תימן (בלדי):'));
+  }
   async function load(){
     const myRequest = ++loadRequestId;
     showLoading('טוען את ברכת המזון…');
     try{
+      if(nusach === 'baladi'){
+        const html = await loadBaladi();
+        if(myRequest !== loadRequestId) return;
+        renderBaladi(html);
+        return;
+      }
       await fetchNusachSegments(nusach);
       if(myRequest !== loadRequestId) return;
       render();
     }catch(e){
       if(myRequest !== loadRequestId) return;
+      if(nusach === 'baladi'){
+        console.error('birkat-hamazon.html: load failed for Baladi:', e);
+        showError('לא ניתן היה לטעון את ברכת המזון כרגע (' + (e && e.message ? e.message : 'שגיאה לא ידועה') + '). אפשר לראות אותה ישירות ב<a href="' + BALADI_WIKI_URL + '" target="_blank" rel="noopener">ויקיטקסט</a>.');
+        return;
+      }
       console.error('birkat-hamazon.html: load failed for "' + NUSACH_REF[nusach] + '":', e);
       const refForLink = Array.isArray(NUSACH_REF[nusach]) ? NUSACH_REF[nusach][0] : NUSACH_REF[nusach];
       const sefariaUrl = 'https://www.sefaria.org/' + encodeURIComponent(refForLink.replace(/ /g,'_')) + (NUSACH_VERSION[nusach] ? '?vhe=hebrew|' + encodeURIComponent(NUSACH_VERSION[nusach]) : '');
@@ -300,7 +370,7 @@ try{
     }
   }
 
-  /* ---------- nusach switch (generic over however many nuschaot NUSACH_REF lists) ---------- */
+  /* ---------- nusach switch (generic over however many nuschaot NUSACH_KEYS lists) ---------- */
   function setNusach(next){
     nusach = next;
     NUSACH_KEYS.forEach(key => {
@@ -309,6 +379,13 @@ try{
       btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', String(active));
     });
+    // Baladi has no day-dependent flags, no auto-classification — hide that whole panel and
+    // the Sefaria credit, and show the "not dynamic" note plus the Wikisource credit instead.
+    const isBaladi = nusach === 'baladi';
+    $('birkat-flags-panel').style.display = isBaladi ? 'none' : '';
+    $('birkat-static-note').style.display = isBaladi ? '' : 'none';
+    $('birkat-sefaria-credit').style.display = isBaladi ? 'none' : '';
+    $('birkat-wiki-credit').style.display = isBaladi ? '' : 'none';
     load();
   }
   NUSACH_KEYS.forEach(key => $('birkat-nusach-' + key).addEventListener('click', () => setNusach(key)));
