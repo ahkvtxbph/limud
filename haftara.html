@@ -294,15 +294,27 @@ try{
 
   /* ---------- Sefaria: the text of one range, chapter by chapter ---------- */
   const chapterCache = {};
+  // Sefaria sometimes answers "503" for a few moments when it is busy (the other pages of the
+  // site then fail too). A short, bounded retry rides that out without hammering it.
+  const RETRY_DELAYS = [800, 2000];
+  function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+  async function withRetry(fn){
+    let last;
+    for(let i = 0; i <= RETRY_DELAYS.length; i++){
+      try{ return await fn(); }
+      catch(e){ last = e; if(i < RETRY_DELAYS.length) await sleep(RETRY_DELAYS[i]); }
+    }
+    throw last;
+  }
   async function fetchChapter(book, c){
     const key = book + ' ' + c;
     if(!chapterCache[key]){
-      chapterCache[key] = fetchRefText(key).then(({ text }) => {
+      chapterCache[key] = withRetry(() => fetchRefText(key).then(({ text }) => {
         const flat = [];
         (function walk(n){ if(Array.isArray(n)) n.forEach(walk); else if(n != null) flat.push(stripTags(n)); })(text);
         if(!flat.length) throw new Error('empty text for ' + key);
         return flat;
-      }).catch(e => { delete chapterCache[key]; throw e; });
+      })).catch(e => { delete chapterCache[key]; throw e; });
     }
     return chapterCache[key];
   }
@@ -356,6 +368,22 @@ try{
     const vs = current.versions;
     return vs.find(v => v.key === custom) || vs[0];
   }
+  // the heading, the range, who reads it and (when Hebcal gives one) the special-Shabbat reason —
+  // everything Hebcal told us, which does not depend on Sefaria being reachable
+  function buildCard(version){
+    const c = CUSTOMS[version.key];
+    const name = noStrip(current.item.name && current.item.name.he);
+    const card = document.createElement('article');
+    card.className = 'chapter-card';
+    const reasonRaw = current.item.reason && (current.item.reason.haftara || current.item.reason.H);
+    const reason = typeof reasonRaw === 'string' && reasonRaw ? '<p class="haftara-reason">' + esc(reasonRaw) + '</p>' : '';
+    card.innerHTML = '<div class="chapter-head"><h2>' + esc(name ? 'הפטרת ' + name : 'הפטרה') + '</h2><div class="share-row"></div>' +
+      '<span class="gem">' + esc(version.ranges.map(rangeLabelHe).join(' ; ')) + '</span></div>' +
+      '<p class="haftara-who"><b>' + esc(c.who) + '</b> — ' + esc(c.detail) + '</p>' + reason;
+    const slot = card.querySelector('.chapter-head .share-row');
+    if(slot) slot.replaceWith(buildShareBar(location.href.split('#')[0], 'הפטרה' + (name ? ' ' + name : '') + ' (' + c.label + '):'));
+    return card;
+  }
   async function renderCurrent(){
     if(!current) return;
     const my = ++loadId;
@@ -369,28 +397,32 @@ try{
       if(my !== loadId) return;
       console.error('haftara.html: text failed:', e);
       const first = version.ranges[0];
-      showError('לא ניתן היה לטעון את טקסט ההפטרה כרגע (' + esc(e && e.message ? e.message : 'שגיאה לא ידועה') + '). אפשר לראות אותה ב<a href="https://www.sefaria.org/' + encodeURIComponent((first.book + '.' + first.c1 + '.' + first.v1).replace(/ /g, '_')) + '" target="_blank" rel="noopener">ספריא</a>.');
+      const card = buildCard(version);
+      const err = document.createElement('div');
+      err.className = 'chapter-error';
+      err.setAttribute('role', 'alert');
+      err.innerHTML = '<p>ספריא (מקור הטקסט) לא עונה כרגע — בדרך כלל זו תקלה זמנית אצלם. ההפטרה עצמה מזוהה למעלה. אפשר ללחוץ "נסה שוב" בעוד רגע, או לקרוא אותה ישירות ב<a href="https://www.sefaria.org/' + encodeURIComponent((first.book + '.' + first.c1 + '.' + first.v1).replace(/ /g, '_')) + '" target="_blank" rel="noopener">ספריא</a>. <small>(' + esc(e && e.message ? e.message : 'שגיאה לא ידועה') + ')</small></p>';
+      const retry = document.createElement('button');
+      retry.type = 'button';
+      retry.className = 'btn';
+      retry.id = 'haftara-retry';
+      retry.textContent = 'נסה שוב';
+      retry.addEventListener('click', () => renderCurrent());
+      err.appendChild(retry);
+      card.appendChild(err);
+      reader.innerHTML = '';
+      reader.appendChild(card);
       return;
     }
     if(my !== loadId) return;
-    const c = CUSTOMS[version.key];
-    const name = noStrip(current.item.name && current.item.name.he);
-    const card = document.createElement('article');
-    card.className = 'chapter-card';
-    const reasonRaw = current.item.reason && (current.item.reason.haftara || current.item.reason.H);
-    const reason = typeof reasonRaw === 'string' && reasonRaw ? '<p class="haftara-reason">' + esc(reasonRaw) + '</p>' : '';
-    card.innerHTML = '<div class="chapter-head"><h2>' + esc(name ? 'הפטרת ' + name : 'הפטרה') + '</h2><div class="share-row"></div>' +
-      '<span class="gem">' + esc(version.ranges.map(rangeLabelHe).join(' ; ')) + '</span></div>' +
-      '<p class="haftara-who"><b>' + esc(c.who) + '</b> — ' + esc(c.detail) + '</p>' + reason;
-    const slot = card.querySelector('.chapter-head .share-row');
-    if(slot) slot.replaceWith(buildShareBar(location.href.split('#')[0], 'הפטרה' + (name ? ' ' + name : '') + ' (' + c.label + '):'));
-    blocks.forEach((b, i) => {
+    const card = buildCard(version);
+    blocks.forEach(b => {
       const wrap = document.createElement('div');
       if(blocks.length > 1){
-        const h = document.createElement('p');
-        h.className = 'haftara-part';
-        h.textContent = rangeLabelHe(b.r);
-        wrap.appendChild(h);
+        const hd = document.createElement('p');
+        hd.className = 'haftara-part';
+        hd.textContent = rangeLabelHe(b.r);
+        wrap.appendChild(hd);
       }
       b.verses.forEach(v => {
         const d = document.createElement('div');
