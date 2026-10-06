@@ -1,3 +1,7 @@
+---
+layout: null
+permalink: /tehillim.html
+---
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -29,10 +33,7 @@
   "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Noto+Serif+Hebrew:wght@400;500;600&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=2026092806">
+{% include head-assets.html %}
 </head>
 <body>
 <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
@@ -50,36 +51,12 @@
   <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
 </header>
 
-<a href="#" class="whatsapp-float" id="whatsapp-float" target="_blank" rel="noopener" aria-label="שיתוף בוואטסאפ">
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.3-8.4 8.3z"/></svg>
-</a>
+{% include whatsapp.html %}
 
-<div class="shabbat-banner" id="shabbat-banner" role="status">
-  <div class="shabbat-inner">
-    <h2 id="shabbat-banner-title">שבת שלום!</h2>
-    <p id="shabbat-banner-text"></p>
-  </div>
-</div>
+{% include shabbat-banner.html %}
 
 <main id="main">
-  <nav class="top-modes" aria-label="בחירת תוכן">
-    <a href="/">הלכה יומית</a>
-    <a href="arukh-hashulchan.html">ערוך השולחן יומי</a>
-    <a href="tehillim.html" aria-current="page">תהילים</a>
-    <a href="mishnayot.html">משנה יומית</a>
-    <a href="dafyomi.html">דף יומי</a>
-    <a href="yerushalmi.html">ירושלמי יומי</a>
-    <a href="tanya.html">תניא יומי</a>
-    <a href="tanakh.html">תנ"ך יומי</a>
-    <a href="929.html">929</a>
-    <a href="parasha.html">שמו"ת</a>
-    <a href="haftara.html">הפטרה</a>
-    <a href="rambam.html">רמב"ם יומי</a>
-    <a href="zmanim.html">זמני היום</a>
-    <a href="birkat-hamazon.html">ברכת המזון</a>
-    <a href="date-converter.html">המרת תאריכים</a>
-    <a href="bar-mitzvah.html">פרשת בר מצווה</a>
-  </nav>
+{% include menu.html %}
 
   <section id="tehillim-section">
     <nav class="modes" aria-label="אפשרויות חלוקת קריאה">
@@ -144,7 +121,7 @@
   <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
-<script src="shared.js?v=2026092815"></script>
+<script src="shared.js?build={{ site.time | date: '%s' }}"></script>
 <script>
 initHeaderDate();
 initWhatsappFloat('תהילים — קריאה יומית לפי ימי השבוע, תאריך עברי, או בבחירה חופשית:');
@@ -407,6 +384,5 @@ updateManualNav();
 
 startSiteGating();   // loads the Shabbat/Yom-Tov schedule, re-checks every 30s, refreshes every 6h (shared.js)
 </script>
-<script src="https://cdn.enable.co.il/licenses/enable-L56232r6ys9tumma-0826-83667/init.js"></script>
-</body>
+{% include accessibility-widget.html %}</body>
 </html>

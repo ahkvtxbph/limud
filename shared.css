@@ -693,3 +693,12 @@
     margin:-.6rem 0 1rem;
     line-height:1.55;
   }
+
+/* ---------- moving between pages ----------
+   Cross-document view transitions: the next page fades in instead of flashing white, so the
+   header and menu (identical on every page) look as if they stay in place. Browsers without
+   support simply ignore this; people who ask for reduced motion get an instant switch. */
+@view-transition{ navigation:auto; }
+@media (prefers-reduced-motion: reduce){
+  @view-transition{ navigation:none; }
+}
