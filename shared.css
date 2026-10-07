@@ -702,3 +702,7 @@
 @media (prefers-reduced-motion: reduce){
   @view-transition{ navigation:none; }
 }
+
+/* Molad / Kiddush Levana rows on the zmanim page */
+.zman-row.zman-row-levana{ background:rgba(173,138,78,.08); padding-inline:.5rem; border-radius:6px; }
+.zman-row .zman-sub{ display:block; font-family:'Assistant', sans-serif; font-size:.8rem; color:#6b604c; margin-top:.15rem; }

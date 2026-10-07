@@ -58,6 +58,115 @@ function getHebrewDisplay(date, tzid){
   return `${dayLetters} ב${month} ${yearLetters}`;
 }
 
+/* ---------------------------------------------------------------------
+   ROSH CHODESH / EREV ROSH CHODESH — computed locally from the Hebrew
+   calendar (no network): day 30 = Rosh Chodesh day 1, day 1 = Rosh Chodesh
+   (day 2 when the month before had 30 days), day 29 = Erev Rosh Chodesh.
+   1 Tishrei (Rosh Hashana) and 29 Elul (Erev Rosh Hashana) are skipped.
+   --------------------------------------------------------------------- */
+// Hebrew day + month name of the CIVIL date that `date` falls on (in `tzid`, or the device zone).
+function hebrewDayMonthOf(date, tzid, dayOffset){
+  let y, m, d;
+  if(tzid){
+    const p = {};
+    new Intl.DateTimeFormat('en-CA', {timeZone: tzid, year:'numeric', month:'numeric', day:'numeric'})
+      .formatToParts(date).forEach(x => p[x.type] = x.value);
+    y = +p.year; m = +p.month - 1; d = +p.day;
+  } else {
+    y = date.getFullYear(); m = date.getMonth(); d = date.getDate();
+  }
+  const noonUTC = new Date(Date.UTC(y, m, d + (dayOffset || 0), 12));
+  const out = {};
+  new Intl.DateTimeFormat('he-u-ca-hebrew', {timeZone:'UTC', day:'numeric', month:'long'})
+    .formatToParts(noonUTC).forEach(x => {
+      if(x.type === 'day') out.day = parseInt(x.value, 10);
+      if(x.type === 'month') out.month = x.value;
+    });
+  return out;
+}
+function getRoshChodeshLabel(date, tzid){
+  try{
+    const today = hebrewDayMonthOf(date, tzid, 0);
+    if(!today.day || !today.month) return null;
+    if(today.day === 30){
+      return `ראש חודש ${hebrewDayMonthOf(date, tzid, 1).month} (יום א׳)`;
+    }
+    if(today.day === 1){
+      if(today.month === 'תשרי') return null; // Rosh Hashana
+      const prev = hebrewDayMonthOf(date, tzid, -1);
+      return prev.day === 30 ? `ראש חודש ${today.month} (יום ב׳)` : `ראש חודש ${today.month}`;
+    }
+    if(today.day === 29 && today.month !== 'אלול'){
+      const next = hebrewDayMonthOf(date, tzid, 1);
+      const monthName = next.day === 30 ? hebrewDayMonthOf(date, tzid, 2).month : next.month;
+      return `ערב ראש חודש ${monthName}`;
+    }
+    return null;
+  }catch(e){ return null; }
+}
+
+/* ---------------------------------------------------------------------
+   MOLAD & KIDDUSH LEVANA — the traditional calculated molad (from BaHaRaD,
+   29d 12h 793 parts per month), as Jerusalem mean time, converted to a real
+   instant. Verified against Hebcal (Molad Cheshvan 5787: Sun 11.10.2026,
+   9:43 and 2 chalakim).
+   Windows, all counted from the molad:
+     start — Ashkenazim: 3 full days (Mishna Berura 426:20);
+             Sephardim: 7 days (Shulchan Arukh OC 426:4).
+     end   — Rema: half a month = 14d 18h 22m (OC 426:3);
+             Shulchan Arukh: until 15 full days (OC 426:3, "ולא ט״ז בכלל").
+   --------------------------------------------------------------------- */
+const MOLAD_PARTS_PER_DAY = 25920;
+const MOLAD_MONTH_DAYS = (29*MOLAD_PARTS_PER_DAY + 12*1080 + 793) / MOLAD_PARTS_PER_DAY;
+const MOLAD_EPOCH_RD = -1373427 - 876/MOLAD_PARTS_PER_DAY; // BaHaRaD (R.D. day count)
+const RD_OF_UNIX_EPOCH = 719163;
+const JERUSALEM_MEAN_OFFSET_MS = 35.2354 * 4 * 60000; // local mean time of Jerusalem vs UTC (~2:20:56)
+// Instant (Date) of molad number n (n = months since BaHaRaD).
+function moladInstant(n){
+  const jlmtMs = (MOLAD_EPOCH_RD + n*MOLAD_MONTH_DAYS - RD_OF_UNIX_EPOCH) * 86400000;
+  return new Date(jlmtMs - JERUSALEM_MEAN_OFFSET_MS);
+}
+// Index of the last molad at or before `date`.
+function moladIndexAtOrBefore(date){
+  const rd = date.getTime()/86400000 + RD_OF_UNIX_EPOCH + JERUSALEM_MEAN_OFFSET_MS/86400000;
+  let n = Math.floor((rd - MOLAD_EPOCH_RD) / MOLAD_MONTH_DAYS);
+  while(moladInstant(n + 1) <= date) n++;
+  while(moladInstant(n) > date) n--;
+  return n;
+}
+// Traditional molad text: weekday, hour:minute and chalakim (Jerusalem mean time).
+function moladTraditionalText(n){
+  const jlmt = new Date(moladInstant(n).getTime() + JERUSALEM_MEAN_OFFSET_MS);
+  const totalParts = Math.round((jlmt.getUTCMinutes()*60 + jlmt.getUTCSeconds() + jlmt.getUTCMilliseconds()/1000) / (10/3));
+  const minutes = Math.floor(totalParts / 18), chalakim = totalParts % 18;
+  const hh = String(jlmt.getUTCHours()).padStart(2,'0'), mm = String(minutes).padStart(2,'0');
+  return `יום ${WEEKDAY_NAMES[jlmt.getUTCDay()]}, ${hh}:${mm} ו־${chalakim} חלקים`;
+}
+// Name of the month that molad n opens (read from the Hebrew date two days later).
+function moladMonthName(n){
+  return hebrewDayMonthOf(new Date(moladInstant(n).getTime() + 2*86400000), 'Asia/Jerusalem', 0).month;
+}
+// All molad / Kiddush Levana events for molad n.
+function kiddushLevanaEvents(n){
+  const molad = moladInstant(n).getTime();
+  const H = 3600000, D = 24*H;
+  const month = moladMonthName(n);
+  return [
+    { kind:'molad', n, time:new Date(molad), month, label:`מולד חודש ${month}` },
+    { kind:'start-ashkenaz', time:new Date(molad + 3*D), month, label:`תחילת זמן ברכת הלבנה — אשכנזים (3 ימים מהמולד)` },
+    { kind:'start-sefard', time:new Date(molad + 7*D), month, label:`תחילת זמן ברכת הלבנה — ספרדים (7 ימים מהמולד)` },
+    { kind:'end-rema', time:new Date(molad + 14*D + 18*H + 22*60000), month, label:`סוף זמן ברכת הלבנה — אשכנזים, לפי הרמ״א (14 יום, 18 שעות ו־22 דק׳)` },
+    { kind:'end-sa', time:new Date(molad + 15*D), month, label:`סוף זמן ברכת הלבנה — ספרדים, לפי השו״ע (15 יום מהמולד)` }
+  ];
+}
+// Events whose instant falls in [from, to).
+function kiddushLevanaEventsBetween(from, to){
+  const n = moladIndexAtOrBefore(to);
+  return [n-1, n].flatMap(kiddushLevanaEvents)
+    .filter(e => e.time >= from && e.time < to)
+    .sort((a,b) => a.time - b.time);
+}
+
 function calcSunsetUTC(date, lat, lng){
   const rad = Math.PI/180;
   // Use the observer's LOCAL calendar date (not UTC) to pick which day's sunset to compute —
@@ -127,9 +236,10 @@ async function updateHebrewDateDisplay(){
   const gregLabel = now.toLocaleDateString('he-IL');
   try{
     const hebLabel = getHebrewDisplay(effectiveDate);
-    document.getElementById('today-hebrew').textContent = isPastSunset
+    const rcLabel = getRoshChodeshLabel(effectiveDate);
+    document.getElementById('today-hebrew').textContent = (isPastSunset
       ? `אור ל-${hebLabel} (${gregLabel})`
-      : `${hebLabel} (${gregLabel})`;
+      : `${hebLabel} (${gregLabel})`) + (rcLabel ? ` · ${rcLabel}` : '');
   }catch(e){
     document.getElementById('today-hebrew').textContent = `לא זמין בדפדפן זה (${gregLabel})`;
   }
@@ -503,8 +613,10 @@ async function fetchRegularHolidayLabel(){
       const bare = item.title.replace(/^Erev\s+/i, '');
       return MAJOR_YOMTOV_KEYWORDS.some(kw => bare.indexOf(kw) === 0 || bare === kw);
     }
+    // Rosh Chodesh / Erev Rosh Chodesh are shown right next to the Hebrew date (getRoshChodeshLabel),
+    // so they're left out of this line to avoid saying it twice.
     const regularItems = items.filter(i =>
-      (i.category === 'holiday' || i.category === 'roshchodesh') && !i.yomtov && !isMajorYomTovRelated(i)
+      i.category === 'holiday' && !i.yomtov && !isMajorYomTovRelated(i) && !/^Rosh Chodesh/i.test(i.title || '')
     );
     const todayItem = regularItems.find(i => i.date && i.date.slice(0,10) === startStr);
     const tomorrowItem = regularItems.find(i => i.date && i.date.slice(0,10) === endStr);
@@ -1243,7 +1355,10 @@ function initHeaderDate(){
   if(wd) wd.textContent = "יום " + WEEKDAY_NAMES[now.getDay()];
   const gregLabel = now.toLocaleDateString('he-IL');
   if(hb){
-    try{ hb.textContent = `${getHebrewDisplay(now)} (${gregLabel})`; }
+    try{
+      const rcLabel = getRoshChodeshLabel(now);
+      hb.textContent = `${getHebrewDisplay(now)} (${gregLabel})` + (rcLabel ? ` · ${rcLabel}` : '');
+    }
     catch(e){ hb.textContent = `לא זמין בדפדפן זה (${gregLabel})`; }
   }
   updateHebrewDateDisplay();
