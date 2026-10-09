@@ -1,0 +1,82 @@
+{% comment %}
+  Top of every page: site name, menu button, and the date bar (Hebrew date, Rosh Chodesh,
+  holiday, weekly parasha). The ids below are filled in by shared.js — keep them.
+  החלק העליון של כל דף. המזהים (id) ממולאים על ידי shared.js — לא לשנות אותם.
+{% endcomment %}
+<header class="site-top">
+  <div class="topbar">
+    <a class="brand" href="/" aria-label="לימוד יומי — מזמור לתודה, לדף הבית">
+      <span class="brand-mark" aria-hidden="true">ל</span>
+      <span class="brand-text">לימוד יומי<small>מזמור לתודה</small></span>
+    </a>
+    <nav class="quick-links" aria-label="קישורים מהירים">
+      <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>ראשי</a>
+      <a href="tehillim.html"{% if page.url == "/tehillim.html" %} aria-current="page"{% endif %}>תהילים</a>
+      <a href="dafyomi.html"{% if page.url == "/dafyomi.html" %} aria-current="page"{% endif %}>דף יומי</a>
+      <a href="zmanim.html"{% if page.url == "/zmanim.html" %} aria-current="page"{% endif %}>זמני היום</a>
+    </nav>
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-menu">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="menu-toggle-label">כל המסלולים</span>
+    </button>
+  </div>
+  <nav class="site-menu" id="site-menu" aria-label="כל המסלולים והכלים">
+    <div class="site-menu-inner">
+      <label class="menu-search">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+        <span class="visually-hidden">חיפוש מסלול</span>
+        <input type="search" id="menu-search" placeholder="חיפוש מסלול…" autocomplete="off">
+      </label>
+      {% include menu.html %}
+      <p class="menu-empty" id="menu-empty" hidden>לא נמצא מסלול בשם הזה.</p>
+    </div>
+  </nav>
+  <div class="datebar">
+    <p class="datebar-main"><span id="today-weekday">—</span> · <b id="today-hebrew">—</b></p>
+    <p class="datebar-notes">
+      <span class="datebar-tag" id="regular-holiday-note" style="display:none;"></span>
+      <span id="upcoming-shabbat-note"></span>
+    </p>
+    <p class="date-note" id="hebrew-date-note"></p>
+  </div>
+</header>
+<script>
+/* Menu open/close and search. Without JavaScript the menu simply stays open (all links reachable). */
+(function(){
+  var btn = document.getElementById('menu-toggle');
+  var menu = document.getElementById('site-menu');
+  var search = document.getElementById('menu-search');
+  var empty = document.getElementById('menu-empty');
+  if(!btn || !menu) return;
+  menu.hidden = true;
+  function setOpen(open){
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.hidden = !open;
+    btn.querySelector('.menu-toggle-label').textContent = open ? 'סגירה' : 'כל המסלולים';
+    if(open && search && window.matchMedia('(min-width: 700px)').matches) search.focus();
+  }
+  btn.addEventListener('click', function(){ setOpen(btn.getAttribute('aria-expanded') !== 'true'); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true'){ setOpen(false); btn.focus(); }
+  });
+  document.addEventListener('click', function(e){
+    if(btn.getAttribute('aria-expanded') === 'true' && !menu.contains(e.target) && !btn.contains(e.target)) setOpen(false);
+  });
+  if(search){
+    search.addEventListener('input', function(){
+      var q = search.value.replace(/["״׳']/g,'').trim();
+      var any = false;
+      menu.querySelectorAll('.menu-group').forEach(function(g){
+        var shown = 0;
+        g.querySelectorAll('li').forEach(function(li){
+          var t = li.textContent.replace(/["״׳']/g,'');
+          var ok = !q || t.indexOf(q) !== -1;
+          li.hidden = !ok; if(ok) shown++;
+        });
+        g.hidden = shown === 0; if(shown) any = true;
+      });
+      if(empty) empty.hidden = any;
+    });
+  }
+})();
+</script>

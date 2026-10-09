@@ -1,24 +1,44 @@
 {% comment %}
-  The site menu, shared by every page: a change here updates all of them.
-  To add a page: copy a line, change the file name in BOTH places and the title.
-  התפריט של כל האתר — שינוי כאן מתעדכן בכל הדפים. להוספת דף: להעתיק שורה,
+  The site menu, shared by every page (it sits inside site-header.html).
+  To add a page: copy a line inside the right group, change the file name in BOTH places and the title.
+  התפריט של כל האתר — שינוי כאן מתעדכן בכל הדפים. להוספת דף: להעתיק שורה בקבוצה המתאימה,
   לשנות את שם הקובץ בשני המקומות ואת הכותרת.
 {% endcomment %}
-  <nav class="top-modes" aria-label="בחירת תוכן">
-    <a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>הלכה יומית</a>
-    <a href="arukh-hashulchan.html"{% if page.url == "/arukh-hashulchan.html" %} aria-current="page"{% endif %}>ערוך השולחן יומי</a>
-    <a href="tehillim.html"{% if page.url == "/tehillim.html" %} aria-current="page"{% endif %}>תהילים</a>
-    <a href="mishnayot.html"{% if page.url == "/mishnayot.html" %} aria-current="page"{% endif %}>משנה יומית</a>
-    <a href="dafyomi.html"{% if page.url == "/dafyomi.html" %} aria-current="page"{% endif %}>דף יומי</a>
-    <a href="yerushalmi.html"{% if page.url == "/yerushalmi.html" %} aria-current="page"{% endif %}>ירושלמי יומי</a>
-    <a href="tanya.html"{% if page.url == "/tanya.html" %} aria-current="page"{% endif %}>תניא יומי</a>
-    <a href="tanakh.html"{% if page.url == "/tanakh.html" %} aria-current="page"{% endif %}>תנ"ך יומי</a>
-    <a href="929.html"{% if page.url == "/929.html" %} aria-current="page"{% endif %}>929</a>
-    <a href="parasha.html"{% if page.url == "/parasha.html" %} aria-current="page"{% endif %}>שמו"ת</a>
-    <a href="haftara.html"{% if page.url == "/haftara.html" %} aria-current="page"{% endif %}>הפטרה</a>
-    <a href="rambam.html"{% if page.url == "/rambam.html" %} aria-current="page"{% endif %}>רמב"ם יומי</a>
-    <a href="zmanim.html"{% if page.url == "/zmanim.html" %} aria-current="page"{% endif %}>זמני היום</a>
-    <a href="birkat-hamazon.html"{% if page.url == "/birkat-hamazon.html" %} aria-current="page"{% endif %}>ברכת המזון</a>
-    <a href="date-converter.html"{% if page.url == "/date-converter.html" %} aria-current="page"{% endif %}>המרת תאריכים</a>
-    <a href="bar-mitzvah.html"{% if page.url == "/bar-mitzvah.html" %} aria-current="page"{% endif %}>פרשת בר מצווה</a>
-  </nav>
+<div class="menu-groups">
+  <div class="menu-group">
+    <h2 class="menu-group-title">לימוד יומי</h2>
+    <ul>
+      <li><a href="/#halacha">הלכה יומית</a></li>
+      <li><a href="arukh-hashulchan.html"{% if page.url == "/arukh-hashulchan.html" %} aria-current="page"{% endif %}>ערוך השולחן יומי</a></li>
+      <li><a href="mishnayot.html"{% if page.url == "/mishnayot.html" %} aria-current="page"{% endif %}>משנה יומית</a></li>
+      <li><a href="dafyomi.html"{% if page.url == "/dafyomi.html" %} aria-current="page"{% endif %}>דף יומי</a></li>
+      <li><a href="yerushalmi.html"{% if page.url == "/yerushalmi.html" %} aria-current="page"{% endif %}>ירושלמי יומי</a></li>
+      <li><a href="tanya.html"{% if page.url == "/tanya.html" %} aria-current="page"{% endif %}>תניא יומי</a></li>
+      <li><a href="tanakh.html"{% if page.url == "/tanakh.html" %} aria-current="page"{% endif %}>תנ"ך יומי</a></li>
+      <li><a href="929.html"{% if page.url == "/929.html" %} aria-current="page"{% endif %}>929</a></li>
+      <li><a href="rambam.html"{% if page.url == "/rambam.html" %} aria-current="page"{% endif %}>רמב"ם יומי</a></li>
+    </ul>
+  </div>
+  <div class="menu-group">
+    <h2 class="menu-group-title">תפילה ותהילים</h2>
+    <ul>
+      <li><a href="tehillim.html"{% if page.url == "/tehillim.html" %} aria-current="page"{% endif %}>תהילים</a></li>
+      <li><a href="birkat-hamazon.html"{% if page.url == "/birkat-hamazon.html" %} aria-current="page"{% endif %}>ברכת המזון</a></li>
+    </ul>
+  </div>
+  <div class="menu-group">
+    <h2 class="menu-group-title">פרשת השבוע</h2>
+    <ul>
+      <li><a href="parasha.html"{% if page.url == "/parasha.html" %} aria-current="page"{% endif %}>שמו"ת</a></li>
+      <li><a href="haftara.html"{% if page.url == "/haftara.html" %} aria-current="page"{% endif %}>הפטרה</a></li>
+    </ul>
+  </div>
+  <div class="menu-group">
+    <h2 class="menu-group-title">כלים</h2>
+    <ul>
+      <li><a href="zmanim.html"{% if page.url == "/zmanim.html" %} aria-current="page"{% endif %}>זמני היום</a></li>
+      <li><a href="date-converter.html"{% if page.url == "/date-converter.html" %} aria-current="page"{% endif %}>המרת תאריכים</a></li>
+      <li><a href="bar-mitzvah.html"{% if page.url == "/bar-mitzvah.html" %} aria-current="page"{% endif %}>פרשת בר מצווה</a></li>
+    </ul>
+  </div>
+</div>
