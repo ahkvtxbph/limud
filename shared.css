@@ -470,3 +470,69 @@ footer.site a{color:var(--blue); text-decoration:underline; text-underline-offse
 @media (prefers-reduced-motion: reduce){
   @view-transition{ navigation:none; }
 }
+
+/* =====================================================================
+   ACCESSIBILITY TOOLBAR — "הדגשת קישורים" (highlight links)
+   When that option is on, the toolbar adds class "highlight-links" to <body> and
+   repaints every <a>. Without this block the menu text turned invisible, the
+   header jumped down (the skip-link was pulled into the page) and the WhatsApp
+   button lost its shape. Here the site gives its OWN clear highlight instead:
+   a light-yellow background, dark-blue text, underline and an outline — so links
+   still stand out (the purpose of the option) and everything stays readable.
+   ===================================================================== */
+html body.highlight-links .skip-link{position:absolute !important; top:-4rem !important;}
+html body.highlight-links .skip-link:focus{top:.6rem !important;}
+
+/* links on light backgrounds */
+html body.highlight-links :is(.site-menu a, .tile, .tool, .today-list a, .today-card-foot a, .crumbs a, footer.site a, .chapter-error a, .header-link a, .zmanim-short-note a, .verses a, .panel a:not(.btn), .res-links a:not(.btn)){
+  background:#FFF3C4 !important;
+  color:var(--blue) !important;
+  -webkit-text-fill-color:var(--blue) !important;
+  text-decoration:underline !important;
+  text-underline-offset:3px !important;
+  outline:2px solid var(--blue) !important;
+  outline-offset:-2px !important;
+  position:static !important;
+  opacity:1 !important; filter:none !important; text-shadow:none !important;
+}
+/* keep each element's own text colours inside cards (title / subtitle) */
+html body.highlight-links a *{-webkit-text-fill-color:currentColor !important;}
+html body.highlight-links .tile b, html body.highlight-links .tool b, html body.highlight-links .today-list b{color:var(--blue) !important;}
+html body.highlight-links .tile span, html body.highlight-links .tool span span, html body.highlight-links .today-list .t span{color:#3F4852 !important;}
+html body.highlight-links .tile .icon, html body.highlight-links .ic-box{color:var(--gold-dark) !important;}
+/* keep the layouts the toolbar would otherwise reset */
+html body.highlight-links .site-menu .menu-group a{display:flex !important;}
+html body.highlight-links .tile{display:flex !important; flex-direction:column !important;}
+html body.highlight-links .tool, html body.highlight-links .today-list a{display:flex !important;}
+html body.highlight-links .site-menu .menu-group a::after{color:var(--blue) !important; -webkit-text-fill-color:var(--blue) !important;}
+
+/* links on the dark top bar */
+html body.highlight-links .site-top .brand{
+  display:flex !important; position:static !important;
+  background:transparent !important; color:#fff !important; -webkit-text-fill-color:#fff !important;
+  outline:2px solid var(--gold-soft) !important; outline-offset:4px !important; border-radius:6px !important;
+  text-decoration:none !important;
+}
+html body.highlight-links .site-top .brand-text{color:#fff !important; text-decoration:underline !important; text-underline-offset:4px !important;}
+html body.highlight-links .site-top .brand-text small{color:#C9D3DE !important;}
+html body.highlight-links .site-top .brand-mark{color:var(--blue) !important; background:var(--gold) !important;}
+html body.highlight-links .site-top .quick-links a{
+  display:inline-flex !important; position:static !important;
+  background:#FFF3C4 !important; color:var(--blue) !important; -webkit-text-fill-color:var(--blue) !important;
+  text-decoration:underline !important; outline:none !important;
+}
+
+/* link-buttons keep their button look, plus a visible ring */
+html body.highlight-links a.btn{
+  background:var(--blue) !important; color:#fff !important; -webkit-text-fill-color:#fff !important;
+  outline:3px solid var(--gold) !important; outline-offset:2px !important; text-decoration:underline !important;
+  display:inline-flex !important; position:static !important;
+}
+
+/* WhatsApp button: stays a green circle, with a ring */
+html body.highlight-links .whatsapp-float{
+  position:fixed !important; right:16px !important; bottom:18px !important; top:auto !important; left:auto !important;
+  background:#1F9E55 !important; border-radius:50% !important; width:56px !important; height:56px !important;
+  display:flex !important; padding:0 !important; outline:3px solid var(--blue) !important; outline-offset:2px !important;
+}
+html body.highlight-links .whatsapp-float svg{fill:#fff !important;}
