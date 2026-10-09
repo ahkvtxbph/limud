@@ -19,7 +19,7 @@ permalink: /birkat-hamazon.html
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1B2A4A">
+<meta name="theme-color" content="#17324D">
 <link rel="icon" href="icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icon-192.png">
 
@@ -37,7 +37,6 @@ permalink: /birkat-hamazon.html
 <style>
   /* rules used only by this page */
   #birkat-section nav.modes{grid-template-columns:repeat(2,1fr);}
-  @media (max-width:420px){ #birkat-section nav.modes{grid-template-columns:1fr;} }
   .birkat-static-note{
     font-family:'Assistant', sans-serif;
     font-size:.8rem;
@@ -119,25 +118,18 @@ permalink: /birkat-hamazon.html
 <body>
 <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
 
-<header class="site">
-  <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
-  <h1 class="site-title">ברכת המזון</h1>
-  <p class="site-sub">נוסח אשכנז, ספרד, עדות המזרח ותימן (בלדי) — עם התאמה אוטומטית ליום הנוכחי, וגם אפשרות לסמן ידנית.</p>
-  <div class="today-strip">
-    <span>יום: <b id="today-weekday">—</b></span>
-    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
-  </div>
-  <p class="date-note" id="hebrew-date-note"></p>
-  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
-  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
-</header>
+{% include site-header.html %}
 
 {% include whatsapp.html %}
 
 {% include shabbat-banner.html %}
 
 <main id="main">
-{% include menu.html %}
+  <div class="page-intro">
+    <nav class="crumbs" aria-label="מיקום באתר"><ol><li><a href="/">ראשי</a></li><li>תפילה ותהילים</li><li aria-current="page">ברכת המזון</li></ol></nav>
+    <h1 class="page-title">ברכת המזון</h1>
+    <p class="page-sub">נוסח אשכנז, ספרד, עדות המזרח ותימן (בלדי) — עם התאמה אוטומטית ליום הנוכחי, וגם אפשרות לסמן ידנית.</p>
+  </div>
 
   <section id="birkat-section">
     <nav class="modes" aria-label="בחירת נוסח">

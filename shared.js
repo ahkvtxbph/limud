@@ -581,11 +581,11 @@ async function fetchGatingSchedule(loc){
 // Look of the Shabbat / Yom Tov block, for pages that don't carry the banner markup and shared.css themselves
 // (e.g. the accessibility statement): same rules as in shared.css, with fallbacks for the colours.
 const SHABBAT_BANNER_CSS =
-  '.shabbat-banner{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;background:var(--ink,#1B2A4A);color:var(--paper,#F7F3E9);align-items:center;justify-content:center;text-align:center;padding:2rem 1.6rem;overflow-y:auto;}' +
+  '.shabbat-banner{display:none;position:fixed;top:0;right:0;bottom:0;left:0;z-index:9999;background:var(--blue,#17324D);color:#fff;align-items:center;justify-content:center;text-align:center;padding:2rem 1.6rem;overflow-y:auto;}' +
   '.shabbat-banner.visible{display:flex;}' +
   '.shabbat-banner .shabbat-inner{max-width:32em;}' +
-  ".shabbat-banner h2{font-family:'Frank Ruhl Libre',serif;font-size:1.7rem;margin:0 0 .8rem;color:var(--paper,#F7F3E9);}" +
-  ".shabbat-banner p{font-family:'Noto Serif Hebrew',serif;font-size:1.02rem;color:var(--gold-light,#D9BF89);margin:0;line-height:1.9;}";
+  ".shabbat-banner h2{font-family:'Assistant',system-ui,sans-serif;font-weight:800;font-size:1.9rem;margin:0 0 .8rem;color:#fff;}" +
+  ".shabbat-banner p{font-family:'Assistant',system-ui,sans-serif;font-size:1.1rem;color:var(--gold-soft,#E9DCC0);margin:0;line-height:1.8;}";
 // Builds the banner (and its styles) when the page has none. Called only when a block is really due,
 // so every page that loads shared.js and runs initGating() is blocked on Shabbat — even one written later.
 function ensureShabbatBanner(){

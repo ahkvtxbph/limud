@@ -19,7 +19,7 @@ permalink: /
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1B2A4A">
+<meta name="theme-color" content="#17324D">
 <link rel="icon" href="icon-192.png" type="image/png">
 <link rel="apple-touch-icon" href="icon-192.png">
 
@@ -42,28 +42,66 @@ permalink: /
 <body>
 <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
 
-<header class="site">
-  <div class="site-eyebrow">מזמור לתודה · לימוד יומי</div>
-  <h1 class="site-title">לימוד יומי</h1>
-  <p class="site-sub">לוח לימוד יומי אחד לכל השיעורים — תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנ"ך יומי, 929, רמב"ם יומי וזמני היום.</p>
-  <div class="today-strip">
-    <span>יום: <b id="today-weekday">—</b></span>
-    <span>תאריך עברי: <b id="today-hebrew">—</b></span>
-  </div>
-  <p class="date-note" id="hebrew-date-note"></p>
-  <p class="upcoming-shabbat-note" id="regular-holiday-note" style="display:none;"></p>
-  <p class="upcoming-shabbat-note" id="upcoming-shabbat-note"></p>
-</header>
+{% include site-header.html %}
 
 {% include whatsapp.html %}
 
 {% include shabbat-banner.html %}
 
-<main id="main">
-{% include menu.html %}
+<main id="main" class="home">
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <h1 id="hero-title">מתחברים ללימוד.<br>בכל יום מחדש.</h1>
+      <p class="hero-sub">כל מסלולי הלימוד היומי במקום אחד — עם התאריך העברי, זמני היום וכלי עזר.</p>
+      <a class="btn" href="#today-card">ללימוד של היום</a>
+    </div>
+    <section class="card today-card" id="today-card" aria-labelledby="today-title" tabindex="-1">
+      <div class="today-card-head"><h2 id="today-title">הלימוד של היום</h2><span id="today-card-date"></span></div>
+      <div id="today-card-body" aria-live="polite"><p class="chapter-loading">טוענים את הלימוד של היום…</p></div>
+      <div class="today-card-foot"><a href="#tracks">לכל המסלולים והכלים</a></div>
+    </section>
+  </section>
+
+  <section aria-labelledby="tracks">
+    <h2 class="section-title" id="tracks">בחרו את מסלול הלימוד</h2>
+    <h3 class="group-label">לימוד יומי</h3>
+    <ul class="tiles">
+      <li><a class="card tile" href="#halacha"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5c3-1.3 6-1.3 9 .5 3-1.8 6-1.8 9-.5v13c-3-1.3-6-1.3-9 .5-3-1.8-6-1.8-9-.5z"/><path d="M12 6v13.5"/></svg><b>הלכה יומית</b><span data-cal="Halakhah Yomit">שולחן ערוך / קיצור שו״ע</span></a></li>
+      <li><a class="card tile" href="arukh-hashulchan.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5c3-1.3 6-1.3 9 .5 3-1.8 6-1.8 9-.5v13c-3-1.3-6-1.3-9 .5-3-1.8-6-1.8-9-.5z"/><path d="M12 6v13.5"/></svg><b>ערוך השולחן יומי</b><span data-cal="Arukh HaShulchan Yomi">ספר ערוך השולחן</span></a></li>
+      <li><a class="card tile" href="mishnayot.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M12 3.5v17M7 8h2.5M7 11.5h2.5M7 15h2.5M14.5 8H17M14.5 11.5H17M14.5 15H17"/></svg><b>משנה יומית</b><span data-cal="Daily Mishnah">עם ברטנורא</span></a></li>
+      <li><a class="card tile" href="dafyomi.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M12 3.5v17M7 8h2.5M7 11.5h2.5M7 15h2.5M14.5 8H17M14.5 11.5H17M14.5 15H17"/></svg><b>דף יומי</b><span data-cal="Daf Yomi">עם רש״י ותוספות</span></a></li>
+      <li><a class="card tile" href="yerushalmi.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M12 3.5v17M7 8h2.5M7 11.5h2.5M7 15h2.5M14.5 8H17M14.5 11.5H17M14.5 15H17"/></svg><b>ירושלמי יומי</b><span data-cal="Yerushalmi Yomi">עם פני משה</span></a></li>
+      <li><a class="card tile" href="tanya.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5c3-1.3 6-1.3 9 .5 3-1.8 6-1.8 9-.5v13c-3-1.3-6-1.3-9 .5-3-1.8-6-1.8-9-.5z"/><path d="M12 6v13.5"/></svg><b>תניא יומי</b><span data-cal="Tanya Yomi">השיעור היומי בתניא</span></a></li>
+      <li><a class="card tile" href="tanakh.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v12a2 2 0 0 0 2 2H8a2 2 0 0 1-2-2V4z"/><path d="M6 4a2 2 0 0 0-2 2v2h2M10 9h4M10 13h4"/></svg><b>תנ״ך יומי</b><span data-cal="Tanakh Yomi">עם פירוש רש״י</span></a></li>
+      <li><a class="card tile" href="929.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v12a2 2 0 0 0 2 2H8a2 2 0 0 1-2-2V4z"/><path d="M6 4a2 2 0 0 0-2 2v2h2M10 9h4M10 13h4"/></svg><b>929</b><span data-cal="929">פרק תנ״ך ליום</span></a></li>
+      <li><a class="card tile" href="rambam.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5c3-1.3 6-1.3 9 .5 3-1.8 6-1.8 9-.5v13c-3-1.3-6-1.3-9 .5-3-1.8-6-1.8-9-.5z"/><path d="M12 6v13.5"/></svg><b>רמב״ם יומי</b><span data-cal="Daily Rambam (3 Chapters)">שלושה פרקים או פרק אחד</span></a></li>
+    </ul>
+    <h3 class="group-label">תפילה ותהילים</h3>
+    <ul class="tiles">
+      <li><a class="card tile" href="tehillim.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><b>תהילים</b><span>לפי יום בשבוע או בחודש</span></a></li>
+      <li><a class="card tile" href="birkat-hamazon.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11a4 4 0 0 1 3-6.5h8A4 4 0 0 1 19 11v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18z"/><path d="M9 11v5M12 11v5M15 11v5"/></svg><b>ברכת המזון</b><span>אשכנז · ספרד · עדות המזרח · תימן</span></a></li>
+    </ul>
+    <h3 class="group-label">פרשת השבוע</h3>
+    <ul class="tiles">
+      <li><a class="card tile" href="parasha.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v12a2 2 0 0 0 2 2H8a2 2 0 0 1-2-2V4z"/><path d="M6 4a2 2 0 0 0-2 2v2h2M10 9h4M10 13h4"/></svg><b>שמו״ת</b><span data-cal="Parashat Hashavua">שניים מקרא ואחד תרגום</span></a></li>
+      <li><a class="card tile" href="haftara.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h10a2 2 0 0 1 2 2v12a2 2 0 0 0 2 2H8a2 2 0 0 1-2-2V4z"/><path d="M6 4a2 2 0 0 0-2 2v2h2M10 9h4M10 13h4"/></svg><b>הפטרה</b><span>לפי המנהגים השונים</span></a></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="tools-title">
+    <h2 class="section-title" id="tools-title">כלי עזר</h2>
+    <ul class="tools">
+      <li><a class="card tool" href="zmanim.html"><span class="ic-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><span><b>זמני היום</b><span>לפי מיקומך · כולל ברכת הלבנה</span></span></a></li>
+      <li><a class="card tool" href="date-converter.html"><span class="ic-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg></span><span><b>המרת תאריכים</b><span>עברי ⇄ לועזי</span></span></a></li>
+      <li><a class="card tool" href="bar-mitzvah.html"><span class="ic-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 9.5h16M8.5 3v4M15.5 3v4"/></svg></span><span><b>פרשת בר מצווה</b><span>לפי תאריך הלידה</span></span></a></li>
+    </ul>
+  </section>
+
+  <div class="home-halacha-wrap home-halacha" id="halacha">
+    <h2 class="section-title">הלכה יומית</h2>
 
     <section class="panel">
-      <h2 class="panel-title">הלכה יומית</h2>
+      <h3 class="panel-title">בחירת יום</h3>
       <p class="panel-desc">ההלכה הנלמדת היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "הלכה יומית" — שולחן ערוך אורח חיים / קיצור שולחן ערוך).</p>
       <div class="controls-row">
         <button class="btn" id="halacha-load">רענן הלכה יומית</button>
@@ -76,6 +114,7 @@ permalink: /
       </div>
     </section>
     <div id="halacha-reader" aria-live="polite"></div>
+  </div>
 </main>
 
 <footer class="site">
@@ -88,6 +127,56 @@ permalink: /
 <script>
 initHeaderDate();
 initWhatsappFloat('לימוד יומי — תהילים, הלכה, משנה, דף יומי, ירושלמי, תניא, תנ"ך, 929, רמב"ם וזמני היום, הכול במקום אחד:');
+
+/* ---------- "today" card + today's portion on each track tile (from Sefaria's calendar) ---------- */
+const TODAY_CARD_ITEMS = [
+  { en:'Halakhah Yomit', he:'הלכה יומית', href:'#halacha', icon:'book' },
+  { en:'Daily Mishnah', he:'משנה יומית', href:'mishnayot.html', icon:'columns' },
+  { en:'Daf Yomi', he:'דף יומי', href:'dafyomi.html', icon:'columns' },
+  { en:'Daily Rambam (3 Chapters)', he:'רמב״ם יומי', href:'rambam.html', icon:'book' },
+  { en:'Tanakh Yomi', he:'תנ״ך יומי', href:'tanakh.html', icon:'scroll' }
+];
+const TODAY_ICONS = {
+  book:'<path d="M3 5.5c3-1.3 6-1.3 9 .5 3-1.8 6-1.8 9-.5v13c-3-1.3-6-1.3-9 .5-3-1.8-6-1.8-9-.5z"/><path d="M12 6v13.5"/>',
+  columns:'<rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M12 3.5v17M7 8h2.5M7 11.5h2.5M7 15h2.5M14.5 8H17M14.5 11.5H17M14.5 15H17"/>',
+  scroll:'<path d="M6 4h10a2 2 0 0 1 2 2v12a2 2 0 0 0 2 2H8a2 2 0 0 1-2-2V4z"/><path d="M6 4a2 2 0 0 0-2 2v2h2M10 9h4M10 13h4"/>'
+};
+function escapeHtml(t){ return String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+async function renderTodayCard(){
+  const body = document.getElementById('today-card-body');
+  const dateEl = document.getElementById('today-card-date');
+  const now = new Date();
+  try{ dateEl.textContent = getHebrewDisplay(now); }catch(e){}
+  body.innerHTML = '<p class="chapter-loading">טוענים את הלימוד של היום…</p>';
+  try{
+    const res = await fetch(`https://www.sefaria.org/api/calendars?diaspora=0&year=${now.getFullYear()}&month=${now.getMonth()+1}&day=${now.getDate()}`);
+    if(!res.ok) throw new Error('calendar fetch failed');
+    const data = await res.json();
+    const items = (data && data.calendar_items) || [];
+    const byEn = {};
+    items.forEach(i => { if(i.title && i.title.en) byEn[i.title.en] = i; });
+    // the tiles: today's portion instead of the general description, when known
+    document.querySelectorAll('[data-cal]').forEach(el => {
+      const it = byEn[el.dataset.cal];
+      const he = it && it.displayValue && it.displayValue.he;
+      if(he) el.textContent = he;
+    });
+    const rows = TODAY_CARD_ITEMS.map(t => {
+      const it = byEn[t.en];
+      const he = it && it.displayValue && it.displayValue.he;
+      if(!he) return '';
+      return `<li><a href="${t.href}"><span class="ic-box"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${TODAY_ICONS[t.icon]}</svg></span>` +
+             `<span class="t"><b>${t.he}</b><span>${escapeHtml(he)}</span></span><span class="go" aria-hidden="true">‹</span></a></li>`;
+    }).join('');
+    if(!rows) throw new Error('no items');
+    body.innerHTML = `<ul class="today-list">${rows}</ul>`;
+  }catch(e){
+    body.innerHTML = '<div class="chapter-error"><span>לא הצלחנו לטעון את הלימוד של היום. <a href="#" id="today-card-retry">לנסות שוב</a></span></div>';
+    const retry = document.getElementById('today-card-retry');
+    if(retry) retry.addEventListener('click', ev => { ev.preventDefault(); renderTodayCard(); });
+  }
+}
+try{ renderTodayCard(); }catch(e){}
 
 let halachaSelectedDate = null;
 

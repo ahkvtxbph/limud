@@ -1,708 +1,472 @@
 /* =====================================================================
-   shared.css — the site's common design (colours, header, menu, panels,
-   form controls, buttons, cards, footer, Shabbat banner, WhatsApp button).
-   Linked from every page of the site, so a design change is made once, here.
+   shared.css — the site's common design ("בית מדרש דיגיטלי").
+   Linked from every page, so a design change is made once, here.
    Page-only rules stay in a small <style> block inside that page.
+
+   Fonts: Assistant for the whole interface; Noto Serif Hebrew ONLY for the
+   Torah texts themselves (it is the only one of the two that shows full nikud
+   AND all the cantillation marks / טעמי המקרא).
    ===================================================================== */
-  :root{
-    --stone:#EDE6D6;
-    --stone-dark:#DED2B8;
-    --ink:#1B2A4A;
-    --ink-light:#2E4266;
-    --gold:#AD8A4E;
-    --gold-text:#7C5D2A;
-    --gold-light:#D9BF89;
-    --wine:#7A2E2E;
-    --charcoal:#2B241C;
-    --paper:#F7F3E9;
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  /* Screen-reader-only text: visible to assistive tech, removed from the visual layout.
-     Used for section headings that give orientation (e.g. "תהילים") without duplicating
-     what's already shown visually via the top menu and each panel's own H2. */
-  .visually-hidden{
-    position:absolute !important;
-    width:1px; height:1px;
-    padding:0; margin:-1px;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
-    white-space:nowrap;
-    border:0;
-  }
 
-  :focus-visible{
-    outline:3px solid var(--gold-text);
-    outline-offset:2px;
-    border-radius:4px;
-  }
-  .skip-link{
-    position:absolute;
-    right:1rem; top:-3rem;
-    background:var(--ink);
-    color:var(--paper);
-    padding:.7rem 1.2rem;
-    border-radius:8px;
-    z-index:100;
-    text-decoration:none;
-    transition:top .15s;
-  }
-  .skip-link:focus{top:1rem;}
-  .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
-  body{
-    background:var(--stone);
-    color:var(--charcoal);
-    font-family:'Assistant', sans-serif;
-    min-height:100vh;
-    background-image:
-      radial-gradient(circle at 15% 10%, rgba(173,138,78,0.10), transparent 40%),
-      radial-gradient(circle at 85% 90%, rgba(27,42,74,0.08), transparent 45%);
-  }
-  a{color:inherit;}
+/* ---------- design tokens ---------- */
+:root{
+  /* palette (spec 4.1) */
+  --blue:#17324D;          /* top bar, navigation, main headings */
+  --blue-2:#21476B;        /* date bar, hover */
+  --cream:#F7F3E9;         /* page background */
+  --gold:#B18B43;          /* accents, icons, dividers — never small text on white */
+  --gold-dark:#7A5C22;     /* gold-coloured TEXT (contrast ≥ 4.5:1 on white/cream) */
+  --gold-soft:#E9DCC0;     /* gold on dark backgrounds, soft fills */
+  --text:#29323A;          /* body text */
+  --muted:#55606B;         /* secondary text */
+  --white:#FFFFFF;         /* cards */
+  --line:#E6E8EB;          /* borders, dividers */
+  --line-strong:#C9D1D9;   /* form-control borders */
+  --tint:#EEF2F6;          /* selected / hover fill */
+  --danger:#8A2617;
+  --danger-bg:#FFF8F6;
+  --success:#1F7A45;
 
-  /* ===== Header ===== */
-  header.site{
-    position:relative;
-    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-light) 100%);
-    color:var(--paper);
-    padding:3.5rem 1.5rem 5rem;
-    text-align:center;
-    overflow:hidden;
-  }
-  header.site::before{
-    content:"";
-    position:absolute; inset:0;
-    background-image: repeating-linear-gradient(90deg, rgba(217,191,137,0.06) 0 1px, transparent 1px 48px);
-    pointer-events:none;
-  }
-  header.site::after{
-    content:"";
-    position:absolute; left:0; right:0; bottom:0; height:36px;
-    background:var(--stone);
-    clip-path: polygon(0 100%,100% 100%,100% 0,97% 40%,94% 8%,91% 42%,88% 6%,85% 40%,82% 10%,79% 38%,76% 8%,73% 40%,70% 6%,67% 42%,64% 8%,61% 40%,58% 6%,55% 38%,52% 8%,49% 42%,46% 6%,43% 40%,40% 8%,37% 38%,34% 6%,31% 42%,28% 8%,25% 40%,22% 6%,19% 38%,16% 8%,13% 42%,10% 6%,7% 40%,4% 8%,0 40%);
-  }
-  .site-eyebrow{
-    font-family:'Assistant', sans-serif;
-    letter-spacing:.35em;
-    font-size:.72rem;
-    color:var(--gold-light);
-    text-transform:uppercase;
-  }
-  h1.site-title{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:900;
-    font-size:clamp(2.6rem, 7vw, 4.6rem);
-    margin:.6rem 0 .3rem;
-    letter-spacing:.02em;
-  }
-  .site-sub{
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.05rem;
-    color:#D9CFB8;
-    max-width:36em;
-    margin:0 auto;
-    line-height:1.9;
-  }
-  .today-strip{
-    margin-top:1.8rem;
-    display:inline-flex;
-    gap:1.2rem;
-    flex-wrap:wrap;
-    justify-content:center;
-    font-family:'Assistant', sans-serif;
-    font-size:.92rem;
-    color:var(--gold-light);
-    border-top:1px solid rgba(217,191,137,.3);
-    border-bottom:1px solid rgba(217,191,137,.3);
-    padding:.6rem 1.2rem;
-  }
-  .today-strip b{color:var(--paper); font-weight:600;}
-  .date-note{
-    margin-top:.55rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.72rem;
-    color:#B9AE93;
-    max-width:30em;
-    margin-left:auto;
-    margin-right:auto;
-    line-height:1.6;
-  }
-  .upcoming-shabbat-note{
-    margin-top:.7rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.85rem;
-    font-weight:600;
-    color:var(--gold-light);
-    max-width:30em;
-    margin-left:auto;
-    margin-right:auto;
-    line-height:1.6;
-  }
-  .learning-date-label{
-    font-family:'Assistant', sans-serif;
-    font-size:1rem;
-    font-weight:700;
-    color:var(--ink);
-    background:var(--stone);
-    border-inline-start:4px solid var(--gold);
-    border-radius:7px;
-    padding:.6rem .9rem;
-    margin-bottom:1rem;
-    line-height:1.5;
-  }
-  .learning-date-label .sub{
-    display:block;
-    font-family:'Assistant', sans-serif;
-    font-weight:400;
-    font-size:.75rem;
-    color:#5A5142;
-    margin-top:.25rem;
-  }
+  /* the older names, still used by a few page-only styles — mapped onto the new palette */
+  --ink:var(--blue);
+  --ink-light:var(--blue-2);
+  --gold-text:var(--gold-dark);
+  --gold-light:var(--gold-soft);
+  --stone:var(--cream);
+  --stone-dark:var(--line);
+  --charcoal:var(--text);
+  --paper:var(--white);
+  --wine:var(--danger);
 
-  .whatsapp-float{
-    /* !important on positioning only: defends against third-party accessibility-toolbar
-       features (e.g. "highlight links") that apply broad styles to every <a> tag and can
-       otherwise reset position:fixed, making this jump out of its fixed spot to the top
-       of the page (reported: happens with the enable.co.il "link highlighting" option). */
-    position:fixed !important;
-    right:20px !important;
-    bottom:20px !important;
-    top:auto !important;
-    left:auto !important;
-    z-index:500;
-    width:56px;
-    height:56px;
-    border-radius:50%;
-    background:#25D366;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 8px 20px -4px rgba(0,0,0,.4);
-    text-decoration:none;
-    transition:transform .15s, box-shadow .15s;
-  }
-  .whatsapp-float:hover{ transform:scale(1.06); box-shadow:0 10px 24px -4px rgba(0,0,0,.5); }
-  .whatsapp-float svg{ width:28px; height:28px; fill:#fff; }
-  @media (prefers-reduced-motion: reduce){
-    .whatsapp-float{ transition:none; }
-  }
+  /* type */
+  --font:'Assistant', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --text-font:'Noto Serif Hebrew', 'Times New Roman', serif;
 
-  .shabbat-banner{
-    display:none;
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:var(--ink);
-    color:var(--paper);
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:2rem 1.6rem;
-    overflow-y:auto;
-  }
-  .shabbat-banner.visible{ display:flex; }
-  .shabbat-banner .shabbat-inner{ max-width:32em; }
-  .shabbat-banner h2{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.7rem;
-    margin:0 0 .8rem;
-    color:var(--paper);
-  }
-  .shabbat-banner p{
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.02rem;
-    color:var(--gold-light);
-    margin:0;
-    line-height:1.9;
-  }
+  /* shape */
+  --radius:12px;
+  --radius-sm:8px;
+  --shadow:0 1px 2px rgba(23,50,77,.06), 0 6px 18px -10px rgba(23,50,77,.22);
+  --tap:44px;              /* minimum touch target */
+  --page:880px;            /* reading width */
+  --page-wide:1120px;      /* home page width */
+}
 
-  /* ===== Main / nav ===== */
-  main{max-width:880px; margin:-2.4rem auto 0; padding:0 1.2rem 4rem; position:relative; z-index:2;}
+/* ---------- base ---------- */
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%;}
+body{
+  background:var(--cream);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:1.125rem;          /* 18px */
+  line-height:1.7;
+  min-height:100vh;
+}
+a{color:inherit;}
+img,svg{max-width:100%;}
+.icon{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; flex:none;}
 
-  nav.top-modes{
-    display:grid;
-    grid-template-columns:repeat(8,1fr);
-    gap:.5rem;
-    background:var(--ink);
-    border-radius:16px;
-    padding:.5rem;
-    box-shadow:0 20px 45px -18px rgba(27,42,74,.5);
-  }
-  nav.top-modes button{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:700;
-    font-size:.85rem;
-    border:none;
-    border-radius:10px;
-    padding:.75rem .3rem;
-    cursor:pointer;
-    transition:background .18s, color .18s;
-    /* locked together for the same reason as nav.top-modes a above */
-    background:transparent !important;
-    color:var(--gold-light) !important;
-  }
-  nav.top-modes button:hover{background:rgba(217,191,137,.12);}
-  nav.top-modes button.active{background:var(--paper) !important; color:var(--ink) !important;}
-  @media (max-width:900px){
-    nav.top-modes{grid-template-columns:repeat(4,1fr);}
-  }
-  @media (max-width:560px){
-    nav.top-modes{grid-template-columns:repeat(2,1fr);}
-  }
+/* screen-reader-only text */
+.visually-hidden{
+  position:absolute !important; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+:focus-visible{outline:3px solid var(--blue); outline-offset:2px; border-radius:4px;}
+.skip-link{
+  position:absolute; right:1rem; top:-4rem; z-index:1000;
+  background:var(--white); color:var(--blue); font-weight:700;
+  padding:.7rem 1.2rem; border-radius:var(--radius-sm); text-decoration:none;
+  box-shadow:var(--shadow); transition:top .15s;
+}
+.skip-link:focus{top:.6rem;}
 
-  nav.modes{
-    display:grid;
-    gap:.6rem;
-    background:var(--paper);
-    border:1px solid var(--stone-dark);
-    border-radius:14px;
-    padding:.6rem;
-    margin-top:1rem;
-    box-shadow:0 18px 40px -20px rgba(27,42,74,.35);
-  }
+/* =====================================================================
+   TOP OF THE PAGE (site-header.html): top bar, menu, date bar
+   ===================================================================== */
+.site-top{background:var(--blue); color:var(--white); position:relative; z-index:50;}
+.topbar{
+  max-width:var(--page-wide); margin:0 auto;
+  display:flex; align-items:center; gap:.75rem;
+  padding:0 16px; min-height:64px;
+}
+.brand{display:flex; align-items:center; gap:.6rem; text-decoration:none; color:var(--white) !important; background:transparent !important;}
+.brand-mark{
+  width:36px; height:36px; border-radius:9px; flex:none;
+  background:var(--gold); color:var(--blue);
+  display:grid; place-items:center;
+  font-weight:800; font-size:1.35rem; line-height:1;
+}
+.brand-text{font-weight:800; font-size:1.2rem; line-height:1.15;}
+.brand-text small{display:block; font-weight:400; font-size:.8rem; color:#C9D3DE;}
+.quick-links{display:none; margin-inline-start:auto; gap:.25rem;}
+.quick-links a{
+  min-height:var(--tap); display:inline-flex; align-items:center;
+  padding:0 .8rem; border-radius:var(--radius-sm);
+  font-weight:600; font-size:1rem; text-decoration:none;
+  /* colour + background locked together: some accessibility-toolbar options repaint every <a> */
+  color:#E3E9EF !important; background:transparent !important;
+}
+.quick-links a:hover{background:rgba(255,255,255,.1) !important; color:var(--white) !important;}
+.quick-links a[aria-current="page"]{background:rgba(255,255,255,.14) !important; color:var(--white) !important; box-shadow:inset 0 -3px 0 var(--gold);}
+.menu-toggle{
+  margin-inline-start:auto;
+  min-height:var(--tap); min-width:var(--tap);
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:0 .9rem; border-radius:10px;
+  border:1px solid rgba(255,255,255,.3); background:transparent; color:var(--white);
+  font:600 1rem var(--font); cursor:pointer;
+}
+.menu-toggle:hover{background:rgba(255,255,255,.1);}
+.menu-toggle[aria-expanded="true"]{background:var(--white); color:var(--blue); border-color:var(--white);}
+.site-top :focus-visible{outline-color:var(--gold-soft);}
+
+/* the menu panel */
+.site-menu{
+  position:absolute; inset-inline:0; top:64px; z-index:60;
+  background:var(--white); color:var(--text);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 18px 40px -18px rgba(23,50,77,.45);
+  max-height:calc(100vh - 64px); overflow-y:auto;
+}
+.site-menu[hidden]{display:none;}
+.site-menu :focus-visible{outline-color:var(--blue);}
+.site-menu-inner{max-width:var(--page-wide); margin:0 auto; padding:12px 16px 18px;}
+.menu-search{
+  display:flex; align-items:center; gap:.5rem;
+  border:1px solid var(--line-strong); border-radius:10px;
+  padding:0 .8rem; min-height:48px; color:var(--muted); background:var(--white);
+}
+.menu-search input{border:0 !important; outline:0; flex:1; min-width:0; font:400 1.05rem var(--font); color:var(--text); background:transparent; padding:.6rem 0 !important;}
+.menu-search:focus-within{outline:3px solid var(--blue); outline-offset:2px;}
+.menu-groups{display:grid; grid-template-columns:1fr; gap:.4rem; margin-top:.6rem;}
+.menu-group[hidden]{display:none;}
+.menu-group-title{font-size:.9rem; font-weight:700; color:var(--muted); padding:.6rem .2rem .3rem;}
+.menu-group ul{list-style:none;}
+.menu-group li[hidden]{display:none;}
+.menu-group a{
+  display:flex; align-items:center; justify-content:space-between;
+  min-height:48px; padding:0 .8rem; border-top:1px solid var(--line);
+  font-weight:600; font-size:1.05rem; text-decoration:none;
+  color:var(--blue) !important; background:transparent !important;
+}
+.menu-group a::after{content:"‹"; font-size:1.3rem; color:var(--muted); line-height:1;}
+.menu-group a:hover{background:var(--tint) !important;}
+.menu-group a[aria-current="page"]{background:var(--tint) !important; box-shadow:inset -4px 0 0 var(--gold);}
+.menu-empty{padding:1rem .2rem; color:var(--muted);}
+
+/* the date bar */
+.datebar{background:var(--blue-2); color:#E8EDF2; font-size:.95rem; line-height:1.5;}
+.datebar > *{max-width:var(--page-wide); margin:0 auto; padding-inline:16px;}
+.datebar-main{padding-top:.5rem;}
+.datebar-main b{color:var(--white); font-weight:700;}
+.datebar-notes{display:flex; flex-wrap:wrap; gap:.25rem .8rem; align-items:center; padding-top:.15rem;}
+.datebar-notes:empty{display:none;}
+.datebar-tag{
+  display:inline-flex; align-items:center;
+  border:1px solid rgba(233,220,192,.55); color:var(--gold-soft);
+  border-radius:999px; padding:0 .7rem; font-weight:700; font-size:.9rem;
+}
+#upcoming-shabbat-note{color:#E8EDF2;}
+.date-note{font-size:.8rem; color:#B9C6D3; padding-bottom:.5rem; padding-top:.1rem;}
+.date-note:empty{padding-bottom:.35rem;}
+
+@media (min-width:700px){
+  .menu-groups{grid-template-columns:repeat(2,1fr); column-gap:1.5rem;}
+}
+@media (min-width:980px){
+  .quick-links{display:flex;}
+  .menu-toggle{margin-inline-start:.25rem;}
+  .menu-groups{grid-template-columns:repeat(4,1fr);}
+}
+
+/* =====================================================================
+   PAGE LAYOUT
+   ===================================================================== */
+main{max-width:var(--page); margin:0 auto; padding:0 16px 4rem;}
+main.home{max-width:var(--page-wide);}
+.page-intro{padding:1rem 0 .4rem;}
+.crumbs{font-size:.95rem; color:var(--muted);}
+.crumbs ol{list-style:none; display:flex; flex-wrap:wrap; gap:.2rem .45rem;}
+.crumbs li + li::before{content:"›"; margin-inline-end:.45rem; color:var(--muted);}
+.crumbs a{color:var(--blue); text-decoration:underline; text-underline-offset:3px;}
+.page-title{font-size:clamp(1.75rem, 5vw, 2.25rem); line-height:1.25; color:var(--blue); font-weight:800; margin-top:.35rem;}
+.page-sub{color:var(--muted); font-size:1.05rem; margin-top:.25rem; max-width:60ch;}
+
+/* section heading with the gold mark */
+.section-title{display:flex; align-items:center; gap:.6rem; font-size:1.4rem; color:var(--blue); font-weight:800; margin:2rem 0 .9rem;}
+.section-title::before{content:""; width:4px; height:1.3rem; border-radius:2px; background:var(--gold); flex:none;}
+
+/* =====================================================================
+   PANELS, MODE SWITCHES, CONTROLS
+   ===================================================================== */
+section.panel{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+  margin-top:1rem; padding:1.2rem 1.1rem 1.3rem; box-shadow:var(--shadow);
+}
+.panel h2.panel-title{font-size:1.35rem; color:var(--blue); font-weight:800; line-height:1.3; margin-bottom:.25rem;}
+.panel p.panel-desc{color:var(--muted); font-size:1rem; line-height:1.6; margin-bottom:1rem;}
+
+/* mode switch (e.g. Tehillim: by weekday / by Hebrew date / random / manual) */
+nav.modes{
+  display:grid; gap:4px; grid-template-columns:repeat(2,1fr);
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+  padding:4px; margin-top:1rem; box-shadow:var(--shadow);
+}
+nav.modes button{
+  min-height:var(--tap); border:0; border-radius:9px; background:transparent; cursor:pointer;
+  font:600 1rem var(--font); color:var(--muted); line-height:1.3; padding:.55rem .4rem;
+}
+nav.modes button .num{display:none;}
+nav.modes button:hover{background:var(--tint); color:var(--blue);}
+nav.modes button.active{background:var(--blue); color:var(--white);}
+#tanakh-section nav.modes{grid-template-columns:repeat(2,1fr);}
+@media (min-width:640px){
   #tehillim-section nav.modes{grid-template-columns:repeat(4,1fr);}
   #mishnayot-section nav.modes{grid-template-columns:repeat(3,1fr);}
-  #tanakh-section nav.modes{grid-template-columns:repeat(2,1fr);}
-  nav.modes button{
-    font-family:'Assistant', sans-serif;
-    font-weight:600;
-    font-size:.9rem;
-    background:transparent;
-    border:none;
-    border-radius:9px;
-    padding:.85rem .4rem;
-    color:var(--ink-light);
-    cursor:pointer;
-    transition:background .18s, color .18s;
-    line-height:1.35;
-  }
-  nav.modes button .num{
-    display:block;
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.05rem;
-    color:var(--gold-text);
-    margin-bottom:.15rem;
-  }
-  nav.modes button:hover{background:var(--stone);}
-  nav.modes button.active{background:var(--ink); color:var(--paper);}
-  nav.modes button.active .num{color:var(--gold-light);}
+}
 
-  @media (max-width:640px){
-    #tehillim-section nav.modes{grid-template-columns:repeat(2,1fr);}
-  }
-  @media (max-width:520px){
-    #mishnayot-section nav.modes{grid-template-columns:1fr;}
-  }
+.controls-row{display:flex; gap:.6rem; flex-wrap:wrap; align-items:center;}
+select, .btn, input[type="text"], input[type="search"], input[type="date"], input[type="number"]{
+  font-family:var(--font); font-size:1rem; min-height:var(--tap);
+  padding:.55rem .9rem; border-radius:10px;
+  border:1px solid var(--line-strong); background:var(--white); color:var(--text);
+}
+select{padding-inline-end:2rem;}
+input[type="text"]{flex:1; min-width:180px;}
+select:disabled{opacity:.5;}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+  background:var(--blue); color:var(--white); border:1px solid var(--blue);
+  font-weight:700; cursor:pointer; text-decoration:none; line-height:1.2;
+  transition:background .15s, border-color .15s, transform .1s;
+}
+.btn:hover{background:var(--blue-2); border-color:var(--blue-2);}
+.btn:active{transform:scale(.98);}
+.btn:disabled{opacity:.5; cursor:default;}
+.btn.secondary{background:var(--white); color:var(--blue); border-color:var(--line-strong);}
+.btn.secondary:hover{background:var(--tint); border-color:var(--blue);}
+.btn.secondary.active{background:var(--blue); color:var(--white); border-color:var(--blue);}
+a.btn{text-decoration:none;}
 
-  section.panel{
-    background:var(--paper);
-    border:1px solid var(--stone-dark);
-    border-radius:14px;
-    margin-top:1.2rem;
-    padding:1.6rem 1.4rem;
-    box-shadow:0 18px 40px -24px rgba(27,42,74,.3);
-  }
-  .panel h2.panel-title{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.5rem;
-    color:var(--ink);
-    margin-bottom:.3rem;
-  }
-  .panel p.panel-desc{
-    color:#5A5142;
-    font-size:.92rem;
-    margin-bottom:1.1rem;
-  }
-  .controls-row{display:flex; gap:.7rem; flex-wrap:wrap; align-items:center;}
-  select, .btn, input[type="text"], input[type="date"], input[type="number"]{
-    font-family:'Assistant', sans-serif;
-    font-size:.95rem;
-    padding:.65rem 1rem;
-    border-radius:9px;
-    border:1px solid #8A7757;
-    background:#fff;
-    color:var(--charcoal);
-  }
-  input[type="text"]{ flex:1; min-width:180px; }
-  select:disabled{opacity:.5;}
-  .btn{
-    background:var(--ink);
-    color:var(--paper);
-    border:none;
-    cursor:pointer;
-    font-weight:600;
-    transition:background .18s, transform .1s;
-  }
-  .btn:hover{background:var(--ink-light);}
-  .btn:active{transform:scale(.98);}
-  .btn:disabled{opacity:.5; cursor:default;}
-  .btn.secondary{
-    background:transparent;
-    color:var(--ink);
-    border:1px solid var(--ink);
-  }
-  .btn.secondary.active{
-    background:var(--ink);
-    color:var(--paper);
-  }
-  .btn.secondary:hover{background:var(--ink); color:var(--paper);}
+.chip-list{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem;}
+.chip{
+  min-height:var(--tap); min-width:var(--tap); padding:0 .9rem;
+  font:700 1rem var(--font); color:var(--blue);
+  background:var(--white); border:1px solid var(--line-strong); border-radius:999px; cursor:pointer;
+}
+.chip:hover{background:var(--tint);}
+.chip.active, .chip[aria-pressed="true"]{background:var(--blue); color:var(--white); border-color:var(--blue);}
 
-  .chip-list{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1rem;}
-  .chip{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:.95rem;
-    background:#fff;
-    border:1px solid var(--stone-dark);
-    border-radius:999px;
-    padding:.4rem .95rem;
-    cursor:pointer;
-    color:var(--ink);
-    transition:background .15s, color .15s;
-  }
-  .chip:hover{background:var(--stone);}
+/* =====================================================================
+   READING CARDS AND TORAH TEXT
+   ===================================================================== */
+#reader, #msh-reader{margin-top:1.2rem;}
+.chapter-card{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+  padding:1.1rem 1.1rem 1.3rem; margin-bottom:1rem; box-shadow:var(--shadow); position:relative;
+}
+.chapter-head{
+  display:flex; align-items:center; flex-wrap:wrap; gap:.6rem;
+  border-bottom:1px solid var(--line); padding-bottom:.7rem; margin-bottom:1rem;
+}
+.chapter-head h2{font-size:1.35rem; color:var(--blue); font-weight:800; line-height:1.3;}
+.chapter-head .gem{color:var(--muted); font-size:.95rem; margin-inline-start:auto;}
+.learning-date-label{
+  font-size:1rem; font-weight:700; color:var(--blue);
+  background:var(--tint); border-inline-start:4px solid var(--gold); border-radius:var(--radius-sm);
+  padding:.55rem .85rem; margin-bottom:1rem; line-height:1.5;
+}
+.learning-date-label .sub{display:block; font-weight:400; font-size:.88rem; color:var(--muted); margin-top:.15rem;}
 
-  .zman-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    border-bottom:1px dashed var(--stone-dark);
-    padding:.6rem 0;
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.1rem;
-  }
-  .zman-row:last-child{border-bottom:none;}
-  .zman-row .zman-time{
-    font-family:'Assistant', sans-serif;
-    font-weight:700;
-    color:var(--ink);
-    font-size:1.1rem;
-  }
+/* the Torah text itself — the ONLY place the serif font is used */
+.verses{
+  font-family:var(--text-font);
+  font-size:1.3rem; line-height:2.2; color:#1F262C;
+  max-width:75ch; margin-bottom:.4rem;
+}
+.verses p{margin-bottom:.9rem;}
+.verses .v{margin-left:.4em;}
+.verses .v-num{
+  font-family:var(--font); font-weight:700; font-size:.68em; color:var(--blue);
+  background:var(--tint); border-radius:5px; padding:0 .35em; margin-left:.3em; vertical-align:.25em;
+}
+.commentary{margin-top:.9rem; padding-top:.9rem; border-top:1px solid var(--line);}
+.commentary .c-label{font-size:.85rem; font-weight:700; color:var(--gold-dark); margin-bottom:.35rem;}
+.commentary .c-text{
+  font-family:var(--text-font); font-size:1.05rem; line-height:1.95; color:#3A434B;
+  background:var(--cream); border-radius:10px; padding:.8rem 1rem;
+}
+.commentary .c-unavailable{font-size:.92rem; color:var(--muted);}
 
-  #reader, #msh-reader{margin-top:1.4rem;}
-  .chapter-card{
-    background:#fff;
-    border:1px solid var(--stone-dark);
-    border-radius:14px;
-    padding:1.6rem 1.5rem 1.8rem;
-    margin-bottom:1.2rem;
-    position:relative;
-  }
-  .chapter-head{
-    display:flex;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:.8rem;
-    border-bottom:2px solid var(--gold-light);
-    padding-bottom:.6rem;
-    margin-bottom:1rem;
-  }
-  .chapter-head h2{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.4rem;
-    color:var(--ink);
-  }
-  .chapter-head .gem{
-    font-family:'Frank Ruhl Libre', serif;
-    color:var(--gold-text);
-    font-size:1rem;
-    margin-inline-start:auto;
-  }
-  .verses{
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.28rem;
-    line-height:2.5;
-    color:var(--charcoal);
-    margin-bottom:.4rem;
-  }
-  .verses p{ margin-bottom:1rem; }
-  .verses .v{margin-left:.4em;}
-  .verses .v-num{
-    color:var(--gold-text);
-    font-size:.7em;
-    vertical-align:super;
-    margin-left:.15em;
-    font-family:'Assistant', sans-serif;
-  }
-  .commentary{
-    margin-top:.9rem;
-    padding-top:.9rem;
-    border-top:1px dashed var(--stone-dark);
-  }
-  .commentary .c-label{
-    font-family:'Assistant', sans-serif;
-    font-size:.72rem;
-    letter-spacing:.06em;
-    color:var(--gold-text);
-    font-weight:700;
-    text-transform:uppercase;
-    margin-bottom:.4rem;
-  }
-  .commentary .c-text{
-    font-family:'Noto Serif Hebrew', serif;
-    font-size:1.02rem;
-    line-height:1.95;
-    color:#4A4536;
-    background:var(--paper);
-    border-radius:10px;
-    padding:.8rem 1rem;
-  }
-  .commentary .c-unavailable{
-    font-family:'Assistant', sans-serif;
-    font-size:.85rem;
-    color:#a89f8c;
-  }
-  .chapter-loading, .chapter-error{
-    font-family:'Assistant', sans-serif;
-    color:#8a7f6a;
-    font-size:.95rem;
-    padding:1.5rem 0;
-    text-align:center;
-  }
-  .chapter-error a{color:var(--wine); text-decoration:underline;}
-  .zmanim-short-note{
-    font-family:'Assistant', sans-serif;
-    font-size:.82rem;
-    color:var(--gold-text);
-    background:var(--paper);
-    border-radius:8px;
-    padding:.5rem .8rem;
-    margin-bottom:.9rem;
-  }
-  .zmanim-short-note a{color:var(--gold-text); text-decoration:underline; font-weight:600;}
+/* loading / error / empty states */
+.chapter-loading, .chapter-error, .state-msg{
+  display:block; position:relative;
+  font-size:1rem; line-height:1.55; padding:1rem 1rem 1rem 1rem; padding-inline-start:2.9rem;
+  border-radius:10px; text-align:start;
+}
+.chapter-loading::before, .chapter-error::before{position:absolute; inset-inline-start:1rem; top:1.05rem;}
+.chapter-loading{color:var(--blue); background:var(--tint);}
+.chapter-loading::before{
+  content:""; width:18px; height:18px; border-radius:50%;
+  border:2.5px solid rgba(23,50,77,.25); border-top-color:var(--blue);
+  animation:spin .9s linear infinite;
+}
+.chapter-error{color:var(--danger); background:var(--danger-bg); border:1px solid #E7C3BD;}
+.chapter-error::before{content:"!"; width:22px; height:22px; border-radius:50%; background:#FBE6E2; color:var(--danger); font-weight:800; display:grid; place-items:center; font-size:.9rem; top:.95rem;}
+.chapter-error a{color:var(--danger); text-decoration:underline; font-weight:700;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
-  .share-row{display:flex; align-items:center; gap:.45rem; flex-shrink:0;}
-  .share-btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:32px; height:32px; border-radius:50%;
-    border:1px solid var(--stone-dark); background:#fff; cursor:pointer;
-    color:var(--ink); transition:background .15s, transform .1s, border-color .15s, color .15s;
-    text-decoration:none;
-  }
-  .share-btn:hover{background:var(--stone); border-color:var(--gold);}
-  .share-btn:active{transform:scale(.94);}
-  .share-btn svg{width:15px; height:15px; fill:currentColor;}
-  .share-btn.whatsapp:hover{background:#25D366; border-color:#25D366; color:#fff;}
-  .share-btn.copy.copied{background:var(--gold); border-color:var(--gold); color:#fff;}
+.zmanim-short-note{font-size:.92rem; color:var(--gold-dark); background:var(--cream); border-radius:var(--radius-sm); padding:.5rem .8rem; margin-bottom:.9rem;}
+.zmanim-short-note a{color:var(--gold-dark); text-decoration:underline; font-weight:700;}
 
-  .progress-key{
-    margin-top:1.6rem;
-    background:var(--paper);
-    border:1px solid var(--stone-dark);
-    border-radius:14px;
-    padding:1.2rem 1.4rem;
-  }
-  .progress-key h3{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:1.05rem;
-    color:var(--ink);
-    margin-bottom:.7rem;
-  }
-  .dots{display:grid; grid-template-columns:repeat(25,1fr); gap:4px;}
-  .dots span{aspect-ratio:1; border-radius:2px; background:var(--stone-dark);}
-  .dots span.read{background:var(--gold);}
-  @media (max-width:640px){ .dots{grid-template-columns:repeat(15,1fr);} }
+/* share buttons */
+.share-row{display:flex; align-items:center; gap:.4rem; flex-shrink:0;}
+.share-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:var(--tap); height:var(--tap); border-radius:10px;
+  border:1px solid var(--line); background:var(--white); cursor:pointer; color:var(--blue);
+  text-decoration:none; transition:background .15s, border-color .15s, color .15s;
+}
+.share-btn:hover{background:var(--tint); border-color:var(--line-strong);}
+.share-btn svg{width:18px; height:18px; fill:currentColor;}
+.share-btn.whatsapp:hover{background:#1F9E55; border-color:#1F9E55; color:#fff;}
+.share-btn.copy.copied{background:var(--success); border-color:var(--success); color:#fff;}
 
-  footer.site{
-    text-align:center; padding:2.5rem 1rem 3rem; color:#8a7f6a;
-    font-size:.85rem; font-family:'Assistant', sans-serif;
-  }
-  footer.site a{text-decoration:underline;}
+/* reading-progress key (Tehillim) */
+.progress-key{margin-top:1.4rem; background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:1rem 1.1rem;}
+.progress-key h3{font-size:1.05rem; color:var(--blue); font-weight:700; margin-bottom:.6rem;}
+.dots{display:grid; grid-template-columns:repeat(25,1fr); gap:4px;}
+.dots span{aspect-ratio:1; border-radius:2px; background:var(--line);}
+.dots span.read{background:var(--gold);}
+@media (max-width:640px){ .dots{grid-template-columns:repeat(15,1fr);} }
 
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important;}
-  }
+/* zmanim rows */
+.zman-row{display:flex; justify-content:space-between; align-items:baseline; gap:1rem; border-bottom:1px solid var(--line); padding:.65rem 0; font-size:1.1rem;}
+.zman-row:last-child{border-bottom:none;}
+.zman-row .zman-time{font-weight:700; color:var(--blue); font-size:1.15rem; font-variant-numeric:tabular-nums; white-space:nowrap;}
+.zman-row.zman-row-levana{background:#FBF6EA; padding-inline:.6rem; border-radius:var(--radius-sm); border-bottom-color:transparent; margin:.2rem 0;}
+.zman-row .zman-sub{display:block; font-size:.85rem; color:var(--muted); margin-top:.15rem;}
 
-  /* ===== menu made of links (pages other than the main one link back to its sections) ===== */
-  nav.top-modes a{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:700;
-    font-size:.85rem;
-    border-radius:10px;
-    padding:.75rem .3rem;
-    text-decoration:none;
-    transition:background .18s, color .18s;
-    /* !important on background+color together: defends against third-party accessibility-
-       toolbar features (e.g. "highlight links") that apply their own background to every <a>
-       without also adjusting its text colour — reported: this made the menu links on the
-       date-converter / bar-mitzvah pages unreadable. Locking both together, not just one,
-       keeps whichever pairing we define here always readable. */
-    background:var(--ink) !important;
-    color:var(--gold-light) !important;
-  }
-  nav.top-modes a:hover{background:rgba(217,191,137,.12);}
-  nav.top-modes a[aria-current="page"]{background:var(--paper) !important; color:var(--ink) !important;}
-  /* the default focus ring is too dark on the navy menu */
-  nav.top-modes a:focus-visible, nav.top-modes button:focus-visible{outline-color:var(--gold-light);}
+/* =====================================================================
+   FORMS (conversion pages, Birkat Hamazon options)
+   ===================================================================== */
+.form-fields{display:flex; flex-wrap:wrap; gap:.8rem; margin-bottom:.9rem;}
+.field{display:flex; flex-direction:column; gap:.3rem; flex:1 1 7rem; min-width:6.5rem; font-size:.95rem; font-weight:600; color:var(--muted);}
+.field select, .field input{width:100%; min-width:0; flex:none;}
+.field-hint{font-size:.95rem; color:var(--gold-dark); font-weight:600; min-height:1.3em; margin:-.2rem 0 .8rem;}
+.field-help{font-size:.92rem; color:var(--muted); margin:-.6rem 0 1rem; line-height:1.55;}
+.check{display:flex; align-items:center; gap:.55rem; font-size:1rem; color:var(--text); margin-bottom:1rem; cursor:pointer; min-height:var(--tap);}
+.check input{width:1.2rem; height:1.2rem; accent-color:var(--blue); cursor:pointer;}
+fieldset.choice-group{border:1px solid var(--line-strong); border-radius:10px; background:var(--white); padding:.5rem 1rem .8rem; margin:0 0 1rem;}
+.choice-group legend{font-size:.95rem; font-weight:700; color:var(--muted); padding:0 .4rem;}
+.choice-group .choices{display:flex; flex-wrap:wrap; gap:.2rem 1.6rem;}
+.choice{display:flex; align-items:center; gap:.5rem; font-size:1rem; color:var(--text); cursor:pointer; min-height:var(--tap);}
+.choice input{width:1.2rem; height:1.2rem; accent-color:var(--blue); cursor:pointer;}
+.limit-note{font-size:.95rem; line-height:1.6; color:var(--text); background:var(--cream); border-radius:var(--radius-sm); padding:.6rem .85rem; margin:-.3rem 0 1rem;}
 
-  /* ===== a row of labelled form fields ===== */
-  .form-fields{display:flex; flex-wrap:wrap; gap:.8rem; margin-bottom:.9rem;}
+/* result boxes */
+.res-pair{display:grid; grid-template-columns:1fr 1fr; gap:.9rem;}
+.res-box{background:var(--cream); border-inline-start:4px solid var(--gold); border-radius:10px; padding:.9rem 1rem 1rem;}
+.res-box-wide{grid-column:1 / -1;}
+.res-box-label{font-size:.88rem; font-weight:700; color:var(--gold-dark); margin-bottom:.25rem;}
+.res-box-main{font-weight:800; font-size:1.5rem; line-height:1.35; color:var(--blue);}
+.res-box-sub{font-size:1rem; color:var(--muted); margin-top:.15rem;}
+.res-box-day{font-size:.95rem; font-weight:700; color:var(--blue); margin-top:.45rem;}
+.res-facts{list-style:none; padding:0; margin:1rem 0 0; font-size:1rem; color:var(--text); line-height:1.7;}
+.res-facts li{padding:.45rem 0; border-top:1px solid var(--line);}
+.res-links{display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 0;}
+@media (max-width:560px){ .res-pair{grid-template-columns:1fr;} }
 
-  /* ===== labelled form fields ===== */
-  .field{
-    display:flex;
-    flex-direction:column;
-    gap:.3rem;
-    flex:1 1 7rem;
-    min-width:6.5rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.82rem;
-    font-weight:600;
-    color:#5A5142;
-  }
-  .field select, .field input{width:100%; min-width:0; flex:none;}
-  .field-hint{
-    font-family:'Assistant', sans-serif;
-    font-size:.85rem;
-    color:var(--gold-text);
-    font-weight:600;
-    min-height:1.3em;
-    margin:-.2rem 0 .8rem;
-  }
-  .check{
-    display:flex;
-    align-items:center;
-    gap:.55rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.9rem;
-    color:#4a4030;
-    margin-bottom:1rem;
-    cursor:pointer;
-  }
-  .check input{width:1.15rem; height:1.15rem; accent-color:var(--gold); cursor:pointer;}
+/* a link to another page inside a panel/intro */
+.header-link{margin-top:.6rem; font-size:1rem; font-weight:600;}
+.header-link a{color:var(--blue); text-decoration:underline; text-underline-offset:4px;}
 
-  /* ===== link to another page, shown inside the dark header ===== */
-  .header-link{
-    margin-top:1.1rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.9rem;
-    font-weight:600;
-  }
-  .header-link a{
-    display:inline-block;
-    color:var(--gold-light);
-    text-decoration:underline;
-    text-underline-offset:4px;
-    padding:.35rem .8rem;
-    border-radius:8px;
-  }
-  .header-link a:hover{background:rgba(217,191,137,.14); color:var(--paper);}
-  .header-link a:focus-visible{outline-color:var(--gold-light);}
-  /* the skip-link sits over the dark header area once focused into view */
-  .skip-link:focus-visible{outline-color:var(--gold-light);}  /* the default ring is too dark on the navy header */
+/* =====================================================================
+   HOME PAGE
+   ===================================================================== */
+.hero{padding:1.8rem 0 .6rem; display:grid; gap:1.4rem;}
+.hero h1{font-size:clamp(2rem, 6.5vw, 2.9rem); line-height:1.2; color:var(--blue); font-weight:800; letter-spacing:-.01em;}
+.hero-sub{color:var(--muted); font-size:1.1rem; margin-top:.5rem; max-width:40ch;}
+.hero .btn{margin-top:1.1rem; min-height:50px; padding:0 1.4rem; font-size:1.1rem; border-radius:10px;}
+.card{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);}
+.today-card-head{display:flex; justify-content:space-between; align-items:baseline; gap:.6rem; padding:.9rem 1rem .4rem;}
+.today-card-head h2{font-size:1.15rem; color:var(--blue); font-weight:800;}
+.today-card-head span{font-size:.92rem; color:var(--muted);}
+.today-list{list-style:none;}
+.today-list a{
+  display:flex; align-items:center; gap:.75rem; min-height:58px;
+  padding:.55rem 1rem; border-top:1px solid var(--line); text-decoration:none;
+}
+.today-list a:hover{background:var(--tint);}
+.today-list .t{flex:1; min-width:0;}
+.today-list b{display:block; color:var(--blue); font-size:1.05rem; line-height:1.3;}
+.today-list .t span{display:block; color:var(--muted); font-size:.95rem; line-height:1.35;}
+.today-list .go{color:var(--muted); font-size:1.4rem; line-height:1;}
+.ic-box{width:40px; height:40px; border-radius:10px; background:#F3EEE2; color:var(--gold-dark); display:grid; place-items:center; flex:none;}
+.today-card .chapter-loading, .today-card .chapter-error{margin:0 1rem 1rem;}
+.today-card-foot{padding:.7rem 1rem 1rem; border-top:1px solid var(--line);}
+.today-card-foot a{color:var(--blue); font-weight:700; text-decoration:underline; text-underline-offset:3px;}
 
-  /* ===== result boxes (used by the conversion pages) ===== */
-  .res-pair{display:grid; grid-template-columns:1fr 1fr; gap:.9rem;}
-  .res-box{
-    background:var(--stone);
-    border-inline-start:4px solid var(--gold);
-    border-radius:10px;
-    padding:.9rem 1rem 1rem;
-  }
-  .res-box-wide{grid-column:1 / -1;}
-  .res-box-label{
-    font-family:'Assistant', sans-serif;
-    font-size:.75rem;
-    font-weight:700;
-    letter-spacing:.06em;
-    color:var(--gold-text);
-    margin-bottom:.3rem;
-  }
-  .res-box-main{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:700;
-    font-size:1.55rem;
-    line-height:1.35;
-    color:var(--ink);
-  }
-  .res-box-sub{
-    font-family:'Assistant', sans-serif;
-    font-size:.95rem;
-    color:#5A5142;
-    margin-top:.15rem;
-  }
-  .res-box-day{
-    font-family:'Assistant', sans-serif;
-    font-size:.88rem;
-    font-weight:700;
-    color:var(--ink);
-    margin-top:.45rem;
-  }
-  .res-facts{
-    list-style:none;
-    padding:0;
-    margin:1rem 0 0;
-    font-family:'Assistant', sans-serif;
-    font-size:.9rem;
-    color:#4a4030;
-    line-height:1.7;
-  }
-  .res-facts li{padding:.45rem 0; border-top:1px dashed var(--stone-dark);}
-  .res-links{display:flex; flex-wrap:wrap; gap:.6rem; margin:1rem 0 0;}
-  a.btn{display:inline-block; text-decoration:none;}
-  @media (max-width:560px){
-    .res-pair{grid-template-columns:1fr;}
-  }
+.group-label{font-size:1rem; font-weight:700; color:var(--muted); margin:1.1rem .1rem .55rem;}
+.tiles{display:grid; grid-template-columns:1fr 1fr; gap:10px; list-style:none;}
+.tiles > li:last-child:nth-child(odd){grid-column:1 / -1;}
+.tile{display:flex; flex-direction:column; gap:.35rem; height:100%; min-height:104px; padding:.9rem; text-decoration:none;}
+.tile:hover{border-color:var(--line-strong); background:#FCFCFD;}
+.tile .icon{color:var(--gold-dark);}
+.tile b{color:var(--blue); font-size:1.08rem; line-height:1.25;}
+.tile span{color:var(--muted); font-size:.92rem; line-height:1.35;}
+.tools{display:grid; grid-template-columns:1fr; gap:10px; list-style:none;}
+.tool{display:flex; align-items:center; gap:.8rem; padding:.85rem 1rem; min-height:64px; text-decoration:none;}
+.tool:hover{border-color:var(--line-strong);}
+.tool b{display:block; color:var(--blue); font-size:1.08rem;}
+.tool span{display:block; color:var(--muted); font-size:.92rem; line-height:1.3;}
+.home-halacha{scroll-margin-top:1rem;}
+@media (min-width:900px){
+  .hero{grid-template-columns:1.1fr 1fr; gap:2.5rem; align-items:center; padding:3rem 0 1rem;}
+  .tiles{grid-template-columns:repeat(4,1fr);}
+  .tiles > li:last-child:nth-child(odd){grid-column:auto;}
+  .tools{grid-template-columns:repeat(3,1fr);}
+}
 
-  /* ===== note under a form's description (e.g. a stated limitation) ===== */
-  .limit-note{
-    font-family:'Assistant', sans-serif;
-    font-size:.86rem;
-    line-height:1.6;
-    color:#4a4030;
-    background:var(--stone);
-    border-radius:8px;
-    padding:.6rem .85rem;
-    margin:-.3rem 0 1rem;
-  }
+/* =====================================================================
+   FOOTER, FLOATING BUTTONS, SHABBAT BLOCK
+   ===================================================================== */
+footer.site{
+  background:var(--white); border-top:1px solid var(--line);
+  padding:1.6rem 16px 6rem; color:var(--muted); font-size:.95rem; line-height:1.7;
+}
+footer.site > *{max-width:var(--page-wide); margin-inline:auto;}
+footer.site a{color:var(--blue); text-decoration:underline; text-underline-offset:3px;}
 
-  /* ===== a group of radio choices ===== */
-  fieldset.choice-group{
-    border:1px solid #8A7757;
-    border-radius:10px;
-    background:#fff;
-    padding:.5rem 1rem .8rem;
-    margin:0 0 1rem;
-  }
-  .choice-group legend{
-    font-family:'Assistant', sans-serif;
-    font-size:.82rem;
-    font-weight:600;
-    color:#5A5142;
-    padding:0 .4rem;
-  }
-  .choice-group .choices{display:flex; flex-wrap:wrap; gap:.4rem 1.6rem;}
-  .choice{
-    display:flex;
-    align-items:center;
-    gap:.5rem;
-    font-family:'Assistant', sans-serif;
-    font-size:.95rem;
-    color:var(--charcoal);
-    cursor:pointer;
-  }
-  .choice input{width:1.15rem; height:1.15rem; accent-color:var(--gold); cursor:pointer;}
-  .field-help{
-    font-family:'Assistant', sans-serif;
-    font-size:.8rem;
-    color:#5A5142;
-    margin:-.6rem 0 1rem;
-    line-height:1.55;
-  }
+.whatsapp-float{
+  /* !important on positioning only: some accessibility-toolbar options restyle every <a> and
+     would otherwise knock this out of its fixed spot */
+  position:fixed !important; right:16px !important; bottom:18px !important; top:auto !important; left:auto !important;
+  z-index:500; width:56px; height:56px; border-radius:50%;
+  background:#1F9E55; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 20px -6px rgba(0,0,0,.45); text-decoration:none; transition:transform .15s;
+}
+.whatsapp-float:hover{transform:scale(1.06);}
+.whatsapp-float svg{width:28px; height:28px; fill:#fff;}
 
-/* ---------- moving between pages ----------
-   Cross-document view transitions: the next page fades in instead of flashing white, so the
-   header and menu (identical on every page) look as if they stay in place. Browsers without
-   support simply ignore this; people who ask for reduced motion get an instant switch. */
+.shabbat-banner{
+  display:none; position:fixed; inset:0; z-index:9999;
+  background:var(--blue); color:var(--white);
+  align-items:center; justify-content:center; text-align:center;
+  padding:2rem 1.6rem; overflow-y:auto;
+}
+.shabbat-banner.visible{display:flex;}
+.shabbat-banner .shabbat-inner{max-width:32em;}
+.shabbat-banner h2{font-size:1.9rem; font-weight:800; margin:0 0 .8rem; color:var(--white);}
+.shabbat-banner p{font-size:1.1rem; color:var(--gold-soft); margin:0; line-height:1.8;}
+
+/* ---------- reduced motion, page transitions ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{transition:none !important; animation:none !important;}
+}
+/* Cross-document view transitions: the next page fades in instead of flashing white. */
 @view-transition{ navigation:auto; }
 @media (prefers-reduced-motion: reduce){
   @view-transition{ navigation:none; }
 }
-
-/* Molad / Kiddush Levana rows on the zmanim page */
-.zman-row.zman-row-levana{ background:rgba(173,138,78,.08); padding-inline:.5rem; border-radius:6px; }
-.zman-row .zman-sub{ display:block; font-family:'Assistant', sans-serif; font-size:.8rem; color:#6b604c; margin-top:.15rem; }
