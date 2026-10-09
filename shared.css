@@ -484,7 +484,7 @@ html body.highlight-links .skip-link{position:absolute !important; top:-4rem !im
 html body.highlight-links .skip-link:focus{top:.6rem !important;}
 
 /* links on light backgrounds */
-html body.highlight-links :is(.site-menu a, .tile, .tool, .today-list a, .today-card-foot a, .crumbs a, footer.site a, .chapter-error a, .header-link a, .zmanim-short-note a, .verses a, .panel a:not(.btn), .res-links a:not(.btn)){
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) :is(.site-menu a, .tile, .tool, .today-list a, .today-card-foot a, .crumbs a, footer.site a, .chapter-error a, .header-link a, .zmanim-short-note a, .verses a, .panel a:not(.btn), .res-links a:not(.btn)){
   background:#FFF3C4 !important;
   color:var(--blue) !important;
   -webkit-text-fill-color:var(--blue) !important;
@@ -496,34 +496,34 @@ html body.highlight-links :is(.site-menu a, .tile, .tool, .today-list a, .today-
   opacity:1 !important; filter:none !important; text-shadow:none !important;
 }
 /* keep each element's own text colours inside cards (title / subtitle) */
-html body.highlight-links a *{-webkit-text-fill-color:currentColor !important;}
-html body.highlight-links .tile b, html body.highlight-links .tool b, html body.highlight-links .today-list b{color:var(--blue) !important;}
-html body.highlight-links .tile span, html body.highlight-links .tool span span, html body.highlight-links .today-list .t span{color:#3F4852 !important;}
-html body.highlight-links .tile .icon, html body.highlight-links .ic-box{color:var(--gold-dark) !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) a *{-webkit-text-fill-color:currentColor !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .tile b, html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .tool b, html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .today-list b{color:var(--blue) !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .tile span, html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .tool span span, html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .today-list .t span{color:#3F4852 !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .tile .icon, html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .ic-box{color:var(--gold-dark) !important;}
 /* keep the layouts the toolbar would otherwise reset */
-html body.highlight-links .site-menu .menu-group a{display:flex !important;}
-html body.highlight-links .tile{display:flex !important; flex-direction:column !important;}
-html body.highlight-links .tool, html body.highlight-links .today-list a{display:flex !important;}
-html body.highlight-links .site-menu .menu-group a::after{color:var(--blue) !important; -webkit-text-fill-color:var(--blue) !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .site-menu .menu-group a{display:flex !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .tile{display:flex !important; flex-direction:column !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .tool, html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .today-list a{display:flex !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .site-menu .menu-group a::after{color:var(--blue) !important; -webkit-text-fill-color:var(--blue) !important;}
 
 /* links on the dark top bar */
-html body.highlight-links .site-top .brand{
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .site-top .brand{
   display:flex !important; position:static !important;
   background:transparent !important; color:#fff !important; -webkit-text-fill-color:#fff !important;
   outline:2px solid var(--gold-soft) !important; outline-offset:4px !important; border-radius:6px !important;
   text-decoration:none !important;
 }
-html body.highlight-links .site-top .brand-text{color:#fff !important; text-decoration:underline !important; text-underline-offset:4px !important;}
-html body.highlight-links .site-top .brand-text small{color:#C9D3DE !important;}
-html body.highlight-links .site-top .brand-mark{color:var(--blue) !important; background:var(--gold) !important;}
-html body.highlight-links .site-top .quick-links a{
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .site-top .brand-text{color:#fff !important; text-decoration:underline !important; text-underline-offset:4px !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .site-top .brand-text small{color:#C9D3DE !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .site-top .brand-mark{color:var(--blue) !important; background:var(--gold) !important;}
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) .site-top .quick-links a{
   display:inline-flex !important; position:static !important;
   background:#FFF3C4 !important; color:var(--blue) !important; -webkit-text-fill-color:var(--blue) !important;
   text-decoration:underline !important; outline:none !important;
 }
 
 /* link-buttons keep their button look, plus a visible ring */
-html body.highlight-links a.btn{
+html:not(.enable-filter-blackyellow) body.highlight-links:not(.enable-filter-blackyellow) a.btn{
   background:var(--blue) !important; color:#fff !important; -webkit-text-fill-color:#fff !important;
   outline:3px solid var(--gold) !important; outline-offset:2px !important; text-decoration:underline !important;
   display:inline-flex !important; position:static !important;
@@ -536,3 +536,20 @@ html body.highlight-links .whatsapp-float{
   display:flex !important; padding:0 !important; outline:3px solid var(--blue) !important; outline-offset:2px !important;
 }
 html body.highlight-links .whatsapp-float svg{fill:#fff !important;}
+
+/* Black-and-yellow mode of the toolbar ("שחור-צהוב"): the toolbar paints the page black with
+   yellow text. The site's own fixed colours (blue menu text, the light highlight above) would
+   then end up as dark blue on black, so in this mode the site's links follow the same scheme:
+   yellow on black, underlined — plus a yellow outline when link highlighting is on too. */
+.enable-filter-blackyellow :is(.site-menu a, .site-menu a *, .quick-links a, .brand, .brand *, .tile, .tile *, .tool, .tool *, .today-list a, .today-list a *, .today-card-foot a, .crumbs a, footer.site a, .chapter-error a, .header-link a, .zmanim-short-note a, .panel a:not(.btn), .res-links a:not(.btn)){
+  color:#FFFF00 !important; -webkit-text-fill-color:#FFFF00 !important; background:#000 !important;
+}
+.enable-filter-blackyellow :is(.site-menu a, .quick-links a, .tile, .tool, .today-list a, .today-card-foot a, .crumbs a, footer.site a, .chapter-error a, .header-link a, .panel a:not(.btn)){
+  text-decoration:underline !important;
+}
+.enable-filter-blackyellow.highlight-links :is(.site-menu a, .quick-links a, .brand, .tile, .tool, .today-list a, .today-card-foot a, .crumbs a, footer.site a, .chapter-error a, .header-link a, .panel a:not(.btn), a.btn),
+.enable-filter-blackyellow .highlight-links :is(.site-menu a, .quick-links a, .brand, .tile, .tool, .today-list a, .today-card-foot a, .crumbs a, footer.site a, .chapter-error a, .header-link a, .panel a:not(.btn), a.btn){
+  outline:2px solid #FFFF00 !important; outline-offset:-2px !important;
+}
+.enable-filter-blackyellow .site-menu a::after{color:#FFFF00 !important; -webkit-text-fill-color:#FFFF00 !important;}
+.enable-filter-blackyellow a.btn, .enable-filter-blackyellow a.btn *{color:#FFFF00 !important; -webkit-text-fill-color:#FFFF00 !important; background:#000 !important; border:2px solid #FFFF00 !important; text-decoration:underline !important;}
