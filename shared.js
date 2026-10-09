@@ -159,6 +159,47 @@ function kiddushLevanaEvents(n){
     { kind:'end-sa', time:new Date(molad + 15*D), month, label:`סוף זמן ברכת הלבנה — ספרדים, לפי השו״ע (15 יום מהמולד)` }
   ];
 }
+/* ---------------------------------------------------------------------
+   SHABBAT MEVARCHIM — the last Shabbat before Rosh Chodesh (never before
+   Tishrei). If Rosh Chodesh itself falls on Shabbat, the Shabbat a week
+   earlier is Mevarchim. Computed locally; also gives the Rosh Chodesh
+   weekday(s) and the molad, as announced in shul.
+   --------------------------------------------------------------------- */
+// The Shabbat the header's "parasha of the week" refers to: today if it is Shabbat, else the next one.
+function upcomingShabbatDate(now){
+  const d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12);
+  d.setDate(d.getDate() + ((6 - d.getDay() + 7) % 7));
+  return d;
+}
+function getShabbatMevarchimInfo(now){
+  try{
+    const shabbat = upcomingShabbatDate(now || new Date());
+    for(let i = 1; i <= 7; i++){
+      const day = new Date(shabbat.getFullYear(), shabbat.getMonth(), shabbat.getDate() + i, 12);
+      const h = hebrewDayMonthOf(day, null, 0);
+      // First day of Rosh Chodesh: day 30, or day 1 when the month before had only 29 days.
+      const isFirstDay = h.day === 30 || (h.day === 1 && hebrewDayMonthOf(day, null, -1).day !== 30);
+      if(!isFirstDay) continue;
+      const twoDays = h.day === 30;
+      const month = twoDays ? hebrewDayMonthOf(day, null, 1).month : h.month;
+      if(month === 'תשרי') return null; // no Mevarchim before Rosh Hashana
+      const days = [WEEKDAY_NAMES[day.getDay()]];
+      if(twoDays) days.push(WEEKDAY_NAMES[(day.getDay() + 1) % 7]);
+      // The molad of this month is the one nearest to Rosh Chodesh.
+      let n = moladIndexAtOrBefore(day);
+      if(Math.abs(moladInstant(n + 1) - day) < Math.abs(moladInstant(n) - day)) n++;
+      return { shabbat, month, days, moladText: moladTraditionalText(n) };
+    }
+    return null;
+  }catch(e){ return null; }
+}
+function getShabbatMevarchimLabel(now){
+  const info = getShabbatMevarchimInfo(now);
+  if(!info) return '';
+  const rcDays = info.days.length === 2 ? `ימים ${info.days[0]} ו${info.days[1]}` : `יום ${info.days[0]}`;
+  return `שבת מברכים חודש ${info.month} (ראש חודש: ${rcDays} · המולד: ${info.moladText})`;
+}
+
 // Events whose instant falls in [from, to).
 function kiddushLevanaEventsBetween(from, to){
   const n = moladIndexAtOrBefore(to);
@@ -751,7 +792,7 @@ async function updateUpcomingShabbatNote(){
     }
   }
 
-  const parts = [parashaText, nextEntranceText].filter(Boolean);
+  const parts = [parashaText, getShabbatMevarchimLabel(now), nextEntranceText].filter(Boolean);
   noteEl.textContent = parts.join(' · ');
 }
 
