@@ -154,7 +154,7 @@ permalink: /birkat-hamazon.html
           <label class="choice"><input type="checkbox" id="flag-purim"> פורים — על הנסים</label>
         </div>
       </fieldset>
-      <p class="field-help">הסימון "מועד" מוסיף את "יעלה ויבוא" בכל יום טוב ובחול המועד, כולל שבועות. ראש השנה — סימון נפרד (גם בו אומרים יעלה ויבוא). בנוסח תימן (בלדי) הסימונים משפיעים רק על הדגשת ההנחיות בטקסט.</p>
+      <p class="field-help">"יעלה ויבוא" נוסף בראש חודש, בראש השנה ובכל יום טוב וחול המועד (כולל שבועות) — עם השורה המתאימה ליום בלבד. אחרי השקיעה הסימון האוטומטי הוא כבר לפי היום העברי הבא. מי שהתחיל את הסעודה לפני השקיעה — ראו בסידור מה אומרים; אפשר לשנות כל תיבה ידנית. בנוסח תימן (בלדי) הסימונים משפיעים רק על הדגשת ההנחיות בטקסט.</p>
       <div class="controls-row">
         <button type="button" class="btn" id="birkat-refresh">טען/רענן את הטקסט</button>
       </div>
@@ -219,9 +219,14 @@ try{
       $('flag-roshchodesh').checked = !!flags.roshChodesh;
       $('flag-yaaleh').checked = !!flags.yaalehVeyavo;
       $('flag-roshhashana').checked = !!flags.roshHashana;
+      $('flag-sukkot').checked = !!flags.sukkot;
       $('flag-chanukah').checked = !!flags.chanukah;
       $('flag-purim').checked = !!flags.purim;
-      $('birkat-flags-status').textContent = 'הסימון הראשוני נקבע אוטומטית לפי היום הנוכחי — אפשר לשנות כל תיבה.';
+      let dayLabel = '';
+      try{ dayLabel = getHebrewDisplay(flags.date); }catch(e){}
+      $('birkat-flags-status').textContent = dayLabel
+        ? 'הסימון נקבע אוטומטית לפי ' + dayLabel + (flags.afterSunset ? ' (אחרי השקיעה כבר התחיל היום העברי הבא)' : '') + ' — אפשר לשנות כל תיבה.'
+        : 'הסימון הראשוני נקבע אוטומטית לפי היום הנוכחי — אפשר לשנות כל תיבה.';
     }catch(e){
       console.error('birkat-hamazon.html: initFlags failed:', e);
       $('birkat-flags-status').textContent = 'לא ניתן היה לזהות מה חל היום (' + (e && e.message ? e.message : 'שגיאה לא ידועה') + ') — כל התיבות כבויות כברירת מחדל, יש לסמן ידנית.';
@@ -294,12 +299,16 @@ try{
     const segments = segmentCache[nusach];
     if(!segments) return;
     const flags = currentFlags();
-    const html = segments.map(seg => {
+    // the whole text is planned at once: multi-paragraph additions (על הנסים, יעלה ויבוא with its
+    // per-occasion lines) and the instruction line before each addition go on/off together
+    const plan = planBirkatSegments(segments);
+    const html = segments.map((seg, i) => {
       if(!seg) return '';
-      const m = classifyBirkatSegment(seg);
-      if(!m) return '<p>' + seg + '</p>';
-      if(!flags[m.flag]) return '';   // this addition doesn't apply right now — omit it
-      return '<p class="birkat-added"><span class="birkat-added-label">' + m.label + '</span>' + seg + '</p>';
+      const entry = plan[i];
+      if(!entry) return '<p>' + seg + '</p>';
+      if(!birkatSegmentVisible(entry, flags, detectedOccasions)) return '';   // doesn't apply right now — omit it
+      const label = (entry.instruction || !entry.label) ? '' : '<span class="birkat-added-label">' + entry.label + '</span>';
+      return '<p class="birkat-added">' + label + seg + '</p>';
     }).join('');
     reader.innerHTML = '<article class="chapter-card"><div class="chapter-head"><h2>ברכת המזון — ' +
       NUSACH_LABEL[nusach] + '</h2><div class="share-row"></div></div>' +

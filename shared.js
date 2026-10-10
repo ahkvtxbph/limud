@@ -1772,6 +1772,8 @@ const BIRKAT_MARKERS = [
   // matching works either way.
   { type: 'harachaman-shabbat', flag: 'shabbat', label: 'הרחמן — שבת', needle: 'יום שכולו שבת' },
   { type: 'harachaman-shabbat', flag: 'shabbat', label: 'הרחמן — שבת', needle: 'יום שכלו שבת' },
+  { type: 'harachaman-shabbat', flag: 'shabbat', label: 'הרחמן — שבת', needle: 'עולם שכולו שבת' },
+  { type: 'harachaman-shabbat', flag: 'shabbat', label: 'הרחמן — שבת', needle: 'עולם שכלו שבת' },
   { type: 'harachaman-roshchodesh', flag: 'roshchodesh', label: 'הרחמן — ראש חודש', needle: 'יחדש עלינו את החדש' },
   { type: 'harachaman-roshchodesh', flag: 'roshchodesh', label: 'הרחמן — ראש חודש', needle: 'יחדש עלינו את החודש' },
   { type: 'harachaman-roshhashana', flag: 'roshhashana', label: 'הרחמן — ראש השנה', needle: 'יחדש עלינו את השנה' },
@@ -1785,6 +1787,107 @@ function classifyBirkatSegment(text){
   const t = stripNikud(text);
   for(const m of BIRKAT_MARKERS){ if(t.indexOf(m.needle) !== -1) return m; }
   return null;
+}
+
+// Plans the WHOLE text at once, not segment by segment: several additions run over more than
+// one segment (על הנסים = an opening paragraph + the Chanukah / Purim paragraphs; יעלה ויבוא =
+// the paragraph + one line per occasion + "זכרנו"), and short unvocalized instruction lines
+// ("בשבת אומרים:") belong with the paragraph right after them. Returns, for each segment,
+// null (always shown) or { flag, label, occ } where:
+//   flag  'shabbat' | 'roshchodesh' | 'yaaleh' | 'sukkot' | 'roshhashana' | 'chanukah' | 'purim'
+//         | 'nisim' (Chanukah OR Purim) | 'yaaleh-any' (Rosh Chodesh, a festival or Rosh Hashana)
+//         | 'never' (e.g. the Yom Kippur line, for children who eat)
+//   occ   inside יעלה ויבוא, which occasion the line names ('rc','pesach','shavuot','sukkot','shmini','rh')
+function birkatPlainText(seg){
+  return stripNikud(stripTags(seg)).replace(/["״׳'`]/g, '').replace(/\s+/g, ' ').trim();
+}
+function birkatIsInstruction(seg){
+  const raw = stripTags(seg || '');
+  if(!/[א-ת]/.test(raw)) return false;
+  return !/[ְ-ׇּׁׂ]/.test(raw);   // no vowel points at all = an instruction line
+}
+function planBirkatSegments(segments){
+  const plan = segments.map(() => null);
+  let block = null;   // 'nisim' | 'yaaleh' | null
+  const LBL = {
+    nisim:'על הנסים (חנוכה / פורים)', chanukah:'חנוכה — על הנסים', purim:'פורים — על הנסים',
+    yaaleh:'יעלה ויבוא', rc:'יעלה ויבוא — ראש חודש', pesach:'יעלה ויבוא — פסח', shavuot:'יעלה ויבוא — שבועות',
+    sukkot:'יעלה ויבוא — סוכות', shmini:'יעלה ויבוא — שמיני עצרת', rh:'יעלה ויבוא — ראש השנה'
+  };
+  for(let i = 0; i < segments.length; i++){
+    const t = birkatPlainText(segments[i]);
+    if(!t){ continue; }
+    // "if you forgot…" rules are always shown, and they close any open block
+    if(/^(אם )?שכח|^דיני שכחה/.test(t)){ block = null; continue; }
+    // ---- על הנסים ----
+    if(block === 'nisim' && /^ו?על הכל/.test(t)){ block = null; continue; }
+    if(block !== 'nisim' && (/(^|\s)ו?על הני?סים/.test(t) || /^בחנוכה ופורים/.test(t))) block = 'nisim';
+    if(block === 'nisim'){
+      if(/^בחנוכה ופורים/.test(t)) plan[i] = { flag:'nisim', label:LBL.nisim };
+      else if(/מתתי|^בחנוכה/.test(t)) plan[i] = { flag:'chanukah', label:LBL.chanukah };
+      else if(/מרדכי|^בפורים/.test(t)) plan[i] = { flag:'purim', label:LBL.purim };
+      else plan[i] = { flag:'nisim', label:LBL.nisim };
+      continue;
+    }
+    // ---- יעלה ויבוא ----
+    if(block !== 'yaaleh' && (/יעלה ויבו?א/.test(t) || (birkatIsInstruction(segments[i]) && /^בראש חו?דש.*(יעלה|מועד)/.test(t)))) block = 'yaaleh';
+    if(block === 'yaaleh'){
+      let occ = null;
+      if(/ראש ה?חו?דש הזה/.test(t)) occ = 'rc';
+      else if(/חג המצו?ת/.test(t)) occ = 'pesach';
+      else if(/חג השבו?עו?ת/.test(t)) occ = 'shavuot';
+      else if(/שמיני (חג )?עצרת/.test(t)) occ = 'shmini';
+      else if(/חג הסו?כו?ת/.test(t)) occ = 'sukkot';
+      else if(/הזכרון הזה/.test(t)) occ = 'rh';
+      else if(/הכי?פורים/.test(t) && t.length < 60) occ = 'yk';
+      if(occ === 'yk') plan[i] = { flag:'never', label:'' };
+      else if(occ) plan[i] = { flag:'yaaleh-any', label:LBL[occ], occ };
+      else plan[i] = { flag:'yaaleh-any', label:LBL.yaaleh };
+      if(/חנון ורחום/.test(t)) block = null;
+      continue;
+    }
+    // ---- single-paragraph additions (רצה, the הרחמן lines) ----
+    const m = classifyBirkatSegment(segments[i]);
+    if(m){
+      if(m.type === 'yaaleh') continue;   // handled above
+      plan[i] = { flag: m.type === 'harachaman-yomtov' ? 'yomtov' : m.flag, label:m.label };
+      continue;
+    }
+    if(/יגיענו למועדים אחרים/.test(t)) plan[i] = { flag:'yaaleh', label:'הרחמן — מועדים' };
+  }
+  // instruction lines inside a block are shown without a label of their own
+  for(let i = 0; i < segments.length; i++){ if(plan[i] && birkatIsInstruction(segments[i])) plan[i].instruction = true; }
+  // an unvocalized instruction line follows the paragraph right after it
+  for(let i = segments.length - 1; i >= 0; i--){
+    if(plan[i] || !birkatIsInstruction(segments[i])) continue;
+    if(/^(אם )?שכח|^דיני שכחה/.test(birkatPlainText(segments[i]))) continue;
+    for(let j = i + 1; j < segments.length; j++){
+      if(!birkatPlainText(segments[j])) continue;
+      if(plan[j]) plan[i] = Object.assign({}, plan[j], { instruction:true });
+      if(plan[j] || !birkatIsInstruction(segments[j])) break;
+    }
+  }
+  return plan;
+}
+// Whether a planned segment is shown, given the checkboxes (f) and the detected occasions.
+function birkatSegmentVisible(entry, f, occasions){
+  if(!entry) return true;
+  const occ = occasions || [];
+  const festivalOcc = ['pesach','shavuot','sukkot','shmini'];
+  switch(entry.flag){
+    case 'never': return false;
+    case 'yomtov': return !!(f.yaaleh || f.roshhashana);
+    case 'nisim': return !!(f.chanukah || f.purim);
+    case 'yaaleh-any':
+      if(!entry.occ) return !!(f.roshchodesh || f.yaaleh || f.roshhashana);
+      if(entry.occ === 'rc') return !!f.roshchodesh;
+      if(entry.occ === 'rh') return !!f.roshhashana;
+      if(!f.yaaleh) return false;
+      // the festival named today; when none was detected (box ticked by hand), show every festival line
+      { const known = occ.filter(k => festivalOcc.some(x => k.indexOf(x) === 0));
+        return known.length ? known.some(k => k.indexOf(entry.occ) === 0) : true; }
+    default: return !!f[entry.flag];
+  }
 }
 
 /* =====================================================================
@@ -1810,7 +1913,7 @@ function halachicDayForNow(now, lat, lon){
 // callers that want to point at the matching line of a text that lists every occasion.
 async function fetchBirkatHamazonDayFlags(date){
   let d = date || null;
-  const flags = { shabbat: false, roshChodesh: false, yaalehVeyavo: false, roshHashana: false, chanukah: false, purim: false, occasions: [] };
+  const flags = { shabbat: false, roshChodesh: false, yaalehVeyavo: false, roshHashana: false, sukkot: false, chanukah: false, purim: false, occasions: [] };
   let loc = null;
   try{
     // Without "&i=on", Hebcal defaults to the DIASPORA holiday scheme — which keeps an extra
@@ -1824,6 +1927,22 @@ async function fetchBirkatHamazonDayFlags(date){
     d = loc ? halachicDayForNow(now, loc.lat, loc.lon) : new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12);
   }
   flags.shabbat = d.getDay() === 6;
+  flags.date = d;
+  flags.afterSunset = !date && (d.getDate() !== new Date().getDate());
+  // Chanukah and Purim come straight from the Hebrew calendar (Hebcal's "Chanukah: 1 Candle" is
+  // dated the day BEFORE Chanukah, and it lists both Purim and Shushan Purim — so neither title
+  // can be used as-is). Al HaNissim of Chanukah: 25 Kislev for eight days. Purim: 14 Adar
+  // (Adar II in a leap year); in Jerusalem 15 Adar instead.
+  try{
+    const h = hebrewDayMonthOf(d, null, 0);
+    if(h.month === 'כסלו' && h.day >= 25) flags.chanukah = true;
+    if(h.month === 'טבת'){
+      const kislevLen = hebrewDayMonthOf(d, null, -h.day).day;   // last day of Kislev: 29 or 30
+      if(h.day <= (kislevLen === 30 ? 2 : 3)) flags.chanukah = true;
+    }
+    const inJerusalem = loc && Math.abs(loc.lat - 31.78) < 0.12 && Math.abs(loc.lon - 35.22) < 0.15;
+    if((h.month === 'אדר' || h.month === 'אדר ב׳') && h.day === (inJerusalem ? 15 : 14)) flags.purim = true;
+  }catch(e){}
   try{
     // LOCAL date parts (not toISOString, which is UTC and can name yesterday for a few hours
     // after local midnight in Israel).
@@ -1845,12 +1964,11 @@ async function fetchBirkatHamazonDayFlags(date){
       if(/^Sukkot\b/.test(t)){ flags.yaalehVeyavo = true; occ.push(chm ? 'sukkot-chm' : 'sukkot-yt'); }
       if(/^Shavuot\b/.test(t)){ flags.yaalehVeyavo = true; occ.push('shavuot'); }
       if(/^(Shmini Atzeret|Simchat Torah)/.test(t)){ flags.yaalehVeyavo = true; occ.push('shmini'); }
-      if(/^Chanukah/.test(t)) flags.chanukah = true;
-      if(/^(Purim|Shushan Purim)$/.test(t)) flags.purim = true;
     }
     // Rosh Hashana is itself a Yom Tov that calls for Yaaleh V'Yavo; Rosh Chodesh keeps its own
     // flag (the page shows it as a distinct checkbox).
-    if(flags.roshHashana) flags.yaalehVeyavo = true;
+    // (Rosh Hashana keeps its own flag; the page adds יעלה ויבוא for it from that flag.)
+    flags.sukkot = occ.some(k => k.indexOf('sukkot') === 0);
     flags.occasions = occ.filter((k, i) => occ.indexOf(k) === i);
   }catch(e){ /* network issue: flags stay at their date-only defaults (just the weekday check) */ }
   return flags;
