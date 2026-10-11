@@ -8,7 +8,7 @@
   <div class="menu-group">
     <h2 class="menu-group-title">לימוד יומי</h2>
     <ul>
-      <li><a href="/#halacha">הלכה יומית</a></li>
+      <li><a href="halacha.html"{% if page.url == "/halacha.html" %} aria-current="page"{% endif %}>הלכה יומית</a></li>
       <li><a href="arukh-hashulchan.html"{% if page.url == "/arukh-hashulchan.html" %} aria-current="page"{% endif %}>ערוך השולחן יומי</a></li>
       <li><a href="mishnayot.html"{% if page.url == "/mishnayot.html" %} aria-current="page"{% endif %}>משנה יומית</a></li>
       <li><a href="dafyomi.html"{% if page.url == "/dafyomi.html" %} aria-current="page"{% endif %}>דף יומי</a></li>
@@ -22,6 +22,11 @@
   <div class="menu-group">
     <h2 class="menu-group-title">תפילה ותהילים</h2>
     <ul>
+      <li><a href="siddur.html"{% if page.url == "/siddur.html" %} aria-current="page"{% endif %}>סידור תפילה — מותאם ליום</a></li>
+      <li><a href="siddur-ashkenaz.html"{% if page.url == "/siddur-ashkenaz.html" %} aria-current="page"{% endif %}>סידור נוסח אשכנז</a></li>
+      <li><a href="siddur-sefard.html"{% if page.url == "/siddur-sefard.html" %} aria-current="page"{% endif %}>סידור נוסח ספרד</a></li>
+      <li><a href="siddur-edot-hamizrach.html"{% if page.url == "/siddur-edot-hamizrach.html" %} aria-current="page"{% endif %}>סידור עדות המזרח</a></li>
+      <li><a href="siddur-chabad.html"{% if page.url == "/siddur-chabad.html" %} aria-current="page"{% endif %}>סידור נוסח חב״ד</a></li>
       <li><a href="tehillim.html"{% if page.url == "/tehillim.html" %} aria-current="page"{% endif %}>תהילים</a></li>
       <li><a href="birkat-hamazon.html"{% if page.url == "/birkat-hamazon.html" %} aria-current="page"{% endif %}>ברכת המזון</a></li>
     </ul>

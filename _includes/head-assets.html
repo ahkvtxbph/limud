@@ -2,14 +2,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Noto+Serif+Hebrew:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css?build={{ site.time | date: '%s' }}">
-<!-- Share preview (WhatsApp, Facebook, X, Telegram…) — one image for every page. -->
+<!-- Share preview (WhatsApp, Facebook, X, Telegram…). A page may set its own image in its
+     front matter (og_image: /og-xxx.png, og_image_alt: "…"); otherwise the site-wide one is used. -->
+{% assign og_img = page.og_image | default: '/og-image.png?v=3' %}
+{% assign og_alt = page.og_image_alt | default: 'לימוד יומי · מזמור לתודה — מתחברים ללימוד. בכל יום מחדש. סידור תפילה, הלכה יומית, משנה ותלמוד, תנ״ך ותהילים, זמני היום · limood.org.il' %}
 <meta property="og:site_name" content="מזמור לתודה · לימוד יומי">
 <meta property="og:url" content="https://limood.org.il{{ page.url }}">
-<meta property="og:image" content="https://limood.org.il/og-image.png?v=2">
-<meta property="og:image:secure_url" content="https://limood.org.il/og-image.png?v=2">
+<meta property="og:image" content="https://limood.org.il{{ og_img }}">
+<meta property="og:image:secure_url" content="https://limood.org.il{{ og_img }}">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="לימוד יומי · מזמור לתודה — מתחברים ללימוד. בכל יום מחדש. הלכה יומית, משנה ותלמוד, תנ״ך ותהילים, זמני היום · limood.org.il">
-<meta name="twitter:image" content="https://limood.org.il/og-image.png?v=2">
-<meta name="twitter:image:alt" content="מזמור לתודה · לימוד יומי — limood.org.il">
+<meta property="og:image:alt" content="{{ og_alt }}">
+<meta name="twitter:image" content="https://limood.org.il{{ og_img }}">
+<meta name="twitter:image:alt" content="{{ og_alt }}">
