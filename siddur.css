@@ -1,0 +1,124 @@
+/* siddur.css — rules used only by the siddur pages (siddur.html, siddur-*.html).
+   Everything else (header, menu, panels, cards, buttons) comes from shared.css. */
+
+#siddur-section nav.modes{grid-template-columns:repeat(3,1fr);}
+
+/* ---------- the day panel ---------- */
+.sd-status{font-size:1.05rem; line-height:1.7; color:var(--text); margin-bottom:.8rem;}
+.sd-status b{color:var(--blue);}
+.sd-summary{list-style:none; display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 1rem;}
+.sd-summary li, .sd-pills li{
+  font-size:.92rem; font-weight:600; line-height:1.35; color:var(--blue);
+  background:#F6EFDD; border:1px solid rgba(177,139,67,.35); border-radius:999px; padding:.3rem .75rem;
+}
+.sd-date-row{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin-bottom:.9rem;}
+.sd-date-row input[type="date"]{flex:1 1 9rem; min-width:0;}
+.sd-date-row .btn{flex:0 0 auto;}
+details.sd-manual{border-top:1px solid var(--line); padding-top:.8rem; margin-top:.4rem;}
+details.sd-manual > summary{cursor:pointer; font-weight:700; color:var(--blue); min-height:var(--tap); display:flex; align-items:center;}
+.sd-flags{display:grid; grid-template-columns:1fr 1fr; gap:.2rem .9rem; margin:.4rem 0 .8rem;}
+@media (max-width:480px){ .sd-flags{grid-template-columns:1fr;} }
+.choice.sd-overridden{font-weight:700; color:var(--gold-dark);}
+.sd-view-row{display:flex; flex-wrap:wrap; gap:.3rem 1.4rem; align-items:center; margin-top:.4rem;}
+.sd-size{display:flex; gap:.35rem; align-items:center; margin-inline-start:auto;}
+.sd-size .btn{min-width:var(--tap); padding:0 .6rem; font-weight:800;}
+
+/* other nuschaot */
+.sd-nusach-links{display:flex; flex-wrap:wrap; gap:.45rem; align-items:center; margin-top:1rem; font-size:.95rem; color:var(--muted);}
+.sd-nusach-links a{
+  color:var(--blue); font-weight:700; text-decoration:none; background:var(--white);
+  border:1px solid var(--line-strong); border-radius:999px; padding:.35rem .8rem; min-height:36px; display:inline-flex; align-items:center;
+}
+.sd-nusach-links a:hover{background:var(--tint);}
+.sd-nusach-links a[aria-current="page"]{background:var(--blue); color:var(--white); border-color:var(--blue);}
+
+/* ---------- the prayer ---------- */
+#sd-toc{margin-top:1rem;}
+#sd-toc .chip{text-decoration:none; font-size:.9rem;}
+.sd-reader-head{display:flex; align-items:center; flex-wrap:wrap; gap:.6rem; margin:.2rem 0 .8rem;}
+.sd-reader-title{font-size:1.45rem; color:var(--blue); font-weight:800; line-height:1.3;}
+.sd-reader-head .share-row{margin-inline-start:auto;}
+.sd-group{scroll-margin-top:1rem;}
+.sd-group .chapter-head .gem{font-size:.85rem;}
+.sd-text{
+  font-family:var(--text-font);
+  font-size:var(--sd-size, 1.3rem); line-height:2.15; color:#1F262C;
+}
+.sd-text p{margin:0 0 .75rem;}
+.sd-text small{font-size:.82em;}
+h3.sd-leaf{
+  font-family:var(--font); font-size:1.05rem; font-weight:800; color:var(--blue);
+  margin:1.3rem 0 .45rem; padding-top:.9rem; border-top:1px dashed var(--line-strong);
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem;
+}
+.sd-body > h3.sd-leaf:first-child{margin-top:0; padding-top:0; border-top:0;}
+.sd-leaf-tag{font-size:.78rem; font-weight:700; color:var(--gold-dark); background:#F6EFDD; border-radius:6px; padding:.1rem .45rem;}
+
+/* printed instructions (בקיץ:, בעשי״ת:, …) */
+.sd-ins{
+  font-family:var(--font); font-size:.68em; font-weight:700; line-height:1.4;
+  color:var(--gold-dark); background:#F6EFDD; border-radius:5px; padding:.05em .4em; vertical-align:.15em;
+}
+p.sd-label{font-family:var(--font); font-size:.88rem; font-weight:700; color:var(--gold-dark); margin:.7rem 0 .15rem; line-height:1.5;}
+p.sd-sub{font-family:var(--font); font-size:.9rem; font-weight:800; color:var(--blue); margin:1rem 0 .15rem; letter-spacing:.01em;}
+p.sd-sub::before{content:""; display:inline-block; width:.55rem; height:.55rem; border-radius:2px; background:var(--gold); margin-inline-end:.45rem; vertical-align:.05em;}
+.sd-note, p.sd-note-p{
+  font-family:var(--font); font-size:.82rem; line-height:1.55; color:var(--muted);
+  background:var(--tint); border-radius:8px; padding:.35rem .7rem;
+}
+p.sd-note-p{margin:.3rem 0 .6rem;}
+span.sd-note{font-size:.62em; padding:.05em .4em; vertical-align:.15em;}
+
+/* today's additions, marked */
+.sd-text p.sd-added{
+  background:#FBF6EA; border-inline-start:4px solid var(--gold); border-radius:8px; padding:.35rem .8rem;
+}
+/* "full text" mode: what is not said today */
+.sd-off{opacity:.42;}
+p.sd-off, h3.sd-off{text-decoration:line-through; text-decoration-thickness:1px; text-decoration-color:rgba(41,50,58,.35);}
+.sd-group-off .chapter-head{border-bottom:0; padding-bottom:0; margin-bottom:0; opacity:.55;}
+.sd-today-note{
+  font-family:var(--font); font-size:.95rem; line-height:1.6; color:var(--text);
+  background:#FFF4D1; border:1px solid rgba(124,93,42,.35); border-radius:8px; padding:.5rem .75rem; margin:0 0 .9rem;
+}
+.sd-today-note b{color:var(--blue);}
+.sd-empty{font-size:.95rem; color:var(--muted);}
+
+/* folded parts (customs that vary, optional prayers) */
+details.sd-optional{padding:0;}
+details.sd-optional > summary, details.sd-fold > summary{
+  cursor:pointer; list-style:none; display:flex; flex-wrap:wrap; align-items:center; gap:.3rem .7rem;
+  min-height:var(--tap); padding:.8rem 1.1rem; font-weight:800; color:var(--blue); font-size:1.15rem;
+}
+details.sd-optional > summary::-webkit-details-marker, details.sd-fold > summary::-webkit-details-marker{display:none;}
+details.sd-optional > summary::before, details.sd-fold > summary::before{content:"+"; font-weight:800; color:var(--gold-dark); width:1.1rem; text-align:center;}
+details.sd-optional[open] > summary::before, details.sd-fold[open] > summary::before{content:"−";}
+.sd-opt-hint{margin-inline-start:auto; font-size:.85rem; font-weight:700; color:var(--muted);}
+details.sd-optional[open] .sd-opt-hint{display:none;}
+.sd-fold-note{font-size:.85rem; font-weight:600; color:var(--muted);}
+details.sd-optional .sd-body{padding:0 1.1rem 1.1rem;}
+details.sd-fold{border:1px solid var(--line); border-radius:var(--radius-sm); margin:.9rem 0; background:#FCFCFD;}
+details.sd-fold > summary{font-size:1rem; padding:.55rem .8rem;}
+details.sd-fold .sd-text{padding:0 .9rem .6rem;}
+
+/* ---------- hub page ---------- */
+.sd-hub-list{list-style:none; display:grid; gap:.8rem;}
+.sd-hub-row{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:1rem 1.1rem;}
+.sd-hub-when{display:flex; flex-wrap:wrap; align-items:baseline; gap:.2rem .7rem; margin-bottom:.6rem;}
+.sd-hub-when b{font-size:1.3rem; color:var(--blue); font-weight:800;}
+.sd-hub-when span{color:var(--muted); font-size:.95rem;}
+.sd-pills{list-style:none; display:flex; flex-wrap:wrap; gap:.35rem; margin-bottom:.8rem;}
+.sd-hub-links{display:flex; flex-wrap:wrap; gap:.4rem;}
+.sd-hub-links a{
+  font-size:.9rem; font-weight:700; color:var(--blue); text-decoration:none; border:1px solid var(--line-strong);
+  border-radius:8px; padding:.35rem .7rem; min-height:36px; display:inline-flex; align-items:center;
+}
+.sd-hub-links a:hover{background:var(--tint);}
+.sd-faq h3{font-size:1.1rem; color:var(--blue); font-weight:800; margin:1rem 0 .3rem;}
+.sd-faq p{color:var(--text); line-height:1.7;}
+
+@media print{
+  .site-top, .whatsapp-float, nav.modes, #sd-day-panel, #sd-toc, .sd-nusach-links, footer.site, .share-row, .page-intro .crumbs{display:none !important;}
+  .chapter-card{box-shadow:none; border:0; padding:0;}
+}
+#sd-toc .chip{display:inline-flex; align-items:center; justify-content:center; height:auto; min-height:38px; padding:.3rem .8rem; line-height:1.3; text-align:center;}

@@ -1,0 +1,100 @@
+---
+layout: null
+permalink: /halacha.html
+---
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הלכה יומית | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="הלכה יומית — ההלכה הנלמדת היום לפי לוח הלימוד העולמי (שולחן ערוך אורח חיים / קיצור שולחן ערוך), עם מעבר בין ימים ובחירת תאריך.">
+<meta name="keywords" content="הלכה יומית, שולחן ערוך יומי, קיצור שולחן ערוך, אורח חיים, לימוד הלכה, לימוד יומי">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://limood.org.il/halacha.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="הלכה יומית | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="ההלכה הנלמדת היום — שולחן ערוך אורח חיים / קיצור שולחן ערוך.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#17324D">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "הלכה יומית | מזמור לתודה - לימוד יומי",
+  "inLanguage": "he",
+  "description": "ההלכה הנלמדת היום — שולחן ערוך אורח חיים / קיצור שולחן ערוך.",
+  "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
+}
+</script>
+{% include head-assets.html %}
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+{% include site-header.html %}
+
+{% include whatsapp.html %}
+
+{% include shabbat-banner.html %}
+
+<main id="main">
+  <div class="page-intro">
+    <nav class="crumbs" aria-label="מיקום באתר"><ol><li><a href="/">ראשי</a></li><li>לימוד יומי</li><li aria-current="page">הלכה יומית</li></ol></nav>
+    <h1 class="page-title">הלכה יומית</h1>
+    <p class="page-sub">ההלכה הנלמדת היום — שולחן ערוך אורח חיים / קיצור שולחן ערוך.</p>
+  </div>
+
+    <section class="panel">
+      <h2 class="panel-title">בחירת יום</h2>
+      <p class="panel-desc">ההלכה הנלמדת היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "הלכה יומית" — שולחן ערוך אורח חיים / קיצור שולחן ערוך).</p>
+      <div class="controls-row">
+        <button class="btn" id="halacha-load">רענן הלכה יומית</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="halacha-prev-btn" aria-label="יום קודם">‹ יום קודם</button>
+        <input type="date" id="halacha-date-input" aria-label="בחר/י תאריך להלכה יומית">
+        <button class="btn secondary" id="halacha-today-btn">היום</button>
+        <button class="btn secondary" id="halacha-next-btn" aria-label="יום הבא">יום הבא ›</button>
+      </div>
+    </section>
+    <div id="halacha-reader" aria-live="polite"></div>
+</main>
+
+<footer class="site">
+  <p>הטקסט נטען באמצעות <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>, מאגר טקסטים יהודיים בקוד פתוח.</p>
+  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script src="shared.js?build={{ site.time | date: '%s' }}"></script>
+<script>
+initHeaderDate();
+initWhatsappFloat('הלכה יומית — ההלכה הנלמדת היום:');
+
+let halachaSelectedDate = null;
+
+function renderDailyHalacha(){ return renderDailyCalendarSection('Halakhah Yomit', 'halacha-reader', 'הלכה יומית', halachaSelectedDate); }
+
+document.getElementById('halacha-load').addEventListener('click', renderDailyHalacha);
+
+wireDatePicker('halacha-date-input', 'halacha-today-btn', 'halacha-prev-btn', 'halacha-next-btn', ()=>halachaSelectedDate, d=>{ halachaSelectedDate = d; }, renderDailyHalacha);
+
+renderDailyHalacha();
+
+/* =====================================================================
+   SHABBAT / YOM TOV AUTO-GATING
+   Client-side only — never touches robots/meta/server response, so it
+   does not affect search-engine indexing (crawlers get the full page).
+   Location cascade: precise GPS -> silent IP lookup -> Israel default.
+   ===================================================================== */
+
+startSiteGating();   // loads the Shabbat/Yom-Tov schedule, re-checks every 30s, refreshes every 6h (shared.js)
+</script>
+{% include accessibility-widget.html %}</body>
+</html>
