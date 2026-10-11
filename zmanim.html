@@ -285,6 +285,16 @@ function renderZmanim(){
     const nextSunrise = calcSunEventUTC(new Date(targetDate.getTime() + 86400000), loc.lat, loc.lon, 90.833, true);
     if(dayStart && nextSunrise) klEvents = kiddushLevanaEventsBetween(dayStart, nextSunrise);
   }catch(e){ klEvents = []; }
+  // Sefirat HaOmer: the count for the NEXT Hebrew day is said this evening, at nightfall
+  try{
+    const tzeitTime = (list.find(z => z.label === 'צאת הכוכבים') || {}).time;
+    const tonight = getOmerDay(new Date(targetDate.getTime() + 86400000), loc.tzid);
+    if(tzeitTime && tonight){
+      klEvents.push({ kind:'omer', time: tzeitTime,
+        label: `ספירת העומר הלילה: ${tonight === 1 ? 'יום אחד' : tonight + ' ימים'} לעומר (סופרים בצאת הכוכבים)` });
+      klEvents.sort((a, b) => a.time - b.time);
+    }
+  }catch(e){}
   klEvents.forEach(ev => {
     const row = document.createElement('div');
     row.className = 'zman-row zman-row-levana';
@@ -308,15 +318,15 @@ function renderZmanim(){
   const gregLabel = loc.tzid
     ? targetDate.toLocaleDateString('he-IL', {timeZone: loc.tzid})
     : targetDate.toLocaleDateString('he-IL');
-  const rcLabel = getRoshChodeshLabel(targetDate, loc.tzid);
+  const extras = [getRoshChodeshLabel(targetDate, loc.tzid), getOmerLabel(targetDate, loc.tzid)].filter(Boolean);
   document.getElementById('zmanim-date-label').textContent =
-    (hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel) + (rcLabel ? ` · ${rcLabel}` : '');
+    (hebLabel ? `${hebLabel} (${gregLabel})` : gregLabel) + extras.map(x => ` · ${x}`).join('');
   document.getElementById('zmanim-disclaimer').textContent = loc.tzid
     ? 'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המיקום שנבחר. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.'
     : 'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך (לא הצלחנו לזהות את אזור הזמן של המיקום שנבחר). אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך, השעון המוצג עלול לא לשקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
 
-  if(klEvents.length){
-    const months = new Set(klEvents.map(e => e.month));
+  if(klEvents.some(e => e.kind !== 'omer')){
+    const months = new Set(klEvents.filter(e => e.month).map(e => e.month));
     let klNote = ' · המולד מחושב לפי החשבון המסורתי (מולד בהר״ד, חודש של כ״ט י״ב תשצ״ג) בשעון ירושלים הממוצע, ומוצג כאן בשעון המקומי. זמני ברכת הלבנה נמנים מרגע המולד: לאשכנזים מתחילים לאחר 3 ימים (משנה ברורה תכו, כ), לספרדים לאחר 7 ימים (שו״ע או״ח תכו, ד); סוף הזמן לרמ״א — חצי חודש (14 יום, 18 שעות ו־22 דקות), ולשו״ע — עד 15 יום (תכו, ג). הברכה נאמרת בלילה כשהלבנה נראית.';
     if(months.has('תשרי')) klNote += ' בחודש תשרי נוהגים לקדש את הלבנה רק במוצאי יום הכיפורים (רמ״א תכו, ב).';
     if(months.has('אב')) klNote += ' בחודש אב אין מקדשים את הלבנה לפני תשעה באב (רמ״א תכו, ב).';

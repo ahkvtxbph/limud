@@ -106,6 +106,31 @@ function getRoshChodeshLabel(date, tzid){
 }
 
 /* ---------------------------------------------------------------------
+   SEFIRAT HAOMER — day of the count for a Hebrew day (16 Nisan = day 1 … 5 Sivan = day 49).
+   The count of a day is said the evening it begins, so callers pass the SUNSET-AWARE date
+   (after sunset = the next Hebrew day), and the count shows from sunset to sunset.
+   --------------------------------------------------------------------- */
+function getOmerDay(date, tzid){
+  try{
+    const h = hebrewDayMonthOf(date, tzid, 0);
+    if(h.month === 'ניסן' && h.day >= 16) return h.day - 15;
+    if(h.month === 'אייר') return 15 + h.day;
+    if((h.month === 'סיוון' || h.month === 'סיון') && h.day <= 5) return 44 + h.day;
+    return 0;
+  }catch(e){ return 0; }
+}
+function getOmerLabel(date, tzid){
+  const n = getOmerDay(date, tzid);
+  if(!n) return null;
+  const W = ['', 'שבוע אחד', 'שני שבועות', 'שלושה שבועות', 'ארבעה שבועות', 'חמישה שבועות', 'שישה שבועות', 'שבעה שבועות'];
+  const D = ['', 'יום אחד', 'שני ימים', 'שלושה ימים', 'ארבעה ימים', 'חמישה ימים', 'שישה ימים'];
+  const w = Math.floor(n / 7), d = n % 7;
+  let parts = '';
+  if(w) parts = ' — ' + W[w] + (d ? ' ו' + D[d] : '');
+  return `ספירת העומר: היום ${n === 1 ? 'יום אחד' : n + ' ימים'} לעומר${parts}`;
+}
+
+/* ---------------------------------------------------------------------
    MOLAD & KIDDUSH LEVANA — the traditional calculated molad (from BaHaRaD,
    29d 12h 793 parts per month), as Jerusalem mean time, converted to a real
    instant. Verified against Hebcal (Molad Cheshvan 5787: Sun 11.10.2026,
@@ -251,21 +276,34 @@ function getPositionOnce(timeoutMs){
   });
 }
 
+let hebrewDateRefreshTimer = null;
 async function updateHebrewDateDisplay(){
   const now = new Date();
   let effectiveDate = now;
   let mode = 'midnight';
   let isPastSunset = false;
+  let sunset = null;
   try{
     const pos = await getPositionOnce(4000);
-    const sunset = calcSunsetUTC(now, pos.coords.latitude, pos.coords.longitude);
-    if(sunset){
-      mode = 'sunset';
-      isPastSunset = now.getTime() >= sunset.getTime();
-      effectiveDate = isPastSunset ? new Date(now.getTime() + 86400000) : now;
-    }
+    sunset = calcSunsetUTC(now, pos.coords.latitude, pos.coords.longitude);
+    if(sunset) mode = 'sunset';
   }catch(e){
-    // no permission / unsupported / timeout — fall back to midnight-based date
+    // no GPS permission / unsupported / timeout — use the site's approximate location instead
+    // (from the network address, or Jerusalem by default), so the day still turns at sunset
+    try{
+      const loc = await detectGatingLocation();
+      if(loc){ sunset = calcSunsetUTC(now, loc.lat, loc.lon); if(sunset) mode = 'sunset-approx'; }
+    }catch(e2){}
+  }
+  if(sunset){
+    isPastSunset = now.getTime() >= sunset.getTime();
+    effectiveDate = isPastSunset ? new Date(now.getTime() + 86400000) : now;
+    // if the page stays open, switch to the next Hebrew day at sunset (and again after midnight)
+    clearTimeout(hebrewDateRefreshTimer);
+    const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 30);
+    const next = isPastSunset ? midnight : sunset;
+    const wait = next.getTime() - now.getTime() + 1000;
+    if(wait > 0 && wait < 86400000) hebrewDateRefreshTimer = setTimeout(updateHebrewDateDisplay, wait);
   }
   // Once we're past sunset but before midnight, the Hebrew day has already turned over
   // even though it's not yet the next Gregorian day — traditionally phrased as "אור ל..."
@@ -277,10 +315,10 @@ async function updateHebrewDateDisplay(){
   const gregLabel = now.toLocaleDateString('he-IL');
   try{
     const hebLabel = getHebrewDisplay(effectiveDate);
-    const rcLabel = getRoshChodeshLabel(effectiveDate);
+    const extras = [getRoshChodeshLabel(effectiveDate), getOmerLabel(effectiveDate)].filter(Boolean);
     document.getElementById('today-hebrew').textContent = (isPastSunset
       ? `אור ל-${hebLabel} (${gregLabel})`
-      : `${hebLabel} (${gregLabel})`) + (rcLabel ? ` · ${rcLabel}` : '');
+      : `${hebLabel} (${gregLabel})`) + extras.map(x => ` · ${x}`).join('');
   }catch(e){
     document.getElementById('today-hebrew').textContent = `לא זמין בדפדפן זה (${gregLabel})`;
   }
@@ -288,7 +326,9 @@ async function updateHebrewDateDisplay(){
   if(note){
     note.textContent = mode === 'sunset'
       ? 'התאריך מתעדכן לפי זמן שקיעה משוער לפי מיקומך (זמן משוער בלבד, לא מדויק לדקה).'
-      : 'לא זוהה מיקום — התאריך מתעדכן בחצות הלילה (00:00) לפי שעון המכשיר, ולא לפי השקיעה.';
+      : mode === 'sunset-approx'
+        ? 'התאריך מתעדכן לפי זמן שקיעה משוער לפי מיקום משוער (ללא הרשאת מיקום — לפי רשת האינטרנט, או ירושלים).'
+        : 'לא זוהה מיקום — התאריך מתעדכן בחצות הלילה (00:00) לפי שעון המכשיר, ולא לפי השקיעה.';
   }
 }
 
@@ -1397,8 +1437,8 @@ function initHeaderDate(){
   const gregLabel = now.toLocaleDateString('he-IL');
   if(hb){
     try{
-      const rcLabel = getRoshChodeshLabel(now);
-      hb.textContent = `${getHebrewDisplay(now)} (${gregLabel})` + (rcLabel ? ` · ${rcLabel}` : '');
+      const extras = [getRoshChodeshLabel(now), getOmerLabel(now)].filter(Boolean);
+      hb.textContent = `${getHebrewDisplay(now)} (${gregLabel})` + extras.map(x => ` · ${x}`).join('');
     }
     catch(e){ hb.textContent = `לא זמין בדפדפן זה (${gregLabel})`; }
   }
