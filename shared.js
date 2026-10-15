@@ -1105,6 +1105,33 @@ async function topicForRef(ref){
   return topics.get(+m[4]) || null;
 }
 
+// For a daily portion in a siman/seif book (e.g. "Shulchan Arukh, Orach Chayim 273:5-7", or one
+// that runs into the next siman, "…273:5-274:2"), returns the text as paragraphs labelled with
+// their se'if letters (and a "סימן …" line where a new siman begins). Null for other books.
+function simanSeifParagraphsHtml(ref, text){
+  const m = String(ref || '').match(SIMAN_TOPIC_BOOKS);
+  if(!m || text == null) return null;
+  const rest = ref.slice(m[1].length + 1);
+  const r = rest.match(/^(\d+)(?::(\d+))?(?:-(\d+)(?::(\d+))?)?$/);
+  if(!r) return null;
+  const startSiman = +r[1], startSeif = r[2] ? +r[2] : 1;
+  // the text is either one list of se'ifim (one siman) or a list of simanim, each a list of se'ifim
+  const crossesSimanim = r[2] && r[4] ? true : (!r[2] && r[3] ? true : false);
+  const groups = crossesSimanim && Array.isArray(text) && text.some(Array.isArray) ? text : [Array.isArray(text) ? text : [text]];
+  const out = [];
+  groups.forEach((group, gi) => {
+    const siman = startSiman + gi;
+    const first = gi === 0 ? startSeif : 1;
+    if(gi > 0) out.push(`<p class="siman-break"><b>סימן ${hebNum(siman)}</b></p>`);
+    (Array.isArray(group) ? group : [group]).forEach((seg, i) => {
+      const clean = stripTags(Array.isArray(seg) ? seg.flat(Infinity).join(' ') : (seg || '')).trim();
+      if(!clean) return;
+      out.push(`<p><span class="v-num">${hebNum(first + i)}</span> ${clean}</p>`);
+    });
+  });
+  return out.length ? out.join('') : null;
+}
+
 function initSimanPicker(cfg){
   const P = cfg.prefix;
   const $ = id => document.getElementById(P + '-' + id);
@@ -1291,7 +1318,10 @@ async function renderDailyCalendarSection(titleEn, readerId, headingHe, selected
     if(refLabel) refLabel.textContent = resolvedRef || item.ref;
     const versesDiv = document.createElement('div');
     versesDiv.className = 'verses';
-    versesDiv.innerHTML = paragraphs.map(p => `<p>${p}</p>`).join('');
+    // Shulchan Arukh / Kitzur / Arukh HaShulchan: label each se'if with its letter
+    let labelled = null;
+    try{ labelled = simanSeifParagraphsHtml(resolvedRef || item.ref, text); }catch(e){}
+    versesDiv.innerHTML = labelled || paragraphs.map(p => `<p>${p}</p>`).join('');
     body.replaceWith(versesDiv);
   }catch(e){
     body.className = 'chapter-error';

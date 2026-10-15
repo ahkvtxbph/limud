@@ -555,3 +555,5 @@ html body.highlight-links .whatsapp-float svg{fill:#fff !important;}
 }
 .enable-filter-blackyellow .site-menu a::after{color:#FFFF00 !important; -webkit-text-fill-color:#FFFF00 !important;}
 .enable-filter-blackyellow a.btn, .enable-filter-blackyellow a.btn *{color:#FFFF00 !important; -webkit-text-fill-color:#FFFF00 !important; background:#000 !important; border:2px solid #FFFF00 !important; text-decoration:underline !important;}
+/* a new siman inside a daily portion that runs over two simanim */
+.verses p.siman-break{font-family:var(--font); font-size:1rem; color:var(--blue); margin:1rem 0 .3rem; border-top:1px solid var(--line); padding-top:.6rem;}
