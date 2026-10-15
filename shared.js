@@ -1091,12 +1091,14 @@ function initSimanPicker(cfg){
       counts.forEach((n, i) => { if(!n) return; const o = document.createElement('option'); o.value = i + 1; o.textContent = 'סימן ' + hebNum(i + 1); simanSel.appendChild(o); });
       simanSel.disabled = false; if(loadBtn) loadBtn.disabled = false;
       buildSeifs(); updateSimanNav();
+      return true;
     }catch(e){
       setBusy(simanSel, 'שגיאה בטעינת הסימנים — נסו שוב');
       counts = null;
     }
   }
-  async function render(){
+  // scroll: only when the person asked for it (button / previous-next), not on automatic loads
+  async function render(scroll){
     const reader = document.getElementById(cfg.readerId);
     const book = cfg.books[parseInt(bookSel.value, 10)];
     const siman = parseInt(simanSel.value, 10), seif = parseInt(seifSel.value, 10) || 0;
@@ -1130,16 +1132,21 @@ function initSimanPicker(cfg){
       body.className = 'chapter-error';
       body.innerHTML = 'לא הצלחנו לטעון את הטקסט. אפשר לנסות שוב, או לקרוא ישירות ב<a href="https://www.sefaria.org/' + encodeURIComponent(ref.replace(/ /g, '_')) + '?lang=he" target="_blank" rel="noopener">ספריא</a>.';
     }
-    if(cfg.scroll !== false) reader.scrollIntoView({ behavior:'smooth', block:'start' });
+    if(scroll === true) reader.scrollIntoView({ behavior:'smooth', block:'start' });
   }
-  bookSel.addEventListener('change', buildSimanim);
-  simanSel.addEventListener('change', () => { buildSeifs(); });
-  if(loadBtn) loadBtn.addEventListener('click', render);
-  const updateSimanNav = wireSelectNav(P + '-siman-select', P + '-siman-prev-btn', P + '-siman-next-btn', () => { buildSeifs(); render(); });
-  const updateSeifNav = wireSelectNav(P + '-seif-select', P + '-seif-prev-btn', P + '-seif-next-btn', render);
+  // every choice loads the text right away (the "הצג" button stays as a reload)
+  bookSel.addEventListener('change', async () => { if(await buildSimanim()) render(false); });
+  simanSel.addEventListener('change', () => { buildSeifs(); render(false); });
+  seifSel.addEventListener('change', () => render(false));
+  if(loadBtn) loadBtn.addEventListener('click', () => render(true));
+  const updateSimanNav = wireSelectNav(P + '-siman-select', P + '-siman-prev-btn', P + '-siman-next-btn', () => { buildSeifs(); render(true); });
+  const updateSeifNav = wireSelectNav(P + '-seif-select', P + '-seif-prev-btn', P + '-seif-next-btn', () => render(true));
   return {
-    // called when the "manual" tab is opened: loads the list the first time
-    show(){ if(!started){ started = true; buildSimanim(); } }
+    // called when the "manual" tab is opened: loads the list the first time, and shows the text
+    async show(){
+      if(!started){ started = true; if(await buildSimanim()) render(false); }
+      else if(counts) render(false);
+    }
   };
 }
 
