@@ -82,15 +82,17 @@ permalink: /mishnayot.html
 
     <section class="panel" id="msh-panel-manual" style="display:none;">
       <h2 class="panel-title">משנה לבחירה</h2>
-      <p class="panel-desc">בחר/י סדר, מסכת, פרק ומשנה — כולל פירוש ברטנורא.</p>
+      <p class="panel-desc">בחר/י סדר, מסכת ופרק — הפרק כולו נטען עם פירוש ברטנורא. אפשר גם לבחור משנה אחת מתוכו.</p>
       <div class="controls-row">
         <select id="msh-seder-select" aria-label="בחר/י סדר"></select>
         <select id="msh-masechet-select" aria-label="בחר/י מסכת"></select>
         <select id="msh-perek-select" aria-label="בחר/י פרק" disabled></select>
         <select id="msh-mishnah-select" aria-label="בחר/י משנה" disabled></select>
-        <button class="btn" id="msh-manual-load" disabled>הצג משנה</button>
+        <button class="btn" id="msh-manual-load" disabled>הצג</button>
       </div>
       <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="msh-perek-prev-btn" aria-label="פרק קודם">‹ פרק קודם</button>
+        <button class="btn secondary" id="msh-perek-next-btn" aria-label="פרק הבא">פרק הבא ›</button>
         <button class="btn secondary" id="msh-mishnah-prev-btn" aria-label="משנה קודמת">‹ משנה קודמת</button>
         <button class="btn secondary" id="msh-mishnah-next-btn" aria-label="משנה הבאה">משנה הבאה ›</button>
       </div>
@@ -196,7 +198,16 @@ function mishnahCardSkeleton(headingHe, headingSub){
   return card;
 }
 
-function renderMishnahBlocks(card, tractateEnHe, perek, entries){
+// Bartenura for a whole chapter in ONE request (instead of one request per mishnah)
+async function fetchChapterCommentary(tractateEn, perek){
+  try{
+    const { text } = await fetchRefText('Bartenura on Mishnah ' + tractateEn + ' ' + perek);
+    if(!Array.isArray(text)) return null;
+    return text.map(m => (Array.isArray(m) ? m.flat(Infinity) : [m]).map(stripTags).filter(Boolean).join(' ') || null);
+  }catch(e){ return null; }
+}
+
+function renderMishnahBlocks(card, tractateEnHe, perek, entries, chapterCommentary){
   const body = card.querySelector('.chapter-loading');
   const wrap = document.createElement('div');
   entries.forEach((entry)=>{
@@ -210,7 +221,10 @@ function renderMishnahBlocks(card, tractateEnHe, perek, entries){
     commentaryDiv.innerHTML = `<div class="c-label">פירוש (ברטנורא)</div><div class="c-text">טוען פירוש…</div>`;
     wrap.appendChild(commentaryDiv);
 
-    fetchCommentary(`${entry.tractateEn} ${perek}:${entry.mishnahNum}`).then(txt=>{
+    const commentaryPromise = chapterCommentary
+      ? chapterCommentary.then(list => list ? list[entry.mishnahNum - 1] : null)
+      : fetchCommentary(`${entry.tractateEn} ${perek}:${entry.mishnahNum}`);
+    commentaryPromise.then(txt=>{
       const cText = commentaryDiv.querySelector('.c-text');
       if(txt){
         cText.textContent = txt;
@@ -222,7 +236,27 @@ function renderMishnahBlocks(card, tractateEnHe, perek, entries){
   body.replaceWith(wrap);
 }
 
-async function renderSingleMishnahByRef(tractateEn, tractateHe, perek, mishnahNum){
+// A whole chapter (all its mishnayot, each with its Bartenura)
+async function renderPerekByRef(tractateEn, tractateHe, perek, scroll){
+  const reader = document.getElementById('msh-reader');
+  reader.innerHTML = '';
+  const card = mishnahCardSkeleton(`משנה ${tractateHe} פרק ${hebNum(perek)}`, `${tractateEn} ${perek}`);
+  reader.appendChild(card);
+  try{
+    const chapters = await fetchWholeTractate(tractateEn);
+    const perekArr = chapters[perek-1];
+    if(!perekArr || !perekArr.length) throw new Error('not found');
+    const entries = perekArr.map((text, i) => ({ mishnahNum: i + 1, text, tractateEn }));
+    renderMishnahBlocks(card, tractateHe, perek, entries, fetchChapterCommentary(tractateEn, perek));
+  }catch(e){
+    const body = card.querySelector('.chapter-loading');
+    body.className = 'chapter-error';
+    body.innerHTML = `לא ניתן היה לטעון את הפרק כרגע. אפשר לקרוא אותו ישירות ב<a href="https://www.sefaria.org/Mishnah_${encodeURIComponent(tractateEn.replace(/ /g,'_'))}.${perek}?lang=he" target="_blank" rel="noopener">ספריא</a>.`;
+  }
+  if(scroll) reader.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function renderSingleMishnahByRef(tractateEn, tractateHe, perek, mishnahNum, scroll){
   const reader = document.getElementById('msh-reader');
   reader.innerHTML = '';
   const card = mishnahCardSkeleton(`משנה ${tractateHe} ${hebNum(perek)}:${hebNum(mishnahNum)}`, `${tractateEn} ${perek}:${mishnahNum}`);
@@ -237,7 +271,7 @@ async function renderSingleMishnahByRef(tractateEn, tractateHe, perek, mishnahNu
     body.className = 'chapter-error';
     body.innerHTML = `לא ניתן היה לטעון את המשנה כרגע. אפשר לקרוא אותה ישירות ב<a href="https://www.sefaria.org/Mishnah_${encodeURIComponent(tractateEn.replace(/ /g,'_'))}.${perek}.${mishnahNum}?lang=he" target="_blank" rel="noopener">ספריא</a>.`;
   }
-  reader.scrollIntoView({behavior:'smooth', block:'start'});
+  if(scroll !== false) reader.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 wireDatePicker('msh-daily-date-input', 'msh-daily-today-btn', 'msh-daily-prev-btn', 'msh-daily-next-btn', ()=>mshDailySelectedDate, d=>{ mshDailySelectedDate = d; }, renderDailyMishnah);
@@ -385,6 +419,7 @@ async function buildPerekSelect(){
     });
     mshPerekSelect.disabled = false;
     buildMishnahSelect();
+    updateMshPerekNav();
   }catch(e){
     mshPerekSelect.innerHTML = '';
     const errOpt = document.createElement('option');
@@ -406,6 +441,10 @@ function buildMishnahSelect(){
     updateMshMishnahNav();
     return;
   }
+  const allOpt = document.createElement('option');
+  allOpt.value = 'all';
+  allOpt.textContent = 'כל הפרק';
+  mshMishnahSelect.appendChild(allOpt);
   chapters[perekIdx].forEach((m, i)=>{
     const opt = document.createElement('option');
     opt.value = i;
@@ -417,28 +456,44 @@ function buildMishnahSelect(){
   updateMshMishnahNav();
 }
 
-mshSederSelect.addEventListener('change', ()=>{
+// every choice loads right away (the whole chapter, unless one mishnah is chosen);
+// the page scrolls to the text only for the buttons, not while choosing from the lists
+mshSederSelect.addEventListener('change', async ()=>{
   buildMasechetSelect();
-  buildPerekSelect();
+  await buildPerekSelect();
+  loadManualMshSelection(false);
 });
 
-mshMasechetSelect.addEventListener('change', buildPerekSelect);
+mshMasechetSelect.addEventListener('change', async ()=>{
+  await buildPerekSelect();
+  loadManualMshSelection(false);
+});
 
-mshPerekSelect.addEventListener('change', buildMishnahSelect);
+mshPerekSelect.addEventListener('change', ()=>{ buildMishnahSelect(); loadManualMshSelection(false); });
 
-function loadManualMshSelection(){
+mshMishnahSelect.addEventListener('change', ()=> loadManualMshSelection(false));
+
+function loadManualMshSelection(scroll){
+  if(mshMishnahSelect.disabled) return;
   const sederIdx = parseInt(mshSederSelect.value, 10);
   const tractateIdx = parseInt(mshMasechetSelect.value, 10);
   const tractate = SEDARIM[sederIdx].tractates[tractateIdx];
   const perek = parseInt(mshPerekSelect.value, 10) + 1;
+  if(isNaN(perek)) return;
+  if(mshMishnahSelect.value === 'all'){
+    renderPerekByRef(tractate.en, tractate.he, perek, scroll === true);
+    return;
+  }
   const mishnahNum = parseInt(mshMishnahSelect.value, 10) + 1;
-  if(isNaN(perek) || isNaN(mishnahNum)) return;
-  renderSingleMishnahByRef(tractate.en, tractate.he, perek, mishnahNum);
+  if(isNaN(mishnahNum)) return;
+  renderSingleMishnahByRef(tractate.en, tractate.he, perek, mishnahNum, scroll === true);
 }
 
-mshManualLoadBtn.addEventListener('click', ()=> loadManualMshSelection());
+mshManualLoadBtn.addEventListener('click', ()=> loadManualMshSelection(true));
 
-const updateMshMishnahNav = wireSelectNav('msh-mishnah-select', 'msh-mishnah-prev-btn', 'msh-mishnah-next-btn', ()=> loadManualMshSelection());
+const updateMshPerekNav = wireSelectNav('msh-perek-select', 'msh-perek-prev-btn', 'msh-perek-next-btn', ()=>{ buildMishnahSelect(); loadManualMshSelection(true); });
+
+const updateMshMishnahNav = wireSelectNav('msh-mishnah-select', 'msh-mishnah-prev-btn', 'msh-mishnah-next-btn', ()=> loadManualMshSelection(true));
 
 function autoLoadForModeMsh(mode, opts){
   if(mode === 'daily'){
@@ -447,7 +502,7 @@ function autoLoadForModeMsh(mode, opts){
     renderRandomMishnah(opts);
   } else if(mode === 'manual'){
     if(!mshMishnahSelect.disabled && mshMishnahSelect.value !== ''){
-      loadManualMshSelection();
+      loadManualMshSelection(false);
     }
   }
 }
