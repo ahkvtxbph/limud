@@ -1064,10 +1064,53 @@ async function fetchSefariaShape(title){
   sefariaShapeCache[title] = chapters;
   return chapters;
 }
+// The subject ("הלכות שבת", or the chapter title in Kitzur Shulchan Arukh) of each siman, from
+// Sefaria's "Topic" table of contents for the book. Returns a Map: siman -> Hebrew topic.
+// Arukh HaShulchan's four parts share one table of contents, filed under "Arukh HaShulchan".
+const simanTopicCache = {};
+function simanTopicIndexTitle(bookTitle){
+  return /^Arukh HaShulchan/.test(bookTitle) ? 'Arukh HaShulchan' : bookTitle;
+}
+async function fetchSimanTopics(bookTitle){
+  if(simanTopicCache[bookTitle]) return simanTopicCache[bookTitle];
+  const map = new Map();
+  const res = await fetch('https://www.sefaria.org/api/v2/raw/index/' + encodeURIComponent(simanTopicIndexTitle(bookTitle)));
+  if(!res.ok) throw new Error('index fetch failed');
+  const data = await res.json();
+  const nodes = (data && data.alt_structs && data.alt_structs.Topic && data.alt_structs.Topic.nodes) || [];
+  const walk = list => list.forEach(node => {
+    if(node.nodes) walk(node.nodes);
+    const ref = String(node.wholeRef || '');
+    if(ref.indexOf(bookTitle + ' ') !== 0) return;
+    const he = ((node.titles || []).find(t => t.lang === 'he' && t.primary) || (node.titles || []).find(t => t.lang === 'he') || {}).text;
+    if(!he) return;
+    const name = he.replace(/^\[[^\]]*\]\s*/, '').trim();
+    // "12", "1-7", "297:1-40" (se'ifim of one siman), "5:3-9:2"
+    const m = ref.slice(bookTitle.length + 1).match(/^(\d+)(?::(\d+))?(?:-(\d+)(?::(\d+))?)?$/);
+    if(!m) return;
+    const from = +m[1];
+    const to = m[3] ? (m[2] && !m[4] ? from : +m[3]) : from;
+    for(let k = from; k <= to; k++) map.set(k, map.has(k) && map.get(k) !== name ? map.get(k) + ' · ' + name : name);
+  });
+  walk(nodes);
+  simanTopicCache[bookTitle] = map;
+  return map;
+}
+// Books whose daily-learning refs can be given a topic line.
+const SIMAN_TOPIC_BOOKS = /^(Shulchan Arukh, (Orach Chayim|Yoreh De'ah|Even HaEzer|Choshen Mishpat)|Kitzur Shulchan Arukh|Arukh HaShulchan, (Orach Chaim|Yoreh De'ah|Even HaEzer|Choshen Mishpat)) (\d+)/;
+async function topicForRef(ref){
+  const m = String(ref || '').match(SIMAN_TOPIC_BOOKS);
+  if(!m) return null;
+  const topics = await fetchSimanTopics(m[1]);   // m[1] = the book, m[4] = the siman
+  return topics.get(+m[4]) || null;
+}
+
 function initSimanPicker(cfg){
   const P = cfg.prefix;
   const $ = id => document.getElementById(P + '-' + id);
   const bookSel = $('book-select'), simanSel = $('siman-select'), seifSel = $('seif-select'), loadBtn = $('manual-load');
+  const topicSel = $('topic-select');   // optional: jump to the first siman of a subject
+  let topics = new Map();
   if(!bookSel || !simanSel || !seifSel) return { show(){} };
   cfg.books.forEach((b, i) => { const o = document.createElement('option'); o.value = i; o.textContent = b.he; bookSel.appendChild(o); });
   let counts = null, started = false;
@@ -1082,6 +1125,28 @@ function initSimanPicker(cfg){
     seifSel.disabled = !n;
     updateSeifNav();
   }
+  async function buildTopics(book){
+    topics = new Map();
+    try{ topics = await fetchSimanTopics(book.en); }catch(e){}
+    if(!topicSel) return;
+    topicSel.innerHTML = '';
+    const seen = [];
+    topics.forEach((name, siman) => { if(counts && counts[siman - 1] && !seen.some(x => x.name === name)) seen.push({ name, siman }); });
+    if(!seen.length){ topicSel.disabled = true; topicSel.style.display = 'none'; return; }
+    topicSel.style.display = '';
+    seen.sort((a, b) => a.siman - b.siman).forEach(t => {
+      const o = document.createElement('option'); o.value = t.siman; o.textContent = t.name; topicSel.appendChild(o);
+    });
+    topicSel.disabled = false;
+    syncTopic();
+  }
+  // keep the subject list showing the subject of the current siman
+  function syncTopic(){
+    if(!topicSel || topicSel.disabled) return;
+    const name = topics.get(parseInt(simanSel.value, 10));
+    const opt = [...topicSel.options].find(o => o.textContent === name);
+    if(opt) topicSel.value = opt.value; else topicSel.selectedIndex = -1;
+  }
   async function buildSimanim(){
     setBusy(simanSel, 'טוען סימנים…'); setBusy(seifSel, '—'); if(loadBtn) loadBtn.disabled = true;
     const book = cfg.books[parseInt(bookSel.value, 10)];
@@ -1091,6 +1156,7 @@ function initSimanPicker(cfg){
       counts.forEach((n, i) => { if(!n) return; const o = document.createElement('option'); o.value = i + 1; o.textContent = 'סימן ' + hebNum(i + 1); simanSel.appendChild(o); });
       simanSel.disabled = false; if(loadBtn) loadBtn.disabled = false;
       buildSeifs(); updateSimanNav();
+      await buildTopics(book);
       return true;
     }catch(e){
       setBusy(simanSel, 'שגיאה בטעינת הסימנים — נסו שוב');
@@ -1111,6 +1177,14 @@ function initSimanPicker(cfg){
     card.innerHTML = '<div class="chapter-head"><h2></h2><div class="share-row"></div><span class="gem"></span></div><div class="chapter-loading">טוענים את הסימן…</div>';
     card.querySelector('h2').textContent = title;
     card.querySelector('.gem').textContent = ref;
+    const topic = topics.get(siman);
+    if(topic){
+      const t = document.createElement('p');
+      t.className = 'learning-date-label';
+      t.textContent = topic;
+      card.querySelector('.chapter-head').insertAdjacentElement('afterend', t);
+    }
+    syncTopic();
     card.querySelector('.share-row').replaceWith(buildShareBar(location.href.split('#')[0], title + ' —'));
     reader.appendChild(card);
     const body = card.querySelector('.chapter-loading');
@@ -1138,6 +1212,9 @@ function initSimanPicker(cfg){
   bookSel.addEventListener('change', async () => { if(await buildSimanim()) render(false); });
   simanSel.addEventListener('change', () => { buildSeifs(); render(false); });
   seifSel.addEventListener('change', () => render(false));
+  if(topicSel) topicSel.addEventListener('change', () => {
+    simanSel.value = topicSel.value; buildSeifs(); updateSimanNav(); render(false);
+  });
   if(loadBtn) loadBtn.addEventListener('click', () => render(true));
   const updateSimanNav = wireSelectNav(P + '-siman-select', P + '-siman-prev-btn', P + '-siman-next-btn', () => { buildSeifs(); render(true); });
   const updateSeifNav = wireSelectNav(P + '-seif-select', P + '-seif-prev-btn', P + '-seif-next-btn', () => render(true));
@@ -1201,6 +1278,15 @@ async function renderDailyCalendarSection(titleEn, readerId, headingHe, selected
     const paragraphs = flat.map(stripTags).filter(Boolean);
     if(!paragraphs.length) throw new Error('no paragraphs');
     card.querySelector('.chapter-head h2').textContent = (item.displayValue && (item.displayValue.he || (item.title && item.title.he))) || headingHe;
+    // the subject of the siman (e.g. "הלכות שבת"), where the book has one — best-effort
+    topicForRef(resolvedRef || item.ref).then(topic => {
+      if(!topic) return;
+      const label = document.getElementById(readerId + '-date-label');
+      if(label && !card.querySelector('.siman-topic')){
+        const t = document.createElement('span'); t.className = 'sub siman-topic'; t.textContent = 'נושא: ' + topic;
+        label.appendChild(t);
+      }
+    }).catch(() => {});
     const refLabel = document.getElementById(readerId+'-ref-label');
     if(refLabel) refLabel.textContent = resolvedRef || item.ref;
     const versesDiv = document.createElement('div');

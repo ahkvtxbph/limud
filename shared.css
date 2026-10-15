@@ -233,7 +233,7 @@ select, .btn, input[type="text"], input[type="search"], input[type="date"], inpu
   padding:.55rem .9rem; border-radius:10px;
   border:1px solid var(--line-strong); background:var(--white); color:var(--text);
 }
-select{padding-inline-end:2rem;}
+select{padding-inline-end:2rem; max-width:100%; text-overflow:ellipsis;}
 input[type="text"]{flex:1; min-width:180px;}
 select:disabled{opacity:.5;}
 .btn{
