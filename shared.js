@@ -1044,6 +1044,106 @@ function wireSelectNav(selectId, prevBtnId, nextBtnId, onStep){
 }
 
 /* =====================================================================
+   MANUAL "SIMAN / SEIF" PICKER — for codes arranged by siman and seif
+   (Shulchan Arukh, Kitzur Shulchan Arukh, Arukh HaShulchan). The list of
+   simanim and how many se'ifim each has comes from Sefaria's "shape" API,
+   so nothing is hard-coded; simanim with no text in Sefaria are skipped.
+   Expects these ids on the page (P = cfg.prefix):
+     P-book-select, P-siman-select, P-seif-select, P-manual-load,
+     P-siman-prev-btn, P-siman-next-btn, P-seif-prev-btn, P-seif-next-btn
+   ===================================================================== */
+const sefariaShapeCache = {};
+async function fetchSefariaShape(title){
+  if(sefariaShapeCache[title]) return sefariaShapeCache[title];
+  const res = await fetch('https://www.sefaria.org/api/shape/' + encodeURIComponent(title));
+  if(!res.ok) throw new Error('shape fetch failed: ' + title);
+  const data = await res.json();
+  const node = Array.isArray(data) ? (data.find(d => d && d.title === title) || data[0]) : data;
+  const chapters = node && Array.isArray(node.chapters) ? node.chapters.map(n => typeof n === 'number' ? n : (Array.isArray(n) ? n.length : 0)) : null;
+  if(!chapters || !chapters.length) throw new Error('no shape for ' + title);
+  sefariaShapeCache[title] = chapters;
+  return chapters;
+}
+function initSimanPicker(cfg){
+  const P = cfg.prefix;
+  const $ = id => document.getElementById(P + '-' + id);
+  const bookSel = $('book-select'), simanSel = $('siman-select'), seifSel = $('seif-select'), loadBtn = $('manual-load');
+  if(!bookSel || !simanSel || !seifSel) return { show(){} };
+  cfg.books.forEach((b, i) => { const o = document.createElement('option'); o.value = i; o.textContent = b.he; bookSel.appendChild(o); });
+  let counts = null, started = false;
+
+  function setBusy(sel, text){ sel.innerHTML = ''; const o = document.createElement('option'); o.textContent = text; sel.appendChild(o); sel.disabled = true; }
+  function buildSeifs(){
+    seifSel.innerHTML = '';
+    const siman = parseInt(simanSel.value, 10);
+    const n = counts && counts[siman - 1] || 0;
+    const all = document.createElement('option'); all.value = 0; all.textContent = 'כל הסימן'; seifSel.appendChild(all);
+    for(let k = 1; k <= n; k++){ const o = document.createElement('option'); o.value = k; o.textContent = 'סעיף ' + hebNum(k); seifSel.appendChild(o); }
+    seifSel.disabled = !n;
+    updateSeifNav();
+  }
+  async function buildSimanim(){
+    setBusy(simanSel, 'טוען סימנים…'); setBusy(seifSel, '—'); if(loadBtn) loadBtn.disabled = true;
+    const book = cfg.books[parseInt(bookSel.value, 10)];
+    try{
+      counts = await fetchSefariaShape(book.en);
+      simanSel.innerHTML = '';
+      counts.forEach((n, i) => { if(!n) return; const o = document.createElement('option'); o.value = i + 1; o.textContent = 'סימן ' + hebNum(i + 1); simanSel.appendChild(o); });
+      simanSel.disabled = false; if(loadBtn) loadBtn.disabled = false;
+      buildSeifs(); updateSimanNav();
+    }catch(e){
+      setBusy(simanSel, 'שגיאה בטעינת הסימנים — נסו שוב');
+      counts = null;
+    }
+  }
+  async function render(){
+    const reader = document.getElementById(cfg.readerId);
+    const book = cfg.books[parseInt(bookSel.value, 10)];
+    const siman = parseInt(simanSel.value, 10), seif = parseInt(seifSel.value, 10) || 0;
+    if(!book || !siman) return;
+    const ref = book.en + ' ' + siman + (seif ? ':' + seif : '');
+    const title = book.he + ' סימן ' + hebNum(siman) + (seif ? ', סעיף ' + hebNum(seif) : '');
+    reader.innerHTML = '';
+    const card = document.createElement('article');
+    card.className = 'chapter-card';
+    card.innerHTML = '<div class="chapter-head"><h2></h2><div class="share-row"></div><span class="gem"></span></div><div class="chapter-loading">טוענים את הסימן…</div>';
+    card.querySelector('h2').textContent = title;
+    card.querySelector('.gem').textContent = ref;
+    card.querySelector('.share-row').replaceWith(buildShareBar(location.href.split('#')[0], title + ' —'));
+    reader.appendChild(card);
+    const body = card.querySelector('.chapter-loading');
+    try{
+      const { text } = await fetchRefText(ref);
+      const list = seif ? [text].flat(Infinity) : (Array.isArray(text) ? text : [text]);
+      const paras = list.map((t, i) => {
+        const clean = stripTags(Array.isArray(t) ? t.flat(Infinity).join(' ') : (t || '')).trim();
+        if(!clean) return '';
+        const label = seif ? '' : '<span class="v-num">' + hebNum(i + 1) + '</span> ';
+        return '<p>' + label + clean + '</p>';
+      }).filter(Boolean);
+      if(!paras.length) throw new Error('empty');
+      const div = document.createElement('div');
+      div.className = 'verses';
+      div.innerHTML = paras.join('');
+      body.replaceWith(div);
+    }catch(e){
+      body.className = 'chapter-error';
+      body.innerHTML = 'לא הצלחנו לטעון את הטקסט. אפשר לנסות שוב, או לקרוא ישירות ב<a href="https://www.sefaria.org/' + encodeURIComponent(ref.replace(/ /g, '_')) + '?lang=he" target="_blank" rel="noopener">ספריא</a>.';
+    }
+    if(cfg.scroll !== false) reader.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+  bookSel.addEventListener('change', buildSimanim);
+  simanSel.addEventListener('change', () => { buildSeifs(); });
+  if(loadBtn) loadBtn.addEventListener('click', render);
+  const updateSimanNav = wireSelectNav(P + '-siman-select', P + '-siman-prev-btn', P + '-siman-next-btn', () => { buildSeifs(); render(); });
+  const updateSeifNav = wireSelectNav(P + '-seif-select', P + '-seif-prev-btn', P + '-seif-next-btn', render);
+  return {
+    // called when the "manual" tab is opened: loads the list the first time
+    show(){ if(!started){ started = true; buildSimanim(); } }
+  };
+}
+
+/* =====================================================================
    Generic Sefaria "daily calendar item" renderers — reusable for any
    date-driven daily-learning cycle (Halacha Yomit, Tanya Yomi, Daf Yomi,
    Yerushalmi Yomi, Tanakh Yomi, 929, Daily Rambam, etc).

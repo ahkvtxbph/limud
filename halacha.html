@@ -48,10 +48,16 @@ permalink: /halacha.html
   <div class="page-intro">
     <nav class="crumbs" aria-label="מיקום באתר"><ol><li><a href="/">ראשי</a></li><li>לימוד יומי</li><li aria-current="page">הלכה יומית</li></ol></nav>
     <h1 class="page-title">הלכה יומית</h1>
-    <p class="page-sub">ההלכה הנלמדת היום — שולחן ערוך אורח חיים / קיצור שולחן ערוך.</p>
+    <p class="page-sub">ההלכה הנלמדת היום — או בחירה חופשית של סימן וסעיף בשולחן ערוך (כל ארבעת החלקים) ובקיצור שולחן ערוך.</p>
   </div>
 
-    <section class="panel">
+  <section id="halacha-section">
+    <nav class="modes" aria-label="אפשרויות לימוד">
+      <button type="button" data-mode="daily" class="active" aria-pressed="true">הלכה יומית</button>
+      <button type="button" data-mode="manual" aria-pressed="false">בחירה ידנית</button>
+    </nav>
+
+    <section class="panel" id="halacha-panel-daily">
       <h2 class="panel-title">בחירת יום</h2>
       <p class="panel-desc">ההלכה הנלמדת היום לפי לוח הלימוד העולמי היומי של ספריא (מחזור "הלכה יומית" — שולחן ערוך אורח חיים / קיצור שולחן ערוך).</p>
       <div class="controls-row">
@@ -64,7 +70,25 @@ permalink: /halacha.html
         <button class="btn secondary" id="halacha-next-btn" aria-label="יום הבא">יום הבא ›</button>
       </div>
     </section>
+    <section class="panel" id="halacha-panel-manual" style="display:none;">
+      <h2 class="panel-title">בחירה ידנית</h2>
+      <p class="panel-desc">בחר/י ספר וחלק, סימן וסעיף (או את כל הסימן) — ועברו לסימן או לסעיף הקודם והבא.</p>
+      <div class="controls-row">
+        <select id="halacha-book-select" aria-label="בחר/י ספר וחלק"></select>
+        <select id="halacha-siman-select" aria-label="בחר/י סימן" disabled></select>
+        <select id="halacha-seif-select" aria-label="בחר/י סעיף" disabled></select>
+        <button class="btn" id="halacha-manual-load" disabled>הצג</button>
+      </div>
+      <div class="controls-row" style="margin-top:.7rem;">
+        <button class="btn secondary" id="halacha-siman-prev-btn" aria-label="סימן קודם">‹ סימן קודם</button>
+        <button class="btn secondary" id="halacha-siman-next-btn" aria-label="סימן הבא">סימן הבא ›</button>
+        <button class="btn secondary" id="halacha-seif-prev-btn" aria-label="סעיף קודם">‹ סעיף קודם</button>
+        <button class="btn secondary" id="halacha-seif-next-btn" aria-label="סעיף הבא">סעיף הבא ›</button>
+      </div>
+    </section>
+
     <div id="halacha-reader" aria-live="polite"></div>
+  </section>
 </main>
 
 <footer class="site">
@@ -86,6 +110,28 @@ document.getElementById('halacha-load').addEventListener('click', renderDailyHal
 wireDatePicker('halacha-date-input', 'halacha-today-btn', 'halacha-prev-btn', 'halacha-next-btn', ()=>halachaSelectedDate, d=>{ halachaSelectedDate = d; }, renderDailyHalacha);
 
 renderDailyHalacha();
+
+/* ---------- manual choice (siman / se'if), like the Mishnah page ---------- */
+const halachaPicker = initSimanPicker({
+  prefix: 'halacha', readerId: 'halacha-reader',
+  books: [
+    { en:'Shulchan Arukh, Orach Chayim', he:'שולחן ערוך — אורח חיים' },
+    { en:'Shulchan Arukh, Yoreh De\'ah', he:'שולחן ערוך — יורה דעה' },
+    { en:'Shulchan Arukh, Even HaEzer', he:'שולחן ערוך — אבן העזר' },
+    { en:'Shulchan Arukh, Choshen Mishpat', he:'שולחן ערוך — חושן משפט' },
+    { en:'Kitzur Shulchan Arukh', he:'קיצור שולחן ערוך' }
+  ]
+});
+document.querySelectorAll('#halacha-section nav.modes button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#halacha-section nav.modes button').forEach(b => { b.classList.toggle('active', b === btn); b.setAttribute('aria-pressed', String(b === btn)); });
+    const mode = btn.dataset.mode;
+    document.getElementById('halacha-panel-daily').style.display = mode === 'daily' ? '' : 'none';
+    document.getElementById('halacha-panel-manual').style.display = mode === 'manual' ? '' : 'none';
+    if(mode === 'daily') renderDailyHalacha();
+    else { document.getElementById('halacha-reader').innerHTML = ''; halachaPicker.show(); }
+  });
+});
 
 /* =====================================================================
    SHABBAT / YOM TOV AUTO-GATING
