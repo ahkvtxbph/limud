@@ -100,6 +100,24 @@ permalink: /tehillim.html
       </div>
     </section>
 
+    <section class="tts-bar" id="tts-bar" hidden aria-label="הקראה קולית">
+      <div class="tts-controls">
+        <button type="button" class="btn" id="tts-play">▶ הקראה</button>
+        <button type="button" class="btn secondary" id="tts-pause">השהיה</button>
+        <button type="button" class="btn secondary" id="tts-stop">עצירה</button>
+      </div>
+      <div class="tts-controls">
+        <label class="tts-opt">מהירות
+          <select id="tts-rate"><option value="0.8">איטית</option><option value="1" selected>רגילה</option><option value="1.2">מהירה</option></select>
+        </label>
+        <label class="tts-opt">שם ה׳ ייקרא
+          <select id="tts-name"><option value="adonai" selected>"אדוני"</option><option value="hashem">"השם"</option></select>
+        </label>
+      </div>
+      <p class="tts-status" id="tts-status" aria-live="polite"></p>
+      <p class="tts-note">ההקראה נעשית בקול המובנה במכשיר שלכם. שם ה׳ לעולם אינו נקרא כפי שהוא כתוב — הוא נקרא "אדוני" (או "השם", לפי הבחירה).</p>
+    </section>
+
     <div id="reader" aria-live="polite"></div>
 
     <div class="progress-key">
@@ -238,6 +256,7 @@ function renderChapterCard(chapterNum){
     <div class="chapter-head">
       <h2>פרק ${hebNum(chapterNum)}</h2>
       <div class="share-row"></div>
+      <button type="button" class="tts-card-btn" aria-label="הקראת פרק ${hebNum(chapterNum)} בקול" title="הקראה בקול">🔊</button>
       <span class="gem">תהלים ${chapterNum}</span>
     </div>
     <div class="chapter-loading">טוען פרק…</div>
@@ -367,6 +386,9 @@ document.getElementById('manual-load').addEventListener('click', ()=> autoLoadFo
 const updateManualNav = wireSelectNav('manual-select', 'manual-prev-btn', 'manual-next-btn', ()=> autoLoadForMode('manual'));
 
 updateManualNav();
+
+/* read aloud (browser's built-in voice; the Divine Name is replaced before speaking) */
+try{ initReadAloud({ barId:'tts-bar', readerId:'reader', verseSelector:'.verses .v' }); }catch(e){}
 
 /* =====================================================================
    SHABBAT / YOM TOV AUTO-GATING
