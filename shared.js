@@ -525,6 +525,18 @@ function isLikelyIsrael(lat, lon){
   return lat >= 29.4 && lat <= 33.4 && lon >= 34.2 && lon <= 35.9;
 }
 
+// Jerusalem's custom: Shabbat candle lighting 40 minutes before sunset (everywhere else the
+// site keeps Hebcal's default of 18 minutes). Recognised by the place name, or by coordinates
+// inside the city itself (a tight box, so nearby towns keep their own default).
+const JERUSALEM_CANDLE_MINUTES = 40;
+function isJerusalemArea(lat, lon, name){
+  if(name && /ירושלים|jerusalem/i.test(String(name))) return true;
+  return lat >= 31.73 && lat <= 31.86 && lon >= 35.16 && lon <= 35.25;
+}
+function candleMinutesParam(lat, lon, name){
+  return isJerusalemArea(lat, lon, name) ? `&b=${JERUSALEM_CANDLE_MINUTES}` : '';
+}
+
 async function detectGatingLocation(){
   try{
     const pos = await getPositionOnce(4000);
@@ -592,7 +604,7 @@ async function fetchGatingSchedule(loc){
   // (e.g. two-day Rosh Hashana running straight into Shabbat).
   const start = new Date(now.getTime() - 4*86400000).toISOString().slice(0,10);
   const end = new Date(now.getTime() + 10*86400000).toISOString().slice(0,10);
-  const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${start}&end=${end}&latitude=${loc.lat}&longitude=${loc.lon}&tzid=${encodeURIComponent(tzid)}${loc.isIsrael ? '&i=on' : ''}`;
+  const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${start}&end=${end}&latitude=${loc.lat}&longitude=${loc.lon}&tzid=${encodeURIComponent(tzid)}${loc.isIsrael ? '&i=on' : ''}${candleMinutesParam(loc.lat, loc.lon, loc.name)}`;
   try{
     const res = await fetch(url);
     if(!res.ok) throw new Error('hebcal fetch failed');

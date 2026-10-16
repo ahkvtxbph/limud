@@ -222,13 +222,13 @@ async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset,
   }
 }
 
-async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzid){
+async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzid, placeName){
   try{
     const tzid = resolvedTzid || (Intl.DateTimeFormat().resolvedOptions().timeZone) || 'Asia/Jerusalem';
     const startStr = displayDate.toISOString().slice(0,10);
     const endStr = new Date(displayDate.getTime() + 6*86400000).toISOString().slice(0,10);
     const israelFlag = isLikelyIsrael(lat, lon) ? '&i=on' : '';
-    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}${israelFlag}`;
+    const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}${israelFlag}${candleMinutesParam(lat, lon, placeName)}`;
     const res = await fetch(url);
     if(!res.ok) throw new Error('fetch failed');
     const data = await res.json();
@@ -361,10 +361,12 @@ function renderZmanim(){
       listEl.insertBefore(buildRow(label, beginsEntry.time), listEl.firstChild);
     }
 
-    const entry = await fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate, loc.tzid);
+    const entry = await fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate, loc.tzid, loc.name);
     if(requestId !== renderZmanimRequestId) return;
     if(entry){
-      listEl.appendChild(buildRow(`כניסת ${entry.label} (${loc.name})`, entry.candleTime));
+      const jlmNote = isJerusalemArea(loc.lat, loc.lon, loc.name)
+        ? `<small class="zman-sub">${JERUSALEM_CANDLE_MINUTES} דקות לפני השקיעה — מנהג ירושלים</small>` : '';
+      listEl.appendChild(buildRow(`כניסת ${entry.label} (${loc.name})${jlmNote}`, entry.candleTime));
       if(entry.havdalahTime){
         listEl.appendChild(buildRow(`יציאת ${entry.label} (${loc.name})`, entry.havdalahTime));
       }
