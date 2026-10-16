@@ -1,0 +1,441 @@
+---
+layout: null
+permalink: /compass.html
+---
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מצפן — כיוון לירושלים | מזמור לתודה - לימוד יומי</title>
+<meta name="description" content="מצפן לכיוון ירושלים ומקום המקדש לתפילה — לפי המיקום שלך, עם תיקון לסטייה המגנטית. חינם, בלי התקנה.">
+<meta name="keywords" content="כיוון ירושלים, מצפן לתפילה, כיוון התפילה, מזרח, מקום המקדש, כותל, מצפן ירושלים">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://limood.org.il/compass.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="מצפן — כיוון לירושלים | מזמור לתודה - לימוד יומי">
+<meta property="og:description" content="מצפן לכיוון ירושלים ומקום המקדש לתפילה — לפי המיקום שלך.">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#17324D">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "מצפן — כיוון לירושלים",
+  "inLanguage": "he",
+  "description": "מצפן לכיוון ירושלים ומקום המקדש לתפילה, לפי המיקום שלך.",
+  "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
+}
+</script>
+{% include head-assets.html %}
+<style>
+  /* rules used only by the compass page */
+  .cmp-wrap{display:flex; flex-direction:column; align-items:center; gap:.9rem; margin-top:.4rem;}
+  .cmp-dial{width:min(78vw, 300px); height:auto; display:block; overflow:visible;}
+  .cmp-dial .ring{fill:var(--white); stroke:var(--line-strong, #CBD2D9); stroke-width:2;}
+  .cmp-dial .tick{stroke:var(--muted); stroke-width:1.5;}
+  .cmp-dial .tick.major{stroke:var(--blue); stroke-width:2.5;}
+  .cmp-dial .card-l{font:700 15px var(--font, sans-serif); fill:var(--blue); text-anchor:middle; dominant-baseline:central;}
+  .cmp-dial .card-l.n{fill:#B3261E;}
+  .cmp-dial .target{fill:var(--gold); stroke:var(--gold-dark); stroke-width:1.5;}
+  .cmp-dial .target-line{stroke:var(--gold); stroke-width:3; stroke-linecap:round;}
+  .cmp-dial .lubber{fill:var(--blue);}
+  .cmp-dial .hub{fill:var(--blue);}
+  .cmp-wrap.aligned .cmp-dial .ring{stroke:#2E7D32; stroke-width:5;}
+  .cmp-wrap.aligned .cmp-dial .lubber{fill:#2E7D32;}
+  #cmp-rotor{transition:transform .12s linear;}
+  .cmp-readout{text-align:center;}
+  .cmp-big{font-size:1.5rem; font-weight:700; color:var(--blue); margin:0;}
+  .cmp-sub{color:var(--muted); margin:.2rem 0 0;}
+  .cmp-state{min-height:1.5em; font-weight:700; text-align:center; margin:0;}
+  .cmp-wrap.aligned .cmp-state{color:#2E7D32;}
+  .cmp-hint{color:var(--muted); font-size:.95rem; text-align:center; margin:0;}
+  .cmp-method{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin-top:.8rem;}
+  .cmp-method[hidden], #cmp-start[hidden]{display:none;}
+  .cmp-notes{margin:0; padding-inline-start:1.2rem; color:var(--text); line-height:1.7;}
+  .cmp-notes li{margin-bottom:.35rem;}
+  @media (prefers-reduced-motion: reduce){ #cmp-rotor{transition:none;} }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">דלג לתוכן הראשי</a>
+
+{% include site-header.html %}
+
+{% include whatsapp.html %}
+
+{% include shabbat-banner.html %}
+
+<main id="main">
+  <div class="page-intro">
+    <nav class="crumbs" aria-label="מיקום באתר"><ol><li><a href="/">ראשי</a></li><li>כלים</li><li aria-current="page">מצפן לירושלים</li></ol></nav>
+    <h1 class="page-title">מצפן — כיוון לירושלים</h1>
+    <p class="page-sub">לאן לפנות בתפילה: הכיוון ממקומך אל ירושלים ומקום המקדש.</p>
+  </div>
+
+  <section class="panel">
+    <h2 class="panel-title">המיקום שלך</h2>
+    <p class="panel-desc" id="cmp-location-desc">מזהה מיקום…</p>
+    <div class="controls-row">
+      <button type="button" class="btn secondary" id="cmp-use-my-location">השתמש/י במיקום שלי</button>
+      <input type="text" id="cmp-search-input" placeholder="חיפוש עיר…" aria-label="חיפוש עיר">
+      <button type="button" class="btn" id="cmp-search-btn">חפש</button>
+    </div>
+    <div class="chip-list" id="cmp-search-results" role="group" aria-label="תוצאות חיפוש מיקום"></div>
+    <div class="cmp-method" id="cmp-method-row" hidden>
+      <label for="cmp-method">שיטת החישוב:</label>
+      <select id="cmp-method">
+        <option value="gc">הקו הקצר ביותר על פני כדור הארץ</option>
+        <option value="rhumb">כיוון קבוע לפי המפה</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 class="panel-title">המצפן</h2>
+    <div class="cmp-readout">
+      <p class="cmp-big" id="cmp-bearing-text">—</p>
+      <p class="cmp-sub" id="cmp-distance-text"></p>
+    </div>
+    <div class="cmp-wrap" id="cmp-wrap">
+      <svg class="cmp-dial" viewBox="-160 -170 320 330" role="img" aria-labelledby="cmp-bearing-text">
+        <polygon class="lubber" points="0,-166 -10,-146 10,-146"/>
+        <g id="cmp-rotor">
+          <circle class="ring" r="140"/>
+          <g id="cmp-ticks"></g>
+          <text class="card-l n" x="0" y="-112">צ</text>
+          <text class="card-l" x="112" y="0">מז</text>
+          <text class="card-l" x="0" y="112">ד</text>
+          <text class="card-l" x="-112" y="0">מע</text>
+          <g id="cmp-target" hidden>
+            <line class="target-line" x1="0" y1="0" x2="0" y2="-96"/>
+            <polygon class="target" points="0,-134 -13,-104 13,-104"/>
+          </g>
+          <circle class="hub" r="7"/>
+        </g>
+      </svg>
+      <p class="cmp-state" id="cmp-state" aria-live="polite"></p>
+      <button type="button" class="btn" id="cmp-start">הפעלת מצפן</button>
+      <p class="cmp-hint" id="cmp-hint">החזיקו את הטלפון שטוח, לאורך, והקישו על "הפעלת מצפן". סובבו את עצמכם עד שהחץ הזהוב יגיע לסימן שבראש העיגול.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 class="panel-title">חשוב לדעת</h2>
+    <ul class="cmp-notes">
+      <li>היעד הוא מקום המקדש בהר הבית. בירושלים עצמה החץ מכוון אליו, ומחוץ לה — אל ירושלים.</li>
+      <li>המצפן משתמש בחיישן המגנטי של הטלפון. הדף מתקן אוטומטית את ההפרש בין הצפון המגנטי לצפון האמיתי (לפי המודל המגנטי העולמי WMM).</li>
+      <li>מצפן של טלפון יכול לסטות בכמה מעלות. כדאי להתרחק ממתכת, מגנטים, רמקולים ומכשירי חשמל, ולהסיר כיסוי עם מגנט. אם הכיוון נראה לא יציב — לכייל: להזיז את הטלפון באוויר בתנועת "שמונה" כמה פעמים.</li>
+      <li>במחשב אין חיישן מצפן, ולכן מוצג רק הכיוון במעלות מהצפון.</li>
+      <li>מחוץ לארץ ישראל יש שתי דרכים לחשב את הכיוון, ובארצות רחוקות הן יכולות להיות שונות זו מזו בהרבה. איזו מהן לנהוג — שאלה לרב.</li>
+      <li>זהו כלי עזר. בבית כנסת קיים יש לנהוג לפי הכיוון שנקבע בו.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site">
+  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+</footer>
+
+<script src="shared.js?build={{ site.time | date: '%s' }}"></script>
+<script>
+/* =====================================================================
+   COMPASS TO JERUSALEM
+   - Target: the site of the Holy of Holies on the Temple Mount.
+   - Bearing: great-circle (shortest route) by default; outside Israel a rhumb-line
+     ("constant map direction") option is offered too.
+   - Heading: the phone's magnetic compass (DeviceOrientation API), corrected to TRUE north
+     with the World Magnetic Model 2025 (public domain, NOAA/NGA).
+   Nothing here costs money or needs a key: all computed in the browser.
+   ===================================================================== */
+const TEMPLE = { lat: 31.77804, lon: 35.23539 };
+const ALIGN_DEG = 5;
+
+// World Magnetic Model 2025 (NOAA/NGA, public domain) — magnetic declination only.
+// Coefficients per (n,m) in order n=1..12, m=0..n: g, h, dg/dt, dh/dt.
+const WMM2025_EPOCH = 2025.0;
+const WMM2025_COEF = [-29351.8,0,12,0,-1410.8,4545.4,9.7,-21.5,-2556.6,0,-11.6,0,2951.1,-3133.6,-5.2,-27.7,1649.3,-815.1,-8,-12.1,1361,0,-1.3,0,-2404.1,-56.6,-4.2,4,1243.8,237.5,0.4,-0.3,453.6,-549.5,-15.6,-4.1,895,0,-1.6,0,799.5,278.6,-2.4,-1.1,55.7,-133.9,-6,4.1,-281.1,212,5.6,1.6,12.1,-375.6,-7,-4.4,-233.2,0,0.6,0,368.9,45.4,1.4,-0.5,187.2,220.2,0,2.2,-138.7,-122.9,0.6,0.4,-142,43,2.2,1.7,20.9,106.1,0.9,1.9,64.4,0,-0.2,0,63.8,-18.4,-0.4,0.3,76.9,16.8,0.9,-1.6,-115.7,48.8,1.2,-0.4,-40.9,-59.8,-0.9,0.9,14.9,10.9,0.3,0.7,-60.7,72.7,0.9,0.9,79.5,0,-0,0,-77,-48.9,-0.1,0.6,-8.8,-14.4,-0.1,0.5,59.3,-1,0.5,-0.8,15.8,23.4,-0.1,0,2.5,-7.4,-0.8,-1,-11.1,-25.1,-0.8,0.6,14.2,-2.3,0.8,-0.2,23.2,0,-0.1,0,10.8,7.1,0.2,-0.2,-17.5,-12.6,0,0.5,2,11.4,0.5,-0.4,-21.7,-9.7,-0.1,0.4,16.9,12.7,0.3,-0.5,15,0.7,0.2,-0.6,-16.8,-5.2,-0,0.3,0.9,3.9,0.2,0.2,4.6,0,-0,0,7.8,-24.8,-0.1,-0.3,3,12.2,0.1,0.3,-0.2,8.3,0.3,-0.3,-2.5,-3.3,-0.3,0.3,-13.1,-5.2,0,0.2,2.4,7.2,0.3,-0.1,8.6,-0.6,-0.1,-0.2,-8.7,0.8,0.1,0.4,-12.9,10,-0.1,0.1,-1.3,0,0.1,0,-6.4,3.3,0,0,0.2,0,0.1,-0,2,2.4,0.1,-0.2,-1,5.3,-0,0.1,-0.6,-9.1,-0.3,-0.1,-0.9,0.4,0,0.1,1.5,-4.2,-0.1,0,0.9,-3.8,-0.1,-0.1,-2.7,0.9,-0,0.2,-3.9,-9.1,-0,-0,2.9,0,0,0,-1.5,0,-0,-0,-2.5,2.9,0,0.1,2.4,-0.6,0,-0,-0.6,0.2,0,0.1,-0.1,0.5,-0.1,-0,-0.6,-0.3,0,-0,-0.1,-1.2,-0,0.1,1.1,-1.7,-0.1,-0,-1,-2.9,-0.1,0,-0.2,-1.8,-0.1,0,2.6,-2.3,-0.1,0,-2,0,0,0,-0.2,-1.3,0,-0,0.3,0.7,-0,0,1.2,1,-0,-0.1,-1.3,-1.4,-0,0.1,0.6,-0,-0,-0,0.6,0.6,0.1,-0,0.5,-0.1,-0,-0,-0.1,0.8,0,0,-0.4,0.1,0,-0,-0.2,-1,-0.1,-0,-1.3,0.1,-0,0,-0.7,0.2,-0.1,-0.1];
+function wmmDeclination(glat, glon, decYear){
+  const N = 12, S = 13;
+  const M = () => Array.from({length:S}, () => new Array(S).fill(0));
+  const c = M(), cd = M(), k = M(), dp = M(), tc = M();
+  const p = new Array(S*S).fill(0), fn = new Array(S).fill(0), fm = new Array(S).fill(0);
+  let i = 0;
+  for(let n = 1; n <= N; n++) for(let m = 0; m <= n; m++){
+    const g = WMM2025_COEF[i++], h = WMM2025_COEF[i++], dg = WMM2025_COEF[i++], dh = WMM2025_COEF[i++];
+    c[m][n] = g; cd[m][n] = dg;
+    if(m !== 0){ c[n][m-1] = h; cd[n][m-1] = dh; }
+  }
+  p[0] = 1;
+  for(let n = 1; n <= N; n++){
+    p[n] = p[n-1] * (2*n - 1) / n;
+    let j = 2;
+    for(let m = 0; m <= n; m++){
+      k[m][n] = ((n-1)*(n-1) - m*m) / ((2*n-1)*(2*n-3));
+      if(m > 0){
+        p[n + m*S] = p[n + (m-1)*S] * Math.sqrt((n - m + 1) * j / (n + m));
+        j = 1;
+        c[n][m-1] *= p[n + m*S]; cd[n][m-1] *= p[n + m*S];
+      }
+      c[m][n] *= p[n + m*S]; cd[m][n] *= p[n + m*S];
+    }
+    fn[n] = n + 1; fm[n] = n;
+  }
+  k[1][1] = 0;
+  const dt = decYear - WMM2025_EPOCH;
+  const a = 6378.137, b = 6356.7523142, re = 6371.2, a2 = a*a, b2 = b*b, c2 = a2 - b2, a4 = a2*a2, b4 = b2*b2, c4 = a4 - b4;
+  const alt = 0;
+  const rlat = glat * Math.PI/180, rlon = glon * Math.PI/180;
+  const srlat = Math.sin(rlat), crlat = Math.cos(rlat), srlat2 = srlat*srlat, crlat2 = crlat*crlat;
+  const sp = new Array(S).fill(0), cp = new Array(S).fill(0), pp = new Array(S).fill(0);
+  cp[0] = pp[0] = 1; sp[1] = Math.sin(rlon); cp[1] = Math.cos(rlon);
+  const q = Math.sqrt(a2 - c2*srlat2), q1 = alt*q, q2 = ((q1+a2)/(q1+b2))**2;
+  const ct = srlat / Math.sqrt(q2*crlat2 + srlat2), st = Math.sqrt(1 - ct*ct);
+  const r = Math.sqrt(alt*alt + 2*q1 + (a4 - c4*srlat2)/(q*q));
+  const d = Math.sqrt(a2*crlat2 + b2*srlat2), ca = (alt + d)/r, sa = c2*crlat*srlat/(r*d);
+  for(let m = 2; m <= N; m++){ sp[m] = sp[1]*cp[m-1] + cp[1]*sp[m-1]; cp[m] = cp[1]*cp[m-1] - sp[1]*sp[m-1]; }
+  const aor = re/r; let ar = aor*aor, br = 0, bt = 0, bp = 0, bpp = 0;
+  for(let n = 1; n <= N; n++){
+    ar *= aor;
+    for(let m = 0; m <= n; m++){
+      if(n === m){ p[n + m*S] = st * p[n-1 + (m-1)*S]; dp[m][n] = st*dp[m-1][n-1] + ct*p[n-1 + (m-1)*S]; }
+      else if(n === 1 && m === 0){ p[n + m*S] = ct * p[n-1 + m*S]; dp[m][n] = ct*dp[m][n-1] - st*p[n-1 + m*S]; }
+      else if(n > 1 && n !== m){
+        if(m > n-2){ p[n-2 + m*S] = 0; dp[m][n-2] = 0; }
+        p[n + m*S] = ct*p[n-1 + m*S] - k[m][n]*p[n-2 + m*S];
+        dp[m][n] = ct*dp[m][n-1] - st*p[n-1 + m*S] - k[m][n]*dp[m][n-2];
+      }
+      tc[m][n] = c[m][n] + dt*cd[m][n];
+      if(m !== 0) tc[n][m-1] = c[n][m-1] + dt*cd[n][m-1];
+      const par = ar * p[n + m*S];
+      let t1, t2;
+      if(m === 0){ t1 = tc[m][n]*cp[m]; t2 = tc[m][n]*sp[m]; }
+      else { t1 = tc[m][n]*cp[m] + tc[n][m-1]*sp[m]; t2 = tc[m][n]*sp[m] - tc[n][m-1]*cp[m]; }
+      bt -= ar*t1*dp[m][n]; bp += fm[m]*t2*par; br += fn[n]*t1*par;
+      if(st === 0 && m === 1){ pp[n] = n === 1 ? pp[n-1] : ct*pp[n-1] - k[m][n]*pp[n-2]; bpp += fm[m]*t2*ar*pp[n]; }
+    }
+  }
+  bp = st === 0 ? bpp : bp/st;
+  const bx = -bt*ca - br*sa, by = bp;
+  return Math.atan2(by, bx) * 180/Math.PI;
+}
+
+(function(){
+  const $ = id => document.getElementById(id);
+  const rad = d => d * Math.PI / 180, deg = r => r * 180 / Math.PI;
+  const norm = a => ((a % 360) + 360) % 360;
+  const store = { get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }, set(k, v){ try{ localStorage.setItem(k, v); }catch(e){} } };
+
+  function greatCircleBearing(lat1, lon1, lat2, lon2){
+    const p1 = rad(lat1), p2 = rad(lat2), dl = rad(lon2 - lon1);
+    return norm(deg(Math.atan2(Math.sin(dl) * Math.cos(p2), Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl))));
+  }
+  function rhumbBearing(lat1, lon1, lat2, lon2){
+    const p1 = rad(lat1), p2 = rad(lat2);
+    let dl = rad(lon2 - lon1);
+    if(Math.abs(dl) > Math.PI) dl = dl > 0 ? -(2 * Math.PI - dl) : (2 * Math.PI + dl);
+    const dpsi = Math.log(Math.tan(Math.PI / 4 + p2 / 2) / Math.tan(Math.PI / 4 + p1 / 2));
+    return norm(deg(Math.atan2(dl, dpsi)));
+  }
+  function distanceKm(lat1, lon1, lat2, lon2){
+    const p1 = rad(lat1), p2 = rad(lat2), dp = p2 - p1, dl = rad(lon2 - lon1);
+    const h = Math.sin(dp / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2;
+    return 2 * 6371.0088 * Math.asin(Math.min(1, Math.sqrt(h)));
+  }
+  function directionName(b){
+    const names = ['צפון', 'צפון-מזרח', 'מזרח', 'דרום-מזרח', 'דרום', 'דרום-מערב', 'מערב', 'צפון-מערב'];
+    return names[Math.round(norm(b) / 45) % 8];
+  }
+  function decimalYear(d){
+    const y = d.getUTCFullYear(), s = Date.UTC(y, 0, 1), e = Date.UTC(y + 1, 0, 1);
+    return y + (d.getTime() - s) / (e - s);
+  }
+
+  /* ---------- state ---------- */
+  let loc = null;          // {lat, lon, name}
+  let bearing = null;      // true bearing to the target
+  let declination = 0;     // magnetic → true correction for this location
+  let heading = null;      // current TRUE heading of the phone's top
+  let aligned = false, gotSensor = false, listening = false;
+
+  /* ---------- dial ---------- */
+  (function buildTicks(){
+    const g = $('cmp-ticks'); let html = '';
+    for(let a = 0; a < 360; a += 10){
+      const major = a % 90 === 0, r1 = major ? 124 : 130;
+      const x1 = r1 * Math.sin(rad(a)), y1 = -r1 * Math.cos(rad(a)), x2 = 138 * Math.sin(rad(a)), y2 = -138 * Math.cos(rad(a));
+      html += `<line class="tick${major ? ' major' : ''}" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;
+    }
+    g.innerHTML = html;
+  })();
+
+  function draw(){
+    const rotor = $('cmp-rotor'), target = $('cmp-target');
+    const h = heading == null ? 0 : heading;
+    rotor.setAttribute('transform', `rotate(${(-h).toFixed(1)})`);
+    // keep the N/E/S/W letters upright while the dial turns
+    rotor.querySelectorAll('.card-l').forEach(t => t.setAttribute('transform', `rotate(${h.toFixed(1)} ${t.getAttribute('x')} ${t.getAttribute('y')})`));
+    if(bearing == null){ target.setAttribute('hidden', ''); return; }
+    target.removeAttribute('hidden');
+    target.setAttribute('transform', `rotate(${bearing.toFixed(1)})`);
+    if(heading == null) return;
+    let diff = norm(bearing - heading); if(diff > 180) diff -= 360;
+    const nowAligned = Math.abs(diff) <= ALIGN_DEG;
+    if(nowAligned && !aligned){ try{ navigator.vibrate && navigator.vibrate(60); }catch(e){} }
+    aligned = nowAligned;
+    $('cmp-wrap').classList.toggle('aligned', aligned);
+    $('cmp-state').textContent = aligned ? '✓ אתם מכוונים לירושלים'
+      : (diff > 0 ? `סובבו ימינה ${Math.round(Math.abs(diff))}°` : `סובבו שמאלה ${Math.round(Math.abs(diff))}°`);
+  }
+
+  /* ---------- location → bearing ---------- */
+  function recompute(){
+    if(!loc) return;
+    const dist = distanceKm(loc.lat, loc.lon, TEMPLE.lat, TEMPLE.lon);
+    const far = dist > 300;
+    $('cmp-method-row').hidden = !far;
+    const method = far ? $('cmp-method').value : 'gc';
+    bearing = method === 'rhumb' ? rhumbBearing(loc.lat, loc.lon, TEMPLE.lat, TEMPLE.lon) : greatCircleBearing(loc.lat, loc.lon, TEMPLE.lat, TEMPLE.lon);
+    try{ declination = wmmDeclination(loc.lat, loc.lon, decimalYear(new Date())); }catch(e){ declination = 0; }
+    if(dist < 0.15){
+      $('cmp-bearing-text').textContent = 'אתם בהר הבית';
+      $('cmp-distance-text').textContent = '';
+      bearing = null;
+    }else{
+      $('cmp-bearing-text').textContent = `${directionName(bearing)} · ${Math.round(bearing)}° מהצפון`;
+      const dTxt = dist < 10 ? dist.toFixed(1) : Math.round(dist).toLocaleString('he-IL');
+      $('cmp-distance-text').textContent = `המרחק למקום המקדש: ${dTxt} ק״מ`;
+    }
+    draw();
+  }
+  function setLocation(l, source){
+    loc = l;
+    $('cmp-location-desc').textContent = `מיקום: ${l.name}` + (source ? ' — ' + source : '');
+    recompute();
+  }
+  $('cmp-method').value = store.get('cmpMethod') === 'rhumb' ? 'rhumb' : 'gc';
+  $('cmp-method').addEventListener('change', () => { store.set('cmpMethod', $('cmp-method').value); recompute(); });
+
+  async function reverseName(lat, lon){
+    try{
+      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&accept-language=he&zoom=10`);
+      if(!res.ok) throw 0;
+      const data = await res.json(), a = data.address || {};
+      return a.city || a.town || a.village || a.county || `${lat.toFixed(3)}, ${lon.toFixed(3)}`;
+    }catch(e){ return `${lat.toFixed(3)}, ${lon.toFixed(3)}`; }
+  }
+  async function autoLocate(){
+    $('cmp-location-desc').textContent = 'מזהה מיקום…';
+    try{
+      const pos = await getPositionOnce(6000);
+      const lat = pos.coords.latitude, lon = pos.coords.longitude;
+      setLocation({ lat, lon, name: `${lat.toFixed(4)}, ${lon.toFixed(4)}` }, 'זוהה אוטומטית (GPS)');
+      reverseName(lat, lon).then(n => { if(loc && loc.lat === lat && loc.lon === lon) setLocation({ lat, lon, name: n }, 'זוהה אוטומטית (GPS)'); });
+      return;
+    }catch(e){}
+    try{
+      const res = await fetch('https://ipwho.is/');
+      if(res.ok){
+        const d = await res.json();
+        if(d && d.success !== false && d.latitude && d.longitude){
+          setLocation({ lat: d.latitude, lon: d.longitude, name: [d.city, d.country].filter(Boolean).join(', ') || 'לפי החיבור לאינטרנט' }, 'משוער לפי כתובת ה-IP — לדיוק טוב יותר אשרו גישה למיקום');
+          return;
+        }
+      }
+    }catch(e){}
+    $('cmp-location-desc').textContent = 'לא זוהה מיקום. אפשר לאשר גישה למיקום או לחפש עיר.';
+  }
+  async function search(){
+    const q = $('cmp-search-input').value.trim(), out = $('cmp-search-results');
+    out.innerHTML = ''; if(!q) return;
+    const chip = t => { const s = document.createElement('span'); s.className = 'chip'; s.style.cursor = 'default'; s.textContent = t; out.appendChild(s); };
+    chip('מחפש…');
+    try{
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}&limit=5&accept-language=he`);
+      if(!res.ok) throw 0;
+      const data = await res.json(); out.innerHTML = '';
+      if(!data.length){ chip('לא נמצאו תוצאות'); return; }
+      data.forEach(p => {
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = p.display_name;
+        b.addEventListener('click', () => { setLocation({ lat: parseFloat(p.lat), lon: parseFloat(p.lon), name: p.display_name }, 'נבחר בחיפוש'); out.innerHTML = ''; $('cmp-search-input').value = ''; });
+        out.appendChild(b);
+      });
+    }catch(e){ out.innerHTML = ''; chip('שגיאה בחיפוש'); }
+  }
+  $('cmp-use-my-location').addEventListener('click', autoLocate);
+  $('cmp-search-btn').addEventListener('click', search);
+  $('cmp-search-input').addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); search(); } });
+
+  /* ---------- compass sensor ---------- */
+  function screenAngle(){
+    try{ if(screen.orientation && typeof screen.orientation.angle === 'number') return screen.orientation.angle; }catch(e){}
+    return typeof window.orientation === 'number' ? window.orientation : 0;
+  }
+  let smooth = null;
+  function setMagneticHeading(mag, tilted){
+    gotSensor = true;
+    const t = norm(mag + declination);
+    if(smooth == null) smooth = t;
+    else { let d = norm(t - smooth); if(d > 180) d -= 360; smooth = norm(smooth + d * 0.35); }
+    heading = smooth;
+    $('cmp-hint').textContent = tilted ? 'החזיקו את הטלפון שטוח ככל האפשר — כך המצפן מדויק יותר.' : 'סובבו את עצמכם עד שהחץ הזהוב יגיע לסימן שבראש העיגול.';
+    draw();
+  }
+  function onIOS(e){
+    if(typeof e.webkitCompassHeading !== 'number' || isNaN(e.webkitCompassHeading)) return;
+    setMagneticHeading(e.webkitCompassHeading, Math.abs(e.beta || 0) > 40 || Math.abs(e.gamma || 0) > 40);
+    if(typeof e.webkitCompassAccuracy === 'number' && (e.webkitCompassAccuracy < 0 || e.webkitCompassAccuracy > 20)){
+      $('cmp-hint').textContent = 'המצפן צריך כיול: הזיזו את הטלפון באוויר בתנועת "שמונה" כמה פעמים.';
+    }
+  }
+  function onAbsolute(e){
+    if(e.alpha == null) return;
+    if(e.type === 'deviceorientation' && !e.absolute) return;
+    setMagneticHeading(norm(360 - e.alpha + screenAngle()), Math.abs(e.beta || 0) > 40 || Math.abs(e.gamma || 0) > 40);
+  }
+  async function startCompass(){
+    if(listening) return;
+    const DOE = window.DeviceOrientationEvent;
+    if(!DOE){ noSensor(); return; }
+    if(typeof DOE.requestPermission === 'function'){
+      try{
+        const r = await DOE.requestPermission();
+        if(r !== 'granted'){ $('cmp-state').textContent = 'לא ניתן אישור לחיישן התנועה. אפשר לאשר בהגדרות הדפדפן ולנסות שוב.'; return; }
+      }catch(e){ $('cmp-state').textContent = 'לא ניתן להפעיל את המצפן במכשיר הזה.'; return; }
+    }
+    listening = true;
+    $('cmp-start').hidden = true;
+    $('cmp-state').textContent = 'מפעיל מצפן…';
+    if('ondeviceorientationabsolute' in window) window.addEventListener('deviceorientationabsolute', onAbsolute);
+    else window.addEventListener('deviceorientation', onAbsolute);
+    window.addEventListener('deviceorientation', onIOS);
+    setTimeout(() => { if(!gotSensor) noSensor(); }, 3000);
+  }
+  function noSensor(){
+    $('cmp-start').hidden = true;
+    heading = null; draw();
+    $('cmp-wrap').classList.remove('aligned');
+    $('cmp-state').textContent = 'לא נמצא חיישן מצפן במכשיר הזה.';
+    $('cmp-hint').textContent = 'העיגול מוצג כשהצפון למעלה, והחץ הזהוב מראה את כיוון ירושלים ביחס לצפון.';
+  }
+  $('cmp-start').addEventListener('click', startCompass);
+  // Android/desktop browsers that need no permission prompt: start straight away
+  if(window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') startCompass();
+
+  draw();
+  autoLocate();
+})();
+
+/* shared page furniture: header date, WhatsApp button, Shabbat / Yom Tov block */
+initHeaderDate();
+initWhatsappFloat('מצפן לכיוון ירושלים ומקום המקדש — לפי המיקום שלך:');
+startSiteGating();
+</script>
+{% include accessibility-widget.html %}</body>
+</html>
