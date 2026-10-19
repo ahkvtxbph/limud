@@ -34,6 +34,27 @@ permalink: /tehillim.html
 }
 </script>
 {% include head-assets.html %}
+<style>
+  /* rules used only by the Tehillim page */
+  #tehillim-section nav.modes button[data-mode="name"]{grid-column:1 / -1;}
+  @media (min-width:640px){
+    #tehillim-section nav.modes{grid-template-columns:repeat(5,1fr);}
+    #tehillim-section nav.modes button[data-mode="name"]{grid-column:auto;}
+  }
+  #name-input{flex:1 1 14rem; min-width:0;}
+  .name-letters{display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.8rem;}
+  .name-letters span{display:inline-flex; align-items:center; justify-content:center; min-width:2.2rem; height:2.2rem; padding:0 .4rem;
+    border:1px solid var(--line-strong); border-radius:8px; font:700 1.15rem var(--text-font); color:var(--blue); background:var(--white);}
+  .name-letters span.nshm{border-color:var(--gold); color:var(--gold-dark); background:#FBF6EA;}
+  .name-letters .sep{border:0; background:none; min-width:.6rem; padding:0; color:var(--muted);}
+  .letter-head{font-size:1.15rem; color:var(--blue); font-weight:800; margin:1.3rem 0 .4rem; padding-top:.8rem; border-top:1px solid var(--line);}
+  .letter-head:first-of-type{border-top:0; padding-top:0; margin-top:.4rem;}
+  .letter-head small{color:var(--muted); font-weight:600; font-size:.9rem; margin-inline-start:.4rem;}
+  .letter-head.nshm-start{border-top:2px solid var(--gold);}
+  .letter-pick-title{font-size:1.02rem; color:var(--blue); font-weight:800; margin:1.3rem 0 .2rem; padding-top:1rem; border-top:1px solid var(--line);}
+  #letter-chips .chip{min-width:2.9rem; justify-content:center; font:700 1.15rem var(--text-font);}
+  #letter-chips .chip.nshm-chip{font-family:var(--font); font-size:1rem; border-color:var(--gold); color:var(--gold-dark);}
+</style>
 </head>
 <body>
 <a href="#main" class="skip-link">דלג לתוכן הראשי</a>
@@ -48,7 +69,7 @@ permalink: /tehillim.html
   <div class="page-intro">
     <nav class="crumbs" aria-label="מיקום באתר"><ol><li><a href="/">ראשי</a></li><li>תפילה ותהילים</li><li aria-current="page">תהילים</li></ol></nav>
     <h1 class="page-title">תהילים</h1>
-    <p class="page-sub">קריאת תהילים — לפי יום בשבוע, תאריך עברי, באקראי, או בבחירה ידנית.</p>
+    <p class="page-sub">קריאת תהילים — לפי יום בשבוע, תאריך עברי, באקראי, בבחירה ידנית, או לפי אותיות פרק קי״ט — שם, נשמ״ה או אות אחת.</p>
   </div>
 
   <section id="tehillim-section">
@@ -57,6 +78,7 @@ permalink: /tehillim.html
       <button data-mode="hebdate"><span class="num">ב׳</span>לפי תאריך עברי</button>
       <button data-mode="random"><span class="num">ג׳</span>פרק רנדומלי</button>
       <button data-mode="manual"><span class="num">ד׳</span>בחירה ידנית</button>
+      <button data-mode="name"><span class="num">ה׳</span>לפי אותיות — שם ונשמ״ה</button>
     </nav>
 
     <section class="panel" id="panel-weekday">
@@ -98,6 +120,21 @@ permalink: /tehillim.html
         <button class="btn secondary" id="manual-prev-btn" aria-label="פרק קודם">‹ פרק קודם</button>
         <button class="btn secondary" id="manual-next-btn" aria-label="פרק הבא">פרק הבא ›</button>
       </div>
+    </section>
+
+    <section class="panel" id="panel-name" style="display:none;">
+      <h2 class="panel-title">תהילים לפי אותיות השם ונשמ״ה</h2>
+      <p class="panel-desc">לכל אות בשם אומרים את שמונת הפסוקים של אותה אות בפרק קי״ט, ולאחר מכן את פסוקי האותיות נ־ש־מ־ה. יש לכתוב את השם כפי שנוהגים לומר אותו — למשל "יוסף בן יעקב" או "שרה בת רחל".</p>
+      <div class="controls-row">
+        <input type="text" id="name-input" placeholder="השם בעברית…" aria-label="השם לאמירת התהילים" autocomplete="off" dir="rtl">
+        <button class="btn" id="name-load">הצג פסוקים</button>
+      </div>
+      <label class="check" style="margin-top:.7rem;"><input type="checkbox" id="name-neshama" checked> להוסיף בסוף את אותיות נשמ״ה</label>
+      <div class="name-letters" id="name-letters" aria-label="סדר האותיות"></div>
+      <p class="panel-desc" id="name-msg" style="margin:.6rem 0 0;" aria-live="polite"></p>
+      <h3 class="letter-pick-title">או: אות אחת מפרק קי״ט</h3>
+      <p class="panel-desc" style="margin:.2rem 0 0;">בחרו אות כדי לקרוא את שמונת הפסוקים שלה, או את פסוקי נשמ״ה בלבד.</p>
+      <div class="chip-list" id="letter-chips" role="group" aria-label="בחירת אות מפרק קי״ט"></div>
     </section>
 
     <div id="reader" aria-live="polite"></div>
@@ -211,7 +248,7 @@ document.querySelectorAll('#tehillim-section nav.modes button').forEach(btn=>{
     document.querySelectorAll('#tehillim-section nav.modes button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     currentTehillimMode = btn.dataset.mode;
-    ['weekday','hebdate','random','manual'].forEach(m=>{
+    ['weekday','hebdate','random','manual','name'].forEach(m=>{
       document.getElementById('panel-'+m).style.display = (m===currentTehillimMode? '' : 'none');
     });
     autoLoadForMode(currentTehillimMode);
@@ -300,6 +337,125 @@ function autoLoadForMode(mode, opts){
   } else if(mode === 'manual'){
     const c = parseInt(document.getElementById('manual-select').value, 10);
     renderChapters([c], {skipScroll});
+  } else if(mode === 'name'){
+    if(currentLetterFromLink){ const l = currentLetterFromLink; currentLetterFromLink = null; renderByLetter(l, {skipScroll}); }
+    else renderByName({skipScroll});
+  }
+}
+
+/* ---------- Tehillim by the letters of a name (+ נשמ״ה), from Psalm 119 ----------
+   Psalm 119 has 22 sections of 8 verses, one per letter in alphabetical order:
+   letter #k (0-based) = verses 8k+1 … 8k+8. Final forms count as their regular letter. */
+const PS119_LETTERS = 'אבגדהוזחטיכלמנסעפצקרשת';
+const PS119_LETTER_NAMES = ['אל״ף','בי״ת','גימ״ל','דל״ת','ה״א','וי״ו','זי״ן','חי״ת','טי״ת','יו״ד','כ״ף','למ״ד','מ״ם','נו״ן','סמ״ך','עי״ן','פ״א','צד״י','קו״ף','רי״ש','שי״ן','תי״ו'];
+const FINAL_TO_REGULAR = { 'ך':'כ', 'ם':'מ', 'ן':'נ', 'ף':'פ', 'ץ':'צ' };
+let ps119Cache = null;
+let currentLetterFromLink = null;
+function nameLetters(text){
+  return [...String(text || '').replace(/[\u0591-\u05C7]/g, '')]
+    .map(ch => FINAL_TO_REGULAR[ch] || ch)
+    .filter(ch => PS119_LETTERS.includes(ch));
+}
+function showNameLetters(letters, withNeshama){
+  const wrap = document.getElementById('name-letters');
+  wrap.innerHTML = '';
+  letters.forEach(l => { const s = document.createElement('span'); s.textContent = l; wrap.appendChild(s); });
+  if(withNeshama && letters.length){
+    const sep = document.createElement('span'); sep.className = 'sep'; sep.textContent = '·'; wrap.appendChild(sep);
+    ['נ','ש','מ','ה'].forEach(l => { const s = document.createElement('span'); s.className = 'nshm'; s.textContent = l; wrap.appendChild(s); });
+  }
+}
+async function renderByName(opts){
+  const skipScroll = opts && opts.skipScroll;
+  const raw = document.getElementById('name-input').value.trim();
+  const withNeshama = document.getElementById('name-neshama').checked;
+  const letters = nameLetters(raw);
+  const msg = document.getElementById('name-msg');
+  const reader = document.getElementById('reader');
+  showNameLetters(letters, withNeshama);
+  if(!letters.length){
+    msg.textContent = raw ? 'לא נמצאו אותיות עבריות בשם — יש לכתוב את השם באותיות עבריות.' : '';
+    reader.innerHTML = raw ? '' : '<div class="chapter-card"><p class="panel-desc" style="margin:0;">כתבו את השם בתיבה שלמעלה והקישו על "הצג פסוקים", או בחרו אות אחת מהרשימה.</p></div>';
+    return;
+  }
+  msg.textContent = '';
+  setLetterChipActive(null);
+  const seq = letters.map(l => ({ l, nshm:false }));
+  if(withNeshama) ['נ','ש','מ','ה'].forEach((l, i) => seq.push({ l, nshm:true, first: i === 0 }));
+  const title = raw.replace(/[<>&"]/g, '');
+  const shareUrl = location.href.split('#')[0].split('?')[0] + '?shem=' + encodeURIComponent(raw) + (withNeshama ? '' : '&nshm=0');
+  renderPs119Sequence(seq, title, shareUrl, `תהילים לפי אותיות השם${withNeshama ? ' ונשמ״ה' : ''} — ${title}:`, {skipScroll});
+}
+
+// a single letter of Psalm 119 (or נשמ״ה alone)
+function renderByLetter(letter, opts){
+  const skipScroll = opts && opts.skipScroll;
+  setLetterChipActive(letter);
+  document.getElementById('name-letters').innerHTML = '';
+  document.getElementById('name-msg').textContent = '';
+  const base = location.href.split('#')[0].split('?')[0];
+  if(letter === 'nshm'){
+    const seq = ['נ','ש','מ','ה'].map(l => ({ l, nshm:true }));
+    renderPs119Sequence(seq, 'נשמ״ה', base + '?ot=nshm', 'תהילים — פסוקי נשמ״ה מפרק קי״ט:', {skipScroll});
+    return;
+  }
+  const k = PS119_LETTERS.indexOf(letter);
+  if(k < 0) return;
+  renderPs119Sequence([{ l: letter, nshm:false }], `אות ${PS119_LETTER_NAMES[k]}`, base + '?ot=' + encodeURIComponent(letter), `תהילים קי״ט — אות ${PS119_LETTER_NAMES[k]}:`, {skipScroll});
+}
+
+function setLetterChipActive(letter){
+  document.querySelectorAll('#letter-chips .chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.letter === letter ? 'true' : 'false'));
+}
+
+async function renderPs119Sequence(seq, title, shareUrl, shareText, opts){
+  const skipScroll = opts && opts.skipScroll;
+  const reader = document.getElementById('reader');
+  const card = document.createElement('article');
+  card.className = 'chapter-card';
+  card.id = 'by-name';
+  card.innerHTML = `
+    <div class="chapter-head">
+      <h2>${title}</h2>
+      <div class="share-row"></div>
+      <span class="gem">תהלים קי״ט</span>
+    </div>
+    <div class="chapter-loading">טוען פסוקים…</div>`;
+  card.querySelector('.chapter-head .share-row').replaceWith(buildShareBar(shareUrl, shareText));
+  reader.innerHTML = '';
+  reader.appendChild(card);
+  if(!skipScroll) reader.scrollIntoView({behavior:'smooth', block:'start'});
+  const body = card.querySelector('.chapter-loading');
+  try{
+    if(!ps119Cache){
+      const v = await fetchChapter(119);
+      if(!v || v.length < 176) throw new Error('short');
+      ps119Cache = v;
+    }
+    if(!card.isConnected) return;
+    const frag = document.createDocumentFragment();
+    seq.forEach(item => {
+      const k = PS119_LETTERS.indexOf(item.l);
+      const h = document.createElement('h3');
+      h.className = 'letter-head' + (item.first ? ' nshm-start' : '');
+      h.innerHTML = `${item.first ? 'נשמ״ה — ' : ''}אות ${PS119_LETTER_NAMES[k]}<small>פסוקים ${hebNum(8*k+1)}–${hebNum(8*k+8)}</small>`;
+      frag.appendChild(h);
+      const versesDiv = document.createElement('div');
+      versesDiv.className = 'verses';
+      for(let i = 8*k; i < 8*k + 8; i++){
+        const v = ps119Cache[i];
+        const span = document.createElement('span');
+        span.className = 'v';
+        span.innerHTML = `<span class="v-num">${i+1}</span>${stripTags(Array.isArray(v) ? v.join(' ') : v)}`;
+        versesDiv.appendChild(span);
+        versesDiv.appendChild(document.createTextNode(' '));
+      }
+      frag.appendChild(versesDiv);
+    });
+    body.replaceWith(frag);
+  }catch(e){
+    body.className = 'chapter-error';
+    body.innerHTML = 'לא ניתן היה לטעון את הפסוקים כרגע. אפשר לקרוא את פרק קי״ט ישירות ב<a href="https://www.sefaria.org/Psalms.119?lang=he" target="_blank" rel="noopener">ספריא</a>.';
   }
 }
 
@@ -367,6 +523,47 @@ document.getElementById('manual-load').addEventListener('click', ()=> autoLoadFo
 const updateManualNav = wireSelectNav('manual-select', 'manual-prev-btn', 'manual-next-btn', ()=> autoLoadForMode('manual'));
 
 updateManualNav();
+
+document.getElementById('name-load').addEventListener('click', ()=> renderByName());
+document.getElementById('name-input').addEventListener('keydown', e=>{ if(e.key === 'Enter'){ e.preventDefault(); renderByName(); } });
+document.getElementById('name-input').addEventListener('input', ()=> showNameLetters(nameLetters(document.getElementById('name-input').value), document.getElementById('name-neshama').checked));
+document.getElementById('name-neshama').addEventListener('change', ()=>{ if(nameLetters(document.getElementById('name-input').value).length) renderByName({skipScroll:true}); });
+
+(function buildLetterChips(){
+  const wrap = document.getElementById('letter-chips');
+  [...PS119_LETTERS].forEach((l, k) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.dataset.letter = l; b.textContent = l;
+    b.setAttribute('aria-label', 'אות ' + PS119_LETTER_NAMES[k]); b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => renderByLetter(l));
+    wrap.appendChild(b);
+  });
+  const n = document.createElement('button');
+  n.type = 'button'; n.className = 'chip nshm-chip'; n.dataset.letter = 'nshm'; n.textContent = 'נשמ״ה'; n.setAttribute('aria-pressed', 'false');
+  n.addEventListener('click', () => renderByLetter('nshm'));
+  wrap.appendChild(n);
+})();
+
+// a shared link (?shem=… or ?ot=…) opens this mode directly
+(function openFromLink(){
+  const params = new URLSearchParams(location.search);
+  const ot = params.get('ot');
+  if(ot){
+    const letter = ot === 'nshm' ? 'nshm' : (FINAL_TO_REGULAR[ot] || ot);
+    if(letter === 'nshm' || PS119_LETTERS.includes(letter)){
+      currentLetterFromLink = letter;
+      const b = document.querySelector('#tehillim-section nav.modes button[data-mode="name"]');
+      if(b) b.click();
+    }
+    return;
+  }
+  const shem = params.get('shem');
+  if(!shem) return;
+  document.getElementById('name-input').value = shem.slice(0, 80);
+  document.getElementById('name-neshama').checked = params.get('nshm') !== '0';
+  const btn = document.querySelector('#tehillim-section nav.modes button[data-mode="name"]');
+  if(btn) btn.click();
+})();
 
 
 /* =====================================================================
