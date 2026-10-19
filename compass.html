@@ -379,6 +379,7 @@ function wmmDeclination(glat, glon, decYear){
   }
   let smooth = null;
   function setMagneticHeading(mag, tilted){
+    if(!gotSensor){ $('cmp-start').hidden = true; listening = true; }
     gotSensor = true;
     const t = norm(mag + declination);
     if(smooth == null) smooth = t;
@@ -399,22 +400,37 @@ function wmmDeclination(glat, glon, decYear){
     if(e.type === 'deviceorientation' && !e.absolute) return;
     setMagneticHeading(norm(360 - e.alpha + screenAngle()), Math.abs(e.beta || 0) > 40 || Math.abs(e.gamma || 0) > 40);
   }
-  async function startCompass(){
+  let attached = false;
+  function attachListeners(){
+    if(attached) return;
+    attached = true;
+    if('ondeviceorientationabsolute' in window) window.addEventListener('deviceorientationabsolute', onAbsolute);
+    else window.addEventListener('deviceorientation', onAbsolute);
+    window.addEventListener('deviceorientation', onIOS);
+  }
+  // called by a click on "הפעלת מצפן" (needed on iPhone, where the permission prompt
+  // may only open from a tap) — or automatically on load where no prompt is needed
+  async function startCompass(fromClick){
     if(listening) return;
     const DOE = window.DeviceOrientationEvent;
     if(!DOE){ noSensor(); return; }
     if(typeof DOE.requestPermission === 'function'){
       try{
         const r = await DOE.requestPermission();
-        if(r !== 'granted'){ $('cmp-state').textContent = 'לא ניתן אישור לחיישן התנועה. אפשר לאשר בהגדרות הדפדפן ולנסות שוב.'; return; }
-      }catch(e){ $('cmp-state').textContent = 'לא ניתן להפעיל את המצפן במכשיר הזה.'; return; }
+        if(r !== 'granted'){
+          if(fromClick) $('cmp-state').textContent = 'לא ניתן אישור לחיישן התנועה. אפשר לאשר בהגדרות הדפדפן ולנסות שוב.';
+          return;
+        }
+      }catch(e){
+        // without a tap the browser refuses to ask — keep the button for the user to tap
+        if(fromClick) $('cmp-state').textContent = 'לא ניתן להפעיל את המצפן במכשיר הזה.';
+        return;
+      }
     }
     listening = true;
     $('cmp-start').hidden = true;
-    $('cmp-state').textContent = 'מפעיל מצפן…';
-    if('ondeviceorientationabsolute' in window) window.addEventListener('deviceorientationabsolute', onAbsolute);
-    else window.addEventListener('deviceorientation', onAbsolute);
-    window.addEventListener('deviceorientation', onIOS);
+    if(!gotSensor) $('cmp-state').textContent = 'מפעיל מצפן…';
+    attachListeners();
     setTimeout(() => { if(!gotSensor) noSensor(); }, 3000);
   }
   function noSensor(){
@@ -424,9 +440,11 @@ function wmmDeclination(glat, glon, decYear){
     $('cmp-state').textContent = 'לא נמצא חיישן מצפן במכשיר הזה.';
     $('cmp-hint').textContent = 'העיגול מוצג כשהצפון למעלה, והחץ הזהוב מראה את כיוון ירושלים ביחס לצפון.';
   }
-  $('cmp-start').addEventListener('click', startCompass);
-  // Android/desktop browsers that need no permission prompt: start straight away
-  if(window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') startCompass();
+  $('cmp-start').addEventListener('click', () => startCompass(true));
+  // Start by itself wherever the browser allows it (Android, including browsers that have a
+  // permission function but grant it without a tap). Listening right away is harmless: if the
+  // sensor answers, the button disappears on its own; otherwise it stays for a tap (iPhone).
+  if(window.DeviceOrientationEvent){ attachListeners(); startCompass(false); }
 
   draw();
   autoLocate();
