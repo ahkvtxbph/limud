@@ -168,6 +168,7 @@ document.querySelectorAll('#mishnayot-section nav.modes button').forEach(btn=>{
     ['daily','random','manual'].forEach(m=>{
       document.getElementById('msh-panel-'+m).style.display = (m===currentMshMode? '' : 'none');
     });
+    if(currentMshMode === 'manual') document.getElementById('msh-reader').innerHTML = '<p class="chapter-loading">טוענים את הפרק…</p>';
     autoLoadForModeMsh(currentMshMode);
   });
 });
@@ -511,7 +512,11 @@ document.getElementById('msh-daily-load').addEventListener('click', ()=> renderD
 
 document.getElementById('msh-random-load').addEventListener('click', ()=> renderRandomMishnah());
 
-buildPerekSelect();
+// if the manual tab was opened while the first tractate was still loading, show it once it arrives
+buildPerekSelect().then(()=>{
+  const reader = document.getElementById('msh-reader');
+  if(currentMshMode === 'manual' && !reader.querySelector('.chapter-card')) loadManualMshSelection(false);
+});
 
 autoLoadForModeMsh(currentMshMode);
 

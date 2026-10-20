@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /tehillim-data.json
+---
+{% include tehillim-text.json %}

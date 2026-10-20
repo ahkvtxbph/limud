@@ -174,10 +174,13 @@ permalink: /birkat-hamazon.html
 </main>
 
 <footer class="site">
-  <p>הטקסט נטען באמצעות <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>, מאגר טקסטים יהודיים בקוד פתוח.</p>
+  <p>הנוסחים מתוך <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>: אשכנז וספרד — סידור מצודה, 1981 (רישיון <a href="https://creativecommons.org/licenses/by/3.0/deed.he" target="_blank" rel="noopener">CC BY</a>); עדות המזרח — מהדורת Shaliehsaboo (CC0); תימן (בלדי) — מתוך <a href="https://he.wikisource.org" target="_blank" rel="noopener">ויקיטקסט</a> (CC BY-SA).</p>
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
+<script type="application/json" id="birkat-data-ashkenaz">{% include birkat-ashkenaz.json %}</script>
+<script type="application/json" id="birkat-data-sefard">{% include birkat-sefard.json %}</script>
+<script type="application/json" id="birkat-data-edot">{% include birkat-edot.json %}</script>
 <script src="shared.js?build={{ site.time | date: '%s' }}"></script>
 <script>
 try{
@@ -279,8 +282,21 @@ try{
       }
     }
   }
+  // The three Sefaria nuschaot are kept on the site itself (_includes/birkat-*.json, embedded
+  // below), so the text shows at once and also without a connection. If an embedded copy is
+  // missing or unreadable, that nusach is fetched from Sefaria as before.
+  function localNusachSegments(key){
+    try{
+      const el = document.getElementById('birkat-data-' + key);
+      if(!el) return null;
+      const d = JSON.parse(el.textContent);
+      return (d && Array.isArray(d.text) && d.text.length) ? d.text.slice() : null;
+    }catch(e){ console.warn('birkat local data (' + key + '):', e); return null; }
+  }
   async function fetchNusachSegments(key){
     if(segmentCache[key]) return segmentCache[key];
+    const local = localNusachSegments(key);
+    if(local){ segmentCache[key] = local; return local; }
     const refs = NUSACH_REF[key];
     const version = NUSACH_VERSION[key];
     let flat;

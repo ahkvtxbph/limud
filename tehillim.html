@@ -148,7 +148,8 @@ permalink: /tehillim.html
 </main>
 
 <footer class="site">
-  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+  <p>נוסח התהילים: <a href="https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94" target="_blank" rel="noopener">"מקרא על פי המסורה"</a> (ויקיטקסט), כפי שפורסם ב<a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא</a>, ברישיון <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.he" target="_blank" rel="noopener">CC BY-SA</a>.</p>
+  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
 <script src="shared.js?build={{ site.time | date: '%s' }}"></script>
@@ -255,7 +256,25 @@ document.querySelectorAll('#tehillim-section nav.modes button').forEach(btn=>{
   });
 });
 
+// The text of Tehillim is kept on the site itself (_includes/tehillim-text.json, published as
+// tehillim-data.json): downloaded once per site update, then served from the phone's cache.
+// If that file can't be read for any reason, the chapter is fetched from Sefaria as before.
+let localTehillimPromise = null;
+function loadLocalTehillim(){
+  if(!localTehillimPromise){
+    localTehillimPromise = fetch("tehillim-data.json?build={{ site.time | date: '%s' }}")
+      .then(r => { if(!r.ok) throw new Error('local tehillim ' + r.status); return r.json(); })
+      .then(d => { if(!d || !Array.isArray(d.text) || d.text.length !== 150) throw new Error('local tehillim: bad data'); return d.text; })
+      .catch(e => { console.warn(e); localTehillimPromise = null; return null; });
+  }
+  return localTehillimPromise;
+}
 async function fetchChapter(chapterNum){
+  const local = await loadLocalTehillim();
+  if(local && Array.isArray(local[chapterNum - 1]) && local[chapterNum - 1].length) return local[chapterNum - 1];
+  return fetchChapterFromSefaria(chapterNum);
+}
+async function fetchChapterFromSefaria(chapterNum){
   const url = `https://www.sefaria.org/api/v3/texts/Psalms.${chapterNum}?version=hebrew&return_format=text_only`;
   const res = await fetch(url);
   if(!res.ok) throw new Error('fetch failed');
