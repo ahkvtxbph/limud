@@ -93,10 +93,13 @@ permalink: /halacha.html
 </main>
 
 <footer class="site">
-  <p>הטקסט נטען באמצעות <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>, מאגר טקסטים יהודיים בקוד פתוח.</p>
+  <p>הטקסטים מתוך <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>, מאגר טקסטים יהודיים בקוד פתוח (שולחן ערוך — מהדורות למברג; קיצור שולחן ערוך — תורת אמת; נחלת הכלל).</p>
   <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
+<!-- the Shulchan Arukh / Kitzur texts are kept on the site (_includes/halacha-*.json); Sefaria is only a fallback -->
+<script type="application/json" id="local-books-manifest">{% include halacha-manifest.json %}</script>
+<script type="application/json" id="local-schedule">{% include halacha-schedule.json %}</script>
 <script src="shared.js?build={{ site.time | date: '%s' }}"></script>
 <script>
 initHeaderDate();

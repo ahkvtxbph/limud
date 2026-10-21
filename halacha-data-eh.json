@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /halacha-data-eh.json
+---
+{% include halacha-text-eh.json %}

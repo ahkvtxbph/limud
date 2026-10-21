@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /halacha-data-kitzur.json
+---
+{% include halacha-text-kitzur.json %}
