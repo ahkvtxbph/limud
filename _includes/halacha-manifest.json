@@ -3,7 +3,7 @@
 "Shulchan Arukh, Orach Chayim":{
 "he":"שולחן ערוך — אורח חיים",
 "file":"halacha-data-oc.json",
-"v":"47f15aa47529",
+"v":"fa64bf95b7c9",
 "counts":[
 9,
 6,
@@ -709,7 +709,7 @@
 "Shulchan Arukh, Yoreh De'ah":{
 "he":"שולחן ערוך — יורה דעה",
 "file":"halacha-data-yd.json",
-"v":"fee2f7d939cf",
+"v":"073685691bba",
 "counts":[
 14,
 11,
@@ -1121,7 +1121,7 @@
 "Shulchan Arukh, Even HaEzer":{
 "he":"שולחן ערוך — אבן העזר",
 "file":"halacha-data-eh.json",
-"v":"5a1ee6b52582",
+"v":"7058b9784844",
 "counts":[
 14,
 11,
@@ -1308,7 +1308,7 @@
 "Shulchan Arukh, Choshen Mishpat":{
 "he":"שולחן ערוך — חושן משפט",
 "file":"halacha-data-cm.json",
-"v":"4a921c8e8b65",
+"v":"8dcbffd816bd",
 "counts":[
 6,
 1,
@@ -1744,7 +1744,7 @@
 "Kitzur Shulchan Arukh":{
 "he":"קיצור שולחן ערוך",
 "file":"halacha-data-kitzur.json",
-"v":"679e8cf70b26",
+"v":"6d21432b2805",
 "counts":[
 7,
 9,
@@ -3404,5 +3404,5 @@
 }
 ]
 },
-"updated":"2026-03-23"
+"updated":"2026-10-21"
 }
