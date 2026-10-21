@@ -1,0 +1,94 @@
+name: Update texts from Sefaria
+
+# Once a week (Saturday night) — and by hand from the Actions tab ("Run workflow") — checks the
+# texts the site keeps in _includes/ (Tehillim, Birkat HaMazon, Shulchan Arukh, Kitzur) against
+# Sefaria:
+#   * the halacha-yomit schedule (which siman is learned on which date) is refreshed and committed
+#     directly — it is only a list of dates, nothing to review;
+#   * any change in the TEXTS is NOT committed: a pull request is opened instead, with a summary of
+#     what changed, for the site owner to approve ("Merge") or reject ("Close").
+# Before the pull request is opened, the Birkat HaMazon additions check runs (check_birkat.js);
+# if it fails, the pull request says so and this run is marked as failed (GitHub e-mails about it).
+on:
+  schedule:
+    - cron: '30 18 * * 6'   # Saturday 18:30 UTC = 21:30 (winter) / 22:30 (summer) in Israel
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-sources
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Keep a copy of the current texts (for the comparison)
+        run: cp -r _includes "$RUNNER_TEMP/old-includes"
+
+      - name: Refresh the halacha-yomit schedule (committed directly)
+        run: |
+          python3 .github/scripts/update_sources.py --schedule-only
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- _includes/halacha-schedule.json; then
+            echo "Schedule already up to date."
+          else
+            git add _includes/halacha-schedule.json
+            git commit -m "Auto-update halacha schedule"
+            git push
+          fi
+
+      - name: Download the texts from Sefaria and compare
+        env:
+          REPORT_FILE: ${{ runner.temp }}/report.md
+        run: python3 .github/scripts/update_sources.py
+
+      - name: Check that Birkat HaMazon additions are still recognised
+        id: birkat
+        continue-on-error: true
+        env:
+          REPORT_FILE: ${{ runner.temp }}/report.md
+        run: node .github/scripts/check_birkat.js "$RUNNER_TEMP/old-includes" _includes
+
+      - name: Write the pull request text
+        id: body
+        run: |
+          {
+            echo "עדכון אוטומטי של הטקסטים מספריא (Sefaria)."
+            echo
+            if [ "${{ steps.birkat.outcome }}" != "success" ]; then
+              echo "> ⚠️ **בדיקת ברכת המזון נכשלה — לא לאשר לפני בדיקה ידנית.**"
+              echo
+            fi
+            cat "$RUNNER_TEMP/report.md"
+            echo
+            echo "---"
+            echo "כדי לעדכן את האתר: **Merge pull request** ← **Confirm merge**. כדי לוותר: **Close pull request**."
+          } > "$RUNNER_TEMP/body.md"
+          cat "$RUNNER_TEMP/body.md"
+
+      - name: Open a pull request if a text changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: sefaria-text-update
+          delete-branch: true
+          add-paths: |
+            _includes/*.json
+          commit-message: "Update texts from Sefaria"
+          title: ${{ steps.birkat.outcome == 'success' && 'עדכון טקסטים מספריא' || '⚠️ עדכון טקסטים מספריא — דורש בדיקה' }}
+          body-path: ${{ runner.temp }}/body.md
+          assignees: ${{ github.repository_owner }}
+
+      - name: Mark the run as failed if the Birkat HaMazon check failed
+        if: steps.birkat.outcome != 'success'
+        run: |
+          echo "Birkat HaMazon check failed — see the pull request."
+          exit 1
