@@ -200,7 +200,7 @@ function sdDeriveFlags(f, nusach, prayer){
   }
   g.monThu = f.dow === 1 || f.dow === 4;
   g.nisim = f.chanukah || f.purim;
-  const amFasts = nusach !== 'edot';    // Edot HaMizrach: Avinu Malkeinu in the Ten Days only
+  const amFasts = nusach !== 'edot' && nusach !== 'baladi';    // Edot HaMizrach, Teiman: Avinu Malkeinu in the Ten Days only
   g.avinuMalkeinu = (f.ayt && !f.erevYK && !f.yomTov && !f.rh && !f.yk) || (amFasts && f.fast && !f.av9);
   g.avinuMalkeinuMincha = g.avinuMalkeinu && f.dow !== 5;
   if(f.hallelOverride) g.hallel = f.hallelOverride;
@@ -355,7 +355,7 @@ const SIDDUR_NUSACHOT = {
   },
 
   sefard: {
-    book: 'Siddur Sefard', he: 'נוסח ספרד', page: 'siddur-sefard.html',
+    local: 'data-siddur-sefard.json', book: 'Siddur Sefard', he: 'נוסח ספרד', page: 'siddur-sefard.html',
     prayers: {
       shacharit: [
         { he: 'השכמת הבוקר', match: /^Upon Arising, / },
@@ -403,7 +403,7 @@ const SIDDUR_NUSACHOT = {
   },
 
   edot: {
-    book: 'Siddur Edot HaMizrach', he: 'נוסח עדות המזרח', page: 'siddur-edot-hamizrach.html',
+    local: 'data-siddur-edot.json', book: 'Siddur Edot HaMizrach', he: 'נוסח עדות המזרח', page: 'siddur-edot-hamizrach.html',
     prayers: {
       shacharit: [
         { he: 'השכמת הבוקר וברכות השחר', match: /^Preparatory Prayers, / },
@@ -445,6 +445,28 @@ const SIDDUR_NUSACHOT = {
         { he: 'קריאת שמע על המיטה', match: /^Bedtime Shema/, when: SD_OPTIONAL }
       ]
     }
+  },
+
+  // Yemenite (Baladi) — from Hebrew Wikisource, kept on the site (data-siddur-baladi.json, refreshed weekly).
+  // The day-dependent parts are marked explicitly in the data (see .github/scripts/siddur_baladi.py), and the
+  // prayer is built from the sections of the data itself, so new sections on Wikisource appear by themselves.
+  baladi: {
+    book: 'local:baladi', data: 'data-siddur-baladi.json', explicit: true, auto: true,
+    he: 'נוסח תימן (בלדי)', page: 'siddur-teiman-baladi.html',
+    sourceName: 'ויקיטקסט', sourceUrl: 'https://he.wikisource.org/wiki/%D7%A1%D7%99%D7%93%D7%95%D7%A8/%D7%A0%D7%95%D7%A1%D7%97_%D7%AA%D7%99%D7%9E%D7%9F_%D7%91%D7%9C%D7%93%D7%99',
+    prayerOf: { 'שחרית': 'shacharit', 'מנחה': 'mincha', 'ערבית': 'maariv', 'קריאת שמע על המיטה': 'maariv' },
+    rules: [   // by section name (or a piece inside it)
+      { match: /נפילת אפים|תחנון|וידוי/, when: g => g.prayer === 'mincha' ? g.tachanunMincha : g.tachanun },
+      { match: /הלל/, when: g => g.hallel !== 'none', special: 'hallel' },
+      { match: /מוסף/, when: g => g.musaf },
+      { match: /ספירת העומר/, when: g => g.omerDay > 0, special: 'omer' },
+      { match: /קריאת שמע על המיטה/, when: SD_OPTIONAL },
+      { match: /ברכת הלבנה|קידוש לבנה/, when: g => g.levana ? 'optional' : false }
+    ],
+    leafRules: [
+      { match: /מזמור לתודה/, when: g => g.mizmorLetoda }
+    ],
+    prayers: null
   },
 
   chabad: {
@@ -504,6 +526,63 @@ function sdStore(key, value){
 }
 
 // The book's table of contents as an ordered list of { path, he, ref } (one per text piece).
+// A Sefaria siddur the site keeps a copy of (data-siddur-<key>.json + its chunks, refreshed weekly):
+// the same pieces and text as Sefaria; anything missing is still fetched from Sefaria.
+const sdLocalChunk = new Map();      // ref -> chunk file
+const sdLocalChunkData = new Map();  // chunk file -> Promise<{texts}>
+async function sdLoadLocalIndex(N){
+  const idx = await fetchSiteJson(N.local);
+  if(!idx || !Array.isArray(idx.leaves) || !idx.leaves.length) throw new Error('no local index');
+  const base = N.local.replace(/\.json$/, '');
+  const prefix = N.book + ', ';
+  return idx.leaves.map(l => {
+    if(l.c !== undefined) sdLocalChunk.set(l.r, base + '-' + l.c + '.json');
+    return { ref: l.r, path: l.p || (l.r.indexOf(prefix) === 0 ? l.r.slice(prefix.length) : l.r), he: l.h || '' };
+  });
+}
+async function sdLocalText(ref){
+  const file = sdLocalChunk.get(ref);
+  if(!file) return null;
+  if(!sdLocalChunkData.has(file)){
+    const p = fetchSiteJson(file);
+    sdLocalChunkData.set(file, p);
+    p.catch(() => sdLocalChunkData.delete(file));
+  }
+  const d = await sdLocalChunkData.get(file);
+  const segs = d && d.texts && d.texts[ref];
+  return Array.isArray(segs) && segs.length ? segs : null;
+}
+
+// A nusach kept on the site itself: its sections, and their text straight into the text cache.
+async function sdLoadLocalBook(N){
+  const data = await fetchSiteJson(N.data);
+  if(!data || !Array.isArray(data.leaves) || !data.leaves.length) throw new Error('local siddur: no data');
+  return data.leaves.map((l, i) => {
+    const ref = N.book + '#' + i;
+    sdTextCache.set(ref, Promise.resolve(l.s || []));
+    return { ref, path: l.p, he: l.h || l.p };
+  });
+}
+// The groups of each prayer, from the sections of a local book: "שחרית, זמירות, ברוך שאמר" → group "זמירות".
+function sdAutoPrayers(N, leaves){
+  const out = { shacharit: [], mincha: [], maariv: [] };
+  const seen = new Set();
+  const esc = t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  leaves.forEach(l => {
+    const parts = l.path.split(/,\s*/);
+    const pr = N.prayerOf[parts[0]];
+    if(!pr) return;
+    const own = parts[0] === 'קריאת שמע על המיטה';
+    const key = own ? parts[0] : parts[0] + ', ' + (parts[1] || '');
+    if(seen.has(key)) return;
+    seen.add(key);
+    const name = own ? parts[0] : (parts[1] || parts[0]);
+    const rule = (N.rules || []).find(r => r.match.test(name)) || {};
+    out[pr].push({ he: name, match: new RegExp('^' + esc(key) + '(,|$)'), when: rule.when, special: rule.special, leaves: N.leafRules });
+  });
+  return out;
+}
+
 async function sdLoadLeaves(book){
   const cacheKey = 'sd-toc-v1-' + book;
   const cached = sdStore(cacheKey);
@@ -563,6 +642,8 @@ function sdFetchLeaf(ref){
   if(sdTextCache.has(ref)) return sdTextCache.get(ref);
   const p = sdQueue(async () => {
     let segs = [];
+    try{ segs = (await sdLocalText(ref)) || []; }catch(e){ segs = []; }
+    if(segs.length) return segs;
     try{
       const res = await fetch(SD_API + '/api/v3/texts/' + encodeURIComponent(ref) + '?version=hebrew');
       if(res.ok){
@@ -983,6 +1064,88 @@ function sdRenderStream(items, g, opts){
   return out.join('');
 }
 
+/* A local nusach whose day-dependent parts are marked in the data itself:
+     <span class="sd-i">…</span>                 an instruction
+     <span data-w="rc chm" [data-n="1"]>…</span> said when one of these holds [none of them holds]
+   (nested spans: all must hold). items: [{ heading, segs, error }] ; opts: { full, notes } */
+function sdExplicitKey(k, g){
+  switch(k){
+    case 'winter': return !!g.mashiv;
+    case 'summer': return !g.mashiv;
+    case 'winterB': return !!g.talUmatar;
+    case 'summerB': return !g.talUmatar;
+    case 'other': return false;            // another nusach's wording
+  }
+  return sdEvalOne(k, g, {});
+}
+function sdExplicitOn(el, g){
+  const keys = (el.getAttribute('data-w') || '').split(/\s+/).filter(Boolean);
+  if(!keys.length) return true;
+  const restr = keys.filter(k => SD_RESTRICTIVE.indexOf(k) !== -1);
+  const rest = keys.filter(k => SD_RESTRICTIVE.indexOf(k) === -1);
+  let ok = restr.every(k => sdExplicitKey(k, g)) && (!rest.length || rest.some(k => sdExplicitKey(k, g)));
+  if(el.getAttribute('data-n')) ok = !ok;
+  return ok;
+}
+function sdRenderExplicit(items, g, opts){
+  const full = !!opts.full, notes = !!opts.notes;
+  const out = [];
+  items.forEach(item => {
+    if(item.heading) out.push(item.heading);
+    if(item.error){ out.push(item.error); return; }
+    out.push('<div class="sd-text">');
+    (item.segs || []).forEach(html => {
+      const tpl = document.createElement('template');
+      tpl.innerHTML = String(html);
+      const st = { text: false, ins: false, added: false };
+      const walk = (node, on, cond) => {
+        let h = '';
+        node.childNodes.forEach(ch => {
+          if(ch.nodeType === 3){
+            if(!on && !full) return;
+            if(on && SD_HEB_RE.test(ch.nodeValue)){ st.text = true; if(cond) st.added = true; }
+            h += sdEsc(ch.nodeValue);
+            return;
+          }
+          if(ch.nodeType !== 1) return;
+          const tag = ch.tagName.toLowerCase();
+          if(tag === 'br'){ if(on || full) h += '<br>'; return; }
+          if(ch.classList.contains('sd-i')){
+            const t = ch.textContent.trim();
+            if(!t || (!on && !full)) return;
+            const note = t.length > 90;
+            if(note && !notes && !full) return;
+            if(on) st.ins = true;
+            h += '<span class="' + (note ? 'sd-note' : 'sd-ins') + (on ? '' : ' sd-off') + '">' + sdEsc(t) + '</span> ';
+            return;
+          }
+          if(ch.hasAttribute('data-w')){
+            const here = on && sdExplicitOn(ch, g);
+            const inner = walk(ch, here, cond || (here && !ch.getAttribute('data-n')));
+            if(!here && !full) return;
+            h += here ? inner : '<span class="sd-off">' + inner + '</span>';
+            return;
+          }
+          const inner = walk(ch, on, cond);
+          if(tag === 'b' || tag === 'small') h += '<' + tag + '>' + inner + '</' + tag + '>';
+          else h += inner;
+        });
+        return h;
+      };
+      const h = walk(tpl.content, true, false).replace(/^(\s|<br>)+|(\s|<br>)+$/g, '');
+      if(!h) return;
+      if(!st.text){
+        if(st.ins) out.push('<p class="sd-label">' + h + '</p>');
+        else if(full) out.push('<p class="sd-off">' + h + '</p>');
+        return;
+      }
+      out.push('<p' + (st.added ? ' class="sd-added"' : '') + '>' + h + '</p>');
+    });
+    out.push('</div>');
+  });
+  return out.join('');
+}
+
 // Song of the day: keep the introduction and today's psalm only.
 function sdSongOfDayFilter(segs, g){
   const days = segs.map(() => null);
@@ -1142,7 +1305,15 @@ function initSiddurPage(nusachKey){
     }
     const list = $('sd-summary');
     if(list){
-      list.innerHTML = sdDescribe(g, state.prayer).map(x => '<li>' + sdEsc(x) + '</li>').join('');
+      let items = sdDescribe(g, state.prayer);
+      if(N.auto){
+        // a nusach built from its own sections: don't list parts it does not have (yet)
+        const names = N.prayers ? (N.prayers[state.prayer] || []).map(x => x.he).join(' ') : '';
+        const NEEDS = [[/הלל/, /הלל/], [/מוסף/, /מוסף/], [/קריאת התורה/, /קריאת התורה|ספר תורה/], [/למנצח/, /למנצח/],
+                       [/ברכי נפשי/, /ברכי נפשי|ראש חודש/], [/לולב/, /לולב|הושענות/], [/אבינו מלכנו/, /./]];
+        items = items.filter(x => NEEDS.every(([re, want]) => !re.test(x) || want.test(names)));
+      }
+      list.innerHTML = items.map(x => '<li>' + sdEsc(x) + '</li>').join('');
     }
     syncFlagBoxes(g);
     const di = $('sd-date');
@@ -1154,7 +1325,7 @@ function initSiddurPage(nusachKey){
 
   /* ---------- building the prayer ---------- */
   function planGroups(g){
-    const groups = N.prayers[state.prayer] || [];
+    const groups = (N.prayers && N.prayers[state.prayer]) || [];
     const used = new Set();
     return groups.map((grp, gi) => {
       const when = sdWhen(grp.when, g);
@@ -1205,12 +1376,13 @@ function initSiddurPage(nusachKey){
     // render; folded items get their own stream (so their instructions don't leak)
     let html = '';
     let buffer = [];
-    const flushBuf = () => { if(buffer.length){ html += sdRenderStream(buffer, g, { full: state.full, notes: state.notes, special: p.grp.special, noNeg: p.grp.special === 'hallel' }); buffer = []; } };
+    const render = (its, o) => N.explicit ? sdRenderExplicit(its, g, o) : sdRenderStream(its, g, o);
+    const flushBuf = () => { if(buffer.length){ html += render(buffer, { full: state.full, notes: state.notes, special: p.grp.special, noNeg: p.grp.special === 'hallel' }); buffer = []; } };
     for(let i = 0; i < streamItems.length; i++){
       const s = streamItems[i];
       if(s.fold){
         flushBuf();
-        html += s.heading + (s.error || sdRenderStream([{ segs: s.segs, rule: s.rule }], g, { full: state.full, notes: state.notes, special: s.rule && s.rule.special })) + '</details>';
+        html += s.heading + (s.error || render([{ segs: s.segs, rule: s.rule }], { full: state.full, notes: state.notes, special: s.rule && s.rule.special })) + '</details>';
         continue;
       }
       if(s.offLeaf){ flushBuf(); html += s.heading; continue; }
@@ -1238,11 +1410,20 @@ function initSiddurPage(nusachKey){
       b.setAttribute('aria-pressed', String(on));
     });
     if(!state.leaves){
-      reader.innerHTML = '<p class="chapter-loading">טוען את הסידור מספריא…</p>';
-      try{ state.leaves = await sdLoadLeaves(N.book); }
+      reader.innerHTML = '<p class="chapter-loading">' + (N.data || N.local ? 'טוען את הסידור…' : 'טוען את הסידור מספריא…') + '</p>';
+      try{
+        if(N.data){ state.leaves = await sdLoadLocalBook(N); if(N.auto){ N.prayers = sdAutoPrayers(N, state.leaves); renderDayPanel(g); } }
+        else if(N.local){
+          try{ state.leaves = await sdLoadLocalIndex(N); }
+          catch(e){ console.warn('siddur: local copy unavailable, loading from Sefaria', e); state.leaves = await sdLoadLeaves(N.book); }
+        }
+        else state.leaves = await sdLoadLeaves(N.book);
+      }
       catch(e){
         console.error('siddur: table of contents failed', e);
-        reader.innerHTML = '<p class="chapter-error" role="alert">לא ניתן היה לטעון את הסידור כרגע. אפשר לנסות שוב בעוד רגע, או לפתוח את <a href="' + sdSefariaUrl(N.book) + '" target="_blank" rel="noopener">' + sdEsc(N.he) + ' בספריא</a>.</p>';
+        const src = N.data ? '<a href="' + N.sourceUrl + '" target="_blank" rel="noopener">' + sdEsc(N.he) + ' ב' + sdEsc(N.sourceName) + '</a>'
+                           : '<a href="' + sdSefariaUrl(N.book) + '" target="_blank" rel="noopener">' + sdEsc(N.he) + ' בספריא</a>';
+        reader.innerHTML = '<p class="chapter-error" role="alert">לא ניתן היה לטעון את הסידור כרגע. אפשר לנסות שוב בעוד רגע, או לפתוח את ' + src + '.</p>';
         return;
       }
       if(myId !== state.renderId) return;

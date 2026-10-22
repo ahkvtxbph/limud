@@ -1,0 +1,783 @@
+{
+"book":"Siddur Edot HaMizrach",
+"versionTitle":" Shaliehsaboo Edition",
+"license":"CC0",
+"note":"נוצר אוטומטית מספריא — לא לערוך ידנית",
+"leaves":[
+{
+"r":"Siddur Edot HaMizrach, Preparatory Prayers, Modeh Ani",
+"p":"Preparatory Prayers, Modeh Ani",
+"h":"סידור נוסח עדות המזרח, סדר השכמת הבוקר, מודה אני",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Preparatory Prayers, Morning Blessings",
+"p":"Preparatory Prayers, Morning Blessings",
+"h":"סידור נוסח עדות המזרח, סדר השכמת הבוקר, ברכות השחר",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Preparatory Prayers, Torah Blessings",
+"p":"Preparatory Prayers, Torah Blessings",
+"h":"סידור נוסח עדות המזרח, סדר השכמת הבוקר, ברכות התורה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, The Midnight Rite, LeShem Yichud",
+"p":"The Midnight Rite, LeShem Yichud",
+"h":"סידור נוסח עדות המזרח, סדר תיקון חצות, לשם יחוד",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, The Midnight Rite, Tikkun Rachel",
+"p":"The Midnight Rite, Tikkun Rachel",
+"h":"סידור נוסח עדות המזרח, סדר תיקון חצות, תיקון רחל",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, The Midnight Rite, Tikkun Leah",
+"p":"The Midnight Rite, Tikkun Leah",
+"h":"סידור נוסח עדות המזרח, סדר תיקון חצות, תיקון לאה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Petichat Eliyahu",
+"p":"Weekday Shacharit, Petichat Eliyahu",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, פתיחת אליהו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Order of Talit",
+"p":"Weekday Shacharit, Order of Talit",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, סדר עטיפת ציצית",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Order of Tefillin",
+"p":"Weekday Shacharit, Order of Tefillin",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, סדר הנחת תפילין",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Hanna's Prayer",
+"p":"Weekday Shacharit, Hanna's Prayer",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, ותתפלל חנה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Morning Prayer",
+"p":"Weekday Shacharit, Morning Prayer",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, תפילת שחרית",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Incense Offering",
+"p":"Weekday Shacharit, Incense Offering",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, פטום הקטורת",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Hodu",
+"p":"Weekday Shacharit, Hodu",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, הודו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Pesukei D'Zimra",
+"p":"Weekday Shacharit, Pesukei D'Zimra",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, פסוקי דזמרה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, The Shema",
+"p":"Weekday Shacharit, The Shema",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, ק\"ש וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Amida",
+"p":"Weekday Shacharit, Amida",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, עמידה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Vidui",
+"p":"Weekday Shacharit, Vidui",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, וידוי",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Torah Reading",
+"p":"Weekday Shacharit, Torah Reading",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, קריאת התורה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Ashrei",
+"p":"Weekday Shacharit, Ashrei",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, אשרי",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Uva LeSion",
+"p":"Weekday Shacharit, Uva LeSion",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, ובא לציון",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Beit Yaakov",
+"p":"Weekday Shacharit, Beit Yaakov",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, בית יעקב",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Song of the Day",
+"p":"Weekday Shacharit, Song of the Day",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, שיר של יום",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Kaveh",
+"p":"Weekday Shacharit, Kaveh",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, קוה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Shacharit, Alenu",
+"p":"Weekday Shacharit, Alenu",
+"h":"סידור נוסח עדות המזרח, שחרית לימי החול, עלינו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Additions for Shacharit, Thirteen Principles of Faith",
+"p":"Additions for Shacharit, Thirteen Principles of Faith",
+"h":"סידור נוסח עדות המזרח, תוספות לשחרית, שלשה עשר עיקרים",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Additions for Shacharit, Ten Remembrances",
+"p":"Additions for Shacharit, Ten Remembrances",
+"h":"סידור נוסח עדות המזרח, תוספות לשחרית, עשר זכירות",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Mincha, Offerings",
+"p":"Weekday Mincha, Offerings",
+"h":"סידור נוסח עדות המזרח, מנחה לימי החול, קרבנות",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Mincha, Amida",
+"p":"Weekday Mincha, Amida",
+"h":"סידור נוסח עדות המזרח, מנחה לימי החול, עמידה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Mincha, Vidui",
+"p":"Weekday Mincha, Vidui",
+"h":"סידור נוסח עדות המזרח, מנחה לימי החול, וידוי",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Mincha, Alenu",
+"p":"Weekday Mincha, Alenu",
+"h":"סידור נוסח עדות המזרח, מנחה לימי החול, עלינו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Arvit, Barchu",
+"p":"Weekday Arvit, Barchu",
+"h":"סידור נוסח עדות המזרח, ערבית לימי החול, ברכו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Arvit, The Shema",
+"p":"Weekday Arvit, The Shema",
+"h":"סידור נוסח עדות המזרח, ערבית לימי החול, ק\"ש וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Arvit, Amidah",
+"p":"Weekday Arvit, Amidah",
+"h":"סידור נוסח עדות המזרח, ערבית לימי החול, עמידה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Weekday Arvit, Alenu",
+"p":"Weekday Arvit, Alenu",
+"h":"סידור נוסח עדות המזרח, ערבית לימי החול, עלינו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Counting of the Omer",
+"p":"Counting of the Omer",
+"h":"סידור נוסח עדות המזרח, ספירת העומר",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Blessing of the Moon",
+"p":"Blessing of the Moon",
+"h":"סידור נוסח עדות המזרח, ברכת הלבנה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Bedtime Shema",
+"p":"Bedtime Shema",
+"h":"סידור נוסח עדות המזרח, קריאת שמע שעל המיטה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Candle Lighting",
+"p":"Shabbat Candle Lighting",
+"h":"סידור נוסח עדות המזרח, סדר הדלקת נרות שבת",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Song of Songs",
+"p":"Song of Songs",
+"h":"סידור נוסח עדות המזרח, שיר השירים",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Kabbalat Shabbat",
+"p":"Kabbalat Shabbat",
+"h":"סידור נוסח עדות המזרח, קבלת שבת",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Arvit, Barchu",
+"p":"Shabbat Arvit, Barchu",
+"h":"סידור נוסח עדות המזרח, ערבית של שבת, ברכו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Arvit, The Shema",
+"p":"Shabbat Arvit, The Shema",
+"h":"סידור נוסח עדות המזרח, ערבית של שבת, ק\"ש וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Arvit, Magen Avot",
+"p":"Shabbat Arvit, Magen Avot",
+"h":"סידור נוסח עדות המזרח, ערבית של שבת, תפילת שבע",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Arvit, Alenu",
+"p":"Shabbat Arvit, Alenu",
+"h":"סידור נוסח עדות המזרח, ערבית של שבת, עלינו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Evening, Shalom Alekhem",
+"p":"Shabbat Evening, Shalom Alekhem",
+"h":"סידור נוסח עדות המזרח, סדר ליל שבת, שלום עליכם",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Evening, Eshet Hayil",
+"p":"Shabbat Evening, Eshet Hayil",
+"h":"סידור נוסח עדות המזרח, סדר ליל שבת, אשת חיל",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Evening, Atkenu Seudata",
+"p":"Shabbat Evening, Atkenu Seudata",
+"h":"סידור נוסח עדות המזרח, סדר ליל שבת, אתקינו סעודתא",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Evening, Kiddush",
+"p":"Shabbat Evening, Kiddush",
+"h":"סידור נוסח עדות המזרח, סדר ליל שבת, קידוש ליל שבת",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Evening, Blessing of Children",
+"p":"Shabbat Evening, Blessing of Children",
+"h":"סידור נוסח עדות המזרח, סדר ליל שבת, ברכת הבנים",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Evening, First Meal",
+"p":"Shabbat Evening, First Meal",
+"h":"סידור נוסח עדות המזרח, סדר ליל שבת, סעודה ראשונה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Evening, Zohar",
+"p":"Shabbat Evening, Zohar",
+"h":"סידור נוסח עדות המזרח, סדר ליל שבת, זוהר לסעודה ראשונה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Evening, Songs for Shabbat",
+"p":"Shabbat Evening, Songs for Shabbat",
+"h":"סידור נוסח עדות המזרח, סדר ליל שבת, שירי שבת",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Post Meal Blessing",
+"p":"Post Meal Blessing",
+"h":"סידור נוסח עדות המזרח, ברכת המזון",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Al Hamihya",
+"p":"Al Hamihya",
+"h":"סידור נוסח עדות המזרח, ברכת מעין שלוש",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Blessings on Enjoyments",
+"p":"Blessings on Enjoyments",
+"h":"סידור נוסח עדות המזרח, ברכות הנהנין",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Psalms for Shabbat",
+"p":"Shabbat Shacharit, Psalms for Shabbat",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, ליום השבת",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Pesukei D'Zimra",
+"p":"Shabbat Shacharit, Pesukei D'Zimra",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, פסוקי דזמרה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, The Shema",
+"p":"Shabbat Shacharit, The Shema",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, ק\"ש וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Amidah",
+"p":"Shabbat Shacharit, Amidah",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, עמידה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Torah Reading",
+"p":"Shabbat Shacharit, Torah Reading",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, קריאת התורה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, HaGomel",
+"p":"Shabbat Shacharit, HaGomel",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, ברכת הגומל",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Zeved HaBat",
+"p":"Shabbat Shacharit, Zeved HaBat",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, סדר זבד הבת",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Shabbat Chatan",
+"p":"Shabbat Shacharit, Shabbat Chatan",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, לשבת חתן",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Haftarah",
+"p":"Shabbat Shacharit, Haftarah",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, ברכות ההפטרה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Birkat HaChodesh",
+"p":"Shabbat Shacharit, Birkat HaChodesh",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, הכרזת ראש חדש",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Announcement of Fast",
+"p":"Shabbat Shacharit, Announcement of Fast",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, הכרזת תענית",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Mi Sheberach",
+"p":"Shabbat Shacharit, Mi Sheberach",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, מי שברך לקהל",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Shacharit, Ashrei",
+"p":"Shabbat Shacharit, Ashrei",
+"h":"סידור נוסח עדות המזרח, שחרית של שבת, אשרי",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Mussaf, Amida",
+"p":"Shabbat Mussaf, Amida",
+"h":"סידור נוסח עדות המזרח, מוסף של שבת, עמידה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Mussaf, Incense Offering",
+"p":"Shabbat Mussaf, Incense Offering",
+"h":"סידור נוסח עדות המזרח, מוסף של שבת, פטום הקטורת",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Mussaf, Alenu",
+"p":"Shabbat Mussaf, Alenu",
+"h":"סידור נוסח עדות המזרח, מוסף של שבת, עלינו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Daytime Meal, Daytime Meal",
+"p":"Daytime Meal, Daytime Meal",
+"h":"סידור נוסח עדות המזרח, סדר סעודה שניה, סדר סעודה שניה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Daytime Meal, Kiddush",
+"p":"Daytime Meal, Kiddush",
+"h":"סידור נוסח עדות המזרח, סדר סעודה שניה, קידוש היום",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Mincha, Offerings",
+"p":"Shabbat Mincha, Offerings",
+"h":"סידור נוסח עדות המזרח, מנחה של שבת, קרבנות",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Mincha, Uva LeSion",
+"p":"Shabbat Mincha, Uva LeSion",
+"h":"סידור נוסח עדות המזרח, מנחה של שבת, ובא לציון גואל",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Mincha, Amida",
+"p":"Shabbat Mincha, Amida",
+"h":"סידור נוסח עדות המזרח, מנחה של שבת, עמידה",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Shabbat Mincha, Alenu",
+"p":"Shabbat Mincha, Alenu",
+"h":"סידור נוסח עדות המזרח, מנחה של שבת, עלינו",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Third Meal",
+"p":"Third Meal",
+"h":"סידור נוסח עדות המזרח, סעודה שלישית",
+"c":0
+},
+{
+"r":"Siddur Edot HaMizrach, Havdalah, Before Havdalah",
+"p":"Havdalah, Before Havdalah",
+"h":"סידור נוסח עדות המזרח, מוצאי שבת, קודם הבדלה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Havdalah, Havdala",
+"p":"Havdalah, Havdala",
+"h":"סידור נוסח עדות המזרח, מוצאי שבת, סדר הבדלה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Havdalah, Motzei Shabbat Songs",
+"p":"Havdalah, Motzei Shabbat Songs",
+"h":"סידור נוסח עדות המזרח, מוצאי שבת, שירים למוצאי שבת",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Havdalah, Veyiten Lecha",
+"p":"Havdalah, Veyiten Lecha",
+"h":"סידור נוסח עדות המזרח, מוצאי שבת, ויתן לך",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Havdalah, Fourth Meal",
+"p":"Havdalah, Fourth Meal",
+"h":"סידור נוסח עדות המזרח, מוצאי שבת, סעודה רביעית",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Rosh Hodesh",
+"p":"Rosh Hodesh, Rosh Hodesh",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, סדר ראש חודש",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Hallel",
+"p":"Rosh Hodesh, Hallel",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, הלל לראש חודש ולמועדים",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Uva LeSion",
+"p":"Rosh Hodesh, Uva LeSion",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, ובא לציון גואל",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Song of the Day",
+"p":"Rosh Hodesh, Song of the Day",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, שיר של יום",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Mussaf",
+"p":"Rosh Hodesh, Mussaf",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, מוסף",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Barchi Nafshi",
+"p":"Rosh Hodesh, Barchi Nafshi",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, ברכי נפשי",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Kaveh",
+"p":"Rosh Hodesh, Kaveh",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, קוה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Incense Offering",
+"p":"Rosh Hodesh, Incense Offering",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, פטום הקטורת",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Rosh Hodesh, Alenu",
+"p":"Rosh Hodesh, Alenu",
+"h":"סידור נוסח עדות המזרח, סדר ראש חודש, עלינו",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Prayers for Three Festivals, Prayers for Three Festivals",
+"p":"Prayers for Three Festivals, Prayers for Three Festivals",
+"h":"סידור נוסח עדות המזרח, תפילה לשלש רגלים, תפילה לשלש רגלים",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Passover",
+"p":"Prayers for Three Festivals, Song for Passover",
+"h":"סידור נוסח עדות המזרח, תפילה לשלש רגלים, מזמור לפסח",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shavuot",
+"p":"Prayers for Three Festivals, Song for Shavuot",
+"h":"סידור נוסח עדות המזרח, תפילה לשלש רגלים, מזמור לשבועות",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Sukkot",
+"p":"Prayers for Three Festivals, Song for Sukkot",
+"h":"סידור נוסח עדות המזרח, תפילה לשלש רגלים, מזמור לסוכות",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Prayers for Three Festivals, Song for Shemini Atzeret",
+"p":"Prayers for Three Festivals, Song for Shemini Atzeret",
+"h":"סידור נוסח עדות המזרח, תפילה לשלש רגלים, מזמור לשמיני עצרת",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Prayers for Three Festivals, Amidah",
+"p":"Prayers for Three Festivals, Amidah",
+"h":"סידור נוסח עדות המזרח, תפילה לשלש רגלים, עמידה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Prayers for Three Festivals, Mussaf",
+"p":"Prayers for Three Festivals, Mussaf",
+"h":"סידור נוסח עדות המזרח, תפילה לשלש רגלים, מוסף",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Hanukkah, Menorah Lighting",
+"p":"Hanukkah, Menorah Lighting",
+"h":"סידור נוסח עדות המזרח, חנוכה, סדר ההדלקה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Hanukkah, Shacharit",
+"p":"Hanukkah, Shacharit",
+"h":"סידור נוסח עדות המזרח, חנוכה,  שחרית",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Purim, Shabbat Zachor",
+"p":"Purim, Shabbat Zachor",
+"h":"סידור נוסח עדות המזרח, פורים, שבת זכור",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Purim, Megillah Reading",
+"p":"Purim, Megillah Reading",
+"h":"סידור נוסח עדות המזרח, פורים, קריאת המגילה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Purim, Purim Day",
+"p":"Purim, Purim Day",
+"h":"סידור נוסח עדות המזרח, פורים, סדר יום פורים",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Nissan, Blessing of the Trees",
+"p":"Nissan, Blessing of the Trees",
+"h":"סידור נוסח עדות המזרח, חודש ניסן, סדר ברכת האילנות",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Nissan, Learning of the Day",
+"p":"Nissan, Learning of the Day",
+"h":"סידור נוסח עדות המזרח, חודש ניסן, סדר למוד לחדש ניסן",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Marriage",
+"p":"Assorted Blessings and Prayers, Marriage",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, סדר ארוסין ונשואין",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Sheva Berachot",
+"p":"Assorted Blessings and Prayers, Sheva Berachot",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, סדר שבע ברכות",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Brit Mila",
+"p":"Assorted Blessings and Prayers, Brit Mila",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, סדר ברית מילה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Redeeming the First Born",
+"p":"Assorted Blessings and Prayers, Redeeming the First Born",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, סדר פדיון הבן",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Mezuza",
+"p":"Assorted Blessings and Prayers, Mezuza",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, ברכת המזוזה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Building a Fence",
+"p":"Assorted Blessings and Prayers, Building a Fence",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, ברכת המעקה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Hallah",
+"p":"Assorted Blessings and Prayers, Separating Hallah",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, סדר הפרשת חלה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Tevillat Kelim",
+"p":"Assorted Blessings and Prayers, Tevillat Kelim",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, ברכת טבילת כלים",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Separating Tithes",
+"p":"Assorted Blessings and Prayers, Separating Tithes",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, סדר הפרשת תרומות ומעשרות",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Rainbow",
+"p":"Assorted Blessings and Prayers, Rainbow",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, ברכת הקשת",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Blessings on Lighting and Thunder",
+"p":"Assorted Blessings and Prayers, Blessings on Lighting and Thunder",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, ברכת ברקים ורעמים",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Prayer for Taking Medicine",
+"p":"Assorted Blessings and Prayers, Prayer for Taking Medicine",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, תפלת הנוטל תרופה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Assorted Blessings and Prayers, Traveler's Prayer",
+"p":"Assorted Blessings and Prayers, Traveler's Prayer",
+"h":"סידור נוסח עדות המזרח, ברכות ותפילות שונות, תפלת הדרך",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Gedalya",
+"p":"Fast Days and Mourning, Fast of Gedalya",
+"h":"סידור נוסח עדות המזרח, תעניות ואבילות, סליחות לצום גדליה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Fast Days and Mourning, Tenth of Tevet",
+"p":"Fast Days and Mourning, Tenth of Tevet",
+"h":"סידור נוסח עדות המזרח, תעניות ואבילות, סליחות לעשרה בטבת",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Fast Days and Mourning, Fast of Esther",
+"p":"Fast Days and Mourning, Fast of Esther",
+"h":"סידור נוסח עדות המזרח, תעניות ואבילות, סליחות לתענית אסתר",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Fast Days and Mourning, Seventeenth of Tammuz",
+"p":"Fast Days and Mourning, Seventeenth of Tammuz",
+"h":"סידור נוסח עדות המזרח, תעניות ואבילות, סליחות לי\"ז בתמוז",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Fast Days and Mourning, Mourning",
+"p":"Fast Days and Mourning, Mourning",
+"h":"סידור נוסח עדות המזרח, תעניות ואבילות, אבלות",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Fast Days and Mourning, Torah Reading for Fast Days",
+"p":"Fast Days and Mourning, Torah Reading for Fast Days",
+"h":"סידור נוסח עדות המזרח, תעניות ואבילות, קריאת התורה לתענית ציבור",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Mishna Study for Shabbat, First Meal",
+"p":"Mishna Study for Shabbat, First Meal",
+"h":"סידור נוסח עדות המזרח, משניות לשבת, לסעודה ראשונה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Mishna Study for Shabbat, Second Meal",
+"p":"Mishna Study for Shabbat, Second Meal",
+"h":"סידור נוסח עדות המזרח, משניות לשבת, משניות שבת לסעודה שניה",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Mishna Study for Shabbat, Third Meal",
+"p":"Mishna Study for Shabbat, Third Meal",
+"h":"סידור נוסח עדות המזרח, משניות לשבת, משניות שבת לסעודה שלישית",
+"c":1
+},
+{
+"r":"Siddur Edot HaMizrach, Mishna Study for Shabbat, Pirkei Avot",
+"p":"Mishna Study for Shabbat, Pirkei Avot",
+"h":"סידור נוסח עדות המזרח, משניות לשבת, פרקי אבות",
+"c":1
+}
+],
+"downloaded":"2026-10-22"
+}

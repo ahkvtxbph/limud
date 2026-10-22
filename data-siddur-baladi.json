@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-siddur-baladi.json
+---
+{% include src-siddur-baladi.json %}

@@ -1,0 +1,1293 @@
+{
+"book":"Siddur Sefard",
+"versionTitle":"The Metsudah siddur, 1981",
+"license":"CC-BY",
+"note":"נוצר אוטומטית מספריא — לא לערוך ידנית",
+"leaves":[
+{
+"r":"Siddur Sefard, Upon Arising, Modeh Ani",
+"p":"Upon Arising, Modeh Ani",
+"h":"סידור ספרד, סדר השכמת הבוקר, מודה אני",
+"c":0
+},
+{
+"r":"Siddur Sefard, Upon Arising, Tallit",
+"p":"Upon Arising, Tallit",
+"h":"סידור ספרד, סדר השכמת הבוקר, טלית",
+"c":0
+},
+{
+"r":"Siddur Sefard, Upon Arising, Tefilin",
+"p":"Upon Arising, Tefilin",
+"h":"סידור ספרד, סדר השכמת הבוקר, תפילין",
+"c":0
+},
+{
+"r":"Siddur Sefard, Upon Arising, Introductory Prayers",
+"p":"Upon Arising, Introductory Prayers",
+"h":"סידור ספרד, סדר השכמת הבוקר, תפילה קודם התפילה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Upon Arising, Upon Entering Synagogue",
+"p":"Upon Arising, Upon Entering Synagogue",
+"h":"סידור ספרד, סדר השכמת הבוקר, סדר הליכה לבית הכנסת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Morning Blessings",
+"p":"Weekday Shacharit, Morning Blessings",
+"h":"סידור ספרד, שחרית לימות החול, ברכות השחר",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Blessings on Torah",
+"p":"Weekday Shacharit, Blessings on Torah",
+"h":"סידור ספרד, שחרית לימות החול, ברכות התורה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Morning Prayer",
+"p":"Weekday Shacharit, Morning Prayer",
+"h":"סידור ספרד, שחרית לימות החול, תפילת השחר",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Korbanot",
+"p":"Weekday Shacharit, Korbanot",
+"h":"סידור ספרד, שחרית לימות החול, קרבנות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, B'raita d'Rabi Yishmael",
+"p":"Weekday Shacharit, B'raita d'Rabi Yishmael",
+"h":"סידור ספרד, שחרית לימות החול, ברייתא דר' ישמעאל",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Hodu",
+"p":"Weekday Shacharit, Hodu",
+"h":"סידור ספרד, שחרית לימות החול, הודו",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Yishtabach",
+"p":"Weekday Shacharit, Yishtabach",
+"h":"סידור ספרד, שחרית לימות החול, ישתבח",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, The Shema",
+"p":"Weekday Shacharit, The Shema",
+"h":"סידור ספרד, שחרית לימות החול, ק\"ש וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Amidah",
+"p":"Weekday Shacharit, Amidah",
+"h":"סידור ספרד, שחרית לימות החול, עמידה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Tachanun",
+"p":"Weekday Shacharit, Tachanun",
+"h":"סידור ספרד, שחרית לימות החול, תחנון",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Avinu Malkeinu",
+"p":"Weekday Shacharit, Avinu Malkeinu",
+"h":"סידור ספרד, שחרית לימות החול, אבינו מלכנו",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, For Monday & Thursday",
+"p":"Weekday Shacharit, For Monday & Thursday",
+"h":"סידור ספרד, שחרית לימות החול, לשני וחמישי",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Torah Reading",
+"p":"Weekday Shacharit, Torah Reading",
+"h":"סידור ספרד, שחרית לימות החול, קריאת התורה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Ashrei",
+"p":"Weekday Shacharit, Ashrei",
+"h":"סידור ספרד, שחרית לימות החול, אשרי",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Beit Yaakov",
+"p":"Weekday Shacharit, Beit Yaakov",
+"h":"סידור ספרד, שחרית לימות החול, בית יעקב",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Song of the Day",
+"p":"Weekday Shacharit, Song of the Day",
+"h":"סידור ספרד, שחרית לימות החול, שיר של יום",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Barchi Nafshi",
+"p":"Weekday Shacharit, Barchi Nafshi",
+"h":"סידור ספרד, שחרית לימות החול, ברכי נפשי",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, L'David Hashem",
+"p":"Weekday Shacharit, L'David Hashem",
+"h":"סידור ספרד, שחרית לימות החול, לדוד ה'",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Kaveh",
+"p":"Weekday Shacharit, Kaveh",
+"h":"סידור ספרד, שחרית לימות החול, קוה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Shacharit, Aleinu",
+"p":"Weekday Shacharit, Aleinu",
+"h":"סידור ספרד, שחרית לימות החול, עלינו",
+"c":0
+},
+{
+"r":"Siddur Sefard, Additional Prayers , Six Rememberances",
+"p":"Additional Prayers , Six Rememberances",
+"h":"סידור ספרד, תוספות אחרי שחרית, שש זכירות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Additional Prayers , Thirteen Principles",
+"p":"Additional Prayers , Thirteen Principles",
+"h":"סידור ספרד, תוספות אחרי שחרית, שלשה עשר עיקרים",
+"c":0
+},
+{
+"r":"Siddur Sefard, Additional Prayers , Chapter of Fear of God",
+"p":"Additional Prayers , Chapter of Fear of God",
+"h":"סידור ספרד, תוספות אחרי שחרית, פרשת היראה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Additional Prayers , Chapter of Repentance",
+"p":"Additional Prayers , Chapter of Repentance",
+"h":"סידור ספרד, תוספות אחרי שחרית, פרשת התשובה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Additional Prayers , Chapter of Manna",
+"p":"Additional Prayers , Chapter of Manna",
+"h":"סידור ספרד, תוספות אחרי שחרית, פרשת המן",
+"c":0
+},
+{
+"r":"Siddur Sefard, Additional Prayers , Supplications After Prayers",
+"p":"Additional Prayers , Supplications After Prayers",
+"h":"סידור ספרד, תוספות אחרי שחרית, בקשות לאחר התפילה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Additional Prayers , Chapter of Song",
+"p":"Additional Prayers , Chapter of Song",
+"h":"סידור ספרד, תוספות אחרי שחרית, פרק שירה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Mincha, Korbanot",
+"p":"Weekday Mincha, Korbanot",
+"h":"סידור ספרד, מנחה לימות החול, קרבנות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Mincha, Torah Reading for Fast Day",
+"p":"Weekday Mincha, Torah Reading for Fast Day",
+"h":"סידור ספרד, מנחה לימות החול, קריאה לתענית ציבור",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Mincha, Amidah",
+"p":"Weekday Mincha, Amidah",
+"h":"סידור ספרד, מנחה לימות החול, עמידה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Mincha, Tachanun",
+"p":"Weekday Mincha, Tachanun",
+"h":"סידור ספרד, מנחה לימות החול, תחנון",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Mincha, Avinu Malkeinu",
+"p":"Weekday Mincha, Avinu Malkeinu",
+"h":"סידור ספרד, מנחה לימות החול, אבינו מלכנו",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Maariv, The Shema",
+"p":"Weekday Maariv, The Shema",
+"h":"סידור ספרד, ערבית לימות החול, ק\"ש וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Maariv, Amidah",
+"p":"Weekday Maariv, Amidah",
+"h":"סידור ספרד, ערבית לימות החול, עמידה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Maariv, Motzaei Shabbat",
+"p":"Weekday Maariv, Motzaei Shabbat",
+"h":"סידור ספרד, ערבית לימות החול, ערבית למוצאי שבת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Weekday Maariv, Sefirat HaOmer",
+"p":"Weekday Maariv, Sefirat HaOmer",
+"h":"סידור ספרד, ערבית לימות החול, ספירת העומר",
+"c":0
+},
+{
+"r":"Siddur Sefard, Kiddush Levanah",
+"p":"Kiddush Levanah",
+"h":"סידור ספרד, קידוש לבנה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Bedtime Shema",
+"p":"Bedtime Shema",
+"h":"סידור ספרד, קריאת שמע שעל המיטה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Amar Rabbi Akiva",
+"p":"Lag BaOmer Songs, Amar Rabbi Akiva",
+"h":"סידור ספרד, שירים לל\"ג בעומר, אמר רבי עקיבא",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Ashreinu Ma Tov",
+"p":"Lag BaOmer Songs, Ashreinu Ma Tov",
+"h":"סידור ספרד, שירים לל\"ג בעומר, אשרנו מה טוב חלקנו",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Ashreinu Uma Naim",
+"p":"Lag BaOmer Songs, Ashreinu Uma Naim",
+"h":"סידור ספרד, שירים לל\"ג בעומר, אשרינו ומה נעים גורלינו",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Bar Yochai",
+"p":"Lag BaOmer Songs, Bar Yochai",
+"h":"סידור ספרד, שירים לל\"ג בעומר, בר יוחאי",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Bar Yochai Butzina Kadisha",
+"p":"Lag BaOmer Songs, Bar Yochai Butzina Kadisha",
+"h":"סידור ספרד, שירים לל\"ג בעומר, בר יוחאי בוצינא קדישא",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Bar Yochai Hashem Imcha",
+"p":"Lag BaOmer Songs, Bar Yochai Hashem Imcha",
+"h":"סידור ספרד, שירים לל\"ג בעומר, בר יוחאי ה' עמך",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Bar Yochai Yesod Olam",
+"p":"Lag BaOmer Songs, Bar Yochai Yesod Olam",
+"h":"סידור ספרד, שירים לל\"ג בעומר, בר יוחאי יסוד עולם",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Bar Yochai Tagel Yoladetecha",
+"p":"Lag BaOmer Songs, Bar Yochai Tagel Yoladetecha",
+"h":"סידור ספרד, שירים לל\"ג בעומר, בר יוחאי תגל יולדתך",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Va'amartem Ko Lechai",
+"p":"Lag BaOmer Songs, Va'amartem Ko Lechai",
+"h":"סידור ספרד, שירים לל\"ג בעומר, ואמרתם כה לחי",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Lichvod HaTanna",
+"p":"Lag BaOmer Songs, Lichvod HaTanna",
+"h":"סידור ספרד, שירים לל\"ג בעומר, לכבוד התנא האלקי רבי שמעון בר יוחאי",
+"c":0
+},
+{
+"r":"Siddur Sefard, Lag BaOmer Songs, Naaleh V'Navo",
+"p":"Lag BaOmer Songs, Naaleh V'Navo",
+"h":"סידור ספרד, שירים לל\"ג בעומר, נעלה ונבוא אל שערי מירון",
+"c":0
+},
+{
+"r":"Siddur Sefard, Various Blessings, Marriage Blessings",
+"p":"Various Blessings, Marriage Blessings",
+"h":"סידור ספרד, ברכות ותפילות שונות, סדר ברכות אירוסין ונשואין",
+"c":0
+},
+{
+"r":"Siddur Sefard, Various Blessings, Sheva Berachot",
+"p":"Various Blessings, Sheva Berachot",
+"h":"סידור ספרד, ברכות ותפילות שונות, סדר שבע ברכות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Various Blessings, Circumcision",
+"p":"Various Blessings, Circumcision",
+"h":"סידור ספרד, ברכות ותפילות שונות, סדר ברית מילה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Various Blessings, Geula LeBrit Milah",
+"p":"Various Blessings, Geula LeBrit Milah",
+"h":"סידור ספרד, ברכות ותפילות שונות, גאולה לברית מילה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Various Blessings, Redeeming Firstborn",
+"p":"Various Blessings, Redeeming Firstborn",
+"h":"סידור ספרד, ברכות ותפילות שונות, סדר פדיון הבן",
+"c":0
+},
+{
+"r":"Siddur Sefard, Mealtime Blessings",
+"p":"Mealtime Blessings",
+"h":"סידור ספרד, סדר סעודה וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Birchat HaMazon, Birchat HaMazon",
+"p":"Birchat HaMazon, Birchat HaMazon",
+"h":"סידור ספרד, סדר ברכת המזון,  ברכת המזון",
+"c":0
+},
+{
+"r":"Siddur Sefard, Birchat HaMazon, Brit Milah",
+"p":"Birchat HaMazon, Brit Milah",
+"h":"סידור ספרד, סדר ברכת המזון, הרחמן לברית מילה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Birchat HaMazon, Blessing on Foods",
+"p":"Birchat HaMazon, Blessing on Foods",
+"h":"סידור ספרד, סדר ברכת המזון, ברכות הנהנין",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Me'ein Shalosh",
+"p":"Blessings, Me'ein Shalosh",
+"h":"סידור ספרד, ברכות הנהנין, ברכה אחרונה מעין שלוש",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Ha'etz",
+"p":"Blessings, Ha'etz",
+"h":"סידור ספרד, ברכות הנהנין, בורא פרי העץ",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Ha'adamah",
+"p":"Blessings, Ha'adamah",
+"h":"סידור ספרד, ברכות הנהנין, בורא פרי האדמה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Shehakol",
+"p":"Blessings, Shehakol",
+"h":"סידור ספרד, ברכות הנהנין, ברכת שהכל",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Borei Nefashot",
+"p":"Blessings, Borei Nefashot",
+"h":"סידור ספרד, ברכות הנהנין, בורא נפשות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Shehecheyanu",
+"p":"Blessings, Shehecheyanu",
+"h":"סידור ספרד, ברכות הנהנין, ברכת שהחיינו",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Fragrant Spices",
+"p":"Blessings, Fragrant Spices",
+"h":"סידור ספרד, ברכות הנהנין, ריח בשמים",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Fragrant Herbs",
+"p":"Blessings, Fragrant Herbs",
+"h":"סידור ספרד, ברכות הנהנין, ריח טוב שבעשבים",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Fragrant Shrubs",
+"p":"Blessings, Fragrant Shrubs",
+"h":"סידור ספרד, ברכות הנהנין, ריח טוב שבעצים",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Fragrant Fruit",
+"p":"Blessings, Fragrant Fruit",
+"h":"סידור ספרד, ברכות הנהנין, ריח טוב שבפירות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Fragrant Oils",
+"p":"Blessings, Fragrant Oils",
+"h":"סידור ספרד, ברכות הנהנין, שמן אפרסמון",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Lightning & Thunder",
+"p":"Blessings, Lightning & Thunder",
+"h":"סידור ספרד, ברכות הנהנין, ברכת ברקים ורעמים",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Seeing Rainbow",
+"p":"Blessings, Seeing Rainbow",
+"h":"סידור ספרד, ברכות הנהנין, ברכת הקשת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Seeing Ocean",
+"p":"Blessings, Seeing Ocean",
+"h":"סידור ספרד, ברכות הנהנין, הים הגדול",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Blossoming Fruit Tree",
+"p":"Blessings, Blossoming Fruit Tree",
+"h":"סידור ספרד, ברכות הנהנין, ברכת האילנות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Various Blessings of Praise",
+"p":"Blessings, Various Blessings of Praise",
+"h":"סידור ספרד, ברכות הנהנין, ברכות שונות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Immersing Utensils",
+"p":"Blessings, Immersing Utensils",
+"h":"סידור ספרד, ברכות הנהנין, ברכת טבילת כלים",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Mezuzah",
+"p":"Blessings, Mezuzah",
+"h":"סידור ספרד, ברכות הנהנין, ברכת המזוזה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Separating Challah",
+"p":"Blessings, Separating Challah",
+"h":"סידור ספרד, ברכות הנהנין, סדר הפרשת חלה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Separating Terumot & Maasrot",
+"p":"Blessings, Separating Terumot & Maasrot",
+"h":"סידור ספרד, ברכות הנהנין, סדר הפרשת תרומות ומעשרות",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Traveler's Prayer",
+"p":"Blessings, Traveler's Prayer",
+"h":"סידור ספרד, ברכות הנהנין, תפלת הדרך",
+"c":0
+},
+{
+"r":"Siddur Sefard, Blessings, Air Traveler's Prayer",
+"p":"Blessings, Air Traveler's Prayer",
+"h":"סידור ספרד, ברכות הנהנין, תפילת הדרך לטסים באוירון",
+"c":0
+},
+{
+"r":"Siddur Sefard, Eruv Tavshilin",
+"p":"Eruv Tavshilin",
+"h":"סידור ספרד, סדר ערוב תבשילין",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Candle Lighting",
+"p":"Shabbat Candle Lighting",
+"h":"סידור ספרד, סדר הדלקת נרות שבת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Eve Mincha, Song of Songs",
+"p":"Shabbat Eve Mincha, Song of Songs",
+"h":"סידור ספרד, מנחה לערב שבת, שיר השירים",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Eve Mincha, Mincha",
+"p":"Shabbat Eve Mincha, Mincha",
+"h":"סידור ספרד, מנחה לערב שבת, מנחה לערב שבת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Eve Mincha, Amidah",
+"p":"Shabbat Eve Mincha, Amidah",
+"h":"סידור ספרד, מנחה לערב שבת, תפילת עמידה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Kabbalat Shabbat",
+"p":"Kabbalat Shabbat",
+"h":"סידור ספרד, קבלת שבת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Eve Maariv, Shabbat Eve Maariv",
+"p":"Shabbat Eve Maariv, Shabbat Eve Maariv",
+"h":"סידור ספרד, ערבית של שבת, תפילת ערבית של שבת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Eve Maariv, Shema & Blessings",
+"p":"Shabbat Eve Maariv, Shema & Blessings",
+"h":"סידור ספרד, ערבית של שבת, ק\"ש וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Eve Maariv, Amidah",
+"p":"Shabbat Eve Maariv, Amidah",
+"h":"סידור ספרד, ערבית של שבת, תפילת עמידה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Eve Maariv, Vayechulu",
+"p":"Shabbat Eve Maariv, Vayechulu",
+"h":"סידור ספרד, ערבית של שבת, ויכולו",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Evening Meal, Blessing the Children",
+"p":"Shabbat Evening Meal, Blessing the Children",
+"h":"סידור ספרד, סעודת ליל שבת, ברכת הבנים",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Evening Meal, Shalom Aleichem",
+"p":"Shabbat Evening Meal, Shalom Aleichem",
+"h":"סידור ספרד, סעודת ליל שבת, שלום עליכם",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Evening Meal, Eishet Chayil",
+"p":"Shabbat Evening Meal, Eishet Chayil",
+"h":"סידור ספרד, סעודת ליל שבת, אשת חיל",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Evening Meal, Atkinu Seudata",
+"p":"Shabbat Evening Meal, Atkinu Seudata",
+"h":"סידור ספרד, סעודת ליל שבת, אתקינו סעודתא",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Evening Meal, Shabbat Eve Kiddush",
+"p":"Shabbat Evening Meal, Shabbat Eve Kiddush",
+"h":"סידור ספרד, סעודת ליל שבת, קידוש ליל שבת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Evening Meal, Zemirot",
+"p":"Shabbat Evening Meal, Zemirot",
+"h":"סידור ספרד, סעודת ליל שבת, זמירות לליל שבת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Pesukei D'Zimrah",
+"p":"Shabbat Morning Services, Pesukei D'Zimrah",
+"h":"סידור ספרד, שחרית של שבת, פסוקי דזמרה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Shema & Blessings",
+"p":"Shabbat Morning Services, Shema & Blessings",
+"h":"סידור ספרד, שחרית של שבת, ק\"ש וברכותיה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Amidah",
+"p":"Shabbat Morning Services, Amidah",
+"h":"סידור ספרד, שחרית של שבת, תפילת עמידה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Shabbat Torah Reading",
+"p":"Shabbat Morning Services, Shabbat Torah Reading",
+"h":"סידור ספרד, שחרית של שבת, סדר קריאת התורה בשבת",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Blessings on Torah Reading",
+"p":"Shabbat Morning Services, Blessings on Torah Reading",
+"h":"סידור ספרד, שחרית של שבת, ברכת התורה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Prayer for Oleh",
+"p":"Shabbat Morning Services, Prayer for Oleh",
+"h":"סידור ספרד, שחרית של שבת, מי שברך לעולה לתורה",
+"c":0
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Prayer for Mother after Chilbirth",
+"p":"Shabbat Morning Services, Prayer for Mother after Chilbirth",
+"h":"סידור ספרד, שחרית של שבת, מי שברך ליולדת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Prayer for Sick",
+"p":"Shabbat Morning Services, Prayer for Sick",
+"h":"סידור ספרד, שחרית של שבת, מי שברך לחולה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, BaHaB Blessing",
+"p":"Shabbat Morning Services, BaHaB Blessing",
+"h":"סידור ספרד, שחרית של שבת, מברכין בה\"ב",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Thanksgiving Blessing",
+"p":"Shabbat Morning Services, Thanksgiving Blessing",
+"h":"סידור ספרד, שחרית של שבת, ברכת הגומל",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Bar Mitzva",
+"p":"Shabbat Morning Services, Bar Mitzva",
+"h":"סידור ספרד, שחרית של שבת, לנער בר מצוה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Hagbahah",
+"p":"Shabbat Morning Services, Hagbahah",
+"h":"סידור ספרד, שחרית של שבת, הגבהת ספר תורה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Haftarah Blessings",
+"p":"Shabbat Morning Services, Haftarah Blessings",
+"h":"סידור ספרד, שחרית של שבת, ברכות ההפטרה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Blessing of New Month",
+"p":"Shabbat Morning Services, Blessing of New Month",
+"h":"סידור ספרד, שחרית של שבת, ברכת החודש",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Prayer for Deceased",
+"p":"Shabbat Morning Services, Prayer for Deceased",
+"h":"סידור ספרד, שחרית של שבת, הזכרת נשמות",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Morning Services, Av HaRachamim",
+"p":"Shabbat Morning Services, Av HaRachamim",
+"h":"סידור ספרד, שחרית של שבת, אב הרחמים",
+"c":1
+},
+{
+"r":"Siddur Sefard, Musaf",
+"p":"Musaf",
+"h":"סידור ספרד, מוסף של שבת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Day Meal, Seder Tikunei Shabbat",
+"p":"Shabbat Day Meal, Seder Tikunei Shabbat",
+"h":"סידור ספרד, סעודת שבת, סדר תיקוני שבת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Day Meal, Shabbat Day Kiddush",
+"p":"Shabbat Day Meal, Shabbat Day Kiddush",
+"h":"סידור ספרד, סעודת שבת, קידוש ליום השבת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Day Meal, Zemirot",
+"p":"Shabbat Day Meal, Zemirot",
+"h":"סידור ספרד, סעודת שבת, זמירות ליום השבת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Mincha, Korbanot",
+"p":"Shabbat Mincha, Korbanot",
+"h":"סידור ספרד, מנחה לשבת קודש, קרבנות",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Mincha, Amidah",
+"p":"Shabbat Mincha, Amidah",
+"h":"סידור ספרד, מנחה לשבת קודש, תפילת עמידה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shabbat Mincha, Pirkei Avot",
+"p":"Shabbat Mincha, Pirkei Avot",
+"h":"סידור ספרד, מנחה לשבת קודש, פרקי אבות",
+"c":1
+},
+{
+"r":"Siddur Sefard, Third Meal, Zemirot",
+"p":"Third Meal, Zemirot",
+"h":"סידור ספרד, סעודה שלישית, זמירות לסעודה שלישית",
+"c":1
+},
+{
+"r":"Siddur Sefard, Third Meal, Motzaei Shabbat Prayers",
+"p":"Third Meal, Motzaei Shabbat Prayers",
+"h":"סידור ספרד, סעודה שלישית, סדר מוצאי שבת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Third Meal, Gott Fun Avraham",
+"p":"Third Meal, Gott Fun Avraham",
+"h":"סידור ספרד, סעודה שלישית, בקשה למוצאי שבת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Motzaei Shabbat , Havdala",
+"p":"Motzaei Shabbat , Havdala",
+"h":"סידור ספרד, למוצאי שבת, סדר הבדלה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Motzaei Shabbat , Hamavdil",
+"p":"Motzaei Shabbat , Hamavdil",
+"h":"סידור ספרד, למוצאי שבת, זמר למוצאי שבת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Motzaei Shabbat , Melava Malka Zemirot",
+"p":"Motzaei Shabbat , Melava Malka Zemirot",
+"h":"סידור ספרד, למוצאי שבת, זמירות לסעודת מלוה מלכה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shaking Lulav",
+"p":"Shaking Lulav",
+"h":"סידור ספרד, סדר נטילת לולב",
+"c":1
+},
+{
+"r":"Siddur Sefard, Rosh Chodesh, Hallel",
+"p":"Rosh Chodesh, Hallel",
+"h":"סידור ספרד, לראש חודש, סדר הלל",
+"c":1
+},
+{
+"r":"Siddur Sefard, Rosh Chodesh, Song of the Day",
+"p":"Rosh Chodesh, Song of the Day",
+"h":"סידור ספרד, לראש חודש, שיר של יום",
+"c":1
+},
+{
+"r":"Siddur Sefard, Rosh Chodesh, Barchi Nafshi",
+"p":"Rosh Chodesh, Barchi Nafshi",
+"h":"סידור ספרד, לראש חודש, ברכי נפשי",
+"c":1
+},
+{
+"r":"Siddur Sefard, Rosh Chodesh, Torah Reading",
+"p":"Rosh Chodesh, Torah Reading",
+"h":"סידור ספרד, לראש חודש, קריאת התורה לראש חדש",
+"c":1
+},
+{
+"r":"Siddur Sefard, Rosh Chodesh, Ashrei Uva L'Tziyon",
+"p":"Rosh Chodesh, Ashrei Uva L'Tziyon",
+"h":"סידור ספרד, לראש חודש, אשרי ובא לציון",
+"c":1
+},
+{
+"r":"Siddur Sefard, Rosh Chodesh, Returning Sefer Torah",
+"p":"Rosh Chodesh, Returning Sefer Torah",
+"h":"סידור ספרד, לראש חודש, החזרת ספר תורה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Rosh Chodesh, Mussaf",
+"p":"Rosh Chodesh, Mussaf",
+"h":"סידור ספרד, לראש חודש, מוסף לראש חודש",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Yom Tov Eve Kiddush",
+"p":"Holidays, Yom Tov Eve Kiddush",
+"h":"סידור ספרד, לשלש רגלים, קידוש לשלש רגלים",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Kaddish Before Maariv Amidah",
+"p":"Holidays, Kaddish Before Maariv Amidah",
+"h":"סידור ספרד, לשלש רגלים, תפילת ג' רגלים לערבית, לשחרית ולמנחה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Maariv, Shacharit & Mincha Amidah",
+"p":"Holidays, Maariv, Shacharit & Mincha Amidah",
+"h":"סידור ספרד, לשלש רגלים, תפילת עמידה לשחרית, מנחה וערבית של ג' רגלים",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Yizkor",
+"p":"Holidays, Yizkor",
+"h":"סידור ספרד, לשלש רגלים, סדר הזכרת נשמות",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Prayer for Dew",
+"p":"Holidays, Prayer for Dew",
+"h":"סידור ספרד, לשלש רגלים, תפילת טל ליום ראשון של פסח",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Prayer for Rain",
+"p":"Holidays, Prayer for Rain",
+"h":"סידור ספרד, לשלש רגלים, תפילת גשם לשמיני עצרת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Yom Tov Musaf Amidah",
+"p":"Holidays, Yom Tov Musaf Amidah",
+"h":"סידור ספרד, לשלש רגלים, מוסף לג' רגלים",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Yom Tov Daytime Kiddush",
+"p":"Holidays, Yom Tov Daytime Kiddush",
+"h":"סידור ספרד, לשלש רגלים, סדר קידושא רבא לג' רגלים ולראש השנה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Holidays, Prayer Upon Entering Sukkah",
+"p":"Holidays, Prayer Upon Entering Sukkah",
+"h":"סידור ספרד, לשלש רגלים, תפילה כשנכנסים לסוכה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Nissan, The'Nasi' Readings",
+"p":"Nissan, The'Nasi' Readings",
+"h":"סידור ספרד, ניסן, פרשת הנשיאים",
+"c":1
+},
+{
+"r":"Siddur Sefard, Nissan, Search for Hametz",
+"p":"Nissan, Search for Hametz",
+"h":"סידור ספרד, ניסן, סדר בדיקת חמץ",
+"c":1
+},
+{
+"r":"Siddur Sefard, Nissan, Burning Hametz",
+"p":"Nissan, Burning Hametz",
+"h":"סידור ספרד, ניסן, סדר שריפת חמץ",
+"c":1
+},
+{
+"r":"Siddur Sefard, Nissan, Pesach Offering",
+"p":"Nissan, Pesach Offering",
+"h":"סידור ספרד, ניסן, סדר אמירת קרבן פסח",
+"c":1
+},
+{
+"r":"Siddur Sefard, Nissan, Letter of Rav Shimshon of Ostropol",
+"p":"Nissan, Letter of Rav Shimshon of Ostropol",
+"h":"סידור ספרד, ניסן, אגרת רבינו שמשון מגיד מאוסטרופוליא",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Kadesh",
+"p":"Pesach Haggadah, Kadesh",
+"h":"סידור ספרד, הגדה של פסח, קדש",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Urchatz",
+"p":"Pesach Haggadah, Urchatz",
+"h":"סידור ספרד, הגדה של פסח, ורחץ",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Karpas",
+"p":"Pesach Haggadah, Karpas",
+"h":"סידור ספרד, הגדה של פסח, כרפס",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Yachatz",
+"p":"Pesach Haggadah, Yachatz",
+"h":"סידור ספרד, הגדה של פסח, יחץ",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Maggid",
+"p":"Pesach Haggadah, Maggid",
+"h":"סידור ספרד, הגדה של פסח, מגיד",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Rochtzoh",
+"p":"Pesach Haggadah, Rochtzoh",
+"h":"סידור ספרד, הגדה של פסח, רחצה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Motzi, Matzah",
+"p":"Pesach Haggadah, Motzi, Matzah",
+"h":"סידור ספרד, הגדה של פסח, מוציא, מצה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Maror",
+"p":"Pesach Haggadah, Maror",
+"h":"סידור ספרד, הגדה של פסח, מרור",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Korech",
+"p":"Pesach Haggadah, Korech",
+"h":"סידור ספרד, הגדה של פסח, כורך",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Shulchan Orech",
+"p":"Pesach Haggadah, Shulchan Orech",
+"h":"סידור ספרד, הגדה של פסח, שלחן עורך",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Tzafun",
+"p":"Pesach Haggadah, Tzafun",
+"h":"סידור ספרד, הגדה של פסח, צפון",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Barech",
+"p":"Pesach Haggadah, Barech",
+"h":"סידור ספרד, הגדה של פסח, ברך",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Hallel",
+"p":"Pesach Haggadah, Hallel",
+"h":"סידור ספרד, הגדה של פסח, הלל",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Nirtzah",
+"p":"Pesach Haggadah, Nirtzah",
+"h":"סידור ספרד, הגדה של פסח, נרצה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Pesach Haggadah, Shir HaShirim",
+"p":"Pesach Haggadah, Shir HaShirim",
+"h":"סידור ספרד, הגדה של פסח, שיר השירים",
+"c":1
+},
+{
+"r":"Siddur Sefard, Sukkot, Order of Hoshanot",
+"p":"Sukkot, Order of Hoshanot",
+"h":"סידור ספרד, סוכות, סדר הושענות",
+"c":1
+},
+{
+"r":"Siddur Sefard, Sukkot, First Day & Chol HaMoed",
+"p":"Sukkot, First Day & Chol HaMoed",
+"h":"סידור ספרד, סוכות, הושענות ליו\"ט ראשון ולחוה\"מ",
+"c":1
+},
+{
+"r":"Siddur Sefard, Sukkot, Sabbath",
+"p":"Sukkot, Sabbath",
+"h":"סידור ספרד, סוכות, הושענות לשבת",
+"c":1
+},
+{
+"r":"Siddur Sefard, Sukkot, Hoshana Rabba",
+"p":"Sukkot, Hoshana Rabba",
+"h":"סידור ספרד, סוכות, הושענות להושענא רבא",
+"c":1
+},
+{
+"r":"Siddur Sefard, Simchat Torah, Hakafot",
+"p":"Simchat Torah, Hakafot",
+"h":"סידור ספרד, שמחת תורה, הקפות לשמחת תורה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Simchat Torah, Evening Torah Reading",
+"p":"Simchat Torah, Evening Torah Reading",
+"h":"סידור ספרד, שמחת תורה, סדר הקריאה לליל שמחת תורה",
+"c":1
+},
+{
+"r":"Siddur Sefard, Shavuot",
+"p":"Shavuot",
+"h":"סידור ספרד, שבועות",
+"c":1
+},
+{
+"r":"Siddur Sefard, Yotzerot, Parashat Sekalim",
+"p":"Yotzerot, Parashat Sekalim",
+"h":"סידור ספרד, יוצרות, יוצר לפרשת שקלים",
+"c":1
+},
+{
+"r":"Siddur Sefard, Yotzerot, Musaf for Shekalim",
+"p":"Yotzerot, Musaf for Shekalim",
+"h":"סידור ספרד, יוצרות, מוסף לפרשת שקלים",
+"c":2
+},
+{
+"r":"Siddur Sefard, Yotzerot, Parashat Zachor",
+"p":"Yotzerot, Parashat Zachor",
+"h":"סידור ספרד, יוצרות, יוצר לפרשת זכור",
+"c":2
+},
+{
+"r":"Siddur Sefard, Yotzerot, Parashat Parah",
+"p":"Yotzerot, Parashat Parah",
+"h":"סידור ספרד, יוצרות, יוצר לפרשת פרה",
+"c":2
+},
+{
+"r":"Siddur Sefard, Yotzerot, Parashat HaChodesh",
+"p":"Yotzerot, Parashat HaChodesh",
+"h":"סידור ספרד, יוצרות, יוצר לפרשת החודש",
+"c":2
+},
+{
+"r":"Siddur Sefard, Yotzerot, Musaf for Hachodesh",
+"p":"Yotzerot, Musaf for Hachodesh",
+"h":"סידור ספרד, יוצרות, מוסף לפרשת החודש",
+"c":2
+},
+{
+"r":"Siddur Sefard, Yotzerot, Shabbat HaGadol",
+"p":"Yotzerot, Shabbat HaGadol",
+"h":"סידור ספרד, יוצרות, יוצר לשבת הגדול",
+"c":2
+},
+{
+"r":"Siddur Sefard, Yotzerot, Haggadah for Shabbat Hagadol",
+"p":"Yotzerot, Haggadah for Shabbat Hagadol",
+"h":"סידור ספרד, יוצרות, הגדה ש\"פ לשבת הגדול",
+"c":2
+},
+{
+"r":"Siddur Sefard, Chanukah, Menorah Lighting",
+"p":"Chanukah, Menorah Lighting",
+"h":"סידור ספרד, חנוכה, סדר הדלקת נרות חנוכה",
+"c":2
+},
+{
+"r":"Siddur Sefard, Chanukah, Torah Reading",
+"p":"Chanukah, Torah Reading",
+"h":"סידור ספרד, חנוכה, קריאת התורה",
+"c":2
+},
+{
+"r":"Siddur Sefard, Chanukah, Song for Shabbat Chanuka",
+"p":"Chanukah, Song for Shabbat Chanuka",
+"h":"סידור ספרד, חנוכה, זמר לשבת חנוכה",
+"c":2
+},
+{
+"r":"Siddur Sefard, Purim, Parashat Zachor",
+"p":"Purim, Parashat Zachor",
+"h":"סידור ספרד, פורים, פרשת זכור",
+"c":2
+},
+{
+"r":"Siddur Sefard, Purim, Megillah Reading",
+"p":"Purim, Megillah Reading",
+"h":"סידור ספרד, פורים, קריאת המגילה",
+"c":2
+},
+{
+"r":"Siddur Sefard, Purim, Order of Purim Day",
+"p":"Purim, Order of Purim Day",
+"h":"סידור ספרד, פורים, סדר יום פורים",
+"c":2
+},
+{
+"r":"Siddur Sefard, Purim, Krovetz L'Purim",
+"p":"Purim, Krovetz L'Purim",
+"h":"סידור ספרד, פורים, קרובץ לפורים",
+"c":2
+},
+{
+"r":"Siddur Sefard, Purim, Torah Reading",
+"p":"Purim, Torah Reading",
+"h":"סידור ספרד, פורים, קריאת התורה לפורים",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Yom Kippur Katan",
+"p":"Fast Days, Yom Kippur Katan",
+"h":"סידור ספרד, תעניות ואבלות, סדר יום כיפור קטן",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for BaHaB",
+"p":"Fast Days, Selichot for BaHaB",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לתעניות שני וחמישי ושני",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for First Monday",
+"p":"Fast Days, Selichot for First Monday",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לשני קמא",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for Thursday",
+"p":"Fast Days, Selichot for Thursday",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לחמישי",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for Concluding Monday",
+"p":"Fast Days, Selichot for Concluding Monday",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לשני בתרא",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for Asara B'Tevet",
+"p":"Fast Days, Selichot for Asara B'Tevet",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לעשרה בטבת",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for Taanit Esther",
+"p":"Fast Days, Selichot for Taanit Esther",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לתענית אסתר",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for 20 Sivan",
+"p":"Fast Days, Selichot for 20 Sivan",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לכ' סיון",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, El Maleh Prayer",
+"p":"Fast Days, El Maleh Prayer",
+"h":"סידור ספרד, תעניות ואבלות, אל מלא רחמים של כ' סיון",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for 17 Tamuz",
+"p":"Fast Days, Selichot for 17 Tamuz",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לשבעה עשר בתמוז",
+"c":2
+},
+{
+"r":"Siddur Sefard, Fast Days, Selichot for Childrens' Illness",
+"p":"Fast Days, Selichot for Childrens' Illness",
+"h":"סידור ספרד, תעניות ואבלות, סליחות לתחלואי ילדים ר\"ל",
+"c":2
+},
+{
+"r":"Siddur Sefard, Torah Readings, Torah Reading for Shabbat Mincha & Monday, Thursday",
+"p":"Torah Readings, Torah Reading for Shabbat Mincha & Monday, Thursday",
+"h":"סידור ספרד, סדר הקריאות, קריאות לשבת במנחה, ושני וחמישי",
+"c":2
+},
+{
+"r":"Siddur Sefard, Torah Readings, Fast Day Torah Reading",
+"p":"Torah Readings, Fast Day Torah Reading",
+"h":"סידור ספרד, סדר הקריאות, קריאה בתורה לתענית ציבור",
+"c":2
+},
+{
+"r":"Siddur Sefard, Torah Readings, Fast Day Mincha Haftara",
+"p":"Torah Readings, Fast Day Mincha Haftara",
+"h":"סידור ספרד, סדר הקריאות, הפטרה לתענית ציבור במנחה",
+"c":2
+},
+{
+"r":"Siddur Sefard, Torah Readings, Torah Reading for Rosh Chodesh",
+"p":"Torah Readings, Torah Reading for Rosh Chodesh",
+"h":"סידור ספרד, סדר הקריאות, קריאה לראש חודש",
+"c":2
+},
+{
+"r":"Siddur Sefard, Torah Readings, Torah Reading for Chol Hamoed Pesach",
+"p":"Torah Readings, Torah Reading for Chol Hamoed Pesach",
+"h":"סידור ספרד, סדר הקריאות, קריאה לחוה\"מ פסח",
+"c":2
+},
+{
+"r":"Siddur Sefard, Torah Readings, Torah Reading for Chol Hamoed Sukkot",
+"p":"Torah Readings, Torah Reading for Chol Hamoed Sukkot",
+"h":"סידור ספרד, סדר הקריאות, קריאה לחול המועד של סוכות",
+"c":2
+},
+{
+"r":"Siddur Sefard, Priestly Blessing",
+"p":"Priestly Blessing",
+"h":"סידור ספרד, סדר ברכת כהנים",
+"c":2
+},
+{
+"r":"Siddur Sefard, Various Prayers & Segulot, Formula Against Evil Eye",
+"p":"Various Prayers & Segulot, Formula Against Evil Eye",
+"h":"סידור ספרד, תפילות וסגולות שונות, לחש לעין הרע",
+"c":2
+},
+{
+"r":"Siddur Sefard, Various Prayers & Segulot, Letter of Ramban",
+"p":"Various Prayers & Segulot, Letter of Ramban",
+"h":"סידור ספרד, תפילות וסגולות שונות, אגרת הרמב\"ן",
+"c":2
+},
+{
+"r":"Siddur Sefard, Various Prayers & Segulot, Prayer of the Shelah",
+"p":"Various Prayers & Segulot, Prayer of the Shelah",
+"h":"סידור ספרד, תפילות וסגולות שונות, תפילת השל\"ה הקדוש",
+"c":2
+},
+{
+"r":"Siddur Sefard, Various Prayers & Segulot, Parashat Haman Reading for Tuesday Beshalach",
+"p":"Various Prayers & Segulot, Parashat Haman Reading for Tuesday Beshalach",
+"h":"סידור ספרד, תפילות וסגולות שונות, פרשת המן שמו\"ת ליום שלישי פרשת בשלח",
+"c":2
+},
+{
+"r":"Siddur Sefard, Various Prayers & Segulot, Prayer for Livelihood",
+"p":"Various Prayers & Segulot, Prayer for Livelihood",
+"h":"סידור ספרד, תפילות וסגולות שונות, תפילה על הפרנסה",
+"c":2
+},
+{
+"r":"Siddur Sefard, Various Prayers & Segulot, Awesome Prayer of Rabbeinu Tam",
+"p":"Various Prayers & Segulot, Awesome Prayer of Rabbeinu Tam",
+"h":"סידור ספרד, תפילות וסגולות שונות, תפילה נוראה וקדושה מרבנו תם זי\"ע",
+"c":2
+}
+],
+"downloaded":"2026-10-22"
+}
