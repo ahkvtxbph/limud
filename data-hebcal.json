@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-hebcal.json
+---
+{% include src-hebcal.json %}
