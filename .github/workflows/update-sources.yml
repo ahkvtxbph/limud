@@ -1,9 +1,10 @@
 name: Update texts from Sefaria
 
 # Once a week (Saturday night) — and by hand from the Actions tab ("Run workflow") — checks the
-# texts the site keeps in _includes/ (Tehillim, Birkat HaMazon, Shulchan Arukh, Kitzur) against
+# texts the site keeps in _includes/ (Tehillim, Birkat HaMazon, Shulchan Arukh, Kitzur, Arukh HaShulchan,
+# Mishnah + Bartenura, Rambam, Tanakh + Rashi + Onkelos) against
 # Sefaria:
-#   * the halacha-yomit schedule (which siman is learned on which date) is refreshed and committed
+#   * the daily-learning schedules (what is learned on which date) are refreshed and committed
 #     directly — it is only a list of dates, nothing to review;
 #   * any change in the TEXTS is NOT committed: a pull request is opened instead, with a summary of
 #     what changed, for the site owner to approve ("Merge") or reject ("Close").
@@ -25,7 +26,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -38,10 +39,10 @@ jobs:
           python3 .github/scripts/update_sources.py --schedule-only
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- _includes/halacha-schedule.json; then
+          git add -A -- _includes/halacha-schedule.json _includes/src-schedule.json data-schedule.json
+          if git diff --cached --quiet; then
             echo "Schedule already up to date."
           else
-            git add _includes/halacha-schedule.json
             git commit -m "Auto-update halacha schedule"
             git push
           fi
@@ -68,7 +69,7 @@ jobs:
               echo "> ⚠️ **בדיקת ברכת המזון נכשלה — לא לאשר לפני בדיקה ידנית.**"
               echo
             fi
-            cat "$RUNNER_TEMP/report.md"
+            head -c 60000 "$RUNNER_TEMP/report.md"   # GitHub limits the length of a pull request text
             echo
             echo "---"
             echo "כדי לעדכן את האתר: **Merge pull request** ← **Confirm merge**. כדי לוותר: **Close pull request**."
@@ -82,6 +83,7 @@ jobs:
           delete-branch: true
           add-paths: |
             _includes/*.json
+            data-*.json
           commit-message: "Update texts from Sefaria"
           title: ${{ steps.birkat.outcome == 'success' && 'עדכון טקסטים מספריא' || '⚠️ עדכון טקסטים מספריא — דורש בדיקה' }}
           body-path: ${{ runner.temp }}/body.md
