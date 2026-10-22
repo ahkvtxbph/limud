@@ -7,6 +7,9 @@ Refreshes the texts the site keeps locally (in _includes/) from Sefaria.
   Halacha Yomit ........ _includes/halacha-text-oc.json / -yd / -eh / -cm / -kitzur.json
                          _includes/halacha-manifest.json  (simanim, se'if counts, topics, versions)
                          _includes/halacha-schedule.json  (which halacha is learned on which date)
+  Arukh HaShulchan, Mishnah + Bartenura, Rambam, Tanakh + Rashi + Onkelos
+                         _includes/src-*.json + data-*.json (see update_library.py)
+                         _includes/src-schedule.json       (daily-learning dates for those pages)
 
 A file is rewritten only when its TEXT really changed, so an unchanged source leaves no diff.
 Run by .github/workflows/update-sources.yml (weekly); can also be run by hand:
@@ -35,7 +38,9 @@ BOOKS = [
     ('cm',     'Shulchan Arukh, Choshen Mishpat','שולחן ערוך — חושן משפט'),
     ('kitzur', 'Kitzur Shulchan Arukh',          'קיצור שולחן ערוך'),
 ]
-CALENDAR_ITEMS = ['Halakhah Yomit']
+CALENDAR_ITEMS = ['Halakhah Yomit']                      # -> _includes/halacha-schedule.json
+OTHER_CALENDAR_ITEMS = ['Arukh HaShulchan Yomi', 'Daily Mishnah', 'Daily Rambam', 'Daily Rambam (3 Chapters)',
+                        'Tanakh Yomi', '929']              # -> _includes/src-schedule.json (+ data-schedule.json)
 SCHEDULE_DAYS_BACK, SCHEDULE_DAYS_AHEAD = 7, 120
 
 report = []          # lines for the pull-request description
@@ -228,26 +233,36 @@ def version_hash(text):
     return hashlib.sha1(dumps(text).encode('utf-8')).hexdigest()[:12]
 
 def update_schedule():
-    sched = read_json('halacha-schedule.json') or {}
+    """One calendar request per day fills both schedule files. Returns True if either changed."""
+    files = {'halacha-schedule.json': CALENDAR_ITEMS, 'src-schedule.json': OTHER_CALENDAR_ITEMS}
+    old = {name: read_json(name) or {} for name in files}
+    new = {name: {item: {k: v for k, v in (old[name].get(item) or {}).items()} for item in items} for name, items in files.items()}
     start, end = date.today() - timedelta(days=SCHEDULE_DAYS_BACK), date.today() + timedelta(days=SCHEDULE_DAYS_AHEAD)
-    for item in CALENDAR_ITEMS:
-        days = {k: v for k, v in (sched.get(item) or {}).items() if k >= start.isoformat()}
-        d = start
-        while d <= end:
-            k = d.isoformat()
-            if k not in days or d >= date.today() - timedelta(days=1):   # refresh recent/future days too
-                data = http_json(f"{API}/calendars?diaspora=0&year={d.year}&month={d.month}&day={d.day}")
-                it = next((i for i in data.get('calendar_items', []) if (i.get('title') or {}).get('en') == item), None)
-                if it and it.get('ref'):
-                    days[k] = {'ref': it['ref'], 'he': (it.get('displayValue') or {}).get('he') or ''}
-                time.sleep(0.2)
-            d += timedelta(days=1)
-        sched[item] = dict(sorted(days.items()))
-    old = read_json('halacha-schedule.json')
-    if old != sched:
-        write_json('halacha-schedule.json', sched)
-        return True
-    return False
+    d = start
+    while d <= end:
+        k = d.isoformat()
+        missing = any(k not in new[n][i] for n, items in files.items() for i in items)
+        if missing or d >= date.today() - timedelta(days=1):      # refresh recent/future days too
+            data = http_json(f"{API}/calendars?diaspora=0&year={d.year}&month={d.month}&day={d.day}")
+            for name, items in files.items():
+                for item in items:
+                    it = next((i for i in data.get('calendar_items', []) if (i.get('title') or {}).get('en') == item), None)
+                    if it and it.get('ref'):
+                        new[name][item][k] = {'ref': it['ref'], 'he': (it.get('displayValue') or {}).get('he') or ''}
+            time.sleep(0.2)
+        d += timedelta(days=1)
+    changed = False
+    for name in files:
+        for item in new[name]:
+            new[name][item] = dict(sorted((k, v) for k, v in new[name][item].items() if k >= start.isoformat()))
+        if new[name] != old[name]:
+            write_json(name, new[name]); changed = True
+    wrapper = "---\nlayout: null\npermalink: /data-schedule.json\n---\n{% include src-schedule.json %}"
+    wp = os.path.join(ROOT, 'data-schedule.json')
+    if not os.path.exists(wp) or open(wp, encoding='utf-8').read() != wrapper:
+        with open(wp, 'w', encoding='utf-8') as f: f.write(wrapper)
+        changed = True
+    return changed
 
 # ---------------------------------------------------------------- main
 def main():
@@ -264,6 +279,10 @@ def main():
     if json.dumps(manifest, sort_keys=True, ensure_ascii=False) != before:
         manifest['updated'] = TODAY
         write_json('halacha-manifest.json', manifest)
+    # Arukh HaShulchan, Mishnah, Rambam, Tanakh … (update_library.py)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from update_library import Library
+    Library(sys.modules[__name__]).run()
     out = os.environ.get('REPORT_FILE', 'update-report.md')
     with open(out, 'w', encoding='utf-8') as f:
         if problems: f.write('### ⚠️ דורש בדיקה\n' + '\n'.join('- ' + p for p in problems) + '\n\n')
