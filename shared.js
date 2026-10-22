@@ -702,7 +702,7 @@ async function fetchRegularHolidayLabel(){
     const end = new Date(now.getTime() + 86400000);
     const endStr = end.toISOString().slice(0,10);
     const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&maj=on&min=on&mod=on&nx=on&mf=on&start=${startStr}&end=${endStr}&tzid=${encodeURIComponent(tzid)}`;
-    const res = await fetch(url);
+    const res = await hebcalFetch(url);
     if(!res.ok) throw new Error('fetch failed');
     const data = await res.json();
     const items = data.items || [];
@@ -1077,6 +1077,50 @@ function wireSelectNav(selectId, prevBtnId, nextBtnId, onStep){
      P-siman-prev-btn, P-siman-next-btn, P-seif-prev-btn, P-seif-next-btn
    ===================================================================== */
 /* =====================================================================
+   LOCAL HEBCAL CALENDAR — Hebcal's answers kept on the site (data-hebcal.json, data-leyning.json),
+   refreshed weekly by the automation. Only requests that do not depend on the visitor's location
+   (holidays, Rosh Chodesh, fasts, weekly portion, haftara) are answered locally — and only for
+   the dates the file covers. Anything else (candle-lighting times, other dates) goes to Hebcal.
+   ===================================================================== */
+const hebcalLocalPromises = {};
+function hebcalLocalFile(name){
+  if(!hebcalLocalPromises[name]) hebcalLocalPromises[name] = fetchSiteJson(name);
+  return hebcalLocalPromises[name];
+}
+async function hebcalLocalAnswer(url){
+  let u;
+  try{ u = new URL(url); }catch(e){ return null; }
+  if(u.hostname !== 'www.hebcal.com') return null;
+  const p = u.searchParams;
+  if(u.pathname === '/leyning'){
+    const date = p.get('date');
+    if(!date || [...p.keys()].some(k => !['cfg', 'triennial', 'date', 'i'].includes(k)) || p.get('triennial') !== 'off') return null;
+    const f = await hebcalLocalFile('data-leyning.json');
+    const r = f && f.days && f.days[date + (p.get('i') === 'on' ? '|il' : '')];
+    return r || null;
+  }
+  if(u.pathname !== '/hebcal') return null;
+  const IGNORE = ['cfg', 'v', 'start', 'end', 'tzid'];
+  const ALLOWED = ['maj', 'min', 'mod', 'nx', 'mf', 's', 'ss', 'i', 'leyning'];
+  const keys = [...p.keys()].filter(k => !IGNORE.includes(k));
+  if(keys.some(k => !ALLOWED.includes(k))) return null;          // e.g. a location or candle-lighting times
+  const sig = keys.sort().map(k => k + '=' + p.get(k)).join('&');
+  const f = await hebcalLocalFile('data-hebcal.json');
+  const set = f && f.sets && f.sets[sig];
+  const start = p.get('start'), end = p.get('end');
+  if(!set || !start || !end || start < set.start || end > set.end) return null;
+  return { items: (set.items || []).filter(i => { const d = String(i.date || '').slice(0, 10); return d >= start && d <= end; }) };
+}
+// fetch() for Hebcal: the site's own copy when it has the answer, otherwise Hebcal itself.
+async function hebcalFetch(url){
+  try{
+    const local = await hebcalLocalAnswer(url);
+    if(local) return new Response(JSON.stringify(local), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  }catch(e){}
+  return fetch(url);
+}
+
+/* =====================================================================
    LOCAL BOOKS — texts kept on the site itself
    Two sources, both optional:
      1. embedded in the page (halacha.html):
@@ -1238,7 +1282,7 @@ async function localScheduleItem(titleEn, d, useUTC){
     const key = y + '-' + String(mo).padStart(2, '0') + '-' + String(da).padStart(2, '0');
     const it = days[key];
     if(!it || !it.ref) return null;
-    return { ref: it.ref, title: { en: titleEn }, displayValue: { he: it.he || '' } };
+    return { ref: it.ref, title: { en: titleEn }, displayValue: { he: it.he || '', en: it.en || '' } };
   }catch(e){ return null; }
 }
 
@@ -1626,14 +1670,17 @@ async function renderDafStyleDailyCalendar(titleEn, readerId, headingHe, selecte
   reader.appendChild(loadingEl);
   try{
     const targetDate = selectedDate || new Date();
-    const calendarUrl = selectedDate
-      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getUTCFullYear()}&month=${targetDate.getUTCMonth()+1}&day=${targetDate.getUTCDate()}`
-      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getFullYear()}&month=${targetDate.getMonth()+1}&day=${targetDate.getDate()}`;
-    const res = await fetch(calendarUrl);
-    if(!res.ok) throw new Error('calendar fetch failed');
-    const data = await res.json();
-    const items = (data && data.calendar_items) || [];
-    const item = items.find(i => i.title && i.title.en === titleEn);
+    let item = await localScheduleItem(titleEn, targetDate, !!selectedDate);   // the site's own schedule first
+    if(!item){
+      const calendarUrl = selectedDate
+        ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getUTCFullYear()}&month=${targetDate.getUTCMonth()+1}&day=${targetDate.getUTCDate()}`
+        : `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getFullYear()}&month=${targetDate.getMonth()+1}&day=${targetDate.getDate()}`;
+      const res = await fetch(calendarUrl);
+      if(!res.ok) throw new Error('calendar fetch failed');
+      const data = await res.json();
+      const items = (data && data.calendar_items) || [];
+      item = items.find(i => i.title && i.title.en === titleEn);
+    }
     if(!item || !item.ref) throw new Error('no item: ' + titleEn);
     const { text, ref: resolvedRef } = (opts && opts.versions) ? await fetchRefTextPreferring(item.ref, opts.versions) : await fetchRefText(item.ref);
     if(!text) throw new Error('empty text');
@@ -2024,7 +2071,7 @@ function hebcalShabbatUrl(shabbatMs, israel){
 // Chol HaMoed); holidays then lists what falls on that day, and prev/next are the neighbouring portions.
 // israel = true uses the Israeli reading schedule, false the Diaspora one. Data: Hebcal.com (CC BY 4.0).
 async function fetchShabbatReading(shabbatMs, israel){
-  const res = await fetch(hebcalShabbatUrl(shabbatMs, israel));
+  const res = await hebcalFetch(hebcalShabbatUrl(shabbatMs, israel));
   if(!res.ok) throw new Error('hebcal request failed: ' + res.status);
   const data = await res.json();
   const items = (data && data.items) || [];
@@ -2418,7 +2465,7 @@ async function fetchBirkatHamazonDayFlags(date){
     // after local midnight in Israel).
     const iso = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
     const url = `https://www.hebcal.com/hebcal?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&start=${iso}&end=${iso}${loc && loc.isIsrael ? '&i=on' : ''}`;
-    const res = await fetch(url);
+    const res = await hebcalFetch(url);
     if(!res.ok) return flags;
     const data = await res.json();
     const items = (data && data.items) || [];

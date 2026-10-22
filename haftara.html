@@ -254,7 +254,7 @@ try{
     let il = false;
     try{ const loc = await detectGatingLocation(); il = !!(loc && loc.isIsrael); }catch(e){}
     const url = 'https://www.hebcal.com/leyning?cfg=json&triennial=off&date=' + localIso(date) + (il ? '&i=on' : '');
-    const res = await fetch(url);
+    const res = await hebcalFetch(url);   // the site's own copy of Hebcal's calendar when it has this date
     if(!res.ok) throw new Error('Hebcal HTTP ' + res.status);
     const data = await res.json();
     const items = (data && data.items) || [];

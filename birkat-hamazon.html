@@ -345,11 +345,16 @@ try{
     // links from the output entirely — fixing this at the source, rather than trying to strip
     // them back out of the HTML afterward (reported bug: a previous strip attempt left part of
     // the link behind, because the bracket/link markup MediaWiki generates is itself nested).
-    const url = 'https://he.wikisource.org/w/api.php?action=parse&page=' + encodeURIComponent(BALADI_PAGE) + '&prop=text&disableeditsection=1&format=json&origin=*';
-    const res = await fetch(url);
-    if(!res.ok) throw new Error('fetch failed: ' + BALADI_PAGE);
-    const data = await res.json();
-    const raw = data && data.parse && data.parse.text && data.parse.text['*'];
+    // the site's own copy first (data-baladi.json, refreshed by the weekly automation), then Wikisource
+    let raw = null;
+    try{ const local = await fetchSiteJson('data-baladi.json'); raw = local && local.html; }catch(e){}
+    if(!raw){
+      const url = 'https://he.wikisource.org/w/api.php?action=parse&page=' + encodeURIComponent(BALADI_PAGE) + '&prop=text&disableeditsection=1&format=json&origin=*';
+      const res = await fetch(url);
+      if(!res.ok) throw new Error('fetch failed: ' + BALADI_PAGE);
+      const data = await res.json();
+      raw = data && data.parse && data.parse.text && data.parse.text['*'];
+    }
     if(!raw) throw new Error('empty or missing content from Wikisource for "' + BALADI_PAGE + '"');
     // Strip wiki-chrome that doesn't belong in a reading view: edit-section links, reference
     // footnote markers, embedded tables (navigation/infobox clutter, not the text itself).

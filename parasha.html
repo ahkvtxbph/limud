@@ -359,12 +359,15 @@ try{
     showLoading('מזהה את פרשת השבוע…');
     try{
       const now = new Date();
-      const dateParams = `&year=${now.getFullYear()}&month=${now.getMonth()+1}&day=${now.getDate()}`;
-      const res = await fetch(`https://www.sefaria.org/api/calendars?diaspora=0${dateParams}`);
-      if(!res.ok) throw new Error('sefaria fetch failed');
-      const data = await res.json();
-      const items = (data && data.calendar_items) || [];
-      const item = items.find(i => i.title && i.title.en === 'Parashat Hashavua');
+      let item = await localScheduleItem('Parashat Hashavua', now, false);   // the site's own schedule first
+      if(!item){
+        const dateParams = `&year=${now.getFullYear()}&month=${now.getMonth()+1}&day=${now.getDate()}`;
+        const res = await fetch(`https://www.sefaria.org/api/calendars?diaspora=0${dateParams}`);
+        if(!res.ok) throw new Error('sefaria fetch failed');
+        const data = await res.json();
+        const items = (data && data.calendar_items) || [];
+        item = items.find(i => i.title && i.title.en === 'Parashat Hashavua');
+      }
       const he = item && item.displayValue && item.displayValue.he;
       const idx = findParashaIndexByHebrewName(he);
       await loadParashaByIndex(idx >= 0 ? idx : 0);
