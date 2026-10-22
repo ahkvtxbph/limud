@@ -383,6 +383,7 @@ async function fetchRefText(ref, versionTitle){
     try{
       const local = await localRefText(ref);
       if(local != null) return { text: local, ref };
+      versionTitle = await localPinnedVersion(ref) || undefined;   // same edition as the local copy
     }catch(e){ console.warn('local text failed, using Sefaria:', ref, e); }
   }
   // the "|" must stay LITERAL in the URL (per Sefaria's own documented examples) — only the
@@ -401,9 +402,13 @@ async function fetchRefText(ref, versionTitle){
   return { text, ref: resolvedRef };
 }
 
+// Editions whose license also allows a site with advertisements (Sefaria's default Bartenura and
+// Onkelos are CC-BY-NC). Tried in order; if none answers, Sefaria's default is used.
+const BARTENURA_EDITIONS = ['On Your Way'];
+const ONKELOS_EDITIONS = ['Targum Onkelos, vocalized according to the Yemenite Taj', 'Targum Onkelos, vocalized according to the Yemenite Taj '];
 async function fetchCommentary(baseRef){
   try{
-    const { text } = await fetchRefText('Bartenura on Mishnah ' + baseRef);
+    const { text } = await fetchRefTextPreferring('Bartenura on Mishnah ' + baseRef, BARTENURA_EDITIONS);
     if(!text) return null;
     const flat = Array.isArray(text) ? text.flat(Infinity) : [text];
     const clean = flat.map(stripTags).filter(Boolean).join(' ');
@@ -1072,86 +1077,161 @@ function wireSelectNav(selectId, prevBtnId, nextBtnId, onStep){
      P-siman-prev-btn, P-siman-next-btn, P-seif-prev-btn, P-seif-next-btn
    ===================================================================== */
 /* =====================================================================
-   LOCAL BOOKS — texts kept on the site itself (Shulchan Arukh, Kitzur)
-   A page that wants them embeds two blocks (see halacha.html):
-     <script type="application/json" id="local-books-manifest">  books, se'if counts, topics, versions
-     <script type="application/json" id="local-schedule">        date -> daily-learning ref
-   Each book's text is a separate file (halacha-data-*.json, from _includes/halacha-text-*.json),
-   fetched once per text version and then kept in the phone's cache. Anything not found locally
-   (another book, a ref outside the file, a failed download) falls back to Sefaria as before.
-   Pages without these blocks (e.g. Arukh HaShulchan) are not affected at all.
+   LOCAL BOOKS — texts kept on the site itself
+   Two sources, both optional:
+     1. embedded in the page (halacha.html):
+          <script type="application/json" id="local-books-manifest">  books, se'if counts, topics, versions
+          <script type="application/json" id="local-schedule">        date -> daily-learning ref
+     2. published files, on pages with <meta name="local-data" content="1">:
+          data-manifest.json, data-schedule.json and the data-*.json text files — all created and
+          kept up to date by the weekly automation (.github/scripts/update_library.py).
+   Each text file is fetched once per text version and then kept in the phone's cache. Anything not
+   found locally (another book, a ref outside the file, a missing or failed file) falls back to
+   Sefaria as before — asking for the same edition when the manifest names one ("pin").
+   Pages with neither source are not affected at all.
    ===================================================================== */
-let localBooksManifestCache;
-function getLocalBooksManifest(){
-  if(localBooksManifestCache !== undefined) return localBooksManifestCache;
-  localBooksManifestCache = null;
-  try{
-    const el = document.getElementById('local-books-manifest');
-    if(el){ const m = JSON.parse(el.textContent); if(m && m.books) localBooksManifestCache = m; }
-  }catch(e){ console.warn('local books manifest unreadable:', e); }
-  return localBooksManifestCache;
+const SITE_BUILD = (function(){
+  try{ return new URL(document.currentScript.src).searchParams.get('build') || ''; }catch(e){ return ''; }
+})();
+function pageUsesLocalData(){
+  try{ return !!document.querySelector('meta[name="local-data"][content="1"]'); }catch(e){ return false; }
 }
-function localBookInfo(title){
-  const m = getLocalBooksManifest();
-  return (m && m.books && m.books[title]) || null;
+function readEmbeddedJson(id){
+  try{ const el = document.getElementById(id); return el ? JSON.parse(el.textContent || 'null') : null; }catch(e){ console.warn(id + ' unreadable:', e); return null; }
 }
-const localBookPromises = {};
-function loadLocalBook(title){
-  const b = localBookInfo(title);
-  if(!b || !b.file) return Promise.resolve(null);
-  if(!localBookPromises[title]){
-    localBookPromises[title] = fetch(b.file + '?build=' + encodeURIComponent(b.v || '1'))
-      .then(r => { if(!r.ok) throw new Error(b.file + ' ' + r.status); return r.json(); })
-      .then(d => (d && Array.isArray(d.text) && d.text.length) ? d.text : null)
-      .catch(e => { console.warn('local book failed, using Sefaria:', title, e); delete localBookPromises[title]; return null; });
+function fetchSiteJson(path){
+  return fetch(path + '?build=' + encodeURIComponent(SITE_BUILD || '1'))
+    .then(r => r.ok ? r.json() : null).catch(() => null);
+}
+let localManifestPromise = null;
+// { books: { title: { parts:[{file,v,from,to}], counts, pin, versionTitle } }, topics: { index: [...] } }
+function localManifest(){
+  if(!localManifestPromise){
+    localManifestPromise = (async () => {
+      const out = { books: {}, topics: {} };
+      const emb = readEmbeddedJson('local-books-manifest');
+      if(emb && emb.books){
+        Object.entries(emb.books).forEach(([t, b]) => {
+          // the older single-file form (halacha-data-*.json holds { text: [...] })
+          out.books[t] = b.parts ? b : { ...b, parts: [{ file: b.file, v: b.v, from: 1, to: (b.counts || []).length || 99999, single: true }] };
+        });
+        Object.assign(out.topics, emb.topics || {});
+      }
+      if(pageUsesLocalData()){
+        const m = await fetchSiteJson('data-manifest.json');
+        if(m && m.books){ Object.assign(out.books, m.books); Object.assign(out.topics, m.topics || {}); }
+      }
+      return out;
+    })();
   }
-  return localBookPromises[title];
+  return localManifestPromise;
 }
-// "Title 12", "Title 12:3", "Title 12:3-5", "Title 12:3-14:2", "Title 12-14" — returns the text in the
-// same shape Sefaria's API gives it (string / list of se'ifim / list of simanim), or null.
+async function localBookInfo(title){
+  const m = await localManifest();
+  return m.books[title] || null;
+}
+const localFilePromises = {};
+function loadLocalFile(part){
+  const key = part.file + '?' + (part.v || '');
+  if(!localFilePromises[key]){
+    localFilePromises[key] = fetch(part.file + '?build=' + encodeURIComponent(part.v || SITE_BUILD || '1'))
+      .then(r => { if(!r.ok) throw new Error(part.file + ' ' + r.status); return r.json(); })
+      .catch(e => { console.warn('local file failed, using Sefaria:', part.file, e); delete localFilePromises[key]; return null; });
+  }
+  return localFilePromises[key];
+}
+// sections a..b (1-based) of a book, as { n: section }, or null if any needed piece is missing
+async function localSections(title, a, b){
+  const info = await localBookInfo(title);
+  if(!info || !Array.isArray(info.parts)) return null;
+  const out = {};
+  for(const part of info.parts){
+    if(part.to < a || part.from > b) continue;
+    const d = await loadLocalFile(part);
+    if(!d) return null;
+    const text = part.single ? d.text : (d.books && d.books[title] && d.books[title].text);
+    if(!Array.isArray(text)) return null;
+    for(let k = Math.max(a, part.from); k <= Math.min(b, part.to); k++) out[k] = text[k - part.from];
+  }
+  for(let k = a; k <= b; k++) if(!Array.isArray(out[k])) return null;
+  return out;
+}
+// "Title", "Title 12", "Title 12:3", "Title 12:3-5", "Title 12:3-14:2", "Title 12-14" — the text in the
+// same shape Sefaria's API gives it (string / list / list of lists), or null when not available locally.
 async function localRefText(ref){
-  const m = getLocalBooksManifest();
-  if(!m) return null;
+  const m = await localManifest();
+  const titles = Object.keys(m.books);
+  if(!titles.length) return null;
   ref = String(ref || '').trim();
-  const title = Object.keys(m.books).sort((a, b) => b.length - a.length).find(t => ref.indexOf(t + ' ') === 0);
+  const has = x => Array.isArray(x) ? x.some(has) : !!(x && String(x).trim());
+  if(m.books[ref]){                                   // a whole book
+    const n = (m.books[ref].counts || []).length;
+    if(!n) return null;
+    const secs = await localSections(ref, 1, n);
+    if(!secs) return null;
+    const out = []; for(let k = 1; k <= n; k++) out.push(secs[k]);
+    return has(out) ? out : null;
+  }
+  const title = titles.sort((x, y) => y.length - x.length).find(t => ref.indexOf(t + ' ') === 0);
   if(!title) return null;
   const r = ref.slice(title.length + 1).match(/^(\d+)(?::(\d+))?(?:-(\d+)(?::(\d+))?)?$/);
   if(!r) return null;
-  const book = await loadLocalBook(title);
-  if(!book) return null;
-  const S = n => Array.isArray(book[n - 1]) ? book[n - 1] : null;
-  const a = +r[1], aSeif = r[2] ? +r[2] : null, b = r[3] ? +r[3] : null, bSeif = r[4] ? +r[4] : null;
-  const has = list => Array.isArray(list) && list.some(x => x && String(x).trim());
-  let out;
+  const a = +r[1], aSeg = r[2] ? +r[2] : null, b = r[3] ? +r[3] : null, bSeg = r[4] ? +r[4] : null;
   if(b == null){
-    const s = S(a); if(!s) return null;
-    out = aSeif == null ? s : (s[aSeif - 1] != null ? s[aSeif - 1] : null);
-    if(out == null || (Array.isArray(out) ? !has(out) : !String(out).trim())) return null;
-    return out;
+    const secs = await localSections(title, a, a); if(!secs) return null;
+    const out = aSeg == null ? secs[a] : secs[a][aSeg - 1];
+    return out != null && has(out) ? out : null;
   }
-  if(aSeif != null && bSeif == null){            // 12:3-5 — se'ifim of one siman
-    const s = S(a); if(!s) return null;
-    out = s.slice(aSeif - 1, b);
+  if(aSeg != null && bSeg == null){                   // 12:3-5 — part of one section
+    const secs = await localSections(title, a, a); if(!secs) return null;
+    const out = secs[a].slice(aSeg - 1, b);
     return has(out) ? out : null;
   }
-  // a range of simanim (12-14, 12:3-14:2)
-  if(b < a || b - a > 60) return null;
-  out = [];
+  if(b < a || b - a > 80) return null;               // a range of sections (12-14, 12:3-14:2)
+  const secs = await localSections(title, a, b); if(!secs) return null;
+  const out = [];
   for(let k = a; k <= b; k++){
-    const s = S(k); if(!s) return null;
-    let part = s;
-    if(k === a && aSeif != null) part = part.slice(aSeif - 1);
-    if(k === b && bSeif != null) part = part.slice(0, k === a && aSeif != null ? bSeif - aSeif + 1 : bSeif);
+    let part = secs[k];
+    if(k === a && aSeg != null) part = part.slice(aSeg - 1);
+    if(k === b && bSeg != null) part = part.slice(0, k === a && aSeg != null ? bSeg - aSeg + 1 : bSeg);
     out.push(part);
   }
-  return out.some(has) ? out : null;
+  return has(out) ? out : null;
 }
-// The daily-learning item for a date from the page's local schedule (same shape as Sefaria's calendar item).
-function localScheduleItem(titleEn, d, useUTC){
+// The edition the local copy of a book uses, when it is not Sefaria's default (for the fallback).
+async function localPinnedVersion(ref){
+  const m = await localManifest();
+  const t = Object.keys(m.books).sort((x, y) => y.length - x.length).find(t => ref === t || String(ref).indexOf(t + ' ') === 0);
+  return (t && m.books[t].pin) || null;
+}
+// The ref text, preferring the site's own copy, then the given editions on Sefaria in order, then Sefaria's default.
+async function fetchRefTextPreferring(ref, versions){
+  try{ const local = await localRefText(ref); if(local != null) return { text: local, ref }; }catch(e){}
+  for(const v of versions || []){
+    try{
+      const r = await fetchRefText(ref, v);
+      if(r && r.text != null && (Array.isArray(r.text) ? r.text.flat(Infinity).some(x => x && String(x).trim()) : String(r.text).trim())) return r;
+    }catch(e){}
+  }
+  return fetchRefText(ref);
+}
+let localSchedulePromise = null;
+function localSchedules(){
+  if(!localSchedulePromise){
+    localSchedulePromise = (async () => {
+      const out = {};
+      const emb = readEmbeddedJson('local-schedule');
+      if(emb) Object.assign(out, emb);
+      if(pageUsesLocalData()){ const d = await fetchSiteJson('data-schedule.json'); if(d) Object.assign(out, d); }
+      return out;
+    })();
+  }
+  return localSchedulePromise;
+}
+// The daily-learning item for a date from the local schedule (same shape as Sefaria's calendar item).
+async function localScheduleItem(titleEn, d, useUTC){
   try{
-    const el = document.getElementById('local-schedule');
-    if(!el) return null;
-    const all = JSON.parse(el.textContent || '{}');
+    const all = await localSchedules();
     const days = all && all[titleEn];
     if(!days) return null;
     const y = useUTC ? d.getUTCFullYear() : d.getFullYear(), mo = (useUTC ? d.getUTCMonth() : d.getMonth()) + 1, da = useUTC ? d.getUTCDate() : d.getDate();
@@ -1165,7 +1245,7 @@ function localScheduleItem(titleEn, d, useUTC){
 const sefariaShapeCache = {};
 async function fetchSefariaShape(title){
   if(sefariaShapeCache[title]) return sefariaShapeCache[title];
-  const lb = localBookInfo(title);
+  const lb = await localBookInfo(title);
   if(lb && Array.isArray(lb.counts) && lb.counts.length){ sefariaShapeCache[title] = lb.counts.slice(); return sefariaShapeCache[title]; }
   const res = await fetch('https://www.sefaria.org/api/shape/' + encodeURIComponent(title));
   if(!res.ok) throw new Error('shape fetch failed: ' + title);
@@ -1187,7 +1267,7 @@ async function fetchSimanTopics(bookTitle){
   if(simanTopicCache[bookTitle]) return simanTopicCache[bookTitle];
   const map = new Map();
   // on pages with local books the topics come with them ({ r: wholeRef, he: title }); otherwise from Sefaria
-  const lm = getLocalBooksManifest();
+  const lm = await localManifest();
   const localTopics = lm && lm.topics && lm.topics[simanTopicIndexTitle(bookTitle)];
   let nodes;
   if(Array.isArray(localTopics) && localTopics.length){
@@ -1410,7 +1490,7 @@ async function renderDailyCalendarSection(titleEn, readerId, headingHe, selected
     // relying on Sefaria's own default "today" can lag behind the user's local calendar date
     // by several hours right after local midnight, showing yesterday's daily-learning portion.
     const dfc1 = selectedDate || new Date();
-    let item = localScheduleItem(titleEn, dfc1, !!selectedDate);
+    let item = await localScheduleItem(titleEn, dfc1, !!selectedDate);
     if(!item){
       const calendarUrl = selectedDate
         ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc1.getUTCFullYear()}&month=${dfc1.getUTCMonth()+1}&day=${dfc1.getUTCDate()}`
@@ -1463,14 +1543,17 @@ async function renderTanakhStyleDailyCalendar(titleEn, readerId, headingHe, sele
   reader.appendChild(loadingEl);
   try{
     const targetDate = selectedDate || new Date();
-    const calendarUrl = selectedDate
-      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getUTCFullYear()}&month=${targetDate.getUTCMonth()+1}&day=${targetDate.getUTCDate()}`
-      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getFullYear()}&month=${targetDate.getMonth()+1}&day=${targetDate.getDate()}`;
-    const res = await fetch(calendarUrl);
-    if(!res.ok) throw new Error('calendar fetch failed');
-    const data = await res.json();
-    const items = (data && data.calendar_items) || [];
-    const item = items.find(i => i.title && i.title.en === titleEn);
+    let item = await localScheduleItem(titleEn, targetDate, !!selectedDate);
+    if(!item){
+      const calendarUrl = selectedDate
+        ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getUTCFullYear()}&month=${targetDate.getUTCMonth()+1}&day=${targetDate.getUTCDate()}`
+        : `https://www.sefaria.org/api/calendars?diaspora=0&year=${targetDate.getFullYear()}&month=${targetDate.getMonth()+1}&day=${targetDate.getDate()}`;
+      const res = await fetch(calendarUrl);
+      if(!res.ok) throw new Error('calendar fetch failed');
+      const data = await res.json();
+      const items = (data && data.calendar_items) || [];
+      item = items.find(i => i.title && i.title.en === titleEn);
+    }
     if(!item || !item.ref) throw new Error('no item: ' + titleEn);
     const loc = parseTanakhRef(item.ref);
     if(!loc) throw new Error('could not parse ref: ' + item.ref);
@@ -1533,7 +1616,8 @@ async function fetchDafCommentary(commentatorName, baseRef){
 
 // commentators: array of { name: 'Rashi', labelHe: 'רש״י' } — one block per
 // text segment, per commentator, fetched in parallel and filled in once ready.
-async function renderDafStyleDailyCalendar(titleEn, readerId, headingHe, selectedDate, commentators){
+// opts.versions: editions to ask Sefaria for first, in order (e.g. one whose license also allows ads)
+async function renderDafStyleDailyCalendar(titleEn, readerId, headingHe, selectedDate, commentators, opts){
   const reader = document.getElementById(readerId);
   reader.innerHTML = '';
   const loadingEl = document.createElement('p');
@@ -1551,7 +1635,7 @@ async function renderDafStyleDailyCalendar(titleEn, readerId, headingHe, selecte
     const items = (data && data.calendar_items) || [];
     const item = items.find(i => i.title && i.title.en === titleEn);
     if(!item || !item.ref) throw new Error('no item: ' + titleEn);
-    const { text, ref: resolvedRef } = await fetchRefText(item.ref);
+    const { text, ref: resolvedRef } = (opts && opts.versions) ? await fetchRefTextPreferring(item.ref, opts.versions) : await fetchRefText(item.ref);
     if(!text) throw new Error('empty text');
     const flat = Array.isArray(text) ? text : [text];
     const paragraphs = flat.map(p => {
@@ -2082,7 +2166,7 @@ const targumBookCache = {};
 // of verse strings.
 async function fetchWholeTargumBook(bookEn){
   if(targumBookCache[bookEn]) return targumBookCache[bookEn];
-  const { text } = await fetchRefText(`Onkelos ${bookEn}`);
+  const { text } = await fetchRefTextPreferring(`Onkelos ${bookEn}`, ONKELOS_EDITIONS);
   if(!text || !Array.isArray(text)) throw new Error('no Targum data for ' + bookEn);
   const cleaned = text.map(ch => Array.isArray(ch) ? ch.map(stripTags) : [stripTags(ch)]);
   targumBookCache[bookEn] = cleaned;

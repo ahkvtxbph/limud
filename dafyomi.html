@@ -163,7 +163,8 @@ permalink: /dafyomi.html
 </div>
 
 <footer class="site">
-  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+  <p>הטקסט מתוך <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>: התלמוד הבבלי — מהדורת <a href="https://he.wikisource.org" target="_blank" rel="noopener">ויקיטקסט</a> (CC BY-SA); רש״י ותוספות — דפוס וילנא (נחלת הכלל) או ויקיטקסט (CC BY-SA).</p>
+  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
 <script src="shared.js?build={{ site.time | date: '%s' }}"></script>
@@ -177,7 +178,7 @@ function renderDafYomi(){
   return renderDafStyleDailyCalendar('Daf Yomi', 'dafyomi-reader', 'דף יומי', dafyomiSelectedDate, [
     { name: 'Rashi', labelHe: 'פירוש (רש״י)' },
     { name: 'Tosafot', labelHe: 'תוספות' }
-  ]);
+  ], { versions: ['Wikisource Talmud Bavli'] });   // CC BY-SA — allowed also on a site with ads (Sefaria's default is CC BY-NC)
 }
 
 document.getElementById('dafyomi-load').addEventListener('click', renderDafYomi);

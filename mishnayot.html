@@ -33,6 +33,7 @@ permalink: /mishnayot.html
   "isPartOf": { "@type": "WebSite", "name": "מזמור לתודה | לימוד יומי", "url": "https://limood.org.il" }
 }
 </script>
+<meta name="local-data" content="1"><!-- texts kept on the site (data-*.json); Sefaria is the fallback -->
 {% include head-assets.html %}
 </head>
 <body>
@@ -103,7 +104,8 @@ permalink: /mishnayot.html
 </main>
 
 <footer class="site">
-  <p>"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
+  <p>הטקסט מתוך <a href="https://www.sefaria.org" target="_blank" rel="noopener">ספריא (Sefaria)</a>: המשנה — מהדורת "תורת אמת" (נחלת הכלל); פירוש ברטנורא — מהדורת "On Your Way" (נחלת הכלל).</p>
+  <p style="margin-top:.4rem;">"מִזְמוֹר לְתוֹדָה" — יהי רצון שתתקבלנה כל התפילות והבקשות.</p>
 </footer>
 
 <script src="shared.js?build={{ site.time | date: '%s' }}"></script>
@@ -202,7 +204,7 @@ function mishnahCardSkeleton(headingHe, headingSub){
 // Bartenura for a whole chapter in ONE request (instead of one request per mishnah)
 async function fetchChapterCommentary(tractateEn, perek){
   try{
-    const { text } = await fetchRefText('Bartenura on Mishnah ' + tractateEn + ' ' + perek);
+    const { text } = await fetchRefTextPreferring('Bartenura on Mishnah ' + tractateEn + ' ' + perek, BARTENURA_EDITIONS);
     if(!Array.isArray(text)) return null;
     return text.map(m => (Array.isArray(m) ? m.flat(Infinity) : [m]).map(stripTags).filter(Boolean).join(' ') || null);
   }catch(e){ return null; }
@@ -299,14 +301,17 @@ async function renderDailyMishnah(opts){
     // relying on Sefaria's own default "today" can lag behind the user's local calendar date
     // by several hours right after local midnight, showing yesterday's daily-learning portion.
     const dfc2 = selectedDate || new Date();
-    const calendarUrl = selectedDate
-      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc2.getUTCFullYear()}&month=${dfc2.getUTCMonth()+1}&day=${dfc2.getUTCDate()}`
-      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc2.getFullYear()}&month=${dfc2.getMonth()+1}&day=${dfc2.getDate()}`;
-    const res = await fetch(calendarUrl);
-    if(!res.ok) throw new Error('calendar fetch failed');
-    const data = await res.json();
-    const items = (data && data.calendar_items) || [];
-    const item = items.find(i => i.title && i.title.en === 'Daily Mishnah');
+    let item = await localScheduleItem('Daily Mishnah', dfc2, !!selectedDate);   // the site's own schedule first
+    if(!item){
+      const calendarUrl = selectedDate
+        ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc2.getUTCFullYear()}&month=${dfc2.getUTCMonth()+1}&day=${dfc2.getUTCDate()}`
+        : `https://www.sefaria.org/api/calendars?diaspora=0&year=${dfc2.getFullYear()}&month=${dfc2.getMonth()+1}&day=${dfc2.getDate()}`;
+      const res = await fetch(calendarUrl);
+      if(!res.ok) throw new Error('calendar fetch failed');
+      const data = await res.json();
+      const items = (data && data.calendar_items) || [];
+      item = items.find(i => i.title && i.title.en === 'Daily Mishnah');
+    }
     if(!item || !item.ref) throw new Error('no daily mishnah item');
     const ref = item.ref;
     const loc = parseTrailingLocation(ref);
