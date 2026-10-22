@@ -18,7 +18,7 @@ import hashlib, json, os, re
 ALLOWED_NOTE = 'נחלת הכלל / CC0 / CC-BY / CC-BY-SA'
 TARGET_BYTES = 1_100_000          # size of one published data file (before compression)
 
-MISHNAH_TRACTATES = ["Berakhot", "Peah", "Demai", "Kilayim", "Sheviit", "Terumot", "Maasrot", "Maaser Sheni", "Challah", "Orlah", "Bikkurim", "Shabbat", "Eruvin", "Pesachim", "Shekalim", "Yoma", "Sukkah", "Beitzah", "Rosh Hashanah", "Taanit", "Megillah", "Moed Katan", "Chagigah", "Yevamot", "Ketubot", "Nedarim", "Nazir", "Sotah", "Gittin", "Kiddushin", "Bava Kamma", "Bava Metzia", "Bava Batra", "Sanhedrin", "Makkot", "Shevuot", "Eduyot", "Avodah Zarah", "Avot", "Horayot", "Zevachim", "Menachot", "Chullin", "Bekhorot", "Arakhin", "Temurah", "Keritot", "Meilah", "Tamid", "Middot", "Kinnim", "Kelim", "Oholot", "Negaim", "Parah", "Tahorot", "Mikvaot", "Niddah", "Makhshirin", "Zavim", "Tevul Yom", "Yadayim", "Uktzin"]
+MISHNAH_TRACTATES = ["Berakhot", "Peah", "Demai", "Kilayim", "Sheviit", "Terumot", "Maasrot", "Maaser Sheni", "Challah", "Orlah", "Bikkurim", "Shabbat", "Eruvin", "Pesachim", "Shekalim", "Yoma", "Sukkah", "Beitzah", "Rosh Hashanah", "Taanit", "Megillah", "Moed Katan", "Chagigah", "Yevamot", "Ketubot", "Nedarim", "Nazir", "Sotah", "Gittin", "Kiddushin", "Bava Kamma", "Bava Metzia", "Bava Batra", "Sanhedrin", "Makkot", "Shevuot", "Eduyot", "Avodah Zarah", "Avot", "Horayot", "Zevachim", "Menachot", "Chullin", "Bekhorot", "Arakhin", "Temurah", "Keritot", "Meilah", "Tamid", "Middot", "Kinnim", "Kelim", "Oholot", "Negaim", "Parah", "Tahorot", "Mikvaot", "Niddah", "Makhshirin", "Zavim", "Tevul Yom", "Yadayim", "Oktzin"]
 TANAKH_BOOKS = ["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "I Samuel", "II Samuel", "I Kings", "II Kings", "Isaiah", "Jeremiah", "Ezekiel", "Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi", "Psalms", "Proverbs", "Job", "Song of Songs", "Ruth", "Lamentations", "Ecclesiastes", "Esther", "Daniel", "Ezra", "Nehemiah", "I Chronicles", "II Chronicles"]
 RAMBAM_BOOKS = [
     ("Introduction", "Mishneh Torah, Negative Mitzvot"),
@@ -150,9 +150,10 @@ class Library:
         self.u.time.sleep(0.3)
         return d
 
-    def pick(self, title, prefer):
-        """Which edition to use for a book: (versionTitle or None for Sefaria's default, its license)."""
-        d = self.fetch(title + ' 1')
+    def pick(self, title, prefer, probe=1):
+        """Which edition to use for a book: (versionTitle or None for Sefaria's default, its license).
+        probe: a section that has text (asking for an empty one can answer 404)."""
+        d = self.fetch(f'{title} {probe}')
         v0 = (d.get('versions') or [{}])[0]
         avail = [v for v in (d.get('available_versions') or []) if is_hebrew(v)]
         if prefer:
@@ -170,13 +171,16 @@ class Library:
     def book(self, title, prefer):
         """The whole book: list of sections (each a list of segments, or of lists for commentaries)."""
         u = self.u
+        counts = []
         try:
             d = u.http_json(f"{u.API}/shape/{u.urllib.parse.quote(title)}")
             node = next((x for x in d if isinstance(x, dict) and x.get('title') == title), d[0]) if isinstance(d, list) else d
-            n = len(node.get('chapters') or [])
+            counts = [c if isinstance(c, int) else (len(c) if isinstance(c, list) else 0) for c in (node.get('chapters') or [])]
         except Exception:
-            n = 0
-        version, lic, source = self.pick(title, prefer)
+            pass
+        n = len(counts)
+        probe = next((k + 1 for k, c in enumerate(counts) if c), 1)
+        version, lic, source = self.pick(title, prefer, probe)
         if not n:      # no shape (e.g. an alternative spelling of the title): ask for the whole book once
             whole = (self.fetch(title, version or None).get('versions') or [{}])[0].get('text') or []
             n = len(whole) if isinstance(whole, list) else 0
@@ -186,7 +190,15 @@ class Library:
         for a in range(1, n + 1, CHUNK):
             b = min(n, a + CHUNK - 1)
             ref = f'{title} {a}-{b}' if b > a else f'{title} {a}'
-            r = self.fetch(ref, version)
+            if counts and not any(counts[a - 1:b]):          # nothing in Sefaria for these sections
+                sections.extend([[] for _ in range(a, b + 1)]); continue
+            try:
+                r = self.fetch(ref, version)
+            except Exception:                                 # e.g. 404 for a range with gaps: one by one
+                for k in range(a, b + 1):
+                    try: sections.append((self.fetch(f'{title} {k}', version).get('versions') or [{}])[0].get('text') or [])
+                    except Exception: sections.append([])
+                continue
             v = (r.get('versions') or [{}])[0]
             if not license_ok(v.get('license')):
                 # Sefaria's default for this part has another license: take the best allowed edition that has it
@@ -203,12 +215,16 @@ class Library:
             chunk = v.get('text') or []
             if b == a: chunk = [chunk]
             if len(chunk) != b - a + 1:
-                chunk = [((self.fetch(f'{title} {k}', version).get('versions') or [{}])[0].get('text') or []) for k in range(a, b + 1)]
+                chunk = []
+                for k in range(a, b + 1):
+                    try: chunk.append((self.fetch(f'{title} {k}', version).get('versions') or [{}])[0].get('text') or [])
+                    except Exception: chunk.append([])
             sections.extend(chunk)
         def cl(x):
             if isinstance(x, list): return [cl(y) for y in x]
             return u.clean(x) if isinstance(x, str) else ''
         sections = [cl(s) if isinstance(s, list) else [cl(s)] for s in sections]
+        if not has_text(sections): raise RuntimeError('no text at all for ' + title)
         return {'versionTitle': version or (' / '.join(sorted(used))), 'license': lic, 'versionSource': source,
                 'pin': version or None, 'text': sections}
 
