@@ -9,6 +9,10 @@ Refreshes the texts the site keeps locally (in _includes/) from Sefaria.
                          _includes/halacha-schedule.json  (which halacha is learned on which date)
   Arukh HaShulchan, Mishnah + Bartenura, Rambam, Tanakh + Rashi + Onkelos
                          _includes/src-*.json + data-*.json (see update_library.py)
+  Siddur, Yemenite (Baladi) — from Hebrew Wikisource
+                         _includes/src-siddur-baladi.json + data-siddur-baladi.json (see siddur_baladi.py)
+  Siddurim from Sefaria whose edition is free also with ads (Sefard, Edot HaMizrach)
+                         _includes/src-siddur-<key>*.json + data-siddur-<key>*.json (see siddur_sefaria.py)
                          _includes/src-schedule.json       (daily-learning dates for those pages)
 
 A file is rewritten only when its TEXT really changed, so an unchanged source leaves no diff.
@@ -353,6 +357,17 @@ def main():
         update_baladi()
     except Exception as e:
         problems.append(f'**ברכת המזון — תימן (בלדי)**: לא ניתן היה להוריד מוויקיטקסט ({e}).')
+    try:                                     # the Yemenite siddur, from Wikisource (siddur_baladi.py)
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import siddur_baladi
+        siddur_baladi.update(sys.modules[__name__])
+    except Exception as e:
+        problems.append(f'**סידור נוסח תימן**: העדכון נכשל ({e}).')
+    try:                                     # local copies of the Sefaria siddurim (siddur_sefaria.py)
+        import siddur_sefaria
+        siddur_sefaria.update(sys.modules[__name__])
+    except Exception as e:
+        problems.append(f'**סידורים מספריא**: העדכון נכשל ({e}).')
     manifest = read_json('halacha-manifest.json') or {}
     before = json.dumps(manifest, sort_keys=True, ensure_ascii=False)
     update_halacha(manifest)
