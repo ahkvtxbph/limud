@@ -2490,3 +2490,34 @@ async function fetchBirkatHamazonDayFlags(date){
   }catch(e){ /* network issue: flags stay at their date-only defaults (just the weekday check) */ }
   return flags;
 }
+
+/* =====================================================================
+   BACK TO TOP — a small round button above the WhatsApp button, shown once the page has been
+   scrolled down about one screen. Added here (shared.js) so every page gets it without its own code.
+   ===================================================================== */
+(function initBackToTop(){
+  function setup(){
+    if(document.getElementById('back-to-top')) return;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'back-to-top';
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'חזרה לראש העמוד');
+    btn.title = 'חזרה לראש העמוד';
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5l-7 7 1.4 1.4L11 8.8V20h2V8.8l4.6 4.6L19 12z"/></svg>';
+    btn.addEventListener('click', () => {
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      // keyboard / screen-reader users continue from the top of the page, not from the button
+      const target = document.querySelector('.skip-link') || document.body;
+      try{ target.focus({ preventScroll: true }); }catch(e){}
+    });
+    document.body.appendChild(btn);
+    let ticking = false;
+    const update = () => { ticking = false; btn.classList.toggle('show', window.scrollY > Math.max(500, window.innerHeight * 0.9)); };
+    window.addEventListener('scroll', () => { if(!ticking){ ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup);
+  else setup();
+})();
