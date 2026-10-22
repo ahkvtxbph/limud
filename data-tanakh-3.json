@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-tanakh-3.json
+---
+{% include src-tanakh-3.json %}

@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-mishnah-1.json
+---
+{% include src-mishnah-1.json %}

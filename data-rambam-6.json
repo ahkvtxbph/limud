@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-rambam-6.json
+---
+{% include src-rambam-6.json %}

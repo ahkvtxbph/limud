@@ -1,0 +1,10945 @@
+{
+"note":"נוצר אוטומטית — לא לערוך ידנית. רישיונות: נחלת הכלל / CC0 / CC-BY / CC-BY-SA",
+"books":{
+"Arukh HaShulchan, Orach Chaim":{
+"versionTitle":"Arukh HaShulchan, Orach Chayim -- Wikisource",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+29,
+11,
+13,
+21,
+4,
+13,
+5,
+23,
+28,
+22,
+26,
+12,
+7,
+14,
+16,
+5,
+5,
+9,
+3,
+4,
+7,
+3,
+4,
+4,
+29,
+5,
+22,
+8,
+3,
+8,
+4,
+91,
+8,
+9,
+3,
+26,
+4,
+16,
+6,
+5,
+4,
+13,
+14,
+3,
+2,
+16,
+25,
+3,
+3,
+4,
+9,
+8,
+32,
+4,
+26,
+9,
+2,
+21,
+15,
+9,
+14,
+8,
+9,
+5,
+7,
+18,
+7,
+4,
+15,
+8,
+4,
+4,
+5,
+16,
+11,
+21,
+4,
+5,
+18,
+4,
+7,
+3,
+11,
+3,
+2,
+3,
+7,
+4,
+32,
+31,
+7,
+13,
+8,
+23,
+5,
+2,
+7,
+7,
+9,
+3,
+9,
+13,
+4,
+14,
+3,
+12,
+13,
+21,
+13,
+16,
+4,
+5,
+9,
+14,
+4,
+2,
+9,
+6,
+6,
+2,
+3,
+8,
+8,
+17,
+4,
+7,
+4,
+72,
+3,
+3,
+18,
+8,
+5,
+4,
+32,
+3,
+9,
+4,
+17,
+9,
+12,
+5,
+8,
+7,
+2,
+8,
+17,
+1,
+3,
+9,
+17,
+5,
+47,
+18,
+2,
+17,
+2,
+18,
+39,
+24,
+8,
+29,
+3,
+5,
+4,
+2,
+32,
+51,
+4,
+19,
+5,
+2,
+3,
+16,
+11,
+8,
+12,
+16,
+9,
+5,
+9,
+9,
+8,
+9,
+14,
+4,
+9,
+23,
+7,
+7,
+5,
+7,
+19,
+4,
+5,
+9,
+9,
+2,
+4,
+6,
+4,
+45,
+8,
+28,
+7,
+16,
+4,
+29,
+12,
+7,
+17,
+8,
+7,
+4,
+5,
+14,
+7,
+12,
+13,
+8,
+5,
+4,
+9,
+8,
+14,
+2,
+3,
+4,
+4,
+5,
+7,
+21,
+15,
+7,
+19,
+14,
+3,
+3,
+7,
+18,
+3,
+45,
+17,
+24,
+18,
+24,
+14,
+15,
+14,
+4,
+4,
+18,
+39,
+21,
+4,
+3,
+22,
+4,
+15,
+7,
+17,
+5,
+28,
+13,
+13,
+28,
+8,
+18,
+5,
+3,
+42,
+17,
+10,
+7,
+17,
+18,
+12,
+2,
+14,
+3,
+8,
+18,
+3,
+15,
+13,
+17,
+3,
+17,
+5,
+3,
+12,
+7,
+3,
+12,
+4,
+18,
+7,
+18,
+24,
+4,
+123,
+24,
+32,
+7,
+22,
+25,
+33,
+75,
+15,
+16,
+22,
+11,
+33,
+26,
+18,
+38,
+29,
+58,
+42,
+36,
+45,
+8,
+12,
+13,
+32,
+13,
+4,
+58,
+12,
+15,
+12,
+4,
+7,
+45,
+9,
+38,
+8,
+15,
+22,
+35,
+4,
+4,
+8,
+2,
+46,
+12,
+19,
+6,
+7,
+7,
+5,
+3,
+6,
+4,
+21,
+7,
+8,
+25,
+2,
+13,
+5,
+37,
+63,
+9,
+24,
+25,
+9,
+7,
+3,
+21,
+7,
+32,
+4,
+7,
+8,
+8,
+7,
+7,
+5,
+9,
+11,
+29,
+2,
+3,
+2,
+15,
+7,
+4,
+4,
+3,
+5,
+15,
+5,
+4,
+2,
+3,
+17,
+22,
+16,
+4,
+3,
+3,
+4,
+8,
+14,
+2,
+3,
+7,
+17,
+5,
+2,
+2,
+3,
+3,
+4,
+9,
+11,
+3,
+2,
+2,
+1,
+13,
+5,
+3,
+5,
+14,
+2,
+7,
+8,
+5,
+31,
+5,
+14,
+12,
+3,
+15,
+7,
+9,
+12,
+20,
+11,
+33,
+8,
+17,
+11,
+12,
+45,
+28,
+4,
+15,
+52,
+20,
+29,
+13,
+13,
+5,
+14,
+4,
+16,
+8,
+13,
+15,
+4,
+3,
+5,
+18,
+49,
+11,
+5,
+5,
+5,
+15,
+26,
+3,
+18,
+4,
+8,
+3,
+3,
+3,
+4,
+3,
+3,
+4,
+2,
+2,
+7,
+3,
+16,
+5,
+2,
+2,
+9,
+7,
+39,
+5,
+25,
+38,
+9,
+13,
+16,
+18,
+7,
+7,
+7,
+9,
+17,
+2,
+17,
+14,
+12,
+11,
+12,
+19,
+17,
+5,
+5,
+18,
+7,
+1,
+2,
+2,
+3,
+4,
+3,
+21,
+39,
+2,
+7,
+4,
+8,
+2,
+7,
+9,
+5,
+2,
+13,
+7,
+19,
+7,
+4,
+2,
+3,
+7,
+21,
+7,
+8,
+12,
+5,
+4,
+39,
+14,
+4,
+22,
+3,
+2,
+3,
+2,
+9,
+8,
+2,
+33,
+2,
+2,
+7,
+12,
+4,
+17,
+4,
+5,
+3,
+5,
+2,
+4,
+15,
+22,
+2,
+2,
+12,
+4,
+13,
+14,
+4,
+4,
+8,
+37,
+9,
+10,
+14,
+22,
+13,
+8,
+3,
+2,
+2,
+2,
+6,
+2,
+2,
+4,
+1,
+18,
+3,
+12,
+5,
+7,
+9,
+9,
+2,
+7,
+8,
+11,
+15,
+7,
+2,
+7,
+5,
+17,
+9,
+2,
+5,
+3,
+8,
+8,
+5,
+26,
+7,
+5,
+35,
+36,
+17,
+13,
+12,
+5,
+5,
+3,
+5,
+12,
+28,
+21,
+4,
+2,
+3,
+4,
+21,
+14,
+8,
+45,
+25,
+3,
+29,
+5,
+4,
+2,
+3,
+5,
+3,
+21,
+2,
+4,
+2,
+2,
+4,
+13,
+3,
+5,
+2,
+7,
+3,
+9,
+28,
+9,
+17,
+3,
+5,
+14,
+8,
+3,
+4,
+2,
+2,
+3,
+2,
+5,
+9,
+7,
+9,
+18,
+7,
+25,
+14,
+8,
+5,
+8,
+18,
+12,
+2
+],
+"parts":[
+{
+"file":"data-arukh-1.json",
+"from":1,
+"to":67,
+"v":"435a34af86db"
+},
+{
+"file":"data-arukh-2.json",
+"from":68,
+"to":152,
+"v":"4b684d734436"
+},
+{
+"file":"data-arukh-3.json",
+"from":153,
+"to":218,
+"v":"a362e8ee2e6c"
+},
+{
+"file":"data-arukh-4.json",
+"from":219,
+"to":283,
+"v":"73fe42f95af1"
+},
+{
+"file":"data-arukh-5.json",
+"from":284,
+"to":318,
+"v":"14e83606d418"
+},
+{
+"file":"data-arukh-6.json",
+"from":319,
+"to":365,
+"v":"33a10978547b"
+},
+{
+"file":"data-arukh-7.json",
+"from":366,
+"to":451,
+"v":"6e0996d33cb1"
+},
+{
+"file":"data-arukh-8.json",
+"from":452,
+"to":538,
+"v":"d3dfd6adbf2b"
+},
+{
+"file":"data-arukh-9.json",
+"from":539,
+"to":638,
+"v":"2e30cfafe906"
+},
+{
+"file":"data-arukh-10.json",
+"from":639,
+"to":697,
+"v":"7ab7daeb3de7"
+}
+]
+},
+"Arukh HaShulchan, Choshen Mishpat":{
+"versionTitle":"Aruch HaShulchan, Choshen Mishpat. Vilna 1923-29",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+26,
+4,
+20,
+5,
+12,
+1,
+22,
+6,
+12,
+4,
+9,
+17,
+12,
+15,
+6,
+8,
+19,
+13,
+5,
+5,
+4,
+11,
+4,
+3,
+13,
+5,
+3,
+32,
+8,
+32,
+6,
+2,
+15,
+26,
+13,
+12,
+22,
+26,
+28,
+2,
+12,
+20,
+25,
+12,
+25,
+42,
+8,
+4,
+13,
+3,
+6,
+3,
+2,
+11,
+5,
+24,
+2,
+13,
+4,
+21,
+14,
+13,
+3,
+3,
+26,
+52,
+15,
+8,
+10,
+10,
+26,
+72,
+27,
+8,
+35,
+2,
+16,
+9,
+17,
+6,
+26,
+18,
+5,
+9,
+15,
+13,
+36,
+23,
+8,
+16,
+11,
+15,
+20,
+11,
+12,
+10,
+35,
+8,
+8,
+5,
+9,
+7,
+21,
+22,
+6,
+5,
+17,
+29,
+9,
+15,
+24,
+6,
+3,
+7,
+15,
+6,
+7,
+4,
+8,
+5,
+19,
+17,
+17,
+3,
+14,
+28,
+2,
+7,
+26,
+8,
+14,
+6,
+10,
+6,
+2,
+2,
+3,
+12,
+6,
+17,
+12,
+4,
+4,
+4,
+8,
+31,
+5,
+4,
+22,
+7,
+3,
+5,
+23,
+45,
+43,
+18,
+13,
+9,
+4,
+3,
+6,
+11,
+17,
+8,
+1,
+1,
+2,
+2,
+2,
+2,
+25,
+10,
+5,
+14,
+63,
+91,
+6,
+3,
+1,
+6,
+5,
+26,
+10,
+4,
+13,
+2,
+4,
+7,
+3,
+28,
+8,
+18,
+2,
+13,
+16,
+3,
+9,
+16,
+10,
+25,
+3,
+13,
+16,
+9,
+26,
+4,
+53,
+4,
+18,
+4,
+10,
+11,
+2,
+21,
+8,
+16,
+5,
+25,
+6,
+13,
+3,
+11,
+5,
+4,
+6,
+6,
+39,
+14,
+2,
+8,
+28,
+38,
+6,
+4,
+26,
+12,
+5,
+3,
+2,
+11,
+19,
+10,
+25,
+3,
+14,
+20,
+5,
+21,
+4,
+42,
+5,
+5,
+42,
+2,
+9,
+6,
+9,
+3,
+17,
+23,
+4,
+25,
+4,
+22,
+4,
+5,
+22,
+14,
+7,
+7,
+5,
+18,
+22,
+5,
+32,
+12,
+19,
+22,
+11,
+17,
+23,
+4,
+3,
+7,
+18,
+8,
+12,
+4,
+7,
+46,
+58,
+35,
+6,
+11,
+7,
+11,
+7,
+3,
+1,
+5,
+13,
+2,
+18,
+11,
+9,
+17,
+13,
+14,
+10,
+15,
+11,
+41,
+8,
+5,
+7,
+11,
+8,
+2,
+4,
+7,
+12,
+6,
+3,
+2,
+5,
+4,
+3,
+2,
+2,
+8,
+9,
+17,
+32,
+12,
+15,
+7,
+26,
+9,
+14,
+22,
+13,
+2,
+2,
+12,
+2,
+28,
+3,
+17,
+5,
+13,
+8,
+13,
+9,
+15,
+6,
+17,
+7,
+18,
+14,
+10,
+21,
+17,
+28,
+9,
+8,
+6,
+28,
+4,
+17,
+9,
+4,
+3,
+8,
+10,
+17,
+1,
+5,
+21,
+9,
+9,
+5,
+9,
+8,
+5,
+7,
+24,
+1,
+32,
+42,
+22,
+21,
+4,
+5,
+8,
+2,
+18,
+6,
+5,
+7,
+11,
+7,
+7,
+7,
+4,
+28,
+8,
+4,
+3,
+4,
+49,
+8,
+11,
+7,
+5,
+7,
+9,
+11,
+38,
+9,
+58,
+19,
+4,
+6,
+17,
+84,
+4,
+11
+],
+"parts":[
+{
+"file":"data-arukh-11.json",
+"from":1,
+"to":64,
+"v":"218bb6fc2884"
+},
+{
+"file":"data-arukh-12.json",
+"from":65,
+"to":99,
+"v":"69dd62f9b87d"
+},
+{
+"file":"data-arukh-13.json",
+"from":100,
+"to":155,
+"v":"93b39712129b"
+},
+{
+"file":"data-arukh-14.json",
+"from":156,
+"to":213,
+"v":"f34dc6ddd612"
+},
+{
+"file":"data-arukh-15.json",
+"from":214,
+"to":274,
+"v":"38ea480ae26d"
+},
+{
+"file":"data-arukh-16.json",
+"from":275,
+"to":347,
+"v":"6d303cfe96dc"
+},
+{
+"file":"data-arukh-17.json",
+"from":348,
+"to":424,
+"v":"4a0f2db7fe9c"
+},
+{
+"file":"data-arukh-18.json",
+"from":425,
+"to":427,
+"v":"7ab75e722c9f"
+}
+]
+},
+"Mishnah Berakhot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+8,
+6,
+7,
+5,
+8,
+5,
+8,
+5
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":9,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Peah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+8,
+8,
+11,
+8,
+11,
+8,
+9
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":8,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Demai":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+6,
+7,
+11,
+12,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":7,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Kilayim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+11,
+7,
+9,
+8,
+9,
+8,
+6,
+10
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":9,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Sheviit":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+10,
+10,
+10,
+9,
+6,
+7,
+11,
+9,
+9
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":10,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Terumot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+6,
+9,
+13,
+9,
+6,
+7,
+12,
+7,
+12,
+10
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":11,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Maasrot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+8,
+10,
+6,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":5,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Maaser Sheni":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+10,
+13,
+12,
+15
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":5,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Challah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+8,
+10,
+11
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":4,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Orlah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+17,
+9
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":3,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Bikkurim":{
+"versionTitle":"Version of the Gemara - vocalized",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+0,
+0,
+0,
+5
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":4,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Shabbat":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+7,
+6,
+2,
+4,
+10,
+4,
+7,
+7,
+6,
+6,
+6,
+7,
+4,
+3,
+8,
+8,
+3,
+6,
+5,
+3,
+6,
+5,
+5
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":24,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Eruvin":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+6,
+9,
+11,
+9,
+10,
+11,
+11,
+4,
+15
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":10,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Pesachim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+8,
+8,
+9,
+10,
+6,
+13,
+8,
+11,
+9
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":10,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Shekalim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+5,
+4,
+9,
+6,
+6,
+7,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":8,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Yoma":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+11,
+6,
+7,
+8,
+5,
+9
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":8,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Sukkah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+9,
+15,
+10,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":5,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Beitzah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+10,
+8,
+7,
+7
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":5,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Rosh Hashanah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+9,
+8,
+9
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":4,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Taanit":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+10,
+9,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":4,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Megillah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+6,
+6,
+10
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":4,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Moed Katan":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+5,
+9
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":3,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Chagigah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":3,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Yevamot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+10,
+10,
+13,
+6,
+6,
+6,
+6,
+6,
+9,
+7,
+6,
+13,
+9,
+10,
+7
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":16,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Ketubot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+10,
+9,
+12,
+9,
+7,
+10,
+8,
+9,
+6,
+6,
+4,
+11
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":13,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Nedarim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+11,
+8,
+6,
+10,
+9,
+7,
+10,
+8,
+12
+],
+"parts":[
+{
+"file":"data-mishnah-1.json",
+"from":1,
+"to":11,
+"v":"816cd7c9ee6d"
+}
+]
+},
+"Mishnah Nazir":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+10,
+7,
+7,
+7,
+11,
+4,
+2,
+5
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":9,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Sotah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+6,
+8,
+5,
+5,
+4,
+8,
+7,
+15
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":9,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Gittin":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+7,
+8,
+9,
+9,
+7,
+9,
+10,
+10
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":9,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Kiddushin":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+10,
+13,
+14
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":4,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Bava Kamma":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+6,
+11,
+9,
+7,
+6,
+7,
+7,
+12,
+10
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":10,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Bava Metzia":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+11,
+12,
+12,
+11,
+8,
+11,
+9,
+13,
+6
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":10,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Bava Batra":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+14,
+8,
+9,
+11,
+8,
+4,
+8,
+10,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":10,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Sanhedrin":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+5,
+8,
+5,
+5,
+6,
+11,
+7,
+6,
+6,
+6
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":11,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Makkot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+8,
+16
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":3,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Shevuot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+5,
+11,
+13,
+5,
+7,
+8,
+6
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":8,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Eduyot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+14,
+10,
+12,
+12,
+7,
+3,
+9,
+7
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":8,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Avodah Zarah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+7,
+10,
+12,
+12
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":5,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Avot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+18,
+16,
+18,
+22,
+23,
+11
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":6,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Horayot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+7,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":3,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Zevachim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+6,
+6,
+8,
+7,
+6,
+12,
+7,
+8,
+8,
+6,
+8,
+10
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":14,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Menachot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+7,
+5,
+9,
+7,
+6,
+7,
+9,
+9,
+9,
+5,
+11
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":13,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Chullin":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+10,
+7,
+7,
+5,
+7,
+6,
+6,
+8,
+4,
+2,
+5
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":12,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Bekhorot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+9,
+4,
+10,
+6,
+12,
+7,
+10,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":9,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Arakhin":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+6,
+5,
+4,
+6,
+5,
+5,
+7,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-2.json",
+"from":1,
+"to":9,
+"v":"09c4e8e114ee"
+}
+]
+},
+"Mishnah Temurah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+3,
+5,
+4,
+6,
+5,
+6
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":7,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Keritot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+6,
+10,
+3,
+8,
+9
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":6,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Meilah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+9,
+8,
+6,
+5,
+6
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":6,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Tamid":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+9,
+3,
+6,
+3,
+4
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":7,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Middot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+6,
+8,
+7,
+4
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":5,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Kinnim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+6
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":3,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Kelim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+8,
+8,
+4,
+11,
+4,
+6,
+11,
+8,
+8,
+9,
+8,
+8,
+8,
+6,
+8,
+17,
+9,
+10,
+7,
+3,
+10,
+5,
+17,
+9,
+9,
+12,
+10,
+8,
+4
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":30,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Oholot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+7,
+3,
+7,
+7,
+6,
+6,
+16,
+7,
+9,
+8,
+6,
+7,
+10,
+5,
+5,
+10
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":18,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Negaim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+5,
+8,
+11,
+5,
+8,
+5,
+10,
+3,
+10,
+12,
+7,
+12,
+13
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":14,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Parah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+11,
+4,
+9,
+5,
+12,
+11,
+9,
+6,
+9,
+11
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":12,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Tahorot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+8,
+8,
+13,
+9,
+10,
+9,
+9,
+9,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":10,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Mikvaot":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+10,
+4,
+5,
+6,
+11,
+7,
+5,
+7,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":10,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Niddah":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+7,
+7,
+7,
+9,
+14,
+5,
+4,
+11,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":10,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Makhshirin":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+11,
+8,
+10,
+11,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":6,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Zavim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+4,
+3,
+7,
+12
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":5,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Tevul Yom":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+8,
+6,
+7
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":4,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Mishnah Yadayim":{
+"versionTitle":"Torat Emet 357",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+4,
+5,
+8
+],
+"parts":[
+{
+"file":"data-mishnah-3.json",
+"from":1,
+"to":4,
+"v":"bc1cb3ac9035"
+}
+]
+},
+"Bartenura on Mishnah Berakhot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+5,
+8,
+6,
+7,
+5,
+8,
+5,
+8,
+5
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":9,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Peah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+8,
+8,
+11,
+8,
+11,
+8,
+9
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":8,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Demai":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+5,
+6,
+7,
+11,
+12,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":7,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Kilayim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+11,
+7,
+9,
+8,
+9,
+8,
+6,
+10
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":9,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Sheviit":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+8,
+10,
+10,
+10,
+9,
+6,
+7,
+11,
+9,
+9
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":10,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Terumot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+10,
+6,
+9,
+13,
+9,
+6,
+7,
+12,
+7,
+12,
+10
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":11,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Maasrot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+8,
+8,
+10,
+6,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":5,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Maaser Sheni":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+10,
+13,
+12,
+15
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":5,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Challah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+8,
+10,
+11
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":4,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Orlah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+17,
+9
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":3,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Bikkurim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+11,
+11,
+12,
+5
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":4,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Shabbat":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+11,
+7,
+6,
+2,
+4,
+10,
+4,
+7,
+7,
+6,
+6,
+6,
+7,
+4,
+3,
+8,
+8,
+3,
+6,
+5,
+3,
+6,
+5,
+5
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":24,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Eruvin":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+10,
+6,
+9,
+11,
+9,
+10,
+11,
+11,
+4,
+15
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":10,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Pesachim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+8,
+8,
+9,
+10,
+6,
+13,
+8,
+11,
+9
+],
+"parts":[
+{
+"file":"data-bartenura-1.json",
+"from":1,
+"to":10,
+"v":"f87beddd163d"
+}
+]
+},
+"Bartenura on Mishnah Shekalim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+5,
+4,
+9,
+6,
+6,
+7,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":8,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Yoma":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+8,
+7,
+11,
+6,
+7,
+8,
+5,
+9
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":8,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Sukkah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+11,
+9,
+15,
+10,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":5,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Beitzah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+10,
+10,
+8,
+7,
+7
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":5,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Rosh Hashanah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+9,
+8,
+9
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":4,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Taanit":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+10,
+9,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":4,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Megillah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+11,
+6,
+6,
+10
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":4,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Moed Katan":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+10,
+5,
+9
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":3,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Chagigah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+8,
+7,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":3,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Yevamot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+10,
+10,
+13,
+6,
+6,
+6,
+6,
+5,
+9,
+7,
+6,
+13,
+7,
+10,
+7
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":16,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Ketubot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+10,
+10,
+9,
+12,
+9,
+7,
+10,
+8,
+9,
+6,
+6,
+4,
+11
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":13,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Nedarim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+5,
+11,
+8,
+6,
+10,
+9,
+7,
+10,
+8,
+12
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":11,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Nazir":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+10,
+7,
+7,
+7,
+11,
+4,
+2,
+5
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":9,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Sotah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+6,
+8,
+5,
+5,
+4,
+8,
+7,
+15
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":9,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Gittin":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+7,
+8,
+9,
+9,
+7,
+8,
+10,
+10
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":9,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Kiddushin":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+10,
+10,
+13,
+14
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":4,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Bava Kamma":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+6,
+11,
+9,
+7,
+6,
+7,
+7,
+12,
+10
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":10,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Bava Metzia":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+8,
+11,
+12,
+12,
+11,
+8,
+11,
+9,
+13,
+6
+],
+"parts":[
+{
+"file":"data-bartenura-2.json",
+"from":1,
+"to":10,
+"v":"6fb6127745d5"
+}
+]
+},
+"Bartenura on Mishnah Bava Batra":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+14,
+8,
+9,
+11,
+8,
+4,
+8,
+10,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":10,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Sanhedrin":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+5,
+8,
+5,
+5,
+6,
+11,
+7,
+6,
+6,
+6
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":11,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Makkot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+10,
+8,
+16
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":3,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Shevuot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+5,
+11,
+13,
+5,
+7,
+8,
+6
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":8,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Eduyot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+14,
+10,
+12,
+12,
+7,
+3,
+9,
+7
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":8,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Avodah Zarah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+7,
+10,
+12,
+12
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":5,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Avot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+18,
+16,
+18,
+22,
+23,
+12
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":6,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Horayot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+5,
+7,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":3,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Zevachim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+5,
+6,
+6,
+8,
+7,
+6,
+12,
+7,
+8,
+8,
+6,
+8,
+10
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":14,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Menachot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+5,
+7,
+5,
+9,
+7,
+6,
+7,
+9,
+9,
+9,
+5,
+10
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":13,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Chullin":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+10,
+7,
+7,
+5,
+7,
+6,
+6,
+8,
+4,
+2,
+5
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":12,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Bekhorot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+9,
+4,
+10,
+6,
+12,
+7,
+10,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-3.json",
+"from":1,
+"to":9,
+"v":"140f47c13091"
+}
+]
+},
+"Bartenura on Mishnah Arakhin":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+6,
+5,
+4,
+6,
+5,
+5,
+7,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":9,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Temurah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+3,
+5,
+4,
+6,
+5,
+6
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":7,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Keritot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+6,
+10,
+3,
+8,
+9
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":6,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Meilah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+9,
+8,
+6,
+5,
+6
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":6,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Tamid":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+5,
+9,
+3,
+6,
+3,
+4
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":7,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Middot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+6,
+8,
+7,
+4
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":5,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Kinnim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+5,
+6
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":3,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Kelim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+8,
+8,
+4,
+11,
+4,
+6,
+11,
+8,
+8,
+9,
+8,
+8,
+8,
+6,
+8,
+17,
+9,
+10,
+7,
+3,
+10,
+5,
+17,
+9,
+9,
+12,
+10,
+8,
+4
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":30,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Oholot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+8,
+7,
+7,
+3,
+7,
+7,
+6,
+6,
+16,
+7,
+9,
+8,
+6,
+7,
+10,
+5,
+5,
+10
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":18,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Negaim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+5,
+8,
+11,
+5,
+8,
+5,
+10,
+3,
+10,
+12,
+7,
+12,
+13
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":14,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Parah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+4,
+5,
+11,
+4,
+9,
+5,
+12,
+11,
+9,
+6,
+9,
+11
+],
+"parts":[
+{
+"file":"data-bartenura-4.json",
+"from":1,
+"to":12,
+"v":"59bddce5da57"
+}
+]
+},
+"Bartenura on Mishnah Tahorot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+9,
+8,
+8,
+13,
+9,
+10,
+9,
+9,
+9,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-5.json",
+"from":1,
+"to":10,
+"v":"34e941c56c07"
+}
+]
+},
+"Bartenura on Mishnah Mikvaot":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+8,
+10,
+4,
+5,
+6,
+11,
+7,
+5,
+7,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-5.json",
+"from":1,
+"to":10,
+"v":"34e941c56c07"
+}
+]
+},
+"Bartenura on Mishnah Niddah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+7,
+7,
+7,
+7,
+9,
+14,
+5,
+4,
+11,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-5.json",
+"from":1,
+"to":10,
+"v":"34e941c56c07"
+}
+]
+},
+"Bartenura on Mishnah Makhshirin":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+11,
+8,
+10,
+11,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-5.json",
+"from":1,
+"to":6,
+"v":"34e941c56c07"
+}
+]
+},
+"Bartenura on Mishnah Zavim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+4,
+3,
+7,
+12
+],
+"parts":[
+{
+"file":"data-bartenura-5.json",
+"from":1,
+"to":5,
+"v":"34e941c56c07"
+}
+]
+},
+"Bartenura on Mishnah Tevul Yom":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+5,
+8,
+6,
+7
+],
+"parts":[
+{
+"file":"data-bartenura-5.json",
+"from":1,
+"to":4,
+"v":"34e941c56c07"
+}
+]
+},
+"Bartenura on Mishnah Yadayim":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+5,
+4,
+5,
+8
+],
+"parts":[
+{
+"file":"data-bartenura-5.json",
+"from":1,
+"to":4,
+"v":"34e941c56c07"
+}
+]
+},
+"Mishneh Torah, Negative Mitzvot":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":370,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Overview of Mishneh Torah Contents":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+23,
+9,
+13,
+8,
+6,
+7,
+10,
+12,
+9,
+11,
+8,
+8,
+8,
+10
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":14,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Positive Mitzvot":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":248,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Transmission of the Oral Law":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":45,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Foreign Worship and Customs of the Nations":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+3,
+10,
+11,
+16,
+11,
+10,
+19,
+12,
+18,
+6,
+16,
+16
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":12,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Foundations of the Torah":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+12,
+11,
+13,
+11,
+9,
+7,
+3,
+5,
+5
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":10,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Human Dispositions":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+7,
+3,
+23,
+13,
+10,
+8
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":7,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Repentance":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+11,
+14,
+6,
+5,
+5,
+8,
+8,
+2,
+6
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":10,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Torah Study":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+13,
+7,
+13,
+9,
+13,
+14,
+13
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":7,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Blessings":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":"Wikisource Mishneh Torah",
+"counts":[
+20,
+14,
+13,
+12,
+17,
+20,
+15,
+16,
+9,
+26,
+16
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":11,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Circumcision":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":"Wikisource Mishneh Torah",
+"counts":[
+18,
+10,
+9
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":3,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Fringes":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":"Wikisource Mishneh Torah",
+"counts":[
+18,
+9,
+12
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":3,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Prayer and the Priestly Blessing":{
+"versionTitle":"Torat Emet 370",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+19,
+11,
+19,
+15,
+10,
+18,
+12,
+14,
+16,
+21,
+24,
+25,
+14,
+12
+],
+"parts":[
+{
+"file":"data-rambam-1.json",
+"from":1,
+"to":15,
+"v":"3e8a5a4b7225"
+}
+]
+},
+"Mishneh Torah, Reading the Shema":{
+"versionTitle":"Torat Emet 370",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+13,
+17,
+19,
+8
+],
+"parts":[
+{
+"file":"data-rambam-2.json",
+"from":1,
+"to":4,
+"v":"f1c58f22c621"
+}
+]
+},
+"Mishneh Torah, Tefillin, Mezuzah and the Torah Scroll":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":"Wikisource Mishneh Torah",
+"counts":[
+20,
+11,
+19,
+26,
+11,
+13,
+16,
+4,
+15,
+11
+],
+"parts":[
+{
+"file":"data-rambam-2.json",
+"from":1,
+"to":10,
+"v":"f1c58f22c621"
+}
+]
+},
+"Mishneh Torah, The Order of Prayer":{
+"versionTitle":"Wikisource Mishneh Torah",
+"license":"CC-BY-SA",
+"pin":"Wikisource Mishneh Torah",
+"counts":[
+10,
+37,
+10,
+4,
+7
+],
+"parts":[
+{
+"file":"data-rambam-2.json",
+"from":1,
+"to":5,
+"v":"f1c58f22c621"
+}
+]
+},
+"Mishneh Torah, Eruvin":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+22,
+16,
+25,
+27,
+24,
+24,
+10,
+15
+],
+"parts":[
+{
+"file":"data-rambam-2.json",
+"from":1,
+"to":8,
+"v":"f1c58f22c621"
+}
+]
+},
+"Mishneh Torah, Fasts":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+17,
+18,
+11,
+19,
+19
+],
+"parts":[
+{
+"file":"data-rambam-2.json",
+"from":1,
+"to":5,
+"v":"f1c58f22c621"
+}
+]
+},
+"Mishneh Torah, Leavened and Unleavened Bread":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+19,
+11,
+12,
+26,
+12,
+13,
+14,
+41
+],
+"parts":[
+{
+"file":"data-rambam-2.json",
+"from":1,
+"to":9,
+"v":"f1c58f22c621"
+}
+]
+},
+"Mishneh Torah, Rest on a Holiday":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+24,
+18,
+17,
+26,
+20,
+24,
+25,
+21
+],
+"parts":[
+{
+"file":"data-rambam-2.json",
+"from":1,
+"to":8,
+"v":"f1c58f22c621"
+}
+]
+},
+"Mishneh Torah, Rest on the Tenth of Tishrei":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+11,
+10
+],
+"parts":[
+{
+"file":"data-rambam-2.json",
+"from":1,
+"to":3,
+"v":"f1c58f22c621"
+}
+]
+},
+"Mishneh Torah, Sabbath":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+19,
+25,
+22,
+6,
+21,
+25,
+9,
+16,
+20,
+25,
+17,
+19,
+22,
+24,
+22,
+24,
+36,
+28,
+26,
+14,
+36,
+33,
+28,
+13,
+26,
+23,
+17,
+19,
+29,
+15
+],
+"parts":[
+{
+"file":"data-rambam-3.json",
+"from":1,
+"to":30,
+"v":"f86d9a67be97"
+}
+]
+},
+"Mishneh Torah, Sanctification of the New Month":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+10,
+19,
+17,
+13,
+15,
+8,
+10,
+8,
+7,
+17,
+2,
+11,
+6,
+9,
+19,
+24,
+16,
+16
+],
+"parts":[
+{
+"file":"data-rambam-3.json",
+"from":1,
+"to":19,
+"v":"f86d9a67be97"
+}
+]
+},
+"Mishneh Torah, Scroll of Esther and Hanukkah":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+14,
+18,
+14,
+14
+],
+"parts":[
+{
+"file":"data-rambam-3.json",
+"from":1,
+"to":4,
+"v":"f86d9a67be97"
+}
+]
+},
+"Mishneh Torah, Sheqel Dues":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+10,
+15,
+12
+],
+"parts":[
+{
+"file":"data-rambam-3.json",
+"from":1,
+"to":4,
+"v":"f86d9a67be97"
+}
+]
+},
+"Mishneh Torah, Shofar, Sukkah and Lulav":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+10,
+13,
+16,
+25,
+16,
+27,
+15
+],
+"parts":[
+{
+"file":"data-rambam-3.json",
+"from":1,
+"to":8,
+"v":"f86d9a67be97"
+}
+]
+},
+"Mishneh Torah, Divorce":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+28,
+20,
+19,
+25,
+18,
+30,
+24,
+24,
+41,
+23,
+28,
+24,
+29
+],
+"parts":[
+{
+"file":"data-rambam-4.json",
+"from":1,
+"to":13,
+"v":"e8c77206ce41"
+}
+]
+},
+"Mishneh Torah, Levirate Marriage and Release":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+23,
+21,
+19,
+35,
+30,
+31,
+22,
+13
+],
+"parts":[
+{
+"file":"data-rambam-4.json",
+"from":1,
+"to":8,
+"v":"e8c77206ce41"
+}
+]
+},
+"Mishneh Torah, Marriage":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+27,
+24,
+22,
+29,
+18,
+23,
+6,
+31,
+19,
+17,
+24,
+20,
+24,
+20,
+31,
+19,
+28,
+22,
+14,
+18,
+35,
+18,
+25,
+13
+],
+"parts":[
+{
+"file":"data-rambam-4.json",
+"from":1,
+"to":25,
+"v":"e8c77206ce41"
+}
+]
+},
+"Mishneh Torah, Virgin Maiden":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+15,
+17,
+12
+],
+"parts":[
+{
+"file":"data-rambam-4.json",
+"from":1,
+"to":3,
+"v":"e8c77206ce41"
+}
+]
+},
+"Mishneh Torah, Woman Suspected of Infidelity":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+20,
+16,
+24,
+19
+],
+"parts":[
+{
+"file":"data-rambam-4.json",
+"from":1,
+"to":4,
+"v":"e8c77206ce41"
+}
+]
+},
+"Mishneh Torah, Forbidden Foods":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+24,
+24,
+24,
+22,
+15,
+21,
+21,
+18,
+28,
+24,
+26,
+29,
+28,
+19,
+34,
+35,
+32
+],
+"parts":[
+{
+"file":"data-rambam-5.json",
+"from":1,
+"to":17,
+"v":"3436482b615a"
+}
+]
+},
+"Mishneh Torah, Forbidden Intercourse":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+23,
+14,
+17,
+22,
+25,
+23,
+24,
+22,
+39,
+21,
+19,
+25,
+18,
+19,
+33,
+13,
+21,
+30,
+23,
+20,
+32,
+21
+],
+"parts":[
+{
+"file":"data-rambam-5.json",
+"from":1,
+"to":22,
+"v":"3436482b615a"
+}
+]
+},
+"Mishneh Torah, Ritual Slaughter":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+29,
+22,
+25,
+18,
+12,
+21,
+21,
+26,
+21,
+14,
+15,
+17,
+21,
+16
+],
+"parts":[
+{
+"file":"data-rambam-5.json",
+"from":1,
+"to":14,
+"v":"3436482b615a"
+}
+]
+},
+"Mishneh Torah, Appraisals and Devoted Property":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+23,
+13,
+20,
+28,
+19,
+34,
+20,
+13
+],
+"parts":[
+{
+"file":"data-rambam-5.json",
+"from":1,
+"to":8,
+"v":"3436482b615a"
+}
+]
+},
+"Mishneh Torah, Nazariteship":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+17,
+22,
+19,
+17,
+21,
+20,
+15,
+20,
+19,
+14
+],
+"parts":[
+{
+"file":"data-rambam-5.json",
+"from":1,
+"to":10,
+"v":"3436482b615a"
+}
+]
+},
+"Mishneh Torah, Oaths":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+13,
+19,
+11,
+22,
+22,
+18,
+16,
+14,
+19,
+19,
+20,
+12
+],
+"parts":[
+{
+"file":"data-rambam-6.json",
+"from":1,
+"to":12,
+"v":"c9a7b2312da4"
+}
+]
+},
+"Mishneh Torah, Vows":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+30,
+19,
+12,
+16,
+16,
+18,
+17,
+14,
+23,
+13,
+26,
+21,
+25
+],
+"parts":[
+{
+"file":"data-rambam-6.json",
+"from":1,
+"to":13,
+"v":"c9a7b2312da4"
+}
+]
+},
+"Mishneh Torah, Diverse Species":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+17,
+18,
+16,
+24,
+16,
+25,
+14,
+11,
+32
+],
+"parts":[
+{
+"file":"data-rambam-6.json",
+"from":1,
+"to":10,
+"v":"c9a7b2312da4"
+}
+]
+},
+"Mishneh Torah, First Fruits and other Gifts to Priests Outside the Sanctuary":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+16,
+21,
+14,
+17,
+15,
+20,
+13,
+15,
+22,
+17,
+30,
+24
+],
+"parts":[
+{
+"file":"data-rambam-6.json",
+"from":1,
+"to":12,
+"v":"c9a7b2312da4"
+}
+]
+},
+"Mishneh Torah, Gifts to the Poor":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+15,
+20,
+23,
+27,
+27,
+17,
+15,
+18,
+19,
+19
+],
+"parts":[
+{
+"file":"data-rambam-6.json",
+"from":1,
+"to":10,
+"v":"c9a7b2312da4"
+}
+]
+},
+"Mishneh Torah, Heave Offerings":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+26,
+17,
+24,
+21,
+26,
+19,
+23,
+16,
+10,
+26,
+28,
+22,
+16,
+21,
+22
+],
+"parts":[
+{
+"file":"data-rambam-6.json",
+"from":1,
+"to":15,
+"v":"c9a7b2312da4"
+}
+]
+},
+"Mishneh Torah, Sabbatical Year and the Jubilee":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+22,
+14,
+11,
+30,
+23,
+15,
+22,
+20,
+30,
+16,
+21,
+16,
+13
+],
+"parts":[
+{
+"file":"data-rambam-6.json",
+"from":1,
+"to":13,
+"v":"c9a7b2312da4"
+}
+]
+},
+"Mishneh Torah, Second Tithes and Fourth Year's Fruit":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+14,
+16,
+25,
+22,
+15,
+16,
+20,
+15,
+13,
+21,
+17
+],
+"parts":[
+{
+"file":"data-rambam-7.json",
+"from":1,
+"to":11,
+"v":"75deb1fe3c2e"
+}
+]
+},
+"Mishneh Torah, Tithes":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+16,
+8,
+25,
+18,
+23,
+22,
+13,
+9,
+13,
+13,
+15,
+18,
+21,
+10
+],
+"parts":[
+{
+"file":"data-rambam-7.json",
+"from":1,
+"to":14,
+"v":"75deb1fe3c2e"
+}
+]
+},
+"Mishneh Torah, Admission into the Sanctuary":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+17,
+12,
+24,
+18,
+19,
+12,
+13,
+17,
+15
+],
+"parts":[
+{
+"file":"data-rambam-7.json",
+"from":1,
+"to":9,
+"v":"75deb1fe3c2e"
+}
+]
+},
+"Mishneh Torah, Daily Offerings and Additional Offerings":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+15,
+22,
+14,
+16,
+11,
+25,
+20,
+13,
+20
+],
+"parts":[
+{
+"file":"data-rambam-7.json",
+"from":1,
+"to":10,
+"v":"75deb1fe3c2e"
+}
+]
+},
+"Mishneh Torah, Sacrifices Rendered Unfit":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+37,
+26,
+25,
+27,
+13,
+24,
+12,
+11,
+7,
+5,
+31,
+18,
+9,
+10,
+20,
+11,
+20,
+24,
+15
+],
+"parts":[
+{
+"file":"data-rambam-7.json",
+"from":1,
+"to":19,
+"v":"75deb1fe3c2e"
+}
+]
+},
+"Mishneh Torah, Sacrificial Procedure":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+19,
+15,
+15,
+11,
+21,
+23,
+12,
+21,
+25,
+23,
+9,
+23,
+14,
+17,
+8,
+17,
+15,
+18,
+16
+],
+"parts":[
+{
+"file":"data-rambam-7.json",
+"from":1,
+"to":19,
+"v":"75deb1fe3c2e"
+}
+]
+},
+"Mishneh Torah, Service on the Day of Atonement":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+11,
+2,
+28
+],
+"parts":[
+{
+"file":"data-rambam-7.json",
+"from":1,
+"to":5,
+"v":"75deb1fe3c2e"
+}
+]
+},
+"Mishneh Torah, The Chosen Temple":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+20,
+18,
+18,
+13,
+17,
+16,
+23,
+12
+],
+"parts":[
+{
+"file":"data-rambam-7.json",
+"from":1,
+"to":8,
+"v":"75deb1fe3c2e"
+}
+]
+},
+"Mishneh Torah, Things Forbidden on the Altar":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+16,
+15,
+18,
+13,
+15,
+11
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":7,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Trespass":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+13,
+16,
+13,
+11,
+16,
+13,
+11,
+8
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":8,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Vessels of the Sanctuary and Those who Serve Therein":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+19,
+13,
+11,
+22,
+17,
+11,
+20,
+19,
+11,
+13
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":10,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Festival Offering":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+14,
+7
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":3,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Firstlings":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+19,
+19,
+13,
+21,
+11,
+16,
+9,
+15
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":8,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Offerings for Those with Incomplete Atonement":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+13,
+14,
+7,
+3,
+11
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":5,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Offerings for Unintentional Transgressions":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+16,
+12,
+5,
+7,
+12,
+12,
+10,
+13,
+13,
+9,
+2,
+6,
+5,
+10
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":15,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Paschal Offering":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+20,
+15,
+9,
+11,
+9,
+13,
+9,
+15,
+9,
+15
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":10,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Substitution":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+21,
+4,
+7,
+13
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":4,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Defilement by Leprosy":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+9,
+9,
+11,
+11,
+7,
+7,
+14,
+12,
+12,
+10,
+13,
+15,
+15,
+8,
+10
+],
+"parts":[
+{
+"file":"data-rambam-8.json",
+"from":1,
+"to":16,
+"v":"6c6b489bd220"
+}
+]
+},
+"Mishneh Torah, Defilement by a Corpse":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+15,
+16,
+15,
+14,
+14,
+9,
+7,
+11,
+12,
+12,
+12,
+8,
+8,
+7,
+5,
+7,
+6,
+8,
+6,
+8,
+11,
+11,
+4,
+8,
+12
+],
+"parts":[
+{
+"file":"data-rambam-9.json",
+"from":1,
+"to":25,
+"v":"84803166ac95"
+}
+]
+},
+"Mishneh Torah, Defilement of Foods":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+25,
+28,
+10,
+16,
+22,
+19,
+9,
+19,
+11,
+17,
+17,
+12,
+17,
+17,
+8,
+12
+],
+"parts":[
+{
+"file":"data-rambam-9.json",
+"from":1,
+"to":16,
+"v":"84803166ac95"
+}
+]
+},
+"Mishneh Torah, Immersion Pools":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+23,
+26,
+10,
+9,
+14,
+12,
+13,
+18,
+8,
+12
+],
+"parts":[
+{
+"file":"data-rambam-9.json",
+"from":1,
+"to":11,
+"v":"84803166ac95"
+}
+]
+},
+"Mishneh Torah, Other Sources of Defilement":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+17,
+12,
+16,
+14,
+19,
+16,
+6,
+13,
+11,
+10,
+16,
+16,
+13,
+12,
+11,
+10,
+9,
+16,
+4,
+13
+],
+"parts":[
+{
+"file":"data-rambam-9.json",
+"from":1,
+"to":20,
+"v":"84803166ac95"
+}
+]
+},
+"Mishneh Torah, Red Heifer":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+15,
+8,
+4,
+18,
+7,
+16,
+11,
+8,
+18,
+10,
+7,
+12,
+12,
+10,
+10
+],
+"parts":[
+{
+"file":"data-rambam-9.json",
+"from":1,
+"to":15,
+"v":"84803166ac95"
+}
+]
+},
+"Mishneh Torah, Those Who Defile Bed or Seat":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+16,
+10,
+9,
+15,
+9,
+6,
+8,
+11,
+5,
+11,
+12,
+23,
+8
+],
+"parts":[
+{
+"file":"data-rambam-9.json",
+"from":1,
+"to":13,
+"v":"84803166ac95"
+}
+]
+},
+"Mishneh Torah, Vessels":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+13,
+8,
+8,
+10,
+12,
+15,
+15,
+15,
+16,
+17,
+24,
+18,
+14,
+14,
+19,
+14,
+7,
+16,
+16,
+17,
+12,
+27,
+11,
+11,
+20,
+15,
+18,
+7
+],
+"parts":[
+{
+"file":"data-rambam-10.json",
+"from":1,
+"to":28,
+"v":"eb7b52e1e0ab"
+}
+]
+},
+"Mishneh Torah, Damages to Property":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+20,
+15,
+14,
+10,
+13,
+13,
+14,
+14,
+14,
+13,
+22,
+27,
+16
+],
+"parts":[
+{
+"file":"data-rambam-10.json",
+"from":1,
+"to":14,
+"v":"eb7b52e1e0ab"
+}
+]
+},
+"Mishneh Torah, Murderer and the Preservation of Life":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+16,
+16,
+13,
+12,
+14,
+15,
+15,
+11,
+17,
+10,
+16,
+15,
+14
+],
+"parts":[
+{
+"file":"data-rambam-10.json",
+"from":1,
+"to":13,
+"v":"eb7b52e1e0ab"
+}
+]
+},
+"Mishneh Torah, One Who Injures a Person or Property":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+19,
+20,
+11,
+22,
+13,
+16,
+19,
+15
+],
+"parts":[
+{
+"file":"data-rambam-10.json",
+"from":1,
+"to":8,
+"v":"eb7b52e1e0ab"
+}
+]
+},
+"Mishneh Torah, Robbery and Lost Property":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+13,
+16,
+16,
+17,
+18,
+16,
+13,
+14,
+16,
+12,
+20,
+15,
+20,
+13,
+18,
+11,
+13,
+14
+],
+"parts":[
+{
+"file":"data-rambam-10.json",
+"from":1,
+"to":18,
+"v":"eb7b52e1e0ab"
+}
+]
+},
+"Mishneh Torah, Theft":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+18,
+18,
+17,
+12,
+12,
+9,
+12,
+20,
+13
+],
+"parts":[
+{
+"file":"data-rambam-10.json",
+"from":1,
+"to":9,
+"v":"eb7b52e1e0ab"
+}
+]
+},
+"Mishneh Torah, Agents and Partners":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+9,
+11,
+5,
+11,
+5,
+7,
+7,
+9,
+6
+],
+"parts":[
+{
+"file":"data-rambam-10.json",
+"from":1,
+"to":10,
+"v":"eb7b52e1e0ab"
+}
+]
+},
+"Mishneh Torah, Neighbors":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+18,
+10,
+11,
+16,
+14,
+10,
+9,
+13,
+8,
+7,
+17,
+14,
+5
+],
+"parts":[
+{
+"file":"data-rambam-11.json",
+"from":1,
+"to":14,
+"v":"e9bc9c4818a7"
+}
+]
+},
+"Mishneh Torah, Ownerless Property and Gifts":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+15,
+18,
+15,
+14,
+9,
+24,
+15,
+27,
+26,
+15,
+24,
+17
+],
+"parts":[
+{
+"file":"data-rambam-11.json",
+"from":1,
+"to":12,
+"v":"e9bc9c4818a7"
+}
+]
+},
+"Mishneh Torah, Sales":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+20,
+10,
+18,
+15,
+14,
+16,
+14,
+8,
+7,
+8,
+18,
+15,
+18,
+18,
+13,
+14,
+9,
+14,
+10,
+15,
+23,
+17,
+15,
+17,
+9,
+8,
+11,
+15,
+18,
+7
+],
+"parts":[
+{
+"file":"data-rambam-11.json",
+"from":1,
+"to":30,
+"v":"e9bc9c4818a7"
+}
+]
+},
+"Mishneh Torah, Slaves":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+12,
+15,
+16,
+17,
+8,
+9,
+21,
+8
+],
+"parts":[
+{
+"file":"data-rambam-11.json",
+"from":1,
+"to":9,
+"v":"e9bc9c4818a7"
+}
+]
+},
+"Mishneh Torah, Borrowing and Deposit":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+11,
+4,
+9,
+7,
+5,
+12,
+6
+],
+"parts":[
+{
+"file":"data-rambam-11.json",
+"from":1,
+"to":8,
+"v":"e9bc9c4818a7"
+}
+]
+},
+"Mishneh Torah, Creditor and Debtor":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+8,
+8,
+14,
+17,
+8,
+12,
+15,
+10,
+6,
+11,
+11,
+8,
+15,
+7,
+12,
+9,
+10,
+8,
+5,
+7,
+17,
+18,
+11,
+14,
+12,
+17
+],
+"parts":[
+{
+"file":"data-rambam-11.json",
+"from":1,
+"to":27,
+"v":"e9bc9c4818a7"
+}
+]
+},
+"Mishneh Torah, Hiring":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+12,
+10,
+8,
+8,
+11,
+8,
+14,
+11,
+7,
+9,
+14,
+7
+],
+"parts":[
+{
+"file":"data-rambam-12.json",
+"from":1,
+"to":13,
+"v":"2d68feb58d39"
+}
+]
+},
+"Mishneh Torah, Inheritances":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+13,
+17,
+9,
+8,
+9,
+13,
+10,
+2,
+15,
+8,
+12
+],
+"parts":[
+{
+"file":"data-rambam-12.json",
+"from":1,
+"to":11,
+"v":"2d68feb58d39"
+}
+]
+},
+"Mishneh Torah, Plaintiff and Defendant":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+17,
+12,
+15,
+10,
+12,
+8,
+8,
+10,
+13,
+6,
+10,
+20,
+11,
+14,
+11,
+10
+],
+"parts":[
+{
+"file":"data-rambam-12.json",
+"from":1,
+"to":16,
+"v":"2d68feb58d39"
+}
+]
+},
+"Mishneh Torah, Kings and Wars":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+6,
+10,
+10,
+12,
+15,
+15,
+11,
+14,
+12,
+9,
+5
+],
+"parts":[
+{
+"file":"data-rambam-12.json",
+"from":1,
+"to":12,
+"v":"2d68feb58d39"
+}
+]
+},
+"Mishneh Torah, Mourning":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+15,
+14,
+9,
+20,
+13,
+8,
+10,
+15,
+10,
+8,
+12,
+12,
+26
+],
+"parts":[
+{
+"file":"data-rambam-12.json",
+"from":1,
+"to":14,
+"v":"2d68feb58d39"
+}
+]
+},
+"Mishneh Torah, Rebels":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+9,
+8,
+3,
+15,
+15,
+14
+],
+"parts":[
+{
+"file":"data-rambam-12.json",
+"from":1,
+"to":7,
+"v":"2d68feb58d39"
+}
+]
+},
+"Mishneh Torah, Testimony":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+5,
+12,
+7,
+9,
+8,
+7,
+5,
+12,
+5,
+10,
+10,
+15,
+7,
+6,
+6,
+7,
+8,
+3,
+10,
+10,
+5
+],
+"parts":[
+{
+"file":"data-rambam-12.json",
+"from":1,
+"to":22,
+"v":"2d68feb58d39"
+}
+]
+},
+"Mishneh Torah, The Sanhedrin and the Penalties within their Jurisdiction":{
+"versionTitle":"Torat Emet 363",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+14,
+10,
+15,
+18,
+9,
+10,
+3,
+3,
+9,
+11,
+5,
+8,
+14,
+13,
+12,
+9,
+6,
+4,
+12,
+11,
+10,
+10,
+10,
+11,
+7
+],
+"parts":[
+{
+"file":"data-rambam-13.json",
+"from":1,
+"to":26,
+"v":"98b1ee554c81"
+}
+]
+},
+"Genesis":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+31,
+25,
+24,
+26,
+32,
+22,
+24,
+22,
+29,
+32,
+32,
+20,
+18,
+24,
+21,
+16,
+27,
+33,
+38,
+18,
+34,
+24,
+20,
+67,
+34,
+35,
+46,
+22,
+35,
+43,
+54,
+33,
+20,
+31,
+29,
+43,
+36,
+30,
+23,
+23,
+57,
+38,
+34,
+34,
+28,
+34,
+31,
+22,
+33,
+26
+],
+"parts":[
+{
+"file":"data-tanakh-1.json",
+"from":1,
+"to":50,
+"v":"a080f4bc9368"
+}
+]
+},
+"Exodus":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+22,
+25,
+22,
+31,
+23,
+30,
+29,
+28,
+35,
+29,
+10,
+51,
+22,
+31,
+27,
+36,
+16,
+27,
+25,
+23,
+37,
+30,
+33,
+18,
+40,
+37,
+21,
+43,
+46,
+38,
+18,
+35,
+23,
+35,
+35,
+38,
+29,
+31,
+43,
+38
+],
+"parts":[
+{
+"file":"data-tanakh-1.json",
+"from":1,
+"to":40,
+"v":"a080f4bc9368"
+}
+]
+},
+"Leviticus":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+17,
+16,
+17,
+35,
+26,
+23,
+38,
+36,
+24,
+20,
+47,
+8,
+59,
+57,
+33,
+34,
+16,
+30,
+37,
+27,
+24,
+33,
+44,
+23,
+55,
+46,
+34
+],
+"parts":[
+{
+"file":"data-tanakh-1.json",
+"from":1,
+"to":27,
+"v":"a080f4bc9368"
+}
+]
+},
+"Numbers":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+54,
+34,
+51,
+49,
+31,
+27,
+89,
+26,
+23,
+36,
+35,
+16,
+33,
+45,
+41,
+35,
+28,
+32,
+22,
+29,
+35,
+41,
+30,
+25,
+18,
+65,
+23,
+31,
+39,
+17,
+54,
+42,
+56,
+29,
+34,
+13
+],
+"parts":[
+{
+"file":"data-tanakh-2.json",
+"from":1,
+"to":36,
+"v":"49db6497173f"
+}
+]
+},
+"Deuteronomy":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+46,
+37,
+29,
+49,
+30,
+25,
+26,
+20,
+29,
+22,
+32,
+31,
+19,
+29,
+23,
+22,
+20,
+22,
+21,
+20,
+23,
+29,
+26,
+22,
+19,
+19,
+26,
+69,
+28,
+20,
+30,
+52,
+29,
+12
+],
+"parts":[
+{
+"file":"data-tanakh-2.json",
+"from":1,
+"to":34,
+"v":"49db6497173f"
+}
+]
+},
+"Joshua":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+18,
+24,
+17,
+24,
+15,
+27,
+26,
+35,
+27,
+43,
+23,
+24,
+33,
+15,
+63,
+10,
+18,
+28,
+51,
+9,
+45,
+34,
+16,
+33
+],
+"parts":[
+{
+"file":"data-tanakh-2.json",
+"from":1,
+"to":24,
+"v":"49db6497173f"
+}
+]
+},
+"Judges":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+36,
+23,
+31,
+24,
+31,
+40,
+25,
+35,
+57,
+18,
+40,
+15,
+25,
+20,
+20,
+31,
+13,
+31,
+30,
+48,
+25
+],
+"parts":[
+{
+"file":"data-tanakh-2.json",
+"from":1,
+"to":21,
+"v":"49db6497173f"
+}
+]
+},
+"I Samuel":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+28,
+36,
+21,
+22,
+12,
+21,
+17,
+22,
+27,
+27,
+15,
+25,
+23,
+52,
+35,
+23,
+58,
+30,
+24,
+42,
+16,
+23,
+28,
+23,
+44,
+25,
+12,
+25,
+11,
+31,
+13
+],
+"parts":[
+{
+"file":"data-tanakh-3.json",
+"from":1,
+"to":31,
+"v":"338c8ea762d7"
+}
+]
+},
+"II Samuel":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+27,
+32,
+39,
+12,
+25,
+23,
+29,
+18,
+13,
+19,
+27,
+31,
+39,
+33,
+37,
+23,
+29,
+32,
+44,
+26,
+22,
+51,
+39,
+25
+],
+"parts":[
+{
+"file":"data-tanakh-3.json",
+"from":1,
+"to":24,
+"v":"338c8ea762d7"
+}
+]
+},
+"I Kings":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+53,
+46,
+28,
+20,
+32,
+38,
+51,
+66,
+28,
+29,
+43,
+33,
+34,
+31,
+34,
+34,
+24,
+46,
+21,
+43,
+29,
+54
+],
+"parts":[
+{
+"file":"data-tanakh-3.json",
+"from":1,
+"to":22,
+"v":"338c8ea762d7"
+}
+]
+},
+"II Kings":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+18,
+25,
+27,
+44,
+27,
+33,
+20,
+29,
+37,
+36,
+20,
+22,
+25,
+29,
+38,
+20,
+41,
+37,
+37,
+21,
+26,
+20,
+37,
+20,
+30
+],
+"parts":[
+{
+"file":"data-tanakh-3.json",
+"from":1,
+"to":25,
+"v":"338c8ea762d7"
+}
+]
+},
+"Isaiah":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+31,
+22,
+26,
+6,
+30,
+13,
+25,
+23,
+20,
+34,
+16,
+6,
+22,
+32,
+9,
+14,
+14,
+7,
+25,
+6,
+17,
+25,
+18,
+23,
+12,
+21,
+13,
+29,
+24,
+33,
+9,
+20,
+24,
+17,
+10,
+22,
+38,
+22,
+8,
+31,
+29,
+25,
+28,
+28,
+25,
+13,
+15,
+22,
+26,
+11,
+23,
+15,
+12,
+17,
+13,
+12,
+21,
+14,
+21,
+22,
+11,
+12,
+19,
+11,
+25,
+24
+],
+"parts":[
+{
+"file":"data-tanakh-4.json",
+"from":1,
+"to":66,
+"v":"ecb22ec49868"
+}
+]
+},
+"Jeremiah":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+19,
+37,
+25,
+31,
+31,
+30,
+34,
+23,
+25,
+25,
+23,
+17,
+27,
+22,
+21,
+21,
+27,
+23,
+15,
+18,
+14,
+30,
+40,
+10,
+38,
+24,
+22,
+17,
+32,
+24,
+40,
+44,
+26,
+22,
+19,
+32,
+21,
+28,
+18,
+16,
+18,
+22,
+13,
+30,
+5,
+28,
+7,
+47,
+39,
+46,
+64,
+34
+],
+"parts":[
+{
+"file":"data-tanakh-4.json",
+"from":1,
+"to":52,
+"v":"ecb22ec49868"
+}
+]
+},
+"Ezekiel":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+28,
+10,
+27,
+17,
+17,
+14,
+27,
+18,
+11,
+22,
+25,
+28,
+23,
+23,
+8,
+63,
+24,
+32,
+14,
+44,
+37,
+31,
+49,
+27,
+17,
+21,
+36,
+26,
+21,
+26,
+18,
+32,
+33,
+31,
+15,
+38,
+28,
+23,
+29,
+49,
+26,
+20,
+27,
+31,
+25,
+24,
+23,
+35
+],
+"parts":[
+{
+"file":"data-tanakh-4.json",
+"from":1,
+"to":48,
+"v":"ecb22ec49868"
+}
+]
+},
+"Hosea":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+9,
+25,
+5,
+19,
+15,
+11,
+16,
+14,
+17,
+15,
+11,
+15,
+15,
+10
+],
+"parts":[
+{
+"file":"data-tanakh-4.json",
+"from":1,
+"to":14,
+"v":"ecb22ec49868"
+}
+]
+},
+"Joel":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+20,
+27,
+5,
+21
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":4,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Amos":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+15,
+16,
+15,
+13,
+27,
+14,
+17,
+14,
+15
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":9,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Obadiah":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+21
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":1,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Jonah":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+16,
+11,
+10,
+11
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":4,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Micah":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+16,
+13,
+12,
+14,
+14,
+16,
+20
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":7,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Nahum":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+14,
+14,
+19
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":3,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Habakkuk":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+17,
+20,
+19
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":3,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Zephaniah":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+18,
+15,
+20
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":3,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Haggai":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+15,
+23
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":2,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Zechariah":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+17,
+17,
+10,
+14,
+11,
+15,
+14,
+23,
+17,
+12,
+17,
+14,
+9,
+21
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":14,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Malachi":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+14,
+17,
+24
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":3,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Psalms":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+6,
+12,
+9,
+9,
+13,
+11,
+18,
+10,
+21,
+18,
+7,
+9,
+6,
+7,
+5,
+11,
+15,
+51,
+15,
+10,
+14,
+32,
+6,
+10,
+22,
+12,
+14,
+9,
+11,
+13,
+25,
+11,
+22,
+23,
+28,
+13,
+40,
+23,
+14,
+18,
+14,
+12,
+5,
+27,
+18,
+12,
+10,
+15,
+21,
+23,
+21,
+11,
+7,
+9,
+24,
+14,
+12,
+12,
+18,
+14,
+9,
+13,
+12,
+11,
+14,
+20,
+8,
+36,
+37,
+6,
+24,
+20,
+28,
+23,
+11,
+13,
+21,
+72,
+13,
+20,
+17,
+8,
+19,
+13,
+14,
+17,
+7,
+19,
+53,
+17,
+16,
+16,
+5,
+23,
+11,
+13,
+12,
+9,
+9,
+5,
+8,
+29,
+22,
+35,
+45,
+48,
+43,
+14,
+31,
+7,
+10,
+10,
+9,
+8,
+18,
+19,
+2,
+29,
+176,
+7,
+8,
+9,
+4,
+8,
+5,
+6,
+5,
+6,
+8,
+8,
+3,
+18,
+3,
+3,
+21,
+26,
+9,
+8,
+24,
+14,
+10,
+8,
+12,
+15,
+21,
+10,
+20,
+14,
+9,
+6
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":150,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Proverbs":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+33,
+22,
+35,
+27,
+23,
+35,
+27,
+36,
+18,
+32,
+31,
+28,
+25,
+35,
+33,
+33,
+28,
+24,
+29,
+30,
+31,
+29,
+35,
+34,
+28,
+28,
+27,
+28,
+27,
+33,
+31
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":31,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Job":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+22,
+13,
+26,
+21,
+27,
+30,
+21,
+22,
+35,
+22,
+20,
+25,
+28,
+22,
+35,
+22,
+16,
+21,
+29,
+29,
+34,
+30,
+17,
+25,
+6,
+14,
+23,
+28,
+25,
+31,
+40,
+22,
+33,
+37,
+16,
+33,
+24,
+41,
+30,
+32,
+26,
+17
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":42,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Song of Songs":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+17,
+17,
+11,
+16,
+16,
+12,
+14,
+14
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":8,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Ruth":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+22,
+23,
+18,
+22
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":4,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Lamentations":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+22,
+22,
+66,
+22,
+22
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":5,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Ecclesiastes":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+18,
+26,
+22,
+17,
+19,
+12,
+29,
+17,
+18,
+20,
+10,
+14
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":12,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Esther":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+22,
+23,
+15,
+17,
+14,
+14,
+10,
+17,
+32,
+3
+],
+"parts":[
+{
+"file":"data-tanakh-5.json",
+"from":1,
+"to":10,
+"v":"04bfe38d6c60"
+}
+]
+},
+"Daniel":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+21,
+49,
+33,
+34,
+30,
+29,
+28,
+27,
+27,
+21,
+45,
+13
+],
+"parts":[
+{
+"file":"data-tanakh-6.json",
+"from":1,
+"to":12,
+"v":"1818bedfbad2"
+}
+]
+},
+"Ezra":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+11,
+70,
+13,
+24,
+17,
+22,
+28,
+36,
+15,
+44
+],
+"parts":[
+{
+"file":"data-tanakh-6.json",
+"from":1,
+"to":10,
+"v":"1818bedfbad2"
+}
+]
+},
+"Nehemiah":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+11,
+20,
+38,
+17,
+19,
+19,
+72,
+18,
+37,
+40,
+36,
+47,
+31
+],
+"parts":[
+{
+"file":"data-tanakh-6.json",
+"from":1,
+"to":13,
+"v":"1818bedfbad2"
+}
+]
+},
+"I Chronicles":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+54,
+55,
+24,
+43,
+41,
+66,
+40,
+40,
+44,
+14,
+47,
+41,
+14,
+17,
+29,
+43,
+27,
+17,
+19,
+8,
+30,
+19,
+32,
+31,
+31,
+32,
+34,
+21,
+30
+],
+"parts":[
+{
+"file":"data-tanakh-6.json",
+"from":1,
+"to":29,
+"v":"1818bedfbad2"
+}
+]
+},
+"II Chronicles":{
+"versionTitle":"Miqra according to the Masorah",
+"license":"CC-BY-SA",
+"pin":null,
+"counts":[
+18,
+17,
+17,
+22,
+14,
+42,
+22,
+18,
+31,
+19,
+23,
+16,
+23,
+14,
+19,
+14,
+19,
+34,
+11,
+37,
+20,
+12,
+21,
+27,
+28,
+23,
+9,
+27,
+36,
+27,
+21,
+33,
+25,
+33,
+27,
+23
+],
+"parts":[
+{
+"file":"data-tanakh-6.json",
+"from":1,
+"to":36,
+"v":"1818bedfbad2"
+}
+]
+},
+"Rashi on Genesis":{
+"versionTitle":"Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+31,
+25,
+24,
+26,
+32,
+22,
+23,
+22,
+27,
+26,
+32,
+20,
+18,
+24,
+20,
+16,
+26,
+33,
+37,
+18,
+34,
+23,
+18,
+67,
+34,
+35,
+46,
+22,
+35,
+43,
+54,
+33,
+20,
+31,
+29,
+43,
+36,
+30,
+23,
+23,
+57,
+38,
+34,
+33,
+28,
+34,
+31,
+22,
+33,
+23
+],
+"parts":[
+{
+"file":"data-rashi-1.json",
+"from":1,
+"to":50,
+"v":"b8d29c8984e3"
+}
+]
+},
+"Rashi on Exodus":{
+"versionTitle":"Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+22,
+25,
+22,
+26,
+23,
+30,
+29,
+27,
+33,
+29,
+10,
+49,
+22,
+31,
+27,
+36,
+16,
+27,
+25,
+23,
+37,
+30,
+33,
+18,
+40,
+36,
+21,
+43,
+46,
+38,
+18,
+35,
+23,
+35,
+34,
+7,
+1,
+28,
+43,
+38
+],
+"parts":[
+{
+"file":"data-rashi-2.json",
+"from":1,
+"to":40,
+"v":"28de0c7b0a54"
+}
+]
+},
+"Rashi on Leviticus":{
+"versionTitle":"Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+17,
+14,
+17,
+35,
+24,
+23,
+37,
+36,
+24,
+20,
+47,
+8,
+58,
+57,
+33,
+34,
+16,
+30,
+36,
+27,
+24,
+33,
+43,
+23,
+55,
+46,
+33
+],
+"parts":[
+{
+"file":"data-rashi-2.json",
+"from":1,
+"to":27,
+"v":"28de0c7b0a54"
+}
+]
+},
+"Rashi on Numbers":{
+"versionTitle":"Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann -- corrected vocalization",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+53,
+20,
+50,
+49,
+31,
+27,
+89,
+26,
+22,
+36,
+33,
+15,
+33,
+45,
+41,
+34,
+28,
+32,
+22,
+29,
+35,
+41,
+28,
+24,
+18,
+64,
+23,
+31,
+39,
+16,
+50,
+42,
+55,
+29,
+34,
+11
+],
+"parts":[
+{
+"file":"data-rashi-3.json",
+"from":1,
+"to":36,
+"v":"4734e4e5f4b1"
+}
+]
+},
+"Rashi on Deuteronomy":{
+"versionTitle":"Pentateuch with Rashi's commentary by M. Rosenbaum and A.M. Silbermann, 1929-1934",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+46,
+37,
+29,
+47,
+24,
+20,
+23,
+8,
+25,
+20,
+31,
+31,
+18,
+29,
+23,
+22,
+20,
+22,
+21,
+20,
+23,
+26,
+26,
+21,
+19,
+19,
+26,
+69,
+28,
+19,
+29,
+52,
+29,
+12
+],
+"parts":[
+{
+"file":"data-rashi-3.json",
+"from":1,
+"to":34,
+"v":"4734e4e5f4b1"
+}
+]
+},
+"Rashi on Joshua":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+18,
+23,
+17,
+20,
+15,
+26,
+25,
+33,
+14,
+41,
+18,
+23,
+28,
+15,
+63,
+9,
+18,
+28,
+51,
+9,
+18,
+34,
+13,
+33
+],
+"parts":[
+{
+"file":"data-rashi-3.json",
+"from":1,
+"to":24,
+"v":"4734e4e5f4b1"
+}
+]
+},
+"Rashi on Judges":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+27,
+22,
+31,
+22,
+31,
+38,
+25,
+35,
+54,
+17,
+40,
+8,
+25,
+20,
+19,
+29,
+10,
+30,
+28,
+48,
+22
+],
+"parts":[
+{
+"file":"data-rashi-3.json",
+"from":1,
+"to":21,
+"v":"4734e4e5f4b1"
+}
+]
+},
+"Rashi on I Samuel":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+28,
+36,
+21,
+21,
+11,
+19,
+12,
+13,
+27,
+26,
+14,
+23,
+23,
+52,
+33,
+18,
+56,
+30,
+24,
+42,
+16,
+23,
+28,
+21,
+39,
+23,
+10,
+24,
+3,
+31,
+12
+],
+"parts":[
+{
+"file":"data-rashi-3.json",
+"from":1,
+"to":31,
+"v":"4734e4e5f4b1"
+}
+]
+},
+"Rashi on II Samuel":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+27,
+30,
+39,
+10,
+24,
+23,
+29,
+18,
+12,
+16,
+25,
+31,
+39,
+32,
+37,
+21,
+29,
+30,
+44,
+26,
+20,
+47,
+39,
+24
+],
+"parts":[
+{
+"file":"data-rashi-4.json",
+"from":1,
+"to":24,
+"v":"b02ab6c1e801"
+}
+]
+},
+"Rashi on I Kings":{
+"versionTitle":"On Your Way -- new",
+"license":"Public Domain",
+"pin":"On Your Way -- new",
+"counts":[
+50,
+46,
+27,
+19,
+32,
+38,
+51,
+66,
+26,
+29,
+39,
+33,
+33,
+28,
+33,
+34,
+21,
+46,
+21,
+43,
+29,
+52
+],
+"parts":[
+{
+"file":"data-rashi-4.json",
+"from":1,
+"to":22,
+"v":"b02ab6c1e801"
+}
+]
+},
+"Rashi on II Kings":{
+"versionTitle":"On Your Way -- new",
+"license":"Public Domain",
+"pin":"On Your Way -- new",
+"counts":[
+17,
+24,
+27,
+43,
+26,
+33,
+17,
+24,
+37,
+32,
+19,
+22,
+20,
+26,
+37,
+18,
+35,
+37,
+37,
+20,
+13,
+20,
+35,
+20,
+28
+],
+"parts":[
+{
+"file":"data-rashi-4.json",
+"from":1,
+"to":25,
+"v":"b02ab6c1e801"
+}
+]
+},
+"Rashi on Isaiah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+31,
+22,
+26,
+6,
+30,
+13,
+25,
+23,
+20,
+34,
+16,
+4,
+22,
+32,
+9,
+14,
+14,
+6,
+25,
+6,
+17,
+25,
+18,
+23,
+12,
+21,
+13,
+29,
+24,
+33,
+9,
+20,
+24,
+17,
+10,
+22,
+38,
+22,
+8,
+31,
+29,
+25,
+28,
+28,
+25,
+13,
+15,
+22,
+26,
+11,
+23,
+15,
+12,
+17,
+13,
+12,
+21,
+14,
+21,
+22,
+11,
+11,
+19,
+11,
+25,
+24
+],
+"parts":[
+{
+"file":"data-rashi-4.json",
+"from":1,
+"to":66,
+"v":"b02ab6c1e801"
+}
+]
+},
+"Rashi on Jeremiah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+19,
+36,
+24,
+31,
+30,
+30,
+33,
+22,
+25,
+25,
+23,
+16,
+27,
+22,
+19,
+21,
+27,
+23,
+12,
+18,
+13,
+30,
+39,
+9,
+38,
+20,
+22,
+17,
+28,
+23,
+40,
+37,
+25,
+22,
+11,
+32,
+21,
+23,
+17,
+10,
+17,
+14,
+13,
+30,
+5,
+28,
+6,
+45,
+38,
+45,
+59,
+34
+],
+"parts":[
+{
+"file":"data-rashi-4.json",
+"from":1,
+"to":52,
+"v":"b02ab6c1e801"
+}
+]
+},
+"Rashi on Ezekiel":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+28,
+10,
+27,
+17,
+16,
+14,
+26,
+17,
+9,
+20,
+24,
+27,
+22,
+22,
+7,
+63,
+24,
+30,
+14,
+43,
+36,
+28,
+49,
+27,
+16,
+21,
+36,
+25,
+21,
+25,
+18,
+32,
+33,
+31,
+14,
+38,
+25,
+22,
+28,
+49,
+26,
+20,
+27,
+31,
+24,
+24,
+23,
+35
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":48,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Hosea":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+8,
+25,
+5,
+19,
+15,
+11,
+16,
+13,
+17,
+15,
+10,
+15,
+15,
+10
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":14,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Joel":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+20,
+24,
+5,
+21
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":4,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Amos":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+13,
+16,
+15,
+13,
+27,
+14,
+16,
+14,
+13
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":9,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Obadiah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+21
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":1,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Jonah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+16,
+10,
+10,
+11
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":4,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Micah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+16,
+13,
+12,
+14,
+13,
+16,
+20
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":7,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Nahum":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+14,
+14,
+19
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":3,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Habakkuk":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+17,
+20,
+19
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":3,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Zephaniah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+17,
+15,
+19
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":3,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Haggai":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+14,
+23
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":2,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Zechariah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+16,
+17,
+9,
+14,
+11,
+15,
+14,
+23,
+17,
+11,
+17,
+14,
+9,
+21
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":14,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Malachi":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+14,
+17,
+24
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":3,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Psalms":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+6,
+12,
+9,
+9,
+13,
+11,
+18,
+8,
+21,
+18,
+7,
+9,
+4,
+7,
+5,
+11,
+15,
+48,
+15,
+9,
+14,
+32,
+5,
+9,
+21,
+12,
+14,
+9,
+10,
+12,
+25,
+9,
+15,
+23,
+23,
+13,
+37,
+21,
+14,
+18,
+14,
+12,
+4,
+27,
+18,
+11,
+10,
+15,
+21,
+23,
+20,
+11,
+6,
+7,
+23,
+14,
+9,
+12,
+18,
+14,
+9,
+13,
+12,
+11,
+14,
+20,
+8,
+36,
+32,
+6,
+23,
+20,
+28,
+22,
+11,
+13,
+20,
+71,
+11,
+20,
+17,
+8,
+16,
+12,
+14,
+17,
+7,
+19,
+53,
+17,
+12,
+15,
+5,
+23,
+11,
+12,
+11,
+8,
+9,
+5,
+8,
+28,
+22,
+35,
+42,
+48,
+42,
+11,
+29,
+7,
+8,
+10,
+9,
+8,
+11,
+19,
+2,
+27,
+172,
+7,
+1,
+8,
+4,
+7,
+5,
+6,
+5,
+6,
+7,
+6,
+2,
+18,
+2,
+0,
+20,
+26,
+7,
+8,
+24,
+14,
+10,
+8,
+9,
+15,
+21,
+10,
+18,
+8,
+9,
+5
+],
+"parts":[
+{
+"file":"data-rashi-5.json",
+"from":1,
+"to":150,
+"v":"80bde5e09caf"
+}
+]
+},
+"Rashi on Proverbs":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+33,
+21,
+35,
+27,
+23,
+35,
+24,
+34,
+17,
+32,
+31,
+28,
+25,
+35,
+33,
+33,
+27,
+24,
+29,
+30,
+30,
+28,
+35,
+34,
+27,
+28,
+27,
+27,
+27,
+33,
+31
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":31,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Job":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+22,
+13,
+26,
+21,
+26,
+30,
+21,
+20,
+35,
+22,
+20,
+24,
+28,
+22,
+35,
+22,
+16,
+21,
+29,
+29,
+34,
+30,
+17,
+25,
+5,
+14,
+23,
+28,
+25,
+30,
+40,
+22,
+29,
+37,
+16,
+33,
+24,
+41,
+30,
+32,
+26,
+17
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":42,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Song of Songs":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+17,
+17,
+11,
+16,
+16,
+12,
+14,
+14
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":8,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Ruth":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+22,
+20,
+18,
+19
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":4,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Lamentations":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+22,
+22,
+65,
+22,
+22
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":5,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Ecclesiastes":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+17,
+26,
+22,
+17,
+19,
+12,
+29,
+17,
+18,
+20,
+10,
+14
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":12,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Esther":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+22,
+23,
+15,
+17,
+13,
+13,
+9,
+17,
+32,
+3
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":10,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Daniel":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+21,
+49,
+32,
+34,
+28,
+29,
+28,
+27,
+27,
+21,
+40,
+13
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":12,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Ezra":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+11,
+69,
+13,
+24,
+17,
+22,
+28,
+36,
+15,
+44
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":10,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on Nehemiah":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+11,
+20,
+38,
+17,
+18,
+19,
+7,
+18,
+37,
+39,
+36,
+47,
+31
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":13,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on I Chronicles":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+43,
+55,
+22,
+43,
+41,
+62,
+31,
+29,
+40,
+13,
+26,
+41,
+13,
+14,
+29,
+42,
+27,
+17,
+16,
+6,
+30,
+5,
+31,
+19,
+12,
+31,
+34,
+21,
+30
+],
+"parts":[
+{
+"file":"data-rashi-6.json",
+"from":1,
+"to":29,
+"v":"91393ad3bce5"
+}
+]
+},
+"Rashi on II Chronicles":{
+"versionTitle":"On Your Way",
+"license":"Public Domain",
+"pin":"On Your Way",
+"counts":[
+16,
+17,
+17,
+22,
+13,
+42,
+21,
+16,
+30,
+19,
+23,
+15,
+20,
+10,
+19,
+14,
+16,
+34,
+11,
+37,
+20,
+11,
+19,
+26,
+27,
+23,
+4,
+24,
+36,
+27,
+19,
+33,
+20,
+32,
+26,
+23
+],
+"parts":[
+{
+"file":"data-rashi-7.json",
+"from":1,
+"to":36,
+"v":"ba0c8f5d06e3"
+}
+]
+},
+"Onkelos Genesis":{
+"versionTitle":"Targum Onkelos, vocalized according to the Yemenite Taj ",
+"license":"CC-BY-SA",
+"pin":"Targum Onkelos, vocalized according to the Yemenite Taj ",
+"counts":[
+31,
+25,
+24,
+26,
+32,
+22,
+24,
+22,
+29,
+32,
+32,
+20,
+18,
+24,
+21,
+16,
+27,
+33,
+38,
+18,
+34,
+24,
+20,
+67,
+34,
+35,
+46,
+22,
+35,
+43,
+54,
+33,
+20,
+31,
+29,
+43,
+36,
+30,
+23,
+23,
+57,
+38,
+34,
+34,
+28,
+34,
+31,
+22,
+33,
+26
+],
+"parts":[
+{
+"file":"data-onkelos-1.json",
+"from":1,
+"to":50,
+"v":"ab59e5b33cdf"
+}
+]
+},
+"Onkelos Exodus":{
+"versionTitle":"Targum Onkelos, vocalized according to the Yemenite Taj",
+"license":"CC-BY-SA",
+"pin":"Targum Onkelos, vocalized according to the Yemenite Taj",
+"counts":[
+22,
+25,
+22,
+31,
+23,
+30,
+29,
+28,
+35,
+29,
+10,
+51,
+22,
+31,
+27,
+36,
+16,
+27,
+25,
+23,
+37,
+30,
+33,
+18,
+40,
+37,
+21,
+43,
+46,
+38,
+18,
+35,
+23,
+35,
+35,
+38,
+29,
+31,
+43,
+38
+],
+"parts":[
+{
+"file":"data-onkelos-1.json",
+"from":1,
+"to":40,
+"v":"ab59e5b33cdf"
+}
+]
+},
+"Onkelos Leviticus":{
+"versionTitle":"Targum Onkelos, vocalized according to the Yemenite Taj",
+"license":"CC-BY-SA",
+"pin":"Targum Onkelos, vocalized according to the Yemenite Taj",
+"counts":[
+17,
+16,
+17,
+35,
+26,
+23,
+38,
+36,
+24,
+20,
+47,
+8,
+59,
+57,
+33,
+34,
+16,
+30,
+37,
+27,
+24,
+33,
+44,
+23,
+55,
+46,
+34
+],
+"parts":[
+{
+"file":"data-onkelos-1.json",
+"from":1,
+"to":27,
+"v":"ab59e5b33cdf"
+}
+]
+},
+"Onkelos Numbers":{
+"versionTitle":"Targum Onkelos, vocalized according to the Yemenite Taj",
+"license":"CC-BY-SA",
+"pin":"Targum Onkelos, vocalized according to the Yemenite Taj",
+"counts":[
+54,
+34,
+51,
+49,
+31,
+27,
+89,
+26,
+23,
+36,
+35,
+16,
+33,
+45,
+41,
+35,
+28,
+32,
+22,
+29,
+35,
+41,
+30,
+25,
+18,
+65,
+23,
+31,
+39,
+17,
+54,
+42,
+56,
+29,
+34,
+13
+],
+"parts":[
+{
+"file":"data-onkelos-2.json",
+"from":1,
+"to":36,
+"v":"10f730baeb02"
+}
+]
+},
+"Onkelos Deuteronomy":{
+"versionTitle":"Targum Onkelos, vocalized according to the Yemenite Taj",
+"license":"CC-BY-SA",
+"pin":"Targum Onkelos, vocalized according to the Yemenite Taj",
+"counts":[
+46,
+37,
+29,
+49,
+30,
+25,
+26,
+20,
+29,
+22,
+32,
+31,
+19,
+29,
+23,
+22,
+20,
+22,
+21,
+20,
+23,
+29,
+26,
+22,
+19,
+19,
+26,
+69,
+28,
+20,
+30,
+52,
+29,
+12
+],
+"parts":[
+{
+"file":"data-onkelos-2.json",
+"from":1,
+"to":34,
+"v":"10f730baeb02"
+}
+]
+}
+},
+"topics":{
+"Arukh HaShulchan":[
+{
+"r":"Arukh HaShulchan, Orach Chaim 1-7",
+"he":"הלכות השכמת הבוקר"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 8-24",
+"he":"הלכות ציצית"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 25-45",
+"he":"הלכות תפילין"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 46-57",
+"he":"הלכות ברכות השחר"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 58-88",
+"he":"הלכות קריאת שמע"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 89-134",
+"he":"הלכות תפילה"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 135-149",
+"he":"הלכות קריאת התורה"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 150-155",
+"he":"הלכות בית הכנסת"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 156-156",
+"he":"הלכות משא ומתן"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 157-165",
+"he":"הלכות נטילת ידים לסעודה"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 166-169",
+"he":"הלכות בציעת הפת"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 170-181",
+"he":"הלכות סעודה"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 182-201",
+"he":"הלכות ברכת המזון"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 202-217",
+"he":"הלכות ברכת הפירות"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 218-231",
+"he":"דיני שאר מיני ברכות"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 232-241",
+"he":"הלכות תפילות מנחה וערבית"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 242-248",
+"he":"כללים ומלאכה על ידי אינו יהודי"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 249-300",
+"he":"סדר יום השבת"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 301-344",
+"he":"מלאכות שבת"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 345-365",
+"he":"הוצאה והכנסה מרשות לרשות"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 366-395",
+"he":"עירובי חצרות"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 396-407",
+"he":"תחום שבת"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 408-416",
+"he":"עירובי תחומין"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 417-428",
+"he":"הלכות ראש חודש"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 429-494",
+"he":"הלכות פסח ודיני חודש ניסן"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 495-529",
+"he":"הלכות יום טוב"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 530-548",
+"he":"הלכות חול המועד"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 549-561",
+"he":"הלכות תשעה באב"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 562-580",
+"he":"הלכות תענית"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 581-603",
+"he":"הלכות ראש השנה"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 604-624",
+"he":"הלכות יום הכיפורים"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 625-644",
+"he":"הלכות סוכה"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 645-669",
+"he":"הלכות לולב"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 670-685",
+"he":"הלכות חנוכה"
+},
+{
+"r":"Arukh HaShulchan, Orach Chaim 686-695",
+"he":"הלכות מגילה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 1-28",
+"he":"הלכות שחיטה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 29-60",
+"he":"הלכות טריפות"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 61-61",
+"he":"הלכות מתנות כהונה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 62-62",
+"he":"הלכות אבר מן החי"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 63-63",
+"he":"הלכות בשר שנתעלם מן העין"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 64-64",
+"he":"הלכות חלבים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 65-68",
+"he":"הלכות דם"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 69-78",
+"he":"הלכות מליחה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 79-80",
+"he":"הלכות בהמה וחיה טהורה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 81-81",
+"he":"הלכות דברים היוצאים מן החי"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 82-82",
+"he":"הלכות עופות"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 83-83",
+"he":"הלכות סימני דגים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 84-85",
+"he":"הלכות שרצים תולעים וחגבים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 86-86",
+"he":"הלכות ביצים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 87-97",
+"he":"הלכות בשר בחלב"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 98-111",
+"he":"הלכות תערובות"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 112-120",
+"he":"הלכות מאכלי עובדי כוכבים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 121-121",
+"he":"הלכות הכשר כלים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 122-122",
+"he":"הלכות נותן טעם לפגם"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 183-200",
+"he":"הלכות נדה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 201-202",
+"he":"הלכות מקוואות"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 240-241",
+"he":"הלכות כיבוד אב ואם"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 242-242",
+"he":"הלכות כבוד רבו ותלמיד חכם"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 243-244",
+"he":"הלכות כבוד תלמיד חכם"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 245-246",
+"he":"הלכות תלמוד תורה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 247-259",
+"he":"הלכות צדקה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 260-266",
+"he":"הלכות מילה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 267-267",
+"he":"הלכות עבדים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 268-269",
+"he":"הלכות גרים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 270-284",
+"he":"הלכות ספר תורה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 285-291",
+"he":"הלכות מזוזה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 292-292",
+"he":"הלכות שילוח הקן"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 293-293",
+"he":"הלכות חדש"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 294-294",
+"he":"הלכות ערלה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 295-304",
+"he":"הלכות כלאים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 305-321",
+"he":"הלכות בכור"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 322-330",
+"he":"הלכות חלה"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 331-332",
+"he":"הלכות תרומות ומעשרות"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 333-333",
+"he":"הלכות ראשית הגז"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 334-334",
+"he":"הלכות נידוי וחרם"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 335-338",
+"he":"הלכות ביקור חולים"
+},
+{
+"r":"Arukh HaShulchan, Yoreh De'ah 339-403",
+"he":"הלכות אבלות"
+},
+{
+"r":"Arukh HaShulchan, Even HaEzer 1-6",
+"he":"הלכות פריה ורביה"
+},
+{
+"r":"Arukh HaShulchan, Even HaEzer 7-25",
+"he":"הלכות אישות"
+},
+{
+"r":"Arukh HaShulchan, Even HaEzer 26-65",
+"he":"הלכות קידושין"
+},
+{
+"r":"Arukh HaShulchan, Even HaEzer 119-154",
+"he":"הלכות גיטין"
+},
+{
+"r":"Arukh HaShulchan, Even HaEzer 155-155",
+"he":"הלכות מיאון"
+},
+{
+"r":"Arukh HaShulchan, Even HaEzer 156-176",
+"he":"הלכות חליצה ויבום"
+},
+{
+"r":"Arukh HaShulchan, Even HaEzer 177-177",
+"he":"הלכות אונס ומפתה"
+},
+{
+"r":"Arukh HaShulchan, Even HaEzer 178-178",
+"he":"הלכות סוטה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 1-27",
+"he":"הלכות דיינים"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 28-38",
+"he":"הלכות עדות"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 39-74",
+"he":"הלכות הלואה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 75-96",
+"he":"הלכות טוען ונטען"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 97-106",
+"he":"הלכות גביית מלוה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 107-110",
+"he":"הלכות גביית חוב מהיתומים"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 111-116",
+"he":"הלכות גביית חוב מנכסים משועבדים"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 117-120",
+"he":"הלכות אפותיקי"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 121-121",
+"he":"הלכות העושה שליח לגבות חובו"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 122-128",
+"he":"הלכות הרשאה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 129-132",
+"he":"הלכות ערב"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 133-139",
+"he":"הלכות חזקת מטלטלין"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 140-152",
+"he":"הלכות חזקת קרקעות"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 153-156",
+"he":"הלכות נזקי שכנים"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 157-170",
+"he":"הלכות שותפים בקרקע"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 171-174",
+"he":"הלכות חלוקת שותפות"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 175-175",
+"he":"הלכות מצרנות"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 176-181",
+"he":"הלכות שותפים"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 182-188",
+"he":"הלכות שלוחין"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 189-226",
+"he":"הלכות מקח וממכר"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 227-240",
+"he":"הלכות אונאה ומקח טעות"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 241-249",
+"he":"הלכות מתנה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 250-258",
+"he":"הלכות מתנת שכיב מרע"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 259-275",
+"he":"הלכות השבת אבידה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 276-290",
+"he":"הלכות נחלות"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 291-302",
+"he":"הלכות פיקדון"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 303-305",
+"he":"הלכות שומר שכר"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 306-306",
+"he":"הלכות אומנים"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 307-319",
+"he":"הלכות שוכר"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 320-330",
+"he":"הלכות חכירות וקבלנות"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 331-339",
+"he":"הלכות שכירות פועלים"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 340-347",
+"he":"הלכות שאלה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 348-358",
+"he":"הלכות גניבה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 359-377",
+"he":"הלכות גזילה"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 378-388",
+"he":"הלכות נזיקין"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 389-419",
+"he":"הלכות נזקי ממון"
+},
+{
+"r":"Arukh HaShulchan, Choshen Mishpat 420-427",
+"he":"הלכות חובל בחבירו"
+}
+]
+},
+"updated":"2026-10-22"
+}
