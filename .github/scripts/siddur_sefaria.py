@@ -13,11 +13,16 @@ reads the same text, just from the site. Used by update_sources.py once a week (
 """
 import json, os, re, time, urllib.parse
 
-BOOKS = [   # key (as in siddur.js), Sefaria title, Hebrew name
-    ('sefard', 'Siddur Sefard', 'סידור נוסח ספרד'),
-    ('edot', 'Siddur Edot HaMizrach', 'סידור עדות המזרח'),
-    ('ashkenaz', 'Siddur Ashkenaz', 'סידור נוסח אשכנז'),
-    ('chabad', 'Weekday Siddur Chabad', 'סידור נוסח חב״ד'),
+BOOKS = [   # key (as in siddur.js), Sefaria title, Hebrew name, options
+    ('sefard', 'Siddur Sefard', 'סידור נוסח ספרד', {}),
+    ('edot', 'Siddur Edot HaMizrach', 'סידור עדות המזרח', {}),
+    # Sefaria's main Hebrew edition (Torat Emet) has no stated licence: the Metsudah siddur (CC-BY) instead
+    ('ashkenaz', 'Siddur Ashkenaz', 'סידור נוסח אשכנז', {'prefer': [
+        'The Metsudah siddur, 1981',
+        'The Metsudah siddur: a new linear siddur with English translation by Avrohom Davis, 1981',
+        'Daat Siddur Ashkenaz']}),
+    # Sefaria's edition is the Hebrew Wikisource text (סידור תורה אור) — Wikisource is CC-BY-SA
+    ('chabad', 'Weekday Siddur Chabad', 'סידור נוסח חב״ד', {'licenses': {'Wikisource': 'CC-BY-SA'}}),
 ]
 OK_LICENSES = ('public domain', 'cc0', 'cc-by', 'cc-by-sa')
 CHUNK_BYTES = 1_100_000
@@ -84,22 +89,34 @@ def get_json(url, tries=4):
             if a == tries - 1: raise
         time.sleep(3 + a * 5)
 
-def leaf_text(U, ref):
-    d = get_json('https://www.sefaria.org/api/v3/texts/' + urllib.parse.quote(ref) + '?version=hebrew') or {}
+def leaf_text(U, ref, opts=None, version=None):
+    opts = opts or {}
+    q = 'hebrew' if version is None else 'hebrew|' + version
+    d = get_json('https://www.sefaria.org/api/v3/texts/' + urllib.parse.quote(ref) + '?version=' + urllib.parse.quote(q)) or {}
     v = (d.get('versions') or [None])[0]
     time.sleep(0.25)
-    if not v: return None, None
-    return flatten(v.get('text')), {'versionTitle': v.get('versionTitle'), 'license': v.get('license')}
+    segs = flatten(v.get('text')) if v else []
+    m = {'versionTitle': v.get('versionTitle'), 'license': v.get('license')} if v else None
+    if m and m['versionTitle'] in (opts.get('licenses') or {}): m['license'] = opts['licenses'][m['versionTitle']]
+    if version is None and (not m or not segs or not license_ok(m['license'])):
+        for alt in opts.get('prefer') or []:          # a free edition of the same piece
+            s2, m2 = leaf_text(U, ref, opts, alt)
+            if m2 and s2 and license_ok(m2['license']): return s2, m2
+    if not m: return None, None
+    return segs, m
 
-def update_book(U, key, book, he):
+def update_book(U, key, book, he, opts=None):
     leaves = leaves_of(U, book)
     if not leaves: raise RuntimeError('no table of contents')
-    texts, meta = {}, None
+    texts, meta, remote = {}, None, []
     for i, l in enumerate(leaves):
-        segs, m = leaf_text(U, l['r'])
-        if m is None: continue                     # a heading with no text of its own
+        segs, m = leaf_text(U, l['r'], opts)
+        if m is None or (not segs and not license_ok(m['license'])): continue   # a heading with no text of its own
         if not license_ok(m['license']):
-            return f'נשאר בטעינה מספריא — המהדורה "{m["versionTitle"]}" ברישיון {m["license"] or "לא ידוע"}'
+            remote.append({'r': l['r'], 'v': m['versionTitle']})    # no free edition: the page reads it from Sefaria
+            if len(remote) > max(3, len(leaves) // 10):
+                return f'נשאר בטעינה מספריא — המהדורה "{m["versionTitle"]}" ברישיון {m["license"] or "לא ידוע"}'
+            continue
         if meta is None: meta = m
         elif m['versionTitle'] != meta['versionTitle']:
             meta.setdefault('others', set()).add(m['versionTitle'])
@@ -115,8 +132,9 @@ def update_book(U, key, book, he):
         l['c'] = len(chunks)
     if cur: chunks.append(cur)
     index = {'book': book, 'versionTitle': meta['versionTitle'], 'license': meta['license'],
-             'alsoVersions': sorted(meta.get('others') or []),      # a few pieces come from another (free) edition
+             'alsoVersions': sorted(meta.get('others') or []),      # pieces from another (free) edition
              'note': 'נוצר אוטומטית מספריא — לא לערוך ידנית',
+             'remote': remote,        # pieces with no free edition — still read from Sefaria by the page
              'leaves': [{k: l[k] for k in ('r', 'p', 'h', 'c') if k in l} for l in leaves]}
     old = U.read_json(f'src-siddur-{key}.json')
     old_texts = {}
@@ -144,15 +162,17 @@ def update_book(U, key, book, he):
             w = os.path.join(U.ROOT, f'data-siddur-{key}-{m.group(1)}.json')
             if os.path.exists(w): os.remove(w)
     line = f'- **{he}** (`_includes/src-siddur-{key}*.json`): ' + (f'{len(changed)} קטעים השתנו' if old else f'נוסף לאתר ({len(texts)} קטעים, {len(chunks)} קבצים)')
+    if remote and (not old or [x['r'] for x in old.get('remote') or []] != [x['r'] for x in remote]):
+        line += f'\n  - {len(remote)} קטעים בלי מהדורה חופשית נשארים בטעינה מספריא: ' + ', '.join(x['r'].split(', ', 1)[-1] for x in remote)
     if old and changed:
         line += '\n  - לדוגמה: ' + ', '.join(sorted(changed)[:6])
     U.report.append(line)
     return None
 
 def update(U):
-    for key, book, he in BOOKS:
+    for key, book, he, opts in BOOKS:
         try:
-            skipped = update_book(U, key, book, he)
+            skipped = update_book(U, key, book, he, opts)
             if skipped:
                 print(he, skipped)
                 if U.read_json(f'src-siddur-{key}.json'):

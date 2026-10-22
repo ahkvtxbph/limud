@@ -11,7 +11,7 @@ Refreshes the texts the site keeps locally (in _includes/) from Sefaria.
                          _includes/src-*.json + data-*.json (see update_library.py)
   Siddur, Yemenite (Baladi) — from Hebrew Wikisource
                          _includes/src-siddur-baladi.json + data-siddur-baladi.json (see siddur_baladi.py)
-  Siddurim from Sefaria whose edition is free also with ads (Sefard, Edot HaMizrach)
+  Siddurim from Sefaria (Ashkenaz, Sefard, Edot HaMizrach, Chabad) — free editions only
                          _includes/src-siddur-<key>*.json + data-siddur-<key>*.json (see siddur_sefaria.py)
                          _includes/src-schedule.json       (daily-learning dates for those pages)
 
