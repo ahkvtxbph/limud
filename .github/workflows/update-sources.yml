@@ -2,8 +2,8 @@ name: Update texts from Sefaria
 
 # Once a week (Saturday night) — and by hand from the Actions tab ("Run workflow") — checks the
 # texts the site keeps in _includes/ (Tehillim, Birkat HaMazon, Shulchan Arukh, Kitzur, Arukh HaShulchan,
-# Mishnah + Bartenura, Rambam, Tanakh + Rashi + Onkelos) against
-# Sefaria:
+# Mishnah + Bartenura, Rambam, Tanakh + Rashi + Onkelos) against Sefaria, and the Yemenite (Baladi)
+# siddur and Birkat HaMazon against Hebrew Wikisource:
 #   * the daily-learning schedules (what is learned on which date) are refreshed and committed
 #     directly — it is only a list of dates, nothing to review;
 #   * any change in the TEXTS is NOT committed: a pull request is opened instead, with a summary of
