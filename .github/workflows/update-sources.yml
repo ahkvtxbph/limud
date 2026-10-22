@@ -34,16 +34,16 @@ jobs:
       - name: Keep a copy of the current texts (for the comparison)
         run: cp -r _includes "$RUNNER_TEMP/old-includes"
 
-      - name: Refresh the halacha-yomit schedule (committed directly)
+      - name: Refresh the learning schedules and the Hebcal calendar (committed directly)
         run: |
           python3 .github/scripts/update_sources.py --schedule-only
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A -- _includes/halacha-schedule.json _includes/src-schedule.json data-schedule.json
+          git add -A -- _includes/halacha-schedule.json _includes/src-schedule.json data-schedule.json _includes/src-hebcal.json _includes/src-leyning.json data-hebcal.json data-leyning.json
           if git diff --cached --quiet; then
             echo "Schedule already up to date."
           else
-            git commit -m "Auto-update halacha schedule"
+            git commit -m "Auto-update learning schedules and calendar"
             git push
           fi
 
