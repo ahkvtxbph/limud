@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-bartenura-3.json
+---
+{% include src-bartenura-3.json %}

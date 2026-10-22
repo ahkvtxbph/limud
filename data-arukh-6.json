@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-arukh-6.json
+---
+{% include src-arukh-6.json %}

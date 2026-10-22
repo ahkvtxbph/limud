@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-onkelos-1.json
+---
+{% include src-onkelos-1.json %}
