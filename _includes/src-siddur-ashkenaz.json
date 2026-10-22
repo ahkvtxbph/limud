@@ -1,0 +1,2755 @@
+{
+"book":"Siddur Ashkenaz",
+"versionTitle":"The Metsudah siddur, 1981",
+"license":"CC-BY",
+"alsoVersions":[
+"Daat Siddur Ashkenaz",
+"The Metsudah siddur: a new linear siddur with English translation by Avrohom Davis, 1981"
+],
+"note":"נוצר אוטומטית מספריא — לא לערוך ידנית",
+"remote":[
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Service, Ten Commandments",
+"v":"Tanach with Nikkud"
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Additions for Motza'ei Shabbat, Veyiten Lekha",
+"v":"Siddur Veshinantam "
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Bameh Madlikin",
+"v":"Torat Emet 357"
+}
+],
+"leaves":[
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Modeh Ani",
+"p":"Weekday, Shacharit, Preparatory Prayers, Modeh Ani",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, מודה אני",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Netilat Yadayim",
+"p":"Weekday, Shacharit, Preparatory Prayers, Netilat Yadayim",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, נטילת ידים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Asher Yatzar",
+"p":"Weekday, Shacharit, Preparatory Prayers, Asher Yatzar",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, אשר יצר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Elokai Neshama",
+"p":"Weekday, Shacharit, Preparatory Prayers, Elokai Neshama",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, אלהי נשמה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Tzitzit",
+"p":"Weekday, Shacharit, Preparatory Prayers, Tzitzit",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, ציצית",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Torah Blessings",
+"p":"Weekday, Shacharit, Preparatory Prayers, Torah Blessings",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, ברכות התורה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Torah Study",
+"p":"Weekday, Shacharit, Preparatory Prayers, Torah Study",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, לימוד תורה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Tallit",
+"p":"Weekday, Shacharit, Preparatory Prayers, Tallit",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, טלית",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Tefillin",
+"p":"Weekday, Shacharit, Preparatory Prayers, Tefillin",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, תפילין",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Ma Tovu",
+"p":"Weekday, Shacharit, Preparatory Prayers, Ma Tovu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, מה טובו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Adon Olam",
+"p":"Weekday, Shacharit, Preparatory Prayers, Adon Olam",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, אדון עולם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Yigdal",
+"p":"Weekday, Shacharit, Preparatory Prayers, Yigdal",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, יגדל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Morning Blessings",
+"p":"Weekday, Shacharit, Preparatory Prayers, Morning Blessings",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, ברכות השחר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Akedah",
+"p":"Weekday, Shacharit, Preparatory Prayers, Akedah",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, עקדה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Sovereignty of Heaven",
+"p":"Weekday, Shacharit, Preparatory Prayers, Sovereignty of Heaven",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, עול מלכות שמים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Korbanot, Kiyor",
+"p":"Weekday, Shacharit, Preparatory Prayers, Korbanot, Kiyor",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, קרבנות, פרשת הכיור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Korbanot, Terumat HaDeshen",
+"p":"Weekday, Shacharit, Preparatory Prayers, Korbanot, Terumat HaDeshen",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, קרבנות, פרשת תרומת הדשן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Korbanot, Korban HaTamid",
+"p":"Weekday, Shacharit, Preparatory Prayers, Korbanot, Korban HaTamid",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, קרבנות, פרשת קרבן תמיד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Korbanot, Ketoret",
+"p":"Weekday, Shacharit, Preparatory Prayers, Korbanot, Ketoret",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, קרבנות, פרשת הקטורת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Korbanot, Order of the Temple Service",
+"p":"Weekday, Shacharit, Preparatory Prayers, Korbanot, Order of the Temple Service",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, קרבנות, סדר המערכה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Korbanot, Laws of Sacrifices",
+"p":"Weekday, Shacharit, Preparatory Prayers, Korbanot, Laws of Sacrifices",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, קרבנות, דיני זבחים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Korbanot, Baraita of Rabbi Yishmael",
+"p":"Weekday, Shacharit, Preparatory Prayers, Korbanot, Baraita of Rabbi Yishmael",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, קרבנות, ברייתא דרבי ישמעאל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Preparatory Prayers, Korbanot, Kaddish DeRabbanan",
+"p":"Weekday, Shacharit, Preparatory Prayers, Korbanot, Kaddish DeRabbanan",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, הכנה לתפילה, קרבנות, קדיש דרבנן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Introductory Psalm",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Introductory Psalm",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, מזמור שיר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Mourner's Kaddish",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Mourner's Kaddish",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Barukh She'amar",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Barukh She'amar",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, ברוך שאמר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Hodu",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Hodu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, הודו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Mizmor Letoda",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Mizmor Letoda",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, מזמור לתודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Yehi Chevod",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Yehi Chevod",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, יהי כבוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Ashrei",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Ashrei",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, אשרי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Psalm 146",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Psalm 146",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, תהילים קמו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Psalm 147",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Psalm 147",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, תהילים קמז",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Psalm 148",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Psalm 148",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, תהילים קמח",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Psalm 149",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Psalm 149",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, תהילים קמט",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Psalm 150",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Psalm 150",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, תהילים קנ",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Closing Verses",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Closing Verses",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, ברוך ה׳",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Vayevarech David",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Vayevarech David",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, ויברך דוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Ata Hu",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Ata Hu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, אתה הוא",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Az Yashir",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Az Yashir",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, אז ישיר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Yishtabach",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Yishtabach",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, ישתבח",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Psalm 130",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Psalm 130",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, תהילים קל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Pesukei Dezimra, Half Kaddish",
+"p":"Weekday, Shacharit, Pesukei Dezimra, Half Kaddish",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, פסוקי דזמרה, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Blessings of the Shema, Barchu",
+"p":"Weekday, Shacharit, Blessings of the Shema, Barchu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, ברכות קריאת שמע, ברכו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Blessings of the Shema, First Blessing before Shema",
+"p":"Weekday, Shacharit, Blessings of the Shema, First Blessing before Shema",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, ברכות קריאת שמע, יוצר אור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Blessings of the Shema, Second Blessing before Shema",
+"p":"Weekday, Shacharit, Blessings of the Shema, Second Blessing before Shema",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, ברכות קריאת שמע, אהבת ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Blessings of the Shema, Shema",
+"p":"Weekday, Shacharit, Blessings of the Shema, Shema",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, ברכות קריאת שמע, שמע",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Blessings of the Shema, Blessing after Shema",
+"p":"Weekday, Shacharit, Blessings of the Shema, Blessing after Shema",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, ברכות קריאת שמע, גאל ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Patriarchs",
+"p":"Weekday, Shacharit, Amidah, Patriarchs",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Divine Might",
+"p":"Weekday, Shacharit, Amidah, Divine Might",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Holiness of God",
+"p":"Weekday, Shacharit, Amidah, Holiness of God",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, קדושת השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Kedushah",
+"p":"Weekday, Shacharit, Amidah, Kedushah",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, קדושה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Knowledge",
+"p":"Weekday, Shacharit, Amidah, Knowledge",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, דעת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Repentance",
+"p":"Weekday, Shacharit, Amidah, Repentance",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, תשובה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Forgiveness",
+"p":"Weekday, Shacharit, Amidah, Forgiveness",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, סליחה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Redemption",
+"p":"Weekday, Shacharit, Amidah, Redemption",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, גאולה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Healing",
+"p":"Weekday, Shacharit, Amidah, Healing",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, רפואה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Prosperity",
+"p":"Weekday, Shacharit, Amidah, Prosperity",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, ברכת השנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Gathering the Exiles",
+"p":"Weekday, Shacharit, Amidah, Gathering the Exiles",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, קבוץ גליות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Justice",
+"p":"Weekday, Shacharit, Amidah, Justice",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, משפט",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Against Enemies",
+"p":"Weekday, Shacharit, Amidah, Against Enemies",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, ברכת המינים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, The Righteous",
+"p":"Weekday, Shacharit, Amidah, The Righteous",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, על הצדיקים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Rebuilding Jerusalem",
+"p":"Weekday, Shacharit, Amidah, Rebuilding Jerusalem",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, בנין ירושלים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Kingdom of David",
+"p":"Weekday, Shacharit, Amidah, Kingdom of David",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, מלכות בית דוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Response to Prayer",
+"p":"Weekday, Shacharit, Amidah, Response to Prayer",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, שומע תפילה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Temple Service",
+"p":"Weekday, Shacharit, Amidah, Temple Service",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Thanksgiving",
+"p":"Weekday, Shacharit, Amidah, Thanksgiving",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Birkat Kohanim",
+"p":"Weekday, Shacharit, Amidah, Birkat Kohanim",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, ברכת כוהנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Peace",
+"p":"Weekday, Shacharit, Amidah, Peace",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, שים שלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Amidah, Concluding Passage",
+"p":"Weekday, Shacharit, Amidah, Concluding Passage",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, עמידה, אלוהי נצור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Amidah, Vidui and 13 Middot",
+"p":"Weekday, Shacharit, Post Amidah, Vidui and 13 Middot",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, אחר העמידה, וידוי וי\"ג מידות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Amidah, Avinu Malkenu",
+"p":"Weekday, Shacharit, Post Amidah, Avinu Malkenu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, אחר העמידה, אבינו מלכנו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Amidah, Tachanun, For Monday and Thursday",
+"p":"Weekday, Shacharit, Post Amidah, Tachanun, For Monday and Thursday",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, אחר העמידה, תחנון, והוא רחום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Amidah, Tachanun, Nefilat Apayim",
+"p":"Weekday, Shacharit, Post Amidah, Tachanun, Nefilat Apayim",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, אחר העמידה, תחנון, נפילת אפיים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Amidah, Tachanun, God of Israel",
+"p":"Weekday, Shacharit, Post Amidah, Tachanun, God of Israel",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, אחר העמידה, תחנון, ה אל׳ ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Amidah, Tachanun, Shomer Yisrael",
+"p":"Weekday, Shacharit, Post Amidah, Tachanun, Shomer Yisrael",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, אחר העמידה, תחנון, שומר ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Amidah, Tachanun, Half Kaddish",
+"p":"Weekday, Shacharit, Post Amidah, Tachanun, Half Kaddish",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, אחר העמידה, תחנון, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, El Erech Appayim",
+"p":"Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, El Erech Appayim",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הוצאת ספר תורה, אל ארך אפים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Vayehi Binsoa",
+"p":"Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Vayehi Binsoa",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הוצאת ספר תורה, ויהי בנסוע",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Berich Shmei",
+"p":"Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Berich Shmei",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הוצאת ספר תורה, בריך שמה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Lekha Hashem",
+"p":"Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Lekha Hashem",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הוצאת ספר תורה, לך השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Av Harachamim",
+"p":"Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Av Harachamim",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הוצאת ספר תורה, אב הרחמים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Vetigaleh Veteraeh",
+"p":"Weekday, Shacharit, Torah Reading, Removing the Torah from Ark, Vetigaleh Veteraeh",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הוצאת ספר תורה, ותגלה ותראה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Reading from Sefer, Birkat HaTorah",
+"p":"Weekday, Shacharit, Torah Reading, Reading from Sefer, Birkat HaTorah",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, קריאת התורה, ברכת התורה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Reading from Sefer, Birkat Hagomel",
+"p":"Weekday, Shacharit, Torah Reading, Reading from Sefer, Birkat Hagomel",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, קריאת התורה, ברכת הגומל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Reading from Sefer, Half Kaddish",
+"p":"Weekday, Shacharit, Torah Reading, Reading from Sefer, Half Kaddish",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, קריאת התורה, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Reading from Sefer, Raising the Torah",
+"p":"Weekday, Shacharit, Torah Reading, Reading from Sefer, Raising the Torah",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, קריאת התורה, הגבהה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Reading from Sefer, Prayers for Welfare of the People",
+"p":"Weekday, Shacharit, Torah Reading, Reading from Sefer, Prayers for Welfare of the People",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, קריאת התורה, יהי רצון"
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Returning Sefer to Aron, Yehalelu",
+"p":"Weekday, Shacharit, Torah Reading, Returning Sefer to Aron, Yehalelu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הכנסת ספר תורה, יהללו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Returning Sefer to Aron, LeDavid Mizmor",
+"p":"Weekday, Shacharit, Torah Reading, Returning Sefer to Aron, LeDavid Mizmor",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הכנסת ספר תורה, לדוד מזמור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Torah Reading, Returning Sefer to Aron, Uvenucho Yomar",
+"p":"Weekday, Shacharit, Torah Reading, Returning Sefer to Aron, Uvenucho Yomar",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, קריאת התורה, הכנסת ספר תורה, ובנוחה יאמר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Ashrei",
+"p":"Weekday, Shacharit, Concluding Prayers, Ashrei",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, אשרי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Lamenatze'ach",
+"p":"Weekday, Shacharit, Concluding Prayers, Lamenatze'ach",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, למנצח",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Uva Letzion",
+"p":"Weekday, Shacharit, Concluding Prayers, Uva Letzion",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, ובא לציון",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Kaddish Shalem",
+"p":"Weekday, Shacharit, Concluding Prayers, Kaddish Shalem",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, קדיש שלם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Alenu",
+"p":"Weekday, Shacharit, Concluding Prayers, Alenu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, עלינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Mourner's Kaddish",
+"p":"Weekday, Shacharit, Concluding Prayers, Mourner's Kaddish",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Song of the Day",
+"p":"Weekday, Shacharit, Concluding Prayers, Song of the Day",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, שיר של יום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Barchi Nafshi",
+"p":"Weekday, Shacharit, Concluding Prayers, Barchi Nafshi",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, ברכי נפשי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, LeDavid",
+"p":"Weekday, Shacharit, Concluding Prayers, LeDavid",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, לדוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Korbanot (Israel), Ein Kelohenu",
+"p":"Weekday, Shacharit, Concluding Prayers, Korbanot (Israel), Ein Kelohenu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, קרבנות, אין כאלוהינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Korbanot (Israel), Pitum HaKetoret",
+"p":"Weekday, Shacharit, Concluding Prayers, Korbanot (Israel), Pitum HaKetoret",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, קרבנות, פטום קטורת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Korbanot (Israel), Mourner's Kaddish",
+"p":"Weekday, Shacharit, Concluding Prayers, Korbanot (Israel), Mourner's Kaddish",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, קרבנות, קדיש יתום (**)",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Concluding Prayers, Korbanot (Israel), Barchu",
+"p":"Weekday, Shacharit, Concluding Prayers, Korbanot (Israel), Barchu",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, סיום תפילה, קרבנות, ברכו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Service, Six Remembrances",
+"p":"Weekday, Shacharit, Post Service, Six Remembrances",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, תפילות נוספות, שש זכירות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Service, Ten Commandments",
+"p":"Weekday, Shacharit, Post Service, Ten Commandments",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, תפילות נוספות, עשרת הדברות"
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Service, Thirteen Principles",
+"p":"Weekday, Shacharit, Post Service, Thirteen Principles",
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, תפילות נוספות, י\"ג עיקרי אמונה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Ashrei",
+"p":"Weekday, Minchah, Ashrei",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, אשרי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Patriarchs",
+"p":"Weekday, Minchah, Amida, Patriarchs",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Divine Might",
+"p":"Weekday, Minchah, Amida, Divine Might",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Holiness of God",
+"p":"Weekday, Minchah, Amida, Holiness of God",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, קדושת השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Keduasha",
+"p":"Weekday, Minchah, Amida, Keduasha",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, קדושה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Knowledge",
+"p":"Weekday, Minchah, Amida, Knowledge",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, דעת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Repentance",
+"p":"Weekday, Minchah, Amida, Repentance",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, תשובה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Forgiveness",
+"p":"Weekday, Minchah, Amida, Forgiveness",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, סליחה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Redemption",
+"p":"Weekday, Minchah, Amida, Redemption",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, גאולה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Healing",
+"p":"Weekday, Minchah, Amida, Healing",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, רפואה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Prosperity",
+"p":"Weekday, Minchah, Amida, Prosperity",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, ברכת השנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Gathering the Exiles",
+"p":"Weekday, Minchah, Amida, Gathering the Exiles",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, קבוץ גליות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Justice",
+"p":"Weekday, Minchah, Amida, Justice",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, משפט",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Against Enemies",
+"p":"Weekday, Minchah, Amida, Against Enemies",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, ברכת המינים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, The Righteous",
+"p":"Weekday, Minchah, Amida, The Righteous",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, על הצדיקים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Rebuilding Jerusalem",
+"p":"Weekday, Minchah, Amida, Rebuilding Jerusalem",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, בנין ירושלים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Kingdom of David",
+"p":"Weekday, Minchah, Amida, Kingdom of David",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, מלכות בית דוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Response to Prayer",
+"p":"Weekday, Minchah, Amida, Response to Prayer",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, שומע תפילה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Temple Service",
+"p":"Weekday, Minchah, Amida, Temple Service",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Thanksgiving",
+"p":"Weekday, Minchah, Amida, Thanksgiving",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Birkat Kohanim",
+"p":"Weekday, Minchah, Amida, Birkat Kohanim",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, ברכת כוהנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Peace",
+"p":"Weekday, Minchah, Amida, Peace",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, שים שלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Amida, Concluding Passage",
+"p":"Weekday, Minchah, Amida, Concluding Passage",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, עמידה, אלוהי נצור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Post Amidah, Vidui and 13 Middot",
+"p":"Weekday, Minchah, Post Amidah, Vidui and 13 Middot",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, אחר העמידה, וידוי וי\"ג המידות"
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Post Amidah, Avinu Malkenu",
+"p":"Weekday, Minchah, Post Amidah, Avinu Malkenu",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, אחר העמידה, אבינו מלכנו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Post Amidah, Tachanun, Nefilat Appayim",
+"p":"Weekday, Minchah, Post Amidah, Tachanun, Nefilat Appayim",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, אחר העמידה, תחנון, נפילת אפים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Post Amidah, Tachanun, Shomer Yisrael",
+"p":"Weekday, Minchah, Post Amidah, Tachanun, Shomer Yisrael",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, אחר העמידה, תחנון, שומר ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Post Amidah, Kaddish Shalem",
+"p":"Weekday, Minchah, Post Amidah, Kaddish Shalem",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, אחר העמידה, קדיש שלם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Concluding Prayers, Alenu",
+"p":"Weekday, Minchah, Concluding Prayers, Alenu",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, סיום תפילה, עלינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Minchah, Concluding Prayers, Mourner's Kaddish",
+"p":"Weekday, Minchah, Concluding Prayers, Mourner's Kaddish",
+"h":"סידור אשכנז, ימי חול, תפילת מנחה, סיום תפילה, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Vehu Rachum",
+"p":"Weekday, Maariv, Vehu Rachum",
+"h":"סידור אשכנז, ימי חול, מעריב, והוא רחום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Barchu",
+"p":"Weekday, Maariv, Barchu",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Blessings of the Shema, First Blessing before Shema",
+"p":"Weekday, Maariv, Blessings of the Shema, First Blessing before Shema",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכות קריאת שמע, המעריב ערבים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Blessings of the Shema, Second Blessing before Shema",
+"p":"Weekday, Maariv, Blessings of the Shema, Second Blessing before Shema",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכות קריאת שמע, אהבת עולם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Blessings of the Shema, Shema",
+"p":"Weekday, Maariv, Blessings of the Shema, Shema",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכות קריאת שמע, שמע",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Blessings of the Shema, First Blessing after Shema",
+"p":"Weekday, Maariv, Blessings of the Shema, First Blessing after Shema",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכות קריאת שמע, אמת ואמונה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Blessings of the Shema, Second Blessing after Shema",
+"p":"Weekday, Maariv, Blessings of the Shema, Second Blessing after Shema",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכות קריאת שמע, השכיבנו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Blessings of the Shema, Third Blessing after Shema",
+"p":"Weekday, Maariv, Blessings of the Shema, Third Blessing after Shema",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכות קריאת שמע, ברוך ה׳ לעולם (outside of Israel)",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Blessings of the Shema, Half Kaddish",
+"p":"Weekday, Maariv, Blessings of the Shema, Half Kaddish",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכות קריאת שמע, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Patriarchs",
+"p":"Weekday, Maariv, Amidah, Patriarchs",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Divine Might",
+"p":"Weekday, Maariv, Amidah, Divine Might",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Holiness of God",
+"p":"Weekday, Maariv, Amidah, Holiness of God",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, קדושת השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Knowledge",
+"p":"Weekday, Maariv, Amidah, Knowledge",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, דעת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Repentance",
+"p":"Weekday, Maariv, Amidah, Repentance",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, תשובה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Forgiveness",
+"p":"Weekday, Maariv, Amidah, Forgiveness",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, סליחה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Redemption",
+"p":"Weekday, Maariv, Amidah, Redemption",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, גאולה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Healing",
+"p":"Weekday, Maariv, Amidah, Healing",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, רפואה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Prosperity",
+"p":"Weekday, Maariv, Amidah, Prosperity",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, ברכת השנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Gathering the Exiles",
+"p":"Weekday, Maariv, Amidah, Gathering the Exiles",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, קיבוץ גלויות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Justice",
+"p":"Weekday, Maariv, Amidah, Justice",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, משפט",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Against Enemies",
+"p":"Weekday, Maariv, Amidah, Against Enemies",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, ברכת המינים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, The Righteous",
+"p":"Weekday, Maariv, Amidah, The Righteous",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, על הצדיקים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Rebuilding Jerusalem",
+"p":"Weekday, Maariv, Amidah, Rebuilding Jerusalem",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, בניין ירושלים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Kingdom of David",
+"p":"Weekday, Maariv, Amidah, Kingdom of David",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, מלכות בית דוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Response to Prayer",
+"p":"Weekday, Maariv, Amidah, Response to Prayer",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, שומע תפילה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Temple Service",
+"p":"Weekday, Maariv, Amidah, Temple Service",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Thanksgiving",
+"p":"Weekday, Maariv, Amidah, Thanksgiving",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Peace",
+"p":"Weekday, Maariv, Amidah, Peace",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, שים שלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Amidah, Concluding Passage",
+"p":"Weekday, Maariv, Amidah, Concluding Passage",
+"h":"סידור אשכנז, ימי חול, מעריב, עמידה, אלוהי נצור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Kaddish Shalem",
+"p":"Weekday, Maariv, Kaddish Shalem",
+"h":"סידור אשכנז, ימי חול, מעריב, קדיש שלם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Additions for Motza'ei Shabbat, Viyehi Noam",
+"p":"Weekday, Maariv, Additions for Motza'ei Shabbat, Viyehi Noam",
+"h":"סידור אשכנז, ימי חול, מעריב, תוספות למוצאי שבת, ויהי נעם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Additions for Motza'ei Shabbat, Veyiten Lekha",
+"p":"Weekday, Maariv, Additions for Motza'ei Shabbat, Veyiten Lekha",
+"h":"סידור אשכנז, ימי חול, מעריב, תוספות למוצאי שבת, ויתן לך"
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Sefirat HaOmer",
+"p":"Weekday, Maariv, Sefirat HaOmer",
+"h":"סידור אשכנז, ימי חול, מעריב, ספירת העומר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Alenu",
+"p":"Weekday, Maariv, Alenu",
+"h":"סידור אשכנז, ימי חול, מעריב, עלינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Mourner's Kaddish",
+"p":"Weekday, Maariv, Mourner's Kaddish",
+"h":"סידור אשכנז, ימי חול, מעריב, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, LeDavid",
+"p":"Weekday, Maariv, LeDavid",
+"h":"סידור אשכנז, ימי חול, מעריב, לדוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Birkat HaLevana",
+"p":"Weekday, Maariv, Birkat HaLevana",
+"h":"סידור אשכנז, ימי חול, מעריב, ברכת הלבנה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Weekday, Maariv, Keri'at Shema al Hamita",
+"p":"Weekday, Maariv, Keri'at Shema al Hamita",
+"h":"סידור אשכנז, ימי חול, מעריב, קריאת שמע על המיטה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Yedid Nefesh",
+"p":"Shabbat, Kabbalat Shabbat, Yedid Nefesh",
+"h":"סידור אשכנז, שבת, קבלת שבת, ידיד נפש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Psalm 95",
+"p":"Shabbat, Kabbalat Shabbat, Psalm 95",
+"h":"סידור אשכנז, שבת, קבלת שבת, תהילים צה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Psalm 96",
+"p":"Shabbat, Kabbalat Shabbat, Psalm 96",
+"h":"סידור אשכנז, שבת, קבלת שבת, תהילים צו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Psalm 97",
+"p":"Shabbat, Kabbalat Shabbat, Psalm 97",
+"h":"סידור אשכנז, שבת, קבלת שבת, תהילים צז",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Psalm 98",
+"p":"Shabbat, Kabbalat Shabbat, Psalm 98",
+"h":"סידור אשכנז, שבת, קבלת שבת, תהילים צח",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Psalm 99",
+"p":"Shabbat, Kabbalat Shabbat, Psalm 99",
+"h":"סידור אשכנז, שבת, קבלת שבת, תהילים צט",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Psalm 29",
+"p":"Shabbat, Kabbalat Shabbat, Psalm 29",
+"h":"סידור אשכנז, שבת, קבלת שבת, תהילים כט",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Ana Bekoach",
+"p":"Shabbat, Kabbalat Shabbat, Ana Bekoach",
+"h":"סידור אשכנז, שבת, קבלת שבת, אנא בכח",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Lekha Dodi",
+"p":"Shabbat, Kabbalat Shabbat, Lekha Dodi",
+"h":"סידור אשכנז, שבת, קבלת שבת, לכה דודי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Psalm 92",
+"p":"Shabbat, Kabbalat Shabbat, Psalm 92",
+"h":"סידור אשכנז, שבת, קבלת שבת, תהילים צב",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Psalm 93",
+"p":"Shabbat, Kabbalat Shabbat, Psalm 93",
+"h":"סידור אשכנז, שבת, קבלת שבת, תהילים צג",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Mourner's Kaddish",
+"p":"Shabbat, Kabbalat Shabbat, Mourner's Kaddish",
+"h":"סידור אשכנז, שבת, קבלת שבת, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Bameh Madlikin",
+"p":"Shabbat, Kabbalat Shabbat, Bameh Madlikin",
+"h":"סידור אשכנז, שבת, קבלת שבת, במה מדליקין"
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Kaddish DeRabbanan",
+"p":"Shabbat, Kabbalat Shabbat, Kaddish DeRabbanan",
+"h":"סידור אשכנז, שבת, קבלת שבת, קדיש דרבנן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Barchu",
+"p":"Shabbat, Maariv, Barchu",
+"h":"סידור אשכנז, שבת, מעריב, ברכו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Blessings of the Shema, First Blessing before Shema",
+"p":"Shabbat, Maariv, Blessings of the Shema, First Blessing before Shema",
+"h":"סידור אשכנז, שבת, מעריב, קריאת שמע וברכותיה, המעריב ערבים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Blessings of the Shema, Second Blessing before Shema",
+"p":"Shabbat, Maariv, Blessings of the Shema, Second Blessing before Shema",
+"h":"סידור אשכנז, שבת, מעריב, קריאת שמע וברכותיה, אהבת עולם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Blessings of the Shema, Shema",
+"p":"Shabbat, Maariv, Blessings of the Shema, Shema",
+"h":"סידור אשכנז, שבת, מעריב, קריאת שמע וברכותיה, שמע",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Blessings of the Shema, First Blessing after Shema",
+"p":"Shabbat, Maariv, Blessings of the Shema, First Blessing after Shema",
+"h":"סידור אשכנז, שבת, מעריב, קריאת שמע וברכותיה, אמת ואמונה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Blessings of the Shema, Second Blessing after Shema",
+"p":"Shabbat, Maariv, Blessings of the Shema, Second Blessing after Shema",
+"h":"סידור אשכנז, שבת, מעריב, קריאת שמע וברכותיה, השכיבינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Veshamru",
+"p":"Shabbat, Maariv, Veshamru",
+"h":"סידור אשכנז, שבת, מעריב, ושמרו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Half Kaddish",
+"p":"Shabbat, Maariv, Half Kaddish",
+"h":"סידור אשכנז, שבת, מעריב, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Amidah, Patriarchs",
+"p":"Shabbat, Maariv, Amidah, Patriarchs",
+"h":"סידור אשכנז, שבת, מעריב, עמידה, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Amidah, Divine Might",
+"p":"Shabbat, Maariv, Amidah, Divine Might",
+"h":"סידור אשכנז, שבת, מעריב, עמידה, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Amidah, Holines of God's Name",
+"p":"Shabbat, Maariv, Amidah, Holines of God's Name",
+"h":"סידור אשכנז, שבת, מעריב, עמידה, קדושת השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Amidah, Sanctity of the Day",
+"p":"Shabbat, Maariv, Amidah, Sanctity of the Day",
+"h":"סידור אשכנז, שבת, מעריב, עמידה, קדושת היום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Amidah, Temple Service",
+"p":"Shabbat, Maariv, Amidah, Temple Service",
+"h":"סידור אשכנז, שבת, מעריב, עמידה, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Amidah, Thanksgiving",
+"p":"Shabbat, Maariv, Amidah, Thanksgiving",
+"h":"סידור אשכנז, שבת, מעריב, עמידה, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Amidah, Peace",
+"p":"Shabbat, Maariv, Amidah, Peace",
+"h":"סידור אשכנז, שבת, מעריב, עמידה, שלום רב",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Amidah, Concluding Passage",
+"p":"Shabbat, Maariv, Amidah, Concluding Passage",
+"h":"סידור אשכנז, שבת, מעריב, עמידה, אלהי נצור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Vay'chulu",
+"p":"Shabbat, Maariv, Vay'chulu",
+"h":"סידור אשכנז, שבת, מעריב, ויכולו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Me'ein Sheva",
+"p":"Shabbat, Maariv, Me'ein Sheva",
+"h":"סידור אשכנז, שבת, מעריב, ברכה אחת מעין שבע",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Kaddish Shalem",
+"p":"Shabbat, Maariv, Kaddish Shalem",
+"h":"סידור אשכנז, שבת, מעריב, קדיש שלם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Sefirat HaOmer",
+"p":"Shabbat, Maariv, Sefirat HaOmer",
+"h":"סידור אשכנז, שבת, מעריב, ספירת העומר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Aleinu",
+"p":"Shabbat, Maariv, Aleinu",
+"h":"סידור אשכנז, שבת, מעריב, עלינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Mourner's Kaddish",
+"p":"Shabbat, Maariv, Mourner's Kaddish",
+"h":"סידור אשכנז, שבת, מעריב, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, LeDavid",
+"p":"Shabbat, Maariv, LeDavid",
+"h":"סידור אשכנז, שבת, מעריב, לדוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Yigdal",
+"p":"Shabbat, Maariv, Yigdal",
+"h":"סידור אשכנז, שבת, מעריב, יגדל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Maariv, Adon Olam",
+"p":"Shabbat, Maariv, Adon Olam",
+"h":"סידור אשכנז, שבת, מעריב, אדון עולם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Blessing the Children",
+"p":"Shabbat, Shabbat Evening, Blessing the Children",
+"h":"סידור אשכנז, שבת, ליל שבת, ברכת הבנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Shalom Aleichem",
+"p":"Shabbat, Shabbat Evening, Shalom Aleichem",
+"h":"סידור אשכנז, שבת, ליל שבת, שלום עליכם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Kiddush",
+"p":"Shabbat, Shabbat Evening, Kiddush",
+"h":"סידור אשכנז, שבת, ליל שבת, קידוש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Ribon Kol HaOlamim",
+"p":"Shabbat, Shabbat Evening, Ribon Kol HaOlamim",
+"h":"סידור אשכנז, שבת, ליל שבת, ריבון כל העולמים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Eshet Chayil",
+"p":"Shabbat, Shabbat Evening, Eshet Chayil",
+"h":"סידור אשכנז, שבת, ליל שבת, אשת חיל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Kol Mekadesh",
+"p":"Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Kol Mekadesh",
+"h":"סידור אשכנז, שבת, ליל שבת, זמירות לליל שבת, כל מקדש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Menucha VeSimcha",
+"p":"Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Menucha VeSimcha",
+"h":"סידור אשכנז, שבת, ליל שבת, זמירות לליל שבת, מנוחה ושמחה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Ma Yedidut",
+"p":"Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Ma Yedidut",
+"h":"סידור אשכנז, שבת, ליל שבת, זמירות לליל שבת, מה ידידות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Yom zeh L'yisrael",
+"p":"Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Yom zeh L'yisrael",
+"h":"סידור אשכנז, שבת, ליל שבת, זמירות לליל שבת, יום זה לישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Yah Ribon",
+"p":"Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Yah Ribon",
+"h":"סידור אשכנז, שבת, ליל שבת, זמירות לליל שבת, יה ריבון",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Tzamah Nafshi",
+"p":"Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Tzamah Nafshi",
+"h":"סידור אשכנז, שבת, ליל שבת, זמירות לליל שבת, צמאה נפשי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Tzur Mishelo",
+"p":"Shabbat, Shabbat Evening, Zemirot for Shabbat Evening, Tzur Mishelo",
+"h":"סידור אשכנז, שבת, ליל שבת, זמירות לליל שבת, צור משלו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Modeh Ani",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Modeh Ani",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, מודה אני",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Netilat Yadayim",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Netilat Yadayim",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, נטילת ידים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Asher Yatzar",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Asher Yatzar",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, אשר יצר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Elokai Neshama",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Elokai Neshama",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, אלהי נשמה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Tzitzit",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Tzitzit",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, ציצית",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Tallit",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Tallit",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, טלית",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Ma Tovu",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Ma Tovu",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, מה טובו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Adon Olam",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Adon Olam",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, אדון עולם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Yigdal",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Yigdal",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, יגדל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Morning Blessings",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Morning Blessings",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, ברכות השחר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Akedah",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Akedah",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, עקדה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Sovereignty of Heaven",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Sovereignty of Heaven",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, עול מלכות שמים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Korbanot, Kiyor",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Korbanot, Kiyor",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, קרבנות, פרשת הכיור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Korbanot, Terumat HaDeshen",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Korbanot, Terumat HaDeshen",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, קרבנות, פרשת תרומת הדשן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Korbanot, Korban HaTamid",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Korbanot, Korban HaTamid",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, קרבנות, פרשת קרבן תמיד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Korbanot, Ketoret",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Korbanot, Ketoret",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, קרבנות, פרשת הקטורת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Korbanot, Order of the Temple Service",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Korbanot, Order of the Temple Service",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, קרבנות, סדר המערכה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Korbanot, Laws of Sacrifices",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Korbanot, Laws of Sacrifices",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, קרבנות, דיני זבחים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Korbanot, Baraita of Rabbi Yishmael",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Korbanot, Baraita of Rabbi Yishmael",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, קרבנות, ברייתא דרבי ישמעאל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Preparatory Prayers, Korbanot, Kaddish DeRabbanan",
+"p":"Shabbat, Shacharit, Preparatory Prayers, Korbanot, Kaddish DeRabbanan",
+"h":"סידור אשכנז, שבת, שחרית, הכנה לתפילה, קרבנות, קדיש דרבנן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Mizmor Shir",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Mizmor Shir",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, מזמור שיר חנוכת הבית",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Mourner's Kaddish",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Mourner's Kaddish",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Barukh She'amar",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Barukh She'amar",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, ברוך שאמר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Hodu",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Hodu",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, הודו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Mizmor Letoda",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Mizmor Letoda",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, מזמור לתודה"
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 19",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 19",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים יט",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 34",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 34",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים לד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 90",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 90",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים צ",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 91",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 91",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים צא",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 135",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 135",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים קלה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 136",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 136",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים קלו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 33",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 33",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים לג",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 92",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 92",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים צב",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 93",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 93",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים צג",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Yehi Chevod",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Yehi Chevod",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, יהי כבוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Ashrei",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Ashrei",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, אשרי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 146",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 146",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים קמו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 147",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 147",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים קמז",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 148",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 148",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים קמח",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 149",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 149",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים קמט",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 150",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 150",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים קנ",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Baruch Hashem",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Baruch Hashem",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, ברוך ה׳",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Vayevarech David",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Vayevarech David",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, ויברך דוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Shirat HaYam",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Shirat HaYam",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, אז ישיר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Nishmat Kol Chai",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Nishmat Kol Chai",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, נשמת כל חי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Shochen Ad",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Shochen Ad",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, שוכן עד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Yishtabach",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Yishtabach",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, ישתבח",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Psalm 130",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Psalm 130",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, תהילים קל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Pesukei Dezimra, Half Kaddish",
+"p":"Shabbat, Shacharit, Pesukei Dezimra, Half Kaddish",
+"h":"סידור אשכנז, שבת, שחרית, פסוקי דזמרה, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Blessings of the Shema, Barchu",
+"p":"Shabbat, Shacharit, Blessings of the Shema, Barchu",
+"h":"סידור אשכנז, שבת, שחרית, ברכות קריאת שמע, ברכו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Blessings of the Shema, First Blessing before Shema",
+"p":"Shabbat, Shacharit, Blessings of the Shema, First Blessing before Shema",
+"h":"סידור אשכנז, שבת, שחרית, ברכות קריאת שמע, יוצר אור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Blessings of the Shema, Second Blessing before Shema",
+"p":"Shabbat, Shacharit, Blessings of the Shema, Second Blessing before Shema",
+"h":"סידור אשכנז, שבת, שחרית, ברכות קריאת שמע, אהבת ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Blessings of the Shema, Shema",
+"p":"Shabbat, Shacharit, Blessings of the Shema, Shema",
+"h":"סידור אשכנז, שבת, שחרית, ברכות קריאת שמע, שמע",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Blessings of the Shema, Blessing after Shema",
+"p":"Shabbat, Shacharit, Blessings of the Shema, Blessing after Shema",
+"h":"סידור אשכנז, שבת, שחרית, ברכות קריאת שמע, גאל ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Patriarchs",
+"p":"Shabbat, Shacharit, Amidah, Patriarchs",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Divine Might",
+"p":"Shabbat, Shacharit, Amidah, Divine Might",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Kedushah",
+"p":"Shabbat, Shacharit, Amidah, Kedushah",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, קדושה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Holiness of God",
+"p":"Shabbat, Shacharit, Amidah, Holiness of God",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, קדושת השם"
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Sanctity of the Day",
+"p":"Shabbat, Shacharit, Amidah, Sanctity of the Day",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, קדושת היום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Temple Service",
+"p":"Shabbat, Shacharit, Amidah, Temple Service",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Thanksgiving",
+"p":"Shabbat, Shacharit, Amidah, Thanksgiving",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Birkat Kohanim",
+"p":"Shabbat, Shacharit, Amidah, Birkat Kohanim",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, ברכת כהנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Peace",
+"p":"Shabbat, Shacharit, Amidah, Peace",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, שים שלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Concluding Passage",
+"p":"Shabbat, Shacharit, Amidah, Concluding Passage",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, אלוהי נצור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Amidah, Kaddish Shalem",
+"p":"Shabbat, Shacharit, Amidah, Kaddish Shalem",
+"h":"סידור אשכנז, שבת, שחרית, עמידה, קדיש שלם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Ein Kamocha",
+"p":"Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Ein Kamocha",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, הוצאת ספר תורה, אין כמוך",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Vayehi Binsoa",
+"p":"Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Vayehi Binsoa",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, הוצאת ספר תורה, ויהי בנסע",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Berich Shmei",
+"p":"Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Berich Shmei",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, הוצאת ספר תורה, בריך שמה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Shema Yisrael (Gadlu)",
+"p":"Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Shema Yisrael (Gadlu)",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, הוצאת ספר תורה, שמע ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Lecha Hashem",
+"p":"Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Lecha Hashem",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, הוצאת ספר תורה, לך השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Veyazor Veyagen",
+"p":"Shabbat, Shacharit, Torah Reading, Removing the Torah from the Ark, Veyazor Veyagen",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, הוצאת ספר תורה, ויעזור ויגן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Birkat HaTorah",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Birkat HaTorah",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, ברכת התורה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Birkat Hagomel",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Birkat Hagomel",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, ברכת הגומל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, For an Oleh",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, For an Oleh",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, מי שברך, לעולה התורה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, For Sickness (includes man and woman)",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, For Sickness (includes man and woman)",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, מי שברך, לחולים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, For Birth, Birth of a Son",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, For Birth, Birth of a Son",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, מי שברך, ליולדות, יולדת בן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, For Birth, Birth of Daughter",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, For Birth, Birth of Daughter",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, מי שברך, ליולדות, יולדת בת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, Bar Mitzvah",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, Bar Mitzvah",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, מי שברך, בר מצוה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, Bat Mitzvah",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Mi Sheberach, Bat Mitzvah",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, מי שברך, בת מצוה"
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Half Kaddish",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Half Kaddish",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Raising the Torah",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Raising the Torah",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, הגבהה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Torah Reading, Reading from Sefer, Haftarah",
+"p":"Shabbat, Shacharit, Torah Reading, Reading from Sefer, Haftarah",
+"h":"סידור אשכנז, שבת, שחרית, קריאת התורה, קריאת התורה, הפטרה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Communal Prayers, Yekum Purkan",
+"p":"Shabbat, Shacharit, Communal Prayers, Yekum Purkan",
+"h":"סידור אשכנז, שבת, שחרית, תפילות לציבור, יקום פרקן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Communal Prayers, Prayer of the State of Israel",
+"p":"Shabbat, Shacharit, Communal Prayers, Prayer of the State of Israel",
+"h":"סידור אשכנז, שבת, שחרית, תפילות לציבור, תפילה לשלום מדינת ישראל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Communal Prayers, Prayer for Israeli Soldiers",
+"p":"Shabbat, Shacharit, Communal Prayers, Prayer for Israeli Soldiers",
+"h":"סידור אשכנז, שבת, שחרית, תפילות לציבור, מי שברך לחיילי צה\"ל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Communal Prayers, Prayer for Those Being Held in Captivity",
+"p":"Shabbat, Shacharit, Communal Prayers, Prayer for Those Being Held in Captivity",
+"h":"סידור אשכנז, שבת, שחרית, תפילות לציבור, מי שברך לשבויים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Communal Prayers, Birkat Hachodesh",
+"p":"Shabbat, Shacharit, Communal Prayers, Birkat Hachodesh",
+"h":"סידור אשכנז, שבת, שחרית, תפילות לציבור, ברכת החודש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Communal Prayers, Av HaRachamim",
+"p":"Shabbat, Shacharit, Communal Prayers, Av HaRachamim",
+"h":"סידור אשכנז, שבת, שחרית, תפילות לציבור, אב הרחמים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Ashrei",
+"p":"Shabbat, Shacharit, Ashrei",
+"h":"סידור אשכנז, שבת, שחרית, אשרי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Returning Sefer to Aron",
+"p":"Shabbat, Shacharit, Returning Sefer to Aron",
+"h":"סידור אשכנז, שבת, שחרית, הכנסת ספר תורה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Shacharit, Half Kaddish",
+"p":"Shabbat, Shacharit, Half Kaddish",
+"h":"סידור אשכנז, שבת, שחרית, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Patriarchs",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Patriarchs",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Divine Might",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Divine Might",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Kedushah",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Kedushah",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, קדושה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Holiness of God",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Holiness of God",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, קדושת השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Sanctity of the Day, For Shabbat",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Sanctity of the Day, For Shabbat",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, קדושת היום, לשבת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Sanctity of the Day, For Shabbat Rosh Chodesh",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Sanctity of the Day, For Shabbat Rosh Chodesh",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, קדושת היום, לשבת ראש חודש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Temple Service",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Temple Service",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Thanksgiving",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Thanksgiving",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Birkat Kohanim",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Birkat Kohanim",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, ברכת כהנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Peace",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Peace",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, שים שלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Concluding Passage",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Concluding Passage",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, אלוהי נצור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Amidah, Kaddish Shalem",
+"p":"Shabbat, Musaf LeShabbat, Amidah, Kaddish Shalem",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עמידה, קדיש שלם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Kaddish Shalem",
+"p":"Shabbat, Musaf LeShabbat, Kaddish Shalem",
+"h":"סידור אשכנז, שבת, מוסף לשבת, קדיש שלם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Ein Keloheinu",
+"p":"Shabbat, Musaf LeShabbat, Ein Keloheinu",
+"h":"סידור אשכנז, שבת, מוסף לשבת, אין כאלוהינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Pitum Haketoret",
+"p":"Shabbat, Musaf LeShabbat, Pitum Haketoret",
+"h":"סידור אשכנז, שבת, מוסף לשבת, פיטום הקטורת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Kaddish Derabbanan",
+"p":"Shabbat, Musaf LeShabbat, Kaddish Derabbanan",
+"h":"סידור אשכנז, שבת, מוסף לשבת, קדיש דרבנן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Alenu",
+"p":"Shabbat, Musaf LeShabbat, Alenu",
+"h":"סידור אשכנז, שבת, מוסף לשבת, עלינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Mourner's Kaddish",
+"p":"Shabbat, Musaf LeShabbat, Mourner's Kaddish",
+"h":"סידור אשכנז, שבת, מוסף לשבת, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Mizmor Shir L'Yom HaShabbat",
+"p":"Shabbat, Musaf LeShabbat, Mizmor Shir L'Yom HaShabbat",
+"h":"סידור אשכנז, שבת, מוסף לשבת, מזמור שיר ליום השבת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Mourner's Kaddish",
+"p":"Shabbat, Musaf LeShabbat, Mourner's Kaddish",
+"h":"סידור אשכנז, שבת, מוסף לשבת, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, LeDavid",
+"p":"Shabbat, Musaf LeShabbat, LeDavid",
+"h":"סידור אשכנז, שבת, מוסף לשבת, לדוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Shir HaKavod",
+"p":"Shabbat, Musaf LeShabbat, Shir HaKavod",
+"h":"סידור אשכנז, שבת, מוסף לשבת, שיר הכבוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Mourner's Kaddish",
+"p":"Shabbat, Musaf LeShabbat, Mourner's Kaddish",
+"h":"סידור אשכנז, שבת, מוסף לשבת, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Musaf LeShabbat, Adon Olam",
+"p":"Shabbat, Musaf LeShabbat, Adon Olam",
+"h":"סידור אשכנז, שבת, מוסף לשבת, אדון עולם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Daytime Meal, Kiddusha Rabba",
+"p":"Shabbat, Daytime Meal, Kiddusha Rabba",
+"h":"סידור אשכנז, שבת, סעודת היום, קידושא רבה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Daytime Meal, Zemirot for Second Meal, Baruch Kel Elyon",
+"p":"Shabbat, Daytime Meal, Zemirot for Second Meal, Baruch Kel Elyon",
+"h":"סידור אשכנז, שבת, סעודת היום, זמירות לסעודת היום, ברוך אל עליון",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Daytime Meal, Zemirot for Second Meal, Yom Zeh Mechubad",
+"p":"Shabbat, Daytime Meal, Zemirot for Second Meal, Yom Zeh Mechubad",
+"h":"סידור אשכנז, שבת, סעודת היום, זמירות לסעודת היום, יום זה מכובד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Daytime Meal, Zemirot for Second Meal, Yom Shabbaton",
+"p":"Shabbat, Daytime Meal, Zemirot for Second Meal, Yom Shabbaton",
+"h":"סידור אשכנז, שבת, סעודת היום, זמירות לסעודת היום, יום שבתון",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Daytime Meal, Zemirot for Second Meal, Shimru Shabtotai",
+"p":"Shabbat, Daytime Meal, Zemirot for Second Meal, Shimru Shabtotai",
+"h":"סידור אשכנז, שבת, סעודת היום, זמירות לסעודת היום, שמרו שבתותי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Daytime Meal, Zemirot for Second Meal, Ki Eshmera",
+"p":"Shabbat, Daytime Meal, Zemirot for Second Meal, Ki Eshmera",
+"h":"סידור אשכנז, שבת, סעודת היום, זמירות לסעודת היום, כי אשמרה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Daytime Meal, Zemirot for Second Meal, Dror Yikrah",
+"p":"Shabbat, Daytime Meal, Zemirot for Second Meal, Dror Yikrah",
+"h":"סידור אשכנז, שבת, סעודת היום, זמירות לסעודת היום, דרור יקרא",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Ashrei",
+"p":"Shabbat, Minchah, Ashrei",
+"h":"סידור אשכנז, שבת, מנחה, אשרי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Uva Letzion",
+"p":"Shabbat, Minchah, Uva Letzion",
+"h":"סידור אשכנז, שבת, מנחה, ובא לציון",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Half Kaddish",
+"p":"Shabbat, Minchah, Half Kaddish",
+"h":"סידור אשכנז, שבת, מנחה, חצי קדיש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Va'ani Tefillati",
+"p":"Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Va'ani Tefillati",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הוצאת ספר תורה, ואני תפילתי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Vayehi Binsoa",
+"p":"Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Vayehi Binsoa",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הוצאת ספר תורה, ויהי בנסוע",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Berich Shmei",
+"p":"Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Berich Shmei",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הוצאת ספר תורה, בריך שמה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Gadlu",
+"p":"Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Gadlu",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הוצאת ספר תורה, גדלו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Lekha Hashem",
+"p":"Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Lekha Hashem",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הוצאת ספר תורה, לך ה׳",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Av Harachamim",
+"p":"Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Av Harachamim",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הוצאת ספר תורה, אב הרחמים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Vetigaleh Veteraeh",
+"p":"Shabbat, Minchah, Torah Reading, Removing the Torah from Ark, Vetigaleh Veteraeh",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הוצאת ספר תורה, ותגלה ותראה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Reading from Sefer, Birkat HaTorah",
+"p":"Shabbat, Minchah, Torah Reading, Reading from Sefer, Birkat HaTorah",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, קריאת התורה, ברכת התורה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Reading from Sefer, Raising the Torah",
+"p":"Shabbat, Minchah, Torah Reading, Reading from Sefer, Raising the Torah",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, קריאת התורה, הגבהה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Returning Sefer to Aron, Yehalelu",
+"p":"Shabbat, Minchah, Torah Reading, Returning Sefer to Aron, Yehalelu",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הכנסת התורה, יהללו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Returning Sefer to Aron, LeDavid",
+"p":"Shabbat, Minchah, Torah Reading, Returning Sefer to Aron, LeDavid",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הכנסת התורה, לדוד מזמור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Torah Reading, Returning Sefer to Aron, Uvenucho Yomar",
+"p":"Shabbat, Minchah, Torah Reading, Returning Sefer to Aron, Uvenucho Yomar",
+"h":"סידור אשכנז, שבת, מנחה, קריאת התורה, הכנסת התורה, ובנוחה יאמר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Patriarchs",
+"p":"Shabbat, Minchah, Amidah, Patriarchs",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Divine Might",
+"p":"Shabbat, Minchah, Amidah, Divine Might",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Kedushah",
+"p":"Shabbat, Minchah, Amidah, Kedushah",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, קדושה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Holiness of God",
+"p":"Shabbat, Minchah, Amidah, Holiness of God",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, קדושת השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Sanctity of the Day",
+"p":"Shabbat, Minchah, Amidah, Sanctity of the Day",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, קדושת היום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Temple Service",
+"p":"Shabbat, Minchah, Amidah, Temple Service",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Thanksgiving, Modim",
+"p":"Shabbat, Minchah, Amidah, Thanksgiving, Modim",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, מודים, מודים ומודים דרבנן",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Thanksgiving, Al Hanisim for Chanukkah",
+"p":"Shabbat, Minchah, Amidah, Thanksgiving, Al Hanisim for Chanukkah",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, מודים, על הניסים לחנוכה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Thanksgiving, Al Hanisim for Purim",
+"p":"Shabbat, Minchah, Amidah, Thanksgiving, Al Hanisim for Purim",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, מודים, על הניסים לפורים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Peace",
+"p":"Shabbat, Minchah, Amidah, Peace",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, שים שלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Amidah, Concluding Passage",
+"p":"Shabbat, Minchah, Amidah, Concluding Passage",
+"h":"סידור אשכנז, שבת, מנחה, עמידה, אלוהי נצור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Tzidkatkhah Tzedek",
+"p":"Shabbat, Minchah, Tzidkatkhah Tzedek",
+"h":"סידור אשכנז, שבת, מנחה, צדקתך צדק",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Kaddish Shalem",
+"p":"Shabbat, Minchah, Kaddish Shalem",
+"h":"סידור אשכנז, שבת, מנחה, קדיש שלם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Alenu",
+"p":"Shabbat, Minchah, Alenu",
+"h":"סידור אשכנז, שבת, מנחה, עלינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Mourner's Kaddish",
+"p":"Shabbat, Minchah, Mourner's Kaddish",
+"h":"סידור אשכנז, שבת, מנחה, קדיש יתום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Minchah, Barchi Nafshi",
+"p":"Shabbat, Minchah, Barchi Nafshi",
+"h":"סידור אשכנז, שבת, מנחה, ברכי נפשי",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Third Meal, Atkinu",
+"p":"Shabbat, Third Meal, Atkinu",
+"h":"סידור אשכנז, שבת, סעודת שלישית, אתקינו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Third Meal, Mizmor LeDavid",
+"p":"Shabbat, Third Meal, Mizmor LeDavid",
+"h":"סידור אשכנז, שבת, סעודת שלישית, מזמור לדוד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Third Meal, Yedid Nefesh",
+"p":"Shabbat, Third Meal, Yedid Nefesh",
+"h":"סידור אשכנז, שבת, סעודת שלישית, ידיד נפש",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Shabbat, Havdalah",
+"p":"Shabbat, Havdalah",
+"h":"סידור אשכנז, שבת, הבדלה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Hallel, Berakhah before the Hallel",
+"p":"Festivals, Rosh Chodesh, Hallel, Berakhah before the Hallel",
+"h":"סידור אשכנז, חגים, ראש חודש, הלל, ברכת הלל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Hallel, Psalm 113",
+"p":"Festivals, Rosh Chodesh, Hallel, Psalm 113",
+"h":"סידור אשכנז, חגים, ראש חודש, הלל, תהילים קיג",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Hallel, Psalm 114",
+"p":"Festivals, Rosh Chodesh, Hallel, Psalm 114",
+"h":"סידור אשכנז, חגים, ראש חודש, הלל, תהילים קיד",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Hallel, Psalm 115",
+"p":"Festivals, Rosh Chodesh, Hallel, Psalm 115",
+"h":"סידור אשכנז, חגים, ראש חודש, הלל, תהילים קטו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Hallel, Psalm 116",
+"p":"Festivals, Rosh Chodesh, Hallel, Psalm 116",
+"h":"סידור אשכנז, חגים, ראש חודש, הלל, תהילים קטז",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Hallel, Psalm 117",
+"p":"Festivals, Rosh Chodesh, Hallel, Psalm 117",
+"h":"סידור אשכנז, חגים, ראש חודש, הלל, תהילים קיז",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Hallel, Psalm 118",
+"p":"Festivals, Rosh Chodesh, Hallel, Psalm 118",
+"h":"סידור אשכנז, חגים, ראש חודש, הלל, תהילים קיח",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Hallel, Berakhah after the Hallel",
+"p":"Festivals, Rosh Chodesh, Hallel, Berakhah after the Hallel",
+"h":"סידור אשכנז, חגים, ראש חודש, הלל, ברכה בסוף",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Avot",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Avot",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Gevurot",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Gevurot",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Kedushah, Kedushat HaShem",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Kedushah, Kedushat HaShem",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, קדושה, קדושת השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Sanctity of the Day",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Sanctity of the Day",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, קדושת היום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Avodah",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Avodah",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Hodayah",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Hodayah",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Birkat Kohanim",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Birkat Kohanim",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, ברכת כהנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Peace",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Peace",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, שים שלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Passages Ending Amidah",
+"p":"Festivals, Rosh Chodesh, Musaf Amidah for Rosh Chodesh, Passages Ending Amidah",
+"h":"סידור אשכנז, חגים, ראש חודש, מוסף עמידה לראש חודש, אלוהי נצור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Avot",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Avot",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Gevurot",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Gevurot",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Kedusha",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Kedusha",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, קדושה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Sanctity of the Day",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Sanctity of the Day",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, קדושת היום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Avodah",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Avodah",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Modim",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Modim",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Birkat Kohanim",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Birkat Kohanim",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, ברכת כהנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Peace",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Peace",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, ברכה לשלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Concluding Prayer",
+"p":"Festivals, Shalosh Regalim, Amida for Maariv, Shacharit, Mincha, Concluding Prayer",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, עמידה לערבית, שחרית, מנחה, סיום עמידה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Avot",
+"p":"Festivals, Shalosh Regalim, Mussaf, Avot",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, אבות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Gevurot",
+"p":"Festivals, Shalosh Regalim, Mussaf, Gevurot",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, גבורות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Kedusha",
+"p":"Festivals, Shalosh Regalim, Mussaf, Kedusha",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, קדושה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Sanctity of the Name",
+"p":"Festivals, Shalosh Regalim, Mussaf, Sanctity of the Name",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, קדושת השם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Sanctity of the Day",
+"p":"Festivals, Shalosh Regalim, Mussaf, Sanctity of the Day",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, קדושת היום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Avodah",
+"p":"Festivals, Shalosh Regalim, Mussaf, Avodah",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, עבודה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Modim",
+"p":"Festivals, Shalosh Regalim, Mussaf, Modim",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, מודים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Birkat Kohanim",
+"p":"Festivals, Shalosh Regalim, Mussaf, Birkat Kohanim",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, ברכת כוהנים",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Peace",
+"p":"Festivals, Shalosh Regalim, Mussaf, Peace",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, ברכת שלום",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Shalosh Regalim, Mussaf, Concluding Prayer",
+"p":"Festivals, Shalosh Regalim, Mussaf, Concluding Prayer",
+"h":"סידור אשכנז, חגים, תפילות לשלוש רגלים, מוסף, סיום עמידה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Prayer for Dew",
+"p":"Festivals, Prayer for Dew",
+"h":"סידור אשכנז, חגים, תפילת טל",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Prayer for Rain",
+"p":"Festivals, Prayer for Rain",
+"h":"סידור אשכנז, חגים, תפילת גשם",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Prayers in the Sukkah, Entering the Sukkah",
+"p":"Festivals, Sukkot, Prayers in the Sukkah, Entering the Sukkah",
+"h":"סידור אשכנז, חגים, סוכות, תפילות בסוכה, כשנכנסים לסוכה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Prayers in the Sukkah, Ushpizin",
+"p":"Festivals, Sukkot, Prayers in the Sukkah, Ushpizin",
+"h":"סידור אשכנז, חגים, סוכות, תפילות בסוכה, אושפיזין",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Prayers in the Sukkah, Leaving the Sukkah",
+"p":"Festivals, Sukkot, Prayers in the Sukkah, Leaving the Sukkah",
+"h":"סידור אשכנז, חגים, סוכות, תפילות בסוכה, כשיוצאים מן הסוכה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Blessing on Lulav",
+"p":"Festivals, Sukkot, Blessing on Lulav",
+"h":"סידור אשכנז, חגים, סוכות, נטילת לולב",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Hosha'anot, For Shabbat Chol Hamoed",
+"p":"Festivals, Sukkot, Hosha'anot, For Shabbat Chol Hamoed",
+"h":"סידור אשכנז, חגים, סוכות, הושענות, כל יום בסוכות שחל בשבת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Hosha'anot, First Day of Sukkot",
+"p":"Festivals, Sukkot, Hosha'anot, First Day of Sukkot",
+"h":"סידור אשכנז, חגים, סוכות, הושענות, יום טוב ראשון של סוכות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Hosha'anot, Second Day of Sukkot",
+"p":"Festivals, Sukkot, Hosha'anot, Second Day of Sukkot",
+"h":"סידור אשכנז, חגים, סוכות, הושענות, יום שני של סוכות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Hosha'anot, Third Day of Sukkot",
+"p":"Festivals, Sukkot, Hosha'anot, Third Day of Sukkot",
+"h":"סידור אשכנז, חגים, סוכות, הושענות, יום שלישי של סוכות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Hosha'anot, Fourth Day of Sukkot",
+"p":"Festivals, Sukkot, Hosha'anot, Fourth Day of Sukkot",
+"h":"סידור אשכנז, חגים, סוכות, הושענות, יום רביעי של סוכות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Hosha'anot, Fifth Day of Sukkot",
+"p":"Festivals, Sukkot, Hosha'anot, Fifth Day of Sukkot",
+"h":"סידור אשכנז, חגים, סוכות, הושענות, יום חמישי של סוכות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Hosha'anot, Sixth Day of Sukkot",
+"p":"Festivals, Sukkot, Hosha'anot, Sixth Day of Sukkot",
+"h":"סידור אשכנז, חגים, סוכות, הושענות, יום שישי של סוכות",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Sukkot, Hosha'anot, Hosha'ana Rabba",
+"p":"Festivals, Sukkot, Hosha'anot, Hosha'ana Rabba",
+"h":"סידור אשכנז, חגים, סוכות, הושענות, הושענא רבה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Chanukah, Service for Lighting Chanukah Candles, Blessings on Chanukah Candles",
+"p":"Festivals, Chanukah, Service for Lighting Chanukah Candles, Blessings on Chanukah Candles",
+"h":"סידור אשכנז, חגים, חנוכה, סדר הדלקת נרות חנוכה, ברכות הדלקת נרות חנוכה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Chanukah, Service for Lighting Chanukah Candles, Hanerot Hallalu",
+"p":"Festivals, Chanukah, Service for Lighting Chanukah Candles, Hanerot Hallalu",
+"h":"סידור אשכנז, חגים, חנוכה, סדר הדלקת נרות חנוכה, הנרות הללו",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Chanukah, Service for Lighting Chanukah Candles, Maoz Tzur",
+"p":"Festivals, Chanukah, Service for Lighting Chanukah Candles, Maoz Tzur",
+"h":"סידור אשכנז, חגים, חנוכה, סדר הדלקת נרות חנוכה, מעוז צור",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Selichot, Fast of Gedalia",
+"p":"Festivals, Selichot, Fast of Gedalia",
+"h":"סידור אשכנז, חגים, סליחות, צום גדליה",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Selichot, Ten of Tevet",
+"p":"Festivals, Selichot, Ten of Tevet",
+"h":"סידור אשכנז, חגים, סליחות, עשרה בטבת",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Selichot, Fast of Esther",
+"p":"Festivals, Selichot, Fast of Esther",
+"h":"סידור אשכנז, חגים, סליחות, תענית אסתר",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Selichot, Seventeen of Tamuz",
+"p":"Festivals, Selichot, Seventeen of Tamuz",
+"h":"סידור אשכנז, חגים, סליחות, שבעה עשר בתמוז",
+"c":0
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Selichot, Yom Kippur Katan",
+"p":"Festivals, Selichot, Yom Kippur Katan",
+"h":"סידור אשכנז, חגים, סליחות, יום כיפור קטן",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Festivals, Selichot, BaHaB",
+"p":"Festivals, Selichot, BaHaB",
+"h":"סידור אשכנז, חגים, סליחות, בהב",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Birkat HaMazon",
+"p":"Berachot, Birkat HaMazon",
+"h":"סידור אשכנז, ברכות, ברכת המזון",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Birkat Hanehenin, Eating, Barachot Rishonot",
+"p":"Berachot, Birkat Hanehenin, Eating, Barachot Rishonot",
+"h":"סידור אשכנז, ברכות, ברכת הנהנין, אכילה, ברכות ראשונות",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Birkat Hanehenin, Eating, Brachot Achronot, Al Hamichyah",
+"p":"Berachot, Birkat Hanehenin, Eating, Brachot Achronot, Al Hamichyah",
+"h":"סידור אשכנז, ברכות, ברכת הנהנין, אכילה, ברכות אחרונות, על המחיה",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Birkat Hanehenin, Eating, Brachot Achronot, Borei Nefashot",
+"p":"Berachot, Birkat Hanehenin, Eating, Brachot Achronot, Borei Nefashot",
+"h":"סידור אשכנז, ברכות, ברכת הנהנין, אכילה, ברכות אחרונות, בורא נפשות",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Birkat Hanehenin, Blessings on Sights Sounds and Smells",
+"p":"Berachot, Birkat Hanehenin, Blessings on Sights Sounds and Smells",
+"h":"סידור אשכנז, ברכות, ברכת הנהנין, ברכות הראייה השמיעה והריח",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Birkhot Hamitzvot",
+"p":"Berachot, Birkhot Hamitzvot",
+"h":"סידור אשכנז, ברכות, ברכת המצוות",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Asher Yatzar Etchem Badin",
+"p":"Berachot, Asher Yatzar Etchem Badin",
+"h":"סידור אשכנז, ברכות, מחיה המתים",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Tefillat HaDerech",
+"p":"Berachot, Tefillat HaDerech",
+"h":"סידור אשכנז, ברכות, תפילת הדרך",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Berachot, Havinenu",
+"p":"Berachot, Havinenu",
+"h":"סידור אשכנז, ברכות, הביננו",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Kaddish, Half Kaddish",
+"p":"Kaddish, Half Kaddish",
+"h":"סידור אשכנז, קדיש, חצי קדיש",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Kaddish, Mourner's Kaddish",
+"p":"Kaddish, Mourner's Kaddish",
+"h":"סידור אשכנז, קדיש, קדיש יתום",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Kaddish, Kaddish Shalem",
+"p":"Kaddish, Kaddish Shalem",
+"h":"סידור אשכנז, קדיש, קדיש שלם",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Kaddish, Kaddish d'Rabbanan",
+"p":"Kaddish, Kaddish d'Rabbanan",
+"h":"סידור אשכנז, קדיש, קדיש דרבנן",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Kaddish, Kaddish achar HaKevura",
+"p":"Kaddish, Kaddish achar HaKevura",
+"h":"סידור אשכנז, קדיש, קדיש דאתחדתא",
+"c":1
+},
+{
+"r":"Siddur Ashkenaz, Kaddish, Kaddish achar Hashlamat Meschet",
+"p":"Kaddish, Kaddish achar Hashlamat Meschet",
+"h":"סידור אשכנז, קדיש, קדיש אחר השלמת מסכת",
+"c":1
+}
+],
+"downloaded":"2026-10-22"
+}

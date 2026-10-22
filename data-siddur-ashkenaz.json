@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-siddur-ashkenaz.json
+---
+{% include src-siddur-ashkenaz.json %}

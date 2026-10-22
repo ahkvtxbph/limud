@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-siddur-chabad.json
+---
+{% include src-siddur-chabad.json %}

@@ -290,7 +290,7 @@ const SD_OPTIONAL = () => 'optional';
 
 const SIDDUR_NUSACHOT = {
   ashkenaz: {
-    book: 'Siddur Ashkenaz', he: 'נוסח אשכנז', page: 'siddur-ashkenaz.html',
+    local: 'data-siddur-ashkenaz.json', book: 'Siddur Ashkenaz', he: 'נוסח אשכנז', page: 'siddur-ashkenaz.html',
     prayers: {
       shacharit: [
         { he: 'השכמת הבוקר וברכות השחר', match: /^Weekday, Shacharit, Preparatory Prayers, (?!Korbanot)/ },
@@ -470,7 +470,7 @@ const SIDDUR_NUSACHOT = {
   },
 
   chabad: {
-    book: 'Weekday Siddur Chabad', he: 'נוסח חב״ד (האר״י)', page: 'siddur-chabad.html',
+    local: 'data-siddur-chabad.json', book: 'Weekday Siddur Chabad', he: 'נוסח חב״ד (האר״י)', page: 'siddur-chabad.html',
     prayers: {
       shacharit: [
         { he: 'השכמת הבוקר וברכות השחר', match: /^Shacharit, (Upon Arising|Morning Blessings)/ },
