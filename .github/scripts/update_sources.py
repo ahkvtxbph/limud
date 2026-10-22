@@ -40,7 +40,8 @@ BOOKS = [
 ]
 CALENDAR_ITEMS = ['Halakhah Yomit']                      # -> _includes/halacha-schedule.json
 OTHER_CALENDAR_ITEMS = ['Arukh HaShulchan Yomi', 'Daily Mishnah', 'Daily Rambam', 'Daily Rambam (3 Chapters)',
-                        'Tanakh Yomi', '929']              # -> _includes/src-schedule.json (+ data-schedule.json)
+                        'Tanakh Yomi', '929', 'Daf Yomi', 'Yerushalmi Yomi', 'Tanya Yomi',
+                        'Parashat Hashavua']               # -> _includes/src-schedule.json (+ data-schedule.json)
 SCHEDULE_DAYS_BACK, SCHEDULE_DAYS_AHEAD = 7, 120
 
 report = []          # lines for the pull-request description
@@ -50,7 +51,7 @@ problems = []        # anything that needs a human look
 def http_json(url, tries=4):
     for a in range(tries):
         try:
-            req = urllib.request.Request(url, headers={'User-Agent': 'limood.org.il source updater'})
+            req = urllib.request.Request(url, headers={'User-Agent': 'limood.org.il source updater (https://limood.org.il)'})
             with urllib.request.urlopen(req, timeout=60) as r:
                 return json.load(r)
         except Exception as e:
@@ -85,9 +86,9 @@ def dumps(obj):
     # one item per line, so a change shows up in GitHub as a change of just that line
     s = json.dumps(obj, ensure_ascii=False, indent=0, separators=(',', ':'))
     # the files are pulled into pages by Jekyll: Liquid tags or a closing </script> would break them
-    if '{{' in s or '{%' in s or '</' in s:
-        raise RuntimeError('text contains characters that would break the page ({{, {% or </)')
-    return s
+    if '{{' in s or '{%' in s:
+        raise RuntimeError('text contains characters that would break the page ({{ or {%)')
+    return s.replace('</', '<\\/')     # same JSON, but safe inside a <script> block
 
 def read_json(name):
     p = os.path.join(INC, name)
@@ -249,6 +250,7 @@ def update_schedule():
                     it = next((i for i in data.get('calendar_items', []) if (i.get('title') or {}).get('en') == item), None)
                     if it and it.get('ref'):
                         new[name][item][k] = {'ref': it['ref'], 'he': (it.get('displayValue') or {}).get('he') or ''}
+                        if (it.get('displayValue') or {}).get('en'): new[name][item][k]['en'] = it['displayValue']['en']
             time.sleep(0.2)
         d += timedelta(days=1)
     changed = False
@@ -264,15 +266,93 @@ def update_schedule():
         changed = True
     return changed
 
+# ---------------------------------------------------------------- Hebcal (calendar, no times) + Baladi
+HEBCAL = 'https://www.hebcal.com'
+# The exact Hebcal requests the site makes that do not depend on the visitor's location — same
+# parameters, kept here for a window of dates. The site looks them up by the same "signature".
+HEBCAL_SETS = [
+    'maj=on&mf=on&min=on&mod=on&nx=on',            # holiday line in the header
+    'maj=on&min=on&mod=on&nx=on', 'i=on&maj=on&min=on&mod=on&nx=on',     # Birkat HaMazon additions
+    'leyning=off&maj=on&s=on', 'i=on&leyning=off&maj=on&s=on',           # weekly portion, Shabbat Mevarchim, Bar Mitzvah
+]
+HEBCAL_DAYS_BACK, HEBCAL_DAYS_AHEAD = 35, 400
+
+def wrapper(published, include):
+    s = f"---\nlayout: null\npermalink: /{published}\n---\n{{% include {include} %}}"
+    p = os.path.join(ROOT, published)
+    if os.path.exists(p) and open(p, encoding='utf-8').read() == s: return False
+    with open(p, 'w', encoding='utf-8') as f: f.write(s)
+    return True
+
+def write_if_changed(name, obj):
+    s = dumps(obj)
+    p = os.path.join(INC, name)
+    if os.path.exists(p) and open(p, encoding='utf-8').read() == s: return False
+    with open(p, 'w', encoding='utf-8') as f: f.write(s)
+    return True
+
+def update_hebcal():
+    """Hebcal's calendar (holidays, Rosh Chodesh, fasts, weekly portion, haftara) — committed directly."""
+    start, end = date.today() - timedelta(days=HEBCAL_DAYS_BACK), date.today() + timedelta(days=HEBCAL_DAYS_AHEAD)
+    sets = {}
+    for sig in HEBCAL_SETS:
+        d = http_json(f"{HEBCAL}/hebcal?cfg=json&v=1&{sig}&start={start.isoformat()}&end={end.isoformat()}")
+        items = d.get('items') or []
+        if not items: raise RuntimeError('Hebcal returned nothing for ' + sig)
+        sets[sig] = {'start': start.isoformat(), 'end': end.isoformat(), 'items': items}
+        time.sleep(0.5)
+    leyning = {}
+    d = start + timedelta(days=(5 - start.weekday()) % 7)          # first Saturday
+    while d <= end:
+        for il in (False, True):
+            try:
+                r = http_json(f"{HEBCAL}/leyning?cfg=json&triennial=off&date={d.isoformat()}" + ('&i=on' if il else ''))
+                leyning[d.isoformat() + ('|il' if il else '')] = r
+            except Exception as e:
+                problems.append(f'**Hebcal — קריאת התורה ל־{d.isoformat()}**: {e}')
+            time.sleep(0.3)
+        d += timedelta(days=7)
+    note = 'נוצר אוטומטית מ־Hebcal.com (CC BY 4.0) — לא לערוך ידנית'
+    changed = write_if_changed('src-hebcal.json', {'note': note, 'sets': sets})
+    changed |= write_if_changed('src-leyning.json', {'note': note, 'start': start.isoformat(), 'end': end.isoformat(), 'days': leyning})
+    changed |= wrapper('data-hebcal.json', 'src-hebcal.json')
+    changed |= wrapper('data-leyning.json', 'src-leyning.json')
+    return changed
+
+BALADI_PAGE = 'ברכת המזון/בלדי 2'
+def update_baladi():
+    """Birkat HaMazon, Yemenite (Baladi) nusach, from Hebrew Wikisource (CC BY-SA) — goes through the pull request."""
+    url = ('https://he.wikisource.org/w/api.php?action=parse&page=' + urllib.parse.quote(BALADI_PAGE)
+           + '&prop=text|revid&disableeditsection=1&format=json')
+    d = http_json(url)
+    html = (((d.get('parse') or {}).get('text') or {}).get('*')) or ''
+    if len(html) < 2000:
+        problems.append('**ברכת המזון — תימן (בלדי)**: התקבל טקסט קצר מדי מוויקיטקסט — הקובץ לא עודכן.')
+        return
+    old = read_json('src-baladi.json')
+    if old and old.get('html') == html: wrapper('data-baladi.json', 'src-baladi.json'); return
+    report.append('- **ברכת המזון — תימן (בלדי)** (`_includes/src-baladi.json`): ' + ('הנוסח בוויקיטקסט עודכן' if old else 'נוסף לאתר'))
+    write_if_changed('src-baladi.json', {'source': 'ויקיטקסט — ' + BALADI_PAGE, 'license': 'CC-BY-SA',
+                                         'revid': (d.get('parse') or {}).get('revid'), 'downloaded': TODAY, 'html': html})
+    wrapper('data-baladi.json', 'src-baladi.json')
+
 # ---------------------------------------------------------------- main
 def main():
     os.chdir(ROOT)
     schedule_only = '--schedule-only' in sys.argv
     if schedule_only:
         print('schedule changed' if update_schedule() else 'schedule unchanged')
+        try:
+            print('hebcal changed' if update_hebcal() else 'hebcal unchanged')
+        except Exception as e:
+            print('Hebcal update failed:', e)       # the site keeps using the previous file / Hebcal itself
         return
     update_tehillim()
     update_birkat()
+    try:
+        update_baladi()
+    except Exception as e:
+        problems.append(f'**ברכת המזון — תימן (בלדי)**: לא ניתן היה להוריד מוויקיטקסט ({e}).')
     manifest = read_json('halacha-manifest.json') or {}
     before = json.dumps(manifest, sort_keys=True, ensure_ascii=False)
     update_halacha(manifest)

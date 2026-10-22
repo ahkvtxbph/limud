@@ -248,7 +248,8 @@ class Library:
     def run(self):
         u = self.u
         manifest = self.read('src-manifest.json') or {}
-        old_files = {f for f in os.listdir(u.INC) if f.startswith('src-') and f not in ('src-manifest.json', 'src-schedule.json')}
+        groups = '|'.join(g for g, _, _ in library())
+        old_files = {f for f in os.listdir(u.INC) if re.match(rf'^src-({groups})-\d+\.json$', f)}   # only this module's text files
         books, files, topics = {}, {}, {}
         added, added_count = {}, {}         # books that are new on the site, summed up per group
         for group, label, entries in library():
