@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-schedule.json
+---
+{% include src-schedule.json %}
