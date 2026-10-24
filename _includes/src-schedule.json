@@ -1,15 +1,5 @@
 {
 "Arukh HaShulchan Yomi":{
-"2026-10-15":{
-"ref":"Arukh HaShulchan, Orach Chaim 362:14-21",
-"he":"אורח חיים שס״ב:י״ד-כ״א",
-"en":"Orach Chaim 362:14-21"
-},
-"2026-10-16":{
-"ref":"Arukh HaShulchan, Orach Chaim 362:22-28",
-"he":"אורח חיים שס״ב:כ״ב-כ״ח",
-"en":"Orach Chaim 362:22-28"
-},
 "2026-10-17":{
 "ref":"Arukh HaShulchan, Orach Chaim 362:29-35",
 "he":"אורח חיים שס״ב:כ״ט-ל״ה",
@@ -639,19 +629,19 @@
 "ref":"Arukh HaShulchan, Orach Chaim 453:14-21",
 "he":"אורח חיים תנ״ג:י״ד-כ״א",
 "en":"Orach Chaim 453:14-21"
+},
+"2027-02-20":{
+"ref":"Arukh HaShulchan, Orach Chaim 453:22-29",
+"he":"אורח חיים תנ״ג:כ״ב-כ״ט",
+"en":"Orach Chaim 453:22-29"
+},
+"2027-02-21":{
+"ref":"Arukh HaShulchan, Orach Chaim 454:1-9",
+"he":"אורח חיים תנ״ד:א׳-ט׳",
+"en":"Orach Chaim 454:1-9"
 }
 },
 "Daily Mishnah":{
-"2026-10-15":{
-"ref":"Mishnah Oholot 10:1-2",
-"he":"משנה אהלות י׳:א׳-ב׳",
-"en":"Mishnah Oholot 10:1-2"
-},
-"2026-10-16":{
-"ref":"Mishnah Oholot 10:3-4",
-"he":"משנה אהלות י׳:ג׳-ד׳",
-"en":"Mishnah Oholot 10:3-4"
-},
 "2026-10-17":{
 "ref":"Mishnah Oholot 10:5-6",
 "he":"משנה אהלות י׳:ה׳-ו׳",
@@ -1281,19 +1271,19 @@
 "ref":"Mishnah Parah 10:3-4",
 "he":"משנה פרה י׳:ג׳-ד׳",
 "en":"Mishnah Parah 10:3-4"
+},
+"2027-02-20":{
+"ref":"Mishnah Parah 10:5-6",
+"he":"משנה פרה י׳:ה׳-ו׳",
+"en":"Mishnah Parah 10:5-6"
+},
+"2027-02-21":{
+"ref":"Mishnah Parah 11:1-2",
+"he":"משנה פרה י״א:א׳-ב׳",
+"en":"Mishnah Parah 11:1-2"
 }
 },
 "Daily Rambam":{
-"2026-10-15":{
-"ref":"Mishneh Torah, Virgin Maiden 3",
-"he":"הלכות נערה בתולה ג׳",
-"en":"Virgin Maiden 3"
-},
-"2026-10-16":{
-"ref":"Mishneh Torah, Woman Suspected of Infidelity 1",
-"he":"הלכות סוטה א׳",
-"en":"Woman Suspected of Infidelity 1"
-},
 "2026-10-17":{
 "ref":"Mishneh Torah, Woman Suspected of Infidelity 2",
 "he":"הלכות סוטה ב׳",
@@ -1923,19 +1913,19 @@
 "ref":"Mishneh Torah, Heave Offerings 7",
 "he":"הלכות תרומות ז׳",
 "en":"Heave Offerings 7"
+},
+"2027-02-20":{
+"ref":"Mishneh Torah, Heave Offerings 8",
+"he":"הלכות תרומות ח׳",
+"en":"Heave Offerings 8"
+},
+"2027-02-21":{
+"ref":"Mishneh Torah, Heave Offerings 9",
+"he":"הלכות תרומות ט׳",
+"en":"Heave Offerings 9"
 }
 },
 "Daily Rambam (3 Chapters)":{
-"2026-10-15":{
-"ref":"Mishneh Torah, Robbery and Lost Property 16-18",
-"he":"הלכות גזילה ואבידה ט״ז-י״ח",
-"en":"Robbery and Lost Property 16-18"
-},
-"2026-10-16":{
-"ref":"Mishneh Torah, One Who Injures a Person or Property 1-3",
-"he":"הלכות חובל ומזיק א׳-ג׳",
-"en":"One Who Injures a Person or Property 1-3"
-},
 "2026-10-17":{
 "ref":"Mishneh Torah, One Who Injures a Person or Property 4-6",
 "he":"הלכות חובל ומזיק ד׳-ו׳",
@@ -2565,19 +2555,19 @@
 "ref":"Mishneh Torah, Sabbath 18-20",
 "he":"הלכות שבת י״ח-כ׳",
 "en":"Sabbath 18-20"
+},
+"2027-02-20":{
+"ref":"Mishneh Torah, Sabbath 21-23",
+"he":"הלכות שבת כ״א-כ״ג",
+"en":"Sabbath 21-23"
+},
+"2027-02-21":{
+"ref":"Mishneh Torah, Sabbath 24-26",
+"he":"הלכות שבת כ״ד-כ״ו",
+"en":"Sabbath 24-26"
 }
 },
 "Tanakh Yomi":{
-"2026-10-15":{
-"ref":"Joshua 17:4-18:27",
-"he":"יהושע סדר י",
-"en":"Joshua Seder 10"
-},
-"2026-10-16":{
-"ref":"Joshua 18:28-19:50",
-"he":"יהושע סדר יא",
-"en":"Joshua Seder 11"
-},
 "2026-10-17":{
 "ref":"Genesis 6:9-11:32",
 "he":"נח",
@@ -3207,19 +3197,19 @@
 "ref":"Isaiah 52:7-55:12",
 "he":"ישעיהו סדר כב",
 "en":"Isaiah Seder 22"
+},
+"2027-02-20":{
+"ref":"Exodus 27:20-30:10",
+"he":"תצוה",
+"en":"Tetzaveh"
+},
+"2027-02-21":{
+"ref":"Isaiah 55:13-58:13",
+"he":"ישעיהו סדר כג",
+"en":"Isaiah Seder 23"
 }
 },
 "929":{
-"2026-10-15":{
-"ref":"I Kings 8",
-"he":"מלכים א ח׳ (295)",
-"en":"I Kings 8 (295)"
-},
-"2026-10-16":{
-"ref":"I Kings 8",
-"he":"מלכים א ח׳ (295)",
-"en":"I Kings 8 (295)"
-},
 "2026-10-17":{
 "ref":"I Kings 8",
 "he":"מלכים א ח׳ (295)",
@@ -3849,19 +3839,19 @@
 "ref":"Isaiah 51",
 "he":"ישעיהו נ״א (385)",
 "en":"Isaiah 51 (385)"
+},
+"2027-02-20":{
+"ref":"Isaiah 51",
+"he":"ישעיהו נ״א (385)",
+"en":"Isaiah 51 (385)"
+},
+"2027-02-21":{
+"ref":"Isaiah 52",
+"he":"ישעיהו נ״ב (386)",
+"en":"Isaiah 52 (386)"
 }
 },
 "Daf Yomi":{
-"2026-10-15":{
-"ref":"Bekhorot 27",
-"he":"בכורות כ״ז",
-"en":"Bekhorot 27"
-},
-"2026-10-16":{
-"ref":"Bekhorot 28",
-"he":"בכורות כ״ח",
-"en":"Bekhorot 28"
-},
 "2026-10-17":{
 "ref":"Bekhorot 29",
 "he":"בכורות כ״ט",
@@ -4491,19 +4481,19 @@
 "ref":"Keritot 28",
 "he":"כריתות כ״ח",
 "en":"Keritot 28"
+},
+"2027-02-20":{
+"ref":"Meilah 2",
+"he":"מעילה ב׳",
+"en":"Meilah 2"
+},
+"2027-02-21":{
+"ref":"Meilah 3",
+"he":"מעילה ג׳",
+"en":"Meilah 3"
 }
 },
 "Yerushalmi Yomi":{
-"2026-10-15":{
-"ref":"Jerusalem Talmud Makkot 2:1:1-5:1",
-"he":"תלמוד ירושלמי מכות ה",
-"en":"Jerusalem Talmud Makkot 5"
-},
-"2026-10-16":{
-"ref":"Jerusalem Talmud Makkot 2:5:1-6:7",
-"he":"תלמוד ירושלמי מכות ו",
-"en":"Jerusalem Talmud Makkot 6"
-},
 "2026-10-17":{
 "ref":"Jerusalem Talmud Makkot 2:6:7-7:2",
 "he":"תלמוד ירושלמי מכות ז",
@@ -5133,19 +5123,19 @@
 "ref":"Jerusalem Talmud Niddah 3:2:5-4:1",
 "he":"תלמוד ירושלמי נדה י",
 "en":"Jerusalem Talmud Niddah 10"
+},
+"2027-02-20":{
+"ref":"Jerusalem Talmud Niddah 3:4:1-7",
+"he":"תלמוד ירושלמי נדה יא",
+"en":"Jerusalem Talmud Niddah 11"
+},
+"2027-02-21":{
+"ref":"Jerusalem Talmud Niddah 3:4:7-4:6:1",
+"he":"תלמוד ירושלמי נדה יב",
+"en":"Jerusalem Talmud Niddah 12"
 }
 },
 "Tanya Yomi":{
-"2026-10-15":{
-"ref":"Tanya, Part IV; Iggeret HaKodesh 26:1",
-"he":"ד חשון",
-"en":"4 Cheshvan"
-},
-"2026-10-16":{
-"ref":"Tanya, Part IV; Iggeret HaKodesh 26:11",
-"he":"ה חשון",
-"en":"5 Cheshvan"
-},
 "2026-10-17":{
 "ref":"Tanya, Part IV; Iggeret HaKodesh 26:15",
 "he":"ו חשון",
@@ -5775,19 +5765,19 @@
 "ref":"Tanya, Part I; Likkutei Amarim 29:9",
 "he":"יב אדר-א",
 "en":"12 Adar I"
+},
+"2027-02-20":{
+"ref":"Tanya, Part I; Likkutei Amarim 29:12",
+"he":"יג אדר-א",
+"en":"13 Adar I"
+},
+"2027-02-21":{
+"ref":"Tanya, Part I; Likkutei Amarim 29:15",
+"he":"יד אדר-א",
+"en":"14 Adar I"
 }
 },
 "Parashat Hashavua":{
-"2026-10-15":{
-"ref":"Genesis 6:9-11:32",
-"he":"נח",
-"en":"Noach"
-},
-"2026-10-16":{
-"ref":"Genesis 6:9-11:32",
-"he":"נח",
-"en":"Noach"
-},
 "2026-10-17":{
 "ref":"Genesis 6:9-11:32",
 "he":"נח",
@@ -6417,6 +6407,16 @@
 "ref":"Exodus 27:20-30:10",
 "he":"תצוה",
 "en":"Tetzaveh"
+},
+"2027-02-20":{
+"ref":"Exodus 27:20-30:10",
+"he":"תצוה",
+"en":"Tetzaveh"
+},
+"2027-02-21":{
+"ref":"Exodus 30:11-34:35",
+"he":"כי תשא",
+"en":"Ki Tisa"
 }
 }
 }
