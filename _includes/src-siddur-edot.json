@@ -2,7 +2,9 @@
 "book":"Siddur Edot HaMizrach",
 "versionTitle":" Shaliehsaboo Edition",
 "license":"CC0",
+"alsoVersions":[],
 "note":"נוצר אוטומטית מספריא — לא לערוך ידנית",
+"remote":[],
 "leaves":[
 {
 "r":"Siddur Edot HaMizrach, Preparatory Prayers, Modeh Ani",
@@ -779,5 +781,5 @@
 "c":1
 }
 ],
-"downloaded":"2026-10-22"
+"downloaded":"2026-10-24"
 }

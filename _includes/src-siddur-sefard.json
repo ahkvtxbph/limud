@@ -2,7 +2,11 @@
 "book":"Siddur Sefard",
 "versionTitle":"The Metsudah siddur, 1981",
 "license":"CC-BY",
+"alsoVersions":[
+"Torat Emet 357"
+],
 "note":"נוצר אוטומטית מספריא — לא לערוך ידנית",
+"remote":[],
 "leaves":[
 {
 "r":"Siddur Sefard, Upon Arising, Modeh Ani",
@@ -1289,5 +1293,5 @@
 "c":2
 }
 ],
-"downloaded":"2026-10-22"
+"downloaded":"2026-10-24"
 }

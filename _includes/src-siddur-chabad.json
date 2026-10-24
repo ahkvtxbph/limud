@@ -4,6 +4,7 @@
 "license":"CC-BY-SA",
 "alsoVersions":[],
 "note":"נוצר אוטומטית מספריא — לא לערוך ידנית",
+"remote":[],
 "leaves":[
 {
 "r":"Weekday Siddur Chabad, Shacharit, Upon Arising",
@@ -288,5 +289,5 @@
 "c":0
 }
 ],
-"downloaded":"2026-10-22"
+"downloaded":"2026-10-24"
 }

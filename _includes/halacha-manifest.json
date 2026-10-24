@@ -3,7 +3,7 @@
 "Shulchan Arukh, Orach Chayim":{
 "he":"שולחן ערוך — אורח חיים",
 "file":"halacha-data-oc.json",
-"v":"fa64bf95b7c9",
+"v":"2c840ba8e467",
 "counts":[
 9,
 6,
@@ -3404,5 +3404,5 @@
 }
 ]
 },
-"updated":"2026-10-21"
+"updated":"2026-10-24"
 }
