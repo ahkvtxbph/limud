@@ -571,7 +571,7 @@ def fetch_page(title, tries=3):
     """The rendered HTML of a Wikisource page (templates and included pages expanded) and its revision."""
     import urllib.parse, urllib.request, time
     q = urllib.parse.quote(title)
-    urls = [('https://he.wikisource.org/w/api.php?action=parse&page=' + q + '&prop=text|revid&disableeditsection=1&format=json', 'api'),
+    urls = [('https://he.wikisource.org/w/api.php?action=parse&page=' + q + '&prop=text|revid&disableeditsection=1&redirects=1&format=json', 'api'),
             ('https://he.wikisource.org/w/index.php?title=' + q + '&action=render', 'render')]
     last = None
     for url, kind in urls:

@@ -123,7 +123,12 @@ def library():
         ('tanakh',    'תנ"ך',             [(t, None) for t in TANAKH_BOOKS]),
         ('rashi',     'רש"י על התנ"ך',    [('Rashi on ' + t, None if t in torah else ['On Your Way', 'On Your Way -- new']) for t in TANAKH_BOOKS]),
         ('onkelos',   'אונקלוס',          [('Onkelos ' + t, ['Targum Onkelos, vocalized according to the Yemenite Taj']) for t in torah]),
+        # Tanya: Sefaria's edition is CC-BY-NC — the text comes from Hebrew Wikisource (tanya_wikisource.py)
+        ('tanya',     'תניא',             [(t, 'wikisource-tanya') for t in TANYA_BOOKS]),
     ]
+TANYA_BOOKS = ["Tanya, Part I; Likkutei Amarim, Compiler's Foreword", 'Tanya, Part I; Likkutei Amarim',
+               'Tanya, Part II; Shaar HaYichud VehaEmunah, Chinukh Katan', 'Tanya, Part II; Shaar HaYichud VehaEmunah',
+               'Tanya, Part III; Iggeret HaTeshuvah', 'Tanya, Part IV; Iggeret HaKodesh', 'Tanya, Part V; Kuntres Acharon']
 TOPIC_INDEXES = ['Arukh HaShulchan']
 CHUNK = 20                         # sections per API request
 
@@ -171,6 +176,14 @@ class Library:
     def book(self, title, prefer):
         """The whole book: list of sections (each a list of segments, or of lists for commentaries)."""
         u = self.u
+        if prefer == 'wikisource-tanya':
+            import tanya_wikisource as T
+            r = T.build(self, title)
+            if not has_text(r['text']): raise RuntimeError('no chapter matched Sefaria\'s paragraphs')
+            if r['weak']:
+                u.report.append(f'- **תניא — {title}**: פרקים שלא הותאמו לחלוקה של ספריא ונשארים בטעינה מספריא: ' + ', '.join(r['weak']))
+            return {'versionTitle': 'ויקיטקסט — ספר התניא', 'license': 'CC-BY-SA', 'versionSource': T.SOURCE,
+                    'pin': None, 'text': r['text']}
         counts = []
         try:
             d = u.http_json(f"{u.API}/shape/{u.urllib.parse.quote(title)}")
