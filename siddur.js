@@ -456,6 +456,7 @@ const SIDDUR_NUSACHOT = {
     sourceName: 'ויקיטקסט', sourceUrl: 'https://he.wikisource.org/wiki/%D7%A1%D7%99%D7%93%D7%95%D7%A8/%D7%A0%D7%95%D7%A1%D7%97_%D7%AA%D7%99%D7%9E%D7%9F_%D7%91%D7%9C%D7%93%D7%99',
     prayerOf: { 'שחרית': 'shacharit', 'מנחה': 'mincha', 'ערבית': 'maariv', 'קריאת שמע על המיטה': 'maariv' },
     rules: [   // by section name (or a piece inside it)
+      { match: /שני וחמישי/, when: g => g.tachanun && g.monThu },
       { match: /נפילת אפים|תחנון|וידוי/, when: g => g.prayer === 'mincha' ? g.tachanunMincha : g.tachanun },
       { match: /הלל/, when: g => g.hallel !== 'none', special: 'hallel' },
       { match: /מוסף/, when: g => g.musaf },
@@ -464,7 +465,8 @@ const SIDDUR_NUSACHOT = {
       { match: /ברכת הלבנה|קידוש לבנה/, when: g => g.levana ? 'optional' : false }
     ],
     leafRules: [
-      { match: /מזמור לתודה/, when: g => g.mizmorLetoda }
+      { match: /מזמור לתודה/, when: g => g.mizmorLetoda },
+      { match: /למנצח/, when: g => g.lamenatzeach }
     ],
     prayers: null
   },
@@ -1091,8 +1093,8 @@ function sdRenderExplicit(items, g, opts){
   const full = !!opts.full, notes = !!opts.notes;
   const out = [];
   items.forEach(item => {
-    if(item.heading) out.push(item.heading);
-    if(item.error){ out.push(item.error); return; }
+    if(item.error){ if(item.heading) out.push(item.heading); out.push(item.error); return; }
+    const start = out.length;
     out.push('<div class="sd-text">');
     (item.segs || []).forEach(html => {
       const tpl = document.createElement('template');
@@ -1141,7 +1143,9 @@ function sdRenderExplicit(items, g, opts){
       }
       out.push('<p' + (st.added ? ' class="sd-added"' : '') + '>' + h + '</p>');
     });
+    if(out.length === start + 1 && !full){ out.length = start; return; }   // nothing said today: no heading either
     out.push('</div>');
+    if(item.heading) out.splice(start, 0, item.heading);
   });
   return out.join('');
 }
