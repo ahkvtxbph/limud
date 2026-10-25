@@ -11,7 +11,8 @@ const root = path.join(__dirname, '..', '..');
 
 const ctx = { console, Intl, Date, Math, setTimeout, clearTimeout, setInterval, clearInterval,
   navigator: {}, window: {}, location: { href: '' },
-  document: { getElementById: () => null, addEventListener(){}, querySelector: () => null, querySelectorAll: () => [] } };
+  // readyState 'loading': page set-up code (e.g. the back-to-top button) waits for an event that never comes here
+  document: { readyState: 'loading', getElementById: () => null, addEventListener(){}, querySelector: () => null, querySelectorAll: () => [] } };
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(root, 'shared.js'), 'utf8') + ';this.P=planBirkatSegments;', ctx);
 

@@ -373,6 +373,7 @@ def build_block(b):
                 st['terms'] = 0
                 is_last = ri == alts[-1]
                 st['limit'] = None if not is_last else (max(1, st['prev_terms']) if len(alts) >= 2 else 1)
+                if len(alts) == 1 and re.search(r'[.:׃]$', last_tok or '.'): st['limit'] = None    # "… הַקָּדוֹשׁ. בעשי"ת: וּבְכֵן …" 
                 parts.append('<span' + cond_attrs(r['c'], barech) + '>' + label(txt))
                 st['open'] = True
                 if txt.strip().startswith('(') and txt.strip().endswith(')') and re.search(r'(^|\s)(' + VERBS + r')(\s|$)', r['c']['norm']):
@@ -447,9 +448,19 @@ def convert_page(html, prayer, he):
             h2, h3 = item[1], None; new_leaf(h2); continue
         if item[0] == 'h3':
             h3 = item[1]; new_leaf(h2 or he, h3); continue
-        runs = block_runs(item[1])
-        b = Block(runs, item[2])
-        pl = plain(' '.join(t['w'] for t in item[1] if 'w' in t))
+        for toks in split_lines(item[1]):
+            pl = plain(' '.join(t['w'] for t in toks if 'w' in t))
+            if re.fullmatch(r'[\s.…]*', ' '.join(t['w'] for t in toks if 'w' in t)): continue   # "…" — not typed in yet
+            b = Block(block_runs(toks), item[2])
+            for ai in range(aptr, min(len(anchors), aptr + 2)):      # in order (one may be missing)
+                pat, name = anchors[ai]
+                if re.search(pat, pl):
+                    new_leaf(name); aptr = ai + 1; break
+            if DROP_BLOCK.match(pl): continue
+            if cur is None: new_leaf(he)
+            cur['blocks'].append(b)
+        continue
+        pl = ''
         for ai in range(aptr, min(len(anchors), aptr + 2)):      # in order (one may be missing)
             pat, name = anchors[ai]
             if re.search(pat, pl):
@@ -466,6 +477,28 @@ def convert_page(html, prayer, he):
         del leaf['blocks']
     # merge empty heading-only leaves into nothing
     return [l for l in leaves if l['s']]
+
+def split_lines(toks):
+    """A paragraph whose lines (<br>) open with an instruction ("בעשי"ת: …", "בראש חודש: …") is split into its
+    lines, so each instruction governs its own line. A line that is only an instruction joins the next one."""
+    lines, cur = [], []
+    for t in toks:
+        if t.get('br'): lines.append(cur); cur = []
+        else: cur.append(t)
+    lines.append(cur)
+    lines = [l for l in lines if any('w' in t for t in l)]
+    def opens_with_ins(l):
+        w = [t for t in l if 'w' in t][:6]
+        return bool(w) and word_kind(w[0]) == 'U' and any(':' in x['w'] for x in w) and all(word_kind(x) != 'T' for x in w[:next((i for i, x in enumerate(w) if ':' in x['w']), 0) + 1])
+    if len(lines) < 2 or not any(opens_with_ins(l) for l in lines[1:]): return [toks]
+    out, carry = [], []
+    for l in lines:
+        ws = [t for t in l if 'w' in t]
+        if all(word_kind(t) != 'T' for t in ws) and ws and ws[-1]['w'].endswith(':'):
+            carry += l + [{'sp': True}]; continue
+        out.append(carry + l); carry = []
+    if carry: out.append(carry)
+    return out
 
 def first_words(s, n=3): return ' '.join(s.split()[:n])
 
@@ -488,9 +521,10 @@ def cross_block(bl):
         if c and (c.get('repl') is not None or True) and not c['neg'] and 'other' not in c['conds']:
             target = None
             if c.get('repl'):
-                want = plain(c['repl'])
+                dv = lambda x: re.sub('[וי]', '', x)
+                want = dv(plain(c['repl']))
                 for k in list(range(i - 1, max(-1, i - 4), -1)) + list(range(i + 1, min(len(bl), i + 4))):
-                    if not bl[k].block_cond and bl[k].plain.startswith(want): target = bl[k]; break
+                    if not bl[k].block_cond and dv(bl[k].plain).startswith(want): target = bl[k]; break
             else:
                 prev = next((bl[k] for k in range(i - 1, max(-1, i - 5), -1) if not bl[k].block_cond and not bl[k].only_ins), None)
                 if c.get('repl') == '' or (prev and len(b.plain) > 30 and first_words(prev.plain, 4) == first_words(b.plain, 4)):
