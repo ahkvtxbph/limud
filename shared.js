@@ -1506,6 +1506,32 @@ function initSimanPicker(cfg){
 
 // Plain-paragraph style (no verse numbers, no commentary) — for texts that
 // aren't naturally verse-structured (halacha, tanya, gemara pages, etc).
+// "Book 26:15" + the next day's start "Book 26:20" -> "Book 26:15-19" (or to the end of the chapter / up to
+// the next day's paragraph in a later chapter). Paragraph counts come from the site's own copy of the book.
+async function dailyPortionRef(titleEn, ref, date, useUTC){
+  const next = new Date(date.getTime() + 86400000);
+  let nItem = await localScheduleItem(titleEn, next, useUTC);
+  if(!nItem){
+    const u = useUTC ? `year=${next.getUTCFullYear()}&month=${next.getUTCMonth()+1}&day=${next.getUTCDate()}` : `year=${next.getFullYear()}&month=${next.getMonth()+1}&day=${next.getDate()}`;
+    const res = await fetch('https://www.sefaria.org/api/calendars?diaspora=0&' + u);
+    if(res.ok){ const d = await res.json(); nItem = ((d && d.calendar_items) || []).find(i => i.title && i.title.en === titleEn); }
+  }
+  const parse = r => { const m = String(r || '').match(/^(.*) (\d+):(\d+)$/); return m ? { t: m[1], c: +m[2], s: +m[3] } : null; };
+  const a = parse(ref), b = parse(nItem && nItem.ref);
+  if(!a) return ref;
+  let counts = null;
+  try{ const m = await localManifest(); counts = m.books[a.t] && m.books[a.t].counts; }catch(e){}
+  const last = c => counts && counts[c - 1];
+  if(b && b.t === a.t && b.c === a.c) return b.s - 1 > a.s ? `${a.t} ${a.c}:${a.s}-${b.s - 1}` : ref;
+  if(b && b.t === a.t && b.c > a.c && b.c - a.c <= 3){
+    if(b.s > 1) return `${a.t} ${a.c}:${a.s}-${b.c}:${b.s - 1}`;
+    if(last(b.c - 1)) return `${a.t} ${a.c}:${a.s}-${b.c - 1}:${last(b.c - 1)}`;
+    return ref;
+  }
+  // the next day starts another part of the book: to the end of this chapter
+  return last(a.c) && last(a.c) > a.s ? `${a.t} ${a.c}:${a.s}-${last(a.c)}` : ref;
+}
+
 async function renderDailyCalendarSection(titleEn, readerId, headingHe, selectedDate){
   const reader = document.getElementById(readerId);
   reader.innerHTML = '';
@@ -1546,6 +1572,10 @@ async function renderDailyCalendarSection(titleEn, readerId, headingHe, selected
       item = items.find(i => i.title && i.title.en === titleEn);
     }
     if(!item || !item.ref) throw new Error('no item: ' + titleEn);
+    // Tanya Yomi: the calendar names only the paragraph where the day's portion starts — show up to the next day's start
+    if(titleEn === 'Tanya Yomi'){
+      try{ item = Object.assign({}, item, { ref: await dailyPortionRef(titleEn, item.ref, dfc1, !!selectedDate) }); }catch(e){}
+    }
     const { text, ref: resolvedRef } = await fetchRefText(item.ref);
     if(!text) throw new Error('empty text');
     const flat = Array.isArray(text) ? text.flat(Infinity) : [text];
