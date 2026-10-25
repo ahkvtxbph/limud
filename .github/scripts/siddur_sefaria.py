@@ -76,7 +76,11 @@ def flatten(t, out=None):
         out.append(str(t))
     return out
 
-def get_json(url, tries=4):
+def U_retry(e, a):
+    from update_sources import retry_wait
+    return retry_wait(e, a)
+
+def get_json(url, tries=6):
     import urllib.request, urllib.error
     for a in range(tries):
         try:
@@ -85,7 +89,8 @@ def get_json(url, tries=4):
         except urllib.error.HTTPError as e:
             if e.code == 404: return None
             if a == tries - 1: raise
-        except Exception:
+            time.sleep(min(U_retry(e, a), 300)); continue
+        except Exception as e:
             if a == tries - 1: raise
         time.sleep(3 + a * 5)
 

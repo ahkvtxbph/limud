@@ -52,7 +52,17 @@ report = []          # lines for the pull-request description
 problems = []        # anything that needs a human look
 
 # ---------------------------------------------------------------- helpers
-def http_json(url, tries=4):
+def retry_wait(e, a):
+    """How long to wait before trying again. "429 Too Many Requests" (the server asks us to slow down): wait
+    as long as it says, or 30s, 60s, 120s … ; other errors: a few seconds."""
+    import urllib.error
+    if isinstance(e, urllib.error.HTTPError) and e.code in (429, 503):
+        try: ra = int(e.headers.get('Retry-After') or 0)
+        except Exception: ra = 0
+        return max(5, min(600, ra)) if ra else 30 * 2 ** a
+    return 3 + a * 5
+
+def http_json(url, tries=6):
     for a in range(tries):
         try:
             req = urllib.request.Request(url, headers={'User-Agent': 'limood.org.il source updater (https://limood.org.il)'})
@@ -60,7 +70,7 @@ def http_json(url, tries=4):
                 return json.load(r)
         except Exception as e:
             if a == tries - 1: raise
-            time.sleep(3 + a * 5)
+            time.sleep(min(retry_wait(e, a), 300))
 
 def texts_api(ref):
     """Same request the site makes: primary Hebrew version, text only."""
@@ -255,7 +265,7 @@ def update_schedule():
                     if it and it.get('ref'):
                         new[name][item][k] = {'ref': it['ref'], 'he': (it.get('displayValue') or {}).get('he') or ''}
                         if (it.get('displayValue') or {}).get('en'): new[name][item][k]['en'] = it['displayValue']['en']
-            time.sleep(0.2)
+            time.sleep(0.5)
         d += timedelta(days=1)
     changed = False
     for name in files:
@@ -345,7 +355,10 @@ def main():
     os.chdir(ROOT)
     schedule_only = '--schedule-only' in sys.argv
     if schedule_only:
-        print('schedule changed' if update_schedule() else 'schedule unchanged')
+        try:
+            print('schedule changed' if update_schedule() else 'schedule unchanged')
+        except Exception as e:
+            print('Schedule update failed:', e)     # the site keeps the previous schedule (it covers 4 months ahead)
         try:
             print('hebcal changed' if update_hebcal() else 'hebcal unchanged')
         except Exception as e:
