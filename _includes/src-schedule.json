@@ -1,10 +1,5 @@
 {
 "Arukh HaShulchan Yomi":{
-"2026-10-17":{
-"ref":"Arukh HaShulchan, Orach Chaim 362:29-35",
-"he":"אורח חיים שס״ב:כ״ט-ל״ה",
-"en":"Orach Chaim 362:29-35"
-},
 "2026-10-18":{
 "ref":"Arukh HaShulchan, Orach Chaim 362:36-363:6",
 "he":"אורח חיים שס״ב:ל״ו-שס״ג:ו׳",
@@ -639,14 +634,14 @@
 "ref":"Arukh HaShulchan, Orach Chaim 454:1-9",
 "he":"אורח חיים תנ״ד:א׳-ט׳",
 "en":"Orach Chaim 454:1-9"
+},
+"2027-02-22":{
+"ref":"Arukh HaShulchan, Orach Chaim 454:10-455:6",
+"he":"אורח חיים תנ״ד:י׳-תנ״ה:ו׳",
+"en":"Orach Chaim 454:10-455:6"
 }
 },
 "Daily Mishnah":{
-"2026-10-17":{
-"ref":"Mishnah Oholot 10:5-6",
-"he":"משנה אהלות י׳:ה׳-ו׳",
-"en":"Mishnah Oholot 10:5-6"
-},
 "2026-10-18":{
 "ref":"Mishnah Oholot 10:7-11:1",
 "he":"משנה אהלות י׳:ז׳-י״א:א׳",
@@ -1281,14 +1276,14 @@
 "ref":"Mishnah Parah 11:1-2",
 "he":"משנה פרה י״א:א׳-ב׳",
 "en":"Mishnah Parah 11:1-2"
+},
+"2027-02-22":{
+"ref":"Mishnah Parah 11:3-4",
+"he":"משנה פרה י״א:ג׳-ד׳",
+"en":"Mishnah Parah 11:3-4"
 }
 },
 "Daily Rambam":{
-"2026-10-17":{
-"ref":"Mishneh Torah, Woman Suspected of Infidelity 2",
-"he":"הלכות סוטה ב׳",
-"en":"Woman Suspected of Infidelity 2"
-},
 "2026-10-18":{
 "ref":"Mishneh Torah, Woman Suspected of Infidelity 3",
 "he":"הלכות סוטה ג׳",
@@ -1923,14 +1918,14 @@
 "ref":"Mishneh Torah, Heave Offerings 9",
 "he":"הלכות תרומות ט׳",
 "en":"Heave Offerings 9"
+},
+"2027-02-22":{
+"ref":"Mishneh Torah, Heave Offerings 10",
+"he":"הלכות תרומות י׳",
+"en":"Heave Offerings 10"
 }
 },
 "Daily Rambam (3 Chapters)":{
-"2026-10-17":{
-"ref":"Mishneh Torah, One Who Injures a Person or Property 4-6",
-"he":"הלכות חובל ומזיק ד׳-ו׳",
-"en":"One Who Injures a Person or Property 4-6"
-},
 "2026-10-18":{
 "ref":"Mishneh Torah, One Who Injures a Person or Property 7-8",
 "he":"הלכות חובל ומזיק ז׳-ח׳",
@@ -2565,14 +2560,14 @@
 "ref":"Mishneh Torah, Sabbath 24-26",
 "he":"הלכות שבת כ״ד-כ״ו",
 "en":"Sabbath 24-26"
+},
+"2027-02-22":{
+"ref":"Mishneh Torah, Sabbath 27-29",
+"he":"הלכות שבת כ״ז-כ״ט",
+"en":"Sabbath 27-29"
 }
 },
 "Tanakh Yomi":{
-"2026-10-17":{
-"ref":"Genesis 6:9-11:32",
-"he":"נח",
-"en":"Noach"
-},
 "2026-10-18":{
 "ref":"Joshua 19:51-21:40",
 "he":"יהושע סדר יב",
@@ -3207,14 +3202,14 @@
 "ref":"Isaiah 55:13-58:13",
 "he":"ישעיהו סדר כג",
 "en":"Isaiah Seder 23"
+},
+"2027-02-22":{
+"ref":"Isaiah 58:14-61:8",
+"he":"ישעיהו סדר כד",
+"en":"Isaiah Seder 24"
 }
 },
 "929":{
-"2026-10-17":{
-"ref":"I Kings 8",
-"he":"מלכים א ח׳ (295)",
-"en":"I Kings 8 (295)"
-},
 "2026-10-18":{
 "ref":"I Kings 9",
 "he":"מלכים א ט׳ (296)",
@@ -3849,14 +3844,14 @@
 "ref":"Isaiah 52",
 "he":"ישעיהו נ״ב (386)",
 "en":"Isaiah 52 (386)"
+},
+"2027-02-22":{
+"ref":"Isaiah 53",
+"he":"ישעיהו נ״ג (387)",
+"en":"Isaiah 53 (387)"
 }
 },
 "Daf Yomi":{
-"2026-10-17":{
-"ref":"Bekhorot 29",
-"he":"בכורות כ״ט",
-"en":"Bekhorot 29"
-},
 "2026-10-18":{
 "ref":"Bekhorot 30",
 "he":"בכורות ל׳",
@@ -4491,14 +4486,14 @@
 "ref":"Meilah 3",
 "he":"מעילה ג׳",
 "en":"Meilah 3"
+},
+"2027-02-22":{
+"ref":"Meilah 4",
+"he":"מעילה ד׳",
+"en":"Meilah 4"
 }
 },
 "Yerushalmi Yomi":{
-"2026-10-17":{
-"ref":"Jerusalem Talmud Makkot 2:6:7-7:2",
-"he":"תלמוד ירושלמי מכות ז",
-"en":"Jerusalem Talmud Makkot 7"
-},
 "2026-10-18":{
 "ref":"Jerusalem Talmud Makkot 2:7:2-3:7:1",
 "he":"תלמוד ירושלמי מכות ח",
@@ -5133,14 +5128,14 @@
 "ref":"Jerusalem Talmud Niddah 3:4:7-4:6:1",
 "he":"תלמוד ירושלמי נדה יב",
 "en":"Jerusalem Talmud Niddah 12"
+},
+"2027-02-22":{
+"ref":"Jerusalem Talmud Niddah 4:6:1-7:1",
+"he":"תלמוד ירושלמי נדה יג",
+"en":"Jerusalem Talmud Niddah 13"
 }
 },
 "Tanya Yomi":{
-"2026-10-17":{
-"ref":"Tanya, Part IV; Iggeret HaKodesh 26:15",
-"he":"ו חשון",
-"en":"6 Cheshvan"
-},
 "2026-10-18":{
 "ref":"Tanya, Part IV; Iggeret HaKodesh 26:20",
 "he":"ז חשון",
@@ -5775,14 +5770,14 @@
 "ref":"Tanya, Part I; Likkutei Amarim 29:15",
 "he":"יד אדר-א",
 "en":"14 Adar I"
+},
+"2027-02-22":{
+"ref":"Tanya, Part I; Likkutei Amarim 29:17",
+"he":"טו אדר-א",
+"en":"15 Adar I"
 }
 },
 "Parashat Hashavua":{
-"2026-10-17":{
-"ref":"Genesis 6:9-11:32",
-"he":"נח",
-"en":"Noach"
-},
 "2026-10-18":{
 "ref":"Genesis 12:1-17:27",
 "he":"לך לך",
@@ -6414,6 +6409,11 @@
 "en":"Tetzaveh"
 },
 "2027-02-21":{
+"ref":"Exodus 30:11-34:35",
+"he":"כי תשא",
+"en":"Ki Tisa"
+},
+"2027-02-22":{
 "ref":"Exodus 30:11-34:35",
 "he":"כי תשא",
 "en":"Ki Tisa"

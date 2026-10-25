@@ -1,10 +1,5 @@
 {
 "Halakhah Yomit":{
-"2026-10-17":{
-"ref":"Shulchan Arukh, Orach Chayim 277:1-3",
-"he":"שולחן ערוך, אורח חיים ער״ז:א׳-ג׳",
-"en":"Shulchan Arukh, Orach Chayim 277:1-3"
-},
 "2026-10-18":{
 "ref":"Shulchan Arukh, Orach Chayim 277:4-278:1",
 "he":"שולחן ערוך, אורח חיים ער״ז:ד׳-ער״ח:א׳",
@@ -639,6 +634,11 @@
 "ref":"Shulchan Arukh, Orach Chayim 315:8-10",
 "he":"שולחן ערוך, אורח חיים שט״ו:ח׳-י׳",
 "en":"Shulchan Arukh, Orach Chayim 315:8-10"
+},
+"2027-02-22":{
+"ref":"Shulchan Arukh, Orach Chayim 315:11-13",
+"he":"שולחן ערוך, אורח חיים שט״ו:י״א-י״ג",
+"en":"Shulchan Arukh, Orach Chayim 315:11-13"
 }
 }
 }
