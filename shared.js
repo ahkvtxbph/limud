@@ -1506,6 +1506,37 @@ function initSimanPicker(cfg){
 
 // Plain-paragraph style (no verse numbers, no commentary) — for texts that
 // aren't naturally verse-structured (halacha, tanya, gemara pages, etc).
+// A Tanya reference in Hebrew: "Tanya, Part IV; Iggeret HaKodesh 27:8-12" -> "תניא, אגרת הקודש, פרק כ״ז, פסקאות ח׳–י״ב"
+function tanyaRefHe(ref){
+  const PARTS = [
+    ["Tanya, Part I; Likkutei Amarim, Title Page", 'ליקוטי אמרים, שער הספר', true],
+    ["Tanya, Part I; Likkutei Amarim, Approbation", 'ליקוטי אמרים, הסכמות', false],
+    ["Tanya, Part I; Likkutei Amarim, Compiler's Foreword", 'ליקוטי אמרים, הקדמת המלקט', true],
+    ['Tanya, Part I; Likkutei Amarim', 'ליקוטי אמרים', false],
+    ['Tanya, Part II; Shaar HaYichud VehaEmunah, Chinukh Katan', 'שער היחוד והאמונה, חינוך קטן', true],
+    ['Tanya, Part II; Shaar HaYichud VehaEmunah', 'שער היחוד והאמונה', false],
+    ['Tanya, Part III; Iggeret HaTeshuvah', 'אגרת התשובה', false],
+    ['Tanya, Part IV; Iggeret HaKodesh', 'אגרת הקודש', false],
+    ['Tanya, Part V; Kuntres Acharon', 'קונטרס אחרון', false]
+  ];
+  const p = PARTS.find(x => ref === x[0] || ref.indexOf(x[0] + ' ') === 0);
+  if(!p) return null;
+  const n = k => hebNum(+k);
+  const rest = ref.slice(p[0].length).trim();
+  let tail = '';
+  if(rest){
+    const m = rest.match(/^(\d+)(?::(\d+))?(?:-(\d+)(?::(\d+))?)?$/);
+    if(!m) return null;
+    const [, a, as, b, bs] = m;
+    if(p[2]) tail = b ? 'פסקאות ' + n(a) + '–' + n(b) : 'פסקה ' + n(a);                      // one-level: paragraphs
+    else if(!as) tail = b ? 'פרקים ' + n(a) + '–' + n(b) : 'פרק ' + n(a);
+    else if(!b) tail = 'פרק ' + n(a) + ', פסקה ' + n(as);
+    else if(!bs) tail = 'פרק ' + n(a) + ', פסקאות ' + n(as) + '–' + n(b);
+    else tail = 'פרק ' + n(a) + ' פסקה ' + n(as) + ' – פרק ' + n(b) + ' פסקה ' + n(bs);
+  }
+  return 'תניא, ' + p[1] + (tail ? ', ' + tail : '');
+}
+
 // "Book 26:15" + the next day's start "Book 26:20" -> "Book 26:15-19" (or to the end of the chapter / up to
 // the next day's paragraph in a later chapter). Paragraph counts come from the site's own copy of the book.
 async function dailyPortionRef(titleEn, ref, date, useUTC){
@@ -1592,7 +1623,10 @@ async function renderDailyCalendarSection(titleEn, readerId, headingHe, selected
       }
     }).catch(() => {});
     const refLabel = document.getElementById(readerId+'-ref-label');
-    if(refLabel) refLabel.textContent = resolvedRef || item.ref;
+    if(refLabel){
+      const en = resolvedRef || item.ref, he = tanyaRefHe(en);
+      refLabel.textContent = he ? he + ' · ' + en : en;
+    }
     const versesDiv = document.createElement('div');
     versesDiv.className = 'verses';
     // Shulchan Arukh / Kitzur / Arukh HaShulchan: label each se'if with its letter
