@@ -360,7 +360,7 @@ try{
   function endDrag(e){ dragging = false; try{ handle.releasePointerCapture(e.pointerId); }catch(err){} }
   handle.addEventListener('pointerup', endDrag);
   handle.addEventListener('pointercancel', endDrag);
-  hide();   // explicit initial state (matches the HTML's own "hidden" attribute, set via JS too so the two can never drift apart)
+  show();   // opened on arrival; the ✕ closes it, and the button above opens it again
 })();
 }catch(e){
   console.error('dafyomi.html: the floating video widget hit a bug and was isolated:', e);
