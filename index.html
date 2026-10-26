@@ -11,6 +11,7 @@ permalink: /
 <meta name="description" content="אתר לימוד יומי ותפילה אחד: סידור תפילה מותאם ליום (אשכנז, ספרד, עדות המזרח, חב״ד), תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנ״ך יומי, 929, רמב״ם יומי, ברכת המזון וזמני היום — הכול במקום אחד.">
 <meta name="keywords" content="לימוד יומי, סידור תפילה, סידור אונליין, שחרית מנחה ערבית, תהילים, הלכה יומית, משנה יומית, דף יומי, ירושלמי יומי, תניא יומי, תנך יומי, 929, רמבם יומי, ברכת המזון, זמני היום">
 <meta name="robots" content="index, follow">
+<meta name="local-data" content="1">
 <link rel="canonical" href="https://limood.org.il">
 <meta property="og:type" content="website">
 <meta property="og:title" content="מזמור לתודה | לימוד יומי וסידור תפילה">
@@ -114,7 +115,7 @@ if(location.hash === '#halacha') location.replace('halacha.html');
 initHeaderDate();
 initWhatsappFloat('לימוד יומי וסידור תפילה — סידור מותאם ליום, תהילים, הלכה, משנה, דף יומי, ירושלמי, תניא, תנ"ך, 929, רמב"ם וזמני היום, הכול במקום אחד:');
 
-/* ---------- "today" card + today's portion on each track tile (from Sefaria's calendar) ---------- */
+/* ---------- "today" card + today's portion on each track tile (the site's schedule, else Sefaria's calendar) ---------- */
 const TODAY_CARD_ITEMS = [
   { en:'Halakhah Yomit', he:'הלכה יומית', href:'halacha.html', icon:'book' },
   { en:'Daily Mishnah', he:'משנה יומית', href:'mishnayot.html', icon:'columns' },
@@ -135,12 +136,19 @@ async function renderTodayCard(){
   try{ dateEl.textContent = getHebrewDisplay(now); }catch(e){}
   body.innerHTML = '<p class="chapter-loading">טוענים את הלימוד של היום…</p>';
   try{
-    const res = await fetch(`https://www.sefaria.org/api/calendars?diaspora=0&year=${now.getFullYear()}&month=${now.getMonth()+1}&day=${now.getDate()}`);
-    if(!res.ok) throw new Error('calendar fetch failed');
-    const data = await res.json();
-    const items = (data && data.calendar_items) || [];
+    // the site's own schedule (data-schedule.json, refreshed weekly); Sefaria's calendar only for what is missing
+    const want = [...new Set([...TODAY_CARD_ITEMS.map(t => t.en), ...[...document.querySelectorAll('[data-cal]')].map(el => el.dataset.cal)])];
     const byEn = {};
-    items.forEach(i => { if(i.title && i.title.en) byEn[i.title.en] = i; });
+    await Promise.all(want.map(async en => { const it = await localScheduleItem(en, now, false); if(it) byEn[en] = it; }));
+    if(want.some(en => !byEn[en])){
+      try{
+        const res = await fetch(`https://www.sefaria.org/api/calendars?diaspora=0&year=${now.getFullYear()}&month=${now.getMonth()+1}&day=${now.getDate()}`);
+        if(res.ok){
+          const data = await res.json();
+          ((data && data.calendar_items) || []).forEach(i => { if(i.title && i.title.en && !byEn[i.title.en]) byEn[i.title.en] = i; });
+        }
+      }catch(e){}
+    }
     // the tiles: today's portion instead of the general description, when known
     document.querySelectorAll('[data-cal]').forEach(el => {
       const it = byEn[el.dataset.cal];

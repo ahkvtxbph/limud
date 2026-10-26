@@ -792,7 +792,16 @@ async function updateUpcomingShabbatNote(){
   const noteEl = document.getElementById('upcoming-shabbat-note');
   if(!noteEl) return;
   let parashaText = '';
+  // the site's own copy first (data-parasha.json, refreshed weekly by the automation)
   try{
+    const now = new Date();
+    const key = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+    const f = await fetchSiteJson('data-parasha.json');
+    const v = f && f.days && f.days[key];
+    if(Array.isArray(v) && v.length === 1 && v[0]) parashaText = `פרשת השבוע: ${v[0]}`;
+    else if(Array.isArray(v) && v.length === 2) parashaText = `פרשת השבוע — יש הבדל: בארץ ישראל: ${v[0]} · בחו"ל: ${v[1]}`;
+  }catch(e){}
+  if(!parashaText) try{
     // Explicitly tell Sefaria the user's own LOCAL calendar date, instead of relying on
     // its default server-side "today" resolution — otherwise, in the early-morning hours
     // (local midnight to a few hours after, depending on timezone offset), Sefaria may
