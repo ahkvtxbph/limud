@@ -39,7 +39,7 @@ jobs:
           python3 .github/scripts/update_sources.py --schedule-only
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A -- _includes/halacha-schedule.json _includes/src-schedule.json data-schedule.json _includes/src-hebcal.json _includes/src-leyning.json data-hebcal.json data-leyning.json
+          git add -A -- _includes/halacha-schedule.json _includes/src-schedule.json data-schedule.json _includes/src-hebcal.json _includes/src-leyning.json data-hebcal.json data-leyning.json _includes/src-parasha.json data-parasha.json
           if git diff --cached --quiet; then
             echo "Schedule already up to date."
           else

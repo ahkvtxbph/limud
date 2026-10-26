@@ -45,7 +45,7 @@ BOOKS = [
 CALENDAR_ITEMS = ['Halakhah Yomit']                      # -> _includes/halacha-schedule.json
 OTHER_CALENDAR_ITEMS = ['Arukh HaShulchan Yomi', 'Daily Mishnah', 'Daily Rambam', 'Daily Rambam (3 Chapters)',
                         'Tanakh Yomi', '929', 'Daf Yomi', 'Yerushalmi Yomi', 'Tanya Yomi',
-                        'Parashat Hashavua']               # -> _includes/src-schedule.json (+ data-schedule.json)
+                        'Parashat Hashavua', 'Halakhah Yomit']   # -> _includes/src-schedule.json (+ data-schedule.json)
 SCHEDULE_DAYS_BACK, SCHEDULE_DAYS_AHEAD = 7, 120
 
 report = []          # lines for the pull-request description
@@ -333,6 +333,32 @@ def update_hebcal():
     changed |= wrapper('data-leyning.json', 'src-leyning.json')
     return changed
 
+def update_parasha():
+    """The weekly portion for the line under the header of every page — Israel and abroad, per date —
+    from the files above (Sefaria's schedule; Hebcal's readings for Israel / abroad, to see where they differ).
+    _includes/src-parasha.json + data-parasha.json: {"days": {"2026-10-25": ["וירא"] or ["IL", "abroad"]}}"""
+    sched = (read_json('src-schedule.json') or {}).get('Parashat Hashavua') or {}
+    ley = (read_json('src-leyning.json') or {}).get('days') or {}
+    def names(k):
+        out = []
+        for it in (ley.get(k) or {}).get('items') or []:
+            he = re.sub('[\u0591-\u05c7]', '', ((it.get('name') or {}).get('he') or '')).replace('\u05be', '-')
+            he = re.sub(r'\s*\(בשבת\)', '', he).strip()
+            if he and not he.startswith('ערב '): out.append(he)
+        return ' / '.join(out)
+    days = {}
+    for k, v in sorted(sched.items()):
+        d = date.fromisoformat(k)
+        sat = (d + timedelta(days=(5 - d.weekday()) % 7)).isoformat()
+        il, ab = names(sat + '|il'), names(sat)
+        here = (v.get('he') or '').strip()
+        if not here: continue
+        if il == 'שמחת תורה' and ab.startswith('שמיני עצרת'): il = 'שמיני עצרת ושמחת תורה'   # one day in Israel
+        days[k] = [il, ab] if (il and ab and il != ab) else [here]
+    changed = write_if_changed('src-parasha.json', {'note': 'נוצר אוטומטית — לא לערוך ידנית', 'days': days})
+    changed |= wrapper('data-parasha.json', 'src-parasha.json')
+    return changed
+
 BALADI_PAGE = 'ברכת המזון/בלדי 2'
 def update_baladi():
     """Birkat HaMazon, Yemenite (Baladi) nusach, from Hebrew Wikisource (CC BY-SA) — goes through the pull request."""
@@ -363,6 +389,10 @@ def main():
             print('hebcal changed' if update_hebcal() else 'hebcal unchanged')
         except Exception as e:
             print('Hebcal update failed:', e)       # the site keeps using the previous file / Hebcal itself
+        try:
+            print('parasha changed' if update_parasha() else 'parasha unchanged')
+        except Exception as e:
+            print('Parasha update failed:', e)
         return
     update_tehillim()
     update_birkat()
