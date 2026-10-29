@@ -123,9 +123,20 @@ def library():
         ('tanakh',    'תנ"ך',             [(t, None) for t in TANAKH_BOOKS]),
         ('rashi',     'רש"י על התנ"ך',    [('Rashi on ' + t, None if t in torah else ['On Your Way', 'On Your Way -- new']) for t in TANAKH_BOOKS]),
         ('onkelos',   'אונקלוס',          [('Onkelos ' + t, ['Targum Onkelos, vocalized according to the Yemenite Taj']) for t in torah]),
+        # Jerusalem Talmud (Guggenheimer, CC-BY) with Penei Moshe and Korban HaEdah (Piotrków 1898-1900, public domain)
+        ('yerushalmi', 'ירושלמי',        [('Jerusalem Talmud ' + t, None) for t in YERUSHALMI_TRACTATES]),
+        ('pneimoshe',  'פני משה',         [('Penei Moshe on Jerusalem Talmud ' + t, None) for t in YERUSHALMI_TRACTATES]),
+        ('korban',     'קרבן העדה',       [('Korban HaEdah on Jerusalem Talmud ' + t, None) for t in KORBAN_HAEDAH_TRACTATES]),
         # Tanya: Sefaria's edition is CC-BY-NC — the text comes from Hebrew Wikisource (tanya_wikisource.py)
         ('tanya',     'תניא',             [(t, 'wikisource-tanya') for t in TANYA_BOOKS]),
     ]
+YERUSHALMI_TRACTATES = ['Berakhot', 'Peah', 'Demai', 'Kilayim', 'Sheviit', 'Terumot', 'Maasrot', 'Maaser Sheni', 'Challah', 'Orlah',
+    'Bikkurim', 'Shabbat', 'Eruvin', 'Pesachim', 'Yoma', 'Shekalim', 'Sukkah', 'Rosh Hashanah', 'Beitzah', 'Taanit', 'Megillah',
+    'Chagigah', 'Moed Katan', 'Yevamot', 'Sotah', 'Ketubot', 'Nedarim', 'Nazir', 'Gittin', 'Kiddushin', 'Bava Kamma', 'Bava Metzia',
+    'Bava Batra', 'Sanhedrin', 'Shevuot', 'Avodah Zarah', 'Makkot', 'Horayot', 'Niddah']
+KORBAN_HAEDAH_TRACTATES = ['Shabbat', 'Eruvin', 'Pesachim', 'Yoma', 'Shekalim', 'Sukkah', 'Rosh Hashanah', 'Beitzah', 'Taanit',
+    'Megillah', 'Chagigah', 'Moed Katan', 'Yevamot', 'Sotah', 'Ketubot', 'Nedarim', 'Nazir', 'Gittin', 'Kiddushin', 'Sanhedrin',
+    'Shevuot', 'Makkot']
 TANYA_BOOKS = ["Tanya, Part I; Likkutei Amarim, Compiler's Foreword", 'Tanya, Part I; Likkutei Amarim',
                'Tanya, Part II; Shaar HaYichud VehaEmunah, Chinukh Katan', 'Tanya, Part II; Shaar HaYichud VehaEmunah',
                'Tanya, Part III; Iggeret HaTeshuvah', 'Tanya, Part IV; Iggeret HaKodesh', 'Tanya, Part V; Kuntres Acharon']
