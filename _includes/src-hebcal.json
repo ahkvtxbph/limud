@@ -2,41 +2,9 @@
 "note":"נוצר אוטומטית מ־Hebcal.com (CC BY 4.0) — לא לערוך ידנית",
 "sets":{
 "maj=on&mf=on&min=on&mod=on&nx=on":{
-"start":"2026-09-20",
-"end":"2027-11-29",
+"start":"2026-09-24",
+"end":"2027-12-03",
 "items":[
-{
-"title":"Erev Yom Kippur",
-"date":"2026-09-20",
-"hdate":"9 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב יום כיפור",
-"link":"https://hebcal.com/h/yom-kippur-2026?us=js&um=api",
-"memo":"Evening of Yom Kippur (Day of Atonement), which includes the Kol Nidre service. The Yom Kippur fast begins at sundown and continues for 25 hours"
-},
-{
-"title":"Yom Kippur",
-"date":"2026-09-21",
-"hdate":"10 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"יום כיפור",
-"leyning":{
-"1":"Leviticus 16:1-16:6",
-"2":"Leviticus 16:7-16:11",
-"3":"Leviticus 16:12-16:17",
-"4":"Leviticus 16:18-16:24",
-"5":"Leviticus 16:25-16:30",
-"6":"Leviticus 16:31-16:34",
-"torah":"Leviticus 16:1-34; Numbers 29:7-11",
-"haftarah":"Isaiah 57:14-58:14",
-"maftir":"Numbers 29:7-29:11"
-},
-"link":"https://hebcal.com/h/yom-kippur-2026?us=js&um=api",
-"memo":"Day of Atonement. The holiest day of the year in Judaism, traditionally observed with a 25-hour period of fasting and intensive prayer"
-},
 {
 "title":"Erev Sukkot",
 "date":"2026-09-25",
@@ -1547,45 +1515,45 @@
 "hebrew":"חג הסיגד",
 "link":"https://hebcal.com/h/sigd-2027?us=js&um=api",
 "memo":"Ethiopian Jewish holiday occurring 50 days after Yom Kippur"
+},
+{
+"title":"Rosh Chodesh Kislev",
+"date":"2027-11-30",
+"hdate":"30 Cheshvan 5788",
+"category":"roshchodesh",
+"hebrew":"ראש חודש כסלו",
+"leyning":{
+"1":"Numbers 28:1-28:3",
+"2":"Numbers 28:3-28:5",
+"3":"Numbers 28:6-28:10",
+"4":"Numbers 28:11-28:15",
+"torah":"Numbers 28:1-15"
+},
+"link":"https://hebcal.com/h/rosh-chodesh-kislev-2027?us=js&um=api",
+"memo":"Start of month of Kislev on the Hebrew calendar. Kislev (כִּסְלֵו) is the 3rd month of the civil Hebrew year and the 9th month of the biblical Hebrew year. It has 30 or 29 days and corresponds to November or December on the Gregorian calendar. רֹאשׁ חוֹדֶשׁ, transliterated Rosh Chodesh or Rosh Hodesh, is a minor holiday that occurs at the beginning of every month in the Hebrew calendar. It is marked by the birth of a new moon"
+},
+{
+"title":"Rosh Chodesh Kislev",
+"date":"2027-12-01",
+"hdate":"1 Kislev 5788",
+"category":"roshchodesh",
+"hebrew":"ראש חודש כסלו",
+"leyning":{
+"1":"Numbers 28:1-28:3",
+"2":"Numbers 28:3-28:5",
+"3":"Numbers 28:6-28:10",
+"4":"Numbers 28:11-28:15",
+"torah":"Numbers 28:1-15"
+},
+"link":"https://hebcal.com/h/rosh-chodesh-kislev-2027?us=js&um=api",
+"memo":"Start of month of Kislev on the Hebrew calendar. Kislev (כִּסְלֵו) is the 3rd month of the civil Hebrew year and the 9th month of the biblical Hebrew year. It has 30 or 29 days and corresponds to November or December on the Gregorian calendar. רֹאשׁ חוֹדֶשׁ, transliterated Rosh Chodesh or Rosh Hodesh, is a minor holiday that occurs at the beginning of every month in the Hebrew calendar. It is marked by the birth of a new moon"
 }
 ]
 },
 "maj=on&min=on&mod=on&nx=on":{
-"start":"2026-09-20",
-"end":"2027-11-29",
+"start":"2026-09-24",
+"end":"2027-12-03",
 "items":[
-{
-"title":"Erev Yom Kippur",
-"date":"2026-09-20",
-"hdate":"9 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב יום כיפור",
-"link":"https://hebcal.com/h/yom-kippur-2026?us=js&um=api",
-"memo":"Evening of Yom Kippur (Day of Atonement), which includes the Kol Nidre service. The Yom Kippur fast begins at sundown and continues for 25 hours"
-},
-{
-"title":"Yom Kippur",
-"date":"2026-09-21",
-"hdate":"10 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"יום כיפור",
-"leyning":{
-"1":"Leviticus 16:1-16:6",
-"2":"Leviticus 16:7-16:11",
-"3":"Leviticus 16:12-16:17",
-"4":"Leviticus 16:18-16:24",
-"5":"Leviticus 16:25-16:30",
-"6":"Leviticus 16:31-16:34",
-"torah":"Leviticus 16:1-34; Numbers 29:7-11",
-"haftarah":"Isaiah 57:14-58:14",
-"maftir":"Numbers 29:7-29:11"
-},
-"link":"https://hebcal.com/h/yom-kippur-2026?us=js&um=api",
-"memo":"Day of Atonement. The holiest day of the year in Judaism, traditionally observed with a 25-hour period of fasting and intensive prayer"
-},
 {
 "title":"Erev Sukkot",
 "date":"2026-09-25",
@@ -3019,45 +2987,45 @@
 "hebrew":"חג הסיגד",
 "link":"https://hebcal.com/h/sigd-2027?us=js&um=api",
 "memo":"Ethiopian Jewish holiday occurring 50 days after Yom Kippur"
+},
+{
+"title":"Rosh Chodesh Kislev",
+"date":"2027-11-30",
+"hdate":"30 Cheshvan 5788",
+"category":"roshchodesh",
+"hebrew":"ראש חודש כסלו",
+"leyning":{
+"1":"Numbers 28:1-28:3",
+"2":"Numbers 28:3-28:5",
+"3":"Numbers 28:6-28:10",
+"4":"Numbers 28:11-28:15",
+"torah":"Numbers 28:1-15"
+},
+"link":"https://hebcal.com/h/rosh-chodesh-kislev-2027?us=js&um=api",
+"memo":"Start of month of Kislev on the Hebrew calendar. Kislev (כִּסְלֵו) is the 3rd month of the civil Hebrew year and the 9th month of the biblical Hebrew year. It has 30 or 29 days and corresponds to November or December on the Gregorian calendar. רֹאשׁ חוֹדֶשׁ, transliterated Rosh Chodesh or Rosh Hodesh, is a minor holiday that occurs at the beginning of every month in the Hebrew calendar. It is marked by the birth of a new moon"
+},
+{
+"title":"Rosh Chodesh Kislev",
+"date":"2027-12-01",
+"hdate":"1 Kislev 5788",
+"category":"roshchodesh",
+"hebrew":"ראש חודש כסלו",
+"leyning":{
+"1":"Numbers 28:1-28:3",
+"2":"Numbers 28:3-28:5",
+"3":"Numbers 28:6-28:10",
+"4":"Numbers 28:11-28:15",
+"torah":"Numbers 28:1-15"
+},
+"link":"https://hebcal.com/h/rosh-chodesh-kislev-2027?us=js&um=api",
+"memo":"Start of month of Kislev on the Hebrew calendar. Kislev (כִּסְלֵו) is the 3rd month of the civil Hebrew year and the 9th month of the biblical Hebrew year. It has 30 or 29 days and corresponds to November or December on the Gregorian calendar. רֹאשׁ חוֹדֶשׁ, transliterated Rosh Chodesh or Rosh Hodesh, is a minor holiday that occurs at the beginning of every month in the Hebrew calendar. It is marked by the birth of a new moon"
 }
 ]
 },
 "i=on&maj=on&min=on&mod=on&nx=on":{
-"start":"2026-09-20",
-"end":"2027-11-29",
+"start":"2026-09-24",
+"end":"2027-12-03",
 "items":[
-{
-"title":"Erev Yom Kippur",
-"date":"2026-09-20",
-"hdate":"9 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב יום כיפור",
-"link":"https://hebcal.com/h/yom-kippur-2026?i=on&us=js&um=api",
-"memo":"Evening of Yom Kippur (Day of Atonement), which includes the Kol Nidre service. The Yom Kippur fast begins at sundown and continues for 25 hours"
-},
-{
-"title":"Yom Kippur",
-"date":"2026-09-21",
-"hdate":"10 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"יום כיפור",
-"leyning":{
-"1":"Leviticus 16:1-16:6",
-"2":"Leviticus 16:7-16:11",
-"3":"Leviticus 16:12-16:17",
-"4":"Leviticus 16:18-16:24",
-"5":"Leviticus 16:25-16:30",
-"6":"Leviticus 16:31-16:34",
-"torah":"Leviticus 16:1-34; Numbers 29:7-11",
-"haftarah":"Isaiah 57:14-58:14",
-"maftir":"Numbers 29:7-29:11"
-},
-"link":"https://hebcal.com/h/yom-kippur-2026?i=on&us=js&um=api",
-"memo":"Day of Atonement. The holiest day of the year in Judaism, traditionally observed with a 25-hour period of fasting and intensive prayer"
-},
 {
 "title":"Erev Sukkot",
 "date":"2026-09-25",
@@ -4489,34 +4457,45 @@
 "hebrew":"חג הסיגד",
 "link":"https://hebcal.com/h/sigd-2027?i=on&us=js&um=api",
 "memo":"Ethiopian Jewish holiday occurring 50 days after Yom Kippur"
+},
+{
+"title":"Rosh Chodesh Kislev",
+"date":"2027-11-30",
+"hdate":"30 Cheshvan 5788",
+"category":"roshchodesh",
+"hebrew":"ראש חודש כסלו",
+"leyning":{
+"1":"Numbers 28:1-28:3",
+"2":"Numbers 28:3-28:5",
+"3":"Numbers 28:6-28:10",
+"4":"Numbers 28:11-28:15",
+"torah":"Numbers 28:1-15"
+},
+"link":"https://hebcal.com/h/rosh-chodesh-kislev-2027?i=on&us=js&um=api",
+"memo":"Start of month of Kislev on the Hebrew calendar. Kislev (כִּסְלֵו) is the 3rd month of the civil Hebrew year and the 9th month of the biblical Hebrew year. It has 30 or 29 days and corresponds to November or December on the Gregorian calendar. רֹאשׁ חוֹדֶשׁ, transliterated Rosh Chodesh or Rosh Hodesh, is a minor holiday that occurs at the beginning of every month in the Hebrew calendar. It is marked by the birth of a new moon"
+},
+{
+"title":"Rosh Chodesh Kislev",
+"date":"2027-12-01",
+"hdate":"1 Kislev 5788",
+"category":"roshchodesh",
+"hebrew":"ראש חודש כסלו",
+"leyning":{
+"1":"Numbers 28:1-28:3",
+"2":"Numbers 28:3-28:5",
+"3":"Numbers 28:6-28:10",
+"4":"Numbers 28:11-28:15",
+"torah":"Numbers 28:1-15"
+},
+"link":"https://hebcal.com/h/rosh-chodesh-kislev-2027?i=on&us=js&um=api",
+"memo":"Start of month of Kislev on the Hebrew calendar. Kislev (כִּסְלֵו) is the 3rd month of the civil Hebrew year and the 9th month of the biblical Hebrew year. It has 30 or 29 days and corresponds to November or December on the Gregorian calendar. רֹאשׁ חוֹדֶשׁ, transliterated Rosh Chodesh or Rosh Hodesh, is a minor holiday that occurs at the beginning of every month in the Hebrew calendar. It is marked by the birth of a new moon"
 }
 ]
 },
 "leyning=off&maj=on&s=on":{
-"start":"2026-09-20",
-"end":"2027-11-29",
+"start":"2026-09-24",
+"end":"2027-12-03",
 "items":[
-{
-"title":"Erev Yom Kippur",
-"date":"2026-09-20",
-"hdate":"9 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב יום כיפור",
-"link":"https://hebcal.com/h/yom-kippur-2026?us=js&um=api",
-"memo":"Evening of Yom Kippur (Day of Atonement), which includes the Kol Nidre service. The Yom Kippur fast begins at sundown and continues for 25 hours"
-},
-{
-"title":"Yom Kippur",
-"date":"2026-09-21",
-"hdate":"10 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"יום כיפור",
-"link":"https://hebcal.com/h/yom-kippur-2026?us=js&um=api",
-"memo":"Day of Atonement. The holiest day of the year in Judaism, traditionally observed with a 25-hour period of fasting and intensive prayer"
-},
 {
 "title":"Erev Sukkot",
 "date":"2026-09-25",
@@ -5495,30 +5474,9 @@
 ]
 },
 "i=on&leyning=off&maj=on&s=on":{
-"start":"2026-09-20",
-"end":"2027-11-29",
+"start":"2026-09-24",
+"end":"2027-12-03",
 "items":[
-{
-"title":"Erev Yom Kippur",
-"date":"2026-09-20",
-"hdate":"9 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב יום כיפור",
-"link":"https://hebcal.com/h/yom-kippur-2026?i=on&us=js&um=api",
-"memo":"Evening of Yom Kippur (Day of Atonement), which includes the Kol Nidre service. The Yom Kippur fast begins at sundown and continues for 25 hours"
-},
-{
-"title":"Yom Kippur",
-"date":"2026-09-21",
-"hdate":"10 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"יום כיפור",
-"link":"https://hebcal.com/h/yom-kippur-2026?i=on&us=js&um=api",
-"memo":"Day of Atonement. The holiest day of the year in Judaism, traditionally observed with a 25-hour period of fasting and intensive prayer"
-},
 {
 "title":"Erev Sukkot",
 "date":"2026-09-25",
