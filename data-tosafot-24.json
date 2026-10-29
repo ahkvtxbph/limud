@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-tosafot-24.json
+---
+{% include src-tosafot-24.json %}
