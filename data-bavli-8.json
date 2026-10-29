@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-bavli-8.json
+---
+{% include src-bavli-8.json %}
