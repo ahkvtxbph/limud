@@ -366,6 +366,7 @@ def update_baladi():
            + '&prop=text|revid&disableeditsection=1&format=json')
     d = http_json(url)
     html = (((d.get('parse') or {}).get('text') or {}).get('*')) or ''
+    html = re.sub(r'<!--.*?-->', '', html, flags=re.S).strip()   # Wikipedia's server notes change on every request
     if len(html) < 2000:
         problems.append('**ברכת המזון — תימן (בלדי)**: התקבל טקסט קצר מדי מוויקיטקסט — הקובץ לא עודכן.')
         return
