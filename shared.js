@@ -1227,6 +1227,13 @@ async function localRefText(ref){
   }
   const title = titles.sort((x, y) => y.length - x.length).find(t => ref.indexOf(t + ' ') === 0);
   if(!title) return null;
+  if(m.books[title].talmud){                           // Talmud: "34" = 34a-34b, "34a:3-35b:2" … -> amudim (3 = 2a)
+    let t = localTalmudRef(ref.slice(title.length + 1));
+    if(!t) return null;
+    const n = (m.books[title].counts || []).length, r2 = t.match(/^(\d+)-(\d+)$/);
+    if(r2 && +r2[2] > n && +r2[1] <= n) t = +r2[1] === n ? r2[1] : r2[1] + '-' + n;   // the last daf has only an amud a
+    ref = title + ' ' + t;
+  }
   const deep = ref.slice(title.length + 1).match(/^(\d+(?::\d+){2,})(?:-(\d+(?::\d+)*))?$/);
   if(deep) return localDeepRef(title, deep[1], deep[2]);
   const r = ref.slice(title.length + 1).match(/^(\d+)(?::(\d+))?(?:-(\d+)(?::(\d+))?)?$/);
@@ -1252,6 +1259,15 @@ async function localRefText(ref){
     out.push(part);
   }
   return has(out) ? out : null;
+}
+function localTalmudRef(addr){
+  const m = String(addr).match(/^(\d+)([ab])?(?::(\d+))?(?:-(\d+)([ab])?(?::(\d+))?)?$/);
+  if(!m) return null;
+  const [, d1, s1, g1, d2, s2, g2] = m;
+  const amud = (d, side, end) => (+d - 1) * 2 + ((side || (end ? 'b' : 'a')) === 'b' ? 2 : 1);
+  if(!d2) return s1 ? amud(d1, s1) + (g1 ? ':' + g1 : '') : amud(d1, null) + '-' + amud(d1, null, true);
+  if(g1 && !s2 && !g2) return amud(d1, s1) + ':' + g1 + '-' + d2;          // "34a:3-7": paragraphs 3-7 of 34a
+  return amud(d1, s1) + (g1 ? ':' + g1 : '') + '-' + amud(d2, s2, true) + (g2 ? ':' + g2 : '');
 }
 // Refs three levels deep (the Jerusalem Talmud: chapter:halakha:segment), in the same shape Sefaria returns:
 // "3:7:1-13:5" -> halakhot 7..13 of chapter 3 (first and last trimmed), "1:1:1-11" -> segments, "2:7:2-3:7:1" -> chapters.
