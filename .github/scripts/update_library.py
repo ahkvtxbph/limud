@@ -123,6 +123,11 @@ def library():
         ('tanakh',    'תנ"ך',             [(t, None) for t in TANAKH_BOOKS]),
         ('rashi',     'רש"י על התנ"ך',    [('Rashi on ' + t, None if t in torah else ['On Your Way', 'On Your Way -- new']) for t in TANAKH_BOOKS]),
         ('onkelos',   'אונקלוס',          [('Onkelos ' + t, ['Targum Onkelos, vocalized according to the Yemenite Taj']) for t in torah]),
+        # Babylonian Talmud (Daf Yomi): the Wikisource edition (CC-BY-SA; Sefaria's default is CC-BY-NC),
+        # Rashi and Tosafot (Vilna, public domain). Kept by amud: section 3 = 2a, 4 = 2b … (see talmud_addr)
+        ('bavli',     'תלמוד בבלי',       [(t, ['Wikisource Talmud Bavli']) for t in BAVLI_TRACTATES]),
+        ('rashi-bavli', 'רש״י על הש״ס',   [('Rashi on ' + t, None) for t in BAVLI_TRACTATES if t not in NO_RASHI]),
+        ('tosafot',   'תוספות',           [('Tosafot on ' + t, None) for t in BAVLI_TRACTATES if t not in NO_TOSAFOT]),
         # Jerusalem Talmud (Guggenheimer, CC-BY) with Penei Moshe and Korban HaEdah (Piotrków 1898-1900, public domain)
         ('yerushalmi', 'ירושלמי',        [('Jerusalem Talmud ' + t, None) for t in YERUSHALMI_TRACTATES]),
         ('pneimoshe',  'פני משה',         [('Penei Moshe on Jerusalem Talmud ' + t, None) for t in YERUSHALMI_TRACTATES]),
@@ -130,6 +135,16 @@ def library():
         # Tanya: Sefaria's edition is CC-BY-NC — the text comes from Hebrew Wikisource (tanya_wikisource.py)
         ('tanya',     'תניא',             [(t, 'wikisource-tanya') for t in TANYA_BOOKS]),
     ]
+BAVLI_TRACTATES = ['Berakhot', 'Shabbat', 'Eruvin', 'Pesachim', 'Rosh Hashanah', 'Yoma', 'Sukkah', 'Beitzah', 'Taanit', 'Megillah',
+    'Moed Katan', 'Chagigah', 'Yevamot', 'Ketubot', 'Nedarim', 'Nazir', 'Sotah', 'Gittin', 'Kiddushin', 'Bava Kamma', 'Bava Metzia',
+    'Bava Batra', 'Sanhedrin', 'Makkot', 'Shevuot', 'Avodah Zarah', 'Horayot', 'Zevachim', 'Menachot', 'Chullin', 'Bekhorot',
+    'Arakhin', 'Temurah', 'Keritot', 'Meilah', 'Tamid', 'Niddah']
+NO_TOSAFOT = {'Tamid'}            # not on Sefaria
+NO_RASHI = {'Tamid'}
+TALMUD_GROUPS = {'bavli', 'rashi-bavli', 'tosafot'}
+def talmud_addr(k):
+    """amud number (1 = 1a, 2 = 1b, 3 = 2a …) -> Sefaria's address ("2a")"""
+    return f"{(k + 1) // 2}{'a' if k % 2 else 'b'}"
 YERUSHALMI_TRACTATES = ['Berakhot', 'Peah', 'Demai', 'Kilayim', 'Sheviit', 'Terumot', 'Maasrot', 'Maaser Sheni', 'Challah', 'Orlah',
     'Bikkurim', 'Shabbat', 'Eruvin', 'Pesachim', 'Yoma', 'Shekalim', 'Sukkah', 'Rosh Hashanah', 'Beitzah', 'Taanit', 'Megillah',
     'Chagigah', 'Moed Katan', 'Yevamot', 'Sotah', 'Ketubot', 'Nedarim', 'Nazir', 'Gittin', 'Kiddushin', 'Bava Kamma', 'Bava Metzia',
@@ -184,9 +199,11 @@ class Library:
         if ok: return ok[0].get('versionTitle'), ok[0].get('license'), ok[0].get('versionSource') or ''
         return False, v0.get('license'), ''
 
-    def book(self, title, prefer):
-        """The whole book: list of sections (each a list of segments, or of lists for commentaries)."""
+    def book(self, title, prefer, talmud=False):
+        """The whole book: list of sections (each a list of segments, or of lists for commentaries).
+        talmud: sections are amudim, asked for by their address (2a, 2b …)."""
         u = self.u
+        at = talmud_addr if talmud else str
         if prefer == 'wikisource-tanya':
             import tanya_wikisource as T
             r = T.build(self, title)
@@ -199,28 +216,32 @@ class Library:
         try:
             d = u.http_json(f"{u.API}/shape/{u.urllib.parse.quote(title)}")
             node = next((x for x in d if isinstance(x, dict) and x.get('title') == title), d[0]) if isinstance(d, list) else d
-            counts = [c if isinstance(c, int) else (len(c) if isinstance(c, list) else 0) for c in (node.get('chapters') or [])]
+            def amount(c):            # how much text a section has ([[0], 0, [7, 3 …]] for a commentary)
+                return c if isinstance(c, int) else (sum(amount(x) for x in c) if isinstance(c, list) else 0)
+            counts = [amount(c) for c in (node.get('chapters') or [])]
         except Exception:
             pass
         n = len(counts)
         probe = next((k + 1 for k, c in enumerate(counts) if c), 1)
-        version, lic, source = self.pick(title, prefer, probe)
+        version, lic, source = self.pick(title, prefer, at(probe))
         if not n:      # no shape (e.g. an alternative spelling of the title): ask for the whole book once
             whole = (self.fetch(title, version or None).get('versions') or [{}])[0].get('text') or []
             n = len(whole) if isinstance(whole, list) else 0
             if not n: raise RuntimeError('no text structure for ' + title)
         if version is False: raise RuntimeError(f'no edition with an allowed license ({lic})')
         sections, used = [], set()
-        for a in range(1, n + 1, CHUNK):
+        first = next((k + 1 for k, c in enumerate(counts) if c), 1)     # leading empty sections (Talmud: 1a, 1b)
+        sections.extend([[] for _ in range(first - 1)])
+        for a in range(first, n + 1, CHUNK):
             b = min(n, a + CHUNK - 1)
-            ref = f'{title} {a}-{b}' if b > a else f'{title} {a}'
+            ref = f'{title} {at(a)}-{at(b)}' if b > a else f'{title} {at(a)}'
             if counts and not any(counts[a - 1:b]):          # nothing in Sefaria for these sections
                 sections.extend([[] for _ in range(a, b + 1)]); continue
             try:
                 r = self.fetch(ref, version)
             except Exception:                                 # e.g. 404 for a range with gaps: one by one
                 for k in range(a, b + 1):
-                    try: sections.append((self.fetch(f'{title} {k}', version).get('versions') or [{}])[0].get('text') or [])
+                    try: sections.append((self.fetch(f'{title} {at(k)}', version).get('versions') or [{}])[0].get('text') or [])
                     except Exception: sections.append([])
                 continue
             v = (r.get('versions') or [{}])[0]
@@ -241,7 +262,7 @@ class Library:
             if len(chunk) != b - a + 1:
                 chunk = []
                 for k in range(a, b + 1):
-                    try: chunk.append((self.fetch(f'{title} {k}', version).get('versions') or [{}])[0].get('text') or [])
+                    try: chunk.append((self.fetch(f'{title} {at(k)}', version).get('versions') or [{}])[0].get('text') or [])
                     except Exception: chunk.append([])
             sections.extend(chunk)
         def cl(x):
@@ -289,7 +310,7 @@ class Library:
                 bundle, bundle_size = [], 0
             for title, prefer in entries:
                 try:
-                    b = self.book(title, prefer)
+                    b = self.book(title, prefer, talmud=group in TALMUD_GROUPS)
                 except Exception as e:
                     old = self.old_book(manifest, title)
                     u.problems.append(f'**{label} — {title}**: לא ניתן היה להוריד ({e}) — ' + ('נשאר הטקסט הקודם.' if old else 'הספר ממשיך להיטען מספריא.'))
@@ -309,6 +330,7 @@ class Library:
                     added_count[label] = added_count.get(label, 0) + 1
                 books[title] = {'versionTitle': b['versionTitle'], 'license': b['license'], 'pin': b.get('pin'),
                                 'counts': [len(s) if isinstance(s, list) else 1 for s in b['text']], 'parts': []}
+                if group in TALMUD_GROUPS: books[title]['talmud'] = True     # the site turns "34" / "34a" into amudim
                 meta = {'versionTitle': b['versionTitle'], 'license': b['license'], 'versionSource': b.get('versionSource') or ''}
                 # split one book into pieces of ~TARGET_BYTES, or put several small books together
                 secs = b['text']
