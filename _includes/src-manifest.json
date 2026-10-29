@@ -7274,7 +7274,7 @@
 "file":"data-rambam-10.json",
 "from":1,
 "to":28,
-"v":"eb7b52e1e0ab"
+"v":"456bddc8d55a"
 }
 ]
 },
@@ -7303,7 +7303,7 @@
 "file":"data-rambam-10.json",
 "from":1,
 "to":14,
-"v":"eb7b52e1e0ab"
+"v":"456bddc8d55a"
 }
 ]
 },
@@ -7331,7 +7331,7 @@
 "file":"data-rambam-10.json",
 "from":1,
 "to":13,
-"v":"eb7b52e1e0ab"
+"v":"456bddc8d55a"
 }
 ]
 },
@@ -7354,7 +7354,7 @@
 "file":"data-rambam-10.json",
 "from":1,
 "to":8,
-"v":"eb7b52e1e0ab"
+"v":"456bddc8d55a"
 }
 ]
 },
@@ -7387,7 +7387,7 @@
 "file":"data-rambam-10.json",
 "from":1,
 "to":18,
-"v":"eb7b52e1e0ab"
+"v":"456bddc8d55a"
 }
 ]
 },
@@ -7411,7 +7411,7 @@
 "file":"data-rambam-10.json",
 "from":1,
 "to":9,
-"v":"eb7b52e1e0ab"
+"v":"456bddc8d55a"
 }
 ]
 },
@@ -7436,7 +7436,7 @@
 "file":"data-rambam-10.json",
 "from":1,
 "to":10,
-"v":"eb7b52e1e0ab"
+"v":"456bddc8d55a"
 }
 ]
 },
@@ -11161,6 +11161,2279 @@
 }
 ]
 },
+"Jerusalem Talmud Berakhot":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+6,
+9,
+6,
+6,
+5,
+8,
+5,
+8,
+5
+],
+"parts":[
+{
+"file":"data-yerushalmi-1.json",
+"from":1,
+"to":9,
+"v":"cc13f4d10bce"
+}
+]
+},
+"Jerusalem Talmud Peah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+5,
+5,
+8,
+7,
+7,
+8,
+7,
+8
+],
+"parts":[
+{
+"file":"data-yerushalmi-1.json",
+"from":1,
+"to":8,
+"v":"cc13f4d10bce"
+}
+]
+},
+"Jerusalem Talmud Demai":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+4,
+5,
+6,
+5,
+8,
+8,
+8
+],
+"parts":[
+{
+"file":"data-yerushalmi-2.json",
+"from":1,
+"to":7,
+"v":"9cffb4c291f8"
+}
+]
+},
+"Jerusalem Talmud Kilayim":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+9,
+8,
+6,
+6,
+7,
+4,
+6,
+4,
+6
+],
+"parts":[
+{
+"file":"data-yerushalmi-2.json",
+"from":1,
+"to":9,
+"v":"9cffb4c291f8"
+}
+]
+},
+"Jerusalem Talmud Sheviit":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+6,
+7,
+7,
+8,
+4,
+4,
+2,
+8,
+6,
+4
+],
+"parts":[
+{
+"file":"data-yerushalmi-2.json",
+"from":1,
+"to":10,
+"v":"9cffb4c291f8"
+}
+]
+},
+"Jerusalem Talmud Terumot":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+5,
+3,
+5,
+8,
+3,
+3,
+3,
+4,
+3,
+6,
+5
+],
+"parts":[
+{
+"file":"data-yerushalmi-3.json",
+"from":1,
+"to":11,
+"v":"ef65f38e23da"
+}
+]
+},
+"Jerusalem Talmud Maasrot":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+5,
+4,
+4,
+4,
+3
+],
+"parts":[
+{
+"file":"data-yerushalmi-3.json",
+"from":1,
+"to":5,
+"v":"ef65f38e23da"
+}
+]
+},
+"Jerusalem Talmud Maaser Sheni":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+3,
+4,
+6,
+6,
+5
+],
+"parts":[
+{
+"file":"data-yerushalmi-3.json",
+"from":1,
+"to":5,
+"v":"ef65f38e23da"
+}
+]
+},
+"Jerusalem Talmud Challah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+6,
+3,
+5,
+5
+],
+"parts":[
+{
+"file":"data-yerushalmi-3.json",
+"from":1,
+"to":4,
+"v":"ef65f38e23da"
+}
+]
+},
+"Jerusalem Talmud Orlah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+5,
+9,
+7
+],
+"parts":[
+{
+"file":"data-yerushalmi-4.json",
+"from":1,
+"to":3,
+"v":"c82c5c32bcfc"
+}
+]
+},
+"Jerusalem Talmud Bikkurim":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+9,
+6,
+6
+],
+"parts":[
+{
+"file":"data-yerushalmi-4.json",
+"from":1,
+"to":3,
+"v":"c82c5c32bcfc"
+}
+]
+},
+"Jerusalem Talmud Shabbat":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+11,
+7,
+8,
+3,
+4,
+9,
+4,
+7,
+7,
+6,
+6,
+6,
+7,
+4,
+3,
+9,
+7,
+3,
+6,
+5,
+3,
+6,
+5,
+5
+],
+"parts":[
+{
+"file":"data-yerushalmi-4.json",
+"from":1,
+"to":24,
+"v":"c82c5c32bcfc"
+}
+]
+},
+"Jerusalem Talmud Eruvin":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+10,
+8,
+10,
+10,
+8,
+10,
+10,
+9,
+5,
+14
+],
+"parts":[
+{
+"file":"data-yerushalmi-5.json",
+"from":1,
+"to":10,
+"v":"3d169c94aa5e"
+}
+]
+},
+"Jerusalem Talmud Pesachim":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+8,
+7,
+8,
+9,
+10,
+6,
+13,
+8,
+10,
+7
+],
+"parts":[
+{
+"file":"data-yerushalmi-5.json",
+"from":1,
+"to":10,
+"v":"3d169c94aa5e"
+}
+]
+},
+"Jerusalem Talmud Yoma":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+8,
+4,
+9,
+6,
+7,
+7,
+3,
+7
+],
+"parts":[
+{
+"file":"data-yerushalmi-6.json",
+"from":1,
+"to":8,
+"v":"cca9728d8032"
+}
+]
+},
+"Jerusalem Talmud Shekalim":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+4,
+5,
+3,
+5,
+4,
+4,
+3,
+4
+],
+"parts":[
+{
+"file":"data-yerushalmi-6.json",
+"from":1,
+"to":8,
+"v":"cca9728d8032"
+}
+]
+},
+"Jerusalem Talmud Sukkah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+12,
+10,
+12,
+7,
+8
+],
+"parts":[
+{
+"file":"data-yerushalmi-6.json",
+"from":1,
+"to":5,
+"v":"cca9728d8032"
+}
+]
+},
+"Jerusalem Talmud Rosh Hashanah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+8,
+8,
+10,
+10
+],
+"parts":[
+{
+"file":"data-yerushalmi-6.json",
+"from":1,
+"to":4,
+"v":"cca9728d8032"
+}
+]
+},
+"Jerusalem Talmud Beitzah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+12,
+10,
+9,
+7,
+8
+],
+"parts":[
+{
+"file":"data-yerushalmi-7.json",
+"from":1,
+"to":5,
+"v":"6a3ecc7c7bda"
+}
+]
+},
+"Jerusalem Talmud Taanit":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+8,
+14,
+11,
+7
+],
+"parts":[
+{
+"file":"data-yerushalmi-7.json",
+"from":1,
+"to":4,
+"v":"6a3ecc7c7bda"
+}
+]
+},
+"Jerusalem Talmud Megillah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+12,
+7,
+7,
+12
+],
+"parts":[
+{
+"file":"data-yerushalmi-7.json",
+"from":1,
+"to":4,
+"v":"6a3ecc7c7bda"
+}
+]
+},
+"Jerusalem Talmud Chagigah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+8,
+7,
+8
+],
+"parts":[
+{
+"file":"data-yerushalmi-7.json",
+"from":1,
+"to":3,
+"v":"6a3ecc7c7bda"
+}
+]
+},
+"Jerusalem Talmud Moed Katan":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+10,
+5,
+9
+],
+"parts":[
+{
+"file":"data-yerushalmi-8.json",
+"from":1,
+"to":3,
+"v":"2b3df57d1886"
+}
+]
+},
+"Jerusalem Talmud Yevamot":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+6,
+12,
+12,
+16,
+8,
+6,
+8,
+6,
+8,
+8,
+7,
+6,
+14,
+7,
+10,
+9
+],
+"parts":[
+{
+"file":"data-yerushalmi-8.json",
+"from":1,
+"to":16,
+"v":"2b3df57d1886"
+}
+]
+},
+"Jerusalem Talmud Sotah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+10,
+6,
+8,
+5,
+6,
+4,
+8,
+10,
+16
+],
+"parts":[
+{
+"file":"data-yerushalmi-9.json",
+"from":1,
+"to":9,
+"v":"97c23e2d53b8"
+}
+]
+},
+"Jerusalem Talmud Ketubot":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+10,
+10,
+10,
+14,
+11,
+7,
+9,
+11,
+10,
+6,
+7,
+5,
+11
+],
+"parts":[
+{
+"file":"data-yerushalmi-9.json",
+"from":1,
+"to":13,
+"v":"97c23e2d53b8"
+}
+]
+},
+"Jerusalem Talmud Nedarim":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+4,
+5,
+9,
+10,
+6,
+11,
+11,
+9,
+9,
+8,
+12
+],
+"parts":[
+{
+"file":"data-yerushalmi-10.json",
+"from":1,
+"to":11,
+"v":"b5bfe09c0bee"
+}
+]
+},
+"Jerusalem Talmud Nazir":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+5,
+10,
+7,
+6,
+4,
+11,
+4,
+2,
+6
+],
+"parts":[
+{
+"file":"data-yerushalmi-10.json",
+"from":1,
+"to":9,
+"v":"b5bfe09c0bee"
+}
+]
+},
+"Jerusalem Talmud Gittin":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+5,
+7,
+8,
+9,
+10,
+7,
+8,
+10,
+11
+],
+"parts":[
+{
+"file":"data-yerushalmi-10.json",
+"from":1,
+"to":9,
+"v":"b5bfe09c0bee"
+}
+]
+},
+"Jerusalem Talmud Kiddushin":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+9,
+9,
+13,
+12
+],
+"parts":[
+{
+"file":"data-yerushalmi-11.json",
+"from":1,
+"to":4,
+"v":"2cf0eb1c0d1a"
+}
+]
+},
+"Jerusalem Talmud Bava Kamma":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+5,
+8,
+11,
+9,
+8,
+8,
+7,
+8,
+10,
+11
+],
+"parts":[
+{
+"file":"data-yerushalmi-11.json",
+"from":1,
+"to":10,
+"v":"2cf0eb1c0d1a"
+}
+]
+},
+"Jerusalem Talmud Bava Metzia":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+8,
+11,
+9,
+7,
+8,
+6,
+7,
+9,
+13,
+6
+],
+"parts":[
+{
+"file":"data-yerushalmi-11.json",
+"from":1,
+"to":10,
+"v":"2cf0eb1c0d1a"
+}
+]
+},
+"Jerusalem Talmud Bava Batra":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+5,
+11,
+11,
+8,
+5,
+4,
+4,
+9,
+9,
+10
+],
+"parts":[
+{
+"file":"data-yerushalmi-12.json",
+"from":1,
+"to":10,
+"v":"ab0ad4317957"
+}
+]
+},
+"Jerusalem Talmud Sanhedrin":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+4,
+6,
+12,
+9,
+5,
+10,
+13,
+9,
+7,
+8,
+6
+],
+"parts":[
+{
+"file":"data-yerushalmi-12.json",
+"from":1,
+"to":11,
+"v":"ab0ad4317957"
+}
+]
+},
+"Jerusalem Talmud Shevuot":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+7,
+5,
+10,
+10,
+6,
+8,
+8,
+4
+],
+"parts":[
+{
+"file":"data-yerushalmi-13.json",
+"from":1,
+"to":8,
+"v":"2167a93f0793"
+}
+]
+},
+"Jerusalem Talmud Avodah Zarah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+10,
+9,
+14,
+12,
+15
+],
+"parts":[
+{
+"file":"data-yerushalmi-13.json",
+"from":1,
+"to":5,
+"v":"2167a93f0793"
+}
+]
+},
+"Jerusalem Talmud Makkot":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+8,
+7,
+13
+],
+"parts":[
+{
+"file":"data-yerushalmi-13.json",
+"from":1,
+"to":3,
+"v":"2167a93f0793"
+}
+]
+},
+"Jerusalem Talmud Horayot":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+8,
+7,
+5
+],
+"parts":[
+{
+"file":"data-yerushalmi-13.json",
+"from":1,
+"to":3,
+"v":"2167a93f0793"
+}
+]
+},
+"Jerusalem Talmud Niddah":{
+"versionTitle":"The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015",
+"license":"CC-BY",
+"pin":null,
+"counts":[
+6,
+7,
+5,
+7
+],
+"parts":[
+{
+"file":"data-yerushalmi-13.json",
+"from":1,
+"to":4,
+"v":"2167a93f0793"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Berakhot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+9,
+6,
+6,
+5,
+8,
+5,
+8,
+5
+],
+"parts":[
+{
+"file":"data-pneimoshe-1.json",
+"from":1,
+"to":9,
+"v":"8936f2e356a9"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Peah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+5,
+8,
+7,
+7,
+8,
+7,
+8
+],
+"parts":[
+{
+"file":"data-pneimoshe-1.json",
+"from":1,
+"to":8,
+"v":"8936f2e356a9"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Demai":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+6,
+5,
+8,
+8,
+8
+],
+"parts":[
+{
+"file":"data-pneimoshe-2.json",
+"from":1,
+"to":7,
+"v":"3d384c09b005"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Kilayim":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+8,
+6,
+6,
+7,
+4,
+6,
+4,
+6
+],
+"parts":[
+{
+"file":"data-pneimoshe-3.json",
+"from":1,
+"to":9,
+"v":"778c70fc4f4c"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Sheviit":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+7,
+7,
+8,
+4,
+4,
+2,
+8,
+6,
+4
+],
+"parts":[
+{
+"file":"data-pneimoshe-4.json",
+"from":1,
+"to":10,
+"v":"37021ceea3f2"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Terumot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+3,
+5,
+8,
+3,
+3,
+3,
+4,
+3,
+6,
+5
+],
+"parts":[
+{
+"file":"data-pneimoshe-5.json",
+"from":1,
+"to":11,
+"v":"f2f6a55dbf94"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Maasrot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+4,
+4,
+4,
+3
+],
+"parts":[
+{
+"file":"data-pneimoshe-5.json",
+"from":1,
+"to":5,
+"v":"f2f6a55dbf94"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Maaser Sheni":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+3,
+4,
+6,
+6,
+5
+],
+"parts":[
+{
+"file":"data-pneimoshe-6.json",
+"from":1,
+"to":5,
+"v":"bb0e1cfee676"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Challah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+3,
+5,
+5
+],
+"parts":[
+{
+"file":"data-pneimoshe-6.json",
+"from":1,
+"to":4,
+"v":"bb0e1cfee676"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Orlah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+9,
+7
+],
+"parts":[
+{
+"file":"data-pneimoshe-6.json",
+"from":1,
+"to":3,
+"v":"bb0e1cfee676"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Bikkurim":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+6,
+6
+],
+"parts":[
+{
+"file":"data-pneimoshe-7.json",
+"from":1,
+"to":3,
+"v":"7909c3f95a96"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Shabbat":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+7,
+8,
+3,
+4,
+9,
+4,
+7,
+7,
+6,
+6,
+6,
+7,
+4,
+3,
+9,
+7,
+3,
+6,
+5,
+3,
+6,
+5,
+5
+],
+"parts":[
+{
+"file":"data-pneimoshe-8.json",
+"from":1,
+"to":21,
+"v":"67e85c217cd5"
+},
+{
+"file":"data-pneimoshe-9.json",
+"from":22,
+"to":24,
+"v":"3e56e0a1f229"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Eruvin":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+8,
+10,
+10,
+8,
+10,
+10,
+9,
+5,
+14
+],
+"parts":[
+{
+"file":"data-pneimoshe-9.json",
+"from":1,
+"to":10,
+"v":"3e56e0a1f229"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Pesachim":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+8,
+9,
+10,
+6,
+13,
+8,
+10,
+7
+],
+"parts":[
+{
+"file":"data-pneimoshe-10.json",
+"from":1,
+"to":10,
+"v":"dac33cdbcda9"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Yoma":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+4,
+9,
+6,
+7,
+7,
+3,
+7
+],
+"parts":[
+{
+"file":"data-pneimoshe-11.json",
+"from":1,
+"to":8,
+"v":"f54df92bd0b2"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Shekalim":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+3,
+5,
+4,
+4,
+3,
+4
+],
+"parts":[
+{
+"file":"data-pneimoshe-11.json",
+"from":1,
+"to":8,
+"v":"f54df92bd0b2"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Sukkah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+10,
+12,
+7,
+8
+],
+"parts":[
+{
+"file":"data-pneimoshe-11.json",
+"from":1,
+"to":5,
+"v":"f54df92bd0b2"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Rosh Hashanah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+8,
+10,
+10
+],
+"parts":[
+{
+"file":"data-pneimoshe-12.json",
+"from":1,
+"to":4,
+"v":"acd5228d2c9f"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Beitzah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+10,
+9,
+7,
+8
+],
+"parts":[
+{
+"file":"data-pneimoshe-12.json",
+"from":1,
+"to":5,
+"v":"acd5228d2c9f"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Taanit":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+14,
+11,
+7
+],
+"parts":[
+{
+"file":"data-pneimoshe-12.json",
+"from":1,
+"to":4,
+"v":"acd5228d2c9f"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Megillah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+7,
+7,
+12
+],
+"parts":[
+{
+"file":"data-pneimoshe-12.json",
+"from":1,
+"to":4,
+"v":"acd5228d2c9f"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Chagigah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+8
+],
+"parts":[
+{
+"file":"data-pneimoshe-13.json",
+"from":1,
+"to":3,
+"v":"13eeb0b3bd7b"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Moed Katan":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+5,
+9
+],
+"parts":[
+{
+"file":"data-pneimoshe-13.json",
+"from":1,
+"to":3,
+"v":"13eeb0b3bd7b"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Yevamot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+12,
+12,
+16,
+8,
+6,
+8,
+6,
+8,
+8,
+7,
+6,
+14,
+7,
+10,
+9
+],
+"parts":[
+{
+"file":"data-pneimoshe-14.json",
+"from":1,
+"to":16,
+"v":"c4c1a3eed76b"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Sotah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+6,
+8,
+5,
+6,
+4,
+8,
+10,
+16
+],
+"parts":[
+{
+"file":"data-pneimoshe-15.json",
+"from":1,
+"to":9,
+"v":"391833867df6"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Ketubot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+10,
+10,
+14,
+11,
+7,
+9,
+11,
+10,
+6,
+7,
+5,
+11
+],
+"parts":[
+{
+"file":"data-pneimoshe-16.json",
+"from":1,
+"to":13,
+"v":"a120c10adaac"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Nedarim":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+9,
+10,
+6,
+11,
+11,
+9,
+9,
+8,
+12
+],
+"parts":[
+{
+"file":"data-pneimoshe-16.json",
+"from":1,
+"to":11,
+"v":"a120c10adaac"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Nazir":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+10,
+7,
+6,
+4,
+11,
+4,
+2,
+6
+],
+"parts":[
+{
+"file":"data-pneimoshe-17.json",
+"from":1,
+"to":9,
+"v":"e2551f582c5b"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Gittin":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+7,
+8,
+9,
+10,
+7,
+8,
+10,
+11
+],
+"parts":[
+{
+"file":"data-pneimoshe-17.json",
+"from":1,
+"to":9,
+"v":"e2551f582c5b"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Kiddushin":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+9,
+13,
+12
+],
+"parts":[
+{
+"file":"data-pneimoshe-18.json",
+"from":1,
+"to":4,
+"v":"0d47eaeec8ef"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Bava Kamma":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+8,
+11,
+9,
+8,
+8,
+7,
+8,
+10,
+11
+],
+"parts":[
+{
+"file":"data-pneimoshe-18.json",
+"from":1,
+"to":10,
+"v":"0d47eaeec8ef"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Bava Metzia":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+11,
+9,
+7,
+8,
+6,
+7,
+9,
+13,
+6
+],
+"parts":[
+{
+"file":"data-pneimoshe-19.json",
+"from":1,
+"to":10,
+"v":"71283dde92b8"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Bava Batra":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+11,
+11,
+8,
+5,
+4,
+4,
+9,
+9,
+10
+],
+"parts":[
+{
+"file":"data-pneimoshe-19.json",
+"from":1,
+"to":10,
+"v":"71283dde92b8"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Sanhedrin":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+6,
+12,
+9,
+5,
+10,
+13,
+9,
+7,
+8,
+6
+],
+"parts":[
+{
+"file":"data-pneimoshe-20.json",
+"from":1,
+"to":11,
+"v":"09c9e330d50b"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Shevuot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+5,
+10,
+10,
+6,
+8,
+8,
+4
+],
+"parts":[
+{
+"file":"data-pneimoshe-21.json",
+"from":1,
+"to":8,
+"v":"c4b1602af05a"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Avodah Zarah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+9,
+14,
+12,
+15
+],
+"parts":[
+{
+"file":"data-pneimoshe-21.json",
+"from":1,
+"to":5,
+"v":"c4b1602af05a"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Makkot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+13
+],
+"parts":[
+{
+"file":"data-pneimoshe-21.json",
+"from":1,
+"to":3,
+"v":"c4b1602af05a"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Horayot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+5
+],
+"parts":[
+{
+"file":"data-pneimoshe-22.json",
+"from":1,
+"to":3,
+"v":"bc99d2cd6901"
+}
+]
+},
+"Penei Moshe on Jerusalem Talmud Niddah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+7,
+5,
+1
+],
+"parts":[
+{
+"file":"data-pneimoshe-22.json",
+"from":1,
+"to":4,
+"v":"bc99d2cd6901"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Shabbat":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+11,
+7,
+8,
+3,
+4,
+9,
+4,
+7,
+7,
+6,
+6,
+6,
+7,
+4,
+3,
+9,
+7,
+3,
+6,
+5
+],
+"parts":[
+{
+"file":"data-korban-1.json",
+"from":1,
+"to":20,
+"v":"434ed35c62dc"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Eruvin":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+8,
+10,
+10,
+8,
+10,
+10,
+9,
+5,
+14
+],
+"parts":[
+{
+"file":"data-korban-2.json",
+"from":1,
+"to":10,
+"v":"c8e6cd08c571"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Pesachim":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+8,
+9,
+10,
+6,
+13,
+8,
+10,
+7
+],
+"parts":[
+{
+"file":"data-korban-2.json",
+"from":1,
+"to":10,
+"v":"c8e6cd08c571"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Yoma":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+4,
+9,
+6,
+7,
+7,
+3,
+7
+],
+"parts":[
+{
+"file":"data-korban-3.json",
+"from":1,
+"to":8,
+"v":"48bbe76401cf"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Shekalim":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+3,
+5,
+4,
+4,
+3,
+4
+],
+"parts":[
+{
+"file":"data-korban-3.json",
+"from":1,
+"to":8,
+"v":"48bbe76401cf"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Sukkah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+10,
+12,
+7,
+8
+],
+"parts":[
+{
+"file":"data-korban-3.json",
+"from":1,
+"to":5,
+"v":"48bbe76401cf"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Rosh Hashanah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+8,
+10,
+10
+],
+"parts":[
+{
+"file":"data-korban-3.json",
+"from":1,
+"to":4,
+"v":"48bbe76401cf"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Beitzah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+10,
+9,
+7,
+8
+],
+"parts":[
+{
+"file":"data-korban-3.json",
+"from":1,
+"to":5,
+"v":"48bbe76401cf"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Taanit":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+14,
+11,
+7
+],
+"parts":[
+{
+"file":"data-korban-4.json",
+"from":1,
+"to":4,
+"v":"5dba9d16f907"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Megillah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+12,
+7,
+7,
+12
+],
+"parts":[
+{
+"file":"data-korban-4.json",
+"from":1,
+"to":4,
+"v":"5dba9d16f907"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Chagigah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7,
+8
+],
+"parts":[
+{
+"file":"data-korban-4.json",
+"from":1,
+"to":3,
+"v":"5dba9d16f907"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Moed Katan":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+5,
+9
+],
+"parts":[
+{
+"file":"data-korban-4.json",
+"from":1,
+"to":3,
+"v":"5dba9d16f907"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Yevamot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+6,
+12,
+12,
+16,
+8,
+6,
+8,
+6,
+8,
+8,
+7,
+6,
+14,
+7,
+10,
+9
+],
+"parts":[
+{
+"file":"data-korban-5.json",
+"from":1,
+"to":16,
+"v":"2c90538e0c35"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Sotah":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+6,
+8,
+5,
+6,
+4,
+8,
+10,
+16
+],
+"parts":[
+{
+"file":"data-korban-6.json",
+"from":1,
+"to":9,
+"v":"1c47a5839c14"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Ketubot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+10,
+10,
+10,
+14,
+11,
+7,
+9,
+11,
+10,
+6,
+7,
+5,
+11
+],
+"parts":[
+{
+"file":"data-korban-6.json",
+"from":1,
+"to":13,
+"v":"1c47a5839c14"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Nedarim":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+5,
+9,
+10,
+6,
+11,
+10,
+9,
+9,
+8,
+12
+],
+"parts":[
+{
+"file":"data-korban-7.json",
+"from":1,
+"to":11,
+"v":"28dec55bb4de"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Nazir":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+10,
+7,
+6,
+4,
+11,
+4,
+2,
+6
+],
+"parts":[
+{
+"file":"data-korban-7.json",
+"from":1,
+"to":9,
+"v":"28dec55bb4de"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Gittin":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+5,
+7,
+8,
+9,
+10,
+7,
+8,
+10,
+11
+],
+"parts":[
+{
+"file":"data-korban-8.json",
+"from":1,
+"to":9,
+"v":"e91092df5ace"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Kiddushin":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+9,
+9,
+13,
+12
+],
+"parts":[
+{
+"file":"data-korban-8.json",
+"from":1,
+"to":4,
+"v":"e91092df5ace"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Sanhedrin":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+4,
+6,
+12,
+9,
+5,
+10,
+13,
+9,
+7,
+8,
+6
+],
+"parts":[
+{
+"file":"data-korban-9.json",
+"from":1,
+"to":11,
+"v":"7e7b90bb31dd"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Shevuot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+7,
+5,
+10,
+10,
+4
+],
+"parts":[
+{
+"file":"data-korban-9.json",
+"from":1,
+"to":5,
+"v":"7e7b90bb31dd"
+}
+]
+},
+"Korban HaEdah on Jerusalem Talmud Makkot":{
+"versionTitle":"Piotrków, 1898-1900",
+"license":"Public Domain",
+"pin":null,
+"counts":[
+8,
+7
+],
+"parts":[
+{
+"file":"data-korban-9.json",
+"from":1,
+"to":2,
+"v":"7e7b90bb31dd"
+}
+]
+},
 "Tanya, Part I; Likkutei Amarim, Compiler's Foreword":{
 "versionTitle":"ויקיטקסט — ספר התניא",
 "license":"CC-BY-SA",
@@ -11904,5 +14177,5 @@
 }
 ]
 },
-"updated":"2026-10-25"
+"updated":"2026-10-29"
 }

@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-korban-2.json
+---
+{% include src-korban-2.json %}

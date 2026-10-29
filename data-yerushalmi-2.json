@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-yerushalmi-2.json
+---
+{% include src-yerushalmi-2.json %}
