@@ -241,14 +241,18 @@ try{
     // what caused a video that existed by the evening to still be reported as "not found").
     if(cached && cached.date === dateStr && cached.videoId) return cached;
 
-    const calendarUrl = dafyomiSelectedDate
-      ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getUTCFullYear()}&month=${d.getUTCMonth()+1}&day=${d.getUTCDate()}`
-      : `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getFullYear()}&month=${d.getMonth()+1}&day=${d.getDate()}`;
-    const calRes = await fetch(calendarUrl);
-    if(!calRes.ok) throw new Error('calendar fetch failed');
-    const calData = await calRes.json();
-    const calItems = (calData && calData.calendar_items) || [];
-    const calItem = calItems.find(i => i.title && i.title.en === 'Daf Yomi');
+    // today's daf: the site's own schedule (the same one the page shows the Gemara from), else Sefaria's calendar
+    let calItem = await localScheduleItem('Daf Yomi', d, !!dafyomiSelectedDate);
+    if(!calItem){
+      const calendarUrl = dafyomiSelectedDate
+        ? `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getUTCFullYear()}&month=${d.getUTCMonth()+1}&day=${d.getUTCDate()}`
+        : `https://www.sefaria.org/api/calendars?diaspora=0&year=${d.getFullYear()}&month=${d.getMonth()+1}&day=${d.getDate()}`;
+      const calRes = await fetch(calendarUrl);
+      if(!calRes.ok) throw new Error('calendar fetch failed');
+      const calData = await calRes.json();
+      const calItems = (calData && calData.calendar_items) || [];
+      calItem = calItems.find(i => i.title && i.title.en === 'Daf Yomi');
+    }
     const heName = calItem && calItem.displayValue && calItem.displayValue.he;
     if(!heName) throw new Error('no daf name from Sefaria');
 

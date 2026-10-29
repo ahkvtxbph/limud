@@ -1227,6 +1227,8 @@ async function localRefText(ref){
   }
   const title = titles.sort((x, y) => y.length - x.length).find(t => ref.indexOf(t + ' ') === 0);
   if(!title) return null;
+  const deep = ref.slice(title.length + 1).match(/^(\d+(?::\d+){2,})(?:-(\d+(?::\d+)*))?$/);
+  if(deep) return localDeepRef(title, deep[1], deep[2]);
   const r = ref.slice(title.length + 1).match(/^(\d+)(?::(\d+))?(?:-(\d+)(?::(\d+))?)?$/);
   if(!r) return null;
   const a = +r[1], aSeg = r[2] ? +r[2] : null, b = r[3] ? +r[3] : null, bSeg = r[4] ? +r[4] : null;
@@ -1250,6 +1252,37 @@ async function localRefText(ref){
     out.push(part);
   }
   return has(out) ? out : null;
+}
+// Refs three levels deep (the Jerusalem Talmud: chapter:halakha:segment), in the same shape Sefaria returns:
+// "3:7:1-13:5" -> halakhot 7..13 of chapter 3 (first and last trimmed), "1:1:1-11" -> segments, "2:7:2-3:7:1" -> chapters.
+async function localDeepRef(title, from, to){
+  const a = from.split(':').map(Number);
+  let b = to ? to.split(':').map(Number) : a.slice();
+  if(b.length < a.length) b = a.slice(0, a.length - b.length).concat(b);    // "3:7:1-13:5" -> end 3:13:5
+  if(b[0] < a[0] || b[0] - a[0] > 20) return null;
+  const secs = await localSections(title, a[0], b[0]);
+  if(!secs) return null;
+  const has = x => Array.isArray(x) ? x.some(has) : !!(x && String(x).trim());
+  const root = []; for(let k = a[0]; k <= b[0]; k++) root.push(secs[k]);
+  // trim a list to [s .. e] (1-based paths; [] = from the start / to the end), keeping its depth
+  const trim = (list, s, e) => {
+    if(!Array.isArray(list)) return list;
+    const lo = s.length ? s[0] : 1, hi = Math.min(e.length ? e[0] : list.length, list.length);   // as Sefaria: no further than the text goes
+    const out = [];
+    for(let k = lo; k <= hi; k++){
+      const ss = k === lo ? s.slice(1) : [], ee = k === hi ? e.slice(1) : [];
+      out.push(ss.length || ee.length ? trim(list[k - 1], ss, ee) : list[k - 1]);
+    }
+    return out;
+  };
+  // the levels where start and end are the same are entered (Sefaria leaves them out of the answer)
+  let node = root, s = [1].concat(a.slice(1)), e = [b[0] - a[0] + 1].concat(b.slice(1));
+  while(s.length && s[0] === e[0]){
+    if(!Array.isArray(node)) return null;
+    node = node[s[0] - 1]; s = s.slice(1); e = e.slice(1);
+  }
+  const out = s.length ? trim(node, s, e) : node;
+  return out != null && has(out) ? out : null;
 }
 // The edition the local copy of a book uses, when it is not Sefaria's default (for the fallback).
 async function localPinnedVersion(ref){
