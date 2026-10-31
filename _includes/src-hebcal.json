@@ -2,19 +2,9 @@
 "note":"נוצר אוטומטית מ־Hebcal.com (CC BY 4.0) — לא לערוך ידנית",
 "sets":{
 "maj=on&mf=on&min=on&mod=on&nx=on":{
-"start":"2026-09-24",
-"end":"2027-12-03",
+"start":"2026-09-26",
+"end":"2027-12-05",
 "items":[
-{
-"title":"Erev Sukkot",
-"date":"2026-09-25",
-"hdate":"14 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב סוכות",
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Sukkot I",
 "date":"2026-09-26",
@@ -1551,19 +1541,9 @@
 ]
 },
 "maj=on&min=on&mod=on&nx=on":{
-"start":"2026-09-24",
-"end":"2027-12-03",
+"start":"2026-09-26",
+"end":"2027-12-05",
 "items":[
-{
-"title":"Erev Sukkot",
-"date":"2026-09-25",
-"hdate":"14 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב סוכות",
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Sukkot I",
 "date":"2026-09-26",
@@ -3023,19 +3003,9 @@
 ]
 },
 "i=on&maj=on&min=on&mod=on&nx=on":{
-"start":"2026-09-24",
-"end":"2027-12-03",
+"start":"2026-09-26",
+"end":"2027-12-05",
 "items":[
-{
-"title":"Erev Sukkot",
-"date":"2026-09-25",
-"hdate":"14 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב סוכות",
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Sukkot I",
 "date":"2026-09-26",
@@ -4493,19 +4463,9 @@
 ]
 },
 "leyning=off&maj=on&s=on":{
-"start":"2026-09-24",
-"end":"2027-12-03",
+"start":"2026-09-26",
+"end":"2027-12-05",
 "items":[
-{
-"title":"Erev Sukkot",
-"date":"2026-09-25",
-"hdate":"14 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב סוכות",
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Sukkot I",
 "date":"2026-09-26",
@@ -5470,23 +5430,21 @@
 "category":"parashat",
 "hebrew":"פרשת חיי שרה",
 "link":"https://hebcal.com/s/5788/5?us=js&um=api"
+},
+{
+"title":"Parashat Toldot",
+"date":"2027-12-04",
+"hdate":"4 Kislev 5788",
+"category":"parashat",
+"hebrew":"פרשת תולדות",
+"link":"https://hebcal.com/s/5788/6?us=js&um=api"
 }
 ]
 },
 "i=on&leyning=off&maj=on&s=on":{
-"start":"2026-09-24",
-"end":"2027-12-03",
+"start":"2026-09-26",
+"end":"2027-12-05",
 "items":[
-{
-"title":"Erev Sukkot",
-"date":"2026-09-25",
-"hdate":"14 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"ערב סוכות",
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Sukkot I",
 "date":"2026-09-26",
@@ -6415,6 +6373,14 @@
 "category":"parashat",
 "hebrew":"פרשת חיי שרה",
 "link":"https://hebcal.com/s/5788i/5?us=js&um=api"
+},
+{
+"title":"Parashat Toldot",
+"date":"2027-12-04",
+"hdate":"4 Kislev 5788",
+"category":"parashat",
+"hebrew":"פרשת תולדות",
+"link":"https://hebcal.com/s/5788i/6?us=js&um=api"
 }
 ]
 }
