@@ -4,18 +4,12 @@
 "license":"CC-BY",
 "alsoVersions":[
 "Daat Siddur Ashkenaz",
-"The Metsudah siddur: a new linear siddur with English translation by Avrohom Davis, 1981"
+"Tanach with Nikkud (Exodus 20:2-14)",
+"The Metsudah siddur: a new linear siddur with English translation by Avrohom Davis, 1981",
+"Torat Emet 357 (Siddur Sefard, Third Meal, Motzaei Shabbat Prayers)"
 ],
 "note":"נוצר אוטומטית מספריא — לא לערוך ידנית",
 "remote":[
-{
-"r":"Siddur Ashkenaz, Weekday, Shacharit, Post Service, Ten Commandments",
-"v":"Tanach with Nikkud"
-},
-{
-"r":"Siddur Ashkenaz, Weekday, Maariv, Additions for Motza'ei Shabbat, Veyiten Lekha",
-"v":"Siddur Veshinantam "
-},
 {
 "r":"Siddur Ashkenaz, Shabbat, Kabbalat Shabbat, Bameh Madlikin",
 "v":"Torat Emet 357"
@@ -648,7 +642,8 @@
 {
 "r":"Siddur Ashkenaz, Weekday, Shacharit, Post Service, Ten Commandments",
 "p":"Weekday, Shacharit, Post Service, Ten Commandments",
-"h":"סידור אשכנז, ימי חול, תפילת שחרית, תפילות נוספות, עשרת הדברות"
+"h":"סידור אשכנז, ימי חול, תפילת שחרית, תפילות נוספות, עשרת הדברות",
+"c":0
 },
 {
 "r":"Siddur Ashkenaz, Weekday, Shacharit, Post Service, Thirteen Principles",
@@ -1024,7 +1019,8 @@
 {
 "r":"Siddur Ashkenaz, Weekday, Maariv, Additions for Motza'ei Shabbat, Veyiten Lekha",
 "p":"Weekday, Maariv, Additions for Motza'ei Shabbat, Veyiten Lekha",
-"h":"סידור אשכנז, ימי חול, מעריב, תוספות למוצאי שבת, ויתן לך"
+"h":"סידור אשכנז, ימי חול, מעריב, תוספות למוצאי שבת, ויתן לך",
+"c":0
 },
 {
 "r":"Siddur Ashkenaz, Weekday, Maariv, Sefirat HaOmer",
@@ -2751,5 +2747,5 @@
 "c":1
 }
 ],
-"downloaded":"2026-10-22"
+"downloaded":"2026-11-01"
 }
