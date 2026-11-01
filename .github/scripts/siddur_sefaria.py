@@ -20,7 +20,18 @@ BOOKS = [   # key (as in siddur.js), Sefaria title, Hebrew name, options
     ('ashkenaz', 'Siddur Ashkenaz', 'סידור נוסח אשכנז', {'prefer': [
         'The Metsudah siddur, 1981',
         'The Metsudah siddur: a new linear siddur with English translation by Avrohom Davis, 1981',
-        'Daat Siddur Ashkenaz']}),
+        'Daat Siddur Ashkenaz'],
+        # pieces whose only edition has no stated licence — the same words from a free source
+        'substitute': {
+            # Sefaria's piece is the "Tanach with Nikkud" text of Exodus 20:2-14 (no licence on the siddur copy;
+            # the Tanakh edition itself is Public Domain), split into the ten commandments
+            'Siddur Ashkenaz, Weekday, Shacharit, Post Service, Ten Commandments':
+                {'from': 'Exodus 20:2-14', 'version': 'Tanach with Nikkud', 'make': lambda v: ten_commandments(v)},
+            # Siddur Veshinantam (no licence): the same passages as in the free Siddur Sefard
+            # (word for word, apart from a few spellings), without its heading and instruction
+            "Siddur Ashkenaz, Weekday, Maariv, Additions for Motza'ei Shabbat, Veyiten Lekha":
+                {'from': 'Siddur Sefard, Third Meal, Motzaei Shabbat Prayers', 'make': lambda v: v[2:]},
+        }}),
     # Sefaria's edition is the Hebrew Wikisource text (סידור תורה אור) — Wikisource is CC-BY-SA
     ('chabad', 'Weekday Siddur Chabad', 'סידור נוסח חב״ד', {'licenses': {'Wikisource': 'CC-BY-SA'}}),
 ]
@@ -94,8 +105,21 @@ def get_json(url, tries=6):
             if a == tries - 1: raise
         time.sleep(3 + a * 5)
 
+def ten_commandments(verses):
+    """Exodus 20:2-14 (13 verses) -> the ten commandments, as in the siddur."""
+    v = [re.sub(r'(נ[ָּ]+י)ַ(?=[\s׃]|$)', r'\1', x) for x in verses]   # פָּנָיַ: a vowel of the other cantillation reading
+    if len(v) != 13: return []
+    short = [x.strip() + ('׃' if not x.strip().endswith('׃') else '') for x in v[11].split('׃') if x.strip()]
+    return [v[0], ' '.join(v[1:5]), v[5], ' '.join(v[6:10]), v[10]] + short + [v[12]]
+
 def leaf_text(U, ref, opts=None, version=None):
     opts = opts or {}
+    sub = (opts.get('substitute') or {}).get(ref)
+    if sub and version is None:
+        segs, m = leaf_text(U, sub['from'], {}, sub.get('version'))
+        if m and segs and license_ok(m['license']):
+            segs = sub['make'](segs)
+            if segs: return segs, {'versionTitle': f"{m['versionTitle']} ({sub['from']})", 'license': m['license']}
     q = 'hebrew' if version is None else 'hebrew|' + version
     d = get_json('https://www.sefaria.org/api/v3/texts/' + urllib.parse.quote(ref) + '?version=' + urllib.parse.quote(q)) or {}
     v = (d.get('versions') or [None])[0]
