@@ -1,15 +1,5 @@
 {
 "Arukh HaShulchan Yomi":{
-"2026-10-24":{
-"ref":"Arukh HaShulchan, Orach Chaim 363:47-52",
-"he":"אורח חיים שס״ג:מ״ז-נ״ב",
-"en":"Orach Chaim 363:47-52"
-},
-"2026-10-25":{
-"ref":"Arukh HaShulchan, Orach Chaim 363:53-60",
-"he":"אורח חיים שס״ג:נ״ג-ס׳",
-"en":"Orach Chaim 363:53-60"
-},
 "2026-10-26":{
 "ref":"Arukh HaShulchan, Orach Chaim 363:61-364:3",
 "he":"אורח חיים שס״ג:ס״א-שס״ד:ג׳",
@@ -639,19 +629,19 @@
 "ref":"Arukh HaShulchan, Orach Chaim 460:3-461:4",
 "he":"אורח חיים ת״ס:ג׳-תס״א:ד׳",
 "en":"Orach Chaim 460:3-461:4"
+},
+"2027-03-01":{
+"ref":"Arukh HaShulchan, Orach Chaim 461:5-13",
+"he":"אורח חיים תס״א:ה׳-י״ג",
+"en":"Orach Chaim 461:5-13"
+},
+"2027-03-02":{
+"ref":"Arukh HaShulchan, Orach Chaim 462:1-7",
+"he":"אורח חיים תס״ב:א׳-ז׳",
+"en":"Orach Chaim 462:1-7"
 }
 },
 "Daily Mishnah":{
-"2026-10-24":{
-"ref":"Mishnah Oholot 12:3-4",
-"he":"משנה אהלות י״ב:ג׳-ד׳",
-"en":"Mishnah Oholot 12:3-4"
-},
-"2026-10-25":{
-"ref":"Mishnah Oholot 12:5-6",
-"he":"משנה אהלות י״ב:ה׳-ו׳",
-"en":"Mishnah Oholot 12:5-6"
-},
 "2026-10-26":{
 "ref":"Mishnah Oholot 12:7-8",
 "he":"משנה אהלות י״ב:ז׳-ח׳",
@@ -1281,19 +1271,19 @@
 "ref":"Mishnah Parah 12:6-7",
 "he":"משנה פרה י״ב:ו׳-ז׳",
 "en":"Mishnah Parah 12:6-7"
+},
+"2027-03-01":{
+"ref":"Mishnah Parah 12:8-9",
+"he":"משנה פרה י״ב:ח׳-ט׳",
+"en":"Mishnah Parah 12:8-9"
+},
+"2027-03-02":{
+"ref":"Mishnah Parah 12:10-11",
+"he":"משנה פרה י״ב:י׳-י״א",
+"en":"Mishnah Parah 12:10-11"
 }
 },
 "Daily Rambam":{
-"2026-10-24":{
-"ref":"Mishneh Torah, Forbidden Intercourse 5",
-"he":"הלכות איסורי ביאה ה׳",
-"en":"Forbidden Intercourse 5"
-},
-"2026-10-25":{
-"ref":"Mishneh Torah, Forbidden Intercourse 6",
-"he":"הלכות איסורי ביאה ו׳",
-"en":"Forbidden Intercourse 6"
-},
 "2026-10-26":{
 "ref":"Mishneh Torah, Forbidden Intercourse 7",
 "he":"הלכות איסורי ביאה ז׳",
@@ -1923,19 +1913,19 @@
 "ref":"Mishneh Torah, Tithes 1",
 "he":"הלכות מעשרות א׳",
 "en":"Tithes 1"
+},
+"2027-03-01":{
+"ref":"Mishneh Torah, Tithes 2",
+"he":"הלכות מעשרות ב׳",
+"en":"Tithes 2"
+},
+"2027-03-02":{
+"ref":"Mishneh Torah, Tithes 3",
+"he":"הלכות מעשרות ג׳",
+"en":"Tithes 3"
 }
 },
 "Daily Rambam (3 Chapters)":{
-"2026-10-24":{
-"ref":"Mishneh Torah, Sales 4-6",
-"he":"הלכות מכירה ד׳-ו׳",
-"en":"Sales 4-6"
-},
-"2026-10-25":{
-"ref":"Mishneh Torah, Sales 7-9",
-"he":"הלכות מכירה ז׳-ט׳",
-"en":"Sales 7-9"
-},
 "2026-10-26":{
 "ref":"Mishneh Torah, Sales 10-12",
 "he":"הלכות מכירה י׳-י״ב",
@@ -2565,19 +2555,19 @@
 "ref":"Mishneh Torah, Rest on a Holiday 4-6",
 "he":"הלכות שביתת יום טוב ד׳-ו׳",
 "en":"Rest on a Holiday 4-6"
+},
+"2027-03-01":{
+"ref":"Mishneh Torah, Rest on a Holiday 7-8",
+"he":"הלכות שביתת יום טוב ז׳-ח׳",
+"en":"Rest on a Holiday 7-8"
+},
+"2027-03-02":{
+"ref":"Mishneh Torah, Leavened and Unleavened Bread 2-4",
+"he":"הלכות חמץ ומצה ב׳-ד׳",
+"en":"Leavened and Unleavened Bread 2-4"
 }
 },
 "Tanakh Yomi":{
-"2026-10-24":{
-"ref":"Genesis 12:1-17:27",
-"he":"לך לך",
-"en":"Lech-Lecha"
-},
-"2026-10-25":{
-"ref":"Judges 5:31-6:39",
-"he":"שופטים סדר ד",
-"en":"Judges Seder 4"
-},
 "2026-10-26":{
 "ref":"Judges 6:40-8:2",
 "he":"שופטים סדר ה",
@@ -3207,19 +3197,19 @@
 "ref":"Jeremiah 5:1-6:1",
 "he":"ירמיהו סדר ג",
 "en":"Jeremiah Seder 3"
+},
+"2027-03-01":{
+"ref":"Jeremiah 6:2-7:22",
+"he":"ירמיהו סדר ד",
+"en":"Jeremiah Seder 4"
+},
+"2027-03-02":{
+"ref":"Jeremiah 7:23-9:22",
+"he":"ירמיהו סדר ה",
+"en":"Jeremiah Seder 5"
 }
 },
 "929":{
-"2026-10-24":{
-"ref":"I Kings 13",
-"he":"מלכים א י״ג (300)",
-"en":"I Kings 13 (300)"
-},
-"2026-10-25":{
-"ref":"I Kings 14",
-"he":"מלכים א י״ד (301)",
-"en":"I Kings 14 (301)"
-},
 "2026-10-26":{
 "ref":"I Kings 15",
 "he":"מלכים א ט״ו (302)",
@@ -3849,19 +3839,19 @@
 "ref":"Isaiah 57",
 "he":"ישעיהו נ״ז (391)",
 "en":"Isaiah 57 (391)"
+},
+"2027-03-01":{
+"ref":"Isaiah 58",
+"he":"ישעיהו נ״ח (392)",
+"en":"Isaiah 58 (392)"
+},
+"2027-03-02":{
+"ref":"Isaiah 59",
+"he":"ישעיהו נ״ט (393)",
+"en":"Isaiah 59 (393)"
 }
 },
 "Daf Yomi":{
-"2026-10-24":{
-"ref":"Bekhorot 36",
-"he":"בכורות ל״ו",
-"en":"Bekhorot 36"
-},
-"2026-10-25":{
-"ref":"Bekhorot 37",
-"he":"בכורות ל״ז",
-"en":"Bekhorot 37"
-},
 "2026-10-26":{
 "ref":"Bekhorot 38",
 "he":"בכורות ל״ח",
@@ -4491,19 +4481,19 @@
 "ref":"Meilah 10",
 "he":"מעילה י׳",
 "en":"Meilah 10"
+},
+"2027-03-01":{
+"ref":"Meilah 11",
+"he":"מעילה י״א",
+"en":"Meilah 11"
+},
+"2027-03-02":{
+"ref":"Meilah 12",
+"he":"מעילה י״ב",
+"en":"Meilah 12"
 }
 },
 "Yerushalmi Yomi":{
-"2026-10-24":{
-"ref":"Jerusalem Talmud Sanhedrin 1:2:19-33",
-"he":"תלמוד ירושלמי סנהדרין ה",
-"en":"Jerusalem Talmud Sanhedrin 5"
-},
-"2026-10-25":{
-"ref":"Jerusalem Talmud Sanhedrin 1:2:33-45",
-"he":"תלמוד ירושלמי סנהדרין ו",
-"en":"Jerusalem Talmud Sanhedrin 6"
-},
 "2026-10-26":{
 "ref":"Jerusalem Talmud Sanhedrin 1:2:45-3:7",
 "he":"תלמוד ירושלמי סנהדרין ז",
@@ -5133,19 +5123,19 @@
 "ref":"Jerusalem Talmud Berakhot 1:1:29-36",
 "he":"תלמוד ירושלמי ברכות ו",
 "en":"Jerusalem Talmud Berakhot 6"
+},
+"2027-03-01":{
+"ref":"Jerusalem Talmud Berakhot 1:1:36-2:8",
+"he":"תלמוד ירושלמי ברכות ז",
+"en":"Jerusalem Talmud Berakhot 7"
+},
+"2027-03-02":{
+"ref":"Jerusalem Talmud Berakhot 1:2:8-4:3",
+"he":"תלמוד ירושלמי ברכות ח",
+"en":"Jerusalem Talmud Berakhot 8"
 }
 },
 "Tanya Yomi":{
-"2026-10-24":{
-"ref":"Tanya, Part IV; Iggeret HaKodesh 27:6",
-"he":"יג חשון",
-"en":"13 Cheshvan"
-},
-"2026-10-25":{
-"ref":"Tanya, Part IV; Iggeret HaKodesh 27:8",
-"he":"יד חשון",
-"en":"14 Cheshvan"
-},
 "2026-10-26":{
 "ref":"Tanya, Part IV; Iggeret HaKodesh 27:13",
 "he":"טו חשון",
@@ -5775,19 +5765,19 @@
 "ref":"Tanya, Part I; Likkutei Amarim 30:17",
 "he":"כא אדר-א",
 "en":"21 Adar I"
+},
+"2027-03-01":{
+"ref":"Tanya, Part I; Likkutei Amarim 31:1",
+"he":"כב אדר-א",
+"en":"22 Adar I"
+},
+"2027-03-02":{
+"ref":"Tanya, Part I; Likkutei Amarim 32:1",
+"he":"כג אדר-א",
+"en":"23 Adar I"
 }
 },
 "Parashat Hashavua":{
-"2026-10-24":{
-"ref":"Genesis 12:1-17:27",
-"he":"לך לך",
-"en":"Lech-Lecha"
-},
-"2026-10-25":{
-"ref":"Genesis 18:1-22:24",
-"he":"וירא",
-"en":"Vayera"
-},
 "2026-10-26":{
 "ref":"Genesis 18:1-22:24",
 "he":"וירא",
@@ -6417,19 +6407,19 @@
 "ref":"Exodus 35:1-38:20",
 "he":"ויקהל",
 "en":"Vayakhel"
+},
+"2027-03-01":{
+"ref":"Exodus 35:1-38:20",
+"he":"ויקהל",
+"en":"Vayakhel"
+},
+"2027-03-02":{
+"ref":"Exodus 35:1-38:20",
+"he":"ויקהל",
+"en":"Vayakhel"
 }
 },
 "Halakhah Yomit":{
-"2026-10-24":{
-"ref":"Shulchan Arukh, Orach Chayim 282:6-283:1",
-"he":"שולחן ערוך, אורח חיים רפ״ב:ו׳-רפ״ג:א׳",
-"en":"Shulchan Arukh, Orach Chayim 282:6-283:1"
-},
-"2026-10-25":{
-"ref":"Shulchan Arukh, Orach Chayim 284:1-3",
-"he":"שולחן ערוך, אורח חיים רפ״ד:א׳-ג׳",
-"en":"Shulchan Arukh, Orach Chayim 284:1-3"
-},
 "2026-10-26":{
 "ref":"Shulchan Arukh, Orach Chayim 284:4-6",
 "he":"שולחן ערוך, אורח חיים רפ״ד:ד׳-ו׳",
@@ -7059,6 +7049,16 @@
 "ref":"Shulchan Arukh, Orach Chayim 317:4-6",
 "he":"שולחן ערוך, אורח חיים שי״ז:ד׳-ו׳",
 "en":"Shulchan Arukh, Orach Chayim 317:4-6"
+},
+"2027-03-01":{
+"ref":"Shulchan Arukh, Orach Chayim 317:7-318:2",
+"he":"שולחן ערוך, אורח חיים שי״ז:ז׳-שי״ח:ב׳",
+"en":"Shulchan Arukh, Orach Chayim 317:7-318:2"
+},
+"2027-03-02":{
+"ref":"Shulchan Arukh, Orach Chayim 318:3-5",
+"he":"שולחן ערוך, אורח חיים שי״ח:ג׳-ה׳",
+"en":"Shulchan Arukh, Orach Chayim 318:3-5"
 }
 }
 }
