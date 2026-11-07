@@ -1205,7 +1205,7 @@
 "file":"data-arukh-15.json",
 "from":195,
 "to":257,
-"v":"7d8efa437f58"
+"v":"6732c8c152bc"
 },
 {
 "file":"data-arukh-16.json",
@@ -5249,7 +5249,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":370,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5278,7 +5278,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":14,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5541,7 +5541,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":248,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5601,7 +5601,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":45,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5628,7 +5628,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":12,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5653,7 +5653,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":10,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5675,7 +5675,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":7,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5700,7 +5700,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":10,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5722,7 +5722,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":7,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5748,7 +5748,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":11,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5766,7 +5766,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":3,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5784,7 +5784,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":3,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -5814,7 +5814,7 @@
 "file":"data-rambam-1.json",
 "from":1,
 "to":15,
-"v":"3e8a5a4b7225"
+"v":"de4e51601254"
 }
 ]
 },
@@ -20315,7 +20315,7 @@
 "file":"data-rashi-bavli-14.json",
 "from":1,
 "to":164,
-"v":"9bde9e0e823c"
+"v":"aa13a6ac93d2"
 }
 ],
 "talmud":true
@@ -25187,7 +25187,7 @@
 "file":"data-tosafot-10.json",
 "from":204,
 "to":224,
-"v":"081da8835698"
+"v":"4f53854d4d40"
 }
 ],
 "talmud":true
@@ -25385,7 +25385,7 @@
 "file":"data-tosafot-10.json",
 "from":1,
 "to":182,
-"v":"081da8835698"
+"v":"4f53854d4d40"
 }
 ],
 "talmud":true
@@ -26012,7 +26012,7 @@
 "file":"data-tosafot-14.json",
 "from":1,
 "to":163,
-"v":"9c01d8d8ac5e"
+"v":"89a3acb658a7"
 }
 ],
 "talmud":true
@@ -28609,7 +28609,7 @@
 "file":"data-tosafot-25.json",
 "from":1,
 "to":67,
-"v":"607f859cb577"
+"v":"97cbd30225c0"
 }
 ],
 "talmud":true
@@ -28681,7 +28681,7 @@
 "file":"data-tosafot-25.json",
 "from":1,
 "to":56,
-"v":"607f859cb577"
+"v":"97cbd30225c0"
 }
 ],
 "talmud":true
@@ -28740,7 +28740,7 @@
 "file":"data-tosafot-25.json",
 "from":1,
 "to":43,
-"v":"607f859cb577"
+"v":"97cbd30225c0"
 }
 ],
 "talmud":true
@@ -31922,5 +31922,5 @@
 }
 ]
 },
-"updated":"2026-11-02"
+"updated":"2026-11-07"
 }
