@@ -2,98 +2,9 @@
 "note":"נוצר אוטומטית מ־Hebcal.com (CC BY 4.0) — לא לערוך ידנית",
 "sets":{
 "maj=on&mf=on&min=on&mod=on&nx=on":{
-"start":"2026-09-28",
-"end":"2027-12-07",
+"start":"2026-10-03",
+"end":"2027-12-12",
 "items":[
-{
-"title":"Sukkot III (CH’’M)",
-"date":"2026-09-28",
-"hdate":"17 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot III (CH''M)",
-"hebrew":"סוכות ג׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:17-29:19",
-"2":"Numbers 29:20-29:22",
-"3":"Numbers 29:23-29:25",
-"4":"Numbers 29:17-29:22",
-"torah":"Numbers 29:17-25"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot IV (CH’’M)",
-"date":"2026-09-29",
-"hdate":"18 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot IV (CH''M)",
-"hebrew":"סוכות ד׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:20-29:22",
-"2":"Numbers 29:23-29:25",
-"3":"Numbers 29:26-29:28",
-"4":"Numbers 29:20-29:25",
-"torah":"Numbers 29:20-28"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot V (CH’’M)",
-"date":"2026-09-30",
-"hdate":"19 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot V (CH''M)",
-"hebrew":"סוכות ה׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:23-29:25",
-"2":"Numbers 29:26-29:28",
-"3":"Numbers 29:29-29:31",
-"4":"Numbers 29:23-29:28",
-"torah":"Numbers 29:23-31"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VI (CH’’M)",
-"date":"2026-10-01",
-"hdate":"20 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot VI (CH''M)",
-"hebrew":"סוכות ו׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:26-29:28",
-"2":"Numbers 29:29-29:31",
-"3":"Numbers 29:32-29:34",
-"4":"Numbers 29:26-29:31",
-"torah":"Numbers 29:26-34"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VII (Hoshana Raba)",
-"date":"2026-10-02",
-"hdate":"21 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"סוכות ז׳ (הושענא רבה)",
-"leyning":{
-"1":"Numbers 29:26-29:28",
-"2":"Numbers 29:29-29:31",
-"3":"Numbers 29:32-29:34",
-"4":"Numbers 29:29-29:34",
-"torah":"Numbers 29:26-34"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Shmini Atzeret",
 "date":"2026-10-03",
@@ -1497,98 +1408,9 @@
 ]
 },
 "maj=on&min=on&mod=on&nx=on":{
-"start":"2026-09-28",
-"end":"2027-12-07",
+"start":"2026-10-03",
+"end":"2027-12-12",
 "items":[
-{
-"title":"Sukkot III (CH’’M)",
-"date":"2026-09-28",
-"hdate":"17 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot III (CH''M)",
-"hebrew":"סוכות ג׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:17-29:19",
-"2":"Numbers 29:20-29:22",
-"3":"Numbers 29:23-29:25",
-"4":"Numbers 29:17-29:22",
-"torah":"Numbers 29:17-25"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot IV (CH’’M)",
-"date":"2026-09-29",
-"hdate":"18 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot IV (CH''M)",
-"hebrew":"סוכות ד׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:20-29:22",
-"2":"Numbers 29:23-29:25",
-"3":"Numbers 29:26-29:28",
-"4":"Numbers 29:20-29:25",
-"torah":"Numbers 29:20-28"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot V (CH’’M)",
-"date":"2026-09-30",
-"hdate":"19 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot V (CH''M)",
-"hebrew":"סוכות ה׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:23-29:25",
-"2":"Numbers 29:26-29:28",
-"3":"Numbers 29:29-29:31",
-"4":"Numbers 29:23-29:28",
-"torah":"Numbers 29:23-31"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VI (CH’’M)",
-"date":"2026-10-01",
-"hdate":"20 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot VI (CH''M)",
-"hebrew":"סוכות ו׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:26-29:28",
-"2":"Numbers 29:29-29:31",
-"3":"Numbers 29:32-29:34",
-"4":"Numbers 29:26-29:31",
-"torah":"Numbers 29:26-34"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VII (Hoshana Raba)",
-"date":"2026-10-02",
-"hdate":"21 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"סוכות ז׳ (הושענא רבה)",
-"leyning":{
-"1":"Numbers 29:26-29:28",
-"2":"Numbers 29:29-29:31",
-"3":"Numbers 29:32-29:34",
-"4":"Numbers 29:29-29:34",
-"torah":"Numbers 29:26-34"
-},
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Shmini Atzeret",
 "date":"2026-10-03",
@@ -2915,98 +2737,9 @@
 ]
 },
 "i=on&maj=on&min=on&mod=on&nx=on":{
-"start":"2026-09-28",
-"end":"2027-12-07",
+"start":"2026-10-03",
+"end":"2027-12-12",
 "items":[
-{
-"title":"Sukkot III (CH’’M)",
-"date":"2026-09-28",
-"hdate":"17 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot III (CH''M)",
-"hebrew":"סוכות ג׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:20-29:22",
-"2":"Numbers 29:23-29:25",
-"3":"Numbers 29:26-29:28",
-"4":"Numbers 29:20-29:25",
-"torah":"Numbers 29:20-28"
-},
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot IV (CH’’M)",
-"date":"2026-09-29",
-"hdate":"18 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot IV (CH''M)",
-"hebrew":"סוכות ד׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:23-29:25",
-"2":"Numbers 29:26-29:28",
-"3":"Numbers 29:29-29:31",
-"4":"Numbers 29:23-29:28",
-"torah":"Numbers 29:23-31"
-},
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot V (CH’’M)",
-"date":"2026-09-30",
-"hdate":"19 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot V (CH''M)",
-"hebrew":"סוכות ה׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:26-29:28",
-"2":"Numbers 29:29-29:31",
-"3":"Numbers 29:32-29:34",
-"4":"Numbers 29:26-29:31",
-"torah":"Numbers 29:26-34"
-},
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VI (CH’’M)",
-"date":"2026-10-01",
-"hdate":"20 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot VI (CH''M)",
-"hebrew":"סוכות ו׳ (חוה״מ)",
-"leyning":{
-"1":"Numbers 29:29-29:31",
-"2":"Numbers 29:32-29:34",
-"3":"Numbers 29:35-29:37",
-"4":"Numbers 29:29-29:34",
-"torah":"Numbers 29:29-37"
-},
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VII (Hoshana Raba)",
-"date":"2026-10-02",
-"hdate":"21 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"סוכות ז׳ (הושענא רבה)",
-"leyning":{
-"1":"Numbers 29:26-29:28",
-"2":"Numbers 29:29-29:31",
-"3":"Numbers 29:32-29:34",
-"4":"Numbers 29:29-29:34",
-"torah":"Numbers 29:26-34"
-},
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Shmini Atzeret",
 "date":"2026-10-03",
@@ -4344,63 +4077,9 @@
 ]
 },
 "leyning=off&maj=on&s=on":{
-"start":"2026-09-28",
-"end":"2027-12-07",
+"start":"2026-10-03",
+"end":"2027-12-12",
 "items":[
-{
-"title":"Sukkot III (CH’’M)",
-"date":"2026-09-28",
-"hdate":"17 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot III (CH''M)",
-"hebrew":"סוכות ג׳ (חוה״מ)",
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot IV (CH’’M)",
-"date":"2026-09-29",
-"hdate":"18 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot IV (CH''M)",
-"hebrew":"סוכות ד׳ (חוה״מ)",
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot V (CH’’M)",
-"date":"2026-09-30",
-"hdate":"19 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot V (CH''M)",
-"hebrew":"סוכות ה׳ (חוה״מ)",
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VI (CH’’M)",
-"date":"2026-10-01",
-"hdate":"20 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot VI (CH''M)",
-"hebrew":"סוכות ו׳ (חוה״מ)",
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VII (Hoshana Raba)",
-"date":"2026-10-02",
-"hdate":"21 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"סוכות ז׳ (הושענא רבה)",
-"link":"https://hebcal.com/h/sukkot-2026?us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Shmini Atzeret",
 "date":"2026-10-03",
@@ -5297,67 +4976,21 @@
 "category":"parashat",
 "hebrew":"פרשת תולדות",
 "link":"https://hebcal.com/s/5788/6?us=js&um=api"
+},
+{
+"title":"Parashat Vayetzei",
+"date":"2027-12-11",
+"hdate":"11 Kislev 5788",
+"category":"parashat",
+"hebrew":"פרשת ויצא",
+"link":"https://hebcal.com/s/5788/7?us=js&um=api"
 }
 ]
 },
 "i=on&leyning=off&maj=on&s=on":{
-"start":"2026-09-28",
-"end":"2027-12-07",
+"start":"2026-10-03",
+"end":"2027-12-12",
 "items":[
-{
-"title":"Sukkot III (CH’’M)",
-"date":"2026-09-28",
-"hdate":"17 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot III (CH''M)",
-"hebrew":"סוכות ג׳ (חוה״מ)",
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot IV (CH’’M)",
-"date":"2026-09-29",
-"hdate":"18 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot IV (CH''M)",
-"hebrew":"סוכות ד׳ (חוה״מ)",
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot V (CH’’M)",
-"date":"2026-09-30",
-"hdate":"19 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot V (CH''M)",
-"hebrew":"סוכות ה׳ (חוה״מ)",
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VI (CH’’M)",
-"date":"2026-10-01",
-"hdate":"20 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"title_orig":"Sukkot VI (CH''M)",
-"hebrew":"סוכות ו׳ (חוה״מ)",
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
-{
-"title":"Sukkot VII (Hoshana Raba)",
-"date":"2026-10-02",
-"hdate":"21 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"hebrew":"סוכות ז׳ (הושענא רבה)",
-"link":"https://hebcal.com/h/sukkot-2026?i=on&us=js&um=api",
-"memo":"Feast of Booths. Also called the Feast of Tabernacles, the seven-day holiday is one of the Three Pilgrimage Festivals (Hebrew: שלוש רגלים, shalosh regalim)"
-},
 {
 "title":"Shmini Atzeret",
 "date":"2026-10-03",
@@ -6218,6 +5851,14 @@
 "category":"parashat",
 "hebrew":"פרשת תולדות",
 "link":"https://hebcal.com/s/5788i/6?us=js&um=api"
+},
+{
+"title":"Parashat Vayetzei",
+"date":"2027-12-11",
+"hdate":"11 Kislev 5788",
+"category":"parashat",
+"hebrew":"פרשת ויצא",
+"link":"https://hebcal.com/s/5788i/7?us=js&um=api"
 }
 ]
 }
