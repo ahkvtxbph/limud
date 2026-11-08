@@ -25,6 +25,7 @@ PAGES = [   # (Wikisource page, prayer key, Hebrew name)
     ('סידור/נוסח תימן בלדי/קריאת שמע שעל המיטה', 'bedtime', 'קריאת שמע על המיטה'),
 ]
 # pages with no headings of their own: a block that matches starts a new section
+# (used only while a page has no headings; once Wikisource adds them, the headings decide)
 ANCHORS = {
     'mincha': [
         (r'^אתה הוא', 'פטום הקטורת'),
@@ -38,6 +39,12 @@ ANCHORS = {
         (r'^למנצח על הגתית', 'מזמורים · עלינו לשבח'),
     ],
 }
+# the same section under another name on another page — one name, so the site groups them alike
+# sections said only on some days, though Wikisource puts the instruction at the end of the section before:
+# section title -> (condition, a segment from which on it is said every day again)
+LEAF_WHEN = {'אבינו מלכנו': ('ayt', 'ואנחנו לא נדע')}
+SUBHEAD = re.compile(r'לשני וחמישי')
+H2_NAMES = {'עמידה': 'תפילת עמידה', 'תפילת העמידה': 'תפילת עמידה', 'שמונה עשרה': 'תפילת עמידה'}
 DROP_BLOCK = re.compile(r'^(תפילת שמונה עשרה|תפלת שמונה עשרה|תפילת עמידה)$')
 
 NIKUD = re.compile('[ְ-ׇּׁׂ]')
@@ -83,6 +90,7 @@ def skipped(n):
     if re.search(r'mw-editsection|reference|toc|noprint|mw-empty-elt|catlinks|navbox', c): return True
     if n.attrs.get('id') == 'toc': return True
     if 'color:gray' in n.style(): return True              # the grey (source) citations
+    if n.tag == 'table' and 'border:1pxsolidred' in n.style(): return True   # "העריכה בעיצומה" (work in progress) notice
     return False
 
 # ---------------------------------------------------------------- page -> blocks
@@ -436,7 +444,7 @@ def convert_page(html, prayer, he):
     blocks_raw = page_blocks(html)
     leaves, h2, h3 = [], None, None
     cur = None
-    anchors = ANCHORS.get(prayer, [])
+    anchors = [] if any(it[0] in ('h2', 'h3') for it in blocks_raw) else ANCHORS.get(prayer, [])
     aptr = 0
     def new_leaf(title2, title3=None):
         nonlocal cur
@@ -445,7 +453,7 @@ def convert_page(html, prayer, he):
         leaves.append(cur)
     for item in blocks_raw:
         if item[0] == 'h2':
-            h2, h3 = item[1], None; new_leaf(h2); continue
+            h2, h3 = H2_NAMES.get(item[1], item[1]), None; new_leaf(h2); continue
         if item[0] == 'h3':
             h3 = item[1]; new_leaf(h2 or he, h3); continue
         for toks in split_lines(item[1]):
@@ -475,8 +483,34 @@ def convert_page(html, prayer, he):
         for i, b in enumerate(bl): ayt_fix(b, bl[i + 1] if i + 1 < len(bl) else None)
         leaf['s'] = [wrap_html(b) for b in bl if b.html]
         del leaf['blocks']
-    # merge empty heading-only leaves into nothing
-    return [l for l in leaves if l['s']]
+    only_ins = lambda x: not plain(re.sub(r'<[^>]+>', ' ', re.sub(r'<span class="sd-i">.*?</span>', ' ', x))).strip()
+    # an instruction left at the end of a section belongs to the next one ("לעשרת ימי תשובה" → אבינו מלכנו)
+    for i in range(len(leaves) - 1):
+        a, b = leaves[i], leaves[i + 1]
+        while a['s'] and only_ins(a['s'][-1]) and b['p'].split(', ')[0] == a['p'].split(', ')[0]:
+            b['s'].insert(0, a['s'].pop())
+    # an empty sub-heading over the next sections ("תחנון לשני וחמישי"): it becomes part of their path,
+    # until a section that ends with what is said every day ("ואנחנו לא נדע")
+    for i, leaf in enumerate(leaves):
+        parts = leaf['p'].split(', ')
+        if leaf['s'] or len(parts) != 3 or not SUBHEAD.search(parts[2]): continue
+        for nxt in leaves[i + 1:]:
+            q = nxt['p'].split(', ')
+            if q[:2] != parts[:2] or not nxt['s']: break
+            if any(plain(re.sub(r'<[^>]+>', ' ', x)).startswith('ואנחנו לא נדע') for x in nxt['s']): break
+            nxt['p'] = nxt['h'] = ', '.join(q[:2] + [parts[2]] + q[2:])
+    for leaf in leaves:
+        rule = LEAF_WHEN.get(leaf['p'].split(', ')[-1])
+        if not rule: continue
+        cond, until = rule
+        segs, on = [], True
+        for x in leaf['s']:
+            if on and plain(re.sub(r'<[^>]+>', ' ', x)).startswith(until): on = False
+            segs.append(f'<span data-w="{cond}">{x}</span>' if on and not only_ins(x) else x)
+        leaf['s'] = segs
+    # leaves with nothing to say: empty, or only an instruction (e.g. "בליל ראש חודש" above the heading it belongs to)
+    said = lambda l: plain(re.sub(r'<[^>]+>', ' ', re.sub(r'<span class="sd-i">.*?</span>', ' ', ' '.join(l['s'])))).strip()
+    return [l for l in leaves if l['s'] and said(l)]
 
 def split_lines(toks):
     """A paragraph whose lines (<br>) open with an instruction ("בעשי"ת: …", "בראש חודש: …") is split into its
