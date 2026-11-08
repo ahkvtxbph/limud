@@ -457,16 +457,18 @@ const SIDDUR_NUSACHOT = {
     prayerOf: { 'שחרית': 'shacharit', 'מנחה': 'mincha', 'ערבית': 'maariv', 'קריאת שמע על המיטה': 'maariv' },
     rules: [   // by section name (or a piece inside it)
       { match: /שני וחמישי/, when: g => g.tachanun && g.monThu },
-      { match: /נפילת אפים|תחנון|וידוי/, when: g => g.prayer === 'mincha' ? g.tachanunMincha : g.tachanun },
+      { match: /נפילת אפים|תחנו[ןנ]|וידוי/, when: g => g.prayer === 'mincha' ? g.tachanunMincha : g.tachanun },
       { match: /הלל/, when: g => g.hallel !== 'none', special: 'hallel' },
       { match: /מוסף/, when: g => g.musaf },
       { match: /ספירת העומר/, when: g => g.omerDay > 0, special: 'omer' },
+      { match: /ראש חודש/, when: g => g.rc },
       { match: /קריאת שמע על המיטה/, when: SD_OPTIONAL },
       { match: /ברכת הלבנה|קידוש לבנה/, when: g => g.levana ? 'optional' : false }
     ],
     leafRules: [
       { match: /מזמור לתודה/, when: g => g.mizmorLetoda },
-      { match: /למנצח/, when: g => g.lamenatzeach }
+      { match: /^שחרית,.*, למנצח$/, when: g => g.lamenatzeach },    // Psalm 20 (not "למנצח" psalms elsewhere)
+      { match: /שני וחמישי/, when: g => g.tachanun && g.monThu }
     ],
     prayers: null
   },
