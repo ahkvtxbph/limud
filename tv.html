@@ -8,7 +8,7 @@ permalink: /tv.html
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>לוח זמנים | מזמור לתודה</title>
-<meta name="description" content="לוח למסך טלוויזיה: שעה, תאריך עברי, פרשת השבוע, זמני היום, זמני שבת ומה מיוחד היום בתפילה.">
+<meta name="description" content="לוח למסך טלוויזיה: שעה, תאריך עברי, פרשת השבוע, זמני היום, זמני שבת, זמני התפילות והודעות.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://limood.org.il/tv.html">
 <meta name="theme-color" content="#0E2236">
@@ -38,11 +38,9 @@ body{display:flex; align-items:center; justify-content:center;}
 .dates .greg{font-size:calc(var(--u) * 1.9); color:var(--muted);}
 .side{text-align:left;}
 .side .parasha{font-size:calc(var(--u) * 3.2); font-weight:700; color:var(--gold-soft);}
-.side .labels{font-size:calc(var(--u) * 2); color:var(--gold); margin-top:calc(var(--u) * .3);}
 .side .place{font-size:calc(var(--u) * 1.6); color:var(--muted); margin-top:calc(var(--u) * .3);}
 
-/* middle: three panels */
-.main{display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:calc(var(--u) * 1.4); min-height:0;}
+/* middle: the pages */
 .panel{background:var(--panel); border:1px solid var(--line); border-radius:calc(var(--u) * 1); padding:calc(var(--u) * 1.2) calc(var(--u) * 1.4);
   display:flex; flex-direction:column; min-height:0; overflow:hidden;}
 .panel h2{font-size:calc(var(--u) * 2); color:var(--gold); font-weight:700; margin-bottom:calc(var(--u) * .7);
@@ -99,6 +97,50 @@ body.pointer .gear{opacity:.8;}
 .cities button:focus, .settings .close:focus{outline:none; border-color:#fff; background:var(--now);}
 .settings .close{margin-top:calc(var(--u) * 1.2); width:100%;}
 
+/* labels of the day — under the date */
+.dates .labels{font-size:calc(var(--u) * 1.9); color:var(--gold); margin-top:calc(var(--u) * .3);}
+.shabbat .special{font-size:calc(var(--u) * 1.7); color:var(--gold); margin-bottom:calc(var(--u) * .5);}
+
+/* pages: one at a time on a TV, in turn */
+.pages{position:relative; min-height:0;}
+.page{position:absolute; inset:0; display:none; opacity:0; transition:opacity .6s;}
+.page.on{display:grid; opacity:1;}
+.page.main{grid-template-columns:1.25fr 1fr 1fr; gap:calc(var(--u) * 1.4);}
+.page.two{grid-template-columns:1fr 1fr; gap:calc(var(--u) * 1.4);}
+.dots{display:flex; gap:calc(var(--u) * .5); align-items:center;}
+.dots i{width:calc(var(--u) * .8); height:calc(var(--u) * .8); border-radius:50%; background:var(--line); display:inline-block;}
+.dots i.on{background:var(--gold);}
+.demo{font-size:calc(var(--u) * 1.2); background:var(--warn); color:#fff; border-radius:calc(var(--u) * .4); padding:0 calc(var(--u) * .5); margin-inline-start:.5em;}
+
+/* prayer times */
+.ptimes{list-style:none; display:flex; flex-direction:column; gap:calc(var(--u) * .5);}
+.ptimes li{display:flex; justify-content:space-between; align-items:baseline; font-size:calc(var(--u) * 2.4);
+  background:var(--panel-2); border-radius:calc(var(--u) * .6); padding:calc(var(--u) * .5) calc(var(--u) * 1);}
+.ptimes li .t{font-weight:700; direction:ltr; font-variant-numeric:tabular-nums;}
+.ptimes li .how{font-size:.6em; color:var(--muted); margin-inline-start:.6em;}
+.ptimes li.past{opacity:.5;}
+.ptimes li.next{background:var(--now); color:var(--now-text);}
+.ptimes li.next .how{color:var(--now-text);}
+.ptimes h3{font-size:calc(var(--u) * 1.8); color:var(--gold); margin:calc(var(--u) * .6) 0 calc(var(--u) * .2);}
+
+/* messages */
+.msgs{display:grid; grid-template-columns:repeat(auto-fit, minmax(calc(var(--u) * 28), 1fr)); gap:calc(var(--u) * 1.4); align-content:start;}
+.msg{background:var(--panel); border:1px solid var(--line); border-inline-start:calc(var(--u) * .5) solid var(--gold); border-radius:calc(var(--u) * 1); padding:calc(var(--u) * 1.4) calc(var(--u) * 1.8);}
+.msg h3{font-size:calc(var(--u) * 2.6); color:var(--gold-soft); margin-bottom:calc(var(--u) * .5);}
+.msg p{font-size:calc(var(--u) * 2.1); line-height:1.45; white-space:pre-line;}
+.page.msgs-page{display:none; grid-template-rows:auto 1fr; gap:calc(var(--u) * 1);}
+.page.msgs-page.on{display:grid;}
+.page-title{font-size:calc(var(--u) * 2.4); color:var(--gold); font-weight:700;}
+
+/* settings: sections and toggles */
+.settings h3{font-size:calc(var(--u) * 1.8); color:var(--gold-soft); margin:calc(var(--u) * 1.2) 0 calc(var(--u) * .6);}
+.toggles{display:flex; flex-wrap:wrap; gap:calc(var(--u) * .7);}
+.toggles button{font:inherit; font-size:calc(var(--u) * 1.7); background:var(--panel-2); color:var(--muted); border:2px solid transparent; border-radius:calc(var(--u) * .6); padding:calc(var(--u) * .6) calc(var(--u) * 1.2); cursor:pointer;}
+.toggles button.sel{color:var(--gold-soft); border-color:var(--gold);}
+.toggles button.sel::before{content:'✓ ';}
+.toggles button:focus{outline:none; border-color:#fff; background:var(--now); color:#fff;}
+.settings .src{font-size:calc(var(--u) * 1.4); color:var(--muted);}
+
 /* a phone held upright: one column, scrolling */
 @media (max-aspect-ratio: 1/1){
   html, body{overflow-x:hidden; overflow-y:auto; height:auto;}
@@ -106,21 +148,32 @@ body.pointer .gear{opacity:.8;}
   :root{--u:1vw;}
   .board{width:100%; height:auto; grid-template-rows:auto; grid-template-columns:minmax(0, 1fr); padding:16px;}
   .board > *, .panel, .top > *{min-width:0;}
-  .main{display:flex; flex-direction:column;}
   .panel{overflow:visible;}
   .zmanim li, .pills li, .rows li, .upcoming .rows li{font-size:calc(var(--u) * 4.4);}
   .panel h2{font-size:calc(var(--u) * 4.6);}
   .prayer .now, .shabbat .name{font-size:calc(var(--u) * 5.2);}
   .shabbat .when, .upcoming h3{font-size:calc(var(--u) * 3.8);}
-  .dates .wd, .side .labels, .side .place, .dates .greg{font-size:calc(var(--u) * 4);}
+  .dates .wd, .side .place, .dates .greg{font-size:calc(var(--u) * 4);}
   .dates .heb, .side .parasha{font-size:calc(var(--u) * 6.5);}
   .foot{flex-direction:column; gap:6px; font-size:calc(var(--u) * 3.4); margin-top:8px;}
   .gear{bottom:16px; left:16px; width:44px; height:44px; font-size:22px; opacity:.8;}
   .top{grid-template-columns:1fr; text-align:center;}
   .dates, .side{text-align:center;}
-  .main{grid-template-columns:1fr;}
   .clock{font-size:calc(var(--u) * 20);}
   .cities{grid-template-columns:repeat(3, 1fr);}
+  .pages{position:static;}
+  .page, .page.on, .page.msgs-page{position:static; display:flex !important; flex-direction:column; gap:12px; opacity:1; margin-bottom:12px;}
+  .page.hidden-page{display:none !important;}
+  .dots{display:none;}
+  .ptimes li{font-size:calc(var(--u) * 4.6);}
+  .ptimes h3, .page-title{font-size:calc(var(--u) * 4.6);}
+  .msg h3{font-size:calc(var(--u) * 5);} .msg p{font-size:calc(var(--u) * 4.2);}
+  .dates .labels, .shabbat .special{font-size:calc(var(--u) * 4);}
+  .toggles button{font-size:16px;}
+  .msgs{grid-template-columns:1fr;}
+  .settings .box{width:94vw;}
+  .settings h2{font-size:22px;} .settings h3{font-size:18px;} .settings p{font-size:15px;}
+  .cities button, .settings .close{font-size:16px;}
 }
 </style>
 </head>
@@ -131,50 +184,79 @@ body.pointer .gear{opacity:.8;}
       <div class="wd" id="tv-weekday"></div>
       <div class="heb" id="tv-heb"></div>
       <div class="greg" id="tv-greg"></div>
+      <div class="labels" id="tv-labels"></div>
     </div>
     <div class="clock" id="tv-clock">--:--</div>
     <div class="side">
       <div class="parasha" id="tv-parasha"></div>
-      <div class="labels" id="tv-labels"></div>
       <div class="place" id="tv-place"></div>
     </div>
   </header>
 
-  <main class="main">
-    <section class="panel">
-      <h2><span id="tv-zmanim-title">זמני היום</span> <small id="tv-zmanim-note"></small></h2>
-      <ul class="zmanim" id="tv-zmanim"></ul>
+  <div class="pages" id="tv-pages">
+    <!-- page 1: the day -->
+    <main class="page main" data-page="zmanim">
+      <section class="panel">
+        <h2><span id="tv-zmanim-title">זמני היום</span> <small id="tv-zmanim-note"></small></h2>
+        <ul class="zmanim" id="tv-zmanim"></ul>
+      </section>
+      <section class="panel prayer">
+        <h2>היום בתפילה</h2>
+        <div class="now" id="tv-prayer-now"></div>
+        <ul class="pills" id="tv-pills"></ul>
+      </section>
+      <section class="panel shabbat">
+        <h2 id="tv-shabbat-title">שבת</h2>
+        <div class="name" id="tv-shabbat-name"></div>
+        <div class="when" id="tv-shabbat-when"></div>
+        <div class="special" id="tv-shabbat-special"></div>
+        <ul class="rows" id="tv-shabbat"></ul>
+        <div class="upcoming">
+          <h3>בקרוב</h3>
+          <ul class="rows" id="tv-upcoming"></ul>
+        </div>
+      </section>
+    </main>
+    <!-- page 2: prayer times -->
+    <section class="page two" data-page="prayers">
+      <section class="panel">
+        <h2><span>תפילות ימי החול</span> <small id="tv-wk-note"></small></h2>
+        <ul class="ptimes" id="tv-wk"></ul>
+      </section>
+      <section class="panel">
+        <h2><span id="tv-sh-title">תפילות שבת</span> <small id="tv-sh-note"></small></h2>
+        <ul class="ptimes" id="tv-sh"></ul>
+      </section>
     </section>
-    <section class="panel prayer">
-      <h2>היום בתפילה</h2>
-      <div class="now" id="tv-prayer-now"></div>
-      <ul class="pills" id="tv-pills"></ul>
+    <!-- page 3: messages -->
+    <section class="page msgs-page" data-page="messages">
+      <div class="page-title">הודעות <span id="tv-msg-demo"></span></div>
+      <div class="msgs" id="tv-msgs"></div>
     </section>
-    <section class="panel shabbat">
-      <h2 id="tv-shabbat-title">שבת</h2>
-      <div class="name" id="tv-shabbat-name"></div>
-      <div class="when" id="tv-shabbat-when"></div>
-      <ul class="rows" id="tv-shabbat"></ul>
-      <div class="upcoming">
-        <h3>בקרוב</h3>
-        <ul class="rows" id="tv-upcoming"></ul>
-      </div>
-    </section>
-  </main>
+  </div>
 
   <footer class="foot">
     <span><span class="dot" id="tv-dot"></span><span id="tv-status"></span></span>
     <div class="alert" id="tv-alert"></div>
+    <span class="dots" id="tv-dots"></span>
     <span>זמנים משוערים (חישוב אוטומטי) · <span class="site">limood.org.il</span></span>
   </footer>
 </div>
 
 <button class="gear" id="tv-gear" aria-label="הגדרות">⚙</button>
-<div class="settings" id="tv-settings" role="dialog" aria-label="בחירת מיקום">
+<div class="settings" id="tv-settings" role="dialog" aria-label="הגדרות הלוח">
   <div class="box">
-    <h2>בחירת מיקום</h2>
-    <p>הזמנים מחושבים לפי המיקום. בחרו עם החיצים בשלט ולחצו OK.</p>
+    <h2>הגדרות הלוח</h2>
+    <p>בוחרים עם החיצים בשלט ולוחצים OK. ההגדרות נשמרות במכשיר.</p>
+    <h3>דפים שמוצגים</h3>
+    <div class="toggles" id="tv-page-toggles"></div>
+    <h3>החלפת דף כל</h3>
+    <div class="toggles" id="tv-rotate-toggles"></div>
+    <h3>מיקום</h3>
     <div class="cities" id="tv-cities"></div>
+    <h3>תוכן (זמני תפילות והודעות)</h3>
+    <p class="src" id="tv-src"></p>
+    <div class="toggles"><button id="tv-reset">איפוס להגדרות מהגיליון</button></div>
     <button class="close" id="tv-close">סגירה</button>
   </div>
 </div>
@@ -183,24 +265,46 @@ body.pointer .gear{opacity:.8;}
 <script src="siddur.js?build={{ site.time | date: '%s' }}"></script>
 <script>
 /* =====================================================================
-   TV BOARD — everything is computed on the device (sun times, Hebrew calendar, what the prayer
-   needs); only the parasha and the coming holidays come from the site's own files, and those are
-   cached by the browser, so the board keeps working when the connection drops.
-   Address options: ?city=ירושלים  or  ?lat=..&lon=..&name=..  (else the saved choice, else a guess)
+   TV BOARD
+   Everything about the day is computed on the device (sun times, Hebrew calendar, what the prayer
+   needs); the parasha and the coming holidays come from the site's own files. Both keep working when
+   the connection drops (the site's files and the sheet are kept in the device's storage).
+
+   Pages: "zmanim" (the day), "prayers" (the congregation's prayer times), "messages".
+   The prayer times and the messages come from a Google Sheet published as CSV
+   (File → Share → Publish to web → CSV), given once in the address: tv.html?sheet=<the published link>
+   Without a sheet the board shows a demonstration.
+   Sheet columns: סוג | שם | ערך | יום/עד
+     הגדרה | דף זמנים / דף תפילות / דף הודעות | כן / לא
+     הגדרה | החלפה כל | 20                                   (seconds)
+     חול   | שחרית | 06:30            a fixed time
+     חול   | מנחה  | שקיעה-15         a time relative to the day: עלות, הנץ, חצות, מנחה גדולה, מנחה קטנה,
+                                      פלג, שקיעה, צאת; and for Shabbat also הדלקה, צאת שבת
+     שבת   | מנחה ערב שבת | הדלקה+10 | ערב שבת          (the day: ערב שבת / שבת — default שבת)
+     הודעה | the title | the text | 2026-12-31           (optional: shown until this date)
+   Relative times are rounded to 5 minutes: "-" earlier, "+" later.
+   Address options: ?city=ירושלים or ?lat=..&lon=..&name=..
    ===================================================================== */
-const TV_CITIES = [
-  { name: 'ירושלים', lat: 31.7683, lon: 35.2137 }, { name: 'תל אביב', lat: 32.0853, lon: 34.7818 },
-  { name: 'חיפה', lat: 32.7940, lon: 34.9896 }, { name: 'באר שבע', lat: 31.2518, lon: 34.7913 },
-  { name: 'בני ברק', lat: 32.0807, lon: 34.8338 }, { name: 'פתח תקווה', lat: 32.0840, lon: 34.8878 },
-  { name: 'בית שמש', lat: 31.7470, lon: 34.9881 }, { name: 'מודיעין עילית', lat: 31.9333, lon: 35.0417 },
-  { name: 'ביתר עילית', lat: 31.6960, lon: 35.1150 }, { name: 'אלעד', lat: 32.0522, lon: 34.9511 },
-  { name: 'אשדוד', lat: 31.8044, lon: 34.6553 }, { name: 'נתניה', lat: 32.3215, lon: 34.8532 },
-  { name: 'ראשון לציון', lat: 31.9730, lon: 34.7925 }, { name: 'רחובות', lat: 31.8928, lon: 34.8113 },
-  { name: 'מודיעין', lat: 31.8980, lon: 35.0104 }, { name: 'צפת', lat: 32.9646, lon: 35.4960 },
-  { name: 'טבריה', lat: 32.7922, lon: 35.5312 }, { name: 'אשקלון', lat: 31.6688, lon: 34.5743 },
-  { name: 'קרית גת', lat: 31.6100, lon: 34.7642 }, { name: 'אילת', lat: 29.5577, lon: 34.9519 }
-];
-const TV_SAVE_KEY = 'tv-location';
+const TV_CITIES = (function(){
+  const first = [{ name: 'ירושלים', lat: 31.7683, lon: 35.2137 }, { name: 'תל אביב', lat: 32.0853, lon: 34.7818 }];
+  const rest = [
+    { name: 'חיפה', lat: 32.7940, lon: 34.9896 }, { name: 'באר שבע', lat: 31.2518, lon: 34.7913 },
+    { name: 'בני ברק', lat: 32.0807, lon: 34.8338 }, { name: 'פתח תקווה', lat: 32.0840, lon: 34.8878 },
+    { name: 'בית שמש', lat: 31.7470, lon: 34.9881 }, { name: 'מודיעין עילית', lat: 31.9333, lon: 35.0417 },
+    { name: 'ביתר עילית', lat: 31.6960, lon: 35.1150 }, { name: 'אלעד', lat: 32.0522, lon: 34.9511 },
+    { name: 'אשדוד', lat: 31.8044, lon: 34.6553 }, { name: 'נתניה', lat: 32.3215, lon: 34.8532 },
+    { name: 'ראשון לציון', lat: 31.9730, lon: 34.7925 }, { name: 'רחובות', lat: 31.8928, lon: 34.8113 },
+    { name: 'מודיעין', lat: 31.8980, lon: 35.0104 }, { name: 'צפת', lat: 32.9646, lon: 35.4960 },
+    { name: 'טבריה', lat: 32.7922, lon: 35.5312 }, { name: 'אשקלון', lat: 31.6688, lon: 34.5743 },
+    { name: 'קרית גת', lat: 31.6100, lon: 34.7642 }, { name: 'אילת', lat: 29.5577, lon: 34.9519 },
+    { name: 'נתיבות', lat: 31.4231, lon: 34.5886 }, { name: 'כפר מימון', lat: 31.4436, lon: 34.5414 },
+    { name: 'תושיה', lat: 31.4296, lon: 34.5321 }
+  ];
+  rest.sort((a, b) => a.name.localeCompare(b.name, 'he'));
+  return first.concat(rest);
+})();
+const TV_PAGES = [{ key: 'zmanim', he: 'זמני היום' }, { key: 'prayers', he: 'זמני תפילות' }, { key: 'messages', he: 'הודעות' }];
+const TV_ROTATE = [10, 20, 30, 60];
 const DAY = 86400000;
 const $ = id => document.getElementById(id);
 
@@ -208,9 +312,9 @@ let tvLoc = null;               // { name, lat, lon }
 let tvParasha = null;           // data-parasha.json
 let tvHebcal = null;            // data-hebcal.json
 let tvDataTime = null;          // when the site's files were last read
+let tvSheet = null;             // { pages, rotate, weekday:[], shabbat:[], messages:[], time, demo }
 
-function tvSaved(){ try{ return JSON.parse(localStorage.getItem(TV_SAVE_KEY) || 'null'); }catch(e){ return null; } }
-function tvSave(loc){ try{ localStorage.setItem(TV_SAVE_KEY, JSON.stringify(loc)); }catch(e){} }
+function store(k, v){ try{ if(v === undefined) return JSON.parse(localStorage.getItem(k) || 'null'); localStorage.setItem(k, JSON.stringify(v)); }catch(e){ return null; } }
 function nearestCity(lat, lon){
   let best = null, bd = Infinity;
   TV_CITIES.forEach(c => { const d = (c.lat - lat) ** 2 + (c.lon - lon) ** 2; if(d < bd){ bd = d; best = c; } });
@@ -222,7 +326,7 @@ async function tvResolveLocation(){
   if(byName) return byName;
   const lat = parseFloat(p.get('lat')), lon = parseFloat(p.get('lon'));
   if(isFinite(lat) && isFinite(lon)) return { name: p.get('name') || (nearestCity(lat, lon) || {}).name || 'מיקום מותאם', lat, lon };
-  const saved = tvSaved();
+  const saved = store('tv-location');
   if(saved && isFinite(saved.lat)) return saved;
   try{
     const g = await detectGatingLocation();
@@ -248,8 +352,10 @@ function tvZmanim(date){
   const gra = h => new Date(sunrise.getTime() + h * (sunset - sunrise) / 12);
   const mga = h => new Date(alot.getTime() + h * (tzeit - alot) / 12);
   const chatzot = gra(6);
+  const minchaG = new Date(chatzot.getTime() + (summer ? 30 * dayMin / 720 : 30) * 60000);
   return {
     sunrise, sunset, tzeit, alot, chatzot,
+    anchors: { 'עלות': alot, 'הנץ': sunrise, 'חצות': chatzot, 'מנחה גדולה': minchaG, 'מנחה קטנה': gra(9.5), 'פלג': gra(10.75), 'שקיעה': sunset, 'צאת': tzeit },
     list: [
       { label: 'עלות השחר', time: alot },
       { label: 'טלית ותפילין', time: new Date(sunrise.getTime() - 50 * 60000) },
@@ -258,7 +364,7 @@ function tvZmanim(date){
       { label: 'סוף ק״ש (גר״א)', time: roundToMinute(gra(3), 'down') },
       { label: 'סוף תפילה (גר״א)', time: roundToMinute(gra(4), 'down') },
       { label: 'חצות היום', time: chatzot },
-      { label: 'מנחה גדולה', time: new Date(chatzot.getTime() + (summer ? 30 * dayMin / 720 : 30) * 60000) },
+      { label: 'מנחה גדולה', time: minchaG },
       { label: 'מנחה קטנה', time: gra(9.5) },
       { label: 'פלג המנחה', time: gra(10.75) },
       { label: 'שקיעה', time: sunset },
@@ -269,7 +375,7 @@ function tvZmanim(date){
 
 /* ---------- calendar facts (the siddur's own engine) ---------- */
 function tvLocFacts(){ return { isIsrael: tvIsIsrael(), inJerusalem: isJerusalemArea(tvLoc.lat, tvLoc.lon, tvLoc.name) }; }
-function tvFacts(dayDate){                       // a civil date (local) → facts, with tomorrow attached
+function tvFacts(dayDate){
   const ms = sdNoonOf(dayDate);
   const f = sdComputeFacts(ms, tvLocFacts());
   f.tomorrow = sdComputeFacts(ms + SD_DAY_MS, tvLocFacts());
@@ -278,13 +384,28 @@ function tvFacts(dayDate){                       // a civil date (local) → fac
 function restDay(f){ return f.dow === 6 || f.yomTov; }
 function addDays(d, n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n, 12); }
 function isoLocal(d){ return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+function noYearHeb(d){ try{ return getHebrewDisplay(d).replace(/ [^ ]+$/, ''); }catch(e){ return ''; } }
+function cleanHeb(h){ return String(h || '').replace(/ [א-ת]׳$/, ''); }
 
-/* ---------- the next Shabbat / Yom Tov: candle lighting and its end ---------- */
 function holidayItemsOn(iso){
   const sig = tvIsIsrael() ? 'i=on&maj=on&min=on&mod=on&nx=on' : 'maj=on&min=on&mod=on&nx=on';
   const set = tvHebcal && tvHebcal.sets && tvHebcal.sets[sig];
   return set ? (set.items || []).filter(i => String(i.date).slice(0, 10) === iso) : [];
 }
+// What makes a day special — Rosh Chodesh, Chanukah, festivals … (short labels)
+function dayLabels(day){
+  const f = tvFacts(day);
+  const g = sdDeriveFlags(f, 'ashkenaz', 'shacharit');
+  const labels = sdDayLabels(g).filter(x => !/^ספירת העומר|^יום טוב$/.test(x));
+  if(g.omerDay) labels.push('היום ' + g.omerDay + ' לעומר');
+  holidayItemsOn(isoLocal(day)).forEach(i => {
+    const h = cleanHeb(i.hebrew);
+    if(i.category === 'holiday' && h && !/^ראש חודש|^ערב |^חנוכה/.test(h) && !labels.some(l => l.indexOf(h) !== -1 || h.indexOf(l) !== -1)) labels.push(h);
+  });
+  return labels;
+}
+
+/* ---------- the next Shabbat / Yom Tov ---------- */
 function tvRestPeriod(now){
   const today = addDays(now, 0);
   for(let k = 0; k < 9; k++){
@@ -292,33 +413,41 @@ function tvRestPeriod(now){
     const startsTonight = restDay(f.tomorrow) && !restDay(f);
     const inside = k === 0 && restDay(f);
     if(!startsTonight && !inside) continue;
-    // the evening it starts (going back when we are already inside it)
     let start = day;
     if(inside){ while(restDay(tvFacts(addDays(start, -1)))) start = addDays(start, -1); start = addDays(start, -1); }
     let end = addDays(start, 1);
     while(restDay(tvFacts(addDays(end, 1)))) end = addDays(end, 1);
     const names = [];
+    let shabbatDay = null;
     for(let d = addDays(start, 1); d <= end; d = addDays(d, 1)){
       const fd = tvFacts(d);
       if(fd.yomTov){
-        const it = holidayItemsOn(isoLocal(d)).filter(i => i.yomtov).map(i => i.hebrew)[0];
-        if(it && names.indexOf(it) === -1) names.push(it.replace(/ [א-ת]׳$/, ''));
-        else if(!it && names.indexOf('יום טוב') === -1) names.push('יום טוב');
+        const it = holidayItemsOn(isoLocal(d)).filter(i => i.yomtov).map(i => cleanHeb(i.hebrew))[0] || 'יום טוב';
+        if(names.indexOf(it) === -1) names.push(it);
       }
-      if(fd.dow === 6 && names.indexOf('שבת') === -1) names.push('שבת');
+      if(fd.dow === 6){ shabbatDay = d; if(names.indexOf('שבת') === -1) names.push('שבת'); }
     }
     const startSunset = calcSunEventUTC(start, tvLoc.lat, tvLoc.lon, 90.833, false);
     const endSunset = calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 90.833, false);
     const candleMin = isJerusalemArea(tvLoc.lat, tvLoc.lon, tvLoc.name) ? JERUSALEM_CANDLE_MINUTES : 18;
     return {
-      names, start, end,
+      names, start, end, shabbatDay, candleMin,
       candles: startSunset && roundToMinute(new Date(startSunset.getTime() - candleMin * 60000), 'down'),
-      candleMin,
       havdala: roundToMinute(calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 98.5, false), 'up'),   // 8.5° (as Hebcal)
       rt: endSunset && roundToMinute(new Date(endSunset.getTime() + 72 * 60000), 'up')
     };
   }
   return null;
+}
+// What is special about this Shabbat (Rosh Chodesh, Chanukah, Mevarchim, a festival on Shabbat …)
+function shabbatSpecial(rp, now){
+  if(!rp || !rp.shabbatDay) return [];
+  const out = dayLabels(rp.shabbatDay).filter(x => !/לעומר$/.test(x));
+  try{
+    const info = getShabbatMevarchimInfo(now);
+    if(info && isoLocal(info.shabbat) === isoLocal(rp.shabbatDay)) out.push('שבת מברכים חודש ' + info.month);
+  }catch(e){}
+  return out;
 }
 
 /* ---------- which prayer now, and what it needs ---------- */
@@ -328,7 +457,122 @@ function tvPrayerNow(now, z){
   if(z && now >= z.chatzot) return { pr: 'mincha', day: addDays(now, 0) };
   return { pr: 'shacharit', day: addDays(now, 0) };
 }
-const TV_KEY_PILLS = /^(יעלה|על הניסים|עננו|נחם|אתה חוננתנו|הלל|מוסף|עשרת|אבינו|ספירת|ברכי|נטילת|קריאת התורה)/;
+const TV_KEY_PILLS = /^(יעלה|על הניסים|עננו|נחם|אתה חוננתנו|הלל|חצי הלל|מוסף|עשרת|אבינו|ספירת|ברכי|נטילת|קריאת התורה)/;
+
+/* ---------- the sheet: prayer times, messages, which pages ---------- */
+const TV_DEMO = {
+  demo: true, pages: {}, rotate: null,
+  weekday: [
+    { name: 'שחרית ותיקין', value: 'הנץ-35' }, { name: 'שחרית', value: '06:30' }, { name: 'שחרית ב׳', value: '08:00' },
+    { name: 'מנחה', value: 'שקיעה-15' }, { name: 'ערבית', value: 'צאת' }, { name: 'ערבית מאוחרת', value: '21:00' }
+  ],
+  shabbat: [
+    { name: 'מנחה וקבלת שבת', value: 'הדלקה+15', day: 'ערב שבת' },
+    { name: 'שחרית', value: '08:00', day: 'שבת' }, { name: 'שיעור לפני מנחה', value: 'שקיעה-75', day: 'שבת' },
+    { name: 'מנחה', value: 'שקיעה-40', day: 'שבת' }, { name: 'ערבית מוצאי שבת', value: 'צאת שבת', day: 'שבת' }
+  ],
+  messages: [
+    { title: 'שיעור תורה', text: 'שיעור בגמרא מדי ערב בין מנחה לערבית.\nהציבור מוזמן.' },
+    { title: 'קידוש בשבת', text: 'בשבת הקרובה יתקיים קידוש לאחר תפילת שחרית.' },
+    { title: 'זו הדגמה', text: 'זמני התפילות וההודעות יגיעו מגיליון Google שהגבאי מעדכן מהטלפון.' }
+  ]
+};
+function parseCsv(text){
+  const rows = []; let row = [], cell = '', q = false;
+  for(let i = 0; i < text.length; i++){
+    const ch = text[i];
+    if(q){ if(ch === '"'){ if(text[i + 1] === '"'){ cell += '"'; i++; } else q = false; } else cell += ch; continue; }
+    if(ch === '"') q = true;
+    else if(ch === ','){ row.push(cell); cell = ''; }
+    else if(ch === '\n' || ch === '\r'){ if(ch === '\r' && text[i + 1] === '\n') i++; row.push(cell); rows.push(row); row = []; cell = ''; }
+    else cell += ch;
+  }
+  if(cell || row.length){ row.push(cell); rows.push(row); }
+  return rows.map(r => r.map(c => c.trim()));
+}
+function sheetFromCsv(text){
+  const out = { pages: {}, rotate: null, weekday: [], shabbat: [], messages: [] };
+  const yes = v => /^(כן|yes|true|1|v|✓)$/i.test(v);
+  parseCsv(text).forEach(([type, name, value, extra]) => {
+    if(!type || !name) return;
+    if(/^הגדר/.test(type)){
+      if(/תפיל/.test(name)) out.pages.prayers = yes(value);
+      else if(/זמנ/.test(name)) out.pages.zmanim = yes(value);
+      else if(/הודע/.test(name)) out.pages.messages = yes(value);
+      else if(/החלפה/.test(name) && parseInt(value, 10) > 0) out.rotate = parseInt(value, 10);
+    }
+    else if(/^חול/.test(type)) out.weekday.push({ name, value });
+    else if(/^שבת/.test(type)) out.shabbat.push({ name, value, day: /ערב/.test(extra || '') ? 'ערב שבת' : 'שבת' });
+    else if(/^הודע/.test(type)) out.messages.push({ title: name, text: value || '', until: extra || '' });
+  });
+  return out;
+}
+function sheetUrl(){
+  const s = new URLSearchParams(location.search).get('sheet') || store('tv-sheet-url');
+  if(!s) return null;
+  if(/^https:\/\/docs\.google\.com\//.test(s)) return s;
+  if(/^[\w-]{20,}$/.test(s)) return 'https://docs.google.com/spreadsheets/d/e/' + s + '/pub?output=csv';
+  return null;
+}
+async function loadSheet(){
+  const url = sheetUrl();
+  if(!url){ tvSheet = TV_DEMO; return; }
+  store('tv-sheet-url', url);
+  try{
+    const r = await fetch(url + (url.indexOf('?') === -1 ? '?' : '&') + 't=' + Date.now());
+    if(!r.ok) throw new Error(r.status);
+    tvSheet = sheetFromCsv(await r.text());
+    tvSheet.time = new Date().toISOString();
+    store('tv-sheet-cache', tvSheet);
+  }catch(e){
+    tvSheet = store('tv-sheet-cache') || TV_DEMO;      // offline: the last copy
+  }
+}
+// a sheet value → a time on that day ("06:30", "שקיעה-15", "צאת", "הדלקה+10" …)
+function resolveTime(value, z, rp, day){
+  const v = String(value || '').replace(/\s+/g, ' ').trim();
+  let m = v.match(/^(\d{1,2})[:.](\d{2})$/);
+  if(m) return { time: new Date(day.getFullYear(), day.getMonth(), day.getDate(), +m[1], +m[2]), how: '' };
+  m = v.match(/^(.+?)\s*([+-])\s*(\d+)$/) || [null, v, '+', '0'];
+  const anchor = m[1].trim(), sign = m[2], min = +m[3];
+  let base = null;
+  if(rp && /^הדלק/.test(anchor)) base = rp.candles;
+  else if(rp && /^צאת שבת|^צאת החג|^הבדלה/.test(anchor)) base = rp.havdala;
+  else if(z) base = z.anchors[Object.keys(z.anchors).find(k => anchor.indexOf(k) === 0 || k.indexOf(anchor) === 0)];
+  if(!base) return { time: null, how: v };
+  let t = new Date(base.getTime() + (sign === '-' ? -min : min) * 60000);
+  const step = 5 * 60000;
+  if(min) t = new Date(sign === '-' ? Math.floor(t / step) * step : Math.ceil(t / step) * step);
+  else t = roundToMinute(t, 'up');
+  const how = min ? (min + ' דק׳ ' + (sign === '-' ? 'לפני' : 'אחרי') + ' ' + anchor.replace(/^צאת$/, 'צאת הכוכבים')) : '';
+  return { time: t, how };
+}
+
+/* ---------- which pages, how often ---------- */
+function pageOn(key){
+  const local = store('tv-pages') || {};
+  if(local[key] !== undefined) return local[key];
+  if(tvSheet && tvSheet.pages && tvSheet.pages[key] !== undefined) return tvSheet.pages[key];
+  return true;
+}
+function rotateSec(){ return store('tv-rotate') || (tvSheet && tvSheet.rotate) || 20; }
+function visiblePages(){ const v = TV_PAGES.filter(p => pageOn(p.key)); return v.length ? v : [TV_PAGES[0]]; }
+let tvPageIdx = 0, tvPageTimer = null;
+function showPage(){
+  const vis = visiblePages();
+  if(tvPageIdx >= vis.length) tvPageIdx = 0;
+  const cur = vis[tvPageIdx].key;
+  document.querySelectorAll('.page').forEach(el => {
+    el.classList.toggle('on', el.dataset.page === cur);
+    el.classList.toggle('hidden-page', !vis.find(p => p.key === el.dataset.page));
+  });
+  $('tv-dots').innerHTML = vis.length > 1 ? vis.map((p, i) => '<i class="' + (i === tvPageIdx ? 'on' : '') + '" title="' + p.he + '"></i>').join('') : '';
+}
+function startRotation(){
+  clearInterval(tvPageTimer);
+  showPage();
+  tvPageTimer = setInterval(() => { tvPageIdx++; showPage(); }, rotateSec() * 1000);
+}
 
 /* ---------- drawing ---------- */
 function drawClock(){
@@ -345,7 +589,6 @@ function untilText(ms){
 }
 function drawAll(){
   const now = new Date();
-  // the clock itself can't be trusted (a box that lost power and never got the time back)
   const badClock = now.getFullYear() < 2025;
   $('tv-alert').textContent = badClock ? 'השעון של המכשיר לא מכוון — הזמנים בלוח לא נכונים. חברו לאינטרנט או כוונו את השעה.' : '';
   $('tv-alert').classList.toggle('on', badClock);
@@ -354,27 +597,14 @@ function drawAll(){
   const afterSunset = z && now >= z.sunset;
   const hebDay = afterSunset ? addDays(now, 1) : now;
 
-  // dates
+  // the date, and what today is (Rosh Chodesh, Chanukah …)
   const wd = WEEKDAY_NAMES[hebDay.getDay()];
   $('tv-weekday').textContent = afterSunset ? 'אור ליום ' + wd : 'יום ' + wd;
   try{ $('tv-heb').textContent = getHebrewDisplay(hebDay); }catch(e){ $('tv-heb').textContent = ''; }
   $('tv-greg').textContent = now.toLocaleDateString('he-IL', { day: 'numeric', month: 'long', year: 'numeric' });
+  $('tv-labels').textContent = dayLabels(addDays(hebDay, 0)).join(' · ');
 
-  // the day's labels
-  const fd = tvFacts(hebDay);
-  const gDay = sdDeriveFlags(fd, 'ashkenaz', 'shacharit');
-  const labels = sdDayLabels(gDay).filter(x => !/^ספירת העומר/.test(x));
-  if(gDay.omerDay) labels.push('היום ' + gDay.omerDay + ' לעומר');
-  if(fd.dow === 6){ try{ const m = getShabbatMevarchimLabel(hebDay); if(m) labels.push(m); }catch(e){} }
-  holidayItemsOn(isoLocal(hebDay)).forEach(i => {
-    const h = String(i.hebrew || '').replace(/ [א-ת]׳$/, '');
-    if(i.category === 'holiday' && h && !labels.some(l => l.indexOf(h) !== -1 || h.indexOf(l) !== -1) && !/^ראש חודש|^ערב /.test(h)) labels.push(h);
-  });
-  $('tv-labels').textContent = labels.join(' · ');
-
-  // parasha of the coming Shabbat
-  const iso = isoLocal(hebDay);
-  const par = tvParasha && tvParasha.days && tvParasha.days[iso];
+  const par = tvParasha && tvParasha.days && tvParasha.days[isoLocal(hebDay)];
   $('tv-parasha').textContent = par && par.length ? 'פרשת ' + par.join('–') : '';
   $('tv-place').textContent = '📍 ' + tvLoc.name;
 
@@ -394,107 +624,183 @@ function drawAll(){
     }).join('');
   }
 
-  // prayer
+  // what the prayer needs now
   const pn = tvPrayerNow(now, z);
   const f = tvFacts(pn.day);
   const g = sdDeriveFlags(f, 'ashkenaz', pn.pr);
   let pills = sdDescribe(g, pn.pr);
   if(pn.pr === 'mincha') pills = pills.filter(x => !/^(משיב|מוריד|ותן)/.test(x));
   pills = pills.filter(x => !/^אין אומרים (למנצח|מזמור לתודה)/.test(x));
-  $('tv-prayer-now').textContent = (pn.pr === 'maariv' ? 'ערבית' : SD_PRAYER_HE[pn.pr]) + (restDay(f) || (pn.pr !== 'maariv' && f.dow === 6) ? ' · ' + (f.dow === 6 ? 'שבת' : 'יום טוב') : '');
-  if(f.dow === 6 && pn.pr !== 'maariv' || f.yomTov){ pills = ['תפילה של ' + (f.dow === 6 ? 'שבת' : 'יום טוב')]; }
+  $('tv-prayer-now').textContent = (pn.pr === 'maariv' ? 'ערבית' : SD_PRAYER_HE[pn.pr]) + (restDay(f) ? ' · ' + (f.dow === 6 ? 'שבת' : 'יום טוב') : '');
+  if(restDay(f)) pills = ['תפילה של ' + (f.dow === 6 ? 'שבת' : 'יום טוב')];
   $('tv-pills').innerHTML = pills.slice(0, 9).map(x => '<li' + (TV_KEY_PILLS.test(x) ? ' class="key"' : '') + '>' + sdEsc(x) + '</li>').join('');
 
-  // Shabbat / Yom Tov
+  // Shabbat / Yom Tov — and what is special about it
   const rp = tvRestPeriod(now);
   if(rp){
-    const nm = rp.names.join(' · ') || 'שבת';
-    $('tv-shabbat-title').innerHTML = (rp.names.length === 1 && rp.names[0] === 'שבת' ? 'שבת' : 'שבת ומועד') + ' <small>' + sdEsc(tvLoc.name) + '</small>';
-    const shPar = (() => { for(let d = rp.start; d <= rp.end; d = addDays(d, 1)){ const p = tvParasha && tvParasha.days && tvParasha.days[isoLocal(d)]; if(p && addDays(d,0).getDay() === 6) return p; } return null; })();
-    $('tv-shabbat-name').textContent = nm + (shPar && rp.names.indexOf('שבת') !== -1 && !rp.names.some(n => n !== 'שבת') ? ' — פרשת ' + shPar.join('–') : '');
+    const onlyShabbat = rp.names.length === 1 && rp.names[0] === 'שבת';
+    $('tv-shabbat-title').innerHTML = (onlyShabbat ? 'שבת' : 'שבת ומועד') + ' <small>' + sdEsc(tvLoc.name) + '</small>';
+    let shPar = null;
+    if(rp.shabbatDay){ const p = tvParasha && tvParasha.days && tvParasha.days[isoLocal(rp.shabbatDay)]; if(p && p.length) shPar = p; }
+    $('tv-shabbat-name').textContent = rp.names.join(' · ') + (onlyShabbat && shPar ? ' — פרשת ' + shPar.join('–') : '');
+    const started = now >= (rp.candles || now) && rp.start <= addDays(now, 0);
+    $('tv-shabbat-when').textContent = (started ? 'עכשיו' : 'מערב יום ' + WEEKDAY_NAMES[rp.start.getDay()] + ' ' + rp.start.getDate() + '.' + (rp.start.getMonth() + 1)) + ' · ' + noYearHeb(addDays(rp.start, 1));
+    $('tv-shabbat-special').textContent = shabbatSpecial(rp, now).join(' · ');
     $('tv-shabbat').innerHTML =
       '<li><span>הדלקת נרות <span class="sub">(' + WEEKDAY_NAMES[rp.start.getDay()] + ', ' + rp.candleMin + ' דק׳ לפני השקיעה)</span></span><span class="t">' + hm(rp.candles) + '</span></li>' +
-      '<li><span>צאת ' + (rp.names.some(n => n !== 'שבת') ? 'החג' : 'השבת') + '</span><span class="t">' + hm(rp.havdala) + '</span></li>' +
+      '<li><span>צאת ' + (onlyShabbat ? 'השבת' : 'החג') + '</span><span class="t">' + hm(rp.havdala) + '</span></li>' +
       '<li><span>רבנו תם</span><span class="t">' + hm(rp.rt) + '</span></li>';
-    const day1 = addDays(rp.start, 1);
-    let hd1 = ''; try{ hd1 = getHebrewDisplay(day1).replace(/ [^ ]+$/, ''); }catch(e){}
-    $('tv-shabbat-when').textContent = (rp.start <= addDays(now, 0) && now >= (rp.candles || now) ? 'עכשיו' : 'מערב יום ' + WEEKDAY_NAMES[rp.start.getDay()] + ' ' + rp.start.getDate() + '.' + (rp.start.getMonth() + 1)) +
-      ' · ' + hd1;
   }else{
-    $('tv-shabbat-name').textContent = ''; $('tv-shabbat-when').textContent = ''; $('tv-shabbat').innerHTML = '';
+    ['tv-shabbat-name', 'tv-shabbat-when', 'tv-shabbat-special'].forEach(id => $(id).textContent = '');
+    $('tv-shabbat').innerHTML = '';
   }
 
-  // coming days (holidays, Rosh Chodesh, fasts) — from the site's copy of the Hebrew calendar
+  // coming days
   const sig = tvIsIsrael() ? 'i=on&maj=on&min=on&mod=on&nx=on' : 'maj=on&min=on&mod=on&nx=on';
   const set = tvHebcal && tvHebcal.sets && tvHebcal.sets[sig];
   const fromIso = isoLocal(addDays(hebDay, 1));
   const seen = new Set();
-  const up = set ? (set.items || []).filter(i => String(i.date).slice(0, 10) >= fromIso && !/^ערב /.test(i.hebrew || '')).filter(i => {
-    const k = String(i.hebrew || '').replace(/ [א-ת]׳$/, '').replace(/^חנוכה.*/, 'חנוכה');
+  const up = set ? (set.items || []).filter(i => String(i.date).slice(0, 10) >= fromIso && !/^ערב /.test(i.hebrew || ''))
+    .filter(i => !/^חנוכה/.test(i.hebrew || '') || /א׳ נר/.test(i.hebrew)).filter(i => {      // Chanukah: only its start
+    const k = cleanHeb(i.hebrew);
     if(seen.has(k)) return false; seen.add(k); return true;
   }).slice(0, 4) : [];
   $('tv-upcoming').innerHTML = up.map(i => {
     const d = new Date(String(i.date).slice(0, 10) + 'T12:00:00');
-    let hd = ''; try{ hd = getHebrewDisplay(d).replace(/ [^ ]+$/, ''); }catch(e){}
-    let name = String(i.hebrew || '').replace(/ [א-ת]׳$/, '');
+    let name = cleanHeb(i.hebrew);
     if(/^חנוכה/.test(name)) name = 'חנוכה — נר ראשון';
-    return '<li><span>' + sdEsc(name) + '</span><span class="sub">' + WEEKDAY_NAMES[d.getDay()] + ', ' + sdEsc(hd) + '</span></li>';
+    return '<li><span>' + sdEsc(name) + '</span><span class="sub">' + WEEKDAY_NAMES[d.getDay()] + ', ' + sdEsc(noYearHeb(d)) + '</span></li>';
   }).join('');
   $('tv-upcoming').parentElement.style.display = up.length ? '' : 'none';
 
-  // status
+  drawPrayerTimes(now, rp);
+  drawMessages(now);
+
   const online = navigator.onLine !== false;
   $('tv-dot').classList.toggle('off', !online);
   $('tv-status').textContent = (online ? 'מחובר' : 'לא מחובר — מוצג מהעותק השמור') +
     (tvDataTime ? ' · נתונים: ' + tvDataTime.toLocaleDateString('he-IL') : '');
 }
+function ptimesHtml(items, now, next){
+  if(next === undefined) next = items.filter(x => x.time).find(x => x.time > now);
+  return items.map(x => '<li class="' + (x === next ? 'next' : (x.time && x.time <= now ? 'past' : '')) + '"><span>' + sdEsc(x.name) +
+    (x.how ? '<span class="how">' + sdEsc(x.how) + '</span>' : '') + '</span><span class="t">' + (x.time ? hm(x.time) : '') + '</span></li>').join('');
+}
+function drawPrayerTimes(now, rp){
+  const sh = tvSheet || TV_DEMO;
+  // weekdays: today's times (after nightfall — tomorrow's)
+  const z0 = tvZmanim(addDays(now, 0));
+  const day = z0 && now >= z0.tzeit ? addDays(now, 1) : addDays(now, 0);
+  const z = tvZmanim(day);
+  $('tv-wk-note').textContent = (isoLocal(day) === isoLocal(now) ? 'היום' : 'מחר') + ', ' + noYearHeb(day);
+  $('tv-wk').innerHTML = ptimesHtml(sh.weekday.map(x => Object.assign({ name: x.name }, resolveTime(x.value, z, null, day))), now);
+  // Shabbat: the coming one
+  if(rp){
+    const fri = rp.start, sat = rp.shabbatDay || addDays(rp.start, 1);
+    const zf = tvZmanim(fri), zs = tvZmanim(sat);
+    $('tv-sh-title').textContent = rp.shabbatDay ? 'תפילות שבת' : 'תפילות החג';
+    $('tv-sh-note').textContent = (rp.names.join(' · ')) + ', ' + noYearHeb(sat);
+    const items = sh.shabbat.map(x => {
+      const eve = x.day === 'ערב שבת';
+      return Object.assign({ name: x.name, eve }, resolveTime(x.value, eve ? zf : zs, rp, eve ? fri : sat));
+    });
+    // the next one is marked only from the morning of the eve itself
+    const next = addDays(now, 0) >= fri ? items.filter(x => x.time).find(x => x.time > now) || null : null;
+    const rows = [];
+    let lastDay = null;
+    items.forEach(x => {
+      if(lastDay !== x.eve){ rows.push('<h3>' + (x.eve ? (rp.shabbatDay ? 'ערב שבת' : 'ערב החג') + ' — יום ' + WEEKDAY_NAMES[fri.getDay()] : (rp.shabbatDay ? 'שבת' : 'החג')) + '</h3>'); lastDay = x.eve; }
+      rows.push(ptimesHtml([x], now, next));
+    });
+    $('tv-sh').innerHTML = rows.join('');
+  }
+}
+function drawMessages(now){
+  const sh = tvSheet || TV_DEMO;
+  const today = isoLocal(now);
+  const until = s => {
+    const m = String(s || '').match(/^(\d{4})-(\d{2})-(\d{2})$/) || String(s || '').match(/^(\d{1,2})[./](\d{1,2})[./](\d{4})$/);
+    if(!m) return null;
+    return m[1].length === 4 ? m[1] + '-' + m[2] + '-' + m[3] : m[3] + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0');
+  };
+  const list = sh.messages.filter(x => { const u = until(x.until); return !u || u >= today; });
+  $('tv-msgs').innerHTML = list.length ? list.map(x => '<article class="msg"><h3>' + sdEsc(x.title) + '</h3><p>' + sdEsc(x.text) + '</p></article>').join('')
+    : '<article class="msg"><p>אין הודעות כרגע.</p></article>';
+  $('tv-msg-demo').innerHTML = sh.demo ? '<span class="demo">הדגמה</span>' : '';
+}
 
 /* ---------- the site's files ---------- */
 async function loadSiteData(){
-  const [p, h] = await Promise.all([fetchSiteJson('data-parasha.json'), fetchSiteJson('data-hebcal.json')]);
-  if(p) tvParasha = p;
-  if(h) tvHebcal = h;
+  const [p, h] = await Promise.all([fetchSiteJson('data-parasha.json'), fetchSiteJson('data-hebcal.json'), loadSheet()]);
+  if(p){ tvParasha = p; store('tv-parasha-cache', p); } else if(!tvParasha) tvParasha = store('tv-parasha-cache');
+  if(h){ tvHebcal = h; store('tv-hebcal-cache', h); } else if(!tvHebcal) tvHebcal = store('tv-hebcal-cache');
   if(p || h) tvDataTime = new Date();
 }
 
-/* ---------- settings: choose the place with the remote ---------- */
+/* ---------- settings (remote: arrows + OK) ---------- */
+function drawSettings(){
+  const pages = store('tv-pages') || {};
+  $('tv-page-toggles').innerHTML = TV_PAGES.map(p => '<button data-page="' + p.key + '" class="' + (pageOn(p.key) ? 'sel' : '') + '">' + p.he + '</button>').join('');
+  $('tv-rotate-toggles').innerHTML = TV_ROTATE.map(s => '<button data-rot="' + s + '" class="' + (rotateSec() === s ? 'sel' : '') + '">' + s + ' שניות</button>').join('');
+  $('tv-cities').innerHTML = TV_CITIES.map((c, i) => '<button data-i="' + i + '"' + (c.name === tvLoc.name ? ' class="sel"' : '') + '>' + c.name + '</button>').join('');
+  const sh = tvSheet || TV_DEMO;
+  $('tv-src').textContent = sh.demo ? 'אין גיליון מחובר — מוצגת הדגמה. מחברים גיליון Google בכתובת הלוח: tv.html?sheet=…'
+    : 'מגיליון Google' + (sh.time ? ' · עודכן ' + new Date(sh.time).toLocaleString('he-IL', { dateStyle: 'short', timeStyle: 'short' }) : '') + (Object.keys(pages).length ? ' · הבחירה כאן גוברת על הגיליון' : '');
+}
 function openSettings(){
-  const box = $('tv-cities');
-  box.innerHTML = TV_CITIES.map((c, i) => '<button data-i="' + i + '"' + (c.name === tvLoc.name ? ' class="sel"' : '') + '>' + c.name + '</button>').join('');
+  drawSettings();
   $('tv-settings').classList.add('on');
-  const sel = box.querySelector('.sel') || box.querySelector('button');
-  sel.focus();
+  ($('tv-page-toggles').querySelector('button') || $('tv-close')).focus();
 }
 function closeSettings(){ $('tv-settings').classList.remove('on'); $('tv-gear').blur(); }
-$('tv-cities').addEventListener('click', e => {
+$('tv-settings').addEventListener('click', e => {
   const b = e.target.closest('button'); if(!b) return;
-  tvLoc = TV_CITIES[+b.dataset.i]; tvSave(tvLoc); closeSettings(); drawAll();
+  const keep = document.activeElement && document.activeElement.textContent;
+  if(b.dataset.page){
+    const pages = store('tv-pages') || {};
+    const before = store('tv-pages') || {};
+    pages[b.dataset.page] = !pageOn(b.dataset.page);
+    store('tv-pages', pages);
+    if(!TV_PAGES.some(p => pageOn(p.key))){ store('tv-pages', before); return; }      // keep at least one page
+    startRotation();
+  }else if(b.dataset.rot){ store('tv-rotate', +b.dataset.rot); startRotation(); }
+  else if(b.dataset.i !== undefined){ tvLoc = TV_CITIES[+b.dataset.i]; store('tv-location', tvLoc); drawAll(); }
+  else if(b.id === 'tv-reset'){ try{ localStorage.removeItem('tv-pages'); localStorage.removeItem('tv-rotate'); }catch(e){} startRotation(); }
+  else if(b.id === 'tv-close'){ closeSettings(); return; }
+  drawSettings();
+  const again = [...$('tv-settings').querySelectorAll('button')].find(x => x.textContent === keep || x.textContent === '✓ ' + keep);
+  (again || $('tv-close')).focus();
 });
-$('tv-close').addEventListener('click', closeSettings);
 $('tv-gear').addEventListener('click', openSettings);
+// spatial navigation: the nearest button in the direction of the arrow
+function moveFocus(dir){
+  const btns = [...$('tv-settings').querySelectorAll('button')];
+  const cur = document.activeElement && btns.indexOf(document.activeElement) !== -1 ? document.activeElement : null;
+  if(!cur){ btns[0].focus(); return; }
+  const a = cur.getBoundingClientRect(), ax = a.left + a.width / 2, ay = a.top + a.height / 2;
+  let best = null, bs = Infinity;
+  btns.forEach(b => {
+    if(b === cur) return;
+    const r = b.getBoundingClientRect(), x = r.left + r.width / 2, y = r.top + r.height / 2, dx = x - ax, dy = y - ay;
+    const ok = dir === 'left' ? dx < -2 && Math.abs(dy) < a.height / 2 : dir === 'right' ? dx > 2 && Math.abs(dy) < a.height / 2 : dir === 'up' ? dy < -2 : dy > 2;
+    if(!ok) return;
+    const score = (dir === 'up' || dir === 'down') ? Math.abs(dy) * 1000 + Math.abs(dx) : Math.abs(dx);
+    if(score < bs){ bs = score; best = b; }
+  });
+  if(best){ best.focus(); best.scrollIntoView({ block: 'nearest' }); }
+}
 document.addEventListener('keydown', e => {
   const open = $('tv-settings').classList.contains('on');
   if(!open){
     if(['Enter', 'ContextMenu', ' ', 'MediaPlayPause'].indexOf(e.key) !== -1 || e.keyCode === 23 || e.keyCode === 82){ e.preventDefault(); openSettings(); }
+    else if(e.key === 'ArrowLeft'){ tvPageIdx++; startRotation(); }
+    else if(e.key === 'ArrowRight'){ tvPageIdx = (tvPageIdx + visiblePages().length - 1) % visiblePages().length; startRotation(); }
     return;
   }
   if(e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack' || e.keyCode === 4){ e.preventDefault(); closeSettings(); return; }
-  const btns = [...document.querySelectorAll('#tv-cities button'), $('tv-close')];
-  let i = btns.indexOf(document.activeElement);
-  const cols = getComputedStyle($('tv-cities')).gridTemplateColumns.split(' ').length;
-  const n = TV_CITIES.length;
-  let j = i;
-  if(e.key === 'ArrowLeft') j = i < n ? Math.min(i + 1, n - 1) : i;        // RTL: left = next
-  else if(e.key === 'ArrowRight') j = i < n ? Math.max(i - 1, 0) : i;
-  else if(e.key === 'ArrowDown') j = i < n ? (i + cols < n ? i + cols : n) : i;
-  else if(e.key === 'ArrowUp') j = i >= n ? n - 1 : Math.max(i - cols, 0);
-  else return;
-  e.preventDefault();
-  if(j < 0) j = 0;
-  btns[j].focus();
+  const dir = { ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down' }[e.key];
+  if(dir){ e.preventDefault(); moveFocus(dir); }
 });
-
-// the settings button shows only for a mouse or a finger (a remote opens settings with OK)
 let pointerTimer = null;
 ['mousemove', 'touchstart'].forEach(ev => document.addEventListener(ev, () => {
   document.body.classList.add('pointer'); clearTimeout(pointerTimer);
@@ -508,12 +814,12 @@ let pointerTimer = null;
   tvLoc = await tvResolveLocation();
   await loadSiteData();
   drawAll();
+  startRotation();
   setInterval(drawClock, 1000);
   setInterval(drawAll, 20000);
-  setInterval(loadSiteData, 3 * 60 * 60 * 1000);
+  setInterval(() => loadSiteData().then(() => { drawAll(); showPage(); }), 30 * 60 * 1000);   // the sheet: every half hour
   window.addEventListener('online', () => { loadSiteData().then(drawAll); });
   window.addEventListener('offline', drawAll);
-  // once a night (around 03:00), reload the page itself so a new version of the board arrives
   setInterval(() => { const d = new Date(); if(d.getHours() === 3 && d.getMinutes() < 2 && navigator.onLine !== false) location.reload(); }, 60000);
 })();
 </script>
