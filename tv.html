@@ -1,0 +1,521 @@
+---
+layout: null
+permalink: /tv.html
+---
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>לוח זמנים | מזמור לתודה</title>
+<meta name="description" content="לוח למסך טלוויזיה: שעה, תאריך עברי, פרשת השבוע, זמני היום, זמני שבת ומה מיוחד היום בתפילה.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://limood.org.il/tv.html">
+<meta name="theme-color" content="#0E2236">
+<link rel="icon" href="icon-192.png" type="image/png">
+<style>
+/* A board for a TV screen (10-foot view): everything is sized by the screen, nothing scrolls. */
+:root{
+  --bg:#0E2236; --panel:#15304B; --panel-2:#1B3A59; --line:#2B4C6E;
+  --text:#F4F1E8; --muted:#A9B8C8; --gold:#D9B66B; --gold-soft:#E9DCC0;
+  --now:#2E6B4F; --now-text:#E8FFF2; --warn:#7A2E1F;
+  --font:'Assistant', 'Noto Sans Hebrew', system-ui, Arial, sans-serif;
+  --u:min(1vw, 1.78vh);          /* one unit = 1% of a 16:9 screen's width */
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html, body{height:100%; overflow:hidden; background:var(--bg); color:var(--text); font-family:var(--font);}
+body{display:flex; align-items:center; justify-content:center;}
+.board{width:calc(var(--u) * 100); height:calc(var(--u) * 56.25); display:grid; gap:calc(var(--u) * 1.2);
+  grid-template-rows:auto 1fr auto; padding:calc(var(--u) * 1.6) calc(var(--u) * 2);}
+
+/* top: date — clock — parasha */
+.top{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:calc(var(--u) * 2);}
+.clock{font-size:calc(var(--u) * 9.5); font-weight:700; letter-spacing:.02em; line-height:1; direction:ltr; font-variant-numeric:tabular-nums;}
+.clock .sec{font-size:.42em; color:var(--muted); margin-inline-start:.15em;}
+.dates{text-align:right;}
+.dates .wd{font-size:calc(var(--u) * 2.2); color:var(--gold);}
+.dates .heb{font-size:calc(var(--u) * 3.4); font-weight:700; line-height:1.15;}
+.dates .greg{font-size:calc(var(--u) * 1.9); color:var(--muted);}
+.side{text-align:left;}
+.side .parasha{font-size:calc(var(--u) * 3.2); font-weight:700; color:var(--gold-soft);}
+.side .labels{font-size:calc(var(--u) * 2); color:var(--gold); margin-top:calc(var(--u) * .3);}
+.side .place{font-size:calc(var(--u) * 1.6); color:var(--muted); margin-top:calc(var(--u) * .3);}
+
+/* middle: three panels */
+.main{display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:calc(var(--u) * 1.4); min-height:0;}
+.panel{background:var(--panel); border:1px solid var(--line); border-radius:calc(var(--u) * 1); padding:calc(var(--u) * 1.2) calc(var(--u) * 1.4);
+  display:flex; flex-direction:column; min-height:0; overflow:hidden;}
+.panel h2{font-size:calc(var(--u) * 2); color:var(--gold); font-weight:700; margin-bottom:calc(var(--u) * .7);
+  border-bottom:1px solid var(--line); padding-bottom:calc(var(--u) * .5); display:flex; justify-content:space-between; gap:1em;}
+.panel h2 small{font-size:.7em; color:var(--muted); font-weight:400;}
+
+.zmanim{list-style:none; display:flex; flex-direction:column; justify-content:space-between; flex:1;}
+.zmanim li{display:flex; justify-content:space-between; align-items:baseline; font-size:calc(var(--u) * 1.75);
+  padding:calc(var(--u) * .18) calc(var(--u) * .7); border-radius:calc(var(--u) * .5);}
+.zmanim li .t{font-weight:700; font-variant-numeric:tabular-nums; direction:ltr;}
+.zmanim li.past{color:var(--muted); opacity:.55;}
+.zmanim li.next{background:var(--now); color:var(--now-text);}
+.zmanim li.next .t::after{content:attr(data-in); font-weight:400; font-size:.75em; margin-inline-start:.6em; opacity:.9;}
+
+.prayer .now{font-size:calc(var(--u) * 2.5); font-weight:700; margin-bottom:calc(var(--u) * .6);}
+.pills{list-style:none; display:flex; flex-direction:column; gap:calc(var(--u) * .45);}
+.pills li{font-size:calc(var(--u) * 1.8); background:var(--panel-2); border-radius:calc(var(--u) * .5); padding:calc(var(--u) * .35) calc(var(--u) * .8);}
+.pills li.key{border-inline-start:calc(var(--u) * .35) solid var(--gold);}
+
+.shabbat .name{font-size:calc(var(--u) * 2.4); font-weight:700; color:var(--gold-soft);}
+.shabbat .when{font-size:calc(var(--u) * 1.5); color:var(--muted); margin-bottom:calc(var(--u) * .5);}
+.rows{list-style:none;}
+.rows li{display:flex; justify-content:space-between; font-size:calc(var(--u) * 1.8); padding:calc(var(--u) * .25) 0; border-bottom:1px dashed var(--line);}
+.rows li:last-child{border-bottom:0;}
+.rows li .t{font-weight:700; direction:ltr; font-variant-numeric:tabular-nums;}
+.rows li .sub{color:var(--muted); font-size:.8em;}
+.upcoming{margin-top:auto; padding-top:calc(var(--u) * .8);}
+.upcoming h3{font-size:calc(var(--u) * 1.7); color:var(--gold); margin-bottom:calc(var(--u) * .3);}
+.upcoming .rows li{font-size:calc(var(--u) * 1.55);}
+
+/* bottom line */
+.foot{display:flex; justify-content:space-between; align-items:center; font-size:calc(var(--u) * 1.35); color:var(--muted);}
+.foot .site{color:var(--gold); font-weight:700;}
+.foot .dot{display:inline-block; width:.7em; height:.7em; border-radius:50%; background:#4CC38A; margin-inline-end:.4em; vertical-align:middle;}
+.foot .dot.off{background:#E0A040;}
+.alert{display:none; background:var(--warn); color:#fff; border-radius:calc(var(--u) * .6); padding:calc(var(--u) * .6) calc(var(--u) * 1.2); font-size:calc(var(--u) * 1.8); text-align:center;}
+.alert.on{display:block;}
+
+/* settings (opened with OK / Enter, or the gear) */
+.back-to-top{display:none !important;}
+.gear{position:fixed; bottom:calc(var(--u) * 3.2); left:calc(var(--u) * 1); background:var(--panel); border:1px solid var(--line); border-radius:50%; color:var(--muted);
+  width:calc(var(--u) * 3.4); height:calc(var(--u) * 3.4); font-size:calc(var(--u) * 1.8); cursor:pointer; opacity:0; transition:opacity .3s;}
+body.pointer .gear{opacity:.8;}
+.gear:focus, .gear:hover{opacity:1; outline:2px solid var(--gold); border-radius:50%;}
+.settings{position:fixed; inset:0; background:rgba(8,20,32,.94); display:none; align-items:center; justify-content:center; z-index:10;}
+.settings.on{display:flex;}
+.settings .box{width:calc(var(--u) * 80); max-height:90vh; overflow:auto; background:var(--panel); border:1px solid var(--line); border-radius:calc(var(--u) * 1); padding:calc(var(--u) * 2);}
+.settings h2{font-size:calc(var(--u) * 2.4); color:var(--gold); margin-bottom:calc(var(--u) * 1);}
+.settings p{font-size:calc(var(--u) * 1.5); color:var(--muted); margin-bottom:calc(var(--u) * 1);}
+.cities{display:grid; grid-template-columns:repeat(5, 1fr); gap:calc(var(--u) * .7);}
+.cities button, .settings .close{font:inherit; font-size:calc(var(--u) * 1.7); background:var(--panel-2); color:var(--text); border:2px solid transparent;
+  border-radius:calc(var(--u) * .6); padding:calc(var(--u) * .7); cursor:pointer;}
+.cities button.sel{border-color:var(--gold); color:var(--gold-soft);}
+.cities button:focus, .settings .close:focus{outline:none; border-color:#fff; background:var(--now);}
+.settings .close{margin-top:calc(var(--u) * 1.2); width:100%;}
+
+/* a phone held upright: one column, scrolling */
+@media (max-aspect-ratio: 1/1){
+  html, body{overflow-x:hidden; overflow-y:auto; height:auto;}
+  body{display:block;}
+  :root{--u:1vw;}
+  .board{width:100%; height:auto; grid-template-rows:auto; grid-template-columns:minmax(0, 1fr); padding:16px;}
+  .board > *, .panel, .top > *{min-width:0;}
+  .main{display:flex; flex-direction:column;}
+  .panel{overflow:visible;}
+  .zmanim li, .pills li, .rows li, .upcoming .rows li{font-size:calc(var(--u) * 4.4);}
+  .panel h2{font-size:calc(var(--u) * 4.6);}
+  .prayer .now, .shabbat .name{font-size:calc(var(--u) * 5.2);}
+  .shabbat .when, .upcoming h3{font-size:calc(var(--u) * 3.8);}
+  .dates .wd, .side .labels, .side .place, .dates .greg{font-size:calc(var(--u) * 4);}
+  .dates .heb, .side .parasha{font-size:calc(var(--u) * 6.5);}
+  .foot{flex-direction:column; gap:6px; font-size:calc(var(--u) * 3.4); margin-top:8px;}
+  .gear{bottom:16px; left:16px; width:44px; height:44px; font-size:22px; opacity:.8;}
+  .top{grid-template-columns:1fr; text-align:center;}
+  .dates, .side{text-align:center;}
+  .main{grid-template-columns:1fr;}
+  .clock{font-size:calc(var(--u) * 20);}
+  .cities{grid-template-columns:repeat(3, 1fr);}
+}
+</style>
+</head>
+<body>
+<div class="board" id="board">
+  <header class="top">
+    <div class="dates">
+      <div class="wd" id="tv-weekday"></div>
+      <div class="heb" id="tv-heb"></div>
+      <div class="greg" id="tv-greg"></div>
+    </div>
+    <div class="clock" id="tv-clock">--:--</div>
+    <div class="side">
+      <div class="parasha" id="tv-parasha"></div>
+      <div class="labels" id="tv-labels"></div>
+      <div class="place" id="tv-place"></div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="panel">
+      <h2><span id="tv-zmanim-title">זמני היום</span> <small id="tv-zmanim-note"></small></h2>
+      <ul class="zmanim" id="tv-zmanim"></ul>
+    </section>
+    <section class="panel prayer">
+      <h2>היום בתפילה</h2>
+      <div class="now" id="tv-prayer-now"></div>
+      <ul class="pills" id="tv-pills"></ul>
+    </section>
+    <section class="panel shabbat">
+      <h2 id="tv-shabbat-title">שבת</h2>
+      <div class="name" id="tv-shabbat-name"></div>
+      <div class="when" id="tv-shabbat-when"></div>
+      <ul class="rows" id="tv-shabbat"></ul>
+      <div class="upcoming">
+        <h3>בקרוב</h3>
+        <ul class="rows" id="tv-upcoming"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span><span class="dot" id="tv-dot"></span><span id="tv-status"></span></span>
+    <div class="alert" id="tv-alert"></div>
+    <span>זמנים משוערים (חישוב אוטומטי) · <span class="site">limood.org.il</span></span>
+  </footer>
+</div>
+
+<button class="gear" id="tv-gear" aria-label="הגדרות">⚙</button>
+<div class="settings" id="tv-settings" role="dialog" aria-label="בחירת מיקום">
+  <div class="box">
+    <h2>בחירת מיקום</h2>
+    <p>הזמנים מחושבים לפי המיקום. בחרו עם החיצים בשלט ולחצו OK.</p>
+    <div class="cities" id="tv-cities"></div>
+    <button class="close" id="tv-close">סגירה</button>
+  </div>
+</div>
+
+<script src="shared.js?build={{ site.time | date: '%s' }}"></script>
+<script src="siddur.js?build={{ site.time | date: '%s' }}"></script>
+<script>
+/* =====================================================================
+   TV BOARD — everything is computed on the device (sun times, Hebrew calendar, what the prayer
+   needs); only the parasha and the coming holidays come from the site's own files, and those are
+   cached by the browser, so the board keeps working when the connection drops.
+   Address options: ?city=ירושלים  or  ?lat=..&lon=..&name=..  (else the saved choice, else a guess)
+   ===================================================================== */
+const TV_CITIES = [
+  { name: 'ירושלים', lat: 31.7683, lon: 35.2137 }, { name: 'תל אביב', lat: 32.0853, lon: 34.7818 },
+  { name: 'חיפה', lat: 32.7940, lon: 34.9896 }, { name: 'באר שבע', lat: 31.2518, lon: 34.7913 },
+  { name: 'בני ברק', lat: 32.0807, lon: 34.8338 }, { name: 'פתח תקווה', lat: 32.0840, lon: 34.8878 },
+  { name: 'בית שמש', lat: 31.7470, lon: 34.9881 }, { name: 'מודיעין עילית', lat: 31.9333, lon: 35.0417 },
+  { name: 'ביתר עילית', lat: 31.6960, lon: 35.1150 }, { name: 'אלעד', lat: 32.0522, lon: 34.9511 },
+  { name: 'אשדוד', lat: 31.8044, lon: 34.6553 }, { name: 'נתניה', lat: 32.3215, lon: 34.8532 },
+  { name: 'ראשון לציון', lat: 31.9730, lon: 34.7925 }, { name: 'רחובות', lat: 31.8928, lon: 34.8113 },
+  { name: 'מודיעין', lat: 31.8980, lon: 35.0104 }, { name: 'צפת', lat: 32.9646, lon: 35.4960 },
+  { name: 'טבריה', lat: 32.7922, lon: 35.5312 }, { name: 'אשקלון', lat: 31.6688, lon: 34.5743 },
+  { name: 'קרית גת', lat: 31.6100, lon: 34.7642 }, { name: 'אילת', lat: 29.5577, lon: 34.9519 }
+];
+const TV_SAVE_KEY = 'tv-location';
+const DAY = 86400000;
+const $ = id => document.getElementById(id);
+
+let tvLoc = null;               // { name, lat, lon }
+let tvParasha = null;           // data-parasha.json
+let tvHebcal = null;            // data-hebcal.json
+let tvDataTime = null;          // when the site's files were last read
+
+function tvSaved(){ try{ return JSON.parse(localStorage.getItem(TV_SAVE_KEY) || 'null'); }catch(e){ return null; } }
+function tvSave(loc){ try{ localStorage.setItem(TV_SAVE_KEY, JSON.stringify(loc)); }catch(e){} }
+function nearestCity(lat, lon){
+  let best = null, bd = Infinity;
+  TV_CITIES.forEach(c => { const d = (c.lat - lat) ** 2 + (c.lon - lon) ** 2; if(d < bd){ bd = d; best = c; } });
+  return bd < 0.05 ? best : null;            // within ~20 km
+}
+async function tvResolveLocation(){
+  const p = new URLSearchParams(location.search);
+  const byName = p.get('city') && TV_CITIES.find(c => c.name === p.get('city'));
+  if(byName) return byName;
+  const lat = parseFloat(p.get('lat')), lon = parseFloat(p.get('lon'));
+  if(isFinite(lat) && isFinite(lon)) return { name: p.get('name') || (nearestCity(lat, lon) || {}).name || 'מיקום מותאם', lat, lon };
+  const saved = tvSaved();
+  if(saved && isFinite(saved.lat)) return saved;
+  try{
+    const g = await detectGatingLocation();
+    const c = nearestCity(g.lat, g.lon);
+    if(c) return c;
+    if(g.source !== 'default-israel') return { name: 'מיקום משוער', lat: g.lat, lon: g.lon };
+  }catch(e){}
+  return TV_CITIES[0];
+}
+function tvIsIsrael(){ return isLikelyIsrael(tvLoc.lat, tvLoc.lon); }
+function tvTz(){ return tvIsIsrael() ? 'Asia/Jerusalem' : undefined; }
+function hm(d){ return d ? fmtZmanTime(d, tvTz()) : '—'; }
+
+/* ---------- sun times (same rules as the site's זמני היום page) ---------- */
+function tvZmanim(date){
+  const { lat, lon } = tvLoc;
+  const sunrise = calcSunEventUTC(date, lat, lon, 90.833, true);
+  const sunset = calcSunEventUTC(date, lat, lon, 90.833, false);
+  if(!sunrise || !sunset) return null;
+  const dayMin = (sunset - sunrise) / 60000, summer = dayMin > 720;
+  const alot = roundToMinute(new Date(sunrise.getTime() - 72 * 60000), 'up');
+  const tzeit = new Date(sunset.getTime() + (summer ? 18 * dayMin / 720 : 18) * 60000);
+  const gra = h => new Date(sunrise.getTime() + h * (sunset - sunrise) / 12);
+  const mga = h => new Date(alot.getTime() + h * (tzeit - alot) / 12);
+  const chatzot = gra(6);
+  return {
+    sunrise, sunset, tzeit, alot, chatzot,
+    list: [
+      { label: 'עלות השחר', time: alot },
+      { label: 'טלית ותפילין', time: new Date(sunrise.getTime() - 50 * 60000) },
+      { label: 'הנץ החמה', time: sunrise },
+      { label: 'סוף ק״ש (מג״א)', time: roundToMinute(mga(3), 'down') },
+      { label: 'סוף ק״ש (גר״א)', time: roundToMinute(gra(3), 'down') },
+      { label: 'סוף תפילה (גר״א)', time: roundToMinute(gra(4), 'down') },
+      { label: 'חצות היום', time: chatzot },
+      { label: 'מנחה גדולה', time: new Date(chatzot.getTime() + (summer ? 30 * dayMin / 720 : 30) * 60000) },
+      { label: 'מנחה קטנה', time: gra(9.5) },
+      { label: 'פלג המנחה', time: gra(10.75) },
+      { label: 'שקיעה', time: sunset },
+      { label: 'צאת הכוכבים', time: tzeit }
+    ]
+  };
+}
+
+/* ---------- calendar facts (the siddur's own engine) ---------- */
+function tvLocFacts(){ return { isIsrael: tvIsIsrael(), inJerusalem: isJerusalemArea(tvLoc.lat, tvLoc.lon, tvLoc.name) }; }
+function tvFacts(dayDate){                       // a civil date (local) → facts, with tomorrow attached
+  const ms = sdNoonOf(dayDate);
+  const f = sdComputeFacts(ms, tvLocFacts());
+  f.tomorrow = sdComputeFacts(ms + SD_DAY_MS, tvLocFacts());
+  return f;
+}
+function restDay(f){ return f.dow === 6 || f.yomTov; }
+function addDays(d, n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n, 12); }
+function isoLocal(d){ return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+
+/* ---------- the next Shabbat / Yom Tov: candle lighting and its end ---------- */
+function holidayItemsOn(iso){
+  const sig = tvIsIsrael() ? 'i=on&maj=on&min=on&mod=on&nx=on' : 'maj=on&min=on&mod=on&nx=on';
+  const set = tvHebcal && tvHebcal.sets && tvHebcal.sets[sig];
+  return set ? (set.items || []).filter(i => String(i.date).slice(0, 10) === iso) : [];
+}
+function tvRestPeriod(now){
+  const today = addDays(now, 0);
+  for(let k = 0; k < 9; k++){
+    const day = addDays(today, k), f = tvFacts(day);
+    const startsTonight = restDay(f.tomorrow) && !restDay(f);
+    const inside = k === 0 && restDay(f);
+    if(!startsTonight && !inside) continue;
+    // the evening it starts (going back when we are already inside it)
+    let start = day;
+    if(inside){ while(restDay(tvFacts(addDays(start, -1)))) start = addDays(start, -1); start = addDays(start, -1); }
+    let end = addDays(start, 1);
+    while(restDay(tvFacts(addDays(end, 1)))) end = addDays(end, 1);
+    const names = [];
+    for(let d = addDays(start, 1); d <= end; d = addDays(d, 1)){
+      const fd = tvFacts(d);
+      if(fd.yomTov){
+        const it = holidayItemsOn(isoLocal(d)).filter(i => i.yomtov).map(i => i.hebrew)[0];
+        if(it && names.indexOf(it) === -1) names.push(it.replace(/ [א-ת]׳$/, ''));
+        else if(!it && names.indexOf('יום טוב') === -1) names.push('יום טוב');
+      }
+      if(fd.dow === 6 && names.indexOf('שבת') === -1) names.push('שבת');
+    }
+    const startSunset = calcSunEventUTC(start, tvLoc.lat, tvLoc.lon, 90.833, false);
+    const endSunset = calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 90.833, false);
+    const candleMin = isJerusalemArea(tvLoc.lat, tvLoc.lon, tvLoc.name) ? JERUSALEM_CANDLE_MINUTES : 18;
+    return {
+      names, start, end,
+      candles: startSunset && roundToMinute(new Date(startSunset.getTime() - candleMin * 60000), 'down'),
+      candleMin,
+      havdala: roundToMinute(calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 98.5, false), 'up'),   // 8.5° (as Hebcal)
+      rt: endSunset && roundToMinute(new Date(endSunset.getTime() + 72 * 60000), 'up')
+    };
+  }
+  return null;
+}
+
+/* ---------- which prayer now, and what it needs ---------- */
+function tvPrayerNow(now, z){
+  if(z && now >= z.sunset) return { pr: 'maariv', day: addDays(now, 1) };
+  if(z && now < z.alot && now.getHours() < 4) return { pr: 'maariv', day: addDays(now, 0) };
+  if(z && now >= z.chatzot) return { pr: 'mincha', day: addDays(now, 0) };
+  return { pr: 'shacharit', day: addDays(now, 0) };
+}
+const TV_KEY_PILLS = /^(יעלה|על הניסים|עננו|נחם|אתה חוננתנו|הלל|מוסף|עשרת|אבינו|ספירת|ברכי|נטילת|קריאת התורה)/;
+
+/* ---------- drawing ---------- */
+function drawClock(){
+  const now = new Date();
+  const opts = { hour: '2-digit', minute: '2-digit', hour12: false };
+  if(tvTz()) opts.timeZone = tvTz();
+  const s = String(now.getSeconds()).padStart(2, '0');
+  $('tv-clock').innerHTML = now.toLocaleTimeString('he-IL', opts) + '<span class="sec">' + s + '</span>';
+}
+function untilText(ms){
+  const m = Math.max(0, Math.round(ms / 60000));
+  if(m < 60) return 'בעוד ' + m + ' דק׳';
+  return 'בעוד ' + Math.floor(m / 60) + ':' + String(m % 60).padStart(2, '0') + ' שע׳';
+}
+function drawAll(){
+  const now = new Date();
+  // the clock itself can't be trusted (a box that lost power and never got the time back)
+  const badClock = now.getFullYear() < 2025;
+  $('tv-alert').textContent = badClock ? 'השעון של המכשיר לא מכוון — הזמנים בלוח לא נכונים. חברו לאינטרנט או כוונו את השעה.' : '';
+  $('tv-alert').classList.toggle('on', badClock);
+
+  const z = tvZmanim(addDays(now, 0));
+  const afterSunset = z && now >= z.sunset;
+  const hebDay = afterSunset ? addDays(now, 1) : now;
+
+  // dates
+  const wd = WEEKDAY_NAMES[hebDay.getDay()];
+  $('tv-weekday').textContent = afterSunset ? 'אור ליום ' + wd : 'יום ' + wd;
+  try{ $('tv-heb').textContent = getHebrewDisplay(hebDay); }catch(e){ $('tv-heb').textContent = ''; }
+  $('tv-greg').textContent = now.toLocaleDateString('he-IL', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  // the day's labels
+  const fd = tvFacts(hebDay);
+  const gDay = sdDeriveFlags(fd, 'ashkenaz', 'shacharit');
+  const labels = sdDayLabels(gDay).filter(x => !/^ספירת העומר/.test(x));
+  if(gDay.omerDay) labels.push('היום ' + gDay.omerDay + ' לעומר');
+  if(fd.dow === 6){ try{ const m = getShabbatMevarchimLabel(hebDay); if(m) labels.push(m); }catch(e){} }
+  holidayItemsOn(isoLocal(hebDay)).forEach(i => {
+    const h = String(i.hebrew || '').replace(/ [א-ת]׳$/, '');
+    if(i.category === 'holiday' && h && !labels.some(l => l.indexOf(h) !== -1 || h.indexOf(l) !== -1) && !/^ראש חודש|^ערב /.test(h)) labels.push(h);
+  });
+  $('tv-labels').textContent = labels.join(' · ');
+
+  // parasha of the coming Shabbat
+  const iso = isoLocal(hebDay);
+  const par = tvParasha && tvParasha.days && tvParasha.days[iso];
+  $('tv-parasha').textContent = par && par.length ? 'פרשת ' + par.join('–') : '';
+  $('tv-place').textContent = '📍 ' + tvLoc.name;
+
+  // zmanim — after nightfall, tomorrow's
+  const ul = $('tv-zmanim');
+  const showTomorrow = z && now >= z.tzeit;
+  const zs = showTomorrow ? tvZmanim(addDays(now, 1)) : z;
+  $('tv-zmanim-title').textContent = showTomorrow ? 'זמני מחר' : 'זמני היום';
+  $('tv-zmanim-note').textContent = showTomorrow ? 'יום ' + WEEKDAY_NAMES[addDays(now, 1).getDay()] : '';
+  if(!zs){ ul.innerHTML = '<li>אין זמנים למיקום זה</li>'; }
+  else{
+    const next = zs.list.find(x => x.time > now);
+    ul.innerHTML = zs.list.map(x => {
+      const cls = x === next ? 'next' : (x.time <= now ? 'past' : '');
+      const inAttr = x === next ? ' data-in="' + untilText(x.time - now) + '"' : '';
+      return '<li class="' + cls + '"><span>' + x.label + '</span><span class="t"' + inAttr + '>' + hm(x.time) + '</span></li>';
+    }).join('');
+  }
+
+  // prayer
+  const pn = tvPrayerNow(now, z);
+  const f = tvFacts(pn.day);
+  const g = sdDeriveFlags(f, 'ashkenaz', pn.pr);
+  let pills = sdDescribe(g, pn.pr);
+  if(pn.pr === 'mincha') pills = pills.filter(x => !/^(משיב|מוריד|ותן)/.test(x));
+  pills = pills.filter(x => !/^אין אומרים (למנצח|מזמור לתודה)/.test(x));
+  $('tv-prayer-now').textContent = (pn.pr === 'maariv' ? 'ערבית' : SD_PRAYER_HE[pn.pr]) + (restDay(f) || (pn.pr !== 'maariv' && f.dow === 6) ? ' · ' + (f.dow === 6 ? 'שבת' : 'יום טוב') : '');
+  if(f.dow === 6 && pn.pr !== 'maariv' || f.yomTov){ pills = ['תפילה של ' + (f.dow === 6 ? 'שבת' : 'יום טוב')]; }
+  $('tv-pills').innerHTML = pills.slice(0, 9).map(x => '<li' + (TV_KEY_PILLS.test(x) ? ' class="key"' : '') + '>' + sdEsc(x) + '</li>').join('');
+
+  // Shabbat / Yom Tov
+  const rp = tvRestPeriod(now);
+  if(rp){
+    const nm = rp.names.join(' · ') || 'שבת';
+    $('tv-shabbat-title').innerHTML = (rp.names.length === 1 && rp.names[0] === 'שבת' ? 'שבת' : 'שבת ומועד') + ' <small>' + sdEsc(tvLoc.name) + '</small>';
+    const shPar = (() => { for(let d = rp.start; d <= rp.end; d = addDays(d, 1)){ const p = tvParasha && tvParasha.days && tvParasha.days[isoLocal(d)]; if(p && addDays(d,0).getDay() === 6) return p; } return null; })();
+    $('tv-shabbat-name').textContent = nm + (shPar && rp.names.indexOf('שבת') !== -1 && !rp.names.some(n => n !== 'שבת') ? ' — פרשת ' + shPar.join('–') : '');
+    $('tv-shabbat').innerHTML =
+      '<li><span>הדלקת נרות <span class="sub">(' + WEEKDAY_NAMES[rp.start.getDay()] + ', ' + rp.candleMin + ' דק׳ לפני השקיעה)</span></span><span class="t">' + hm(rp.candles) + '</span></li>' +
+      '<li><span>צאת ' + (rp.names.some(n => n !== 'שבת') ? 'החג' : 'השבת') + '</span><span class="t">' + hm(rp.havdala) + '</span></li>' +
+      '<li><span>רבנו תם</span><span class="t">' + hm(rp.rt) + '</span></li>';
+    const day1 = addDays(rp.start, 1);
+    let hd1 = ''; try{ hd1 = getHebrewDisplay(day1).replace(/ [^ ]+$/, ''); }catch(e){}
+    $('tv-shabbat-when').textContent = (rp.start <= addDays(now, 0) && now >= (rp.candles || now) ? 'עכשיו' : 'מערב יום ' + WEEKDAY_NAMES[rp.start.getDay()] + ' ' + rp.start.getDate() + '.' + (rp.start.getMonth() + 1)) +
+      ' · ' + hd1;
+  }else{
+    $('tv-shabbat-name').textContent = ''; $('tv-shabbat-when').textContent = ''; $('tv-shabbat').innerHTML = '';
+  }
+
+  // coming days (holidays, Rosh Chodesh, fasts) — from the site's copy of the Hebrew calendar
+  const sig = tvIsIsrael() ? 'i=on&maj=on&min=on&mod=on&nx=on' : 'maj=on&min=on&mod=on&nx=on';
+  const set = tvHebcal && tvHebcal.sets && tvHebcal.sets[sig];
+  const fromIso = isoLocal(addDays(hebDay, 1));
+  const seen = new Set();
+  const up = set ? (set.items || []).filter(i => String(i.date).slice(0, 10) >= fromIso && !/^ערב /.test(i.hebrew || '')).filter(i => {
+    const k = String(i.hebrew || '').replace(/ [א-ת]׳$/, '').replace(/^חנוכה.*/, 'חנוכה');
+    if(seen.has(k)) return false; seen.add(k); return true;
+  }).slice(0, 4) : [];
+  $('tv-upcoming').innerHTML = up.map(i => {
+    const d = new Date(String(i.date).slice(0, 10) + 'T12:00:00');
+    let hd = ''; try{ hd = getHebrewDisplay(d).replace(/ [^ ]+$/, ''); }catch(e){}
+    let name = String(i.hebrew || '').replace(/ [א-ת]׳$/, '');
+    if(/^חנוכה/.test(name)) name = 'חנוכה — נר ראשון';
+    return '<li><span>' + sdEsc(name) + '</span><span class="sub">' + WEEKDAY_NAMES[d.getDay()] + ', ' + sdEsc(hd) + '</span></li>';
+  }).join('');
+  $('tv-upcoming').parentElement.style.display = up.length ? '' : 'none';
+
+  // status
+  const online = navigator.onLine !== false;
+  $('tv-dot').classList.toggle('off', !online);
+  $('tv-status').textContent = (online ? 'מחובר' : 'לא מחובר — מוצג מהעותק השמור') +
+    (tvDataTime ? ' · נתונים: ' + tvDataTime.toLocaleDateString('he-IL') : '');
+}
+
+/* ---------- the site's files ---------- */
+async function loadSiteData(){
+  const [p, h] = await Promise.all([fetchSiteJson('data-parasha.json'), fetchSiteJson('data-hebcal.json')]);
+  if(p) tvParasha = p;
+  if(h) tvHebcal = h;
+  if(p || h) tvDataTime = new Date();
+}
+
+/* ---------- settings: choose the place with the remote ---------- */
+function openSettings(){
+  const box = $('tv-cities');
+  box.innerHTML = TV_CITIES.map((c, i) => '<button data-i="' + i + '"' + (c.name === tvLoc.name ? ' class="sel"' : '') + '>' + c.name + '</button>').join('');
+  $('tv-settings').classList.add('on');
+  const sel = box.querySelector('.sel') || box.querySelector('button');
+  sel.focus();
+}
+function closeSettings(){ $('tv-settings').classList.remove('on'); $('tv-gear').blur(); }
+$('tv-cities').addEventListener('click', e => {
+  const b = e.target.closest('button'); if(!b) return;
+  tvLoc = TV_CITIES[+b.dataset.i]; tvSave(tvLoc); closeSettings(); drawAll();
+});
+$('tv-close').addEventListener('click', closeSettings);
+$('tv-gear').addEventListener('click', openSettings);
+document.addEventListener('keydown', e => {
+  const open = $('tv-settings').classList.contains('on');
+  if(!open){
+    if(['Enter', 'ContextMenu', ' ', 'MediaPlayPause'].indexOf(e.key) !== -1 || e.keyCode === 23 || e.keyCode === 82){ e.preventDefault(); openSettings(); }
+    return;
+  }
+  if(e.key === 'Escape' || e.key === 'Backspace' || e.key === 'GoBack' || e.keyCode === 4){ e.preventDefault(); closeSettings(); return; }
+  const btns = [...document.querySelectorAll('#tv-cities button'), $('tv-close')];
+  let i = btns.indexOf(document.activeElement);
+  const cols = getComputedStyle($('tv-cities')).gridTemplateColumns.split(' ').length;
+  const n = TV_CITIES.length;
+  let j = i;
+  if(e.key === 'ArrowLeft') j = i < n ? Math.min(i + 1, n - 1) : i;        // RTL: left = next
+  else if(e.key === 'ArrowRight') j = i < n ? Math.max(i - 1, 0) : i;
+  else if(e.key === 'ArrowDown') j = i < n ? (i + cols < n ? i + cols : n) : i;
+  else if(e.key === 'ArrowUp') j = i >= n ? n - 1 : Math.max(i - cols, 0);
+  else return;
+  e.preventDefault();
+  if(j < 0) j = 0;
+  btns[j].focus();
+});
+
+// the settings button shows only for a mouse or a finger (a remote opens settings with OK)
+let pointerTimer = null;
+['mousemove', 'touchstart'].forEach(ev => document.addEventListener(ev, () => {
+  document.body.classList.add('pointer'); clearTimeout(pointerTimer);
+  pointerTimer = setTimeout(() => document.body.classList.remove('pointer'), 5000);
+}, { passive: true }));
+
+/* ---------- start ---------- */
+(async function(){
+  tvLoc = TV_CITIES[0];
+  drawClock();
+  tvLoc = await tvResolveLocation();
+  await loadSiteData();
+  drawAll();
+  setInterval(drawClock, 1000);
+  setInterval(drawAll, 20000);
+  setInterval(loadSiteData, 3 * 60 * 60 * 1000);
+  window.addEventListener('online', () => { loadSiteData().then(drawAll); });
+  window.addEventListener('offline', drawAll);
+  // once a night (around 03:00), reload the page itself so a new version of the board arrives
+  setInterval(() => { const d = new Date(); if(d.getHours() === 3 && d.getMinutes() < 2 && navigator.onLine !== false) location.reload(); }, 60000);
+})();
+</script>
+</body>
+</html>
