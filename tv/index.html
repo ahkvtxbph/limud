@@ -113,13 +113,13 @@ body.pointer .gear{opacity:.8;}
 .demo{font-size:calc(var(--u) * 1.2); background:var(--warn); color:#fff; border-radius:calc(var(--u) * .4); padding:0 calc(var(--u) * .5); margin-inline-start:.5em;}
 
 /* prayer times */
-.ptimes{list-style:none; display:flex; flex-direction:column; gap:calc(var(--u) * .5);}
-.ptimes li{display:flex; justify-content:space-between; align-items:baseline; font-size:calc(var(--u) * 2.4);
-  background:var(--panel-2); border-radius:calc(var(--u) * .6); padding:calc(var(--u) * .5) calc(var(--u) * 1);}
+.ptimes{list-style:none; display:flex; flex-direction:column; gap:calc(var(--u) * .5 * var(--fit, 1));}
+.ptimes li{display:flex; justify-content:space-between; align-items:baseline; font-size:calc(var(--u) * 2.4 * var(--fit, 1));
+  background:var(--panel-2); border-radius:calc(var(--u) * .6); padding:calc(var(--u) * .5 * var(--fit, 1)) calc(var(--u) * 1);}
 .ptimes li .t{font-weight:700; direction:ltr; font-variant-numeric:tabular-nums;}
 .ptimes li .how{font-size:.6em; color:var(--muted); margin-inline-start:.6em;}
 .ptimes li.past{opacity:.5;}
-.ptimes li .t.rel{font-size:.7em; font-weight:400; color:var(--muted); direction:rtl;}
+.ptimes li .t.rel{font-size:.8em; font-weight:700; color:inherit; direction:rtl; text-align:left;}
 .ptimes li.next{background:var(--now); color:var(--now-text);}
 .ptimes li.next .how{color:var(--now-text);}
 .ptimes h3{font-size:calc(var(--u) * 1.8); color:var(--gold); margin:calc(var(--u) * .6) 0 calc(var(--u) * .2);}
@@ -558,7 +558,7 @@ function resolveTime(value, z, rp, day){
   if(rp && /^הדלק/.test(anchor)) base = rp.candles;
   else if(rp && /^צאת שבת|^צאת החג|^הבדלה/.test(anchor)) base = rp.havdala;
   else if(z) base = z.anchors[Object.keys(z.anchors).find(k => anchor.indexOf(k) === 0 || k.indexOf(anchor) === 0)];
-  if(!base) return { time: null, how: v };
+  if(!base) return { time: null, how: '', text: v };          // free text ("אחרי ערבית") — shown as written
   let t = new Date(base.getTime() + (sign === '-' ? -min : min) * 60000);
   const step = 5 * 60000;
   if(min) t = new Date(sign === '-' ? Math.floor(t / step) * step : Math.ceil(t / step) * step);
@@ -694,6 +694,7 @@ function drawAll(){
 
   drawPrayerTimes(now, rp);
   drawLessons(now, rp);
+  fitLists();
   drawMessages(now);
 
   const online = navigator.onLine !== false;
@@ -701,10 +702,24 @@ function drawAll(){
   $('tv-status').textContent = (online ? 'מחובר' : 'לא מחובר — מוצג מהעותק השמור') +
     (tvDataTime ? ' · נתונים: ' + tvDataTime.toLocaleDateString('he-IL') : '');
 }
+// a long list (many lessons) shrinks until it fits its panel, instead of being cut off
+function fitLists(){
+  if(window.matchMedia('(max-aspect-ratio: 1/1)').matches) return;        // a phone scrolls
+  ['tv-wk', 'tv-sh', 'tv-ls-today', 'tv-ls-all'].forEach(id => {
+    const ul = $(id); if(!ul) return;
+    const page = ul.closest('.page'), wasOn = page.classList.contains('on');
+    if(!wasOn){ page.style.visibility = 'hidden'; page.classList.add('on'); }      // measure it while hidden
+    const panel = ul.closest('.panel');
+    let scale = 1; ul.style.removeProperty('--fit');
+    while(panel.scrollHeight > panel.clientHeight + 1 && scale > 0.55){ scale -= 0.05; ul.style.setProperty('--fit', scale); }
+    if(!wasOn){ page.classList.remove('on'); page.style.visibility = ''; }
+  });
+}
 function ptimesHtml(items, now, next){
   if(next === undefined) next = items.filter(x => x.time).find(x => x.time > now);
   return items.map(x => '<li class="' + (x === next ? 'next' : (x.time && x.time <= now ? 'past' : '')) + '"><span>' + sdEsc(x.name) +
-    (x.how ? '<span class="how">' + sdEsc(x.how) + '</span>' : '') + '</span><span class="t">' + (x.time ? hm(x.time) : '') + '</span></li>').join('');
+    (x.how ? '<span class="how">' + sdEsc(x.how) + '</span>' : '') + '</span>' +
+    (x.time ? '<span class="t">' + hm(x.time) + '</span>' : '<span class="t rel">' + sdEsc(x.text || '') + '</span>') + '</li>').join('');
 }
 function drawPrayerTimes(now, rp){
   const sh = tvSheet || TV_DEMO;
@@ -771,7 +786,8 @@ function drawLessons(now, rp){
     if(tonight && r.time && z0 && r.time < z0.sunset) return;
     todays.push(Object.assign({ name: x.name + (tonight && late ? ' (הערב)' : '') }, r));
   });
-  todays.sort((a, b) => (a.time || 0) - (b.time || 0));
+  // by time; lessons given as text ("אחרי ערבית") keep their order, after the timed ones
+  todays.sort((a, b) => (a.time ? 0 : 1) - (b.time ? 0 : 1) || (a.time && b.time ? a.time - b.time : 0));
   $('tv-ls-today-title').textContent = late ? 'שיעורים מחר' : 'שיעורים היום';
   $('tv-ls-today-note').textContent = 'יום ' + WEEKDAY_NAMES[late ? (wd + 1) % 7 : wd];
   $('tv-ls-today').innerHTML = todays.length ? ptimesHtml(todays, now) : '<li><span>אין שיעורים ' + (late ? 'מחר' : 'היום') + '</span></li>';

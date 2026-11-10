@@ -199,11 +199,11 @@ function parseTime(v, shabbat){
     const anchor = list.find(k => k === a) || list.find(k => a.indexOf(k) === 0 || k.indexOf(a) === 0);
     if(anchor) return { mode: 'rel', anchor, sign: m[2], min: +m[3] };
   }
-  return { mode: t ? 'raw' : 'fixed', raw: t, fixed: '' };
+  return t ? { mode: 'text', text: t } : { mode: 'fixed', fixed: '' };     // anything else: shown as written
 }
 function timeValue(it){
   if(it.mode === 'fixed') return it.fixed || '';
-  if(it.mode === 'raw') return it.raw || '';
+  if(it.mode === 'text') return (it.text || '').trim();
   return it.anchor + (it.min ? (it.sign || '-') + it.min : '');
 }
 function parseDays(t){
@@ -292,7 +292,12 @@ function anchorsFor(day){
 }
 function previewTime(it, day){
   if(it.mode === 'fixed') return it.fixed ? { ok: true, text: '' } : { ok: false, text: 'חסרה שעה' };
-  if(it.mode === 'raw') return { ok: false, text: 'הערך "' + it.raw + '" לא מובן ללוח — בחרו שעה קבועה או זמן מהרשימה' };
+  if(it.mode === 'text'){
+    const t = (it.text || '').trim();
+    if(!t) return { ok: false, text: 'חסר טקסט' };
+    if(/^\d{1,2}[:.]\d{2}$/.test(t) || parseTime(t, true).mode === 'rel') return { ok: false, text: 'זה נראה כמו שעה — בחרו "שעה קבועה" או "לפי זמני היום"' };
+    return { ok: true, text: '', label: 'יוצג כמו שכתוב: ' + t };
+  }
   const a = anchorsFor(day); const base = a && a[it.anchor];
   if(!base) return { ok: false, text: 'אין זמן כזה' };
   const min = +it.min || 0;
@@ -317,13 +322,14 @@ function timeEditor(it, kind){
   const list = ANCHORS.concat(shabbat ? SHABBAT_ANCHORS : []);
   return '<div class="seg" data-f="mode">' +
       '<button type="button" data-v="fixed" class="' + (it.mode === 'fixed' ? 'on' : '') + '">שעה קבועה</button>' +
-      '<button type="button" data-v="rel" class="' + (it.mode === 'rel' ? 'on' : '') + '">לפי זמני היום</button></div>' +
+      '<button type="button" data-v="rel" class="' + (it.mode === 'rel' ? 'on' : '') + '">לפי זמני היום</button>' +
+      '<button type="button" data-v="text" class="' + (it.mode === 'text' ? 'on' : '') + '">טקסט</button></div>' +
     (it.mode === 'fixed' ? '<div class="grid" style="grid-template-columns:1fr;"><input type="time" data-f="fixed" value="' + esc(it.fixed || '') + '"></div>' : '') +
     (it.mode === 'rel' ? '<div class="grid three">' +
       '<select data-f="anchor">' + list.map(a => '<option value="' + a + '"' + (a === it.anchor ? ' selected' : '') + '>' + ANCHORS_HE[a] + '</option>').join('') + '</select>' +
       '<select data-f="sign"><option value="-"' + (it.sign === '-' ? ' selected' : '') + '>לפני</option><option value="+"' + (it.sign !== '-' ? ' selected' : '') + '>אחרי</option></select>' +
       '<input type="number" inputmode="numeric" min="0" max="240" data-f="min" value="' + (+it.min || 0) + '" aria-label="דקות"></div>' : '') +
-    (it.mode === 'raw' ? '<div class="grid" style="grid-template-columns:1fr;"><input data-f="raw" value="' + esc(it.raw) + '"></div>' : '');
+    (it.mode === 'text' ? '<div class="grid" style="grid-template-columns:1fr;"><input data-f="text" maxlength="40" placeholder="למשל: אחרי ערבית, בין מנחה לערבית" value="' + esc(it.text || '') + '"></div>' : '');
 }
 function itemHtml(kind, it, i, n){
   const nameField = kind === 'message'
@@ -338,7 +344,7 @@ function itemHtml(kind, it, i, n){
     if(kind === 'lesson') body += '<div class="days" data-f="days">' + DAY_BTNS.map(([l, d]) => '<button type="button" data-v="' + d + '" class="' + ((it.days || []).indexOf(d) !== -1 ? 'on' : '') + '">' + l + '</button>').join('') + '</div>';
     body += timeEditor(it, kind);
     const pd = previewDay(kind, it), p = previewTime(it, pd.day);
-    body += '<div class="preview' + (p.ok ? '' : ' bad') + '">' + (p.ok ? (p.text ? pd.label + ' יוצא: <b>' + p.text + '</b>' : '') : '⚠ ' + esc(p.text)) + '</div>';
+    body += '<div class="preview' + (p.ok ? '' : ' bad') + '">' + (p.ok ? (p.label ? esc(p.label) : p.text ? pd.label + ' יוצא: <b>' + p.text + '</b>' : '') : '⚠ ' + esc(p.text)) + '</div>';
   }
   return '<div class="item" data-i="' + i + '"><div class="head">' + nameField +
     '<div class="row-actions"><button type="button" class="small ghost" data-act="up" aria-label="למעלה"' + (i === 0 ? ' disabled' : '') + '>▲</button>' +
@@ -403,9 +409,9 @@ document.querySelectorAll('.sec[data-kind]').forEach(sec => {
     const i = +el.closest('.item').dataset.i; const it = model[kind][i];
     it[f] = f === 'min' ? Math.max(0, parseInt(el.value || '0', 10) || 0) : el.value;
     // refresh only the preview line (keeps the keyboard open)
-    if(kind !== 'message' && ['fixed', 'anchor', 'sign', 'min', 'raw'].indexOf(f) !== -1){
+    if(kind !== 'message' && ['fixed', 'anchor', 'sign', 'min', 'text'].indexOf(f) !== -1){
       const pv = el.closest('.item').querySelector('.preview'); const pd = previewDay(kind, it), p = previewTime(it, pd.day);
-      pv.className = 'preview' + (p.ok ? '' : ' bad'); pv.innerHTML = p.ok ? (p.text ? pd.label + ' יוצא: <b>' + p.text + '</b>' : '') : '⚠ ' + esc(p.text);
+      pv.className = 'preview' + (p.ok ? '' : ' bad'); pv.innerHTML = p.ok ? (p.label ? esc(p.label) : p.text ? pd.label + ' יוצא: <b>' + p.text + '</b>' : '') : '⚠ ' + esc(p.text);
     }
     updateState();
   });
