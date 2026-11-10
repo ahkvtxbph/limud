@@ -329,7 +329,7 @@ function timeEditor(it, kind){
       '<select data-f="anchor">' + list.map(a => '<option value="' + a + '"' + (a === it.anchor ? ' selected' : '') + '>' + ANCHORS_HE[a] + '</option>').join('') + '</select>' +
       '<select data-f="sign"><option value="-"' + (it.sign === '-' ? ' selected' : '') + '>לפני</option><option value="+"' + (it.sign !== '-' ? ' selected' : '') + '>אחרי</option></select>' +
       '<input type="number" inputmode="numeric" min="0" max="240" data-f="min" value="' + (+it.min || 0) + '" aria-label="דקות"></div>' : '') +
-    (it.mode === 'text' ? '<div class="grid" style="grid-template-columns:1fr;"><input data-f="text" maxlength="40" placeholder="למשל: אחרי ערבית, בין מנחה לערבית" value="' + esc(it.text || '') + '"></div>' : '');
+    (it.mode === 'text' ? '<div class="grid" style="grid-template-columns:1fr;"><input data-f="text" maxlength="50" placeholder="למשל: אחרי ערבית, בין מנחה לערבית" value="' + esc(it.text || '') + '"></div>' : '');
 }
 function itemHtml(kind, it, i, n){
   const nameField = kind === 'message'
