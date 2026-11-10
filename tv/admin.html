@@ -1,0 +1,487 @@
+---
+layout: null
+permalink: /tv/admin.html
+---
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ניהול הלוח | מזמור לתודה</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#17324D">
+<link rel="icon" href="/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<style>
+:root{
+  --blue:#17324D; --blue-2:#24486B; --cream:#F7F3E9; --gold:#B18B43; --gold-dark:#7A5C22; --gold-soft:#E9DCC0;
+  --text:#29323A; --muted:#55606B; --white:#fff; --line:#E6E8EB; --line-strong:#C9D1D9; --tint:#EEF2F6;
+  --danger:#8A2617; --danger-bg:#FFF4F1; --ok:#1F7A45; --ok-bg:#EAF6EF;
+  --font:'Assistant', 'Noto Sans Hebrew', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --r:12px;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0; background:var(--cream); color:var(--text); font-family:var(--font); font-size:16px; line-height:1.45; padding-bottom:96px;}
+.back-to-top{display:none !important;}
+header.top{background:var(--blue); color:#fff; padding:14px 16px;}
+header.top h1{margin:0; font-size:20px;}
+header.top p{margin:2px 0 0; font-size:14px; color:var(--gold-soft);}
+main{max-width:720px; margin:0 auto; padding:12px 16px;}
+.card{background:var(--white); border:1px solid var(--line); border-radius:var(--r); padding:14px; margin-bottom:12px; box-shadow:0 1px 2px rgba(23,50,77,.06);}
+.card h2{margin:0 0 10px; font-size:18px; color:var(--blue); display:flex; justify-content:space-between; align-items:center; gap:8px;}
+.card h2 small{font-size:13px; color:var(--muted); font-weight:400;}
+label.f{display:block; font-size:14px; color:var(--muted); margin:8px 0 4px;}
+input, select, textarea{font:inherit; font-size:16px; width:100%; min-height:44px; padding:8px 10px; border:1px solid var(--line-strong); border-radius:8px; background:#fff; color:var(--text);}
+textarea{min-height:80px; resize:vertical;}
+input:focus, select:focus, textarea:focus{outline:2px solid var(--gold); outline-offset:1px;}
+button{font:inherit; font-size:16px; min-height:44px; border-radius:8px; border:1px solid var(--line-strong); background:#fff; color:var(--blue); padding:8px 14px; cursor:pointer;}
+button.primary{background:var(--blue); color:#fff; border-color:var(--blue); font-weight:700;}
+button.ghost{border-color:transparent; background:transparent;}
+button.small{min-height:36px; padding:4px 10px; font-size:14px;}
+button:disabled{opacity:.5; cursor:default;}
+.row-actions{display:flex; gap:6px;}
+.muted{color:var(--muted); font-size:14px;}
+.msg{padding:10px 12px; border-radius:8px; margin:8px 0; font-size:15px;}
+.msg.err{background:var(--danger-bg); color:var(--danger);}
+.msg.ok{background:var(--ok-bg); color:var(--ok);}
+details.help{margin-top:10px;}
+details.help summary{cursor:pointer; color:var(--blue); font-weight:700; min-height:44px; display:flex; align-items:center;}
+details.help ol{padding-inline-start:20px; margin:6px 0;}
+details.help li{margin-bottom:8px;}
+code{background:var(--tint); padding:1px 5px; border-radius:4px; font-size:14px; direction:ltr; unicode-bidi:embed;}
+
+/* sections */
+.sec > summary{list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; min-height:44px; font-size:18px; font-weight:700; color:var(--blue);}
+.sec > summary::-webkit-details-marker{display:none;}
+.sec > summary::after{content:'▾'; color:var(--gold); font-size:18px; transition:transform .2s;}
+.sec[open] > summary::after{transform:rotate(180deg);}
+.sec > summary .count{font-size:13px; font-weight:400; color:var(--muted); margin-inline-start:auto; margin-inline-end:8px;}
+
+/* one item */
+.item{border:1px solid var(--line); border-radius:10px; padding:10px; margin:10px 0; background:#FCFBF8;}
+.item .head{display:flex; gap:8px; align-items:center;}
+.item .head input{flex:1;}
+.item .grid{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;}
+.item .grid.three{grid-template-columns:1.4fr 1fr .8fr;}
+.seg{display:flex; border:1px solid var(--line-strong); border-radius:8px; overflow:hidden; margin-top:8px;}
+.seg button{flex:1; border:0; border-radius:0; min-height:40px; background:#fff; color:var(--muted);}
+.seg button.on{background:var(--blue); color:#fff;}
+.preview{margin-top:8px; font-size:14px; color:var(--gold-dark);}
+.preview.bad{color:var(--danger);}
+.days{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;}
+.days button{min-height:40px; min-width:44px; padding:4px 8px; border-radius:20px; color:var(--muted);}
+.days button.on{background:var(--gold-soft); border-color:var(--gold); color:var(--gold-dark); font-weight:700;}
+.add{width:100%; border-style:dashed; color:var(--gold-dark); margin-top:6px;}
+.toggles{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+.toggles label{display:flex; align-items:center; gap:8px; min-height:44px; border:1px solid var(--line); border-radius:8px; padding:6px 10px; background:#fff;}
+.toggles input{width:22px; min-height:22px; height:22px; accent-color:var(--blue);}
+
+/* save bar */
+.savebar{position:fixed; bottom:0; inset-inline:0; background:var(--white); border-top:1px solid var(--line); padding:10px 16px calc(10px + env(safe-area-inset-bottom)); display:flex; gap:8px; align-items:center; justify-content:center; box-shadow:0 -4px 16px rgba(23,50,77,.08);}
+.savebar .state{font-size:14px; color:var(--muted); flex:1; max-width:400px;}
+.savebar .state.dirty{color:var(--gold-dark); font-weight:700;}
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>ניהול לוח בית הכנסת</h1>
+  <p>זמני תפילות, שיעורים והודעות — לטלוויזיה</p>
+</header>
+<main>
+  <!-- connecting -->
+  <section class="card" id="connect-card">
+    <h2>חיבור לגיליון</h2>
+    <label class="f" for="c-url">כתובת הסקריפט (מסתיימת ב-<code>/exec</code>)</label>
+    <input id="c-url" type="url" dir="ltr" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off">
+    <label class="f" for="c-pass">סיסמת ניהול</label>
+    <input id="c-pass" type="password" autocomplete="current-password">
+    <label class="f" style="display:flex; gap:8px; align-items:center;"><input id="c-remember" type="checkbox" style="width:22px; min-height:22px;" checked> לזכור בטלפון הזה</label>
+    <div id="c-msg"></div>
+    <button class="primary" id="c-go" style="width:100%; margin-top:8px;">התחברות</button>
+    <details class="help">
+      <summary>איך מכינים את הגיליון והסקריפט? (פעם אחת)</summary>
+      <ol>
+        <li>יוצרים גיליון חדש ב-Google Sheets (אפשר לייבא אליו את <code>tv-sheet-template.csv</code>: קובץ ← ייבוא ← העלאה ← "החלפת הגיליון").</li>
+        <li>בגיליון: <b>תוספים ← Apps Script</b>. מוחקים את מה שכתוב שם, מדביקים את התוכן של <code>Code.gs</code>, ושומרים (💾).</li>
+        <li>בעורך הסקריפט: <b>הגדרות הפרויקט (⚙) ← מאפייני סקריפט ← הוספה</b>: שם <code>ADMIN_PASSWORD</code>, ערך — הסיסמה שתבחרו.</li>
+        <li><b>פריסה ← פריסה חדשה ← סוג: אפליקציית אינטרנט</b>. "הפעלה בתור": <b>אני</b>. "למי יש גישה": <b>כל אחד</b>. לוחצים "פריסה" ומאשרים את ההרשאות (אם מופיע "Google לא אימתה את האפליקציה" — "מתקדם" ← "מעבר אל…": זה הסקריפט שלכם).</li>
+        <li>מעתיקים את <b>כתובת אפליקציית האינטרנט</b> (מסתיימת ב-<code>/exec</code>) ומדביקים כאן למעלה.</li>
+        <li>בטלוויזיה פותחים פעם אחת: <code>limood.org.il/tv/?sheet=</code> ואחריו אותה כתובת. (אחרי ההתחברות יופיע כאן כפתור שמעתיק את הקישור המלא.)</li>
+      </ol>
+      <p class="muted">הכל חינמי: הסקריפט רץ בחשבון הגוגל שלכם. הצפייה בלוח פתוחה, אבל לשמור שינויים אפשר רק עם הסיסמה.</p>
+    </details>
+  </section>
+
+  <!-- editing -->
+  <div id="editor" class="hidden">
+    <section class="card">
+      <h2>הלוח <small id="e-where"></small></h2>
+      <div class="row-actions" style="flex-wrap:wrap;">
+        <button class="small" id="e-copy">העתקת קישור לטלוויזיה</button>
+        <a href="/tv/" id="e-open" target="_blank" rel="noopener"><button class="small">פתיחת הלוח</button></a>
+        <button class="small ghost" id="e-logout">התנתקות</button>
+      </div>
+      <div id="e-msg"></div>
+    </section>
+
+    <details class="card sec" open>
+      <summary>הגדרות</summary>
+      <label class="f" for="s-city">עיר (לחישוב הזמנים)</label>
+      <select id="s-city"></select>
+      <label class="f">דפים שמוצגים בטלוויזיה</label>
+      <div class="toggles" id="s-pages"></div>
+      <label class="f" for="s-rotate">החלפת דף כל</label>
+      <select id="s-rotate"><option value="10">10 שניות</option><option value="20">20 שניות</option><option value="30">30 שניות</option><option value="60">דקה</option></select>
+    </details>
+
+    <details class="card sec" data-kind="weekday"><summary>תפילות ימי החול <span class="count"></span></summary><div class="list"></div><button class="add">+ הוספת תפילה</button></details>
+    <details class="card sec" data-kind="shabbat"><summary>תפילות שבת <span class="count"></span></summary><div class="list"></div><button class="add">+ הוספת תפילה</button></details>
+    <details class="card sec" data-kind="lesson"><summary>שיעורים <span class="count"></span></summary><div class="list"></div><button class="add">+ הוספת שיעור</button></details>
+    <details class="card sec" data-kind="message"><summary>הודעות <span class="count"></span></summary><div class="list"></div><button class="add">+ הוספת הודעה</button></details>
+
+    <p class="muted" style="padding:0 4px;">השינויים מגיעים לטלוויזיה תוך כ-5 דקות משמירה. אפשר להמשיך לערוך גם ישירות בגיליון.</p>
+  </div>
+</main>
+
+<div class="savebar hidden" id="savebar">
+  <span class="state" id="sb-state">אין שינויים</span>
+  <button id="sb-undo" class="small">ביטול שינויים</button>
+  <button id="sb-save" class="primary">שמירה</button>
+</div>
+
+<script src="/shared.js?build={{ site.time | date: '%s' }}"></script>
+<script src="/tv/common.js?build={{ site.time | date: '%s' }}"></script>
+<script>
+/* =====================================================================
+   TV BOARD ADMIN — edits the board's Google Sheet through the owner's own Apps Script (Code.gs).
+   Reads: GET <script>?action=json. Saves: POST (plain-text JSON, so no CORS pre-flight) with the password.
+   The sheet stays the single source: the TV reads it as CSV from the same script.
+   ===================================================================== */
+const $ = id => document.getElementById(id);
+const ANCHORS = ['עלות', 'הנץ', 'חצות', 'מנחה גדולה', 'מנחה קטנה', 'פלג', 'שקיעה', 'צאת'];
+const ANCHORS_HE = { 'עלות': 'עלות השחר', 'הנץ': 'הנץ החמה', 'חצות': 'חצות היום', 'מנחה גדולה': 'מנחה גדולה', 'מנחה קטנה': 'מנחה קטנה', 'פלג': 'פלג המנחה', 'שקיעה': 'שקיעה', 'צאת': 'צאת הכוכבים', 'הדלקה': 'הדלקת נרות', 'צאת שבת': 'צאת שבת' };
+const SHABBAT_ANCHORS = ['הדלקה', 'צאת שבת'];
+const PAGES = [{ key: 'zmanim', he: 'זמני היום', row: 'דף זמנים' }, { key: 'prayers', he: 'זמני תפילות', row: 'דף תפילות' }, { key: 'lessons', he: 'שיעורים', row: 'דף שיעורים' }, { key: 'messages', he: 'הודעות', row: 'דף הודעות' }];
+const DAY_BTNS = [['א', 0], ['ב', 1], ['ג', 2], ['ד', 3], ['ה', 4], ['ו', 5], ['שבת', 6], ['מוצ״ש', 7]];
+
+let conn = null;          // { url, password }
+let model = null;         // { settings, weekday, shabbat, lesson, message, extra }
+let saved = '';           // the model as last loaded/saved (to know about changes)
+let version = null;
+
+function store(k, v){ try{ if(v === undefined) return JSON.parse(localStorage.getItem(k) || 'null'); if(v === null) localStorage.removeItem(k); else localStorage.setItem(k, JSON.stringify(v)); }catch(e){ return null; } }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+function note(el, text, kind){ $(el).innerHTML = text ? '<div class="msg ' + (kind || 'err') + '">' + esc(text) + '</div>' : ''; }
+
+/* ---------- talking to the script ---------- */
+async function api(body){
+  const r = await fetch(conn.url, { method: 'POST', body: JSON.stringify(Object.assign({ password: conn.password }, body)) });
+  return r.json();
+}
+const ERR = {
+  'wrong-password': 'הסיסמה שגויה.',
+  'locked': 'יותר מדי נסיונות שגויים — נסו שוב בעוד 10 דקות.',
+  'no-password-set': 'בסקריפט עדיין לא הוגדרה סיסמה (מאפייני סקריפט ← ADMIN_PASSWORD).',
+  'changed': 'מישהו אחר שמר שינויים בינתיים. טענו מחדש ונסו שוב.'
+};
+
+/* ---------- sheet rows ⇄ the model ---------- */
+function parseTime(v, shabbat){
+  const t = String(v || '').trim();
+  let m = t.match(/^(\d{1,2})[:.](\d{2})(?:[:.]\d{2})?$/);
+  if(m) return { mode: 'fixed', fixed: m[1].padStart(2, '0') + ':' + m[2] };
+  m = t.match(/^(.+?)\s*([+-])\s*(\d+)$/) || (t ? [null, t, '+', '0'] : null);
+  if(m){
+    const a = m[1].trim();
+    const list = ANCHORS.concat(shabbat ? SHABBAT_ANCHORS : []);
+    const anchor = list.find(k => k === a) || list.find(k => a.indexOf(k) === 0 || k.indexOf(a) === 0);
+    if(anchor) return { mode: 'rel', anchor, sign: m[2], min: +m[3] };
+  }
+  return { mode: t ? 'raw' : 'fixed', raw: t, fixed: '' };
+}
+function timeValue(it){
+  if(it.mode === 'fixed') return it.fixed || '';
+  if(it.mode === 'raw') return it.raw || '';
+  return it.anchor + (it.min ? (it.sign || '-') + it.min : '');
+}
+function parseDays(t){
+  t = String(t || '').replace(/["״׳']/g, '').replace(/יום /g, '').trim();
+  if(!t || /^כל (יום|הימים)$/.test(t)) return [0, 1, 2, 3, 4, 5, 6];
+  if(/^מוצ/.test(t)) return [7];
+  const L = { 'א': 0, 'ב': 1, 'ג': 2, 'ד': 3, 'ה': 4, 'ו': 5, 'ש': 6 };
+  const W = { 'ראשון': 0, 'שני': 1, 'שלישי': 2, 'רביעי': 3, 'חמישי': 4, 'שישי': 5, 'ערב שבת': 5, 'שבת': 6, 'שבת קודש': 6 };
+  const set = new Set();
+  t.split(/[,،]|\s+ו(?=[א-ת])/).map(x => x.trim()).filter(Boolean).forEach(p => {
+    const r = p.match(/^([א-ו])\s*-\s*([א-ו])$/);
+    if(r){ for(let d = L[r[1]]; d <= L[r[2]]; d++) set.add(d); return; }
+    if(W[p] !== undefined) set.add(W[p]); else if(L[p] !== undefined) set.add(L[p]);
+  });
+  return set.size ? [...set].sort() : [0, 1, 2, 3, 4, 5, 6];
+}
+function daysValue(days){
+  const d = [...days].sort();
+  if(d.indexOf(7) !== -1) return 'מוצאי שבת';
+  if(d.length === 7) return '';
+  const L = ['א', 'ב', 'ג', 'ד', 'ה', 'ו'];
+  const week = d.filter(x => x <= 5), sh = d.indexOf(6) !== -1;
+  let s = '';
+  if(week.length > 2 && week.every((x, i) => i === 0 || x === week[i - 1] + 1)) s = L[week[0]] + '-' + L[week[week.length - 1]];
+  else s = week.map(x => L[x]).join(',');
+  return [s, sh ? 'שבת' : ''].filter(Boolean).join(',');
+}
+function fromRows(rows){
+  const m = { settings: { city: '', pages: {}, rotate: '20' }, weekday: [], shabbat: [], lesson: [], message: [], extra: [] };
+  const yes = v => /^(כן|yes|true|1|v|✓)$/i.test(String(v).trim());
+  rows.forEach(r => {
+    const [type, name, value, extra] = r.map(x => String(x || '').trim());
+    if(/^הגדר/.test(type)){
+      if(/^עיר|^מיקום/.test(name)){ m.settings.city = value; return; }
+      if(/החלפה/.test(name)){ m.settings.rotate = value; return; }
+      const p = /תפיל/.test(name) ? 'prayers' : /שיעור/.test(name) ? 'lessons' : /הודע/.test(name) ? 'messages' : /זמנ/.test(name) ? 'zmanim' : null;
+      if(p){ m.settings.pages[p] = yes(value); return; }
+    }
+    else if(/^חול/.test(type)) return void m.weekday.push(Object.assign({ name }, parseTime(value, false)));
+    else if(/^שבת/.test(type)) return void m.shabbat.push(Object.assign({ name, eve: /ערב/.test(extra) }, parseTime(value, true)));
+    else if(/^שיעור/.test(type)) return void m.lesson.push(Object.assign({ name, days: parseDays(extra) }, parseTime(value, true)));
+    else if(/^הודע/.test(type)) return void m.message.push({ title: name, text: value, until: toIsoDate(extra) });
+    if(type || name || value || extra) m.extra.push(r);            // anything else: kept as it is
+  });
+  return m;
+}
+function toIsoDate(s){
+  s = String(s || '').trim();
+  let m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/); if(m) return s;
+  m = s.match(/^(\d{1,2})[./](\d{1,2})[./](\d{4})$/); if(m) return m[3] + '-' + m[2].padStart(2, '0') + '-' + m[1].padStart(2, '0');
+  return '';
+}
+function toRows(m){
+  const rows = [];
+  if(m.settings.city) rows.push(['הגדרה', 'עיר', m.settings.city, '']);
+  PAGES.forEach(p => rows.push(['הגדרה', p.row, m.settings.pages[p.key] === false ? 'לא' : 'כן', '']));
+  rows.push(['הגדרה', 'החלפה כל', String(m.settings.rotate || 20), '']);
+  m.weekday.forEach(x => rows.push(['חול', x.name, timeValue(x), '']));
+  m.shabbat.forEach(x => rows.push(['שבת', x.name, timeValue(x), x.eve ? 'ערב שבת' : 'שבת']));
+  m.lesson.forEach(x => rows.push(['שיעור', x.name, timeValue(x), daysValue(x.days)]));
+  m.message.forEach(x => rows.push(['הודעה', x.title, x.text, x.until || '']));
+  return rows.concat(m.extra).filter(r => r[1] || r[2]);
+}
+
+/* ---------- a preview of the time, as the TV will compute it ---------- */
+function cityLoc(){ return TV_CITIES.find(c => c.name === model.settings.city) || TV_CITIES[0]; }
+function addDays(d, n){ return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n, 12); }
+function anchorsFor(day){
+  const { lat, lon, name } = cityLoc();
+  const sunrise = calcSunEventUTC(day, lat, lon, 90.833, true), sunset = calcSunEventUTC(day, lat, lon, 90.833, false);
+  if(!sunrise || !sunset) return null;
+  const dayMin = (sunset - sunrise) / 60000, summer = dayMin > 720;
+  const gra = h => new Date(sunrise.getTime() + h * (sunset - sunrise) / 12), chatzot = gra(6);
+  const a = {
+    'עלות': roundToMinute(new Date(sunrise.getTime() - 72 * 60000), 'up'), 'הנץ': sunrise, 'חצות': chatzot,
+    'מנחה גדולה': new Date(chatzot.getTime() + (summer ? 30 * dayMin / 720 : 30) * 60000), 'מנחה קטנה': gra(9.5), 'פלג': gra(10.75),
+    'שקיעה': sunset, 'צאת': new Date(sunset.getTime() + (summer ? 18 * dayMin / 720 : 18) * 60000)
+  };
+  // Shabbat anchors: candle lighting on Friday, its end on Saturday
+  const fri = addDays(day, (5 - day.getDay() + 7) % 7), sat = addDays(fri, 1);
+  const fs = calcSunEventUTC(fri, lat, lon, 90.833, false);
+  const cm = isJerusalemArea(lat, lon, name) ? JERUSALEM_CANDLE_MINUTES : 18;
+  a['הדלקה'] = fs && roundToMinute(new Date(fs.getTime() - cm * 60000), 'down');
+  a['צאת שבת'] = roundToMinute(calcSunEventUTC(sat, lat, lon, 98.5, false), 'up');
+  return a;
+}
+function previewTime(it, day){
+  if(it.mode === 'fixed') return it.fixed ? { ok: true, text: '' } : { ok: false, text: 'חסרה שעה' };
+  if(it.mode === 'raw') return { ok: false, text: 'הערך "' + it.raw + '" לא מובן ללוח — בחרו שעה קבועה או זמן מהרשימה' };
+  const a = anchorsFor(day); const base = a && a[it.anchor];
+  if(!base) return { ok: false, text: 'אין זמן כזה' };
+  const min = +it.min || 0;
+  let t = new Date(base.getTime() + (it.sign === '-' ? -min : min) * 60000);
+  const step = 5 * 60000;
+  t = min ? new Date(it.sign === '-' ? Math.floor(t / step) * step : Math.ceil(t / step) * step) : roundToMinute(t, 'up');
+  return { ok: true, text: t.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit', hour12: false }) };
+}
+function previewDay(kind, it){
+  const today = addDays(new Date(), 0);
+  if(kind === 'shabbat'){ const fri = addDays(today, (5 - today.getDay() + 7) % 7); return { day: it.eve ? fri : addDays(fri, 1), label: it.eve ? 'בערב שבת הקרוב' : 'בשבת הקרובה' }; }
+  if(kind === 'lesson'){
+    const ds = it.days || [];
+    for(let k = 0; k < 8; k++){ const d = addDays(today, k); if(ds.indexOf(d.getDay()) !== -1 || (ds.indexOf(7) !== -1 && d.getDay() === 6)) return { day: d, label: k === 0 ? 'היום' : 'ביום ' + WEEKDAY_NAMES[d.getDay()] }; }
+  }
+  return { day: today, label: 'היום' };
+}
+
+/* ---------- drawing the editors ---------- */
+function timeEditor(it, kind){
+  const shabbat = kind === 'shabbat' || kind === 'lesson';
+  const list = ANCHORS.concat(shabbat ? SHABBAT_ANCHORS : []);
+  return '<div class="seg" data-f="mode">' +
+      '<button type="button" data-v="fixed" class="' + (it.mode === 'fixed' ? 'on' : '') + '">שעה קבועה</button>' +
+      '<button type="button" data-v="rel" class="' + (it.mode === 'rel' ? 'on' : '') + '">לפי זמני היום</button></div>' +
+    (it.mode === 'fixed' ? '<div class="grid" style="grid-template-columns:1fr;"><input type="time" data-f="fixed" value="' + esc(it.fixed || '') + '"></div>' : '') +
+    (it.mode === 'rel' ? '<div class="grid three">' +
+      '<select data-f="anchor">' + list.map(a => '<option value="' + a + '"' + (a === it.anchor ? ' selected' : '') + '>' + ANCHORS_HE[a] + '</option>').join('') + '</select>' +
+      '<select data-f="sign"><option value="-"' + (it.sign === '-' ? ' selected' : '') + '>לפני</option><option value="+"' + (it.sign !== '-' ? ' selected' : '') + '>אחרי</option></select>' +
+      '<input type="number" inputmode="numeric" min="0" max="240" data-f="min" value="' + (+it.min || 0) + '" aria-label="דקות"></div>' : '') +
+    (it.mode === 'raw' ? '<div class="grid" style="grid-template-columns:1fr;"><input data-f="raw" value="' + esc(it.raw) + '"></div>' : '');
+}
+function itemHtml(kind, it, i, n){
+  const nameField = kind === 'message'
+    ? '<input data-f="title" placeholder="כותרת" value="' + esc(it.title) + '">'
+    : '<input data-f="name" placeholder="' + (kind === 'lesson' ? 'שם השיעור' : 'שם התפילה') + '" value="' + esc(it.name) + '">';
+  let body = '';
+  if(kind === 'message'){
+    body = '<label class="f">הטקסט</label><textarea data-f="text">' + esc(it.text) + '</textarea>' +
+      '<label class="f">להציג עד (לא חובה)</label><input type="date" data-f="until" value="' + esc(it.until || '') + '">';
+  }else{
+    if(kind === 'shabbat') body += '<div class="seg" data-f="eve"><button type="button" data-v="1" class="' + (it.eve ? 'on' : '') + '">ערב שבת</button><button type="button" data-v="0" class="' + (!it.eve ? 'on' : '') + '">שבת</button></div>';
+    if(kind === 'lesson') body += '<div class="days" data-f="days">' + DAY_BTNS.map(([l, d]) => '<button type="button" data-v="' + d + '" class="' + ((it.days || []).indexOf(d) !== -1 ? 'on' : '') + '">' + l + '</button>').join('') + '</div>';
+    body += timeEditor(it, kind);
+    const pd = previewDay(kind, it), p = previewTime(it, pd.day);
+    body += '<div class="preview' + (p.ok ? '' : ' bad') + '">' + (p.ok ? (p.text ? pd.label + ' יוצא: <b>' + p.text + '</b>' : '') : '⚠ ' + esc(p.text)) + '</div>';
+  }
+  return '<div class="item" data-i="' + i + '"><div class="head">' + nameField +
+    '<div class="row-actions"><button type="button" class="small ghost" data-act="up" aria-label="למעלה"' + (i === 0 ? ' disabled' : '') + '>▲</button>' +
+    '<button type="button" class="small ghost" data-act="down" aria-label="למטה"' + (i === n - 1 ? ' disabled' : '') + '>▼</button>' +
+    '<button type="button" class="small ghost" data-act="del" aria-label="מחיקה">🗑</button></div></div>' + body + '</div>';
+}
+function drawList(kind){
+  const sec = document.querySelector('.sec[data-kind="' + kind + '"]');
+  const arr = model[kind];
+  sec.querySelector('.list').innerHTML = arr.map((it, i) => itemHtml(kind, it, i, arr.length)).join('') || '<p class="muted">אין עדיין.</p>';
+  sec.querySelector('.count').textContent = arr.length ? arr.length + (kind === 'message' ? ' הודעות' : kind === 'lesson' ? ' שיעורים' : ' תפילות') : '';
+}
+function drawSettings(){
+  $('s-city').innerHTML = '<option value="">— לא נקבעה (לפי הבחירה בטלוויזיה) —</option>' + TV_CITIES.map(c => '<option' + (c.name === model.settings.city ? ' selected' : '') + '>' + c.name + '</option>').join('');
+  $('s-pages').innerHTML = PAGES.map(p => '<label><input type="checkbox" data-page="' + p.key + '"' + (model.settings.pages[p.key] !== false ? ' checked' : '') + '> ' + p.he + '</label>').join('');
+  $('s-rotate').value = ['10', '20', '30', '60'].indexOf(String(model.settings.rotate)) !== -1 ? String(model.settings.rotate) : '20';
+}
+function drawAll(){ drawSettings(); ['weekday', 'shabbat', 'lesson', 'message'].forEach(drawList); updateState(); }
+function updateState(){
+  const dirty = JSON.stringify(toRows(model)) !== saved;
+  $('sb-state').textContent = dirty ? 'יש שינויים שלא נשמרו' : 'הכל שמור';
+  $('sb-state').classList.toggle('dirty', dirty);
+  $('sb-save').disabled = !dirty; $('sb-undo').disabled = !dirty;
+}
+
+/* ---------- editing ---------- */
+const NEW = {
+  weekday: () => ({ name: '', mode: 'fixed', fixed: '' }),
+  shabbat: () => ({ name: '', eve: false, mode: 'fixed', fixed: '' }),
+  lesson: () => ({ name: '', days: [0, 1, 2, 3, 4], mode: 'fixed', fixed: '' }),
+  message: () => ({ title: '', text: '', until: '' })
+};
+document.querySelectorAll('.sec[data-kind]').forEach(sec => {
+  const kind = sec.dataset.kind;
+  sec.querySelector('.add').addEventListener('click', () => {
+    model[kind].push(NEW[kind]()); drawList(kind); updateState();
+    const items = sec.querySelectorAll('.item'); const last = items[items.length - 1];
+    if(last){ last.scrollIntoView({ behavior: 'smooth', block: 'center' }); const f = last.querySelector('input'); if(f) f.focus(); }
+  });
+  const list = sec.querySelector('.list');
+  list.addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    const itemEl = b.closest('.item'); const i = +itemEl.dataset.i; const arr = model[kind]; const it = arr[i];
+    if(b.dataset.act === 'del'){ if(confirmDelete(it)){ arr.splice(i, 1); } }
+    else if(b.dataset.act === 'up' && i > 0){ [arr[i - 1], arr[i]] = [arr[i], arr[i - 1]]; }
+    else if(b.dataset.act === 'down' && i < arr.length - 1){ [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]]; }
+    else{
+      const f = b.parentElement.dataset.f;
+      if(f === 'mode'){ it.mode = b.dataset.v; if(it.mode === 'rel' && !it.anchor){ it.anchor = 'שקיעה'; it.sign = '-'; it.min = 15; } }
+      else if(f === 'eve') it.eve = b.dataset.v === '1';
+      else if(f === 'days'){
+        const d = +b.dataset.v; let s = new Set(it.days || []);
+        if(d === 7) s = s.has(7) ? new Set() : new Set([7]);
+        else{ s.delete(7); s.has(d) ? s.delete(d) : s.add(d); }
+        it.days = [...s].sort();
+      }else return;
+    }
+    drawList(kind); updateState();
+  });
+  list.addEventListener('input', e => {
+    const el = e.target, f = el.dataset.f; if(!f) return;
+    const i = +el.closest('.item').dataset.i; const it = model[kind][i];
+    it[f] = f === 'min' ? Math.max(0, parseInt(el.value || '0', 10) || 0) : el.value;
+    // refresh only the preview line (keeps the keyboard open)
+    if(kind !== 'message' && ['fixed', 'anchor', 'sign', 'min', 'raw'].indexOf(f) !== -1){
+      const pv = el.closest('.item').querySelector('.preview'); const pd = previewDay(kind, it), p = previewTime(it, pd.day);
+      pv.className = 'preview' + (p.ok ? '' : ' bad'); pv.innerHTML = p.ok ? (p.text ? pd.label + ' יוצא: <b>' + p.text + '</b>' : '') : '⚠ ' + esc(p.text);
+    }
+    updateState();
+  });
+  list.addEventListener('change', e => { if(e.target.tagName === 'SELECT'){ drawList(kind); updateState(); } });
+});
+function confirmDelete(it){ const n = it.name || it.title; return !n || window.confirm('למחוק את "' + n + '"?'); }
+$('s-city').addEventListener('change', () => { model.settings.city = $('s-city').value; ['weekday', 'shabbat', 'lesson'].forEach(drawList); updateState(); });
+$('s-rotate').addEventListener('change', () => { model.settings.rotate = $('s-rotate').value; updateState(); });
+$('s-pages').addEventListener('change', e => {
+  const k = e.target.dataset.page; if(!k) return;
+  model.settings.pages[k] = e.target.checked;
+  if(!PAGES.some(p => model.settings.pages[p.key] !== false)){ e.target.checked = true; model.settings.pages[k] = true; note('e-msg', 'צריך להשאיר לפחות דף אחד.'); }
+  updateState();
+});
+
+/* ---------- loading and saving ---------- */
+function problems(){
+  const out = [];
+  ['weekday', 'shabbat', 'lesson'].forEach(kind => model[kind].forEach(it => {
+    if(!it.name) out.push('יש ' + (kind === 'lesson' ? 'שיעור' : 'תפילה') + ' בלי שם');
+    else if(!previewTime(it, previewDay(kind, it).day).ok) out.push('"' + it.name + '": הזמן לא תקין');
+    if(kind === 'lesson' && !(it.days || []).length) out.push('"' + (it.name || 'שיעור') + '": לא נבחרו ימים');
+  }));
+  model.message.forEach(it => { if(!it.title && !it.text) out.push('יש הודעה ריקה'); });
+  return out;
+}
+async function save(){
+  const p = problems();
+  if(p.length){ note('e-msg', 'לפני שמירה: ' + p.slice(0, 3).join(' · ')); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  $('sb-save').disabled = true; $('sb-state').textContent = 'שומר…';
+  try{
+    const r = await api({ action: 'save', rows: toRows(model), version });
+    if(!r.ok){ note('e-msg', ERR[r.error] || 'השמירה נכשלה (' + r.error + ')'); if(r.error === 'changed') version = null; updateState(); return; }
+    version = r.version; saved = JSON.stringify(toRows(model));
+    note('e-msg', 'נשמר ✓ — יופיע בטלוויזיה תוך כ-5 דקות.', 'ok');
+  }catch(e){ note('e-msg', 'אין חיבור לגיליון. בדקו את האינטרנט ונסו שוב.'); }
+  updateState();
+}
+async function connect(url, password, remember){
+  conn = { url: url.trim(), password };
+  note('c-msg', '');
+  if(!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(conn.url)){ note('c-msg', 'הכתובת צריכה להיות כתובת אפליקציית אינטרנט של Apps Script, שמסתיימת ב-/exec.'); return false; }
+  $('c-go').disabled = true; $('c-go').textContent = 'מתחבר…';
+  try{
+    const r = await api({ action: 'check' });
+    if(!r.ok){ note('c-msg', ERR[r.error] || 'החיבור נכשל (' + r.error + ')'); return false; }
+    store('tv-admin', remember ? conn : { url: conn.url });
+    version = r.version;
+    model = fromRows(r.rows || []); saved = JSON.stringify(toRows(model));
+    $('connect-card').classList.add('hidden'); $('editor').classList.remove('hidden'); $('savebar').classList.remove('hidden');
+    $('e-where').textContent = model.settings.city ? '· ' + model.settings.city : '';
+    $('e-open').href = '/tv/?sheet=' + encodeURIComponent(conn.url);
+    drawAll();
+    return true;
+  }catch(e){
+    note('c-msg', 'לא הצלחנו להגיע לסקריפט. בדקו שהכתובת נכונה ושבפריסה נבחר "למי יש גישה: כל אחד".');
+    return false;
+  }finally{ $('c-go').disabled = false; $('c-go').textContent = 'התחברות'; }
+}
+$('c-go').addEventListener('click', () => connect($('c-url').value, $('c-pass').value, $('c-remember').checked));
+$('c-pass').addEventListener('keydown', e => { if(e.key === 'Enter') $('c-go').click(); });
+$('sb-save').addEventListener('click', save);
+$('sb-undo').addEventListener('click', () => { if(window.confirm('לבטל את כל השינויים שלא נשמרו?')){ model = fromRows(JSON.parse(saved)); note('e-msg', ''); drawAll(); } });
+$('e-logout').addEventListener('click', () => { store('tv-admin', null); location.reload(); });
+$('e-copy').addEventListener('click', async () => {
+  const link = location.origin + '/tv/?sheet=' + encodeURIComponent(conn.url);
+  try{ await navigator.clipboard.writeText(link); note('e-msg', 'הקישור הועתק. פותחים אותו פעם אחת בדפדפן של הטלוויזיה (או באפליקציה).', 'ok'); }
+  catch(e){ window.prompt('העתיקו את הקישור:', link); }
+});
+window.addEventListener('beforeunload', e => { if(model && JSON.stringify(toRows(model)) !== saved){ e.preventDefault(); e.returnValue = ''; } });
+
+(function start(){
+  const s = store('tv-admin');
+  if(s && s.url){ $('c-url').value = s.url; }
+  if(s && s.url && s.password) connect(s.url, s.password, true);
+})();
+</script>
+</body>
+</html>
