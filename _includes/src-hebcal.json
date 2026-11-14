@@ -2,65 +2,9 @@
 "note":"נוצר אוטומטית מ־Hebcal.com (CC BY 4.0) — לא לערוך ידנית",
 "sets":{
 "maj=on&mf=on&min=on&mod=on&nx=on":{
-"start":"2026-10-03",
-"end":"2027-12-12",
+"start":"2026-10-10",
+"end":"2027-12-19",
 "items":[
-{
-"title":"Shmini Atzeret",
-"date":"2026-10-03",
-"hdate":"22 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"שמיני עצרת",
-"leyning":{
-"1":"Deuteronomy 14:22-14:29",
-"2":"Deuteronomy 15:1-15:18",
-"3":"Deuteronomy 15:19-15:23",
-"4":"Deuteronomy 16:1-16:3",
-"5":"Deuteronomy 16:4-16:8",
-"6":"Deuteronomy 16:9-16:12",
-"7":"Deuteronomy 16:13-16:17",
-"torah":"Deuteronomy 14:22-16:17; Numbers 29:35-30:1; Ecclesiastes 1:1-12:14",
-"haftarah":"I Kings 8:54-66",
-"maftir":"Numbers 29:35-30:1"
-},
-"link":"https://hebcal.com/h/shmini-atzeret-2026?us=js&um=api",
-"memo":"Eighth Day of Assembly. Immediately following Sukkot, it is observed as a separate holiday in the Diaspora and is combined with Simchat Torah in Israel"
-},
-{
-"title":"Simchat Torah",
-"date":"2026-10-04",
-"hdate":"23 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"שמחת תורה",
-"leyning":{
-"1":"Deuteronomy 33:1-33:7",
-"2":"Deuteronomy 33:8-33:12",
-"3":"Deuteronomy 33:13-33:17",
-"4":"Deuteronomy 33:18-33:21",
-"5":"Deuteronomy 33:22-33:26",
-"6":"Deuteronomy 33:27-34:12",
-"7":"Genesis 1:1-2:3",
-"torah":"Deuteronomy 33:1-34:12; Genesis 1:1-2:3; Numbers 29:35-30:1",
-"haftarah":"Joshua 1:1-18",
-"maftir":"Numbers 29:35-30:1"
-},
-"link":"https://hebcal.com/h/simchat-torah-2026?us=js&um=api",
-"memo":"Day of Celebrating the Torah. Celebration marking the conclusion of the annual cycle of public Torah readings, and the beginning of a new cycle"
-},
-{
-"title":"Swords of Iron War Memorial Day",
-"date":"2026-10-05",
-"hdate":"24 Tishrei 5787",
-"category":"holiday",
-"subcat":"modern",
-"hebrew":"יום הזיכרון לחללי מלחמת חרבות ברזל",
-"link":"https://hebcal.com/h/swords-of-iron-war-memorial-day-2026?us=js&um=api",
-"memo":"Israeli national memorial day commemorating the fallen victims of the October 7 attacks, and the soldiers of the Israel Defense Forces"
-},
 {
 "title":"Rosh Chodesh Cheshvan",
 "date":"2026-10-11",
@@ -1408,65 +1352,9 @@
 ]
 },
 "maj=on&min=on&mod=on&nx=on":{
-"start":"2026-10-03",
-"end":"2027-12-12",
+"start":"2026-10-10",
+"end":"2027-12-19",
 "items":[
-{
-"title":"Shmini Atzeret",
-"date":"2026-10-03",
-"hdate":"22 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"שמיני עצרת",
-"leyning":{
-"1":"Deuteronomy 14:22-14:29",
-"2":"Deuteronomy 15:1-15:18",
-"3":"Deuteronomy 15:19-15:23",
-"4":"Deuteronomy 16:1-16:3",
-"5":"Deuteronomy 16:4-16:8",
-"6":"Deuteronomy 16:9-16:12",
-"7":"Deuteronomy 16:13-16:17",
-"torah":"Deuteronomy 14:22-16:17; Numbers 29:35-30:1; Ecclesiastes 1:1-12:14",
-"haftarah":"I Kings 8:54-66",
-"maftir":"Numbers 29:35-30:1"
-},
-"link":"https://hebcal.com/h/shmini-atzeret-2026?us=js&um=api",
-"memo":"Eighth Day of Assembly. Immediately following Sukkot, it is observed as a separate holiday in the Diaspora and is combined with Simchat Torah in Israel"
-},
-{
-"title":"Simchat Torah",
-"date":"2026-10-04",
-"hdate":"23 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"שמחת תורה",
-"leyning":{
-"1":"Deuteronomy 33:1-33:7",
-"2":"Deuteronomy 33:8-33:12",
-"3":"Deuteronomy 33:13-33:17",
-"4":"Deuteronomy 33:18-33:21",
-"5":"Deuteronomy 33:22-33:26",
-"6":"Deuteronomy 33:27-34:12",
-"7":"Genesis 1:1-2:3",
-"torah":"Deuteronomy 33:1-34:12; Genesis 1:1-2:3; Numbers 29:35-30:1",
-"haftarah":"Joshua 1:1-18",
-"maftir":"Numbers 29:35-30:1"
-},
-"link":"https://hebcal.com/h/simchat-torah-2026?us=js&um=api",
-"memo":"Day of Celebrating the Torah. Celebration marking the conclusion of the annual cycle of public Torah readings, and the beginning of a new cycle"
-},
-{
-"title":"Swords of Iron War Memorial Day",
-"date":"2026-10-05",
-"hdate":"24 Tishrei 5787",
-"category":"holiday",
-"subcat":"modern",
-"hebrew":"יום הזיכרון לחללי מלחמת חרבות ברזל",
-"link":"https://hebcal.com/h/swords-of-iron-war-memorial-day-2026?us=js&um=api",
-"memo":"Israeli national memorial day commemorating the fallen victims of the October 7 attacks, and the soldiers of the Israel Defense Forces"
-},
 {
 "title":"Rosh Chodesh Cheshvan",
 "date":"2026-10-11",
@@ -2737,43 +2625,9 @@
 ]
 },
 "i=on&maj=on&min=on&mod=on&nx=on":{
-"start":"2026-10-03",
-"end":"2027-12-12",
+"start":"2026-10-10",
+"end":"2027-12-19",
 "items":[
-{
-"title":"Shmini Atzeret",
-"date":"2026-10-03",
-"hdate":"22 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"שמיני עצרת",
-"leyning":{
-"1":"Deuteronomy 33:1-33:7",
-"2":"Deuteronomy 33:8-33:12",
-"3":"Deuteronomy 33:13-33:17",
-"4":"Deuteronomy 33:18-33:21",
-"5":"Deuteronomy 33:22-33:26",
-"6":"Deuteronomy 33:27-33:29",
-"7":"Deuteronomy 34:1-34:12",
-"8":"Genesis 1:1-2:3",
-"torah":"Deuteronomy 33:1-34:12; Genesis 1:1-2:3; Numbers 29:35-30:1",
-"haftarah":"Joshua 1:1-18",
-"maftir":"Numbers 29:35-30:1"
-},
-"link":"https://hebcal.com/h/shmini-atzeret-2026?i=on&us=js&um=api",
-"memo":"Eighth Day of Assembly. Immediately following Sukkot, it is observed as a separate holiday in the Diaspora and is combined with Simchat Torah in Israel"
-},
-{
-"title":"Swords of Iron War Memorial Day",
-"date":"2026-10-05",
-"hdate":"24 Tishrei 5787",
-"category":"holiday",
-"subcat":"modern",
-"hebrew":"יום הזיכרון לחללי מלחמת חרבות ברזל",
-"link":"https://hebcal.com/h/swords-of-iron-war-memorial-day-2026?i=on&us=js&um=api",
-"memo":"Israeli national memorial day commemorating the fallen victims of the October 7 attacks, and the soldiers of the Israel Defense Forces"
-},
 {
 "title":"Rosh Chodesh Cheshvan",
 "date":"2026-10-11",
@@ -4077,31 +3931,9 @@
 ]
 },
 "leyning=off&maj=on&s=on":{
-"start":"2026-10-03",
-"end":"2027-12-12",
+"start":"2026-10-10",
+"end":"2027-12-19",
 "items":[
-{
-"title":"Shmini Atzeret",
-"date":"2026-10-03",
-"hdate":"22 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"שמיני עצרת",
-"link":"https://hebcal.com/h/shmini-atzeret-2026?us=js&um=api",
-"memo":"Eighth Day of Assembly. Immediately following Sukkot, it is observed as a separate holiday in the Diaspora and is combined with Simchat Torah in Israel"
-},
-{
-"title":"Simchat Torah",
-"date":"2026-10-04",
-"hdate":"23 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"שמחת תורה",
-"link":"https://hebcal.com/h/simchat-torah-2026?us=js&um=api",
-"memo":"Day of Celebrating the Torah. Celebration marking the conclusion of the annual cycle of public Torah readings, and the beginning of a new cycle"
-},
 {
 "title":"Parashat Bereshit",
 "date":"2026-10-10",
@@ -4984,24 +4816,21 @@
 "category":"parashat",
 "hebrew":"פרשת ויצא",
 "link":"https://hebcal.com/s/5788/7?us=js&um=api"
+},
+{
+"title":"Parashat Vayishlach",
+"date":"2027-12-18",
+"hdate":"18 Kislev 5788",
+"category":"parashat",
+"hebrew":"פרשת וישלח",
+"link":"https://hebcal.com/s/5788/8?us=js&um=api"
 }
 ]
 },
 "i=on&leyning=off&maj=on&s=on":{
-"start":"2026-10-03",
-"end":"2027-12-12",
+"start":"2026-10-10",
+"end":"2027-12-19",
 "items":[
-{
-"title":"Shmini Atzeret",
-"date":"2026-10-03",
-"hdate":"22 Tishrei 5787",
-"category":"holiday",
-"subcat":"major",
-"yomtov":true,
-"hebrew":"שמיני עצרת",
-"link":"https://hebcal.com/h/shmini-atzeret-2026?i=on&us=js&um=api",
-"memo":"Eighth Day of Assembly. Immediately following Sukkot, it is observed as a separate holiday in the Diaspora and is combined with Simchat Torah in Israel"
-},
 {
 "title":"Parashat Bereshit",
 "date":"2026-10-10",
@@ -5859,6 +5688,14 @@
 "category":"parashat",
 "hebrew":"פרשת ויצא",
 "link":"https://hebcal.com/s/5788i/7?us=js&um=api"
+},
+{
+"title":"Parashat Vayishlach",
+"date":"2027-12-18",
+"hdate":"18 Kislev 5788",
+"category":"parashat",
+"hebrew":"פרשת וישלח",
+"link":"https://hebcal.com/s/5788i/8?us=js&um=api"
 }
 ]
 }
