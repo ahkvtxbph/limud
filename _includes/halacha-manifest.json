@@ -709,7 +709,7 @@
 "Shulchan Arukh, Yoreh De'ah":{
 "he":"שולחן ערוך — יורה דעה",
 "file":"halacha-data-yd.json",
-"v":"073685691bba",
+"v":"2df2e7e58e51",
 "counts":[
 14,
 11,
@@ -1121,7 +1121,7 @@
 "Shulchan Arukh, Even HaEzer":{
 "he":"שולחן ערוך — אבן העזר",
 "file":"halacha-data-eh.json",
-"v":"7058b9784844",
+"v":"2222175c0e48",
 "counts":[
 14,
 11,
@@ -3404,5 +3404,5 @@
 }
 ]
 },
-"updated":"2026-10-24"
+"updated":"2026-11-14"
 }
