@@ -43,6 +43,9 @@ ANCHORS = {
 # sections said only on some days, though Wikisource puts the instruction at the end of the section before:
 # section title -> (condition, a segment from which on it is said every day again)
 LEAF_WHEN = {'אבינו מלכנו': ('ayt', 'ואנחנו לא נדע')}
+# sections that are a list of "for this day — this psalm": each instruction ("לראש חודש", "לחנוכה" …) holds
+# for everything after it, up to the next instruction (not only for the one paragraph after it)
+LIST_LEAVES = {'למועדים'}
 SUBHEAD = re.compile(r'לשני וחמישי')
 H2_NAMES = {'עמידה': 'תפילת עמידה', 'תפילת העמידה': 'תפילת עמידה', 'שמונה עשרה': 'תפילת עמידה'}
 DROP_BLOCK = re.compile(r'^(תפילת שמונה עשרה|תפלת שמונה עשרה|תפילת עמידה)$')
@@ -163,7 +166,10 @@ COND_RULES = [   # (pattern on the normalised instruction, condition key)
     (r'יום ה?כי?פו?רים', 'yk'), (r'ראש ח(?:ו)?דש', 'rc'), (r'חול המועד', 'chm'), (r'יום טוב', 'yomtov'),
     (r'(?:^|\s)[ובלה]{0,2}פסח(?=\s|$)', 'pesach'), (r'(?:^|\s)[ובלה]{0,2}סו?כות(?=\s|$)', 'sukkot'),
     (r'שבועות', 'shavuot'), (r'חנוכה|חנכה', 'chanukah'), (r'פורים', 'purim'), (r'תשעה באב', 'av9'),
-    (r'תענית|(?:^|\s)[ובלה]{0,2}צום(?=\s|$)', 'fast'), (r'חורף|ימות הגשמים', 'winter'), (r'קיץ|ימות החמה', 'summer'),
+    (r'תענית אסתר', 'esther'),
+    (r'תעניות|תענית|(?:^|\s)[ובלה]{0,2}צום(?=\s|$)', 'fast'),
+    (r'חורף|ימות הגשמים', 'winter'), (r'קיץ|ימות החמה', 'summer'),
+    (r'בית ה?אבלי?ם?|בית החתן|לחתן', 'house'),     # said in a mourner's or a groom's house — not in the synagogue
     (r'מוצאי שבת', 'motzash'), (r'ארץ ישראל', 'israel'), (r'חוץ לארץ', 'diaspora'),
     (r'שאין אומרים תחנון|שאין נופלים|שאומרים תחנון', 'tachanunDay'),
     (r'נוסח (?:עדות המזרח|ספרד|אשכנז|ספרדי)', 'other'),
@@ -499,6 +505,19 @@ def convert_page(html, prayer, he):
             if q[:2] != parts[:2] or not nxt['s']: break
             if any(plain(re.sub(r'<[^>]+>', ' ', x)).startswith('ואנחנו לא נדע') for x in nxt['s']): break
             nxt['p'] = nxt['h'] = ', '.join(q[:2] + [parts[2]] + q[2:])
+    for leaf in leaves:
+        if leaf['p'].split(', ')[-1] not in LIST_LEAVES: continue
+        segs, cur = [], None
+        for x in leaf['s']:
+            if only_ins(x):
+                m = re.match(r'<span data-w="([^"]+)"', x)
+                cur = m.group(1) if m else None
+                segs.append(x)
+            elif cur and not x.startswith('<span data-w='):
+                segs.append(f'<span data-w="{cur}">{x}</span>')
+            else:
+                segs.append(x)
+        leaf['s'] = segs
     for leaf in leaves:
         rule = LEAF_WHEN.get(leaf['p'].split(', ')[-1])
         if not rule: continue
