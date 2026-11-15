@@ -67,6 +67,7 @@ body{display:flex; align-items:center; justify-content:center;}
 .rows li:last-child{border-bottom:0;}
 .rows li .t{font-weight:700; direction:ltr; font-variant-numeric:tabular-nums;}
 .rows li .sub{color:var(--muted); font-size:.8em;}
+.srcnote{font-size:calc(var(--u) * 1.2); color:var(--muted); margin-top:calc(var(--u) * .4);}
 .upcoming{margin-top:auto; padding-top:calc(var(--u) * .8);}
 .upcoming h3{font-size:calc(var(--u) * 1.7); color:var(--gold); margin-bottom:calc(var(--u) * .3);}
 .upcoming .rows li{font-size:calc(var(--u) * 1.55);}
@@ -212,6 +213,7 @@ body.pointer .gear{opacity:.8;}
         <div class="when" id="tv-shabbat-when"></div>
         <div class="special" id="tv-shabbat-special"></div>
         <ul class="rows" id="tv-shabbat"></ul>
+        <div class="srcnote" id="tv-shabbat-src"></div>
         <div class="upcoming">
           <h3>בקרוב</h3>
           <ul class="rows" id="tv-upcoming"></ul>
@@ -413,6 +415,37 @@ function dayLabels(day){
 }
 
 /* ---------- the next Shabbat / Yom Tov ---------- */
+/* ---------- candle lighting and havdalah: from Hebcal (as the rest of the site) ----------
+   Fetched for the place (Jerusalem: 40 minutes), kept on the device, and computed here the same way
+   only when Hebcal was never reachable. */
+let tvLocReady = false;          // the place is known (not the first default)
+let tvCandles = null;            // { key, time, events: [{ type, iso, date }] }
+function candlesKey(){ return tvLoc.lat.toFixed(3) + ',' + tvLoc.lon.toFixed(3) + (isJerusalemArea(tvLoc.lat, tvLoc.lon, tvLoc.name) ? ',j' : ''); }
+async function loadCandles(force){
+  const key = candlesKey();
+  if(!tvCandles || tvCandles.key !== key){ const c = store('tv-candles'); tvCandles = c && c.key === key ? c : null; }
+  if(!force && tvCandles && Date.now() - tvCandles.time < 6 * 60 * 60 * 1000) return;
+  const now = new Date();
+  const start = isoLocal(addDays(now, -4)), end = isoLocal(addDays(now, 12));
+  const tzid = tvTz() || Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Jerusalem';
+  const url = 'https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=' + start + '&end=' + end +
+    '&latitude=' + tvLoc.lat + '&longitude=' + tvLoc.lon + '&tzid=' + encodeURIComponent(tzid) +
+    (tvIsIsrael() ? '&i=on' : '') + candleMinutesParam(tvLoc.lat, tvLoc.lon, tvLoc.name);
+  try{
+    const r = await fetch(url);
+    if(!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    const events = (d.items || []).filter(i => i.category === 'candles' || i.category === 'havdalah')
+      .map(i => ({ type: i.category, iso: String(i.date).slice(0, 10), date: i.date }));
+    tvCandles = { key, time: Date.now(), events };
+    store('tv-candles', tvCandles);
+  }catch(e){}                    // offline: the copy kept on the device (or the local computation)
+}
+function hebcalTime(type, day){
+  if(!tvCandles || tvCandles.key !== candlesKey()) return null;
+  const e = tvCandles.events.find(x => x.type === type && x.iso === isoLocal(day));
+  return e ? new Date(e.date) : null;
+}
 function tvRestPeriod(now){
   const today = addDays(now, 0);
   for(let k = 0; k < 9; k++){
@@ -437,10 +470,12 @@ function tvRestPeriod(now){
     const startSunset = calcSunEventUTC(start, tvLoc.lat, tvLoc.lon, 90.833, false);
     const endSunset = calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 90.833, false);
     const candleMin = isJerusalemArea(tvLoc.lat, tvLoc.lon, tvLoc.name) ? JERUSALEM_CANDLE_MINUTES : 18;
+    const hc = hebcalTime('candles', start), hh = hebcalTime('havdalah', end);
     return {
       names, start, end, shabbatDay, candleMin,
-      candles: startSunset && roundToMinute(new Date(startSunset.getTime() - candleMin * 60000), 'down'),
-      havdala: roundToMinute(calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 98.5, false), 'up'),   // 8.5° (as Hebcal)
+      fromHebcal: !!(hc && hh),
+      candles: hc || (startSunset && roundToMinute(new Date(startSunset.getTime() - candleMin * 60000), 'down')),
+      havdala: hh || roundToMinute(calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 98.5, false), 'up'),   // 8.5° (as Hebcal)
       rt: endSunset && roundToMinute(new Date(endSunset.getTime() + 72 * 60000), 'up')
     };
   }
@@ -669,7 +704,11 @@ function drawAll(){
       '<li><span>הדלקת נרות <span class="sub">(' + WEEKDAY_NAMES[rp.start.getDay()] + ', ' + rp.candleMin + ' דק׳ לפני השקיעה)</span></span><span class="t">' + hm(rp.candles) + '</span></li>' +
       '<li><span>צאת ' + (onlyShabbat ? 'השבת' : 'החג') + '</span><span class="t">' + hm(rp.havdala) + '</span></li>' +
       '<li><span>רבנו תם</span><span class="t">' + hm(rp.rt) + '</span></li>';
+    $('tv-shabbat-src').textContent = rp.fromHebcal
+      ? 'זמני כניסה ויציאה: Hebcal.com · רבנו תם: 72 דקות אחרי השקיעה'
+      : 'זמני כניסה ויציאה: חישוב במכשיר (אין חיבור ל-Hebcal) · רבנו תם: 72 דקות אחרי השקיעה';
   }else{
+    $('tv-shabbat-src').textContent = '';
     ['tv-shabbat-name', 'tv-shabbat-when', 'tv-shabbat-special'].forEach(id => $(id).textContent = '');
     $('tv-shabbat').innerHTML = '';
   }
@@ -699,8 +738,7 @@ function drawAll(){
 
   const online = navigator.onLine !== false;
   $('tv-dot').classList.toggle('off', !online);
-  $('tv-status').textContent = (online ? 'מחובר' : 'לא מחובר — מוצג מהעותק השמור') +
-    (tvDataTime ? ' · נתונים: ' + tvDataTime.toLocaleDateString('he-IL') : '');
+  $('tv-status').textContent = online ? 'מחובר' : 'לא מחובר — מוצג מהעותק השמור';
 }
 // a long list (many lessons) shrinks until it fits its panel, instead of being cut off
 function fitLists(){
@@ -817,7 +855,7 @@ function drawMessages(now){
 
 /* ---------- the site's files ---------- */
 async function loadSiteData(){
-  const [p, h] = await Promise.all([fetchSiteJson('/data-parasha.json'), fetchSiteJson('/data-hebcal.json'), loadSheet()]);
+  const [p, h] = await Promise.all([fetchSiteJson('/data-parasha.json'), fetchSiteJson('/data-hebcal.json'), loadSheet(), tvLocReady ? loadCandles() : null]);
   if(p){ tvParasha = p; store('tv-parasha-cache', p); } else if(!tvParasha) tvParasha = store('tv-parasha-cache');
   if(h){ tvHebcal = h; store('tv-hebcal-cache', h); } else if(!tvHebcal) tvHebcal = store('tv-hebcal-cache');
   if(p || h) tvDataTime = new Date();
@@ -852,7 +890,7 @@ $('tv-settings').addEventListener('click', e => {
     if(!TV_PAGES.some(p => pageOn(p.key))){ store('tv-pages', before); return; }      // keep at least one page
     startRotation();
   }else if(b.dataset.rot){ store('tv-rotate', +b.dataset.rot); startRotation(); }
-  else if(b.dataset.i !== undefined){ tvLoc = TV_CITIES[+b.dataset.i]; store('tv-location', tvLoc); drawAll(); }
+  else if(b.dataset.i !== undefined){ tvLoc = TV_CITIES[+b.dataset.i]; store('tv-location', tvLoc); drawAll(); loadCandles(true).then(drawAll); }
   else if(b.id === 'tv-reset'){
     try{ ['tv-pages', 'tv-rotate', 'tv-location'].forEach(k => localStorage.removeItem(k)); }catch(e){}
     tvResolveLocation().then(l => { tvLoc = l; drawAll(); drawSettings(); }); startRotation();
@@ -904,8 +942,10 @@ let pointerTimer = null;
   drawClock();
   await loadSiteData();                 // the sheet may name the default city
   tvLoc = await tvResolveLocation();
+  tvLocReady = true;
   drawAll();
   startRotation();
+  loadCandles().then(drawAll);
   setInterval(drawClock, 1000);
   setInterval(drawAll, 20000);
   setInterval(() => loadSiteData().then(async () => { if(!store('tv-location')) tvLoc = await tvResolveLocation(); drawAll(); showPage(); }), 30 * 60 * 1000);   // the site's files: every half hour

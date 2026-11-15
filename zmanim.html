@@ -364,14 +364,15 @@ function renderZmanim(){
     const entry = await fetchShabbatEntryExitForZmanim(loc.lat, loc.lon, targetDate, loc.tzid, loc.name);
     if(requestId !== renderZmanimRequestId) return;
     if(entry){
-      const jlmNote = isJerusalemArea(loc.lat, loc.lon, loc.name)
-        ? `<small class="zman-sub">${JERUSALEM_CANDLE_MINUTES} דקות לפני השקיעה — מנהג ירושלים</small>` : '';
-      listEl.appendChild(buildRow(`כניסת ${entry.label} (${loc.name})${jlmNote}`, entry.candleTime));
+      const src = '<a href="https://www.hebcal.com" target="_blank" rel="noopener">Hebcal.com</a>';
+      const candleNote = `<small class="zman-sub">לפי ${src} — ` + (isJerusalemArea(loc.lat, loc.lon, loc.name)
+        ? `${JERUSALEM_CANDLE_MINUTES} דקות לפני השקיעה, מנהג ירושלים` : '18 דקות לפני השקיעה') + '</small>';
+      listEl.appendChild(buildRow(`כניסת ${entry.label} (${loc.name})${candleNote}`, entry.candleTime));
       if(entry.havdalahTime){
-        listEl.appendChild(buildRow(`יציאת ${entry.label} (${loc.name})`, entry.havdalahTime));
+        listEl.appendChild(buildRow(`יציאת ${entry.label} (${loc.name})<small class="zman-sub">לפי ${src} — צאת הכוכבים (8.5°)</small>`, entry.havdalahTime));
       }
       if(entry.rabbeinuTamTime){
-        listEl.appendChild(buildRow(`יציאת ${entry.label} לר"ת (${loc.name})`, entry.rabbeinuTamTime));
+        listEl.appendChild(buildRow(`יציאת ${entry.label} לר"ת (${loc.name})<small class="zman-sub">72 דקות אחרי השקיעה (חישוב האתר)</small>`, entry.rabbeinuTamTime));
       }
     }
 
