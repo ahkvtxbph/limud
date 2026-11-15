@@ -468,7 +468,14 @@ const SIDDUR_NUSACHOT = {
     leafRules: [
       { match: /מזמור לתודה/, when: g => g.mizmorLetoda },
       { match: /^שחרית,.*, למנצח$/, when: g => g.lamenatzeach },    // Psalm 20 (not "למנצח" psalms elsewhere)
-      { match: /שני וחמישי/, when: g => g.tachanun && g.monThu }
+      { match: /שני וחמישי/, when: g => g.tachanun && g.monThu },
+      // the psalm of the day (שיר של יום): only on its own day
+      { match: /, סדר היום, יום ראשון$/, when: g => g.dow === 0 },
+      { match: /, סדר היום, יום שני$/, when: g => g.dow === 1 },
+      { match: /, סדר היום, יום שלישי$/, when: g => g.dow === 2 },
+      { match: /, סדר היום, יום רביעי$/, when: g => g.dow === 3 },
+      { match: /, סדר היום, יום חמישי$/, when: g => g.dow === 4 },
+      { match: /, סדר היום, יום ש[י]?שי$/, when: g => g.dow === 5 }
     ],
     prayers: null
   },
@@ -793,6 +800,7 @@ function sdEvalOne(k, g, ctx){
     case 'purim': return !!g.purim;
     case 'av9': return !!g.av9;
     case 'fast': return !!g.fast;
+    case 'esther': return !!g.fast && g.fastKind === 'esther';
     case 'motzash': return !!g.motzash;
     case 'shabbat': return g.dow === 6;
     case 'israel': return !!g.isIsrael;
@@ -1079,6 +1087,7 @@ function sdExplicitKey(k, g){
     case 'winterB': return !!g.talUmatar;
     case 'summerB': return !g.talUmatar;
     case 'other': return false;            // another nusach's wording
+    case 'house': return false;            // in a mourner's / a groom's house
   }
   return sdEvalOne(k, g, {});
 }
