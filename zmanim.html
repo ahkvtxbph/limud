@@ -105,9 +105,10 @@ let zmanimSelectedDate = null; // null = today (live)
 
 let renderZmanimRequestId = 0; // guards against stale async entry/exit fetches overwriting a newer render
 
-function computeZmanim(date, lat, lon){
-  const sunrise = calcSunEventUTC(date, lat, lon, 90.833, true);
-  const sunset  = calcSunEventUTC(date, lat, lon, 90.833, false);
+// sun: { sunrise, sunset, nextSunrise } from Hebcal (the site's copy for the TV cities) — else calculated here
+function computeZmanim(date, lat, lon, sun){
+  const sunrise = (sun && sun.sunrise) || calcSunEventUTC(date, lat, lon, 90.833, true);
+  const sunset  = (sun && sun.sunset) || calcSunEventUTC(date, lat, lon, 90.833, false);
   if(!sunrise || !sunset) return null;
 
   const dayLengthMs = sunset.getTime() - sunrise.getTime();
@@ -139,7 +140,7 @@ function computeZmanim(date, lat, lon){
   // Chatzot halayla (halachic midnight): the midpoint between TODAY's sunset and TOMORROW's
   // sunrise — i.e. the middle of the coming night, not tied to civil 00:00.
   const tomorrow = new Date(date.getTime() + 86400000);
-  const nextSunrise = calcSunEventUTC(tomorrow, lat, lon, 90.833, true);
+  const nextSunrise = (sun && sun.nextSunrise) || calcSunEventUTC(tomorrow, lat, lon, 90.833, true);
   const chatzotLayla = nextSunrise ? new Date(sunset.getTime() + (nextSunrise.getTime() - sunset.getTime())/2) : null;
 
   const result = [
@@ -167,7 +168,7 @@ async function fetchFastInfoForZmanim(lat, lon, displayDate, ownAlot, ownSunset,
     const startStr = displayDate.toISOString().slice(0,10);
     const endStr = new Date(displayDate.getTime() + 86400000).toISOString().slice(0,10);
     const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&mf=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}`;
-    const res = await fetch(url);
+    const res = await hebcalFetch(url);              // the site's copy for the TV cities, otherwise Hebcal
     if(!res.ok) throw new Error('fetch failed');
     const data = await res.json();
     const items = data.items || [];
@@ -229,7 +230,7 @@ async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzi
     const endStr = new Date(displayDate.getTime() + 6*86400000).toISOString().slice(0,10);
     const israelFlag = isLikelyIsrael(lat, lon) ? '&i=on' : '';
     const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${startStr}&end=${endStr}&latitude=${lat}&longitude=${lon}&tzid=${encodeURIComponent(tzid)}${israelFlag}${candleMinutesParam(lat, lon, placeName)}`;
-    const res = await fetch(url);
+    const res = await hebcalFetch(url);              // the site's copy for the TV cities, otherwise Hebcal
     if(!res.ok) throw new Error('fetch failed');
     const data = await res.json();
     const items = data.items || [];
@@ -259,10 +260,35 @@ async function fetchShabbatEntryExitForZmanim(lat, lon, displayDate, resolvedTzi
   }
 }
 
+// Hebcal's sunrise/sunset for the place (kept on the site for the TV cities, 180 days ahead)
+let zmanimHebcal = { key: null, data: null };
+function zmanimLocKey(loc){ return loc.lat.toFixed(4) + ',' + loc.lon.toFixed(4); }
+function zmanimIso(d, tzid){
+  try{ return new Intl.DateTimeFormat('en-CA', { timeZone: tzid || undefined, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d); }
+  catch(e){ return d.toISOString().slice(0, 10); }
+}
+function zmanimSun(loc, targetDate){
+  if(zmanimHebcal.key !== zmanimLocKey(loc) || !zmanimHebcal.data) return null;
+  const tz = zmanimHebcal.data.tzid;
+  const today = hebcalSunFrom(zmanimHebcal.data, zmanimIso(targetDate, tz));
+  if(!today) return null;
+  const next = hebcalSunFrom(zmanimHebcal.data, zmanimIso(new Date(targetDate.getTime() + 86400000), tz));
+  return { sunrise: today.sunrise, sunset: today.sunset, nextSunrise: next && next.sunrise, city: zmanimHebcal.data.name };
+}
+
 function renderZmanim(){
   const loc = zmanimLocation || ZMANIM_DEFAULT;
   const targetDate = zmanimSelectedDate || new Date();
-  const list = computeZmanim(targetDate, loc.lat, loc.lon);
+  const key = zmanimLocKey(loc);
+  if(zmanimHebcal.key !== key){                    // look for this place's Hebcal file once, then draw again
+    zmanimHebcal = { key, data: null };
+    hebcalCityData(loc.lat, loc.lon).then(d => {
+      if(zmanimHebcal.key !== key || !d) return;
+      zmanimHebcal.data = d; renderZmanim();
+    }).catch(() => {});
+  }
+  const sun = zmanimSun(loc, targetDate);
+  const list = computeZmanim(targetDate, loc.lat, loc.lon, sun);
   const container = document.getElementById('zmanim-list');
   container.innerHTML = '';
   if(!list){
@@ -282,7 +308,7 @@ function renderZmanim(){
   let klEvents = [];
   try{
     const dayStart = (list.find(z => z.label === 'הנץ החמה') || {}).time;
-    const nextSunrise = calcSunEventUTC(new Date(targetDate.getTime() + 86400000), loc.lat, loc.lon, 90.833, true);
+    const nextSunrise = (sun && sun.nextSunrise) || calcSunEventUTC(new Date(targetDate.getTime() + 86400000), loc.lat, loc.lon, 90.833, true);
     if(dayStart && nextSunrise) klEvents = kiddushLevanaEventsBetween(dayStart, nextSunrise);
   }catch(e){ klEvents = []; }
   // Sefirat HaOmer: the count for the NEXT Hebrew day is said this evening, at nightfall
@@ -324,6 +350,8 @@ function renderZmanim(){
   document.getElementById('zmanim-disclaimer').textContent = loc.tzid
     ? 'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המיקום שנבחר. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.'
     : 'הזמנים מחושבים אוטומטית לפי נוסחת זריחה/שקיעה אסטרונומית ושיטת "שעות זמניות" (גר״א), ומוצגים לפי אזור הזמן של המכשיר שלך (לא הצלחנו לזהות את אזור הזמן של המיקום שנבחר). אם תחפש/י מיקום במדינה או באזור זמן שונים מאלה של המכשיר שלך, השעון המוצג עלול לא לשקף נכון את השעה המקומית באותו מקום. אלו זמנים משוערים למידע כללי בלבד — לפסיקה הלכתית יש להיוועץ ברב או בלוח זמנים הלכתי מוסמך.';
+  if(sun) document.getElementById('zmanim-disclaimer').textContent +=
+    ' · הנץ החמה והשקיעה (שמהם נגזרים שאר הזמנים) — לפי Hebcal.com, עבור ' + sun.city + ' (עד ' + HEBCAL_CITY_KM + ' ק״מ ממנה).';
 
   if(klEvents.some(e => e.kind !== 'omer')){
     const months = new Set(klEvents.filter(e => e.month).map(e => e.month));

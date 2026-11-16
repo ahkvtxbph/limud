@@ -253,7 +253,7 @@ body.pointer .gear{opacity:.8;}
     <span><span class="dot" id="tv-dot"></span><span id="tv-status"></span></span>
     <div class="alert" id="tv-alert"></div>
     <span class="dots" id="tv-dots"></span>
-    <span>זמנים משוערים (חישוב אוטומטי) · <span class="site">limood.org.il</span></span>
+    <span><span id="tv-zsrc">זמנים משוערים (חישוב אוטומטי)</span> · <span class="site">limood.org.il</span></span>
   </footer>
 </div>
 
@@ -349,10 +349,24 @@ function tvTz(){ return tvIsIsrael() ? 'Asia/Jerusalem' : undefined; }
 function hm(d){ return d ? fmtZmanTime(d, tvTz()) : '—'; }
 
 /* ---------- sun times (same rules as the site's זמני היום page) ---------- */
+// Hebcal's sunrise and sunset for the city (the site's copy, 180 days ahead), kept on the device too
+let tvSun = null;                 // { key, data: { name, sun } }
+async function loadTvSun(){
+  const key = candlesKey();
+  try{
+    const d = await hebcalCityData(tvLoc.lat, tvLoc.lon);
+    if(d && d.sun){ tvSun = { key, data: { name: d.name, sun: d.sun } }; store('tv-sun', tvSun); return; }
+  }catch(e){}
+  if(!tvSun || tvSun.key !== key){ const c = store('tv-sun'); tvSun = c && c.key === key ? c : null; }
+}
+function tvSunOn(date){
+  return tvSun && tvSun.key === candlesKey() ? hebcalSunFrom(tvSun.data, isoLocal(date)) : null;
+}
 function tvZmanim(date){
   const { lat, lon } = tvLoc;
-  const sunrise = calcSunEventUTC(date, lat, lon, 90.833, true);
-  const sunset = calcSunEventUTC(date, lat, lon, 90.833, false);
+  const hs = tvSunOn(date);
+  const sunrise = hs ? hs.sunrise : calcSunEventUTC(date, lat, lon, 90.833, true);
+  const sunset = hs ? hs.sunset : calcSunEventUTC(date, lat, lon, 90.833, false);
   if(!sunrise || !sunset) return null;
   const dayMin = (sunset - sunrise) / 60000, summer = dayMin > 720;
   const alot = roundToMinute(new Date(sunrise.getTime() - 72 * 60000), 'up');
@@ -432,7 +446,7 @@ async function loadCandles(force){
     '&latitude=' + tvLoc.lat + '&longitude=' + tvLoc.lon + '&tzid=' + encodeURIComponent(tzid) +
     (tvIsIsrael() ? '&i=on' : '') + candleMinutesParam(tvLoc.lat, tvLoc.lon, tvLoc.name);
   try{
-    const r = await fetch(url);
+    const r = await hebcalFetch(url);           // the site's copy for this city, otherwise Hebcal
     if(!r.ok) throw new Error(r.status);
     const d = await r.json();
     const events = (d.items || []).filter(i => i.category === 'candles' || i.category === 'havdalah')
@@ -468,7 +482,7 @@ function tvRestPeriod(now){
       if(fd.dow === 6){ shabbatDay = d; if(names.indexOf('שבת') === -1) names.push('שבת'); }
     }
     const startSunset = calcSunEventUTC(start, tvLoc.lat, tvLoc.lon, 90.833, false);
-    const endSunset = calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 90.833, false);
+    const endSunset = (tvSunOn(end) || {}).sunset || calcSunEventUTC(end, tvLoc.lat, tvLoc.lon, 90.833, false);
     const candleMin = isJerusalemArea(tvLoc.lat, tvLoc.lon, tvLoc.name) ? JERUSALEM_CANDLE_MINUTES : 18;
     const hc = hebcalTime('candles', start), hh = hebcalTime('havdalah', end);
     return {
@@ -739,6 +753,7 @@ function drawAll(){
   const online = navigator.onLine !== false;
   $('tv-dot').classList.toggle('off', !online);
   $('tv-status').textContent = online ? 'מחובר' : 'לא מחובר — מוצג מהעותק השמור';
+  $('tv-zsrc').textContent = tvSunOn(addDays(now, 0)) ? 'הנץ והשקיעה: Hebcal.com · שאר הזמנים מחושבים מהם' : 'זמנים משוערים (חישוב אוטומטי)';
 }
 // a long list (many lessons) shrinks until it fits its panel, instead of being cut off
 function fitLists(){
@@ -890,7 +905,7 @@ $('tv-settings').addEventListener('click', e => {
     if(!TV_PAGES.some(p => pageOn(p.key))){ store('tv-pages', before); return; }      // keep at least one page
     startRotation();
   }else if(b.dataset.rot){ store('tv-rotate', +b.dataset.rot); startRotation(); }
-  else if(b.dataset.i !== undefined){ tvLoc = TV_CITIES[+b.dataset.i]; store('tv-location', tvLoc); drawAll(); loadCandles(true).then(drawAll); }
+  else if(b.dataset.i !== undefined){ tvLoc = TV_CITIES[+b.dataset.i]; store('tv-location', tvLoc); drawAll(); loadCandles(true).then(drawAll); loadTvSun().then(drawAll); }
   else if(b.id === 'tv-reset'){
     try{ ['tv-pages', 'tv-rotate', 'tv-location'].forEach(k => localStorage.removeItem(k)); }catch(e){}
     tvResolveLocation().then(l => { tvLoc = l; drawAll(); drawSettings(); }); startRotation();
@@ -946,6 +961,8 @@ let pointerTimer = null;
   drawAll();
   startRotation();
   loadCandles().then(drawAll);
+  loadTvSun().then(drawAll);
+  setInterval(() => loadTvSun().then(drawAll), 12 * 60 * 60 * 1000);
   setInterval(drawClock, 1000);
   setInterval(drawAll, 20000);
   setInterval(() => loadSiteData().then(async () => { if(!store('tv-location')) tvLoc = await tvResolveLocation(); drawAll(); showPage(); }), 30 * 60 * 1000);   // the site's files: every half hour

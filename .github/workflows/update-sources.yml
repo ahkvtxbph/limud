@@ -40,6 +40,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A -- _includes/halacha-schedule.json _includes/src-schedule.json data-schedule.json _includes/src-hebcal.json _includes/src-leyning.json data-hebcal.json data-leyning.json _includes/src-parasha.json data-parasha.json
+          git add -A -- '_includes/src-zmanim*.json' 'data-zmanim*.json' 2>/dev/null || true    # Hebcal times for the TV cities (absent until the first run)
           if git diff --cached --quiet; then
             echo "Schedule already up to date."
           else
