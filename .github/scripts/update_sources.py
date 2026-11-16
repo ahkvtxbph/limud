@@ -394,6 +394,11 @@ def main():
             print('parasha changed' if update_parasha() else 'parasha unchanged')
         except Exception as e:
             print('Parasha update failed:', e)
+        try:
+            import hebcal_zmanim                     # sunrise/sunset and Shabbat times for the TV cities, 180 days
+            print('zmanim changed' if hebcal_zmanim.update(sys.modules[__name__]) else 'zmanim unchanged')
+        except Exception as e:
+            print('Hebcal zmanim update failed:', e)   # the site keeps the previous files / asks Hebcal itself
         return
     update_tehillim()
     update_birkat()

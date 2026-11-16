@@ -618,7 +618,7 @@ async function fetchGatingSchedule(loc){
   const end = new Date(now.getTime() + 10*86400000).toISOString().slice(0,10);
   const url = `https://www.hebcal.com/hebcal?cfg=json&v=1&c=on&maj=on&start=${start}&end=${end}&latitude=${loc.lat}&longitude=${loc.lon}&tzid=${encodeURIComponent(tzid)}${loc.isIsrael ? '&i=on' : ''}${candleMinutesParam(loc.lat, loc.lon, loc.name)}`;
   try{
-    const res = await fetch(url);
+    const res = await hebcalFetch(url);               // the site's copy for the TV cities, otherwise Hebcal
     if(!res.ok) throw new Error('hebcal fetch failed');
     const data = await res.json();
     const items = data.items || [];
@@ -1090,7 +1090,37 @@ function wireSelectNav(selectId, prevBtnId, nextBtnId, onStep){
    refreshed weekly by the automation. Only requests that do not depend on the visitor's location
    (holidays, Rosh Chodesh, fasts, weekly portion, haftara) are answered locally — and only for
    the dates the file covers. Anything else (candle-lighting times, other dates) goes to Hebcal.
+   Location-dependent answers (Shabbat / Yom Tov times, sunrise and sunset) are kept too, 180 days
+   ahead, for the cities of the TV board (data-zmanim*.json, .github/scripts/hebcal_zmanim.py):
+   a place within a few km of one of them is answered from that city's file.
    ===================================================================== */
+const HEBCAL_CITY_KM = 7;
+function hebcalCityNear(index, lat, lon){
+  if(!index || !Array.isArray(index.cities)) return null;
+  let best = null, bestKm = Infinity;
+  index.cities.forEach(c => {
+    const dy = (c.lat - lat) * 111, dx = (c.lon - lon) * 111 * Math.cos(lat * Math.PI / 180);
+    const km = Math.sqrt(dx * dx + dy * dy);
+    if(km < bestKm){ bestKm = km; best = c; }
+  });
+  return bestKm <= HEBCAL_CITY_KM ? best : null;
+}
+// The kept Hebcal data of the city at (or near) this place — or null (then: Hebcal itself / own calculation)
+async function hebcalCityData(lat, lon){
+  if(!isFinite(lat) || !isFinite(lon)) return null;
+  const index = await hebcalLocalFile('/data-zmanim.json');        // from the site root (the TV board is in /tv/)
+  const c = hebcalCityNear(index, lat, lon);
+  if(!c) return null;
+  const d = await hebcalLocalFile('/data-zmanim-' + c.n + '.json');
+  return d && d.name === c.name ? d : null;
+}
+// Sunrise and sunset (Hebcal, to the second) for a civil date "YYYY-MM-DD" — or null
+function hebcalSunFrom(data, iso){
+  const s = data && data.sun && data.sun[iso];
+  if(!s || !s[0] || !s[1]) return null;
+  const sunrise = new Date(s[0]), sunset = new Date(s[1]);
+  return isNaN(sunrise) || isNaN(sunset) ? null : { sunrise, sunset };
+}
 const hebcalLocalPromises = {};
 function hebcalLocalFile(name){
   if(!hebcalLocalPromises[name]) hebcalLocalPromises[name] = fetchSiteJson(name);
@@ -1109,6 +1139,17 @@ async function hebcalLocalAnswer(url){
     return r || null;
   }
   if(u.pathname !== '/hebcal') return null;
+  if(p.has('latitude') || p.has('longitude')){                   // a place: the city files
+    if(p.get('tzid') && p.get('tzid') !== 'Asia/Jerusalem') return null;
+    const data = await hebcalCityData(parseFloat(p.get('latitude')), parseFloat(p.get('longitude')));
+    if(!data) return null;
+    const IGN = ['cfg', 'v', 'start', 'end', 'latitude', 'longitude', 'tzid'];
+    const sig = [...p.keys()].filter(k => !IGN.includes(k)).sort().map(k => k + '=' + p.get(k)).join('&');
+    const set = data.sets && data.sets[sig];
+    const start = p.get('start'), end = p.get('end');
+    if(!set || !start || !end || start < set.start || end > set.end) return null;
+    return { items: (set.items || []).filter(i => { const d = String(i.date || '').slice(0, 10); return d >= start && d <= end; }) };
+  }
   const IGNORE = ['cfg', 'v', 'start', 'end', 'tzid'];
   const ALLOWED = ['maj', 'min', 'mod', 'nx', 'mf', 's', 'ss', 'i', 'leyning'];
   const keys = [...p.keys()].filter(k => !IGNORE.includes(k));
