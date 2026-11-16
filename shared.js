@@ -964,8 +964,13 @@ function parseTanakhRef(ref){
   for(const book of sorted){
     if(ref.indexOf(book.en + ' ') === 0){
       const rest = ref.slice(book.en.length + 1);
-      let m = rest.match(/^(\d+):(\d+)(?:-(\d+))?/);
+      // "15:17-16:17" — a portion that goes on into the next chapter(s)
+      let m = rest.match(/^(\d+):(\d+)-(\d+):(\d+)/);
+      if(m) return { book, chapter: parseInt(m[1],10), fromVerse: parseInt(m[2],10), toChapter: parseInt(m[3],10), toVerse: parseInt(m[4],10) };
+      m = rest.match(/^(\d+):(\d+)(?:-(\d+))?/);
       if(m) return { book, chapter: parseInt(m[1],10), fromVerse: parseInt(m[2],10), toVerse: m[3] ? parseInt(m[3],10) : parseInt(m[2],10) };
+      m = rest.match(/^(\d+)-(\d+)$/);                       // whole chapters: "3-4"
+      if(m) return { book, chapter: parseInt(m[1],10), fromVerse: 1, toChapter: parseInt(m[2],10), toVerse: null };
       m = rest.match(/^(\d+)/);
       if(m) return { book, chapter: parseInt(m[1],10), fromVerse: 1, toVerse: null };
     }
@@ -1765,15 +1770,25 @@ async function renderTanakhStyleDailyCalendar(titleEn, readerId, headingHe, sele
     const loc = parseTanakhRef(item.ref);
     if(!loc) throw new Error('could not parse ref: ' + item.ref);
     const chapters = await fetchWholeTanakhBook(loc.book.en);
-    const chapterArr = chapters[loc.chapter - 1];
-    if(!chapterArr) throw new Error('chapter not found');
-    const toVerse = loc.toVerse || chapterArr.length;
-    const verses = chapterArr.slice(loc.fromVerse - 1, toVerse);
-    if(!verses.length) throw new Error('no verses found');
+    // one card per chapter: a portion may go on into the next chapter(s) ("15:17-16:17")
+    const lastChapter = loc.toChapter && loc.toChapter > loc.chapter ? loc.toChapter : loc.chapter;
+    const parts = [];
+    for(let ch = loc.chapter; ch <= lastChapter; ch++){
+      const chapterArr = chapters[ch - 1];
+      if(!chapterArr) throw new Error('chapter not found: ' + ch);
+      const from = ch === loc.chapter ? loc.fromVerse : 1;
+      const to = ch === lastChapter && loc.toVerse ? loc.toVerse : chapterArr.length;
+      const verses = chapterArr.slice(from - 1, to);
+      if(verses.length) parts.push({ ch, from, verses });
+    }
+    if(!parts.length) throw new Error('no verses found');
     reader.innerHTML = '';
-    const card = buildTanakhChapterCard(loc.book.he, loc.book.en, loc.chapter, verses, loc.fromVerse);
-    card.querySelector('.chapter-head h2').textContent = `${headingHe} — ${loc.book.he} פרק ${hebNum(loc.chapter)}`;
-    reader.appendChild(card);
+    parts.forEach((part, i) => {
+      const card = buildTanakhChapterCard(loc.book.he, loc.book.en, part.ch, part.verses, part.from);
+      if(i === 0) card.querySelector('.chapter-head h2').textContent = `${headingHe} — ${loc.book.he} פרק ${hebNum(part.ch)}` +
+        (parts.length > 1 ? `–${hebNum(parts[parts.length - 1].ch)}` : '');
+      reader.appendChild(card);
+    });
   }catch(e){
     reader.innerHTML = `<p class="chapter-error">לא ניתן היה לטעון את התוכן כרגע. אפשר לראות אותו ישירות ב<a href="https://www.sefaria.org/calendars" target="_blank" rel="noopener">ספריא</a>.</p>`;
   }
