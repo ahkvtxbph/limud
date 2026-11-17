@@ -1,20 +1,5 @@
 {
 "Halakhah Yomit":{
-"2026-11-07":{
-"ref":"Shulchan Arukh, Orach Chayim 291:6-292:2",
-"he":"שולחן ערוך, אורח חיים רצ״א:ו׳-רצ״ב:ב׳",
-"en":"Shulchan Arukh, Orach Chayim 291:6-292:2"
-},
-"2026-11-08":{
-"ref":"Shulchan Arukh, Orach Chayim 293:1-3",
-"he":"שולחן ערוך, אורח חיים רצ״ג:א׳-ג׳",
-"en":"Shulchan Arukh, Orach Chayim 293:1-3"
-},
-"2026-11-09":{
-"ref":"Shulchan Arukh, Orach Chayim 294:1-3",
-"he":"שולחן ערוך, אורח חיים רצ״ד:א׳-ג׳",
-"en":"Shulchan Arukh, Orach Chayim 294:1-3"
-},
 "2026-11-10":{
 "ref":"Shulchan Arukh, Orach Chayim 294:4-295:1",
 "he":"שולחן ערוך, אורח חיים רצ״ד:ד׳-רצ״ה:א׳",
@@ -639,6 +624,21 @@
 "ref":"Shulchan Arukh, Orach Chayim 320:3-5",
 "he":"שולחן ערוך, אורח חיים ש״כ:ג׳-ה׳",
 "en":"Shulchan Arukh, Orach Chayim 320:3-5"
+},
+"2027-03-15":{
+"ref":"Shulchan Arukh, Orach Chayim 320:6-8",
+"he":"שולחן ערוך, אורח חיים ש״כ:ו׳-ח׳",
+"en":"Shulchan Arukh, Orach Chayim 320:6-8"
+},
+"2027-03-16":{
+"ref":"Shulchan Arukh, Orach Chayim 320:9-11",
+"he":"שולחן ערוך, אורח חיים ש״כ:ט׳-י״א",
+"en":"Shulchan Arukh, Orach Chayim 320:9-11"
+},
+"2027-03-17":{
+"ref":"Shulchan Arukh, Orach Chayim 320:12-14",
+"he":"שולחן ערוך, אורח חיים ש״כ:י״ב-י״ד",
+"en":"Shulchan Arukh, Orach Chayim 320:12-14"
 }
 }
 }

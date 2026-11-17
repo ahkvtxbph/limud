@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /data-zmanim-1.json
+---
+{% include src-zmanim-1.json %}
