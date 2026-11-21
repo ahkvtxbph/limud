@@ -2,8 +2,8 @@
 "note":"נוצר אוטומטית מ־Hebcal.com (CC BY 4.0) — לא לערוך ידנית",
 "sets":{
 "maj=on&mf=on&min=on&mod=on&nx=on":{
-"start":"2026-10-13",
-"end":"2027-12-22",
+"start":"2026-10-17",
+"end":"2027-12-26",
 "items":[
 {
 "title":"Sigd",
@@ -1316,12 +1316,52 @@
 },
 "link":"https://hebcal.com/h/rosh-chodesh-kislev-2027?us=js&um=api",
 "memo":"Start of month of Kislev on the Hebrew calendar. Kislev (כִּסְלֵו) is the 3rd month of the civil Hebrew year and the 9th month of the biblical Hebrew year. It has 30 or 29 days and corresponds to November or December on the Gregorian calendar. רֹאשׁ חוֹדֶשׁ, transliterated Rosh Chodesh or Rosh Hodesh, is a minor holiday that occurs at the beginning of every month in the Hebrew calendar. It is marked by the birth of a new moon"
+},
+{
+"title":"Chanukah: 1 Candle",
+"date":"2027-12-24",
+"hdate":"24 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: א׳ נר",
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Chanukah: 2 Candles",
+"date":"2027-12-25",
+"hdate":"25 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ב׳ נרות",
+"leyning":{
+"haftarah":"Zechariah 2:14-4:7",
+"maftir":"Numbers 7:1-7:17"
+},
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Chanukah: 3 Candles",
+"date":"2027-12-26",
+"hdate":"26 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ג׳ נרות",
+"leyning":{
+"1":"Numbers 7:18-7:20",
+"2":"Numbers 7:21-7:23",
+"3":"Numbers 7:24-7:29",
+"torah":"Numbers 7:18-29"
+},
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
 }
 ]
 },
 "maj=on&min=on&mod=on&nx=on":{
-"start":"2026-10-13",
-"end":"2027-12-22",
+"start":"2026-10-17",
+"end":"2027-12-26",
 "items":[
 {
 "title":"Sigd",
@@ -2557,12 +2597,52 @@
 },
 "link":"https://hebcal.com/h/rosh-chodesh-kislev-2027?us=js&um=api",
 "memo":"Start of month of Kislev on the Hebrew calendar. Kislev (כִּסְלֵו) is the 3rd month of the civil Hebrew year and the 9th month of the biblical Hebrew year. It has 30 or 29 days and corresponds to November or December on the Gregorian calendar. רֹאשׁ חוֹדֶשׁ, transliterated Rosh Chodesh or Rosh Hodesh, is a minor holiday that occurs at the beginning of every month in the Hebrew calendar. It is marked by the birth of a new moon"
+},
+{
+"title":"Chanukah: 1 Candle",
+"date":"2027-12-24",
+"hdate":"24 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: א׳ נר",
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Chanukah: 2 Candles",
+"date":"2027-12-25",
+"hdate":"25 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ב׳ נרות",
+"leyning":{
+"haftarah":"Zechariah 2:14-4:7",
+"maftir":"Numbers 7:1-7:17"
+},
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Chanukah: 3 Candles",
+"date":"2027-12-26",
+"hdate":"26 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ג׳ נרות",
+"leyning":{
+"1":"Numbers 7:18-7:20",
+"2":"Numbers 7:21-7:23",
+"3":"Numbers 7:24-7:29",
+"torah":"Numbers 7:18-29"
+},
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
 }
 ]
 },
 "i=on&maj=on&min=on&mod=on&nx=on":{
-"start":"2026-10-13",
-"end":"2027-12-22",
+"start":"2026-10-17",
+"end":"2027-12-26",
 "items":[
 {
 "title":"Yom HaAliyah School Observance",
@@ -3831,12 +3911,52 @@
 "hebrew":"יום בן־גוריון",
 "link":"https://hebcal.com/h/ben-gurion-day-2027?i=on&us=js&um=api",
 "memo":"Commemorates the life and vision of Israel’s first Prime Minister David Ben-Gurion"
+},
+{
+"title":"Chanukah: 1 Candle",
+"date":"2027-12-24",
+"hdate":"24 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: א׳ נר",
+"link":"https://hebcal.com/h/chanukah-2027?i=on&us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Chanukah: 2 Candles",
+"date":"2027-12-25",
+"hdate":"25 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ב׳ נרות",
+"leyning":{
+"haftarah":"Zechariah 2:14-4:7",
+"maftir":"Numbers 7:1-7:17"
+},
+"link":"https://hebcal.com/h/chanukah-2027?i=on&us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Chanukah: 3 Candles",
+"date":"2027-12-26",
+"hdate":"26 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ג׳ נרות",
+"leyning":{
+"1":"Numbers 7:18-7:20",
+"2":"Numbers 7:21-7:23",
+"3":"Numbers 7:24-7:29",
+"torah":"Numbers 7:18-29"
+},
+"link":"https://hebcal.com/h/chanukah-2027?i=on&us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
 }
 ]
 },
 "leyning=off&maj=on&s=on":{
-"start":"2026-10-13",
-"end":"2027-12-22",
+"start":"2026-10-17",
+"end":"2027-12-26",
 "items":[
 {
 "title":"Parashat Noach",
@@ -4720,12 +4840,50 @@
 "category":"parashat",
 "hebrew":"פרשת וישלח",
 "link":"https://hebcal.com/s/5788/8?us=js&um=api"
+},
+{
+"title":"Chanukah: 1 Candle",
+"date":"2027-12-24",
+"hdate":"24 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: א׳ נר",
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Parashat Vayeshev",
+"date":"2027-12-25",
+"hdate":"25 Kislev 5788",
+"category":"parashat",
+"hebrew":"פרשת וישב",
+"link":"https://hebcal.com/s/5788/9?us=js&um=api"
+},
+{
+"title":"Chanukah: 2 Candles",
+"date":"2027-12-25",
+"hdate":"25 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ב׳ נרות",
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Chanukah: 3 Candles",
+"date":"2027-12-26",
+"hdate":"26 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ג׳ נרות",
+"link":"https://hebcal.com/h/chanukah-2027?us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
 }
 ]
 },
 "i=on&leyning=off&maj=on&s=on":{
-"start":"2026-10-13",
-"end":"2027-12-22",
+"start":"2026-10-17",
+"end":"2027-12-26",
 "items":[
 {
 "title":"Parashat Noach",
@@ -5584,6 +5742,44 @@
 "category":"parashat",
 "hebrew":"פרשת וישלח",
 "link":"https://hebcal.com/s/5788i/8?us=js&um=api"
+},
+{
+"title":"Chanukah: 1 Candle",
+"date":"2027-12-24",
+"hdate":"24 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: א׳ נר",
+"link":"https://hebcal.com/h/chanukah-2027?i=on&us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Parashat Vayeshev",
+"date":"2027-12-25",
+"hdate":"25 Kislev 5788",
+"category":"parashat",
+"hebrew":"פרשת וישב",
+"link":"https://hebcal.com/s/5788i/9?us=js&um=api"
+},
+{
+"title":"Chanukah: 2 Candles",
+"date":"2027-12-25",
+"hdate":"25 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ב׳ נרות",
+"link":"https://hebcal.com/h/chanukah-2027?i=on&us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
+},
+{
+"title":"Chanukah: 3 Candles",
+"date":"2027-12-26",
+"hdate":"26 Kislev 5788",
+"category":"holiday",
+"subcat":"major",
+"hebrew":"חנוכה: ג׳ נרות",
+"link":"https://hebcal.com/h/chanukah-2027?i=on&us=js&um=api",
+"memo":"Hanukkah, the Jewish festival of rededication. Also known as the Festival of Lights, the eight-day festival is observed by lighting the candles of a hanukkiah (menorah)"
 }
 ]
 }
