@@ -6427,7 +6427,7 @@
 "file":"data-rambam-6.json",
 "from":1,
 "to":12,
-"v":"83da68951840"
+"v":"71158c2295b7"
 }
 ]
 },
@@ -6455,7 +6455,7 @@
 "file":"data-rambam-6.json",
 "from":1,
 "to":13,
-"v":"83da68951840"
+"v":"71158c2295b7"
 }
 ]
 },
@@ -6480,7 +6480,7 @@
 "file":"data-rambam-6.json",
 "from":1,
 "to":10,
-"v":"83da68951840"
+"v":"71158c2295b7"
 }
 ]
 },
@@ -6507,7 +6507,7 @@
 "file":"data-rambam-6.json",
 "from":1,
 "to":12,
-"v":"83da68951840"
+"v":"71158c2295b7"
 }
 ]
 },
@@ -6532,7 +6532,7 @@
 "file":"data-rambam-6.json",
 "from":1,
 "to":10,
-"v":"83da68951840"
+"v":"71158c2295b7"
 }
 ]
 },
@@ -6562,7 +6562,7 @@
 "file":"data-rambam-6.json",
 "from":1,
 "to":15,
-"v":"83da68951840"
+"v":"71158c2295b7"
 }
 ]
 },
@@ -6590,7 +6590,7 @@
 "file":"data-rambam-6.json",
 "from":1,
 "to":13,
-"v":"83da68951840"
+"v":"71158c2295b7"
 }
 ]
 },
@@ -6616,7 +6616,7 @@
 "file":"data-rambam-7.json",
 "from":1,
 "to":11,
-"v":"d5f22923452b"
+"v":"6d40ffb5016a"
 }
 ]
 },
@@ -6645,7 +6645,7 @@
 "file":"data-rambam-7.json",
 "from":1,
 "to":14,
-"v":"d5f22923452b"
+"v":"6d40ffb5016a"
 }
 ]
 },
@@ -6669,7 +6669,7 @@
 "file":"data-rambam-7.json",
 "from":1,
 "to":9,
-"v":"d5f22923452b"
+"v":"6d40ffb5016a"
 }
 ]
 },
@@ -6694,7 +6694,7 @@
 "file":"data-rambam-7.json",
 "from":1,
 "to":10,
-"v":"d5f22923452b"
+"v":"6d40ffb5016a"
 }
 ]
 },
@@ -6728,7 +6728,7 @@
 "file":"data-rambam-7.json",
 "from":1,
 "to":19,
-"v":"d5f22923452b"
+"v":"6d40ffb5016a"
 }
 ]
 },
@@ -6762,7 +6762,7 @@
 "file":"data-rambam-7.json",
 "from":1,
 "to":19,
-"v":"d5f22923452b"
+"v":"6d40ffb5016a"
 }
 ]
 },
@@ -6782,7 +6782,7 @@
 "file":"data-rambam-7.json",
 "from":1,
 "to":5,
-"v":"d5f22923452b"
+"v":"6d40ffb5016a"
 }
 ]
 },
@@ -6805,7 +6805,7 @@
 "file":"data-rambam-7.json",
 "from":1,
 "to":8,
-"v":"d5f22923452b"
+"v":"6d40ffb5016a"
 }
 ]
 },
@@ -9446,7 +9446,7 @@
 "file":"data-rashi-1.json",
 "from":1,
 "to":50,
-"v":"8cb31a2987ea"
+"v":"6639aac138f5"
 }
 ]
 },
@@ -17362,7 +17362,7 @@
 "file":"data-rashi-bavli-1.json",
 "from":1,
 "to":127,
-"v":"e370997a1909"
+"v":"56f1f0624cfa"
 }
 ],
 "talmud":true
@@ -17692,7 +17692,7 @@
 "file":"data-rashi-bavli-2.json",
 "from":1,
 "to":265,
-"v":"4a4bbf84997a"
+"v":"8094b9544e17"
 },
 {
 "file":"data-rashi-bavli-3.json",
@@ -17923,7 +17923,7 @@
 "file":"data-rashi-bavli-4.json",
 "from":1,
 "to":209,
-"v":"1f08a523f36f"
+"v":"ec9263416a73"
 }
 ],
 "talmud":true
@@ -18181,7 +18181,7 @@
 "file":"data-rashi-bavli-5.json",
 "from":1,
 "to":242,
-"v":"276631b396ad"
+"v":"bc0ba8294726"
 }
 ],
 "talmud":true
@@ -18266,7 +18266,7 @@
 "file":"data-rashi-bavli-6.json",
 "from":1,
 "to":69,
-"v":"0fd3666dac0b"
+"v":"e2e5f8d2b982"
 }
 ],
 "talmud":true
@@ -18457,7 +18457,7 @@
 "file":"data-rashi-bavli-6.json",
 "from":1,
 "to":175,
-"v":"0fd3666dac0b"
+"v":"e2e5f8d2b982"
 }
 ],
 "talmud":true
@@ -18758,7 +18758,7 @@
 "file":"data-rashi-bavli-8.json",
 "from":1,
 "to":61,
-"v":"ecef5047a51b"
+"v":"f3d9c86fa046"
 }
 ],
 "talmud":true
@@ -18837,7 +18837,7 @@
 "file":"data-rashi-bavli-8.json",
 "from":1,
 "to":63,
-"v":"ecef5047a51b"
+"v":"f3d9c86fa046"
 }
 ],
 "talmud":true
@@ -18910,7 +18910,7 @@
 "file":"data-rashi-bavli-8.json",
 "from":1,
 "to":57,
-"v":"ecef5047a51b"
+"v":"f3d9c86fa046"
 }
 ],
 "talmud":true
@@ -18979,7 +18979,7 @@
 "file":"data-rashi-bavli-8.json",
 "from":1,
 "to":53,
-"v":"ecef5047a51b"
+"v":"f3d9c86fa046"
 }
 ],
 "talmud":true
@@ -19239,7 +19239,7 @@
 "file":"data-rashi-bavli-9.json",
 "from":1,
 "to":244,
-"v":"d60dd10a440c"
+"v":"1f867f304589"
 }
 ],
 "talmud":true
@@ -19479,7 +19479,7 @@
 "file":"data-rashi-bavli-10.json",
 "from":1,
 "to":224,
-"v":"fca4ab77bb07"
+"v":"61c7b536e805"
 }
 ],
 "talmud":true
@@ -19677,7 +19677,7 @@
 "file":"data-rashi-bavli-11.json",
 "from":1,
 "to":182,
-"v":"e7af96e57257"
+"v":"064d2abcf7aa"
 }
 ],
 "talmud":true
@@ -19825,7 +19825,7 @@
 "file":"data-rashi-bavli-11.json",
 "from":1,
 "to":132,
-"v":"e7af96e57257"
+"v":"064d2abcf7aa"
 }
 ],
 "talmud":true
@@ -19939,7 +19939,7 @@
 "file":"data-rashi-bavli-12.json",
 "from":1,
 "to":98,
-"v":"511ffafbd3b4"
+"v":"a9cbc754092f"
 }
 ],
 "talmud":true
@@ -20315,7 +20315,7 @@
 "file":"data-rashi-bavli-14.json",
 "from":1,
 "to":164,
-"v":"aa13a6ac93d2"
+"v":"7ce06034d473"
 }
 ],
 "talmud":true
@@ -20569,7 +20569,7 @@
 "file":"data-rashi-bavli-15.json",
 "from":1,
 "to":238,
-"v":"da1251b11b3c"
+"v":"f01e52247792"
 }
 ],
 "talmud":true
@@ -20822,7 +20822,7 @@
 "file":"data-rashi-bavli-16.json",
 "from":1,
 "to":237,
-"v":"cd4463515b8f"
+"v":"46bfcd69a4ca"
 }
 ],
 "talmud":true
@@ -21137,7 +21137,7 @@
 "file":"data-rashi-bavli-18.json",
 "from":1,
 "to":226,
-"v":"2c9708168b72"
+"v":"0cbaea9b84e2"
 }
 ],
 "talmud":true
@@ -21201,7 +21201,7 @@
 "file":"data-rashi-bavli-19.json",
 "from":1,
 "to":48,
-"v":"db2fe2e9c640"
+"v":"b768d2b86e6e"
 }
 ],
 "talmud":true
@@ -21315,7 +21315,7 @@
 "file":"data-rashi-bavli-19.json",
 "from":1,
 "to":98,
-"v":"db2fe2e9c640"
+"v":"b768d2b86e6e"
 }
 ],
 "talmud":true
@@ -21483,7 +21483,7 @@
 "file":"data-rashi-bavli-19.json",
 "from":1,
 "to":152,
-"v":"db2fe2e9c640"
+"v":"b768d2b86e6e"
 }
 ],
 "talmud":true
@@ -21781,14 +21781,14 @@
 {
 "file":"data-rashi-bavli-21.json",
 "from":1,
-"to":236,
-"v":"1e8e5b6456d4"
+"to":237,
+"v":"74351a44ca93"
 },
 {
 "file":"data-rashi-bavli-22.json",
-"from":237,
+"from":238,
 "to":240,
-"v":"5f7ab917d5c7"
+"v":"4bc3c0250b3d"
 }
 ],
 "talmud":true
@@ -22023,7 +22023,7 @@
 "file":"data-rashi-bavli-22.json",
 "from":1,
 "to":219,
-"v":"5f7ab917d5c7"
+"v":"4bc3c0250b3d"
 }
 ],
 "talmud":true
@@ -22328,7 +22328,7 @@
 "file":"data-rashi-bavli-24.json",
 "from":240,
 "to":283,
-"v":"1c98551ee889"
+"v":"279e3b2195f9"
 }
 ],
 "talmud":true
@@ -22465,7 +22465,7 @@
 "file":"data-rashi-bavli-24.json",
 "from":1,
 "to":121,
-"v":"1c98551ee889"
+"v":"279e3b2195f9"
 }
 ],
 "talmud":true
@@ -22548,7 +22548,7 @@
 "file":"data-rashi-bavli-24.json",
 "from":1,
 "to":67,
-"v":"1c98551ee889"
+"v":"279e3b2195f9"
 }
 ],
 "talmud":true
@@ -22631,7 +22631,7 @@
 "file":"data-rashi-bavli-25.json",
 "from":1,
 "to":67,
-"v":"7f46ca97a272"
+"v":"37d503a8f277"
 }
 ],
 "talmud":true
@@ -22703,7 +22703,7 @@
 "file":"data-rashi-bavli-25.json",
 "from":1,
 "to":56,
-"v":"7f46ca97a272"
+"v":"37d503a8f277"
 }
 ],
 "talmud":true
@@ -22762,7 +22762,7 @@
 "file":"data-rashi-bavli-25.json",
 "from":1,
 "to":43,
-"v":"7f46ca97a272"
+"v":"37d503a8f277"
 }
 ],
 "talmud":true
@@ -23396,13 +23396,13 @@
 "file":"data-tosafot-2.json",
 "from":1,
 "to":273,
-"v":"a2ee6dbf88e2"
+"v":"36312d7246de"
 },
 {
 "file":"data-tosafot-3.json",
 "from":274,
 "to":314,
-"v":"a6a390b02e97"
+"v":"df9c8922738d"
 }
 ],
 "talmud":true
@@ -23627,7 +23627,7 @@
 "file":"data-tosafot-3.json",
 "from":1,
 "to":209,
-"v":"a6a390b02e97"
+"v":"df9c8922738d"
 }
 ],
 "talmud":true
@@ -23885,7 +23885,7 @@
 "file":"data-tosafot-4.json",
 "from":1,
 "to":242,
-"v":"f870bcf0ae51"
+"v":"9c1d03acd042"
 }
 ],
 "talmud":true
@@ -23970,7 +23970,7 @@
 "file":"data-tosafot-4.json",
 "from":1,
 "to":69,
-"v":"f870bcf0ae51"
+"v":"9c1d03acd042"
 }
 ],
 "talmud":true
@@ -24161,7 +24161,7 @@
 "file":"data-tosafot-5.json",
 "from":1,
 "to":175,
-"v":"dec934ef9da5"
+"v":"5e95885194ed"
 }
 ],
 "talmud":true
@@ -24612,7 +24612,7 @@
 "file":"data-tosafot-7.json",
 "from":1,
 "to":56,
-"v":"07b789ad2b88"
+"v":"7efbe8207217"
 }
 ],
 "talmud":true
@@ -24681,7 +24681,7 @@
 "file":"data-tosafot-7.json",
 "from":1,
 "to":53,
-"v":"07b789ad2b88"
+"v":"7efbe8207217"
 }
 ],
 "talmud":true
@@ -24941,7 +24941,7 @@
 "file":"data-tosafot-8.json",
 "from":1,
 "to":244,
-"v":"ef351bc0807f"
+"v":"9506f4f8becd"
 }
 ],
 "talmud":true
@@ -25180,14 +25180,14 @@
 {
 "file":"data-tosafot-9.json",
 "from":1,
-"to":203,
-"v":"93da684ed149"
+"to":202,
+"v":"3a460bfac01c"
 },
 {
 "file":"data-tosafot-10.json",
-"from":204,
+"from":203,
 "to":224,
-"v":"4f53854d4d40"
+"v":"f6528ea03910"
 }
 ],
 "talmud":true
@@ -25385,7 +25385,7 @@
 "file":"data-tosafot-10.json",
 "from":1,
 "to":182,
-"v":"4f53854d4d40"
+"v":"f6528ea03910"
 }
 ],
 "talmud":true
@@ -25533,7 +25533,7 @@
 "file":"data-tosafot-11.json",
 "from":1,
 "to":132,
-"v":"746f1fcf16c2"
+"v":"6e349db53a41"
 }
 ],
 "talmud":true
@@ -25637,7 +25637,7 @@
 "file":"data-tosafot-12.json",
 "from":1,
 "to":88,
-"v":"554d0dc2880a"
+"v":"5de3126b8a14"
 }
 ],
 "talmud":true
@@ -26266,7 +26266,7 @@
 "file":"data-tosafot-15.json",
 "from":1,
 "to":238,
-"v":"24b41569af88"
+"v":"c004a4d4caca"
 }
 ],
 "talmud":true
@@ -27563,7 +27563,7 @@
 17,
 11,
 9,
-0,
+10,
 16,
 8,
 8,
@@ -27766,7 +27766,7 @@
 "file":"data-tosafot-21.json",
 "from":1,
 "to":238,
-"v":"ecec0b7a9a94"
+"v":"887b62eb7d30"
 }
 ],
 "talmud":true
@@ -31138,7 +31138,7 @@
 "file":"data-korban-9.json",
 "from":1,
 "to":11,
-"v":"7e7b90bb31dd"
+"v":"dc3cf2fc71c4"
 }
 ]
 },
@@ -31158,7 +31158,7 @@
 "file":"data-korban-9.json",
 "from":1,
 "to":5,
-"v":"7e7b90bb31dd"
+"v":"dc3cf2fc71c4"
 }
 ]
 },
@@ -31175,7 +31175,7 @@
 "file":"data-korban-9.json",
 "from":1,
 "to":2,
-"v":"7e7b90bb31dd"
+"v":"dc3cf2fc71c4"
 }
 ]
 },
@@ -31922,5 +31922,5 @@
 }
 ]
 },
-"updated":"2026-11-14"
+"updated":"2026-11-21"
 }
