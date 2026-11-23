@@ -981,6 +981,7 @@ function parseTanakhRef(ref){
 // Builds (but does not insert) a chapter-card element with numbered verses and,
 // once fetched, Rashi commentary under each verse — mirroring the Mishnayot
 // per-item verse+commentary layout. Caller appends/inserts it wherever needed.
+const ARAMAIC_HE_BOOKS = ['Daniel', 'Ezra'];
 function buildTanakhChapterCard(bookHe, bookEn, chapter, verses, fromVerse){
   const card = document.createElement('article');
   card.className = 'chapter-card';
@@ -1004,6 +1005,7 @@ function buildTanakhChapterCard(bookHe, bookEn, chapter, verses, fromVerse){
     const versesDiv = document.createElement('div');
     versesDiv.className = 'verses';
     versesDiv.innerHTML = `<span class="v-num">${hebNum(verseNum)}</span> ${text}`;
+    versesDiv.dataset.verseIndex = i;
     wrap.appendChild(versesDiv);
 
     const commentaryDiv = document.createElement('div');
@@ -1013,6 +1015,24 @@ function buildTanakhChapterCard(bookHe, bookEn, chapter, verses, fromVerse){
     commentaryDiv.dataset.verseIndex = i;
   });
   body.replaceWith(wrap);
+
+  // Daniel and Ezra: the Aramaic verses in Hebrew (Rabbi Dan Be'eri, Wikisource, CC-BY-SA — kept on the site),
+  // shown right under each verse
+  if(ARAMAIC_HE_BOOKS.includes(bookEn)){
+    localRefText(`Hebrew translation of ${bookEn} ${chapter}`).then(tr => {
+      if(!Array.isArray(tr)) return;
+      wrap.querySelectorAll('.verses').forEach(div => {
+        const t = tr[startVerse - 1 + parseInt(div.dataset.verseIndex, 10)];
+        const clean = Array.isArray(t) ? t.flat(Infinity).map(stripTags).join(' ') : stripTags(t || '');
+        if(!clean.trim()) return;
+        const el = document.createElement('div');
+        el.className = 'aramaic-tr';
+        el.innerHTML = '<span class="tr-label">תרגום</span> ';
+        el.appendChild(document.createTextNode(clean.trim()));
+        div.after(el);
+      });
+    }).catch(() => {});
+  }
 
   // Fetch commentary for the whole chapter in one request, then fill in each
   // verse's block (skipping ahead to the right slice if only a partial range

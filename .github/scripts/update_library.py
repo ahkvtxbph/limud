@@ -134,7 +134,12 @@ def library():
         ('korban',     'קרבן העדה',       [('Korban HaEdah on Jerusalem Talmud ' + t, None) for t in KORBAN_HAEDAH_TRACTATES]),
         # Tanya: Sefaria's edition is CC-BY-NC — the text comes from Hebrew Wikisource (tanya_wikisource.py)
         ('tanya',     'תניא',             [(t, 'wikisource-tanya') for t in TANYA_BOOKS]),
+        # the Aramaic verses of Daniel and Ezra in Hebrew (Rabbi Dan Be'eri, Wikisource, CC-BY-SA) — shown under each verse
+        ('aramaic-he', 'תרגום הארמית',   [(ARAMAIC_HE_PREFIX + t, [ARAMAIC_HE]) for t in ARAMAIC_HE_BOOKS]),
     ]
+ARAMAIC_HE = "Biblical Aramaic into Hebrew, Rabbi Dan Be'eri, 2004"
+ARAMAIC_HE_PREFIX = 'Hebrew translation of '       # the site's own name for it (Sefaria keeps it as an edition of the book)
+ARAMAIC_HE_BOOKS = ['Daniel', 'Ezra']
 BAVLI_TRACTATES = ['Berakhot', 'Shabbat', 'Eruvin', 'Pesachim', 'Rosh Hashanah', 'Yoma', 'Sukkah', 'Beitzah', 'Taanit', 'Megillah',
     'Moed Katan', 'Chagigah', 'Yevamot', 'Ketubot', 'Nedarim', 'Nazir', 'Sotah', 'Gittin', 'Kiddushin', 'Bava Kamma', 'Bava Metzia',
     'Bava Batra', 'Sanhedrin', 'Makkot', 'Shevuot', 'Avodah Zarah', 'Horayot', 'Zevachim', 'Menachot', 'Chullin', 'Bekhorot',
@@ -204,6 +209,8 @@ class Library:
         talmud: sections are amudim, asked for by their address (2a, 2b …)."""
         u = self.u
         at = talmud_addr if talmud else str
+        if title.startswith(ARAMAIC_HE_PREFIX):
+            return self.translation(title[len(ARAMAIC_HE_PREFIX):], prefer[0])
         if prefer == 'wikisource-tanya':
             import tanya_wikisource as T
             r = T.build(self, title)
@@ -272,6 +279,27 @@ class Library:
         if not has_text(sections): raise RuntimeError('no text at all for ' + title)
         return {'versionTitle': version or (' / '.join(sorted(used))), 'license': lic, 'versionSource': source,
                 'pin': version or None, 'text': sections}
+
+    def translation(self, book, version):
+        """One edition of a book, chapter by chapter; a chapter it does not have stays empty
+        (never another edition in its place — for a translation that would put the original instead)."""
+        u = self.u
+        d = u.http_json(f"{u.API}/shape/{u.urllib.parse.quote(book)}")
+        node = next((x for x in d if isinstance(x, dict) and x.get('title') == book), d[0]) if isinstance(d, list) else d
+        n = len(node.get('chapters') or [])
+        if not n: raise RuntimeError('no text structure for ' + book)
+        sections, lic, source = [], None, ''
+        for k in range(1, n + 1):
+            try: v = (self.fetch(f'{book} {k}', version).get('versions') or [{}])[0]
+            except Exception: v = {}                              # 404: the edition has no such chapter
+            if (v.get('versionTitle') or '').strip() != version or not has_text(v.get('text')):
+                sections.append([]); continue
+            if not license_ok(v.get('license')): raise RuntimeError(f'"{version}" has license {v.get("license")}')
+            lic, source = v.get('license'), v.get('versionSource') or source
+            t = v.get('text')
+            sections.append([u.clean(x) if isinstance(x, str) else '' for x in (t if isinstance(t, list) else [t])])
+        if not has_text(sections): raise RuntimeError('no text at all for ' + version)
+        return {'versionTitle': version, 'license': lic, 'versionSource': source, 'pin': version, 'text': sections}
 
     # ---------------------------------------------------------------- files
     def read(self, name):
