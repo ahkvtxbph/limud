@@ -299,6 +299,9 @@ a.btn{text-decoration:none;}
   background:var(--cream); border-radius:10px; padding:.8rem 1rem;
 }
 .commentary .c-unavailable{font-size:.92rem; color:var(--muted);}
+/* Daniel / Ezra: the Aramaic verse in Hebrew, right under it */
+.aramaic-tr{margin:.35rem 0 .2rem; padding:.45rem .75rem; background:var(--tint, #EEF2F6); border-inline-start:3px solid var(--gold, #B18B43); border-radius:6px; font-size:.98rem; line-height:1.7; color:var(--text);}
+.aramaic-tr .tr-label{font-size:.78rem; font-weight:700; color:var(--gold-dark, #7A5C22); margin-inline-end:.35rem;}
 
 /* loading / error / empty states */
 .chapter-loading, .chapter-error, .state-msg{
